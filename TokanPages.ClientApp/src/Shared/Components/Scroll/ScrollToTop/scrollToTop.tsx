@@ -1,11 +1,12 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
-import Zoom from "@material-ui/core/Zoom";
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import Icon from "@mdi/react";
+import { mdiChevronUp } from "@mdi/js";
+import { useScroll } from "../../../../Shared/Hooks";
 import "./scrollToTop.css";
 
 export interface Properties {
-    children: React.ReactElement;
+    children: React.ReactElement | React.ReactElement[];
 }
 
 export const ClearPageStart = (props: Properties): React.ReactElement => {
@@ -18,30 +19,29 @@ export const ClearPageStart = (props: Properties): React.ReactElement => {
     return <>{props.children}</>;
 };
 
-export const ScrollToTop = (props: Properties): React.ReactElement => {
-    const hasTrigger = useScrollTrigger({
-        disableHysteresis: true,
-        threshold: 100,
+const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    const ownerDocument = (event.target as HTMLDivElement).ownerDocument || document;
+    const anchor = ownerDocument.querySelector("#back-to-top-anchor") as Element;
+    const headerOffset: number = 85;
+    const elementPosition = anchor.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+    window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
     });
+};
 
-    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        const ownerDocument = (event.target as HTMLDivElement).ownerDocument || document;
-        const anchor = ownerDocument.querySelector("#back-to-top-anchor") as Element;
-        const headerOffset: number = 85;
-        const elementPosition = anchor.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-        window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-        });
-    };
+export const ScrollToTop = (): React.ReactElement => {
+    const scroll = useScroll();
 
     return (
-        <Zoom in={hasTrigger}>
+        <div style={{ visibility: scroll.isScrolledTop ? "hidden" : "visible" }}>
             <div onClick={handleClick} role="presentation" className="scroll-to-top">
-                {props.children}
+                <div aria-label="scroll back to top" className="scroll-to-top-button">
+                    <Icon path={mdiChevronUp} size={1} />
+                </div>
             </div>
-        </Zoom>
+        </div>
     );
 };

@@ -1,11 +1,6 @@
 import * as React from "react";
-import Container from "@material-ui/core/Container";
-import ReportProblemIcon from "@material-ui/icons/ReportProblem";
-import InfoIcon from "@material-ui/icons/Info";
-import ErrorIcon from "@material-ui/icons/Error";
-import DoneIcon from "@material-ui/icons/Done";
 import { ViewProperties } from "../../../../Shared/Abstractions";
-import { CustomCard } from "../../../../Shared/Components";
+import { CustomCard, Icon } from "../../../../Shared/Components";
 import { ExtendedViewProps } from "../accountActivate";
 
 interface AccountActivateViewProps extends ViewProperties, ExtendedViewProps {
@@ -22,30 +17,35 @@ interface AccountActivateViewProps extends ViewProperties, ExtendedViewProps {
     hasSuccess: boolean;
 }
 
+const ProblemIcon = <Icon name="Alert" size={3} />;
+const AlertIcon = <Icon name="AlertCircle" size={3} />;
+const CheckIcon = <Icon name="Check" size={3} />;
+const InfoIcon = <Icon name="Information" size={3} />;
+
 export const AccountActivateView = (props: AccountActivateViewProps): React.ReactElement => {
     return (
-        <section className={`section ${props.background ?? ""}`}>
-            <Container className="container-wide">
-                <div className={!props.className ? "pt-0 pb-15" : props.className}>
+        <section className={props.className}>
+            <div className="bulma-container bulma-is-max-desktop">
+                <div className="py-6">
                     {props.shouldFallback ? (
                         <CustomCard
                             isLoading={props.isLoading}
                             caption={props.fallback?.caption}
                             text={props.fallback?.text}
-                            icon={<ReportProblemIcon />}
-                            colour="warning"
+                            icon={ProblemIcon}
+                            colour="has-text-warning"
                         />
                     ) : (
                         <CustomCard
                             isLoading={props.isLoading}
                             caption={props.caption}
                             text={[props.text1, props.text2]}
-                            icon={props.hasError ? <ErrorIcon /> : props.hasSuccess ? <DoneIcon /> : <InfoIcon />}
-                            colour={props.hasError ? "error" : props.hasSuccess ? "success" : "info"}
+                            icon={props.hasError ? AlertIcon : props.hasSuccess ? CheckIcon : InfoIcon}
+                            colour={props.hasError ? "has-text-danger" : props.hasSuccess ? "has-text-success" : "has-text-info"}
                         />
                     )}
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };

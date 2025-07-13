@@ -11,8 +11,8 @@ export const BusinessPage = () => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <main>
-                <BusinessForm hasCaption={false} hasIcon={true} hasShadow={true} className="pt-120 pb-240" />
+            <main className="pt-6">
+                <BusinessForm hasCaption={false} hasIcon={true} hasShadow={true} />
             </main>
         </>
     );

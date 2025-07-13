@@ -13,8 +13,8 @@ export const PasswordUpdatePage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <main>
-                <PasswordUpdate className="pt-120 pb-240" />
+            <main className="pt-6">
+                <PasswordUpdate />
             </main>
         </>
     );

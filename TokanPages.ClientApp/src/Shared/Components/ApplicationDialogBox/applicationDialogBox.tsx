@@ -18,7 +18,7 @@ export const ApplicationDialogBox = (): React.ReactElement => {
 
     return (
         <ApplicationDialogBoxView
-            state={(hasTitle && hasIcon && hasMessage) ?? false}
+            isOpen={(hasTitle && hasIcon && hasMessage) ?? false}
             icon={dialog?.icon}
             title={dialog?.title}
             message={dialog?.message}

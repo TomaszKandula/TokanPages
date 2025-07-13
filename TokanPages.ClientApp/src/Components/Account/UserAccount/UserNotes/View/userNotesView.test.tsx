@@ -10,6 +10,10 @@ describe("test account group component: userNotesView", () => {
             <BrowserRouter>
                 <UserNotesView
                     isLoading={false}
+                    mediaQuery={{
+                        isMobile: false,
+                        isTablet: false,
+                    }}
                     hasProgress={false}
                     captionText={"User Notes"}
                     descriptionText={"You can save up to 100000 private notes..."}
@@ -24,7 +28,6 @@ describe("test account group component: userNotesView", () => {
                     saveButtonHandler={jest.fn()}
                     messageForm={{ note: "" }}
                     messageHandler={jest.fn()}
-                    messageMultiline={false}
                 />
             </BrowserRouter>
         );
@@ -37,6 +40,10 @@ describe("test account group component: userNotesView", () => {
             <BrowserRouter>
                 <UserNotesView
                     isLoading={true}
+                    mediaQuery={{
+                        isMobile: false,
+                        isTablet: false,
+                    }}
                     hasProgress={false}
                     captionText={"User Notes"}
                     descriptionText={"You can save up to 100000 private notes..."}
@@ -51,7 +58,6 @@ describe("test account group component: userNotesView", () => {
                     saveButtonHandler={jest.fn()}
                     messageForm={{ note: "" }}
                     messageHandler={jest.fn()}
-                    messageMultiline={false}
                 />
             </BrowserRouter>
         );
@@ -64,6 +70,10 @@ describe("test account group component: userNotesView", () => {
             <BrowserRouter>
                 <UserNotesView
                     isLoading={false}
+                    mediaQuery={{
+                        isMobile: false,
+                        isTablet: false,
+                    }}
                     hasProgress={true}
                     captionText={"User Notes"}
                     descriptionText={"You can save up to 100000 private notes..."}
@@ -78,7 +88,6 @@ describe("test account group component: userNotesView", () => {
                     saveButtonHandler={jest.fn()}
                     messageForm={{ note: "" }}
                     messageHandler={jest.fn()}
-                    messageMultiline={false}
                 />
             </BrowserRouter>
         );

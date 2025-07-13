@@ -5,167 +5,184 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <div
-          class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+          class="bulma-container"
         >
           <div
-            class="technology-box"
+            class="py-6"
           >
             <div
-              class="mb-64"
               data-aos="fade-down"
               data-aos-delay="0"
             >
               <p
-                class="MuiTypography-root technology-caption-text MuiTypography-body1"
+                class="is-size-3	has-text-centered has-text-link"
               >
                 TECHNOLOGIES
               </p>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
+              class="p-6"
             >
               <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                class="bulma-columns"
               >
                 <div
-                  class="flex-centre mb-15"
-                  data-aos="fade-up"
-                  data-aos-delay="0"
+                  class="bulma-column"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root technology-icon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
+                  <div
+                    class="is-flex is-align-items-center py-2"
+                    data-aos="fade-up"
+                    data-aos-delay="0"
                   >
-                    <path
-                      d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"
-                    />
-                  </svg>
-                  <h3
-                    class="technology-feature-title"
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-link is-flex is-align-self-center mr-2"
+                        role="presentation"
+                        style="width: 1.7999999999999998rem; height: 1.7999999999999998rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M8,3A2,2 0 0,0 6,5V9A2,2 0 0,1 4,11H3V13H4A2,2 0 0,1 6,15V19A2,2 0 0,0 8,21H10V19H8V14A2,2 0 0,0 6,12A2,2 0 0,0 8,10V5H10V3M16,3A2,2 0 0,1 18,5V9A2,2 0 0,0 20,11H21V13H20A2,2 0 0,0 18,15V19A2,2 0 0,1 16,21H14V19H16V14A2,2 0 0,1 18,12A2,2 0 0,1 16,10V5H14V3H16Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                    <h3
+                      class="is-size-4 py-5 has-text-black"
+                    >
+                      Languages
+                    </h3>
+                  </div>
+                  <div
+                    data-aos="fade-up"
+                    data-aos-delay="0"
                   >
-                    Languages
-                  </h3>
+                    <h4
+                      class="is-size-5 py-2 has-text-grey line-height-18"
+                    >
+                      Today in my daily job, I use...
+                    </h4>
+                  </div>
                 </div>
                 <div
-                  data-aos="fade-up"
-                  data-aos-delay="0"
+                  class="bulma-column"
                 >
-                  <h4
-                    class="technology-feature-text"
+                  <div
+                    class="is-flex is-align-items-center py-2"
+                    data-aos="fade-up"
+                    data-aos-delay="0"
                   >
-                    Today in my daily job, I use...
-                  </h4>
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-link is-flex is-align-self-center mr-2"
+                        role="presentation"
+                        style="width: 1.7999999999999998rem; height: 1.7999999999999998rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M9 3V18H12V3H9M12 5L16 18L19 17L15 4L12 5M5 5V18H8V5H5M3 19V21H21V19H3Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                    <h3
+                      class="is-size-4 py-5 has-text-black"
+                    >
+                      Frameworks/Libraries
+                    </h3>
+                  </div>
+                  <div
+                    data-aos="fade-up"
+                    data-aos-delay="0"
+                  >
+                    <h4
+                      class="is-size-5 py-2 has-text-grey line-height-18"
+                    >
+                      Back-End: NET Framework 4.5 (for one project)...
+                    </h4>
+                  </div>
                 </div>
               </div>
               <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                class="bulma-columns"
               >
                 <div
-                  class="flex-centre mb-15"
-                  data-aos="fade-up"
-                  data-aos-delay="0"
+                  class="bulma-column"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root technology-icon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
+                  <div
+                    class="is-flex is-align-items-center py-2"
+                    data-aos="fade-up"
+                    data-aos-delay="0"
                   >
-                    <path
-                      d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"
-                    />
-                  </svg>
-                  <h3
-                    class="technology-feature-title"
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-link is-flex is-align-self-center mr-2"
+                        role="presentation"
+                        style="width: 1.7999999999999998rem; height: 1.7999999999999998rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M4,1H20A1,1 0 0,1 21,2V6A1,1 0 0,1 20,7H4A1,1 0 0,1 3,6V2A1,1 0 0,1 4,1M4,9H20A1,1 0 0,1 21,10V14A1,1 0 0,1 20,15H4A1,1 0 0,1 3,14V10A1,1 0 0,1 4,9M4,17H20A1,1 0 0,1 21,18V22A1,1 0 0,1 20,23H4A1,1 0 0,1 3,22V18A1,1 0 0,1 4,17M9,5H10V3H9V5M9,13H10V11H9V13M9,21H10V19H9V21M5,3V5H7V3H5M5,11V13H7V11H5M5,19V21H7V19H5Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                    <h3
+                      class="is-size-4 py-5 has-text-black"
+                    >
+                      OR/M
+                    </h3>
+                  </div>
+                  <div
+                    data-aos="fade-up"
+                    data-aos-delay="0"
                   >
-                    Frameworks/Libraries
-                  </h3>
+                    <h4
+                      class="is-size-5 py-2 has-text-grey line-height-18"
+                    >
+                      I have started with Entity Framework...
+                    </h4>
+                  </div>
                 </div>
                 <div
-                  data-aos="fade-up"
-                  data-aos-delay="0"
+                  class="bulma-column"
                 >
-                  <h4
-                    class="technology-feature-text"
+                  <div
+                    class="is-flex is-align-items-center py-2"
+                    data-aos="fade-up"
+                    data-aos-delay="0"
                   >
-                    Back-End: NET Framework 4.5 (for one project)...
-                  </h4>
-                </div>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-              >
-                <div
-                  class="flex-centre mb-15"
-                  data-aos="fade-up"
-                  data-aos-delay="0"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root technology-icon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-link is-flex is-align-self-center mr-2"
+                        role="presentation"
+                        style="width: 1.7999999999999998rem; height: 1.7999999999999998rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M6.5 20Q4.22 20 2.61 18.43 1 16.85 1 14.58 1 12.63 2.17 11.1 3.35 9.57 5.25 9.15 5.88 6.85 7.75 5.43 9.63 4 12 4 14.93 4 16.96 6.04 19 8.07 19 11 20.73 11.2 21.86 12.5 23 13.78 23 15.5 23 17.38 21.69 18.69 20.38 20 18.5 20Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                    <h3
+                      class="is-size-4 py-5 has-text-black"
+                    >
+                      Cloud Services
+                    </h3>
+                  </div>
+                  <div
+                    data-aos="fade-up"
+                    data-aos-delay="0"
                   >
-                    <path
-                      d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"
-                    />
-                  </svg>
-                  <h3
-                    class="technology-feature-title"
-                  >
-                    OR/M
-                  </h3>
-                </div>
-                <div
-                  data-aos="fade-up"
-                  data-aos-delay="0"
-                >
-                  <h4
-                    class="technology-feature-text"
-                  >
-                    I have started with Entity Framework...
-                  </h4>
-                </div>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-              >
-                <div
-                  class="flex-centre mb-15"
-                  data-aos="fade-up"
-                  data-aos-delay="0"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root technology-icon MuiSvgIcon-colorPrimary"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"
-                    />
-                  </svg>
-                  <h3
-                    class="technology-feature-title"
-                  >
-                    Cloud Services
-                  </h3>
-                </div>
-                <div
-                  data-aos="fade-up"
-                  data-aos-delay="0"
-                >
-                  <h4
-                    class="technology-feature-text"
-                  >
-                    I have experience with...
-                  </h4>
+                    <h4
+                      class="is-size-5 py-2 has-text-grey line-height-18"
+                    >
+                      I have experience with...
+                    </h4>
+                  </div>
                 </div>
               </div>
             </div>
@@ -175,167 +192,184 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <div
-        class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+        class="bulma-container"
       >
         <div
-          class="technology-box"
+          class="py-6"
         >
           <div
-            class="mb-64"
             data-aos="fade-down"
             data-aos-delay="0"
           >
             <p
-              class="MuiTypography-root technology-caption-text MuiTypography-body1"
+              class="is-size-3	has-text-centered has-text-link"
             >
               TECHNOLOGIES
             </p>
           </div>
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
+            class="p-6"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+              class="bulma-columns"
             >
               <div
-                class="flex-centre mb-15"
-                data-aos="fade-up"
-                data-aos-delay="0"
+                class="bulma-column"
               >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root technology-icon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                <div
+                  class="is-flex is-align-items-center py-2"
+                  data-aos="fade-up"
+                  data-aos-delay="0"
                 >
-                  <path
-                    d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"
-                  />
-                </svg>
-                <h3
-                  class="technology-feature-title"
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-link is-flex is-align-self-center mr-2"
+                      role="presentation"
+                      style="width: 1.7999999999999998rem; height: 1.7999999999999998rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M8,3A2,2 0 0,0 6,5V9A2,2 0 0,1 4,11H3V13H4A2,2 0 0,1 6,15V19A2,2 0 0,0 8,21H10V19H8V14A2,2 0 0,0 6,12A2,2 0 0,0 8,10V5H10V3M16,3A2,2 0 0,1 18,5V9A2,2 0 0,0 20,11H21V13H20A2,2 0 0,0 18,15V19A2,2 0 0,1 16,21H14V19H16V14A2,2 0 0,1 18,12A2,2 0 0,1 16,10V5H14V3H16Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <h3
+                    class="is-size-4 py-5 has-text-black"
+                  >
+                    Languages
+                  </h3>
+                </div>
+                <div
+                  data-aos="fade-up"
+                  data-aos-delay="0"
                 >
-                  Languages
-                </h3>
+                  <h4
+                    class="is-size-5 py-2 has-text-grey line-height-18"
+                  >
+                    Today in my daily job, I use...
+                  </h4>
+                </div>
               </div>
               <div
-                data-aos="fade-up"
-                data-aos-delay="0"
+                class="bulma-column"
               >
-                <h4
-                  class="technology-feature-text"
+                <div
+                  class="is-flex is-align-items-center py-2"
+                  data-aos="fade-up"
+                  data-aos-delay="0"
                 >
-                  Today in my daily job, I use...
-                </h4>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-link is-flex is-align-self-center mr-2"
+                      role="presentation"
+                      style="width: 1.7999999999999998rem; height: 1.7999999999999998rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M9 3V18H12V3H9M12 5L16 18L19 17L15 4L12 5M5 5V18H8V5H5M3 19V21H21V19H3Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <h3
+                    class="is-size-4 py-5 has-text-black"
+                  >
+                    Frameworks/Libraries
+                  </h3>
+                </div>
+                <div
+                  data-aos="fade-up"
+                  data-aos-delay="0"
+                >
+                  <h4
+                    class="is-size-5 py-2 has-text-grey line-height-18"
+                  >
+                    Back-End: NET Framework 4.5 (for one project)...
+                  </h4>
+                </div>
               </div>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+              class="bulma-columns"
             >
               <div
-                class="flex-centre mb-15"
-                data-aos="fade-up"
-                data-aos-delay="0"
+                class="bulma-column"
               >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root technology-icon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                <div
+                  class="is-flex is-align-items-center py-2"
+                  data-aos="fade-up"
+                  data-aos-delay="0"
                 >
-                  <path
-                    d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"
-                  />
-                </svg>
-                <h3
-                  class="technology-feature-title"
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-link is-flex is-align-self-center mr-2"
+                      role="presentation"
+                      style="width: 1.7999999999999998rem; height: 1.7999999999999998rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M4,1H20A1,1 0 0,1 21,2V6A1,1 0 0,1 20,7H4A1,1 0 0,1 3,6V2A1,1 0 0,1 4,1M4,9H20A1,1 0 0,1 21,10V14A1,1 0 0,1 20,15H4A1,1 0 0,1 3,14V10A1,1 0 0,1 4,9M4,17H20A1,1 0 0,1 21,18V22A1,1 0 0,1 20,23H4A1,1 0 0,1 3,22V18A1,1 0 0,1 4,17M9,5H10V3H9V5M9,13H10V11H9V13M9,21H10V19H9V21M5,3V5H7V3H5M5,11V13H7V11H5M5,19V21H7V19H5Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <h3
+                    class="is-size-4 py-5 has-text-black"
+                  >
+                    OR/M
+                  </h3>
+                </div>
+                <div
+                  data-aos="fade-up"
+                  data-aos-delay="0"
                 >
-                  Frameworks/Libraries
-                </h3>
+                  <h4
+                    class="is-size-5 py-2 has-text-grey line-height-18"
+                  >
+                    I have started with Entity Framework...
+                  </h4>
+                </div>
               </div>
               <div
-                data-aos="fade-up"
-                data-aos-delay="0"
+                class="bulma-column"
               >
-                <h4
-                  class="technology-feature-text"
+                <div
+                  class="is-flex is-align-items-center py-2"
+                  data-aos="fade-up"
+                  data-aos-delay="0"
                 >
-                  Back-End: NET Framework 4.5 (for one project)...
-                </h4>
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-            >
-              <div
-                class="flex-centre mb-15"
-                data-aos="fade-up"
-                data-aos-delay="0"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root technology-icon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-link is-flex is-align-self-center mr-2"
+                      role="presentation"
+                      style="width: 1.7999999999999998rem; height: 1.7999999999999998rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M6.5 20Q4.22 20 2.61 18.43 1 16.85 1 14.58 1 12.63 2.17 11.1 3.35 9.57 5.25 9.15 5.88 6.85 7.75 5.43 9.63 4 12 4 14.93 4 16.96 6.04 19 8.07 19 11 20.73 11.2 21.86 12.5 23 13.78 23 15.5 23 17.38 21.69 18.69 20.38 20 18.5 20Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <h3
+                    class="is-size-4 py-5 has-text-black"
+                  >
+                    Cloud Services
+                  </h3>
+                </div>
+                <div
+                  data-aos="fade-up"
+                  data-aos-delay="0"
                 >
-                  <path
-                    d="M2 20h20v-4H2v4zm2-3h2v2H4v-2zM2 4v4h20V4H2zm4 3H4V5h2v2zm-4 7h20v-4H2v4zm2-3h2v2H4v-2z"
-                  />
-                </svg>
-                <h3
-                  class="technology-feature-title"
-                >
-                  OR/M
-                </h3>
-              </div>
-              <div
-                data-aos="fade-up"
-                data-aos-delay="0"
-              >
-                <h4
-                  class="technology-feature-text"
-                >
-                  I have started with Entity Framework...
-                </h4>
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-            >
-              <div
-                class="flex-centre mb-15"
-                data-aos="fade-up"
-                data-aos-delay="0"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root technology-icon MuiSvgIcon-colorPrimary"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"
-                  />
-                </svg>
-                <h3
-                  class="technology-feature-title"
-                >
-                  Cloud Services
-                </h3>
-              </div>
-              <div
-                data-aos="fade-up"
-                data-aos-delay="0"
-              >
-                <h4
-                  class="technology-feature-text"
-                >
-                  I have experience with...
-                </h4>
+                  <h4
+                    class="is-size-5 py-2 has-text-grey line-height-18"
+                  >
+                    I have experience with...
+                  </h4>
+                </div>
               </div>
             </div>
           </div>

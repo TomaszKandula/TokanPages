@@ -5,60 +5,61 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <div
-          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="pt-120 pb-64"
+            class="py-6"
           >
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="bulma-card"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="bulma-card-content"
               >
                 <div
-                  class="custom-card-background mt-25 mb-25"
+                  class="custom-card-icon-background is-flex is-justify-content-center my-6"
                 >
                   <div
-                    class="custom-card-icon-holder vertical-centre"
+                    class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                   >
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root custom-card-icon vertical-centre alert-error"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
-                      />
-                    </svg>
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center custom-card-icon has-text-danger"
+                        role="presentation"
+                        style="width: 4.5rem; height: 4.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
                 <h2
-                  class="custom-card-caption text-centre"
+                  class="bulma-title has-text-centered "
                 >
                   Access Denied
                 </h2>
                 <div
-                  class="mt-48"
+                  class="my-5"
                 >
-                  <div
-                    class="custom-card-text text-centre"
+                  <p
+                    class="is-size-6 has-text-centered line-height-20 "
                   >
                     You do not have access to this page.
-                  </div>
-                  <div
-                    class="custom-card-text text-centre"
+                  </p>
+                  <p
+                    class="is-size-6 has-text-centered line-height-20 "
                   >
                     If you believe this is an error, please contact IT support.
-                  </div>
+                  </p>
                 </div>
                 <div
-                  class="mb-48"
+                  class="mb-4"
                 />
               </div>
             </div>
@@ -68,60 +69,61 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <div
-        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="pt-120 pb-64"
+          class="py-6"
         >
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="bulma-card"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="bulma-card-content"
             >
               <div
-                class="custom-card-background mt-25 mb-25"
+                class="custom-card-icon-background is-flex is-justify-content-center my-6"
               >
                 <div
-                  class="custom-card-icon-holder vertical-centre"
+                  class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root custom-card-icon vertical-centre alert-error"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
-                    />
-                  </svg>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center custom-card-icon has-text-danger"
+                      role="presentation"
+                      style="width: 4.5rem; height: 4.5rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12,2C17.53,2 22,6.47 22,12C22,17.53 17.53,22 12,22C6.47,22 2,17.53 2,12C2,6.47 6.47,2 12,2M15.59,7L12,10.59L8.41,7L7,8.41L10.59,12L7,15.59L8.41,17L12,13.41L15.59,17L17,15.59L13.41,12L17,8.41L15.59,7Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
               <h2
-                class="custom-card-caption text-centre"
+                class="bulma-title has-text-centered "
               >
                 Access Denied
               </h2>
               <div
-                class="mt-48"
+                class="my-5"
               >
-                <div
-                  class="custom-card-text text-centre"
+                <p
+                  class="is-size-6 has-text-centered line-height-20 "
                 >
                   You do not have access to this page.
-                </div>
-                <div
-                  class="custom-card-text text-centre"
+                </p>
+                <p
+                  class="is-size-6 has-text-centered line-height-20 "
                 >
                   If you believe this is an error, please contact IT support.
-                </div>
+                </p>
               </div>
               <div
-                class="mb-48"
+                class="mb-4"
               />
             </div>
           </div>

@@ -11,8 +11,8 @@ export const ContactPage = () => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <main>
-                <ContactForm hasCaption={false} hasIcon={true} hasShadow={true} className="pt-120 pb-240" />
+            <main className="pt-6">
+                <ContactForm hasCaption={false} hasIcon={true} hasShadow={true} />
             </main>
         </>
     );

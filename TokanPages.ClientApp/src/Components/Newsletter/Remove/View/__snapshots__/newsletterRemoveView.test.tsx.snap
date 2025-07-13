@@ -5,81 +5,77 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <div
-          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="pb-120"
+            class="py-6"
           >
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="bulma-card"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="bulma-card-content"
               >
                 <div
-                  class="custom-card-background mt-25 mb-25"
+                  class="custom-card-icon-background is-flex is-justify-content-center my-6"
                 >
                   <div
-                    class="custom-card-icon-holder vertical-centre"
+                    class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                   >
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root custom-card-icon vertical-centre alert-info"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-                      />
-                    </svg>
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center custom-card-icon has-text-info"
+                        role="presentation"
+                        style="width: 4.5rem; height: 4.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
                 <h2
-                  class="custom-card-caption text-centre"
+                  class="bulma-title has-text-centered "
                 >
                   Cancel your subscribtion
                 </h2>
                 <div
-                  class="mt-48"
+                  class="my-5"
                 >
-                  <div
-                    class="custom-card-text text-centre"
+                  <p
+                    class="is-size-6 has-text-centered line-height-20 "
                   >
                     We are sorry to see you go...
-                  </div>
-                  <div
-                    class="custom-card-text text-centre"
+                  </p>
+                  <p
+                    class="is-size-6 has-text-centered line-height-20 "
                   >
                     ...but we understand there are circumstances
-                  </div>
-                  <div
-                    class="custom-card-text text-centre"
+                  </p>
+                  <p
+                    class="is-size-6 has-text-centered line-height-20 "
                   >
                     Please contact us should you have any questions
-                  </div>
+                  </p>
                 </div>
                 <div
-                  class="mt-48"
+                  class="mt-6 "
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    class="bulma-button bulma-is-light bulma-is-fullwidth"
                     disabled=""
-                    tabindex="-1"
                     type="submit"
                   >
-                    <span
-                      class="MuiButton-label"
-                    >
-                      Unsubscribe
-                    </span>
+                    Unsubscribe
                   </button>
                 </div>
                 <div
-                  class="mb-25"
+                  class="mb-2"
                 />
               </div>
             </div>
@@ -89,81 +85,77 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <div
-        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="pb-120"
+          class="py-6"
         >
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="bulma-card"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="bulma-card-content"
             >
               <div
-                class="custom-card-background mt-25 mb-25"
+                class="custom-card-icon-background is-flex is-justify-content-center my-6"
               >
                 <div
-                  class="custom-card-icon-holder vertical-centre"
+                  class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root custom-card-icon vertical-centre alert-info"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-                    />
-                  </svg>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center custom-card-icon has-text-info"
+                      role="presentation"
+                      style="width: 4.5rem; height: 4.5rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M20,8L12,13L4,8V6L12,11L20,6M20,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6C22,4.89 21.1,4 20,4Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
               <h2
-                class="custom-card-caption text-centre"
+                class="bulma-title has-text-centered "
               >
                 Cancel your subscribtion
               </h2>
               <div
-                class="mt-48"
+                class="my-5"
               >
-                <div
-                  class="custom-card-text text-centre"
+                <p
+                  class="is-size-6 has-text-centered line-height-20 "
                 >
                   We are sorry to see you go...
-                </div>
-                <div
-                  class="custom-card-text text-centre"
+                </p>
+                <p
+                  class="is-size-6 has-text-centered line-height-20 "
                 >
                   ...but we understand there are circumstances
-                </div>
-                <div
-                  class="custom-card-text text-centre"
+                </p>
+                <p
+                  class="is-size-6 has-text-centered line-height-20 "
                 >
                   Please contact us should you have any questions
-                </div>
+                </p>
               </div>
               <div
-                class="mt-48"
+                class="mt-6 "
               >
                 <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained Mui-disabled MuiButton-fullWidth Mui-disabled"
+                  class="bulma-button bulma-is-light bulma-is-fullwidth"
                   disabled=""
-                  tabindex="-1"
                   type="submit"
                 >
-                  <span
-                    class="MuiButton-label"
-                  >
-                    Unsubscribe
-                  </span>
+                  Unsubscribe
                 </button>
               </div>
               <div
-                class="mb-25"
+                class="mb-2"
               />
             </div>
           </div>

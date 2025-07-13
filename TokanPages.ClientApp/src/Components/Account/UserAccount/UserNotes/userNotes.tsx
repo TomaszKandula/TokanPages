@@ -10,8 +10,9 @@ import {
     UserNoteDeleteAction,
 } from "../../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
-import { ReactChangeEvent } from "../../../../Shared/types";
+import { ReactChangeTextEvent } from "../../../../Shared/types";
 import { OperationStatus } from "../../../../Shared/enums";
+import { useDimensions } from "../../../../Shared/Hooks";
 
 type ActionType = "ADD" | "UPDATE" | "REMOVE";
 
@@ -21,6 +22,7 @@ export interface UserNotesProps {
 
 export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const dispatch = useDispatch();
+    const dimensions = useDimensions();
 
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const userNotes = useSelector((state: ApplicationState) => state.userNotesRead);
@@ -41,6 +43,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const [form, setForm] = React.useState({ note: "" });
     const [actionType, setActionType] = React.useState<ActionType | undefined>(undefined);
     const [selection, setSelection] = React.useState<UserNoteResultDto | undefined>(undefined);
+    const [hasUserNotes, setHasUserNotes] = React.useState(false);
     const [hasProgress, setProgress] = React.useState(false);
     const [canDelete, setDelete] = React.useState(false);
     const [canRefresh, setRefresh] = React.useState(false);
@@ -55,7 +58,7 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     );
 
     const formHandler = React.useCallback(
-        (event: ReactChangeEvent) => {
+        (event: ReactChangeTextEvent) => {
             setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
         },
         [form]
@@ -219,18 +222,23 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
 
     /* GET USER NOTES */
     React.useEffect(() => {
-        if (contentPageData?.isLoading) {
+        if (contentPageData?.isLoading || hasUserNotes) {
             return;
         }
 
         if (userNotes.response.notes.length === 0) {
             dispatch(UserNotesReadAction.get({ noCache: false }));
+            setHasUserNotes(true);
         }
-    }, [contentPageData?.isLoading, userNotes.response.notes]);
+    }, [hasUserNotes, contentPageData?.isLoading, userNotes.response.notes.length]);
 
     return (
         <UserNotesView
             isLoading={contentPageData?.isLoading}
+            mediaQuery={{
+                isMobile: dimensions.isMobile,
+                isTablet: dimensions.isTablet,
+            }}
             hasProgress={hasProgress}
             userNotes={userNotes.response.notes}
             captionText={content?.caption}
@@ -247,7 +255,6 @@ export const UserNotes = (props: UserNotesProps): React.ReactElement => {
             saveButtonHandler={saveButtonHandler}
             messageForm={form}
             messageHandler={formHandler}
-            messageMultiline={true}
             background={props.background}
         />
     );

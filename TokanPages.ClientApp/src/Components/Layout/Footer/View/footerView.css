@@ -1,32 +1,4 @@
-.footer-page-footer {
-    background: #6367ef;
-}
-
-.footer-icon {
-    color: white !important;
-}
-
 .footer-links {
-    color: white;
+    color: black;
     text-decoration: none;
-}
-
-.footer-centred {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-
-.footer-version {
-    color: white;
-}
-
-.footer-copyright-box {
-    padding-top: 48px;
-    padding-bottom: 8px;
-}
-
-.footer-copyright {
-    font-size: 1.2rem !important;
-    color: white;
 }

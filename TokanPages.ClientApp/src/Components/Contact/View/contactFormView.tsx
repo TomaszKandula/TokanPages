@@ -1,30 +1,22 @@
 import * as React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Button from "@material-ui/core/Button";
-import ContactMailIcon from "@material-ui/icons/ContactMail";
-import { Card, CardContent, CircularProgress, Checkbox } from "@material-ui/core";
-import Skeleton from "@material-ui/lab/Skeleton";
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
-import { Animated } from "../../../Shared/Components";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { Animated, Icon, ProgressBar, TextArea, TextField } from "../../../Shared/Components";
 import { ContactFormProps } from "../contactForm";
 import "./contactFormView.css";
 
 interface ContactFormViewProps extends ViewProperties, ContactFormProps {
+    isMobile: boolean;
     caption: string;
     text: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
+    messageHandler: (event: ReactChangeTextEvent) => void;
     firstName: string;
     lastName: string;
     email: string;
     subject: string;
     message: string;
-    terms?: boolean;
     buttonHandler: () => void;
     progress: boolean;
     buttonText: string;
@@ -34,182 +26,134 @@ interface ContactFormViewProps extends ViewProperties, ContactFormProps {
     labelEmail: string;
     labelSubject: string;
     labelMessage: string;
-    multiline?: boolean;
     minRows?: number;
 }
 
 const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
     return (
-        <Button
-            fullWidth
+        <button
             type="submit"
-            variant="contained"
             onClick={props.buttonHandler}
             disabled={props.progress}
-            className="button"
+            className="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
         >
-            {!props.progress ? props.buttonText : <CircularProgress size={20} />}
-        </Button>
+            {!props.progress ? props.buttonText : <ProgressBar size={20} />}
+        </button>
     );
 };
 
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
+    const boxPadding = props.isMobile ? "py-6 px-3" : "p-6";
+    const cardPadding = props.isMobile ? "px-3" : "px-6";
+    const colPadding = props.hasIcon ? "pt-5" : "";
+
     return (
-        <section className={`section ${props.background ?? ""}`}>
-            <Container className="container">
-                <div className={!props.className ? "pt-64 pb-96" : props.className}>
-                    <Animated dataAos="fade-down" className="text-centre">
-                        <Typography className="contact-caption">
-                            {props.hasCaption ? props.caption?.toUpperCase() : <></>}
-                        </Typography>
-                    </Animated>
-                    <Card elevation={0} className={`background-colour-inherited ${props.hasShadow ? "card" : ""}`}>
-                        <CardContent className="card-content background-colour-inherited">
-                            <div className="text-centre mb-25">
+        <section className={props.background}>
+            <div className="bulma-container bulma-is-max-desktop">
+                <div className={!props.className ? boxPadding : props.className}>
+                    {props.hasCaption ? (
+                        <Animated dataAos="fade-down">
+                            <p className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</p>
+                        </Animated>
+                    ) : null}
+                    <div className={cardPadding}>
+                        <div className={`bulma-card ${!props.hasShadow ? "contact-card-no-shadow" : ""}`}>
+                            <div className="bulma-card-content background-colour-inherited">
                                 {props.hasIcon ? (
-                                    <>
-                                        <ContactMailIcon className="contact-icon" />
-                                        <Typography className="contact-small-caption">{props.caption}</Typography>
-                                    </>
-                                ) : (
-                                    <></>
-                                )}
+                                    <div className="is-flex is-flex-direction-column is-align-items-center">
+                                        <Icon name="CardAccountMail" size={3} className="has-text-link" />
+                                        <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                    </div>
+                                ) : null}
+                                <div className={colPadding}>
+                                    <div className="bulma-columns">
+                                        <div className="bulma-column">
+                                            <Animated dataAos="zoom-in">
+                                                <TextField
+                                                    required
+                                                    uuid="firstName"
+                                                    autoComplete="fname"
+                                                    onKeyUp={props.keyHandler}
+                                                    onChange={props.formHandler}
+                                                    value={props.firstName}
+                                                    placeholder={props.labelFirstName}
+                                                />
+                                            </Animated>
+                                        </div>
+                                        <div className="bulma-column">
+                                            <Animated dataAos="zoom-in">
+                                                <TextField
+                                                    required
+                                                    uuid="lastName"
+                                                    autoComplete="lname"
+                                                    onKeyUp={props.keyHandler}
+                                                    onChange={props.formHandler}
+                                                    value={props.lastName}
+                                                    placeholder={props.labelLastName}
+                                                />
+                                            </Animated>
+                                        </div>
+                                    </div>
+                                    <div className="bulma-columns">
+                                        <div className="bulma-column">
+                                            <Animated dataAos="zoom-in">
+                                                <TextField
+                                                    required
+                                                    uuid="email"
+                                                    autoComplete="email"
+                                                    onKeyUp={props.keyHandler}
+                                                    onChange={props.formHandler}
+                                                    value={props.email}
+                                                    placeholder={props.labelEmail}
+                                                />
+                                            </Animated>
+                                        </div>
+                                    </div>
+                                    <div className="bulma-columns">
+                                        <div className="bulma-column">
+                                            <Animated dataAos="zoom-in">
+                                                <TextField
+                                                    required
+                                                    uuid="subject"
+                                                    autoComplete="subject"
+                                                    onKeyUp={props.keyHandler}
+                                                    onChange={props.formHandler}
+                                                    value={props.subject}
+                                                    placeholder={props.labelSubject}
+                                                />
+                                            </Animated>
+                                        </div>
+                                    </div>
+                                    <div className="bulma-columns">
+                                        <div className="bulma-column">
+                                            <Animated dataAos="zoom-in">
+                                                <TextArea
+                                                    isFixedSize
+                                                    required
+                                                    rows={props.minRows}
+                                                    uuid="message"
+                                                    autoComplete="message"
+                                                    onChange={props.messageHandler}
+                                                    value={props.message}
+                                                    placeholder={props.labelMessage}
+                                                />
+                                            </Animated>
+                                        </div>
+                                    </div>
+                                    <div className="bulma-content">
+                                        <div className="bulma-notification">
+                                            <p className="is-size-6">{props.consent}</p>
+                                        </div>
+                                        <Animated dataAos="fade-up">
+                                            <ActiveButton {...props} />
+                                        </Animated>
+                                    </div>
+                                </div>
                             </div>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6}>
-                                    <Animated dataAos="zoom-in">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="firstName"
-                                                name="firstName"
-                                                autoComplete="fname"
-                                                variant="outlined"
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.firstName}
-                                                label={props.labelFirstName}
-                                            />
-                                        )}
-                                    </Animated>
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <Animated dataAos="zoom-in">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="lastName"
-                                                name="lastName"
-                                                autoComplete="lname"
-                                                variant="outlined"
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.lastName}
-                                                label={props.labelLastName}
-                                            />
-                                        )}
-                                    </Animated>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Animated dataAos="zoom-in">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="email"
-                                                name="email"
-                                                autoComplete="email"
-                                                variant="outlined"
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.email}
-                                                label={props.labelEmail}
-                                            />
-                                        )}
-                                    </Animated>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Animated dataAos="zoom-in">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                id="subject"
-                                                name="subject"
-                                                autoComplete="subject"
-                                                variant="outlined"
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
-                                                value={props.subject}
-                                                label={props.labelSubject}
-                                            />
-                                        )}
-                                    </Animated>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Animated dataAos="zoom-in">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="45px" />
-                                        ) : (
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                multiline={props.multiline}
-                                                minRows={props.minRows}
-                                                id="message"
-                                                name="message"
-                                                autoComplete="message"
-                                                variant="outlined"
-                                                onChange={props.formHandler}
-                                                value={props.message}
-                                                label={props.labelMessage}
-                                            />
-                                        )}
-                                    </Animated>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Animated dataAos="zoom-in">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="30px" />
-                                        ) : (
-                                            <FormControlLabel
-                                                control={
-                                                    <Checkbox
-                                                        disabled={props.progress}
-                                                        onChange={props.formHandler}
-                                                        checked={props.terms}
-                                                        name="terms"
-                                                        id="terms"
-                                                        className="violet-check-box"
-                                                    />
-                                                }
-                                                label={props.consent}
-                                            />
-                                        )}
-                                    </Animated>
-                                </Grid>
-                            </Grid>
-                            <Animated dataAos="fade-up" className="mt-15 mb-15">
-                                {props.isLoading ? (
-                                    <Skeleton variant="rect" width="100%" height="40px" />
-                                ) : (
-                                    <ActiveButton {...props} />
-                                )}
-                            </Animated>
-                        </CardContent>
-                    </Card>
+                        </div>
+                    </div>
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };

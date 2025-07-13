@@ -3,530 +3,408 @@
 exports[`test view component for application user info should render correctly view component with passed props. 1`] = `
 Object {
   "asFragment": [Function],
-  "baseElement": <body
-    style="padding-right: 0px; overflow: hidden;"
-  >
-    <div
-      aria-hidden="true"
-    >
+  "baseElement": <body>
+    <div>
       <div
-        class="MuiDialog-root"
-        role="presentation"
-        style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
+        class="bulma-modal bulma-is-active"
       >
         <div
-          data-test="sentinelStart"
-          tabindex="0"
+          class="bulma-modal-background"
         />
         <div
-          class="MuiDialog-container MuiDialog-scrollPaper"
-          role="none presentation"
-          style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-          tabindex="-1"
+          class="bulma-modal-card py-6 my-6"
         >
-          <div
-            aria-describedby="dialog-description"
-            aria-labelledby="dialog-title"
-            class="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthXs MuiDialog-paperFullWidth MuiPaper-elevation24 MuiPaper-rounded"
-            role="dialog"
+          <header
+            class="bulma-modal-card-head"
           >
             <div
-              class="MuiDialogTitle-root"
-              id="dialog-title"
+              class="avatar-wrapper user-avatar-avatar-small "
             >
-              <h2
-                class="MuiTypography-root MuiTypography-h6"
-              >
-                <div
-                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 MuiGrid-direction-xs-column MuiGrid-align-items-xs-center"
-                >
-                  <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-                  >
-                    <div
-                      class="mt-8"
-                    >
-                      <div
-                        class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large "
-                        title="Avatar"
-                      >
-                        <img
-                          alt="User avatar"
-                          class="MuiAvatar-img"
-                          src="http://localhost:5000/api/v1/users/5f4d15e2-0d32-4e20-b5f0-5a736152e993/getUserImage?blobName=tester-avatar-icon.png"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-                  >
-                    <p
-                      class="MuiTypography-root user-info-fullname MuiTypography-body1"
-                    >
-                      Tester
-                       
-                      Testerovny
-                    </p>
-                  </div>
-                </div>
-              </h2>
+              <img
+                alt="User avatar"
+                class="avatar-image"
+                src="http://localhost:5000/api/v1/users/5f4d15e2-0d32-4e20-b5f0-5a736152e993/getUserImage?blobName=tester-avatar-icon.png"
+                title="Avatar"
+              />
             </div>
-            <hr
-              class="MuiDivider-root"
-            />
-            <div
-              class="MuiDialogContent-root"
+            <p
+              class="bulma-modal-card-title p-3"
             >
-              <p
-                class="MuiTypography-root user-info-item MuiTypography-body1"
+              Tester
+               
+              Testerovny
+            </p>
+            <button
+              aria-label="close"
+              class="bulma-delete"
+            />
+          </header>
+          <section
+            class="bulma-modal-card-body"
+          >
+            <div
+              class="bulma-content"
+            >
+              <div
+                class="is-flex"
               >
-                User alias
-                : 
-                <span
-                  class="MuiTypography-root user-info-value MuiTypography-body1"
+                <p
+                  class="is-size-6"
+                >
+                  User alias
+                  :
+                </p>
+                <p
+                  class="is-size-6 pl-2 has-text-weight-semibold"
                 >
                   tester
-                </span>
-              </p>
-              <p
-                class="MuiTypography-root user-info-item MuiTypography-body1"
+                </p>
+              </div>
+              <div
+                class="is-flex"
               >
-                Registered
-                : 
+                <p
+                  class="is-size-6"
+                >
+                  Registered
+                  :
+                </p>
                 <span
-                  class="MuiTypography-root user-info-value MuiTypography-body1"
+                  class="is-size-6 pl-2 has-text-weight-semibold"
                 >
                   01/01/2020, 03:02 PM
                 </span>
-              </p>
+              </div>
               <p
-                class="MuiTypography-root user-info-item MuiTypography-body1"
+                class="is-size-6"
               >
                 Assigned roles
-                : 
+                :
               </p>
-              <ul
-                class="MuiList-root MuiList-dense MuiList-padding"
-              >
-                <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
-                >
+              <ul>
+                <li>
                   <div
-                    class="MuiListItemIcon-root colour-green-2"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    class="MuiListItemText-root MuiListItemText-dense"
+                    class="is-flex"
                   >
                     <p
-                      class="MuiTypography-root user-info-value MuiTypography-body1"
+                      class="is-size-6 m-1"
                     >
                       EverydayUser
                     </p>
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-primary-35 m-1"
+                        role="presentation"
+                        style="width: 1.5rem; height: 1.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </li>
-                <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
-                >
+                <li>
                   <div
-                    class="MuiListItemIcon-root colour-green-2"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    class="MuiListItemText-root MuiListItemText-dense"
+                    class="is-flex"
                   >
                     <p
-                      class="MuiTypography-root user-info-value MuiTypography-body1"
+                      class="is-size-6 m-1"
                     >
                       Tester
                     </p>
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-primary-35 m-1"
+                        role="presentation"
+                        style="width: 1.5rem; height: 1.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </li>
               </ul>
               <p
-                class="MuiTypography-root user-info-item MuiTypography-body1"
+                class="is-size-6"
               >
                 Assigned permissions
-                : 
+                :
               </p>
-              <ul
-                class="MuiList-root MuiList-dense MuiList-padding"
-              >
-                <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
-                >
+              <ul>
+                <li>
                   <div
-                    class="MuiListItemIcon-root colour-green-2"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    class="MuiListItemText-root MuiListItemText-dense"
+                    class="is-flex"
                   >
                     <p
-                      class="MuiTypography-root user-info-value MuiTypography-body1"
+                      class="is-size-6 m-1"
                     >
                       CanTestEverything
                     </p>
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-primary-35 m-1"
+                        role="presentation"
+                        style="width: 1.5rem; height: 1.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </li>
-                <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
-                >
+                <li>
                   <div
-                    class="MuiListItemIcon-root colour-green-2"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                      />
-                    </svg>
-                  </div>
-                  <div
-                    class="MuiListItemText-root MuiListItemText-dense"
+                    class="is-flex"
                   >
                     <p
-                      class="MuiTypography-root user-info-value MuiTypography-body1"
+                      class="is-size-6 m-1"
                     >
                       CanOrderPizza
                     </p>
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-primary-35 m-1"
+                        role="presentation"
+                        style="width: 1.5rem; height: 1.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </li>
               </ul>
             </div>
-            <hr
-              class="MuiDivider-root"
-            />
+          </section>
+          <footer
+            class="bulma-modal-card-foot is-justify-content-flex-end"
+          >
             <div
-              class="MuiDialogActions-root MuiDialogActions-spacing"
+              class="bulma-buttons"
             >
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text button Mui-focusVisible Mui-focusVisible"
-                tabindex="0"
-                type="button"
+                class="bulma-button bulma-is-link bulma-is-light"
               >
-                <span
-                  class="MuiButton-label"
-                >
-                  OK
-                </span>
-                <span
-                  class="MuiTouchRipple-root"
-                >
-                  <span
-                    class="MuiTouchRipple-ripple MuiTouchRipple-rippleVisible MuiTouchRipple-ripplePulsate"
-                    style="width: 1px; height: 1px; top: -0.5px; left: -0.5px;"
-                  >
-                    <span
-                      class="MuiTouchRipple-child MuiTouchRipple-childPulsate"
-                    />
-                  </span>
-                </span>
+                OK
               </button>
             </div>
-          </div>
+          </footer>
         </div>
-        <div
-          data-test="sentinelEnd"
-          tabindex="0"
-        />
       </div>
     </div>
   </body>,
-  "container": <div
-    aria-hidden="true"
-  >
+  "container": <div>
     <div
-      class="MuiDialog-root"
-      role="presentation"
-      style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
+      class="bulma-modal bulma-is-active"
     >
       <div
-        data-test="sentinelStart"
-        tabindex="0"
+        class="bulma-modal-background"
       />
       <div
-        class="MuiDialog-container MuiDialog-scrollPaper"
-        role="none presentation"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-        tabindex="-1"
+        class="bulma-modal-card py-6 my-6"
       >
-        <div
-          aria-describedby="dialog-description"
-          aria-labelledby="dialog-title"
-          class="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthXs MuiDialog-paperFullWidth MuiPaper-elevation24 MuiPaper-rounded"
-          role="dialog"
+        <header
+          class="bulma-modal-card-head"
         >
           <div
-            class="MuiDialogTitle-root"
-            id="dialog-title"
+            class="avatar-wrapper user-avatar-avatar-small "
           >
-            <h2
-              class="MuiTypography-root MuiTypography-h6"
-            >
-              <div
-                class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 MuiGrid-direction-xs-column MuiGrid-align-items-xs-center"
-              >
-                <div
-                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-                >
-                  <div
-                    class="mt-8"
-                  >
-                    <div
-                      class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-large "
-                      title="Avatar"
-                    >
-                      <img
-                        alt="User avatar"
-                        class="MuiAvatar-img"
-                        src="http://localhost:5000/api/v1/users/5f4d15e2-0d32-4e20-b5f0-5a736152e993/getUserImage?blobName=tester-avatar-icon.png"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-                >
-                  <p
-                    class="MuiTypography-root user-info-fullname MuiTypography-body1"
-                  >
-                    Tester
-                     
-                    Testerovny
-                  </p>
-                </div>
-              </div>
-            </h2>
+            <img
+              alt="User avatar"
+              class="avatar-image"
+              src="http://localhost:5000/api/v1/users/5f4d15e2-0d32-4e20-b5f0-5a736152e993/getUserImage?blobName=tester-avatar-icon.png"
+              title="Avatar"
+            />
           </div>
-          <hr
-            class="MuiDivider-root"
-          />
-          <div
-            class="MuiDialogContent-root"
+          <p
+            class="bulma-modal-card-title p-3"
           >
-            <p
-              class="MuiTypography-root user-info-item MuiTypography-body1"
+            Tester
+             
+            Testerovny
+          </p>
+          <button
+            aria-label="close"
+            class="bulma-delete"
+          />
+        </header>
+        <section
+          class="bulma-modal-card-body"
+        >
+          <div
+            class="bulma-content"
+          >
+            <div
+              class="is-flex"
             >
-              User alias
-              : 
-              <span
-                class="MuiTypography-root user-info-value MuiTypography-body1"
+              <p
+                class="is-size-6"
+              >
+                User alias
+                :
+              </p>
+              <p
+                class="is-size-6 pl-2 has-text-weight-semibold"
               >
                 tester
-              </span>
-            </p>
-            <p
-              class="MuiTypography-root user-info-item MuiTypography-body1"
+              </p>
+            </div>
+            <div
+              class="is-flex"
             >
-              Registered
-              : 
+              <p
+                class="is-size-6"
+              >
+                Registered
+                :
+              </p>
               <span
-                class="MuiTypography-root user-info-value MuiTypography-body1"
+                class="is-size-6 pl-2 has-text-weight-semibold"
               >
                 01/01/2020, 03:02 PM
               </span>
-            </p>
+            </div>
             <p
-              class="MuiTypography-root user-info-item MuiTypography-body1"
+              class="is-size-6"
             >
               Assigned roles
-              : 
+              :
             </p>
-            <ul
-              class="MuiList-root MuiList-dense MuiList-padding"
-            >
-              <li
-                class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
-              >
+            <ul>
+              <li>
                 <div
-                  class="MuiListItemIcon-root colour-green-2"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                    />
-                  </svg>
-                </div>
-                <div
-                  class="MuiListItemText-root MuiListItemText-dense"
+                  class="is-flex"
                 >
                   <p
-                    class="MuiTypography-root user-info-value MuiTypography-body1"
+                    class="is-size-6 m-1"
                   >
                     EverydayUser
                   </p>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-primary-35 m-1"
+                      role="presentation"
+                      style="width: 1.5rem; height: 1.5rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </li>
-              <li
-                class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
-              >
+              <li>
                 <div
-                  class="MuiListItemIcon-root colour-green-2"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                    />
-                  </svg>
-                </div>
-                <div
-                  class="MuiListItemText-root MuiListItemText-dense"
+                  class="is-flex"
                 >
                   <p
-                    class="MuiTypography-root user-info-value MuiTypography-body1"
+                    class="is-size-6 m-1"
                   >
                     Tester
                   </p>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-primary-35 m-1"
+                      role="presentation"
+                      style="width: 1.5rem; height: 1.5rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </li>
             </ul>
             <p
-              class="MuiTypography-root user-info-item MuiTypography-body1"
+              class="is-size-6"
             >
               Assigned permissions
-              : 
+              :
             </p>
-            <ul
-              class="MuiList-root MuiList-dense MuiList-padding"
-            >
-              <li
-                class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
-              >
+            <ul>
+              <li>
                 <div
-                  class="MuiListItemIcon-root colour-green-2"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                    />
-                  </svg>
-                </div>
-                <div
-                  class="MuiListItemText-root MuiListItemText-dense"
+                  class="is-flex"
                 >
                   <p
-                    class="MuiTypography-root user-info-value MuiTypography-body1"
+                    class="is-size-6 m-1"
                   >
                     CanTestEverything
                   </p>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-primary-35 m-1"
+                      role="presentation"
+                      style="width: 1.5rem; height: 1.5rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </li>
-              <li
-                class="MuiListItem-root MuiListItem-dense MuiListItem-gutters"
-              >
+              <li>
                 <div
-                  class="MuiListItemIcon-root colour-green-2"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                    />
-                  </svg>
-                </div>
-                <div
-                  class="MuiListItemText-root MuiListItemText-dense"
+                  class="is-flex"
                 >
                   <p
-                    class="MuiTypography-root user-info-value MuiTypography-body1"
+                    class="is-size-6 m-1"
                   >
                     CanOrderPizza
                   </p>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-primary-35 m-1"
+                      role="presentation"
+                      style="width: 1.5rem; height: 1.5rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </li>
             </ul>
           </div>
-          <hr
-            class="MuiDivider-root"
-          />
+        </section>
+        <footer
+          class="bulma-modal-card-foot is-justify-content-flex-end"
+        >
           <div
-            class="MuiDialogActions-root MuiDialogActions-spacing"
+            class="bulma-buttons"
           >
             <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-text button Mui-focusVisible Mui-focusVisible"
-              tabindex="0"
-              type="button"
+              class="bulma-button bulma-is-link bulma-is-light"
             >
-              <span
-                class="MuiButton-label"
-              >
-                OK
-              </span>
-              <span
-                class="MuiTouchRipple-root"
-              >
-                <span
-                  class="MuiTouchRipple-ripple MuiTouchRipple-rippleVisible MuiTouchRipple-ripplePulsate"
-                  style="width: 1px; height: 1px; top: -0.5px; left: -0.5px;"
-                >
-                  <span
-                    class="MuiTouchRipple-child MuiTouchRipple-childPulsate"
-                  />
-                </span>
-              </span>
+              OK
             </button>
           </div>
-        </div>
+        </footer>
       </div>
-      <div
-        data-test="sentinelEnd"
-        tabindex="0"
-      />
     </div>
   </div>,
   "debug": [Function],

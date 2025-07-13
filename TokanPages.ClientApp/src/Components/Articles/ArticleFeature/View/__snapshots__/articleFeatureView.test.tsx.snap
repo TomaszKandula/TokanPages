@@ -5,22 +5,19 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <div
-          class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+          class="bulma-container"
         >
           <div
-            class="pt-64 pb-96"
+            class="py-6"
           >
             <div
-              class="text-centre mb-48"
               data-aos="fade-down"
               data-aos-delay="0"
             >
               <p
-                class="MuiTypography-root article-feature-caption MuiTypography-body1"
+                class="is-size-3	has-text-centered has-text-link"
               >
                 ARTICLES
               </p>
@@ -30,181 +27,142 @@ Object {
               data-aos-delay="0"
             >
               <div
-                class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-8"
+                class="bulma-columns bulma-is-3 is-flex-direction-row p-6"
               >
                 <div
-                  class="MuiGrid-root article-feature-images-column MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                  class="bulma-column"
                 >
                   <div
-                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                    class="bulma-columns bulma-is-3"
                   >
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
+                      class="bulma-column bulma-is-three-quarters"
                     >
                       <div
-                        class="article-feature-image-box"
+                        class="bulma-card article-feature-card-shadow"
                       >
                         <div
-                          class="MuiPaper-root MuiCard-root article-feature-card card-image MuiPaper-elevation0 MuiPaper-rounded"
+                          class="bulma-card-image"
                         >
-                          <img
-                            alt="An image illustrating listed features"
-                            class="MuiCardMedia-root article-feature-card-media-large lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
-                            title="Illustration"
-                          />
+                          <figure
+                            class="bulma-image"
+                          >
+                            <img
+                              alt="An image illustrating listed features"
+                              class="article-feature-image article-feature-image-large lazyloaded"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
+                              title="Illustration"
+                            />
+                          </figure>
                         </div>
                       </div>
                     </div>
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                      class="bulma-column is-flex is-align-self-flex-end"
                     >
                       <div
-                        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                        class="bulma-card article-feature-card-shadow"
                       >
                         <div
-                          class="MuiGrid-root article-feature-empty-card-container MuiGrid-item MuiGrid-grid-xs-12"
+                          class="bulma-card-image"
                         >
-                          <div
-                            class="MuiPaper-root MuiCard-root article-feature-empty-card MuiPaper-elevation0 MuiPaper-rounded"
-                          />
-                        </div>
-                        <div
-                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-                        >
-                          <div
-                            class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation1 MuiPaper-rounded"
+                          <figure
+                            class="bulma-image"
                           >
                             <img
                               alt="An image illustrating listed features"
-                              class="MuiCardMedia-root article-feature-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                              class="article-feature-image article-feature-image-small lazyloaded"
                               loading="lazy"
                               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg"
                               title="Illustration"
                             />
-                          </div>
+                          </figure>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                    class="bulma-columns bulma-is-3"
                   >
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                      class="bulma-column is-flex is-align-self-flex-start"
                     >
                       <div
-                        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                        class="bulma-card article-feature-card-shadow"
                       >
                         <div
-                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                          class="bulma-card-image"
                         >
-                          <div
-                            class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                          <figure
+                            class="bulma-image"
                           >
                             <img
-                              alt="An image illustrating listed features"
-                              class="MuiCardMedia-root article-feature-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                              class="article-feature-image article-feature-image-small lazyloaded"
                               loading="lazy"
                               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg"
-                              title="Illustration"
                             />
-                          </div>
-                        </div>
-                        <div
-                          class="MuiGrid-root article-feature-empty-card-container MuiGrid-item MuiGrid-grid-xs-12"
-                        >
-                          <div
-                            class="MuiPaper-root MuiCard-root article-feature-empty-card MuiPaper-elevation0 MuiPaper-rounded"
-                          />
+                          </figure>
                         </div>
                       </div>
                     </div>
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
+                      class="bulma-column bulma-is-three-quarters"
                     >
                       <div
-                        class="article-feature-image-box"
+                        class="bulma-card article-feature-card-shadow"
                       >
                         <div
-                          class="MuiPaper-root MuiCard-root article-feature-card card-image MuiPaper-elevation0 MuiPaper-rounded"
+                          class="bulma-card-image"
                         >
-                          <img
-                            alt="An image illustrating listed features"
-                            class="MuiCardMedia-root article-feature-card-media-large lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
-                            title="Illustration"
-                          />
+                          <figure
+                            class="bulma-image"
+                          >
+                            <img
+                              alt="An image illustrating listed features"
+                              class="article-feature-image article-feature-image-large lazyloaded"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
+                              title="Illustration"
+                            />
+                          </figure>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="MuiGrid-root article-feature-content-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                  class="bulma-column is-align-self-center p-6"
                 >
-                  <div
-                    class="article-feature-content-box"
+                  <h2
+                    class="is-size-3 py-5 has-text-black"
                   >
-                    <h2
-                      class="article-feature-title"
+                    .NET Core, Azure, databases and others.
+                  </h2>
+                  <p
+                    class="is-size-5 py-3 has-text-grey line-height-18"
+                  >
+                    I write regularly...
+                  </p>
+                  <p
+                    class="is-size-5 py-3 has-text-grey line-height-18"
+                  >
+                    Let's dive into Microsoft technology...
+                  </p>
+                  <div
+                    class="has-text-left py-5"
+                  >
+                    <a
+                      class="link"
+                      href="/action-link"
+                      rel="noopener nofollow"
                     >
-                      .NET Core, Azure, databases and others.
-                    </h2>
-                    <div
-                      class="article-feature-description mt-15"
-                    >
-                      <p>
-                        I write regularly...
-                      </p>
-                    </div>
-                    <div
-                      class="article-feature-description mb-32"
-                    >
-                      <p>
-                        Let's dive into Microsoft technology...
-                      </p>
-                    </div>
-                    <div
-                      class="text-left"
-                    >
-                      <a
-                        class="link"
-                        href="/action-link"
-                        rel="noopener nofollow"
+                      <button
+                        class="bulma-button bulma-is-link bulma-is-light"
                       >
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button"
-                          tabindex="0"
-                          type="button"
-                        >
-                          <span
-                            class="MuiButton-label"
-                          >
-                            View list of articles
-                            <span
-                              class="MuiButton-endIcon MuiButton-iconSizeMedium"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="MuiSvgIcon-root"
-                                focusable="false"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
-                                />
-                              </svg>
-                            </span>
-                          </span>
-                          <span
-                            class="MuiTouchRipple-root"
-                          />
-                        </button>
-                      </a>
-                    </div>
+                        View list of articles
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -215,22 +173,19 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <div
-        class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+        class="bulma-container"
       >
         <div
-          class="pt-64 pb-96"
+          class="py-6"
         >
           <div
-            class="text-centre mb-48"
             data-aos="fade-down"
             data-aos-delay="0"
           >
             <p
-              class="MuiTypography-root article-feature-caption MuiTypography-body1"
+              class="is-size-3	has-text-centered has-text-link"
             >
               ARTICLES
             </p>
@@ -240,181 +195,142 @@ Object {
             data-aos-delay="0"
           >
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-8"
+              class="bulma-columns bulma-is-3 is-flex-direction-row p-6"
             >
               <div
-                class="MuiGrid-root article-feature-images-column MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                class="bulma-column"
               >
                 <div
-                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                  class="bulma-columns bulma-is-3"
                 >
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
+                    class="bulma-column bulma-is-three-quarters"
                   >
                     <div
-                      class="article-feature-image-box"
+                      class="bulma-card article-feature-card-shadow"
                     >
                       <div
-                        class="MuiPaper-root MuiCard-root article-feature-card card-image MuiPaper-elevation0 MuiPaper-rounded"
+                        class="bulma-card-image"
                       >
-                        <img
-                          alt="An image illustrating listed features"
-                          class="MuiCardMedia-root article-feature-card-media-large lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
-                          title="Illustration"
-                        />
+                        <figure
+                          class="bulma-image"
+                        >
+                          <img
+                            alt="An image illustrating listed features"
+                            class="article-feature-image article-feature-image-large lazyloaded"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
+                            title="Illustration"
+                          />
+                        </figure>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                    class="bulma-column is-flex is-align-self-flex-end"
                   >
                     <div
-                      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                      class="bulma-card article-feature-card-shadow"
                     >
                       <div
-                        class="MuiGrid-root article-feature-empty-card-container MuiGrid-item MuiGrid-grid-xs-12"
+                        class="bulma-card-image"
                       >
-                        <div
-                          class="MuiPaper-root MuiCard-root article-feature-empty-card MuiPaper-elevation0 MuiPaper-rounded"
-                        />
-                      </div>
-                      <div
-                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-                      >
-                        <div
-                          class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation1 MuiPaper-rounded"
+                        <figure
+                          class="bulma-image"
                         >
                           <img
                             alt="An image illustrating listed features"
-                            class="MuiCardMedia-root article-feature-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                            class="article-feature-image article-feature-image-small lazyloaded"
                             loading="lazy"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg"
                             title="Illustration"
                           />
-                        </div>
+                        </figure>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                  class="bulma-columns bulma-is-3"
                 >
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                    class="bulma-column is-flex is-align-self-flex-start"
                   >
                     <div
-                      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                      class="bulma-card article-feature-card-shadow"
                     >
                       <div
-                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                        class="bulma-card-image"
                       >
-                        <div
-                          class="MuiPaper-root MuiCard-root card-image MuiPaper-elevation0 MuiPaper-rounded"
+                        <figure
+                          class="bulma-image"
                         >
                           <img
-                            alt="An image illustrating listed features"
-                            class="MuiCardMedia-root article-feature-card-media lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                            class="article-feature-image article-feature-image-small lazyloaded"
                             loading="lazy"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg"
-                            title="Illustration"
                           />
-                        </div>
-                      </div>
-                      <div
-                        class="MuiGrid-root article-feature-empty-card-container MuiGrid-item MuiGrid-grid-xs-12"
-                      >
-                        <div
-                          class="MuiPaper-root MuiCard-root article-feature-empty-card MuiPaper-elevation0 MuiPaper-rounded"
-                        />
+                        </figure>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8"
+                    class="bulma-column bulma-is-three-quarters"
                   >
                     <div
-                      class="article-feature-image-box"
+                      class="bulma-card article-feature-card-shadow"
                     >
                       <div
-                        class="MuiPaper-root MuiCard-root article-feature-card card-image MuiPaper-elevation0 MuiPaper-rounded"
+                        class="bulma-card-image"
                       >
-                        <img
-                          alt="An image illustrating listed features"
-                          class="MuiCardMedia-root article-feature-card-media-large lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
-                          title="Illustration"
-                        />
+                        <figure
+                          class="bulma-image"
+                        >
+                          <img
+                            alt="An image illustrating listed features"
+                            class="article-feature-image article-feature-image-large lazyloaded"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
+                            title="Illustration"
+                          />
+                        </figure>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div
-                class="MuiGrid-root article-feature-content-container MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6"
+                class="bulma-column is-align-self-center p-6"
               >
-                <div
-                  class="article-feature-content-box"
+                <h2
+                  class="is-size-3 py-5 has-text-black"
                 >
-                  <h2
-                    class="article-feature-title"
+                  .NET Core, Azure, databases and others.
+                </h2>
+                <p
+                  class="is-size-5 py-3 has-text-grey line-height-18"
+                >
+                  I write regularly...
+                </p>
+                <p
+                  class="is-size-5 py-3 has-text-grey line-height-18"
+                >
+                  Let's dive into Microsoft technology...
+                </p>
+                <div
+                  class="has-text-left py-5"
+                >
+                  <a
+                    class="link"
+                    href="/action-link"
+                    rel="noopener nofollow"
                   >
-                    .NET Core, Azure, databases and others.
-                  </h2>
-                  <div
-                    class="article-feature-description mt-15"
-                  >
-                    <p>
-                      I write regularly...
-                    </p>
-                  </div>
-                  <div
-                    class="article-feature-description mb-32"
-                  >
-                    <p>
-                      Let's dive into Microsoft technology...
-                    </p>
-                  </div>
-                  <div
-                    class="text-left"
-                  >
-                    <a
-                      class="link"
-                      href="/action-link"
-                      rel="noopener nofollow"
+                    <button
+                      class="bulma-button bulma-is-link bulma-is-light"
                     >
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button"
-                        tabindex="0"
-                        type="button"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          View list of articles
-                          <span
-                            class="MuiButton-endIcon MuiButton-iconSizeMedium"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="MuiSvgIcon-root"
-                              focusable="false"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                d="M16.01 11H4v2h12.01v3L20 12l-3.99-4z"
-                              />
-                            </svg>
-                          </span>
-                        </span>
-                        <span
-                          class="MuiTouchRipple-root"
-                        />
-                      </button>
-                    </a>
-                  </div>
+                      View list of articles
+                    </button>
+                  </a>
                 </div>
               </div>
             </div>

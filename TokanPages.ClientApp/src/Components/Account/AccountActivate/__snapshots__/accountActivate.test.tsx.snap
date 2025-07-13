@@ -5,54 +5,55 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <div
-          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="pt-0 pb-15"
+            class="py-6"
           >
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="bulma-card"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="bulma-card-content"
               >
                 <div
-                  class="custom-card-background mt-25 mb-25"
+                  class="custom-card-icon-background is-flex is-justify-content-center my-6"
                 >
                   <div
-                    class="custom-card-icon-holder vertical-centre"
+                    class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                   >
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root custom-card-icon vertical-centre alert-info"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
-                      />
-                    </svg>
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center custom-card-icon has-text-info"
+                        role="presentation"
+                        style="width: 4.5rem; height: 4.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
                 <h2
-                  class="custom-card-caption text-centre"
+                  class="bulma-title has-text-centered "
                 />
                 <div
-                  class="mt-48"
+                  class="my-5"
                 >
-                  <div
-                    class="custom-card-text text-centre"
+                  <p
+                    class="is-size-6 has-text-centered line-height-20 "
                   />
-                  <div
-                    class="custom-card-text text-centre"
+                  <p
+                    class="is-size-6 has-text-centered line-height-20 "
                   />
                 </div>
                 <div
-                  class="mb-48"
+                  class="mb-4"
                 />
               </div>
             </div>
@@ -62,54 +63,55 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <div
-        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="pt-0 pb-15"
+          class="py-6"
         >
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="bulma-card"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="bulma-card-content"
             >
               <div
-                class="custom-card-background mt-25 mb-25"
+                class="custom-card-icon-background is-flex is-justify-content-center my-6"
               >
                 <div
-                  class="custom-card-icon-holder vertical-centre"
+                  class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root custom-card-icon vertical-centre alert-info"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
-                    />
-                  </svg>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center custom-card-icon has-text-info"
+                      role="presentation"
+                      style="width: 4.5rem; height: 4.5rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
               <h2
-                class="custom-card-caption text-centre"
+                class="bulma-title has-text-centered "
               />
               <div
-                class="mt-48"
+                class="my-5"
               >
-                <div
-                  class="custom-card-text text-centre"
+                <p
+                  class="is-size-6 has-text-centered line-height-20 "
                 />
-                <div
-                  class="custom-card-text text-centre"
+                <p
+                  class="is-size-6 has-text-centered line-height-20 "
                 />
               </div>
               <div
-                class="mb-48"
+                class="mb-4"
               />
             </div>
           </div>

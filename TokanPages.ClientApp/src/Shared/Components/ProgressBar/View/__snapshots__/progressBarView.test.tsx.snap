@@ -8,29 +8,10 @@ Object {
       <div
         class="progress-bar-box "
       >
-        <div
-          class="m-auto"
-        >
-          <div
-            class="MuiCircularProgress-root progress-bar-progress MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
-            role="progressbar"
-            style="width: 40px; height: 40px;"
-          >
-            <svg
-              class="MuiCircularProgress-svg"
-              viewBox="22 22 44 44"
-            >
-              <circle
-                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-                cx="44"
-                cy="44"
-                fill="none"
-                r="20.2"
-                stroke-width="3.6"
-              />
-            </svg>
-          </div>
-        </div>
+        <span
+          class="progress-bar-loader"
+          style="height: 40px; width: 40px; border-style: solid; border-width: 2px; border-color: #6367ef;"
+        />
       </div>
     </div>
   </body>,
@@ -38,29 +19,10 @@ Object {
     <div
       class="progress-bar-box "
     >
-      <div
-        class="m-auto"
-      >
-        <div
-          class="MuiCircularProgress-root progress-bar-progress MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
-          role="progressbar"
-          style="width: 40px; height: 40px;"
-        >
-          <svg
-            class="MuiCircularProgress-svg"
-            viewBox="22 22 44 44"
-          >
-            <circle
-              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-              cx="44"
-              cy="44"
-              fill="none"
-              r="20.2"
-              stroke-width="3.6"
-            />
-          </svg>
-        </div>
-      </div>
+      <span
+        class="progress-bar-loader"
+        style="height: 40px; width: 40px; border-style: solid; border-width: 2px; border-color: #6367ef;"
+      />
     </div>
   </div>,
   "debug": [Function],

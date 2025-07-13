@@ -1,11 +1,6 @@
 import * as React from "react";
-import { Card, CardContent, Container } from "@material-ui/core";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import ReportProblemIcon from "@material-ui/icons/ReportProblem";
-import DescriptionIcon from "@material-ui/icons/Description";
-import ErrorIcon from "@material-ui/icons/Error";
-import { CustomCard, DownloadAsset, PdfCanvas, ProgressBar } from "../../../Shared/Components";
+import { CustomCard, DownloadAsset, Icon, IconButton, PdfCanvas, ProgressBar } from "../../../Shared/Components";
+import { ReactMouseEvent } from "../../../Shared/types";
 import "./pdfViewerView.css";
 
 interface PdfViewerViewProps {
@@ -25,8 +20,8 @@ interface PdfViewerViewProps {
     scale?: number;
     pdfUrl?: string;
     background?: string;
-    onPreviousPage?: React.MouseEventHandler<SVGSVGElement>;
-    onNextPage?: React.MouseEventHandler<SVGSVGElement>;
+    onPreviousPage?: (event: ReactMouseEvent) => void;
+    onNextPage?: (event: ReactMouseEvent) => void;
 }
 
 interface RenderIconOrErrorProps {
@@ -36,7 +31,11 @@ interface RenderIconOrErrorProps {
 }
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
-    return props.hasPdfWorkerError ? <ReportProblemIcon /> : <DownloadAsset url={props.pdfUrl ?? ""} />;
+    return props.hasPdfWorkerError ? (
+        <Icon name="AlertOctagon" size={3} />
+    ) : (
+        <DownloadAsset url={props.pdfUrl ?? ""} className="has-text-black" />
+    );
 };
 
 const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement => {
@@ -45,75 +44,75 @@ const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement 
 
 const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => {
     return (
-        <section className={`section ${props.background ?? ""}`}>
-            <Container className="container-wide-1000">
-                <div className="pt-80 pb-48">
-                    <Card elevation={0} className="card">
-                        <CardContent className="card-content">
-                            <div className="pdf-header">
-                                <div className="pdf-header-download-icon">
-                                    <RenderIconOrLoading
-                                        isDocLoading={props.isDocLoading}
-                                        hasPdfWorkerError={props.hasPdfWorkerError}
-                                        pdfUrl={props.pdfUrl}
-                                    />
-                                </div>
-                                <div className="pdf-header-pages">
-                                    {props.currentPage} / {props.numPages}
-                                </div>
-                                <div className="pdf-header-buttons-container">
-                                    <NavigateBeforeIcon className="pdf-header-buttons" onClick={props.onPreviousPage} />
-                                    <NavigateNextIcon className="pdf-header-buttons" onClick={props.onNextPage} />
-                                </div>
-                            </div>
-                            <div className="pdf-canvas-wrapper">
-                                <PdfCanvas
-                                    pdfDocument={props.pdfDocument}
-                                    pageNumber={props.currentPage}
-                                    scale={props.scale ?? 1.5}
-                                    htmlAttributes={{ className: "pdf-canvas" }}
+        <section className={props.background}>
+            <div className="bulma-container bulma-is-max-desktop">
+                <div className="py-6">
+                    <div className="bulma-card">
+                        <div className="bulma-card-content">
+                            <div className="is-flex is-justify-content-space-around">
+                                <RenderIconOrLoading
+                                    isDocLoading={props.isDocLoading}
+                                    hasPdfWorkerError={props.hasPdfWorkerError}
+                                    pdfUrl={props.pdfUrl}
                                 />
+                                <p className="is-size-6 has-text-weight-semibold is-flex is-align-self-center">
+                                    {props.currentPage} / {props.numPages}
+                                </p>
+                                <div className="is-flex">
+                                    <IconButton onClick={props.onPreviousPage}>
+                                        <Icon name="ChevronLeft" size={1.1} />
+                                    </IconButton>
+                                    <IconButton onClick={props.onNextPage}>
+                                        <Icon name="ChevronRight" size={1.1} />
+                                    </IconButton>
+                                </div>
                             </div>
-                        </CardContent>
-                    </Card>
+                            <PdfCanvas
+                                pdfDocument={props.pdfDocument}
+                                pageNumber={props.currentPage}
+                                scale={props.scale ?? 1.5}
+                                htmlAttributes={{ className: "pdf-canvas" }}
+                            />
+                        </div>
+                    </div>
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };
 
 const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement => {
     return (
-        <section className={`section ${props.background ?? ""}`}>
-            <Container className="container-wide">
-                <div className="pt-80 pb-48">
+        <section className={props.background}>
+            <div className="bulma-container">
+                <div className="py-6">
                     <CustomCard
                         isLoading={props?.content?.isLoading}
                         caption={props?.content?.caption}
                         text={[props?.content?.warning]}
-                        icon={<DescriptionIcon />}
-                        colour="info"
+                        icon={<Icon name="FileDocument" size={3} />}
+                        colour="has-text-info"
                     />
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };
 
 const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => {
     return (
-        <section className={`section ${props.background ?? ""}`}>
-            <Container className="container-wide">
-                <div className="pt-80 pb-48">
+        <section className={props.background}>
+            <div className="bulma-container">
+                <div className="py-6">
                     <CustomCard
                         isLoading={props?.content?.isLoading}
                         caption={props?.content?.caption}
                         text={[props?.content?.error]}
-                        icon={<ErrorIcon />}
-                        colour="error"
+                        icon={<Icon name="AlertCircle" size={3} />}
+                        colour="has-text-danger"
                     />
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };

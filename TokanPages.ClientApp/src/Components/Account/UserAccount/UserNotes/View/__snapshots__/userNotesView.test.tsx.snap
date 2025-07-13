@@ -7,163 +7,105 @@ Object {
     <div>
       <section>
         <div
-          aria-hidden="true"
-          class="MuiBackdrop-root backdrop"
-          style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          class="backdrop"
         >
           <div
-            class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
-            role="progressbar"
-            style="width: 40px; height: 40px;"
+            class="progress-bar-box "
           >
-            <svg
-              class="MuiCircularProgress-svg"
-              viewBox="22 22 44 44"
-            >
-              <circle
-                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-                cx="44"
-                cy="44"
-                fill="none"
-                r="20.2"
-                stroke-width="3.6"
-              />
-            </svg>
+            <span
+              class="progress-bar-loader"
+              style="height: 50px; width: 50px; border-style: solid; border-width: 4px; border-color: #fff;"
+            />
           </div>
         </div>
         <div
-          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="pt-120 pb-40"
+            class="py-6"
           >
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="bulma-card"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="bulma-card-content"
               >
-                <span
-                  class="MuiTypography-root caption black MuiTypography-body1"
+                <p
+                  class="is-size-4 has-text-grey"
                 >
                   User Notes
-                </span>
+                </p>
+                <hr />
                 <div
-                  class="mt-15 mb-8"
+                  class="py-4"
                 >
-                  <hr
-                    class="MuiDivider-root divider"
-                  />
-                </div>
-                <div
-                  class="pt-25 pb-8"
-                >
-                  <div
-                    class="mb-25"
+                  <p
+                    class="is-size-6 has-text-grey pb-5"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
-                    >
-                      You can save up to 100000 private notes...
-                    </span>
-                  </div>
+                    You can save up to 100000 private notes...
+                  </p>
                   <div
-                    class="user-notes-box"
+                    class="bulma-cell is-flex is-flex-direction-row is-align-items-flex-start is-justify-content-left"
                   >
                     <div
-                      class="user-notes-container"
+                      class="user-notes-list-box"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
                         Notes:
-                      </span>
+                      </p>
                       <div
-                        class="user-notes-fixed-list user-notes-border mt-10 "
+                        class="user-notes-fixed-list"
                       />
                     </div>
                     <div
                       class="user-notes-message-box"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
                         Message:
-                      </span>
+                      </p>
                       <div
-                        class="user-notes-text-box mt-10"
+                        class="bulma-field"
                       >
                         <div
-                          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          class="bulma-control  user-notes-text-box"
                         >
-                          <div
-                            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                          >
-                            <input
-                              aria-invalid="false"
-                              class="MuiInputBase-input MuiOutlinedInput-input"
-                              id="note"
-                              name="note"
-                              required=""
-                              type="text"
-                              value=""
-                            />
-                            <fieldset
-                              aria-hidden="true"
-                              class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
-                              style="padding-left: 8px;"
-                            >
-                              <legend
-                                class="PrivateNotchedOutline-legend-10"
-                                style="width: 0.01px;"
-                              >
-                                <span>
-                                  ​
-                                </span>
-                              </legend>
-                            </fieldset>
-                          </div>
+                          <textarea
+                            class="bulma-textarea   bulma-has-fixed-size"
+                            id="note"
+                            name="note"
+                            required=""
+                            rows="16"
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="user-notes-button-box"
+                    class="bulma-content pt-4"
                   >
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      class="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
                       disabled=""
-                      tabindex="-1"
                       type="submit"
                     >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        Remove
-                      </span>
+                      Remove
                     </button>
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right MuiButton-fullWidth"
-                      tabindex="0"
+                      class="bulma-button bulma-is-light bulma-is-fullwidth my-4"
                       type="submit"
                     >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        Clear
-                      </span>
+                      Clear
                     </button>
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      class="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
                       disabled=""
-                      tabindex="-1"
                       type="submit"
                     >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        Save
-                      </span>
+                      Save
                     </button>
                   </div>
                 </div>
@@ -177,163 +119,105 @@ Object {
   "container": <div>
     <section>
       <div
-        aria-hidden="true"
-        class="MuiBackdrop-root backdrop"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+        class="backdrop"
       >
         <div
-          class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
-          role="progressbar"
-          style="width: 40px; height: 40px;"
+          class="progress-bar-box "
         >
-          <svg
-            class="MuiCircularProgress-svg"
-            viewBox="22 22 44 44"
-          >
-            <circle
-              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-              cx="44"
-              cy="44"
-              fill="none"
-              r="20.2"
-              stroke-width="3.6"
-            />
-          </svg>
+          <span
+            class="progress-bar-loader"
+            style="height: 50px; width: 50px; border-style: solid; border-width: 4px; border-color: #fff;"
+          />
         </div>
       </div>
       <div
-        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="pt-120 pb-40"
+          class="py-6"
         >
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="bulma-card"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="bulma-card-content"
             >
-              <span
-                class="MuiTypography-root caption black MuiTypography-body1"
+              <p
+                class="is-size-4 has-text-grey"
               >
                 User Notes
-              </span>
+              </p>
+              <hr />
               <div
-                class="mt-15 mb-8"
+                class="py-4"
               >
-                <hr
-                  class="MuiDivider-root divider"
-                />
-              </div>
-              <div
-                class="pt-25 pb-8"
-              >
-                <div
-                  class="mb-25"
+                <p
+                  class="is-size-6 has-text-grey pb-5"
                 >
-                  <span
-                    class="MuiTypography-root label MuiTypography-body1"
-                  >
-                    You can save up to 100000 private notes...
-                  </span>
-                </div>
+                  You can save up to 100000 private notes...
+                </p>
                 <div
-                  class="user-notes-box"
+                  class="bulma-cell is-flex is-flex-direction-row is-align-items-flex-start is-justify-content-left"
                 >
                   <div
-                    class="user-notes-container"
+                    class="user-notes-list-box"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
                       Notes:
-                    </span>
+                    </p>
                     <div
-                      class="user-notes-fixed-list user-notes-border mt-10 "
+                      class="user-notes-fixed-list"
                     />
                   </div>
                   <div
                     class="user-notes-message-box"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
                       Message:
-                    </span>
+                    </p>
                     <div
-                      class="user-notes-text-box mt-10"
+                      class="bulma-field"
                     >
                       <div
-                        class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                        class="bulma-control  user-notes-text-box"
                       >
-                        <div
-                          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                        >
-                          <input
-                            aria-invalid="false"
-                            class="MuiInputBase-input MuiOutlinedInput-input"
-                            id="note"
-                            name="note"
-                            required=""
-                            type="text"
-                            value=""
-                          />
-                          <fieldset
-                            aria-hidden="true"
-                            class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
-                            style="padding-left: 8px;"
-                          >
-                            <legend
-                              class="PrivateNotchedOutline-legend-10"
-                              style="width: 0.01px;"
-                            >
-                              <span>
-                                ​
-                              </span>
-                            </legend>
-                          </fieldset>
-                        </div>
+                        <textarea
+                          class="bulma-textarea   bulma-has-fixed-size"
+                          id="note"
+                          name="note"
+                          required=""
+                          rows="16"
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="user-notes-button-box"
+                  class="bulma-content pt-4"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    class="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
                     disabled=""
-                    tabindex="-1"
                     type="submit"
                   >
-                    <span
-                      class="MuiButton-label"
-                    >
-                      Remove
-                    </span>
+                    Remove
                   </button>
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right MuiButton-fullWidth"
-                    tabindex="0"
+                    class="bulma-button bulma-is-light bulma-is-fullwidth my-4"
                     type="submit"
                   >
-                    <span
-                      class="MuiButton-label"
-                    >
-                      Clear
-                    </span>
+                    Clear
                   </button>
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    class="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
                     disabled=""
-                    tabindex="-1"
                     type="submit"
                   >
-                    <span
-                      class="MuiButton-label"
-                    >
-                      Save
-                    </span>
+                    Save
                   </button>
                 </div>
               </div>
@@ -404,163 +288,93 @@ Object {
     <div>
       <section>
         <div
-          aria-hidden="true"
-          class="MuiBackdrop-root backdrop"
-          style="opacity: 0; visibility: hidden;"
+          class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
-            role="progressbar"
-            style="width: 40px; height: 40px;"
-          >
-            <svg
-              class="MuiCircularProgress-svg"
-              viewBox="22 22 44 44"
-            >
-              <circle
-                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-                cx="44"
-                cy="44"
-                fill="none"
-                r="20.2"
-                stroke-width="3.6"
-              />
-            </svg>
-          </div>
-        </div>
-        <div
-          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
-        >
-          <div
-            class="pt-120 pb-40"
+            class="py-6"
           >
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="bulma-card"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="bulma-card-content"
               >
-                <span
-                  class="MuiTypography-root caption black MuiTypography-body1"
+                <p
+                  class="is-size-4 has-text-grey"
                 >
                   User Notes
-                </span>
+                </p>
+                <hr />
                 <div
-                  class="mt-15 mb-8"
+                  class="py-4"
                 >
-                  <hr
-                    class="MuiDivider-root divider"
-                  />
-                </div>
-                <div
-                  class="pt-25 pb-8"
-                >
-                  <div
-                    class="mb-25"
+                  <p
+                    class="is-size-6 has-text-grey pb-5"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
-                    >
-                      You can save up to 100000 private notes...
-                    </span>
-                  </div>
+                    You can save up to 100000 private notes...
+                  </p>
                   <div
-                    class="user-notes-box"
+                    class="bulma-cell is-flex is-flex-direction-row is-align-items-flex-start is-justify-content-left"
                   >
                     <div
-                      class="user-notes-container"
+                      class="user-notes-list-box"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
                         Notes:
-                      </span>
+                      </p>
                       <div
-                        class="user-notes-fixed-list user-notes-border mt-10 "
+                        class="user-notes-fixed-list"
                       />
                     </div>
                     <div
                       class="user-notes-message-box"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
                         Message:
-                      </span>
+                      </p>
                       <div
-                        class="user-notes-text-box mt-10"
+                        class="bulma-field"
                       >
                         <div
-                          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          class="bulma-control  user-notes-text-box"
                         >
-                          <div
-                            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                          >
-                            <input
-                              aria-invalid="false"
-                              class="MuiInputBase-input MuiOutlinedInput-input"
-                              id="note"
-                              name="note"
-                              required=""
-                              type="text"
-                              value=""
-                            />
-                            <fieldset
-                              aria-hidden="true"
-                              class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
-                              style="padding-left: 8px;"
-                            >
-                              <legend
-                                class="PrivateNotchedOutline-legend-2"
-                                style="width: 0.01px;"
-                              >
-                                <span>
-                                  ​
-                                </span>
-                              </legend>
-                            </fieldset>
-                          </div>
+                          <textarea
+                            class="bulma-textarea   bulma-has-fixed-size"
+                            id="note"
+                            name="note"
+                            required=""
+                            rows="16"
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="user-notes-button-box"
+                    class="bulma-content pt-4"
                   >
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      class="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
                       disabled=""
-                      tabindex="-1"
                       type="submit"
                     >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        Remove
-                      </span>
+                      Remove
                     </button>
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right MuiButton-fullWidth"
-                      tabindex="0"
+                      class="bulma-button bulma-is-light bulma-is-fullwidth my-4"
                       type="submit"
                     >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        Clear
-                      </span>
+                      Clear
                     </button>
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      class="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
                       disabled=""
-                      tabindex="-1"
                       type="submit"
                     >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        Save
-                      </span>
+                      Save
                     </button>
                   </div>
                 </div>
@@ -574,163 +388,93 @@ Object {
   "container": <div>
     <section>
       <div
-        aria-hidden="true"
-        class="MuiBackdrop-root backdrop"
-        style="opacity: 0; visibility: hidden;"
+        class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
-          role="progressbar"
-          style="width: 40px; height: 40px;"
-        >
-          <svg
-            class="MuiCircularProgress-svg"
-            viewBox="22 22 44 44"
-          >
-            <circle
-              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-              cx="44"
-              cy="44"
-              fill="none"
-              r="20.2"
-              stroke-width="3.6"
-            />
-          </svg>
-        </div>
-      </div>
-      <div
-        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
-      >
-        <div
-          class="pt-120 pb-40"
+          class="py-6"
         >
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="bulma-card"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="bulma-card-content"
             >
-              <span
-                class="MuiTypography-root caption black MuiTypography-body1"
+              <p
+                class="is-size-4 has-text-grey"
               >
                 User Notes
-              </span>
+              </p>
+              <hr />
               <div
-                class="mt-15 mb-8"
+                class="py-4"
               >
-                <hr
-                  class="MuiDivider-root divider"
-                />
-              </div>
-              <div
-                class="pt-25 pb-8"
-              >
-                <div
-                  class="mb-25"
+                <p
+                  class="is-size-6 has-text-grey pb-5"
                 >
-                  <span
-                    class="MuiTypography-root label MuiTypography-body1"
-                  >
-                    You can save up to 100000 private notes...
-                  </span>
-                </div>
+                  You can save up to 100000 private notes...
+                </p>
                 <div
-                  class="user-notes-box"
+                  class="bulma-cell is-flex is-flex-direction-row is-align-items-flex-start is-justify-content-left"
                 >
                   <div
-                    class="user-notes-container"
+                    class="user-notes-list-box"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
                       Notes:
-                    </span>
+                    </p>
                     <div
-                      class="user-notes-fixed-list user-notes-border mt-10 "
+                      class="user-notes-fixed-list"
                     />
                   </div>
                   <div
                     class="user-notes-message-box"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
                       Message:
-                    </span>
+                    </p>
                     <div
-                      class="user-notes-text-box mt-10"
+                      class="bulma-field"
                     >
                       <div
-                        class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                        class="bulma-control  user-notes-text-box"
                       >
-                        <div
-                          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                        >
-                          <input
-                            aria-invalid="false"
-                            class="MuiInputBase-input MuiOutlinedInput-input"
-                            id="note"
-                            name="note"
-                            required=""
-                            type="text"
-                            value=""
-                          />
-                          <fieldset
-                            aria-hidden="true"
-                            class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
-                            style="padding-left: 8px;"
-                          >
-                            <legend
-                              class="PrivateNotchedOutline-legend-2"
-                              style="width: 0.01px;"
-                            >
-                              <span>
-                                ​
-                              </span>
-                            </legend>
-                          </fieldset>
-                        </div>
+                        <textarea
+                          class="bulma-textarea   bulma-has-fixed-size"
+                          id="note"
+                          name="note"
+                          required=""
+                          rows="16"
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="user-notes-button-box"
+                  class="bulma-content pt-4"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    class="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
                     disabled=""
-                    tabindex="-1"
                     type="submit"
                   >
-                    <span
-                      class="MuiButton-label"
-                    >
-                      Remove
-                    </span>
+                    Remove
                   </button>
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right MuiButton-fullWidth"
-                    tabindex="0"
+                    class="bulma-button bulma-is-light bulma-is-fullwidth my-4"
                     type="submit"
                   >
-                    <span
-                      class="MuiButton-label"
-                    >
-                      Clear
-                    </span>
+                    Clear
                   </button>
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    class="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
                     disabled=""
-                    tabindex="-1"
                     type="submit"
                   >
-                    <span
-                      class="MuiButton-label"
-                    >
-                      Save
-                    </span>
+                    Save
                   </button>
                 </div>
               </div>
@@ -801,173 +545,94 @@ Object {
     <div>
       <section>
         <div
-          aria-hidden="true"
-          class="MuiBackdrop-root backdrop"
-          style="opacity: 0; visibility: hidden;"
+          class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
-            role="progressbar"
-            style="width: 40px; height: 40px;"
-          >
-            <svg
-              class="MuiCircularProgress-svg"
-              viewBox="22 22 44 44"
-            >
-              <circle
-                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-                cx="44"
-                cy="44"
-                fill="none"
-                r="20.2"
-                stroke-width="3.6"
-              />
-            </svg>
-          </div>
-        </div>
-        <div
-          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
-        >
-          <div
-            class="pt-120 pb-40"
+            class="py-6"
           >
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="bulma-card"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="bulma-card-content"
               >
-                <span
-                  class="MuiTypography-root caption black MuiTypography-body1"
+                <p
+                  class="is-size-4 has-text-grey"
                 >
-                  <span
-                    class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                  />
-                </span>
+                  User Notes
+                </p>
+                <hr />
                 <div
-                  class="mt-15 mb-8"
+                  class="py-4"
                 >
-                  <hr
-                    class="MuiDivider-root divider"
-                  />
-                </div>
-                <div
-                  class="pt-25 pb-8"
-                >
-                  <div
-                    class="mb-25"
+                  <p
+                    class="is-size-6 has-text-grey pb-5"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
-                    >
-                      <span
-                        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                      />
-                    </span>
-                  </div>
+                    You can save up to 100000 private notes...
+                  </p>
                   <div
-                    class="user-notes-box"
+                    class="bulma-cell is-flex is-flex-direction-row is-align-items-flex-start is-justify-content-left"
                   >
                     <div
-                      class="user-notes-container"
+                      class="user-notes-list-box"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
-                        <span
-                          class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                        />
-                      </span>
+                        Notes:
+                      </p>
                       <div
-                        class="user-notes-fixed-list user-notes-border mt-10 loading-indicator"
+                        class="user-notes-fixed-list"
                       />
                     </div>
                     <div
                       class="user-notes-message-box"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
-                        <span
-                          class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                        />
-                      </span>
+                        Message:
+                      </p>
                       <div
-                        class="user-notes-text-box mt-10"
+                        class="bulma-field"
                       >
                         <div
-                          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                          class="bulma-control  user-notes-text-box"
                         >
-                          <div
-                            class="MuiInputBase-root MuiOutlinedInput-root Mui-disabled Mui-disabled MuiInputBase-fullWidth MuiInputBase-formControl"
-                          >
-                            <input
-                              aria-invalid="false"
-                              class="MuiInputBase-input MuiOutlinedInput-input Mui-disabled Mui-disabled"
-                              disabled=""
-                              id="note"
-                              name="note"
-                              required=""
-                              type="text"
-                              value=""
-                            />
-                            <fieldset
-                              aria-hidden="true"
-                              class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
-                              style="padding-left: 8px;"
-                            >
-                              <legend
-                                class="PrivateNotchedOutline-legend-6"
-                                style="width: 0.01px;"
-                              >
-                                <span>
-                                  ​
-                                </span>
-                              </legend>
-                            </fieldset>
-                          </div>
+                          <textarea
+                            class="bulma-textarea   bulma-has-fixed-size"
+                            id="note"
+                            name="note"
+                            required=""
+                            rows="16"
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="user-notes-button-box"
+                    class="bulma-content pt-4"
                   >
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      class="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
                       disabled=""
-                      tabindex="-1"
                       type="submit"
                     >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        Remove
-                      </span>
+                      Remove
                     </button>
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      class="bulma-button bulma-is-light bulma-is-fullwidth my-4"
                       disabled=""
-                      tabindex="-1"
                       type="submit"
                     >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        Clear
-                      </span>
+                      Clear
                     </button>
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      class="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
                       disabled=""
-                      tabindex="-1"
                       type="submit"
                     >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        Save
-                      </span>
+                      Save
                     </button>
                   </div>
                 </div>
@@ -981,173 +646,94 @@ Object {
   "container": <div>
     <section>
       <div
-        aria-hidden="true"
-        class="MuiBackdrop-root backdrop"
-        style="opacity: 0; visibility: hidden;"
+        class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
-          role="progressbar"
-          style="width: 40px; height: 40px;"
-        >
-          <svg
-            class="MuiCircularProgress-svg"
-            viewBox="22 22 44 44"
-          >
-            <circle
-              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-              cx="44"
-              cy="44"
-              fill="none"
-              r="20.2"
-              stroke-width="3.6"
-            />
-          </svg>
-        </div>
-      </div>
-      <div
-        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
-      >
-        <div
-          class="pt-120 pb-40"
+          class="py-6"
         >
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="bulma-card"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="bulma-card-content"
             >
-              <span
-                class="MuiTypography-root caption black MuiTypography-body1"
+              <p
+                class="is-size-4 has-text-grey"
               >
-                <span
-                  class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                />
-              </span>
+                User Notes
+              </p>
+              <hr />
               <div
-                class="mt-15 mb-8"
+                class="py-4"
               >
-                <hr
-                  class="MuiDivider-root divider"
-                />
-              </div>
-              <div
-                class="pt-25 pb-8"
-              >
-                <div
-                  class="mb-25"
+                <p
+                  class="is-size-6 has-text-grey pb-5"
                 >
-                  <span
-                    class="MuiTypography-root label MuiTypography-body1"
-                  >
-                    <span
-                      class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                    />
-                  </span>
-                </div>
+                  You can save up to 100000 private notes...
+                </p>
                 <div
-                  class="user-notes-box"
+                  class="bulma-cell is-flex is-flex-direction-row is-align-items-flex-start is-justify-content-left"
                 >
                   <div
-                    class="user-notes-container"
+                    class="user-notes-list-box"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
-                      <span
-                        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                      />
-                    </span>
+                      Notes:
+                    </p>
                     <div
-                      class="user-notes-fixed-list user-notes-border mt-10 loading-indicator"
+                      class="user-notes-fixed-list"
                     />
                   </div>
                   <div
                     class="user-notes-message-box"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
-                      <span
-                        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
-                      />
-                    </span>
+                      Message:
+                    </p>
                     <div
-                      class="user-notes-text-box mt-10"
+                      class="bulma-field"
                     >
                       <div
-                        class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                        class="bulma-control  user-notes-text-box"
                       >
-                        <div
-                          class="MuiInputBase-root MuiOutlinedInput-root Mui-disabled Mui-disabled MuiInputBase-fullWidth MuiInputBase-formControl"
-                        >
-                          <input
-                            aria-invalid="false"
-                            class="MuiInputBase-input MuiOutlinedInput-input Mui-disabled Mui-disabled"
-                            disabled=""
-                            id="note"
-                            name="note"
-                            required=""
-                            type="text"
-                            value=""
-                          />
-                          <fieldset
-                            aria-hidden="true"
-                            class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
-                            style="padding-left: 8px;"
-                          >
-                            <legend
-                              class="PrivateNotchedOutline-legend-6"
-                              style="width: 0.01px;"
-                            >
-                              <span>
-                                ​
-                              </span>
-                            </legend>
-                          </fieldset>
-                        </div>
+                        <textarea
+                          class="bulma-textarea   bulma-has-fixed-size"
+                          id="note"
+                          name="note"
+                          required=""
+                          rows="16"
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="user-notes-button-box"
+                  class="bulma-content pt-4"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-delete button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    class="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
                     disabled=""
-                    tabindex="-1"
                     type="submit"
                   >
-                    <span
-                      class="MuiButton-label"
-                    >
-                      Remove
-                    </span>
+                    Remove
                   </button>
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update button-margin-right Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    class="bulma-button bulma-is-light bulma-is-fullwidth my-4"
                     disabled=""
-                    tabindex="-1"
                     type="submit"
                   >
-                    <span
-                      class="MuiButton-label"
-                    >
-                      Clear
-                    </span>
+                    Clear
                   </button>
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    class="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
                     disabled=""
-                    tabindex="-1"
                     type="submit"
                   >
-                    <span
-                      class="MuiButton-label"
-                    >
-                      Save
-                    </span>
+                    Save
                   </button>
                 </div>
               </div>

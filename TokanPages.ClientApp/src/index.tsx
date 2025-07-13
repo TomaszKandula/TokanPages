@@ -25,9 +25,9 @@ const ReactApp = (manifest: GetContentManifestDto | undefined): void => {
             <Provider store={store}>
                 <UnheadProvider head={head}>
                     <ConnectedRouter history={history}>
-                            <ErrorBoundary>
-                                <App manifest={manifest} />
-                            </ErrorBoundary>
+                        <ErrorBoundary>
+                            <App manifest={manifest} />
+                        </ErrorBoundary>
                     </ConnectedRouter>
                 </UnheadProvider>
             </Provider>

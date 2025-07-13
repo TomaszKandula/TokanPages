@@ -1,124 +1,17 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { Skeleton } from "@material-ui/lab";
-import { Breadcrumbs, Divider, Chip } from "@material-ui/core";
-import { NavigateNext, Home } from "@material-ui/icons";
-import { UserInfoProps } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { PRERENDER_PATH_PREFIX } from "../../../Shared/constants";
-import { Item, Subitem } from "../RenderMenu/Models";
+import { Icon } from "../Icon";
+import { CustomBreadcrumbProps, NavigationProps } from "./Types";
+import { getHomeText, pathToRootText, pathToSubitemText, toUpperCase } from "./Utilities";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 import "./customBreadcrumbView.css";
 
-interface CustomBreadcrumbProps {
-    isLoading: boolean;
-    watchparam?: string;
-}
-
-interface NavigationProps {
-    language: string;
-    logo: string;
-    userInfo: UserInfoProps;
-    menu: {
-        image: string;
-        items: Item[];
-    };
-}
-
-interface PathProps {
-    pathname: string;
-    navigation: NavigationProps;
-}
-
-interface PathToRootTextResultProps {
-    value: string;
-    hasHash: boolean;
-}
-
 const useQuery = (): URLSearchParams => {
     return new URLSearchParams(useLocation().search);
-};
-
-const toUpper = (value: string | undefined): string => {
-    if (value === undefined) {
-        return "";
-    }
-
-    return value
-        .toLowerCase()
-        .split(" ")
-        .map(function (word) {
-            return word[0].toUpperCase() + word.substring(1);
-        })
-        .join(" ");
-};
-
-const getHomeText = (navigation: NavigationProps): string => {
-    const text = navigation.menu.items.find((item: Item) => {
-        if (item.link === `/${navigation.language}`) {
-            return item;
-        }
-
-        return undefined;
-    });
-
-    return text?.value ?? "";
-};
-
-const pathToRootText = (props: PathProps): PathToRootTextResultProps => {
-    const array = props.pathname.split("/");
-    const fragments = array.filter(e => String(e).trim());
-    const rootWithHash = `#${fragments[0]}`;
-    const rootWithSlash = `/${fragments[0]}`;
-    let hasHash: boolean = false;
-
-    const text = props.navigation.menu.items.find((item: Item) => {
-        if (item.link?.toUpperCase().includes(rootWithHash.toUpperCase())) {
-            hasHash = true;
-            return item;
-        }
-
-        if (item.link?.toUpperCase().includes(rootWithSlash.toUpperCase())) {
-            return item;
-        }
-
-        return undefined;
-    });
-
-    return {
-        value: text?.value ?? "",
-        hasHash: hasHash,
-    };
-};
-
-const pathToSubitemText = (props: PathProps): string => {
-    const array = props.pathname.split("/");
-    const fragments = array.filter(e => String(e).trim());
-    const root = `#${fragments[0]}`;
-
-    const itemWithSubitem = props.navigation.menu.items.find((item: Item) => {
-        if (item.link?.toUpperCase().includes(root.toUpperCase()) && item.subitems !== undefined) {
-            return item;
-        }
-
-        return undefined;
-    });
-
-    if (itemWithSubitem?.subitems) {
-        const text = itemWithSubitem?.subitems.find((subitem: Subitem) => {
-            if (subitem.link?.toUpperCase().includes(props.pathname.toUpperCase())) {
-                return subitem;
-            }
-
-            return undefined;
-        });
-
-        return text?.value ?? "";
-    }
-
-    return "";
 };
 
 const makeStyledBreadcrumb = (
@@ -143,13 +36,13 @@ const makeStyledBreadcrumb = (
 
     if (fragments !== undefined) {
         return fragments.map((_: string, index: number) => (
-            <Chip
-                key={uuidv4()}
-                component="div"
-                label={setValue(index)}
-                onClick={rootName.hasHash ? undefined : onClick}
-                className="custom-chip"
-            />
+            <li key={uuidv4()} onClick={rootName.hasHash ? undefined : onClick}>
+                <div className="mx-2">
+                    <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable">
+                        <span className="p-2">{setValue(index)}</span>
+                    </div>
+                </div>
+            </li>
         ));
     }
 
@@ -174,25 +67,33 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
     }, [window.location.pathname]);
 
     return (
-        <div className="custom-breadcrumb-container">
-            {props.isLoading ? (
-                <Skeleton variant="rect" width={220} height={20} />
-            ) : (
-                <Breadcrumbs separator={<NavigateNext fontSize="small" />} aria-label="breadcrumb">
-                    <Chip
-                        component="div"
-                        label={getHomeText(navigation)}
-                        icon={<Home fontSize="small" />}
-                        onClick={onBackToRoot}
-                        className="custom-chip"
-                    />
+        <div className="bulma-container bulma-is-max-tablet mt-6 pt-6">
+            <nav className="bulma-breadcrumb bulma-has-arrow-separator">
+                <ul>
+                    <li>
+                        <div className="mr-2">
+                            <div
+                                onClick={onBackToRoot}
+                                className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable"
+                            >
+                                <Icon name="Home" size={0.75} className="mx-1" />
+                                <span className="pt-2 pr-2 pb-2">{getHomeText(navigation)}</span>
+                            </div>
+                        </div>
+                    </li>
                     {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
-                    {hasParam ? <Chip component="div" label={toUpper(paramValue)} className="custom-chip" /> : null}
-                </Breadcrumbs>
-            )}
-            <div className="custom-breadcrumb-divider">
-                <Divider />
-            </div>
+                    {hasParam ? (
+                        <li>
+                            <div className="mx-2">
+                                <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center">
+                                    <span className="p-2">{toUpperCase(paramValue)}</span>
+                                </div>
+                            </div>
+                        </li>
+                    ) : null}
+                </ul>
+            </nav>
+            <hr className="my-5" />
         </div>
     );
 };

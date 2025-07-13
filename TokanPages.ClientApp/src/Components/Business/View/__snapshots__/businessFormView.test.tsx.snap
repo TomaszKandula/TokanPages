@@ -6,550 +6,309 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section class-colour-white ?? \\"\\""
+        class="has-background-white"
       >
         <div
-          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="mt-15 mb-15"
+            class="mt-5 mb-5"
           >
-            <div
-              class="text-centre"
+            <p
+              class="is-size-3	has-text-centered has-text-link"
             >
-              <p
-                class="MuiTypography-root business-large-caption MuiTypography-body1"
-              >
-                BUSINESS INQUIRY
-              </p>
-            </div>
+              BUSINESS INQUIRY
+            </p>
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="px-6"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="bulma-card"
               >
                 <div
-                  class="text-centre mb-25"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root business-main-icon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M10 16v-1H3.01L3 19c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2v-4h-7v1h-4zm10-9h-4.01V5l-2-2h-4l-2 2v2H4c-1.1 0-2 .9-2 2v3c0 1.11.89 2 2 2h6v-2h4v2h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-6 0h-4V5h4v2z"
-                    />
-                  </svg>
-                  <p
-                    class="MuiTypography-root business-small-caption MuiTypography-body1"
-                  >
-                    Business Inquiry
-                  </p>
-                </div>
-                <div
-                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                  class="bulma-card-content"
                 >
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                    class="is-flex is-flex-direction-column is-align-items-center"
                   >
-                    <div
-                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
-                    >
-                      <label
-                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
-                        data-shrink="false"
-                        for="company"
-                        id="company-label"
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-link"
+                        role="presentation"
+                        style="width: 4.5rem; height: 4.5rem;"
+                        viewBox="0 0 24 24"
                       >
-                        Company name
-                        <span
-                          aria-hidden="true"
-                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                        >
-                           
-                          *
-                        </span>
-                      </label>
-                      <div
-                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                      >
-                        <input
-                          aria-invalid="false"
-                          class="MuiInputBase-input MuiOutlinedInput-input"
-                          id="company"
-                          maxlength="255"
-                          name="company"
-                          required=""
-                          type="text"
-                          value=""
+                        <path
+                          d="M10 16V15H3L3 19C3 20.11 3.89 21 5 21H19C20.11 21 21 20.11 21 19V15H14V16H10M20 7H16V5L14 3H10L8 5V7H4C2.9 7 2 7.9 2 9V12C2 13.11 2.89 14 4 14H10V12H14V14H20C21.1 14 22 13.1 22 12V9C22 7.9 21.1 7 20 7M14 7H10V5H14V7Z"
+                          style="fill: currentColor;"
                         />
-                        <fieldset
-                          aria-hidden="true"
-                          class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
-                        >
-                          <legend
-                            class="PrivateNotchedOutline-legendLabelled-3"
-                          >
-                            <span>
-                              Company name
-                               *
-                            </span>
-                          </legend>
-                        </fieldset>
-                      </div>
+                      </svg>
                     </div>
+                    <p
+                      class="is-size-3 has-text-grey"
+                    >
+                      Business Inquiry
+                    </p>
                   </div>
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                    class="mt-5"
                   >
                     <div
-                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                      class="bulma-columns"
                     >
-                      <label
-                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
-                        data-shrink="false"
-                        for="firstName"
-                        id="firstName-label"
-                      >
-                        First name
-                        <span
-                          aria-hidden="true"
-                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                        >
-                           
-                          *
-                        </span>
-                      </label>
                       <div
-                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                        class="bulma-column"
                       >
-                        <input
-                          aria-invalid="false"
-                          class="MuiInputBase-input MuiOutlinedInput-input"
-                          id="firstName"
-                          maxlength="255"
-                          name="firstName"
-                          required=""
-                          type="text"
-                          value=""
-                        />
-                        <fieldset
-                          aria-hidden="true"
-                          class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
+                        <div
+                          class="bulma-control  "
                         >
-                          <legend
-                            class="PrivateNotchedOutline-legendLabelled-7"
-                          >
-                            <span>
-                              First name
-                               *
-                            </span>
-                          </legend>
-                        </fieldset>
+                          <input
+                            class="bulma-input   "
+                            id="company"
+                            maxlength="255"
+                            name="company"
+                            placeholder="Company name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-                  >
                     <div
-                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                      class="bulma-columns"
                     >
-                      <label
-                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
-                        data-shrink="false"
-                        for="lastName"
-                        id="lastName-label"
-                      >
-                        Last name
-                        <span
-                          aria-hidden="true"
-                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                        >
-                           
-                          *
-                        </span>
-                      </label>
                       <div
-                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                        class="bulma-column"
                       >
-                        <input
-                          aria-invalid="false"
-                          class="MuiInputBase-input MuiOutlinedInput-input"
-                          id="lastName"
-                          maxlength="255"
-                          name="lastName"
-                          required=""
-                          type="text"
-                          value=""
-                        />
-                        <fieldset
-                          aria-hidden="true"
-                          class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
+                        <div
+                          class="bulma-control  "
                         >
-                          <legend
-                            class="PrivateNotchedOutline-legendLabelled-11"
-                          >
-                            <span>
-                              Last name
-                               *
-                            </span>
-                          </legend>
-                        </fieldset>
+                          <input
+                            class="bulma-input   "
+                            id="firstName"
+                            maxlength="255"
+                            name="firstName"
+                            placeholder="First name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="bulma-column"
+                      >
+                        <div
+                          class="bulma-control  "
+                        >
+                          <input
+                            class="bulma-input   "
+                            id="lastName"
+                            maxlength="255"
+                            name="lastName"
+                            placeholder="Last name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-                  >
                     <div
-                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                      class="bulma-columns"
                     >
-                      <label
-                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
-                        data-shrink="false"
-                        for="email"
-                        id="email-label"
-                      >
-                        Email
-                        <span
-                          aria-hidden="true"
-                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                        >
-                           
-                          *
-                        </span>
-                      </label>
                       <div
-                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                        class="bulma-column"
                       >
-                        <input
-                          aria-invalid="false"
-                          class="MuiInputBase-input MuiOutlinedInput-input"
-                          id="email"
-                          maxlength="255"
-                          name="email"
-                          required=""
-                          type="text"
-                          value=""
-                        />
-                        <fieldset
-                          aria-hidden="true"
-                          class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
+                        <div
+                          class="bulma-control  "
                         >
-                          <legend
-                            class="PrivateNotchedOutline-legendLabelled-15"
-                          >
-                            <span>
-                              Email
-                               *
-                            </span>
-                          </legend>
-                        </fieldset>
+                          <input
+                            class="bulma-input   "
+                            id="email"
+                            maxlength="255"
+                            name="email"
+                            placeholder="Email"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="bulma-column"
+                      >
+                        <div
+                          class="bulma-control  "
+                        >
+                          <input
+                            class="bulma-input   "
+                            id="phone"
+                            maxlength="17"
+                            name="phone"
+                            placeholder="Business phone"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-                  >
                     <div
-                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                      class="bulma-columns"
                     >
-                      <label
-                        class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
-                        data-shrink="false"
-                        for="phone"
-                        id="phone-label"
-                      >
-                        Business phone
-                        <span
-                          aria-hidden="true"
-                          class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                        >
-                           
-                          *
-                        </span>
-                      </label>
                       <div
-                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                        class="bulma-column"
                       >
-                        <input
-                          aria-invalid="false"
-                          class="MuiInputBase-input MuiOutlinedInput-input"
-                          id="phone"
-                          maxlength="17"
-                          name="phone"
-                          required=""
-                          type="text"
-                          value=""
-                        />
-                        <fieldset
-                          aria-hidden="true"
-                          class="PrivateNotchedOutline-root-17 MuiOutlinedInput-notchedOutline"
+                        <div
+                          class="bulma-field"
                         >
-                          <legend
-                            class="PrivateNotchedOutline-legendLabelled-19"
+                          <div
+                            class="bulma-control  "
                           >
-                            <span>
-                              Business phone
-                               *
-                            </span>
-                          </legend>
-                        </fieldset>
+                            <textarea
+                              class="bulma-textarea   bulma-has-fixed-size"
+                              id="description"
+                              name="description"
+                              placeholder=""
+                              required=""
+                            />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-                  >
                     <div
-                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
-                    >
-                      
-                      <div
-                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                      >
-                        <input
-                          aria-invalid="false"
-                          class="MuiInputBase-input MuiOutlinedInput-input"
-                          id="description"
-                          name="description"
-                          required=""
-                          type="text"
-                          value=""
-                        />
-                        <fieldset
-                          aria-hidden="true"
-                          class="PrivateNotchedOutline-root-21 MuiOutlinedInput-notchedOutline"
-                          style="padding-left: 8px;"
-                        >
-                          <legend
-                            class="PrivateNotchedOutline-legend-22"
-                            style="width: 0.01px;"
-                          >
-                            <span>
-                              ​
-                            </span>
-                          </legend>
-                        </fieldset>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-                  >
-                    <div
-                      class="mt-15 mb-8"
+                      class="bulma-content"
                     >
                       <p
-                        class="MuiTypography-root business-header MuiTypography-body1"
+                        class="is-size-5 py-2"
                       >
                         Which technologies are you interested in?
                       </p>
                     </div>
-                    <ul
-                      class="MuiList-root MuiList-padding"
-                    >
-                      <div
-                        aria-disabled="false"
-                        class="MuiButtonBase-root MuiListItem-root business-list-item MuiListItem-gutters MuiListItem-button"
-                        tabindex="0"
-                      >
-                        <div
-                          class="MuiListItemIcon-root"
-                        >
-                          <span
-                            aria-disabled="false"
-                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-25 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
-                          >
-                            <span
-                              class="MuiIconButton-label"
-                            >
-                              <input
-                                aria-labelledby="key-0"
-                                class="PrivateSwitchBase-input-28"
-                                data-indeterminate="false"
-                                id="0"
-                                name="tech-0"
-                                tabindex="-1"
-                                type="checkbox"
-                                value=""
-                              />
-                              <svg
-                                aria-hidden="true"
-                                class="MuiSvgIcon-root"
-                                focusable="false"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                />
-                              </svg>
-                            </span>
-                          </span>
-                        </div>
-                        <div
-                          class="MuiListItemText-root"
-                          id="1"
-                        >
-                          <span
-                            class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                          >
-                            ABC
-                          </span>
-                        </div>
-                        <span
-                          class="MuiTouchRipple-root"
-                        />
-                      </div>
-                      <div
-                        aria-disabled="false"
-                        class="MuiButtonBase-root MuiListItem-root business-list-item MuiListItem-gutters MuiListItem-button"
-                        tabindex="0"
-                      >
-                        <div
-                          class="MuiListItemIcon-root"
-                        >
-                          <span
-                            aria-disabled="false"
-                            class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
-                          >
-                            <span
-                              class="MuiIconButton-label"
-                            >
-                              <input
-                                aria-labelledby="key-1"
-                                class="PrivateSwitchBase-input-32"
-                                data-indeterminate="false"
-                                id="1"
-                                name="tech-1"
-                                tabindex="-1"
-                                type="checkbox"
-                                value=""
-                              />
-                              <svg
-                                aria-hidden="true"
-                                class="MuiSvgIcon-root"
-                                focusable="false"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                                />
-                              </svg>
-                            </span>
-                          </span>
-                        </div>
-                        <div
-                          class="MuiListItemText-root"
-                          id="2"
-                        >
-                          <span
-                            class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                          >
-                            CDE
-                          </span>
-                        </div>
-                      </div>
-                    </ul>
-                  </div>
-                </div>
-                <div
-                  class="mt-15 mb-32"
-                >
-                  <div
-                    class="mt-8 mb-32"
-                  >
-                    <span
-                      class="MuiTypography-root business-header MuiTypography-body1"
-                    />
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
-                  >
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
+                      class="bulma-content"
                     >
                       <div
-                        class="MuiPaper-root business-paper business-unselected business-enabled MuiPaper-elevation0 MuiPaper-rounded"
+                        class="is-flex"
+                      >
+                        <div
+                          class="checkbox-wrapper-1 is-flex is-align-self-center"
+                        >
+                          <input
+                            class="substituted"
+                            id="0"
+                            name="tech-0"
+                            tabindex="-1"
+                            type="checkbox"
+                          />
+                          <label
+                            class="is-clickable"
+                            for="0"
+                          />
+                        </div>
+                        <p
+                          class="is-size-6 p-2"
+                        >
+                          ABC
+                        </p>
+                      </div>
+                      <div
+                        class="is-flex"
+                      >
+                        <div
+                          class="checkbox-wrapper-1 is-flex is-align-self-center"
+                        >
+                          <input
+                            class="substituted"
+                            id="1"
+                            name="tech-1"
+                            tabindex="-1"
+                            type="checkbox"
+                          />
+                          <label
+                            class="is-clickable"
+                            for="1"
+                          />
+                        </div>
+                        <p
+                          class="is-size-6 p-2"
+                        >
+                          CDE
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="bulma-content"
+                    >
+                      <p
+                        class="is-size-5 py-2"
+                      />
+                    </div>
+                    <div
+                      class="bulma-grid bulma-is-col-min-10 is-gap-2.5"
+                    >
+                      <div
+                        class="bulma-cell business-items business-unselected business-enabled"
                         data-disabled="false"
                         id="web"
                       >
-                        <span
-                          class="MuiTypography-root business-pricing-text MuiTypography-body1"
+                        <p
+                          class="is-size-6 business-item-text"
                         >
                           Web Development
-                        </span>
-                        <div
-                          class="mt-15"
+                        </p>
+                        <p
+                          class="is-size-6 has-text-weight-semibold business-item-price"
                         >
-                          <span
-                            class="MuiTypography-root business-pricing-value MuiTypography-body1"
-                          >
-                            30 USD/h
-                          </span>
-                        </div>
+                          30 USD/h
+                        </p>
                       </div>
-                    </div>
-                    <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
-                    >
                       <div
-                        class="MuiPaper-root business-paper business-unselected business-enabled MuiPaper-elevation0 MuiPaper-rounded"
+                        class="bulma-cell business-items business-unselected business-enabled"
                         data-disabled="false"
                         id="mobile"
                       >
-                        <span
-                          class="MuiTypography-root business-pricing-text MuiTypography-body1"
+                        <p
+                          class="is-size-6 business-item-text"
                         >
                           Mobile Development
-                        </span>
-                        <div
-                          class="mt-15"
+                        </p>
+                        <p
+                          class="is-size-6 has-text-weight-semibold business-item-price"
                         >
-                          <span
-                            class="MuiTypography-root business-pricing-value MuiTypography-body1"
-                          >
-                            45 USD/h
-                          </span>
-                        </div>
+                          45 USD/h
+                        </p>
                       </div>
                     </div>
-                  </div>
-                </div>
-                <div
-                  class="business-info-box mb-80"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root business-info-icon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
-                    />
-                  </svg>
-                  <span
-                    class="MuiTypography-root MuiTypography-body1"
-                  />
-                </div>
-                <div
-                  class="mt-40 mb-40"
-                >
-                  <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
-                    tabindex="0"
-                    type="submit"
-                  >
-                    <span
-                      class="MuiButton-label"
+                    <div
+                      class="bulma-notification is-flex is-align-items-center"
+                    >
+                      <div>
+                        <svg
+                          class="is-flex is-align-self-center has-text-link"
+                          role="presentation"
+                          style="width: 1.5rem; height: 1.5rem;"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                            style="fill: currentColor;"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="is-size-6 p-3"
+                      />
+                    </div>
+                    <button
+                      class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
+                      type="submit"
                     >
                       Submit
-                    </span>
-                  </button>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -560,550 +319,309 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section class-colour-white ?? \\"\\""
+      class="has-background-white"
     >
       <div
-        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="mt-15 mb-15"
+          class="mt-5 mb-5"
         >
-          <div
-            class="text-centre"
+          <p
+            class="is-size-3	has-text-centered has-text-link"
           >
-            <p
-              class="MuiTypography-root business-large-caption MuiTypography-body1"
-            >
-              BUSINESS INQUIRY
-            </p>
-          </div>
+            BUSINESS INQUIRY
+          </p>
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="px-6"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="bulma-card"
             >
               <div
-                class="text-centre mb-25"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root business-main-icon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M10 16v-1H3.01L3 19c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2v-4h-7v1h-4zm10-9h-4.01V5l-2-2h-4l-2 2v2H4c-1.1 0-2 .9-2 2v3c0 1.11.89 2 2 2h6v-2h4v2h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm-6 0h-4V5h4v2z"
-                  />
-                </svg>
-                <p
-                  class="MuiTypography-root business-small-caption MuiTypography-body1"
-                >
-                  Business Inquiry
-                </p>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                class="bulma-card-content"
               >
                 <div
-                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+                  class="is-flex is-flex-direction-column is-align-items-center"
                 >
-                  <div
-                    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
-                  >
-                    <label
-                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
-                      data-shrink="false"
-                      for="company"
-                      id="company-label"
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-link"
+                      role="presentation"
+                      style="width: 4.5rem; height: 4.5rem;"
+                      viewBox="0 0 24 24"
                     >
-                      Company name
-                      <span
-                        aria-hidden="true"
-                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                      >
-                         
-                        *
-                      </span>
-                    </label>
-                    <div
-                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                    >
-                      <input
-                        aria-invalid="false"
-                        class="MuiInputBase-input MuiOutlinedInput-input"
-                        id="company"
-                        maxlength="255"
-                        name="company"
-                        required=""
-                        type="text"
-                        value=""
+                      <path
+                        d="M10 16V15H3L3 19C3 20.11 3.89 21 5 21H19C20.11 21 21 20.11 21 19V15H14V16H10M20 7H16V5L14 3H10L8 5V7H4C2.9 7 2 7.9 2 9V12C2 13.11 2.89 14 4 14H10V12H14V14H20C21.1 14 22 13.1 22 12V9C22 7.9 21.1 7 20 7M14 7H10V5H14V7Z"
+                        style="fill: currentColor;"
                       />
-                      <fieldset
-                        aria-hidden="true"
-                        class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
-                      >
-                        <legend
-                          class="PrivateNotchedOutline-legendLabelled-3"
-                        >
-                          <span>
-                            Company name
-                             *
-                          </span>
-                        </legend>
-                      </fieldset>
-                    </div>
+                    </svg>
                   </div>
+                  <p
+                    class="is-size-3 has-text-grey"
+                  >
+                    Business Inquiry
+                  </p>
                 </div>
                 <div
-                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+                  class="mt-5"
                 >
                   <div
-                    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    class="bulma-columns"
                   >
-                    <label
-                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
-                      data-shrink="false"
-                      for="firstName"
-                      id="firstName-label"
-                    >
-                      First name
-                      <span
-                        aria-hidden="true"
-                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                      >
-                         
-                        *
-                      </span>
-                    </label>
                     <div
-                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      class="bulma-column"
                     >
-                      <input
-                        aria-invalid="false"
-                        class="MuiInputBase-input MuiOutlinedInput-input"
-                        id="firstName"
-                        maxlength="255"
-                        name="firstName"
-                        required=""
-                        type="text"
-                        value=""
-                      />
-                      <fieldset
-                        aria-hidden="true"
-                        class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
+                      <div
+                        class="bulma-control  "
                       >
-                        <legend
-                          class="PrivateNotchedOutline-legendLabelled-7"
-                        >
-                          <span>
-                            First name
-                             *
-                          </span>
-                        </legend>
-                      </fieldset>
+                        <input
+                          class="bulma-input   "
+                          id="company"
+                          maxlength="255"
+                          name="company"
+                          placeholder="Company name"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-                >
                   <div
-                    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    class="bulma-columns"
                   >
-                    <label
-                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
-                      data-shrink="false"
-                      for="lastName"
-                      id="lastName-label"
-                    >
-                      Last name
-                      <span
-                        aria-hidden="true"
-                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                      >
-                         
-                        *
-                      </span>
-                    </label>
                     <div
-                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      class="bulma-column"
                     >
-                      <input
-                        aria-invalid="false"
-                        class="MuiInputBase-input MuiOutlinedInput-input"
-                        id="lastName"
-                        maxlength="255"
-                        name="lastName"
-                        required=""
-                        type="text"
-                        value=""
-                      />
-                      <fieldset
-                        aria-hidden="true"
-                        class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
+                      <div
+                        class="bulma-control  "
                       >
-                        <legend
-                          class="PrivateNotchedOutline-legendLabelled-11"
-                        >
-                          <span>
-                            Last name
-                             *
-                          </span>
-                        </legend>
-                      </fieldset>
+                        <input
+                          class="bulma-input   "
+                          id="firstName"
+                          maxlength="255"
+                          name="firstName"
+                          placeholder="First name"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="bulma-column"
+                    >
+                      <div
+                        class="bulma-control  "
+                      >
+                        <input
+                          class="bulma-input   "
+                          id="lastName"
+                          maxlength="255"
+                          name="lastName"
+                          placeholder="Last name"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-                >
                   <div
-                    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    class="bulma-columns"
                   >
-                    <label
-                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
-                      data-shrink="false"
-                      for="email"
-                      id="email-label"
-                    >
-                      Email
-                      <span
-                        aria-hidden="true"
-                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                      >
-                         
-                        *
-                      </span>
-                    </label>
                     <div
-                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      class="bulma-column"
                     >
-                      <input
-                        aria-invalid="false"
-                        class="MuiInputBase-input MuiOutlinedInput-input"
-                        id="email"
-                        maxlength="255"
-                        name="email"
-                        required=""
-                        type="text"
-                        value=""
-                      />
-                      <fieldset
-                        aria-hidden="true"
-                        class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
+                      <div
+                        class="bulma-control  "
                       >
-                        <legend
-                          class="PrivateNotchedOutline-legendLabelled-15"
-                        >
-                          <span>
-                            Email
-                             *
-                          </span>
-                        </legend>
-                      </fieldset>
+                        <input
+                          class="bulma-input   "
+                          id="email"
+                          maxlength="255"
+                          name="email"
+                          placeholder="Email"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="bulma-column"
+                    >
+                      <div
+                        class="bulma-control  "
+                      >
+                        <input
+                          class="bulma-input   "
+                          id="phone"
+                          maxlength="17"
+                          name="phone"
+                          placeholder="Business phone"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-                >
                   <div
-                    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                    class="bulma-columns"
                   >
-                    <label
-                      class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined Mui-required Mui-required"
-                      data-shrink="false"
-                      for="phone"
-                      id="phone-label"
-                    >
-                      Business phone
-                      <span
-                        aria-hidden="true"
-                        class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                      >
-                         
-                        *
-                      </span>
-                    </label>
                     <div
-                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                      class="bulma-column"
                     >
-                      <input
-                        aria-invalid="false"
-                        class="MuiInputBase-input MuiOutlinedInput-input"
-                        id="phone"
-                        maxlength="17"
-                        name="phone"
-                        required=""
-                        type="text"
-                        value=""
-                      />
-                      <fieldset
-                        aria-hidden="true"
-                        class="PrivateNotchedOutline-root-17 MuiOutlinedInput-notchedOutline"
+                      <div
+                        class="bulma-field"
                       >
-                        <legend
-                          class="PrivateNotchedOutline-legendLabelled-19"
+                        <div
+                          class="bulma-control  "
                         >
-                          <span>
-                            Business phone
-                             *
-                          </span>
-                        </legend>
-                      </fieldset>
+                          <textarea
+                            class="bulma-textarea   bulma-has-fixed-size"
+                            id="description"
+                            name="description"
+                            placeholder=""
+                            required=""
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-                >
                   <div
-                    class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
-                  >
-                    
-                    <div
-                      class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                    >
-                      <input
-                        aria-invalid="false"
-                        class="MuiInputBase-input MuiOutlinedInput-input"
-                        id="description"
-                        name="description"
-                        required=""
-                        type="text"
-                        value=""
-                      />
-                      <fieldset
-                        aria-hidden="true"
-                        class="PrivateNotchedOutline-root-21 MuiOutlinedInput-notchedOutline"
-                        style="padding-left: 8px;"
-                      >
-                        <legend
-                          class="PrivateNotchedOutline-legend-22"
-                          style="width: 0.01px;"
-                        >
-                          <span>
-                            ​
-                          </span>
-                        </legend>
-                      </fieldset>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-                >
-                  <div
-                    class="mt-15 mb-8"
+                    class="bulma-content"
                   >
                     <p
-                      class="MuiTypography-root business-header MuiTypography-body1"
+                      class="is-size-5 py-2"
                     >
                       Which technologies are you interested in?
                     </p>
                   </div>
-                  <ul
-                    class="MuiList-root MuiList-padding"
-                  >
-                    <div
-                      aria-disabled="false"
-                      class="MuiButtonBase-root MuiListItem-root business-list-item MuiListItem-gutters MuiListItem-button"
-                      tabindex="0"
-                    >
-                      <div
-                        class="MuiListItemIcon-root"
-                      >
-                        <span
-                          aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-25 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
-                        >
-                          <span
-                            class="MuiIconButton-label"
-                          >
-                            <input
-                              aria-labelledby="key-0"
-                              class="PrivateSwitchBase-input-28"
-                              data-indeterminate="false"
-                              id="0"
-                              name="tech-0"
-                              tabindex="-1"
-                              type="checkbox"
-                              value=""
-                            />
-                            <svg
-                              aria-hidden="true"
-                              class="MuiSvgIcon-root"
-                              focusable="false"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              />
-                            </svg>
-                          </span>
-                        </span>
-                      </div>
-                      <div
-                        class="MuiListItemText-root"
-                        id="1"
-                      >
-                        <span
-                          class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                        >
-                          ABC
-                        </span>
-                      </div>
-                      <span
-                        class="MuiTouchRipple-root"
-                      />
-                    </div>
-                    <div
-                      aria-disabled="false"
-                      class="MuiButtonBase-root MuiListItem-root business-list-item MuiListItem-gutters MuiListItem-button"
-                      tabindex="0"
-                    >
-                      <div
-                        class="MuiListItemIcon-root"
-                      >
-                        <span
-                          aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-29 MuiCheckbox-root MuiCheckbox-colorSecondary violet-check-box MuiIconButton-colorSecondary MuiIconButton-edgeStart"
-                        >
-                          <span
-                            class="MuiIconButton-label"
-                          >
-                            <input
-                              aria-labelledby="key-1"
-                              class="PrivateSwitchBase-input-32"
-                              data-indeterminate="false"
-                              id="1"
-                              name="tech-1"
-                              tabindex="-1"
-                              type="checkbox"
-                              value=""
-                            />
-                            <svg
-                              aria-hidden="true"
-                              class="MuiSvgIcon-root"
-                              focusable="false"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              />
-                            </svg>
-                          </span>
-                        </span>
-                      </div>
-                      <div
-                        class="MuiListItemText-root"
-                        id="2"
-                      >
-                        <span
-                          class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
-                        >
-                          CDE
-                        </span>
-                      </div>
-                    </div>
-                  </ul>
-                </div>
-              </div>
-              <div
-                class="mt-15 mb-32"
-              >
-                <div
-                  class="mt-8 mb-32"
-                >
-                  <span
-                    class="MuiTypography-root business-header MuiTypography-body1"
-                  />
-                </div>
-                <div
-                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3"
-                >
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
+                    class="bulma-content"
                   >
                     <div
-                      class="MuiPaper-root business-paper business-unselected business-enabled MuiPaper-elevation0 MuiPaper-rounded"
+                      class="is-flex"
+                    >
+                      <div
+                        class="checkbox-wrapper-1 is-flex is-align-self-center"
+                      >
+                        <input
+                          class="substituted"
+                          id="0"
+                          name="tech-0"
+                          tabindex="-1"
+                          type="checkbox"
+                        />
+                        <label
+                          class="is-clickable"
+                          for="0"
+                        />
+                      </div>
+                      <p
+                        class="is-size-6 p-2"
+                      >
+                        ABC
+                      </p>
+                    </div>
+                    <div
+                      class="is-flex"
+                    >
+                      <div
+                        class="checkbox-wrapper-1 is-flex is-align-self-center"
+                      >
+                        <input
+                          class="substituted"
+                          id="1"
+                          name="tech-1"
+                          tabindex="-1"
+                          type="checkbox"
+                        />
+                        <label
+                          class="is-clickable"
+                          for="1"
+                        />
+                      </div>
+                      <p
+                        class="is-size-6 p-2"
+                      >
+                        CDE
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="bulma-content"
+                  >
+                    <p
+                      class="is-size-5 py-2"
+                    />
+                  </div>
+                  <div
+                    class="bulma-grid bulma-is-col-min-10 is-gap-2.5"
+                  >
+                    <div
+                      class="bulma-cell business-items business-unselected business-enabled"
                       data-disabled="false"
                       id="web"
                     >
-                      <span
-                        class="MuiTypography-root business-pricing-text MuiTypography-body1"
+                      <p
+                        class="is-size-6 business-item-text"
                       >
                         Web Development
-                      </span>
-                      <div
-                        class="mt-15"
+                      </p>
+                      <p
+                        class="is-size-6 has-text-weight-semibold business-item-price"
                       >
-                        <span
-                          class="MuiTypography-root business-pricing-value MuiTypography-body1"
-                        >
-                          30 USD/h
-                        </span>
-                      </div>
+                        30 USD/h
+                      </p>
                     </div>
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
-                  >
                     <div
-                      class="MuiPaper-root business-paper business-unselected business-enabled MuiPaper-elevation0 MuiPaper-rounded"
+                      class="bulma-cell business-items business-unselected business-enabled"
                       data-disabled="false"
                       id="mobile"
                     >
-                      <span
-                        class="MuiTypography-root business-pricing-text MuiTypography-body1"
+                      <p
+                        class="is-size-6 business-item-text"
                       >
                         Mobile Development
-                      </span>
-                      <div
-                        class="mt-15"
+                      </p>
+                      <p
+                        class="is-size-6 has-text-weight-semibold business-item-price"
                       >
-                        <span
-                          class="MuiTypography-root business-pricing-value MuiTypography-body1"
-                        >
-                          45 USD/h
-                        </span>
-                      </div>
+                        45 USD/h
+                      </p>
                     </div>
                   </div>
-                </div>
-              </div>
-              <div
-                class="business-info-box mb-80"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root business-info-icon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
-                  />
-                </svg>
-                <span
-                  class="MuiTypography-root MuiTypography-body1"
-                />
-              </div>
-              <div
-                class="mt-40 mb-40"
-              >
-                <button
-                  class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
-                  tabindex="0"
-                  type="submit"
-                >
-                  <span
-                    class="MuiButton-label"
+                  <div
+                    class="bulma-notification is-flex is-align-items-center"
+                  >
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-link"
+                        role="presentation"
+                        style="width: 1.5rem; height: 1.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      class="is-size-6 p-3"
+                    />
+                  </div>
+                  <button
+                    class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
+                    type="submit"
                   >
                     Submit
-                  </span>
-                </button>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

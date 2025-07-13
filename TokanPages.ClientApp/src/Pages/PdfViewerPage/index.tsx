@@ -18,7 +18,7 @@ export const PdfViewerPage = () => {
     return (
         <>
             <Navigation backNavigationOnly={true} />
-            <main className="mt-48">
+            <main className="mt-6">
                 <PdfViewer pdfFile={name} />
             </main>
         </>

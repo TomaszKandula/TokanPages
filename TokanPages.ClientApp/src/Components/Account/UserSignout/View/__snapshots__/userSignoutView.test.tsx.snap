@@ -6,56 +6,53 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section class-colour-white ?? \\"\\""
+        class="has-background-white"
       >
         <div
-          class="MuiContainer-root MuiContainer-maxWidthSm"
+          class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="mt-15"
+            class="mt-5"
           >
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="bulma-card"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="bulma-card-content"
               >
                 <div
-                  class="text-centre mb-25"
+                  class="is-flex is-flex-direction-column is-align-items-center"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root account"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
-                    />
-                  </svg>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center account"
+                      role="presentation"
+                      style="width: 4.5rem; height: 4.5rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
                   <p
-                    class="MuiTypography-root caption MuiTypography-body1"
+                    class="is-size-3 has-text-grey"
                   >
                     Sign out
                   </p>
                 </div>
-                <div>
-                  <div
-                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                <div
+                  class="has-text-centered mt-5"
+                >
+                  <p
+                    class="is-size-6 has-text-black"
                   >
-                    <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-                    >
-                      <p
-                        class="MuiTypography-root status MuiTypography-body1"
-                      >
-                        Signing out current user..., please wait.
-                      </p>
-                    </div>
-                  </div>
+                    Signing out current user..., please wait.
+                  </p>
                 </div>
                 <div
-                  class="mt-32"
+                  class="mt-6 mb-3"
                 >
                   <a
                     class="link"
@@ -63,16 +60,10 @@ Object {
                     rel="noopener nofollow"
                   >
                     <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button Mui-disabled MuiButton-fullWidth Mui-disabled"
+                      class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
                       disabled=""
-                      tabindex="-1"
-                      type="button"
                     >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        Go back to main
-                      </span>
+                      Go back to main
                     </button>
                   </a>
                 </div>
@@ -85,56 +76,53 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section class-colour-white ?? \\"\\""
+      class="has-background-white"
     >
       <div
-        class="MuiContainer-root MuiContainer-maxWidthSm"
+        class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="mt-15"
+          class="mt-5"
         >
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="bulma-card"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="bulma-card-content"
             >
               <div
-                class="text-centre mb-25"
+                class="is-flex is-flex-direction-column is-align-items-center"
               >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root account"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
-                  />
-                </svg>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center account"
+                    role="presentation"
+                    style="width: 4.5rem; height: 4.5rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
                 <p
-                  class="MuiTypography-root caption MuiTypography-body1"
+                  class="is-size-3 has-text-grey"
                 >
                   Sign out
                 </p>
               </div>
-              <div>
-                <div
-                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+              <div
+                class="has-text-centered mt-5"
+              >
+                <p
+                  class="is-size-6 has-text-black"
                 >
-                  <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-                  >
-                    <p
-                      class="MuiTypography-root status MuiTypography-body1"
-                    >
-                      Signing out current user..., please wait.
-                    </p>
-                  </div>
-                </div>
+                  Signing out current user..., please wait.
+                </p>
               </div>
               <div
-                class="mt-32"
+                class="mt-6 mb-3"
               >
                 <a
                   class="link"
@@ -142,16 +130,10 @@ Object {
                   rel="noopener nofollow"
                 >
                   <button
-                    class="MuiButtonBase-root MuiButton-root MuiButton-contained button Mui-disabled MuiButton-fullWidth Mui-disabled"
+                    class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
                     disabled=""
-                    tabindex="-1"
-                    type="button"
                   >
-                    <span
-                      class="MuiButton-label"
-                    >
-                      Go back to main
-                    </span>
+                    Go back to main
                   </button>
                 </a>
               </div>

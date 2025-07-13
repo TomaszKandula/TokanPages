@@ -1,11 +1,7 @@
 import * as React from "react";
-import Button from "@material-ui/core/Button";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Container from "@material-ui/core/Container";
-import EmailIcon from "@material-ui/icons/Email";
 import { ContentDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
-import { CustomCard } from "../../../../Shared/Components";
+import { CustomCard, Icon, ProgressBar } from "../../../../Shared/Components";
 import { ExtendedViewProps } from "../newsletterRemove";
 
 interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {
@@ -21,35 +17,33 @@ interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {
 const ActiveButton = (props: NewsletterRemoveViewProps): React.ReactElement => {
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
-        <Button
-            fullWidth
+        <button
             type="submit"
-            variant="contained"
             onClick={props.buttonHandler}
-            className={props.buttonState ? "button" : ""}
+            className="bulma-button bulma-is-light bulma-is-fullwidth"
             disabled={props.progress || !props.buttonState || props.hasEmptyId}
         >
-            {!props.progress ? content.button : <CircularProgress size={20} />}
-        </Button>
+            {!props.progress ? content.button : <ProgressBar size={20} />}
+        </button>
     );
 };
 
 export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.ReactElement => {
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
-        <section className={`section ${props.background ?? ""}`}>
-            <Container className="container-wide">
-                <div className={!props.className ? "pb-120" : props.className}>
+        <section className={props.background}>
+            <div className="bulma-container bulma-is-max-desktop">
+                <div className={!props.className ? "py-6" : props.className}>
                     <CustomCard
                         isLoading={props.isLoading}
                         caption={content.caption}
                         text={[content.text1, content.text2, content.text3]}
-                        icon={<EmailIcon />}
-                        colour="info"
+                        icon={<Icon size={3} name="Email" />}
+                        colour="has-text-info"
                         externalButton={<ActiveButton {...props} />}
                     />
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };

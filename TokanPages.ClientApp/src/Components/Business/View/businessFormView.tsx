@@ -1,37 +1,21 @@
 import * as React from "react";
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
-import Skeleton from "@material-ui/lab/Skeleton";
-import InfoIcon from "@material-ui/icons/Info";
-import {
-    Card,
-    CardContent,
-    CircularProgress,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Paper,
-    Checkbox,
-} from "@material-ui/core";
 import { DescriptionItemDto, PricingDto, ServiceItemDto, TechItemsDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
+import { Icon, ProgressBar, TextArea, TextField } from "../../../Shared/Components";
 import { BusinessFormProps, ServiceItemCardProps, TechStackListProps } from "../Models";
 import "./businessFormView.css";
 
 interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
+    isMobile: boolean;
     caption: string;
     progress: boolean;
     buttonText: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
+    descriptionHandler: (event: ReactChangeTextEvent) => void;
     buttonHandler: () => void;
-    techHandler: (event: ReactChangeEvent, isChecked: boolean) => void;
+    techHandler: (event: ReactChangeEvent) => void;
     serviceHandler: (event: ReactMouseEvent) => void;
     serviceSelection: string[];
 }
@@ -57,61 +41,41 @@ interface ExtendedDescriptionProps extends DescriptionItemDto {
     text: string;
 }
 
-interface RenderTextProps {
-    isLoading: boolean;
-    value: string;
-    height: number;
-}
-
-interface RenderElementProps {
-    isLoading: boolean;
-    element: React.ReactElement | React.ReactElement[];
-    height: number;
-}
-
 const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => {
     return (
-        <Button
-            fullWidth
+        <button
             type="submit"
-            variant="contained"
             onClick={props.buttonHandler}
             disabled={props.progress}
-            className="button"
+            className="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
         >
-            {!props.progress ? props.buttonText : <CircularProgress size={20} />}
-        </Button>
+            {!props.progress ? props.buttonText : <ProgressBar size={20} />}
+        </button>
     );
 };
 
 const TechStackList = (props: TechStackListProps): React.ReactElement => {
     return (
-        <List>
+        <>
             {props.list.map((value: TechItemsDto, index: number) => (
-                <ListItem
-                    disabled={props.isDisabled}
-                    key={value.key}
-                    role={undefined}
-                    button
-                    className="business-list-item"
-                >
-                    <ListItemIcon>
-                        <Checkbox
+                <div key={value.key} className="is-flex">
+                    <div className="checkbox-wrapper-1 is-flex is-align-self-center">
+                        <input
+                            type="checkbox"
                             id={`${index}`}
                             name={`tech-${index}`}
-                            edge="start"
+                            disabled={props.isDisabled}
                             onChange={props.handler}
                             checked={value.isChecked}
                             tabIndex={-1}
-                            disableRipple={true}
-                            inputProps={{ "aria-labelledby": `key-${index}` }}
-                            className="violet-check-box"
+                            className="substituted"
                         />
-                    </ListItemIcon>
-                    <ListItemText id={`${value.key}`} primary={value.value} />
-                </ListItem>
+                        <label htmlFor={`${index}`} className="is-clickable"></label>
+                    </div>
+                    <p className="is-size-6 p-2">{value.value}</p>
+                </div>
             ))}
-        </List>
+        </>
     );
 };
 
@@ -119,246 +83,135 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
     const isSelected = props.services.includes(props.value.id) ?? false;
     const style = isSelected ? "business-selected" : "business-unselected";
     const disabled = props.isDisabled ? "business-disabled" : "business-enabled";
+    const className = `bulma-cell business-items ${style} ${disabled}`;
+
     return (
-        <Grid item xs={12} sm={4}>
-            <Paper
-                id={props.value.id}
-                data-disabled={props.isDisabled}
-                elevation={0}
-                className={`business-paper ${style} ${disabled}`}
-                onClick={props.handler}
-            >
-                <Typography component="span" className="business-pricing-text">
-                    {props.value.text}
-                </Typography>
-                <div className="mt-15">
-                    <Typography component="span" className="business-pricing-value">
-                        {props.value.price}
-                    </Typography>
-                </div>
-            </Paper>
-        </Grid>
-    );
-};
-
-const RenderText = (props: RenderTextProps): React.ReactElement => {
-    return props.isLoading ? <Skeleton variant="rect" width="100%" height={`${props.height}px`} /> : <>{props.value}</>;
-};
-
-const RenderElement = (props: RenderElementProps): React.ReactElement => {
-    return props.isLoading ? (
-        <Skeleton variant="rect" width="100%" height={`${props.height}px`} />
-    ) : (
-        <>{props.element}</>
+        <div id={props.value.id} data-disabled={props.isDisabled} className={className} onClick={props.handler}>
+            <p className="is-size-6 business-item-text">{props.value.text}</p>
+            <p className="is-size-6 has-text-weight-semibold business-item-price">{props.value.price}</p>
+        </div>
     );
 };
 
 export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => {
+    const cardPadding = props.isMobile ? "px-3" : "px-6";
+
     return (
-        <section className={`section ${props.background} ?? ""`}>
-            <Container className="container-wide">
-                <div className={!props.className ? "pt-120 pb-240" : props.className}>
-                    <div className="text-centre">
-                        <Typography className="business-large-caption">
-                            {props.hasCaption ? (
-                                <RenderText
-                                    isLoading={props.isLoading}
-                                    value={props.caption?.toUpperCase()}
-                                    height={60}
-                                />
-                            ) : (
-                                <></>
-                            )}
-                        </Typography>
-                    </div>
-                    <Card elevation={0} className="card">
-                        <CardContent className="card-content">
-                            <div className="text-centre mb-25">
+        <section className={props.background}>
+            <div className="bulma-container bulma-is-max-desktop">
+                <div className={!props.className ? "py-6" : props.className}>
+                    {props.hasCaption ? (
+                        <p className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</p>
+                    ) : (
+                        <></>
+                    )}
+                    <div className={cardPadding}>
+                        <div className="bulma-card">
+                            <div className="bulma-card-content">
                                 {props.hasIcon ? (
-                                    <RenderElement
-                                        isLoading={props.isLoading}
-                                        element={
-                                            <>
-                                                <BusinessCenterIcon className="business-main-icon" />
-                                                <Typography className="business-small-caption">
-                                                    {props.caption}
-                                                </Typography>
-                                            </>
-                                        }
-                                        height={60}
-                                    />
+                                    <div className="is-flex is-flex-direction-column is-align-items-center">
+                                        <Icon name="BriefcaseVariant" size={3} className="has-text-link" />
+                                        <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                    </div>
                                 ) : (
                                     <></>
                                 )}
-                            </div>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <RenderElement
-                                        isLoading={props.isLoading}
-                                        height={45}
-                                        element={
+                                <div className="mt-5">
+                                    <div className="bulma-columns">
+                                        <div className="bulma-column">
                                             <TextField
                                                 required
-                                                fullWidth
-                                                id="company"
-                                                name="company"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 255 }}
+                                                uuid="company"
+                                                isDisabled={props.progress}
+                                                maxLength={255}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.companyText}
-                                                label={props.companyLabel}
+                                                placeholder={props.companyLabel}
                                             />
-                                        }
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <RenderElement
-                                        isLoading={props.isLoading}
-                                        height={45}
-                                        element={
+                                        </div>
+                                    </div>
+                                    <div className="bulma-columns">
+                                        <div className="bulma-column">
                                             <TextField
                                                 required
-                                                fullWidth
-                                                id="firstName"
-                                                name="firstName"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 255 }}
+                                                uuid="firstName"
+                                                isDisabled={props.progress}
+                                                maxLength={255}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.firstNameText}
-                                                label={props.firstNameLabel}
+                                                placeholder={props.firstNameLabel}
                                             />
-                                        }
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <RenderElement
-                                        isLoading={props.isLoading}
-                                        height={45}
-                                        element={
+                                        </div>
+                                        <div className="bulma-column">
                                             <TextField
                                                 required
-                                                fullWidth
-                                                id="lastName"
-                                                name="lastName"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 255 }}
+                                                uuid="lastName"
+                                                isDisabled={props.progress}
+                                                maxLength={255}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.lastNameText}
-                                                label={props.lastNameLabel}
+                                                placeholder={props.lastNameLabel}
                                             />
-                                        }
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <RenderElement
-                                        isLoading={props.isLoading}
-                                        height={45}
-                                        element={
+                                        </div>
+                                    </div>
+                                    <div className="bulma-columns">
+                                        <div className="bulma-column">
                                             <TextField
                                                 required
-                                                fullWidth
-                                                id="email"
-                                                name="email"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 255 }}
+                                                uuid="email"
+                                                isDisabled={props.progress}
+                                                maxLength={255}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.emailText}
-                                                label={props.emailLabel}
+                                                placeholder={props.emailLabel}
                                             />
-                                        }
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={6}>
-                                    <RenderElement
-                                        isLoading={props.isLoading}
-                                        height={45}
-                                        element={
+                                        </div>
+                                        <div className="bulma-column">
                                             <TextField
                                                 required
-                                                fullWidth
-                                                id="phone"
-                                                name="phone"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                inputProps={{ maxLength: 17 }}
+                                                uuid="phone"
+                                                isDisabled={props.progress}
+                                                maxLength={17}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                                 value={props.phoneText}
-                                                label={props.phoneLabel}
+                                                placeholder={props.phoneLabel}
                                             />
-                                        }
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <RenderElement
-                                        isLoading={props.isLoading}
-                                        height={45}
-                                        element={
-                                            <TextField
+                                        </div>
+                                    </div>
+                                    <div className="bulma-columns">
+                                        <div className="bulma-column">
+                                            <TextArea
                                                 required={props.description.required}
-                                                fullWidth
-                                                id="description"
-                                                name="description"
-                                                variant="outlined"
-                                                disabled={props.progress}
-                                                onKeyUp={props.keyHandler}
-                                                onChange={props.formHandler}
+                                                isFixedSize
+                                                uuid="description"
+                                                isDisabled={props.progress}
+                                                onChange={props.descriptionHandler}
                                                 value={props.description.text}
-                                                label={props.description.label}
-                                                multiline={props.description.multiline}
-                                                minRows={props.description.rows}
+                                                placeholder={props.description.label}
+                                                rows={props.description.rows}
                                             />
-                                        }
-                                    />
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <div className="mt-15 mb-8">
-                                        <RenderElement
-                                            isLoading={props.isLoading}
-                                            height={45}
-                                            element={
-                                                <Typography className="business-header">{props.techLabel}</Typography>
-                                            }
+                                        </div>
+                                    </div>
+                                    <div className="bulma-content">
+                                        <p className="is-size-5 py-2">{props.techLabel}</p>
+                                    </div>
+                                    <div className="bulma-content">
+                                        <TechStackList
+                                            isDisabled={props.progress}
+                                            list={props.techItems}
+                                            handler={props.techHandler}
                                         />
                                     </div>
-                                    <RenderElement
-                                        isLoading={props.isLoading}
-                                        height={100}
-                                        element={
-                                            <TechStackList
-                                                isDisabled={props.progress}
-                                                list={props.techItems}
-                                                handler={props.techHandler}
-                                            />
-                                        }
-                                    />
-                                </Grid>
-                            </Grid>
-                            <div className="mt-15 mb-32">
-                                <div className="mt-8 mb-32">
-                                    <RenderElement
-                                        isLoading={props.isLoading}
-                                        height={45}
-                                        element={
-                                            <Typography component="span" className="business-header">
-                                                {props.pricing.caption}
-                                            </Typography>
-                                        }
-                                    />
-                                </div>
-                                <Grid container spacing={3}>
-                                    <RenderElement
-                                        isLoading={props.isLoading}
-                                        height={100}
-                                        element={props.pricing.services.map((value: ServiceItemDto, _index: number) => (
+                                    <div className="bulma-content">
+                                        <p className="is-size-5 py-2">{props.pricing.caption}</p>
+                                    </div>
+                                    <div className="bulma-grid bulma-is-col-min-10 is-gap-2.5">
+                                        {props.pricing.services.map((value: ServiceItemDto, _index: number) => (
                                             <ServiceItemCard
                                                 key={value.id}
                                                 value={value}
@@ -367,32 +220,18 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                                 services={props.serviceSelection}
                                             />
                                         ))}
-                                    />
-                                </Grid>
+                                    </div>
+                                    <div className="bulma-notification is-flex is-align-items-center">
+                                        <Icon name="Information" size={1} className="has-text-link" />
+                                        <span className="is-size-6 p-3">{props.pricing.disclaimer}</span>
+                                    </div>
+                                    <ActiveButton {...props} />
+                                </div>
                             </div>
-                            <div className="business-info-box mb-80">
-                                <RenderElement
-                                    isLoading={props.isLoading}
-                                    height={45}
-                                    element={
-                                        <>
-                                            <InfoIcon className="business-info-icon" />
-                                            <Typography component="span">{props.pricing.disclaimer}</Typography>
-                                        </>
-                                    }
-                                />
-                            </div>
-                            <div className="mt-40 mb-40">
-                                <RenderElement
-                                    isLoading={props.isLoading}
-                                    height={40}
-                                    element={<ActiveButton {...props} />}
-                                />
-                            </div>
-                        </CardContent>
-                    </Card>
+                        </div>
+                    </div>
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };

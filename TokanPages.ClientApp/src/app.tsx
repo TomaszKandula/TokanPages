@@ -1,8 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Switch } from "react-router-dom";
-import Fab from "@material-ui/core/Fab";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { ApplicationState } from "./Store/Configuration";
 import { GetContentManifestDto, LanguageItemDto } from "./Api/Models";
 import { HasSnapshotMode } from "./Shared/Services/SpaCaching";
@@ -12,10 +10,10 @@ import {
     ClearPageStart,
     ScrollToTop,
     ApplicationCookie,
-    ApplicationToast,
     ApplicationDialogBox,
     ApplicationUserInfo,
     ApplicationSession,
+    ApplicationToaster,
 } from "./Shared/Components";
 
 interface AppProps {
@@ -42,14 +40,10 @@ const RenderApplication = (props: RenderApplicationProps): React.ReactElement =>
             {hasSnapshotMode ? null : (
                 <>
                     <ApplicationCookie />
-                    <ApplicationToast />
+                    <ApplicationToaster hasAutoClose={true} AutoCloseDurationSec={15} position="top-right" />
                     <ApplicationDialogBox />
                     <ApplicationUserInfo />
-                    <ScrollToTop>
-                        <Fab size="small" aria-label="scroll back to top" className="button-up">
-                            <KeyboardArrowUpIcon />
-                        </Fab>
-                    </ScrollToTop>
+                    <ScrollToTop />
                 </>
             )}
         </ApplicationSession>

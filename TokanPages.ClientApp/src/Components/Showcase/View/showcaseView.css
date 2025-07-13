@@ -1,33 +1,4 @@
-.showcase-caption-text {
-    text-align: center;
-    font-size: 2rem !important;
-    font-weight: 500 !important;
-    color: #6367ef;
-}
-
-.showcase-feature-box {
-    display: flex;
-    height: 100%;
-}
-
-.showcase-feature-textbox {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-.showcase-feature-text1 {
-    font-size: 1.9rem !important;
-    font-weight: 500 !important;
-    margin: 0;
-}
-
-.showcase-feature-text2 {
-    font-size: 1.125rem !important;
-    font-weight: 400 !important;
-    line-height: 1.8 !important;
-    color: #757575 !important;
-}
-
 .showcase-feature-image {
-    height: 512px;
+    height: 512px !important;
+    object-fit: cover;
 }

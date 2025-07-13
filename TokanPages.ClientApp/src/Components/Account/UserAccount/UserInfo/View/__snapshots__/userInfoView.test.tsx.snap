@@ -6,154 +6,121 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="section class-colour-white"
+        class="has-background-white"
       >
         <div
-          aria-hidden="true"
-          class="MuiBackdrop-root backdrop"
-          style="opacity: 0; visibility: hidden;"
+          class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
-            role="progressbar"
-            style="width: 40px; height: 40px;"
-          >
-            <svg
-              class="MuiCircularProgress-svg"
-              viewBox="22 22 44 44"
-            >
-              <circle
-                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-                cx="44"
-                cy="44"
-                fill="none"
-                r="20.2"
-                stroke-width="3.6"
-              />
-            </svg>
-          </div>
-        </div>
-        <div
-          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
-        >
-          <div
-            class="pt-120 pb-40"
+            class="py-6"
           >
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="bulma-card"
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="bulma-card-content"
               >
-                <span
-                  class="MuiTypography-root caption black MuiTypography-body1"
+                <p
+                  class="is-size-4 has-text-grey"
                 >
                   USER DETAILS
-                </span>
+                </p>
+                <hr />
                 <div
-                  class="mt-15 mb-8"
-                >
-                  <hr
-                    class="MuiDivider-root divider"
-                  />
-                </div>
-                <div
-                  class="pt-25 pb-8"
+                  class="py-4"
                 >
                   <div
-                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                    class="bulma-columns cancel-margin-bottom"
                   >
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
-                    >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
-                      >
-                        User ID:
-                      </span>
-                    </div>
-                    <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
-                    >
-                      <span
-                        class="MuiTypography-root user-id MuiTypography-body1"
-                      >
-                        123456789
-                      </span>
-                    </div>
-                    <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
-                    >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
-                      >
-                        Status
-                      </span>
-                    </div>
-                    <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                      class="bulma-column bulma-is-one-fifth"
                     >
                       <p
-                        class="MuiTypography-root user-email-status MuiTypography-body1"
+                        class="is-size-6 has-text-grey"
+                      >
+                        User ID:
+                      </p>
+                    </div>
+                    <div
+                      class="bulma-column"
+                    >
+                      <p
+                        class="is-size-6 has-text-grey"
+                      >
+                        123456789
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="bulma-columns cancel-margin-bottom"
+                  >
+                    <div
+                      class="bulma-column bulma-is-one-fifth"
+                    >
+                      <p
+                        class="is-size-6 has-text-grey"
+                      >
+                        Status
+                      </p>
+                    </div>
+                    <div
+                      class="bulma-column"
+                    >
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
                         Unverified
-                        <span
-                          class="MuiTypography-root MuiTypography-body1"
-                        >
+                        <span>
                            (
                         </span>
                         <span
-                          class="MuiTypography-root user-email-verification MuiTypography-body1"
+                          class="has-text-danger is-underlined has-pointer"
                         >
                           request verification
                         </span>
-                        <span
-                          class="MuiTypography-root MuiTypography-body1"
-                        >
+                        <span>
                           )
                         </span>
                       </p>
                     </div>
+                  </div>
+                  <div
+                    class="bulma-columns cancel-margin-bottom"
+                  >
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                      class="bulma-column bulma-is-one-fifth"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
                         User alias:
-                      </span>
+                      </p>
                     </div>
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                      class="bulma-column"
                     >
-                      <span
-                        class="MuiTypography-root user-alias MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
                         Ester
-                      </span>
+                      </p>
                     </div>
                   </div>
+                  <hr />
                   <div
-                    class="mt-25 mb-25"
-                  >
-                    <hr
-                      class="MuiDivider-root divider"
-                    />
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                    class="bulma-columns cancel-margin-bottom"
                   >
                     <div
-                      class="MuiGrid-root label-centered MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                      class="bulma-column bulma-is-one-fifth is-align-self-center"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
                         Avatar:
-                      </span>
+                      </p>
                     </div>
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                      class="bulma-column"
                     >
                       <label
                         for="UserFile-Avatar"
@@ -165,245 +132,153 @@ Object {
                           name="UserFile-Avatar"
                           type="file"
                         />
-                        <span
-                          aria-disabled="false"
-                          class="MuiButtonBase-root MuiIconButton-root button-upload MuiIconButton-sizeSmall"
-                          role="button"
-                          tabindex="0"
+                        <button
+                          class="icon-button button-upload is-flex is-align-self-center"
+                          style="height: 48px; width: 48px;"
                         >
-                          <span
-                            class="MuiIconButton-label"
+                          <div
+                            class="avatar-wrapper user-avatar-avatar-small user-avatar-avatar-button"
                           >
-                            <div
-                              class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small user-avatar-avatar-button"
+                            <img
+                              alt="User avatar"
+                              class="avatar-image"
+                              src="http://localhost:5000/api/v1/users/123456789/getUserImage?blobName="
                               title="Avatar"
-                            >
-                              <img
-                                alt="User avatar"
-                                class="MuiAvatar-img"
-                                src="http://localhost:5000/api/v1/users/123456789/getUserImage?blobName="
-                              />
-                            </div>
-                          </span>
-                          <span
-                            class="MuiTouchRipple-root"
-                          />
-                        </span>
+                            />
+                          </div>
+                        </button>
                       </label>
                     </div>
                   </div>
+                  <hr />
                   <div
-                    class="mt-25 mb-32"
-                  >
-                    <hr
-                      class="MuiDivider-root divider"
-                    />
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                    class="bulma-columns cancel-margin-bottom"
                   >
                     <div
-                      class="MuiGrid-root label-centered MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                      class="bulma-column bulma-is-one-fifth is-align-self-center"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
                         First name:
-                      </span>
+                      </p>
                     </div>
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                      class="bulma-column"
                     >
                       <div
-                        class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                        class="bulma-control  "
                       >
-                        <div
-                          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                        >
-                          <input
-                            aria-invalid="false"
-                            class="MuiInputBase-input MuiOutlinedInput-input"
-                            id="firstName"
-                            name="firstName"
-                            required=""
-                            type="text"
-                            value="Ester"
-                          />
-                          <fieldset
-                            aria-hidden="true"
-                            class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
-                            style="padding-left: 8px;"
-                          >
-                            <legend
-                              class="PrivateNotchedOutline-legend-2"
-                              style="width: 0.01px;"
-                            >
-                              <span>
-                                ​
-                              </span>
-                            </legend>
-                          </fieldset>
-                        </div>
+                        <input
+                          class="bulma-input   "
+                          id="firstName"
+                          name="firstName"
+                          required=""
+                          type="text"
+                          value="Ester"
+                        />
                       </div>
                     </div>
+                  </div>
+                  <div
+                    class="bulma-columns cancel-margin-bottom"
+                  >
                     <div
-                      class="MuiGrid-root label-centered MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                      class="bulma-column bulma-is-one-fifth is-align-self-center"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
                         last name:
-                      </span>
+                      </p>
                     </div>
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                      class="bulma-column"
                     >
                       <div
-                        class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                        class="bulma-control  "
                       >
-                        <div
-                          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                        >
-                          <input
-                            aria-invalid="false"
-                            class="MuiInputBase-input MuiOutlinedInput-input"
-                            id="lastName"
-                            name="lastName"
-                            required=""
-                            type="text"
-                            value="Exposito"
-                          />
-                          <fieldset
-                            aria-hidden="true"
-                            class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
-                            style="padding-left: 8px;"
-                          >
-                            <legend
-                              class="PrivateNotchedOutline-legend-6"
-                              style="width: 0.01px;"
-                            >
-                              <span>
-                                ​
-                              </span>
-                            </legend>
-                          </fieldset>
-                        </div>
+                        <input
+                          class="bulma-input   "
+                          id="lastName"
+                          name="lastName"
+                          required=""
+                          type="text"
+                          value="Exposito"
+                        />
                       </div>
                     </div>
+                  </div>
+                  <div
+                    class="bulma-columns cancel-margin-bottom"
+                  >
                     <div
-                      class="MuiGrid-root label-centered MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                      class="bulma-column bulma-is-one-fifth is-align-self-center"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
                         Email:
-                      </span>
+                      </p>
                     </div>
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                      class="bulma-column"
                     >
                       <div
-                        class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                        class="bulma-control  "
                       >
-                        <div
-                          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                        >
-                          <input
-                            aria-invalid="false"
-                            class="MuiInputBase-input MuiOutlinedInput-input"
-                            id="email"
-                            name="email"
-                            required=""
-                            type="text"
-                            value="ester.exposito@gmail.com"
-                          />
-                          <fieldset
-                            aria-hidden="true"
-                            class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
-                            style="padding-left: 8px;"
-                          >
-                            <legend
-                              class="PrivateNotchedOutline-legend-10"
-                              style="width: 0.01px;"
-                            >
-                              <span>
-                                ​
-                              </span>
-                            </legend>
-                          </fieldset>
-                        </div>
+                        <input
+                          class="bulma-input   "
+                          id="email"
+                          name="email"
+                          required=""
+                          type="text"
+                          value="ester.exposito@gmail.com"
+                        />
                       </div>
                     </div>
+                  </div>
+                  <div
+                    class="bulma-columns cancel-margin-bottom"
+                  >
                     <div
-                      class="MuiGrid-root label-centered MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                      class="bulma-column bulma-is-one-fifth is-align-self-center"
                     >
-                      <span
-                        class="MuiTypography-root label MuiTypography-body1"
+                      <p
+                        class="is-size-6 has-text-grey"
                       >
                         Bio:
-                      </span>
+                      </p>
                     </div>
                     <div
-                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                      class="bulma-column"
                     >
                       <div
-                        class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                        class="bulma-field"
                       >
                         <div
-                          class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                          class="bulma-control  "
                         >
-                          <input
-                            aria-invalid="false"
-                            class="MuiInputBase-input MuiOutlinedInput-input"
+                          <textarea
+                            class="bulma-textarea   bulma-has-fixed-size"
                             id="userAboutText"
                             name="userAboutText"
                             required=""
-                            type="text"
-                            value="Spanish Developer"
                           />
-                          <fieldset
-                            aria-hidden="true"
-                            class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
-                            style="padding-left: 8px;"
-                          >
-                            <legend
-                              class="PrivateNotchedOutline-legend-14"
-                              style="width: 0.01px;"
-                            >
-                              <span>
-                                ​
-                              </span>
-                            </legend>
-                          </fieldset>
                         </div>
                       </div>
                     </div>
                   </div>
+                  <hr />
                   <div
-                    class="mt-40 mb-15"
+                    class="has-text-right"
                   >
-                    <hr
-                      class="MuiDivider-root divider"
-                    />
-                  </div>
-                  <div
-                    class="MuiGrid-root button-container-update"
-                  >
-                    <div
-                      class="mt-15 mb-15"
+                    <button
+                      class="bulma-button bulma-is-info bulma-is-light"
+                      type="submit"
                     >
-                      <button
-                        class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update MuiButton-fullWidth"
-                        tabindex="0"
-                        type="submit"
-                      >
-                        <span
-                          class="MuiButton-label"
-                        >
-                          Update
-                        </span>
-                      </button>
-                    </div>
+                      Update
+                    </button>
                   </div>
                 </div>
               </div>
@@ -415,154 +290,121 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="section class-colour-white"
+      class="has-background-white"
     >
       <div
-        aria-hidden="true"
-        class="MuiBackdrop-root backdrop"
-        style="opacity: 0; visibility: hidden;"
+        class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="MuiCircularProgress-root MuiCircularProgress-indeterminate"
-          role="progressbar"
-          style="width: 40px; height: 40px;"
-        >
-          <svg
-            class="MuiCircularProgress-svg"
-            viewBox="22 22 44 44"
-          >
-            <circle
-              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-              cx="44"
-              cy="44"
-              fill="none"
-              r="20.2"
-              stroke-width="3.6"
-            />
-          </svg>
-        </div>
-      </div>
-      <div
-        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
-      >
-        <div
-          class="pt-120 pb-40"
+          class="py-6"
         >
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="bulma-card"
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="bulma-card-content"
             >
-              <span
-                class="MuiTypography-root caption black MuiTypography-body1"
+              <p
+                class="is-size-4 has-text-grey"
               >
                 USER DETAILS
-              </span>
+              </p>
+              <hr />
               <div
-                class="mt-15 mb-8"
-              >
-                <hr
-                  class="MuiDivider-root divider"
-                />
-              </div>
-              <div
-                class="pt-25 pb-8"
+                class="py-4"
               >
                 <div
-                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                  class="bulma-columns cancel-margin-bottom"
                 >
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
-                  >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
-                    >
-                      User ID:
-                    </span>
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
-                  >
-                    <span
-                      class="MuiTypography-root user-id MuiTypography-body1"
-                    >
-                      123456789
-                    </span>
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
-                  >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
-                    >
-                      Status
-                    </span>
-                  </div>
-                  <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    class="bulma-column bulma-is-one-fifth"
                   >
                     <p
-                      class="MuiTypography-root user-email-status MuiTypography-body1"
+                      class="is-size-6 has-text-grey"
+                    >
+                      User ID:
+                    </p>
+                  </div>
+                  <div
+                    class="bulma-column"
+                  >
+                    <p
+                      class="is-size-6 has-text-grey"
+                    >
+                      123456789
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="bulma-columns cancel-margin-bottom"
+                >
+                  <div
+                    class="bulma-column bulma-is-one-fifth"
+                  >
+                    <p
+                      class="is-size-6 has-text-grey"
+                    >
+                      Status
+                    </p>
+                  </div>
+                  <div
+                    class="bulma-column"
+                  >
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
                       Unverified
-                      <span
-                        class="MuiTypography-root MuiTypography-body1"
-                      >
+                      <span>
                          (
                       </span>
                       <span
-                        class="MuiTypography-root user-email-verification MuiTypography-body1"
+                        class="has-text-danger is-underlined has-pointer"
                       >
                         request verification
                       </span>
-                      <span
-                        class="MuiTypography-root MuiTypography-body1"
-                      >
+                      <span>
                         )
                       </span>
                     </p>
                   </div>
+                </div>
+                <div
+                  class="bulma-columns cancel-margin-bottom"
+                >
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    class="bulma-column bulma-is-one-fifth"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
                       User alias:
-                    </span>
+                    </p>
                   </div>
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    class="bulma-column"
                   >
-                    <span
-                      class="MuiTypography-root user-alias MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
                       Ester
-                    </span>
+                    </p>
                   </div>
                 </div>
+                <hr />
                 <div
-                  class="mt-25 mb-25"
-                >
-                  <hr
-                    class="MuiDivider-root divider"
-                  />
-                </div>
-                <div
-                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                  class="bulma-columns cancel-margin-bottom"
                 >
                   <div
-                    class="MuiGrid-root label-centered MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    class="bulma-column bulma-is-one-fifth is-align-self-center"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
                       Avatar:
-                    </span>
+                    </p>
                   </div>
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    class="bulma-column"
                   >
                     <label
                       for="UserFile-Avatar"
@@ -574,245 +416,153 @@ Object {
                         name="UserFile-Avatar"
                         type="file"
                       />
-                      <span
-                        aria-disabled="false"
-                        class="MuiButtonBase-root MuiIconButton-root button-upload MuiIconButton-sizeSmall"
-                        role="button"
-                        tabindex="0"
+                      <button
+                        class="icon-button button-upload is-flex is-align-self-center"
+                        style="height: 48px; width: 48px;"
                       >
-                        <span
-                          class="MuiIconButton-label"
+                        <div
+                          class="avatar-wrapper user-avatar-avatar-small user-avatar-avatar-button"
                         >
-                          <div
-                            class="MuiAvatar-root MuiAvatar-circular user-avatar-avatar-small user-avatar-avatar-button"
+                          <img
+                            alt="User avatar"
+                            class="avatar-image"
+                            src="http://localhost:5000/api/v1/users/123456789/getUserImage?blobName="
                             title="Avatar"
-                          >
-                            <img
-                              alt="User avatar"
-                              class="MuiAvatar-img"
-                              src="http://localhost:5000/api/v1/users/123456789/getUserImage?blobName="
-                            />
-                          </div>
-                        </span>
-                        <span
-                          class="MuiTouchRipple-root"
-                        />
-                      </span>
+                          />
+                        </div>
+                      </button>
                     </label>
                   </div>
                 </div>
+                <hr />
                 <div
-                  class="mt-25 mb-32"
-                >
-                  <hr
-                    class="MuiDivider-root divider"
-                  />
-                </div>
-                <div
-                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+                  class="bulma-columns cancel-margin-bottom"
                 >
                   <div
-                    class="MuiGrid-root label-centered MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    class="bulma-column bulma-is-one-fifth is-align-self-center"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
                       First name:
-                    </span>
+                    </p>
                   </div>
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    class="bulma-column"
                   >
                     <div
-                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                      class="bulma-control  "
                     >
-                      <div
-                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                      >
-                        <input
-                          aria-invalid="false"
-                          class="MuiInputBase-input MuiOutlinedInput-input"
-                          id="firstName"
-                          name="firstName"
-                          required=""
-                          type="text"
-                          value="Ester"
-                        />
-                        <fieldset
-                          aria-hidden="true"
-                          class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
-                          style="padding-left: 8px;"
-                        >
-                          <legend
-                            class="PrivateNotchedOutline-legend-2"
-                            style="width: 0.01px;"
-                          >
-                            <span>
-                              ​
-                            </span>
-                          </legend>
-                        </fieldset>
-                      </div>
+                      <input
+                        class="bulma-input   "
+                        id="firstName"
+                        name="firstName"
+                        required=""
+                        type="text"
+                        value="Ester"
+                      />
                     </div>
                   </div>
+                </div>
+                <div
+                  class="bulma-columns cancel-margin-bottom"
+                >
                   <div
-                    class="MuiGrid-root label-centered MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    class="bulma-column bulma-is-one-fifth is-align-self-center"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
                       last name:
-                    </span>
+                    </p>
                   </div>
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    class="bulma-column"
                   >
                     <div
-                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                      class="bulma-control  "
                     >
-                      <div
-                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                      >
-                        <input
-                          aria-invalid="false"
-                          class="MuiInputBase-input MuiOutlinedInput-input"
-                          id="lastName"
-                          name="lastName"
-                          required=""
-                          type="text"
-                          value="Exposito"
-                        />
-                        <fieldset
-                          aria-hidden="true"
-                          class="PrivateNotchedOutline-root-5 MuiOutlinedInput-notchedOutline"
-                          style="padding-left: 8px;"
-                        >
-                          <legend
-                            class="PrivateNotchedOutline-legend-6"
-                            style="width: 0.01px;"
-                          >
-                            <span>
-                              ​
-                            </span>
-                          </legend>
-                        </fieldset>
-                      </div>
+                      <input
+                        class="bulma-input   "
+                        id="lastName"
+                        name="lastName"
+                        required=""
+                        type="text"
+                        value="Exposito"
+                      />
                     </div>
                   </div>
+                </div>
+                <div
+                  class="bulma-columns cancel-margin-bottom"
+                >
                   <div
-                    class="MuiGrid-root label-centered MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    class="bulma-column bulma-is-one-fifth is-align-self-center"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
                       Email:
-                    </span>
+                    </p>
                   </div>
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    class="bulma-column"
                   >
                     <div
-                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                      class="bulma-control  "
                     >
-                      <div
-                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
-                      >
-                        <input
-                          aria-invalid="false"
-                          class="MuiInputBase-input MuiOutlinedInput-input"
-                          id="email"
-                          name="email"
-                          required=""
-                          type="text"
-                          value="ester.exposito@gmail.com"
-                        />
-                        <fieldset
-                          aria-hidden="true"
-                          class="PrivateNotchedOutline-root-9 MuiOutlinedInput-notchedOutline"
-                          style="padding-left: 8px;"
-                        >
-                          <legend
-                            class="PrivateNotchedOutline-legend-10"
-                            style="width: 0.01px;"
-                          >
-                            <span>
-                              ​
-                            </span>
-                          </legend>
-                        </fieldset>
-                      </div>
+                      <input
+                        class="bulma-input   "
+                        id="email"
+                        name="email"
+                        required=""
+                        type="text"
+                        value="ester.exposito@gmail.com"
+                      />
                     </div>
                   </div>
+                </div>
+                <div
+                  class="bulma-columns cancel-margin-bottom"
+                >
                   <div
-                    class="MuiGrid-root label-centered MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+                    class="bulma-column bulma-is-one-fifth is-align-self-center"
                   >
-                    <span
-                      class="MuiTypography-root label MuiTypography-body1"
+                    <p
+                      class="is-size-6 has-text-grey"
                     >
                       Bio:
-                    </span>
+                    </p>
                   </div>
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-9"
+                    class="bulma-column"
                   >
                     <div
-                      class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
+                      class="bulma-field"
                     >
                       <div
-                        class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl"
+                        class="bulma-control  "
                       >
-                        <input
-                          aria-invalid="false"
-                          class="MuiInputBase-input MuiOutlinedInput-input"
+                        <textarea
+                          class="bulma-textarea   bulma-has-fixed-size"
                           id="userAboutText"
                           name="userAboutText"
                           required=""
-                          type="text"
-                          value="Spanish Developer"
                         />
-                        <fieldset
-                          aria-hidden="true"
-                          class="PrivateNotchedOutline-root-13 MuiOutlinedInput-notchedOutline"
-                          style="padding-left: 8px;"
-                        >
-                          <legend
-                            class="PrivateNotchedOutline-legend-14"
-                            style="width: 0.01px;"
-                          >
-                            <span>
-                              ​
-                            </span>
-                          </legend>
-                        </fieldset>
                       </div>
                     </div>
                   </div>
                 </div>
+                <hr />
                 <div
-                  class="mt-40 mb-15"
+                  class="has-text-right"
                 >
-                  <hr
-                    class="MuiDivider-root divider"
-                  />
-                </div>
-                <div
-                  class="MuiGrid-root button-container-update"
-                >
-                  <div
-                    class="mt-15 mb-15"
+                  <button
+                    class="bulma-button bulma-is-info bulma-is-light"
+                    type="submit"
                   >
-                    <button
-                      class="MuiButtonBase-root MuiButton-root MuiButton-contained button-update MuiButton-fullWidth"
-                      tabindex="0"
-                      type="submit"
-                    >
-                      <span
-                        class="MuiButton-label"
-                      >
-                        Update
-                      </span>
-                    </button>
-                  </div>
+                    Update
+                  </button>
                 </div>
               </div>
             </div>

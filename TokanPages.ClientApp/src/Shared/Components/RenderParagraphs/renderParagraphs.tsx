@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Typography } from "@material-ui/core";
 import { v4 as uuidv4 } from "uuid";
 
 interface ReplaceProps {
@@ -25,9 +24,9 @@ export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactEleme
                 );
             } else {
                 render.push(
-                    <Typography key={uuidv4()} component="p" className={props.className}>
+                    <p key={uuidv4()} className={props.className}>
                         {item}
-                    </Typography>
+                    </p>
                 );
             }
         });
@@ -36,9 +35,9 @@ export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactEleme
     }
 
     const result = props.text.map((value: string, index: number) => (
-        <Typography key={index} component="p" className={props.className}>
+        <p key={index} className={props.className}>
             {value}
-        </Typography>
+        </p>
     ));
 
     return <>{result}</>;

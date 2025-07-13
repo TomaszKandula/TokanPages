@@ -15,7 +15,7 @@ export interface MessageFormProps {
 export interface TechStackListProps {
     isDisabled: boolean;
     list: TechItemsDto[];
-    handler: (event: ReactChangeEvent, isChecked: boolean) => void;
+    handler: (event: ReactChangeEvent) => void;
 }
 
 export interface ServiceItemCardProps {

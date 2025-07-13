@@ -16,7 +16,6 @@ const DefaultValues = {
 };
 
 export interface ExtendedViewProps {
-    background?: string;
     className?: string;
 }
 
@@ -146,7 +145,6 @@ export const AccountActivate = (props: AccountActivateProps): React.ReactElement
             hasProgress={hasProgress}
             hasError={hasError}
             hasSuccess={hasSuccess}
-            background={props.background}
             className={props.className}
         />
     );

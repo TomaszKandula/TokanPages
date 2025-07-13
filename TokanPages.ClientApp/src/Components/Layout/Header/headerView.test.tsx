@@ -56,7 +56,7 @@ describe("test component: headerView", () => {
             </Router>
         );
 
-        expect(useSelectorMock).toBeCalledTimes(1);
+        expect(useSelectorMock).toBeCalledTimes(2);
         expect(html).toMatchSnapshot();
     });
 });

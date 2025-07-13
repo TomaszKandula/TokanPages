@@ -8,7 +8,7 @@ describe("test view component for application diaog box", () => {
     it("should render correctly view component with passed props.", () => {
         const html = render(
             <ApplicationDialogBoxView
-                state={true}
+                isOpen={true}
                 icon={IconType.info}
                 title="Test title"
                 message={["Test item 1", "Test item 2"]}
