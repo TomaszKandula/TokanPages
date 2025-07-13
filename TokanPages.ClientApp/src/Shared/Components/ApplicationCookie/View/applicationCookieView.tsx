@@ -3,6 +3,7 @@ import { ButtonsDto, OptionsDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ReactChangeEvent } from "../../../../Shared/types";
+import { v4 as uuidv4 } from "uuid";
 import "./applicationCookieView.css";
 
 interface ApplicationCookieViewProps extends ViewProperties {
@@ -126,7 +127,7 @@ const CookieWindowLoading = (props: ApplicationCookieViewProps): React.ReactElem
             <div className="cookie-window-box">
                 <div className="cookie-window-section cookie-window-section-fixed-height cookie-window-section-left">
                     {props.loading?.map((value: string, index: number) => (
-                        <p className="cookie-window-section-text cookie-window-section-left" key={index}>
+                        <p className="cookie-window-section-text cookie-window-section-left" key={uuidv4()}>
                             {value.replace("{DT}", formattedDateTime)}
                             {maxLength === index ? <span className="cookie-window-caret"></span> : null}
                         </p>
