@@ -8,7 +8,7 @@ interface RenderListProps {
     list: string[];
     type?: TList;
     className?: string;
-    dataTestId?: string | undefined;
+    dataTestId?: string;
 }
 
 const GetListItem = (props: RenderListProps): React.ReactElement => {
