@@ -5,9 +5,7 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <div
           class="bulma-container bulma-is-max-desktop"
         >
@@ -21,14 +19,14 @@ Object {
                 class="bulma-card-content"
               >
                 <div
-                  class="custom-card-icon-background my-6"
+                  class="custom-card-icon-background is-flex is-justify-content-center my-6"
                 >
                   <div
-                    class="custom-card-icon-holder vertical-centre"
+                    class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                   >
                     <div>
                       <svg
-                        class="is-flex is-align-self-center custom-card-icon vertical-centre alert-error"
+                        class="is-flex is-align-self-center custom-card-icon has-text-danger"
                         role="presentation"
                         style="width: 4.5rem; height: 4.5rem;"
                         viewBox="0 0 24 24"
@@ -61,7 +59,7 @@ Object {
                   </p>
                 </div>
                 <div
-                  class="mb-48"
+                  class="mb-4"
                 />
               </div>
             </div>
@@ -71,9 +69,7 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <div
         class="bulma-container bulma-is-max-desktop"
       >
@@ -87,14 +83,14 @@ Object {
               class="bulma-card-content"
             >
               <div
-                class="custom-card-icon-background my-6"
+                class="custom-card-icon-background is-flex is-justify-content-center my-6"
               >
                 <div
-                  class="custom-card-icon-holder vertical-centre"
+                  class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                 >
                   <div>
                     <svg
-                      class="is-flex is-align-self-center custom-card-icon vertical-centre alert-error"
+                      class="is-flex is-align-self-center custom-card-icon has-text-danger"
                       role="presentation"
                       style="width: 4.5rem; height: 4.5rem;"
                       viewBox="0 0 24 24"
@@ -127,7 +123,7 @@ Object {
                 </p>
               </div>
               <div
-                class="mb-48"
+                class="mb-4"
               />
             </div>
           </div>

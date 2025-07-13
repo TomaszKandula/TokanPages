@@ -5,9 +5,7 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <div
           class="bulma-container bulma-is-max-desktop"
         >
@@ -63,9 +61,7 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <div
         class="bulma-container bulma-is-max-desktop"
       >

@@ -5,9 +5,7 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <div
           class="bulma-container bulma-is-max-desktop"
         >
@@ -21,14 +19,14 @@ Object {
                 class="bulma-card-content"
               >
                 <div
-                  class="custom-card-icon-background my-6"
+                  class="custom-card-icon-background is-flex is-justify-content-center my-6"
                 >
                   <div
-                    class="custom-card-icon-holder vertical-centre"
+                    class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                   >
                     <div>
                       <svg
-                        class="is-flex is-align-self-center custom-card-icon vertical-centre alert-info"
+                        class="is-flex is-align-self-center custom-card-icon has-text-info"
                         role="presentation"
                         style="width: 4.5rem; height: 4.5rem;"
                         viewBox="0 0 24 24"
@@ -66,7 +64,7 @@ Object {
                   </p>
                 </div>
                 <div
-                  class="mt-48 "
+                  class="mt-6 "
                 >
                   <button
                     class="bulma-button bulma-is-light bulma-is-fullwidth"
@@ -77,7 +75,7 @@ Object {
                   </button>
                 </div>
                 <div
-                  class="mb-25"
+                  class="mb-2"
                 />
               </div>
             </div>
@@ -87,9 +85,7 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <div
         class="bulma-container bulma-is-max-desktop"
       >
@@ -103,14 +99,14 @@ Object {
               class="bulma-card-content"
             >
               <div
-                class="custom-card-icon-background my-6"
+                class="custom-card-icon-background is-flex is-justify-content-center my-6"
               >
                 <div
-                  class="custom-card-icon-holder vertical-centre"
+                  class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                 >
                   <div>
                     <svg
-                      class="is-flex is-align-self-center custom-card-icon vertical-centre alert-info"
+                      class="is-flex is-align-self-center custom-card-icon has-text-info"
                       role="presentation"
                       style="width: 4.5rem; height: 4.5rem;"
                       viewBox="0 0 24 24"
@@ -148,7 +144,7 @@ Object {
                 </p>
               </div>
               <div
-                class="mt-48 "
+                class="mt-6 "
               >
                 <button
                   class="bulma-button bulma-is-light bulma-is-fullwidth"
@@ -159,7 +155,7 @@ Object {
                 </button>
               </div>
               <div
-                class="mb-25"
+                class="mb-2"
               />
             </div>
           </div>

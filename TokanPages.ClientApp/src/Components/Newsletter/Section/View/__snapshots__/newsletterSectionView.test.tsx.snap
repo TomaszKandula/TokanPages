@@ -5,9 +5,7 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <div
           class="bulma-container"
         >
@@ -57,8 +55,8 @@ Object {
                       <input
                         autocomplete="email"
                         class="bulma-input   "
-                        id="email_newletter"
-                        name="email_newletter"
+                        id="email"
+                        name="email"
                         placeholder="Email address"
                         required=""
                         type="text"
@@ -90,9 +88,7 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <div
         class="bulma-container"
       >
@@ -142,8 +138,8 @@ Object {
                     <input
                       autocomplete="email"
                       class="bulma-input   "
-                      id="email_newletter"
-                      name="email_newletter"
+                      id="email"
+                      name="email"
                       placeholder="Email address"
                       required=""
                       type="text"

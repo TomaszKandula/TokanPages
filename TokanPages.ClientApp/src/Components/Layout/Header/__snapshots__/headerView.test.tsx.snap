@@ -5,9 +5,7 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section mt-6 "
-      >
+      <section>
         <div
           class="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop"
         >
@@ -96,9 +94,7 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section mt-6 "
-    >
+    <section>
       <div
         class="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop"
       >

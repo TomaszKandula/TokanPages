@@ -5,9 +5,7 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <article
           class="bulma-container bulma-is-max-tablet"
         >
@@ -25,9 +23,7 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <article
         class="bulma-container bulma-is-max-tablet"
       >
@@ -102,9 +98,7 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <article
           class="bulma-container bulma-is-max-tablet"
         >
@@ -122,9 +116,7 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <article
         class="bulma-container bulma-is-max-tablet"
       >
@@ -199,9 +191,7 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <article
           class="bulma-container bulma-is-max-tablet"
         >
@@ -219,9 +209,7 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <article
         class="bulma-container bulma-is-max-tablet"
       >
@@ -296,9 +284,7 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <article
           class="bulma-container bulma-is-max-tablet"
         >
@@ -316,9 +302,7 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <article
         class="bulma-container bulma-is-max-tablet"
       >
