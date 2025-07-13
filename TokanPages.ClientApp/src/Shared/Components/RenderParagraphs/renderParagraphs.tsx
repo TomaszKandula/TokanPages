@@ -34,8 +34,8 @@ export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactEleme
         return <>{render}</>;
     }
 
-    const result = props.text.map((value: string, index: number) => (
-        <p key={index} className={props.className}>
+    const result = props.text.map((value: string, _index: number) => (
+        <p key={uuidv4()} className={props.className}>
             {value}
         </p>
     ));
