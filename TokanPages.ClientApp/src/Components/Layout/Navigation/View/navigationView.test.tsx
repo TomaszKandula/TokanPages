@@ -79,6 +79,7 @@ describe("test component: featuresView", () => {
                     isLoading={false}
                     isAnonymous={false}
                     isMenuOpen={false}
+                    isMobile={false}
                     width={0}
                     menuHandler={jest.fn()}
                     infoHandler={jest.fn()}

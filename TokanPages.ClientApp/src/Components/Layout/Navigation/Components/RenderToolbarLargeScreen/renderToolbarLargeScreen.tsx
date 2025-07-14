@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Properties } from "../../Abstractions";
+import { NavigationViewProps } from "../../Abstractions";
 import { GET_ICONS_URL } from "../../../../../Api";
 import { CustomImage } from "../../../../../Shared/Components";
 import { RenderLanguageSection } from "../RenderLanguageSection";
 import { RenderNavbarMenu } from "../RenderMenu";
 
-export const RenderToolbarLargeScreen = (props: Properties): React.ReactElement => (
+export const RenderToolbarLargeScreen = (props: NavigationViewProps): React.ReactElement => (
     <nav className="bulma-navbar navigation-nav-large-screen">
         <div className="navigation-tool-bar" style={{ height: props.height }}>
             <div className="navigation-nav-menu navigation-nav-left">

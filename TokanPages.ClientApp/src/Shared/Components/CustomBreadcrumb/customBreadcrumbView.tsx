@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { PRERENDER_PATH_PREFIX } from "../../../Shared/constants";
+import { useDimensions } from "../../../Shared/Hooks";
 import { Icon } from "../Icon";
 import { CustomBreadcrumbProps, NavigationProps } from "./Types";
 import { getHomeText, pathToRootText, pathToSubitemText, toUpperCase } from "./Utilities";
@@ -50,6 +51,7 @@ const makeStyledBreadcrumb = (
 };
 
 export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactElement => {
+    const media = useDimensions();
     const history = useHistory();
     const queryParam = useQuery();
     const navigation = useSelector((state: ApplicationState) => state.contentPageData.components.layoutNavigation);
@@ -67,7 +69,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
     }, [window.location.pathname]);
 
     return (
-        <div className="bulma-container bulma-is-max-tablet mt-6 pt-6">
+        <div className={`bulma-container bulma-is-max-tablet mt-6 pt-6 ${media.isMobile ? "px-4" : ""}`}>
             <nav className="bulma-breadcrumb bulma-has-arrow-separator">
                 <ul>
                     <li>

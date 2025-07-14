@@ -13,8 +13,6 @@
 }
 
 .navigation-tool-bar {
-    padding-left: 24px;
-    padding-right: 24px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

@@ -4,10 +4,10 @@ import { mdiArrowLeft } from "@mdi/js";
 import { APP_BAR_HEIGHT } from "../../../../Shared/constants";
 import { AppBar, IconButton } from "../../../../Shared/Components";
 import { RenderDrawer, RenderToolbarLargeScreen, RenderToolbarSmallScreen } from "../Components";
-import { Properties } from "../Abstractions";
+import { NavigationViewProps } from "../Abstractions";
 import "./navigationView.css";
 
-export const NavigationView = (props: Properties): React.ReactElement => (
+export const NavigationView = (props: NavigationViewProps): React.ReactElement => (
     <>
         {props.backNavigationOnly ? (
             <AppBar height={APP_BAR_HEIGHT}>

@@ -5,6 +5,7 @@ import { ApplicationLanguageState } from "../../../../Store/States";
 export interface BaseProperties extends ViewProperties {
     isAnonymous: boolean;
     isMenuOpen: boolean;
+    isMobile: boolean;
     width: number;
     menuHandler: () => void;
     infoHandler: () => void;
@@ -23,7 +24,7 @@ export interface BaseProperties extends ViewProperties {
     isLanguageMenuOpen: boolean;
 }
 
-export interface Properties extends BaseProperties {
+export interface NavigationViewProps extends BaseProperties {
     height?: number;
 }
 

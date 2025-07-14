@@ -1,14 +1,14 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Properties } from "../../Abstractions";
+import { NavigationViewProps } from "../../Abstractions";
 import { RenderMenuIcon } from "../RenderMenuIcon";
 import { CustomImage } from "../../../../../Shared/Components";
 import { GET_ICONS_URL } from "../../../../../Api";
 import { RenderLanguageSection } from "../RenderLanguageSection";
 
-export const RenderToolbarSmallScreen = (props: Properties) => (
+export const RenderToolbarSmallScreen = (props: NavigationViewProps) => (
     <nav className="bulma-navbar navigation-nav-small-screen">
-        <div className="navigation-tool-bar" style={{ height: props.height }}>
+        <div className={`navigation-tool-bar ${props.isMobile ? "px-1" : "px-6"}`} style={{ height: props.height }}>
             <div className="navigation-nav-menu navigation-nav-left">
                 {props.isLoading ? null : <RenderMenuIcon {...props} />}
             </div>

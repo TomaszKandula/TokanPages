@@ -14,6 +14,7 @@ interface NavigationProps {
 }
 
 export const Navigation = (props: NavigationProps): React.ReactElement => {
+    const media = useDimensions();
     const dispatch = useDispatch();
     const history = useHistory();
     const dimensions = useDimensions();
@@ -80,6 +81,7 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
             isLoading={isLoading}
             isAnonymous={isAnonymous}
             isMenuOpen={isMenuOpen}
+            isMobile={media.isMobile}
             width={dimensions.width}
             menuHandler={menuHandler}
             infoHandler={infoHandler}
