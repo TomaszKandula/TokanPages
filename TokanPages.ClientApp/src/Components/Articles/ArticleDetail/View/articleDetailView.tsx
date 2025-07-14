@@ -7,6 +7,7 @@ import { ExtendedViewProps } from "../articleDetail";
 import "./articleDetailView.css";
 
 interface ArticleDetailViewProps extends ExtendedViewProps {
+    isMobile: boolean;
     backButtonHandler: () => void;
     articleReadCount: string;
     renderSmallAvatar: React.ReactElement;
@@ -28,20 +29,19 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
     content: ArticleContentDto;
 }
 
-export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => {
-    return (
+export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => (
         <section className={props.background}>
             <div className="bulma-container bulma-is-max-tablet">
                 <article className="py-4">
                     <Animated dataAos="fade-down">
-                        <div className="bulma-grid is-flex m-0">
+                        <div className={`bulma-grid is-flex m-0 ${props.isMobile ? "px-4" : ""}`}>
                             <div className="bulma-cell is-align-content-center">{props.renderSmallAvatar}</div>
                             <div className="bulma-cell is-align-content-center">
                                 <p className="is-size-5">{props.authorAliasName}</p>
                             </div>
                         </div>
 
-                        <div className="my-4">
+                        <div className={props.isMobile ? "px-4 pt-4 pb-6" : "py-4"}>
                             <div className="bulma-grid is-flex m-0">
                                 <p className="bulma-cell is-align-content-center is-size-6">
                                     {props.content.textLanguage}
@@ -81,7 +81,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
 
                     <Animated dataAos="fade-up">{props.articleContent}</Animated>
 
-                    <div className="mt-6">
+                    <div className={props.isMobile ? "px-4 mt-6" : "mt-6"}>
                         <div className="bulma-grid is-flex">
                             <div className="bulma-cell is-align-content-center">
                                 <Icon
@@ -97,9 +97,9 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                         </div>
                     </div>
 
-                    <hr />
+                    <hr className={props.isMobile ? "mx-4" : ""} />
 
-                    <div className="bulma-grid is-flex mb-5">
+                    <div className={`bulma-grid is-flex mb-5 ${props.isMobile ? "px-4" : ""}`}>
                         <div className="bulma-cell is-align-content-center">{props.renderLargeAvatar}</div>
                         <div className="bulma-cell is-align-content-center">
                             <p className="is-size-6 has-text-weight-bold">{props.content.textWritten}</p>
@@ -116,4 +116,3 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
             </div>
         </section>
     );
-};

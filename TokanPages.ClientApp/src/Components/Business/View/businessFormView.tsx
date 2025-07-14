@@ -94,7 +94,7 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
 };
 
 export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => {
-    const cardPadding = props.isMobile ? "px-3" : "px-6";
+    const cardPadding = props.isMobile ? "px-4" : "px-6";
 
     return (
         <section className={props.background}>

@@ -7,6 +7,7 @@ import { GetDateTime } from "../../../Shared/Services/Formatters";
 import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
 import { MapLanguage } from "../../../Shared/Services/Utilities";
+import { useDimensions } from "../../../Shared/Hooks";
 import { ArticleContent } from "./Helpers/articleContent";
 import { AuthorName } from "./Helpers/authorName";
 import { LikesLeft } from "./Helpers/likesLeft";
@@ -23,6 +24,7 @@ export interface ArticleDetailProps extends ExtendedViewProps {
 }
 
 export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => {
+    const media = useDimensions();
     const dispatch = useDispatch();
 
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
@@ -106,6 +108,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
 
     return (
         <ArticleDetailView
+            isMobile={media.isMobile}
             backButtonHandler={backButtonHandler}
             articleReadCount={selection.article.readCount.toLocaleString(undefined, { minimumFractionDigits: 0 })}
             renderSmallAvatar={
