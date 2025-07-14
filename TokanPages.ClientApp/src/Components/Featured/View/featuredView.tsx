@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { GET_FEATURED_IMAGE_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, Link, CustomImage } from "../../../Shared/Components";
+import { useDimensions } from "../../../Shared/Hooks";
 import "./featuredView.css";
 
 interface FeaturedViewProps {
@@ -10,6 +11,7 @@ interface FeaturedViewProps {
 }
 
 export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
+    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const featured = data?.components?.sectionFeatured;
 
@@ -20,8 +22,8 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                     <Animated dataAos="fade-down">
                         <p className="is-size-3	has-text-centered has-text-link">{featured?.caption?.toUpperCase()}</p>
                     </Animated>
-                    <div className="bulma-columns p-6">
-                        <div className="bulma-column is-clickable">
+                    <div className={`bulma-columns ${media.isMobile ? "p-4" : "p-6"}`}>
+                        <div className={`bulma-column is-clickable ${media.isMobile ? "mt-6" : ""}`}>
                             <Animated dataAos="fade-up" dataAosDelay={350}>
                                 <Link to={featured?.link1}>
                                     <div className="bulma-card">
@@ -48,7 +50,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                 </Link>
                             </Animated>
                         </div>
-                        <div className="bulma-column is-clickable">
+                        <div className={`bulma-column is-clickable ${media.isMobile ? "mt-6" : ""}`}>
                             <Animated dataAos="fade-up" dataAosDelay={150}>
                                 <Link to={featured?.link2}>
                                     <div className="bulma-card">
@@ -75,7 +77,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                 </Link>
                             </Animated>
                         </div>
-                        <div className="bulma-column is-clickable">
+                        <div className={`bulma-column is-clickable ${media.isMobile ? "mt-6" : ""}`}>
                             <Animated dataAos="fade-up" dataAosDelay={550}>
                                 <Link to={featured?.link3}>
                                     <div className="bulma-card">

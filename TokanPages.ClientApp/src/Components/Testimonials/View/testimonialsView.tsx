@@ -5,6 +5,7 @@ import { Animated, CustomImage, Collapsible } from "../../../Shared/Components";
 import "./testimonialsView.css";
 
 interface TestimonialsViewProps extends ViewProperties {
+    isMobile: boolean;
     caption: string;
     subtitle: string;
     photo1: string;
@@ -29,8 +30,8 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                 <Animated dataAos="fade-down">
                     <p className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</p>
                 </Animated>
-                <div className="bulma-columns p-6">
-                    <div className="bulma-column">
+                <div className={`bulma-columns ${props.isMobile ? "p-4" : "p-6"}`}>
+                    <div className={`bulma-column ${props.isMobile ? "mt-6" : ""}`}>
                         <Animated dataAos="fade-up" dataAosDelay={350}>
                             <div className="bulma-card">
                                 <CustomImage
@@ -54,7 +55,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             </div>
                         </Animated>
                     </div>
-                    <div className="bulma-column">
+                    <div className={`bulma-column ${props.isMobile ? "mt-6" : ""}`}>
                         <Animated dataAos="fade-up" dataAosDelay={150}>
                             <div className="bulma-card">
                                 <CustomImage
@@ -78,7 +79,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             </div>
                         </Animated>
                     </div>
-                    <div className="bulma-column">
+                    <div className={`bulma-column ${props.isMobile ? "mt-6" : ""}`}>
                         <Animated dataAos="fade-up" dataAosDelay={250}>
                             <div className="bulma-card">
                                 <CustomImage

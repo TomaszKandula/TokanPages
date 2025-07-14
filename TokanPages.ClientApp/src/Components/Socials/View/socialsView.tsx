@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { GET_SOCIALS_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, Icon, Link, CustomImage } from "../../../Shared/Components";
+import { useDimensions } from "../../../Shared/Hooks";
 import "./socialsView.css";
 
 interface SocialsViewProps {
@@ -10,6 +11,7 @@ interface SocialsViewProps {
 }
 
 export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
+    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const socials = data?.components?.sectionSocials;
 
@@ -20,9 +22,9 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                     <Animated dataAos="fade-down">
                         <p className="is-size-3	has-text-centered has-text-link">{socials?.caption?.toUpperCase()}</p>
                     </Animated>
-                    <div className="p-6">
+                    <div className={media.isMobile ? "p-4" : "p-6"}>
                         <div className="bulma-columns">
-                            <div className="bulma-column is-clickable">
+                            <div className={`bulma-column is-clickable ${media.isMobile ? "mt-6" : ""}`}>
                                 <Animated dataAos="fade-up" dataAosDelay={350}>
                                     <div className="bulma-card">
                                         <Link to={socials?.social1?.action?.href}>
@@ -64,7 +66,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                     </div>
                                 </Animated>
                             </div>
-                            <div className="bulma-column is-clickable">
+                            <div className={`bulma-column is-clickable ${media.isMobile ? "mt-6" : ""}`}>
                                 <Animated dataAos="fade-up" dataAosDelay={150}>
                                     <div className="bulma-card">
                                         <Link to={socials?.social2?.action?.href}>
@@ -106,7 +108,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                     </div>
                                 </Animated>
                             </div>
-                            <div className="bulma-column is-clickable">
+                            <div className={`bulma-column is-clickable ${media.isMobile ? "mt-6" : ""}`}>
                                 <Animated dataAos="fade-up" dataAosDelay={250}>
                                     <div className="bulma-card">
                                         <Link to={socials?.social3?.action?.href}>
