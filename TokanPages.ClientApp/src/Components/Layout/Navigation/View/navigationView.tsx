@@ -5,7 +5,6 @@ import { APP_BAR_HEIGHT } from "../../../../Shared/constants";
 import { AppBar, IconButton } from "../../../../Shared/Components";
 import { RenderDrawer, RenderToolbarLargeScreen, RenderToolbarSmallScreen } from "../Components";
 import { NavigationViewProps } from "../Abstractions";
-import "./navigationView.css";
 
 export const NavigationView = (props: NavigationViewProps): React.ReactElement => (
     props.backNavigationOnly ? (

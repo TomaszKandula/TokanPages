@@ -18,7 +18,7 @@ export const RenderToolbarLargeScreen = (props: NavigationViewProps): React.Reac
                         alt="An application logo"
                         width={180}
                         height={30}
-                        className="pl-4"
+                        className="ml-4"
                     />
                 </Link>
             </div>

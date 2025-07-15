@@ -27,12 +27,9 @@ const RenderAvatar = (props: BaseProperties): React.ReactElement => {
     }
 }
 
-export const RenderAvatarIcon = (props: BaseProperties): React.ReactElement => {
-    return (
-        <div className="navigation-user-avatar">
-            <IconButton onClick={props.infoHandler}>
-                <RenderAvatar {...props} />
-            </IconButton>
-        </div>
-    );
-};
+export const RenderAvatarIcon = (props: BaseProperties): React.ReactElement => (
+    props.media.isDesktop ?
+    <IconButton onClick={props.infoHandler} className="mr-4">
+        <RenderAvatar {...props} />
+    </IconButton> : <></>
+);
