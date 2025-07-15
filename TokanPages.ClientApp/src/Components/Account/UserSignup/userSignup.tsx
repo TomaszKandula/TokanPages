@@ -8,6 +8,7 @@ import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/Fo
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { UserSignupView } from "./View/userSignupView";
 import Validate from "validate.js";
+import { useDimensions } from "Shared/Hooks";
 
 const defaultForm: SignupFormInput = {
     firstName: "",
@@ -34,6 +35,7 @@ export interface UserSignupProps {
 }
 
 export const UserSignup = (props: UserSignupProps): React.ReactElement => {
+    const media = useDimensions();
     const dispatch = useDispatch();
 
     const signup = useSelector((state: ApplicationState) => state.userSignup);
@@ -147,6 +149,7 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
     return (
         <UserSignupView
             isLoading={data?.isLoading}
+            isMobile={media.isMobile}
             caption={content?.caption}
             warning={content?.warning}
             consent={content?.consent}

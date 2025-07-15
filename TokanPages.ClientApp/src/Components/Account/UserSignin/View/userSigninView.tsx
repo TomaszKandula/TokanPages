@@ -13,6 +13,7 @@ import {
 import { UserSigninProps } from "../userSignin";
 
 interface UserSigninViewProps extends ViewProperties, UserSigninProps {
+    isMobile: boolean;
     caption: string;
     button: string;
     link1: LinkDto;
@@ -27,8 +28,7 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     labelPassword: string;
 }
 
-const ActiveButton = (props: UserSigninViewProps): React.ReactElement => {
-    return (
+const ActiveButton = (props: UserSigninViewProps): React.ReactElement => (
         <button
             type="submit"
             onClick={props.buttonHandler}
@@ -38,14 +38,13 @@ const ActiveButton = (props: UserSigninViewProps): React.ReactElement => {
             {!props.progress ? props.button : <ProgressBar size={20} />}
         </button>
     );
-};
 
-export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => {
-    return (
+
+export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => (
         <section className={props.background}>
             <div className="bulma-container bulma-is-max-tablet">
                 <div className={!props.className ? "py-6" : props.className}>
-                    <div className="bulma-card">
+                    <div className={`bulma-card ${props.isMobile ? "m-4" : ""}`}>
                         <div className="bulma-card-content">
                             <Skeleton isLoading={props.isLoading}>
                                 <div className="is-flex is-flex-direction-column is-align-items-center">
@@ -91,4 +90,3 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
             </div>
         </section>
     );
-};
