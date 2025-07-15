@@ -15,10 +15,10 @@ Object {
             class="py-6"
           >
             <div
-              class="bulma-card"
+              class="bulma-card m-4"
             >
               <div
-                class="bulma-card-content"
+                class="bulma-card-content p-0"
               >
                 <div
                   class="is-flex is-justify-content-space-around"
@@ -114,10 +114,10 @@ Object {
           class="py-6"
         >
           <div
-            class="bulma-card"
+            class="bulma-card m-4"
           >
             <div
-              class="bulma-card-content"
+              class="bulma-card-content p-0"
             >
               <div
                 class="is-flex is-justify-content-space-around"

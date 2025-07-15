@@ -17,7 +17,7 @@ Object {
               data-aos-delay="0"
             >
               <div
-                class="bulma-grid is-flex m-0"
+                class="bulma-grid is-flex m-0 "
               >
                 <div
                   class="bulma-cell is-align-content-center"
@@ -37,7 +37,7 @@ Object {
                 </div>
               </div>
               <div
-                class="my-4"
+                class="py-4"
               >
                 <div
                   class="bulma-grid is-flex m-0"
@@ -155,9 +155,11 @@ Object {
                 </div>
               </div>
             </div>
-            <hr />
+            <hr
+              class=""
+            />
             <div
-              class="bulma-grid is-flex mb-5"
+              class="bulma-grid is-flex mb-5 "
             >
               <div
                 class="bulma-cell is-align-content-center"
@@ -213,7 +215,7 @@ Object {
             data-aos-delay="0"
           >
             <div
-              class="bulma-grid is-flex m-0"
+              class="bulma-grid is-flex m-0 "
             >
               <div
                 class="bulma-cell is-align-content-center"
@@ -233,7 +235,7 @@ Object {
               </div>
             </div>
             <div
-              class="my-4"
+              class="py-4"
             >
               <div
                 class="bulma-grid is-flex m-0"
@@ -351,9 +353,11 @@ Object {
               </div>
             </div>
           </div>
-          <hr />
+          <hr
+            class=""
+          />
           <div
-            class="bulma-grid is-flex mb-5"
+            class="bulma-grid is-flex mb-5 "
           >
             <div
               class="bulma-cell is-align-content-center"

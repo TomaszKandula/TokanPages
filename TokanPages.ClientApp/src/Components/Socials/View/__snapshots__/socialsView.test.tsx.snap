@@ -29,7 +29,7 @@ Object {
                 class="bulma-columns"
               >
                 <div
-                  class="bulma-column is-clickable"
+                  class="bulma-column is-clickable "
                 >
                   <div
                     data-aos="fade-up"
@@ -110,7 +110,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="bulma-column is-clickable"
+                  class="bulma-column is-clickable "
                 >
                   <div
                     data-aos="fade-up"
@@ -197,7 +197,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="bulma-column is-clickable"
+                  class="bulma-column is-clickable "
                 >
                   <div
                     data-aos="fade-up"
@@ -311,7 +311,7 @@ Object {
               class="bulma-columns"
             >
               <div
-                class="bulma-column is-clickable"
+                class="bulma-column is-clickable "
               >
                 <div
                   data-aos="fade-up"
@@ -392,7 +392,7 @@ Object {
                 </div>
               </div>
               <div
-                class="bulma-column is-clickable"
+                class="bulma-column is-clickable "
               >
                 <div
                   data-aos="fade-up"
@@ -479,7 +479,7 @@ Object {
                 </div>
               </div>
               <div
-                class="bulma-column is-clickable"
+                class="bulma-column is-clickable "
               >
                 <div
                   data-aos="fade-up"

@@ -42,7 +42,7 @@ describe("test component: testimonials", () => {
 
     it("should render correctly '<Testimonials />' when content is loaded.", () => {
         const html = render(<Testimonials />);
-        expect(useSelectorMock).toBeCalledTimes(1);
+        expect(useSelectorMock).toBeCalledTimes(2);
         expect(html).toMatchSnapshot();
     });
 });
