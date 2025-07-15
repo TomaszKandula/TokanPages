@@ -30,7 +30,7 @@ const CanContinue = (props: CanContinueProps): boolean => {
     if (!hasNavbar) return false;
 
     return true;
-}
+};
 
 export const RenderNavbarMenu = (props: RenderNavbarMenuProps): React.ReactElement => {
     if (props.items === undefined) return <div>Cannot render content.</div>;

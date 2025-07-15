@@ -42,7 +42,9 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                         <p className="is-size-3	has-text-centered has-text-link">{features?.caption.toUpperCase()}</p>
                     </Animated>
                     <Animated dataAos="fade-up">
-                        <div className={`bulma-columns bulma-is-3 is-flex-direction-row ${media.isMobile ? "p-4" : "p-6"}`}>
+                        <div
+                            className={`bulma-columns bulma-is-3 is-flex-direction-row ${media.isMobile ? "p-4" : "p-6"}`}
+                        >
                             <div className="bulma-column">
                                 <div className={`bulma-columns bulma-is-3 ${media.isMobile ? "do-not-display" : ""}`}>
                                     <div className="bulma-column bulma-is-three-quarters">
@@ -78,7 +80,9 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                 </div>
                                 <div className="bulma-columns bulma-is-3">
                                     <div className="bulma-column is-flex is-align-self-flex-start">
-                                        <div className={`bulma-card article-feature-card-shadow ${media.isMobile ? "do-not-display" : ""}`}>
+                                        <div
+                                            className={`bulma-card article-feature-card-shadow ${media.isMobile ? "do-not-display" : ""}`}
+                                        >
                                             <div className="bulma-card-image">
                                                 <figure className="bulma-image">
                                                     <CustomImage

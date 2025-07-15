@@ -13,7 +13,9 @@
 .toast {
     background-color: var(--toast-bg-color-fallback);
     padding: var(--toast-padding);
-    box-shadow: 0 0.5em 1em -0.125em hsla(221deg, 14%, 4%, 0.1),0 0px 0 1px hsla(221deg, 14%, 4%, 0.02);
+    box-shadow:
+        0 0.5em 1em -0.125em hsla(221deg, 14%, 4%, 0.1),
+        0 0px 0 1px hsla(221deg, 14%, 4%, 0.02);
     border-radius: 0.5em;
     position: relative;
     color: var(--toast-text-color-fallback);

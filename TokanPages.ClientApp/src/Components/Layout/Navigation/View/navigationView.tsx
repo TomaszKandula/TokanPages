@@ -6,7 +6,7 @@ import { AppBar, IconButton } from "../../../../Shared/Components";
 import { RenderDrawer, RenderToolbarLargeScreen, RenderToolbarSmallScreen } from "../Components";
 import { NavigationViewProps } from "../Abstractions";
 
-export const NavigationView = (props: NavigationViewProps): React.ReactElement => (
+export const NavigationView = (props: NavigationViewProps): React.ReactElement =>
     props.backNavigationOnly ? (
         <AppBar height={APP_BAR_HEIGHT}>
             <IconButton onClick={props.backPathHandler} className="m-2">
@@ -19,5 +19,4 @@ export const NavigationView = (props: NavigationViewProps): React.ReactElement =
             <RenderToolbarSmallScreen {...props} />
             <RenderDrawer {...props} />
         </AppBar>
-    )
-);
+    );

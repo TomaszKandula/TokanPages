@@ -6,8 +6,8 @@ import { CustomImage } from "../../../../../Shared/Components";
 import { RenderLanguageSection } from "../RenderLanguageSection";
 import { RenderNavbarMenu } from "../RenderMenu";
 
-export const RenderToolbarLargeScreen = (props: NavigationViewProps): React.ReactElement => (
-    props.media.isDesktop ?
+export const RenderToolbarLargeScreen = (props: NavigationViewProps): React.ReactElement =>
+    props.media.isDesktop ? (
         <>
             <div className="bulma-navbar-start is-flex is-align-self-center">
                 <Link to={`/${props.languageId}`} rel="noopener nofollow">
@@ -29,9 +29,8 @@ export const RenderToolbarLargeScreen = (props: NavigationViewProps): React.Reac
                     items={props.menu?.items}
                 />
             </div>
-            <div className="bulma-navbar-end">
-                {props.isLoading ? null : <RenderLanguageSection {...props} />}
-            </div>
+            <div className="bulma-navbar-end">{props.isLoading ? null : <RenderLanguageSection {...props} />}</div>
         </>
-    : <></>
-);
+    ) : (
+        <></>
+    );

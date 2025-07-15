@@ -93,7 +93,7 @@ export const useApplicationLanguage = (manifest?: GetContentManifestDto): UseApp
         );
     }
 
-    return { 
-        isNormalMode: true 
+    return {
+        isNormalMode: true,
     };
 };

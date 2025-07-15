@@ -21,15 +21,15 @@ const RenderAvatar = (props: BaseProperties): React.ReactElement => {
             </Avatar>
         );
     } else {
-        return (
-            <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />
-        );
+        return <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />;
     }
-}
+};
 
-export const RenderAvatarIcon = (props: BaseProperties): React.ReactElement => (
-    props.media.isDesktop ?
-    <IconButton onClick={props.infoHandler} className="mr-4">
-        <RenderAvatar {...props} />
-    </IconButton> : <></>
-);
+export const RenderAvatarIcon = (props: BaseProperties): React.ReactElement =>
+    props.media.isDesktop ? (
+        <IconButton onClick={props.infoHandler} className="mr-4">
+            <RenderAvatar {...props} />
+        </IconButton>
+    ) : (
+        <></>
+    );

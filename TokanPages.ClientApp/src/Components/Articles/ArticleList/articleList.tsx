@@ -24,5 +24,12 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
     }, [article.isLoading, article.articles]);
 
-    return <ArticleListView isLoading={article.isLoading} isMobile={media.isMobile} articles={article.articles} background={props.background} />;
+    return (
+        <ArticleListView
+            isLoading={article.isLoading}
+            isMobile={media.isMobile}
+            articles={article.articles}
+            background={props.background}
+        />
+    );
 };

@@ -31,7 +31,7 @@ const CanContinue = (props: CanContinueProps): boolean => {
     if (!hasSideMenu) return false;
 
     return true;
-}
+};
 
 export const RenderSideMenu = (props: RenderSideMenuProps): React.ReactElement => {
     if (props.items === undefined) return <div>Cannot render content.</div>;

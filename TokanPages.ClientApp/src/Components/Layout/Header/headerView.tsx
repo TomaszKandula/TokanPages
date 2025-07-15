@@ -120,7 +120,9 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                         />
                     </div>
                     <div className="bulma-cell is-flex is-flex-direction-column">
-                        <div className={`bulma-content header-content-box ${media.isMobile ? "p-4" : ""} ${media.isTablet ? "p-6" : ""}`}>
+                        <div
+                            className={`bulma-content header-content-box ${media.isMobile ? "p-4" : ""} ${media.isTablet ? "p-6" : ""}`}
+                        >
                             <h1 className={`is-size-1 has-text-grey-dark ${isLoading ? "bulma-is-skeleton" : ""}`}>
                                 {header?.caption}
                             </h1>
