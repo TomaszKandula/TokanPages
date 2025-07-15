@@ -10,7 +10,7 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="bulma-content"
+            class="bulma-content "
           >
             <p
               class="is-size-5 has-text-grey-dark line-height-22"
@@ -28,7 +28,7 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="bulma-content"
+          class="bulma-content "
         >
           <p
             class="is-size-5 has-text-grey-dark line-height-22"
@@ -103,7 +103,7 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="bulma-content"
+            class="bulma-content "
           >
             <p
               class="is-size-5 has-text-grey-dark line-height-22"
@@ -121,7 +121,7 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="bulma-content"
+          class="bulma-content "
         >
           <p
             class="is-size-5 has-text-grey-dark line-height-22"
@@ -196,7 +196,7 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="bulma-content"
+            class="bulma-content "
           >
             <p
               class="is-size-5 has-text-grey-dark line-height-22"
@@ -214,7 +214,7 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="bulma-content"
+          class="bulma-content "
         >
           <p
             class="is-size-5 has-text-grey-dark line-height-22"
@@ -289,7 +289,7 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="bulma-content"
+            class="bulma-content "
           >
             <p
               class="is-size-5 has-text-grey-dark line-height-22"
@@ -307,7 +307,7 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="bulma-content"
+          class="bulma-content "
         >
           <p
             class="is-size-5 has-text-grey-dark line-height-22"

@@ -10,6 +10,7 @@ describe("test account group component: userSignupView", () => {
             <BrowserRouter>
                 <UserSignupView
                     isLoading={false}
+                    isMobile={false}
                     caption="Create a new account"
                     warning={{
                         textPre: "Password requirements:",

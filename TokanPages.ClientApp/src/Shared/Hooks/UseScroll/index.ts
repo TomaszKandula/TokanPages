@@ -21,9 +21,9 @@ export const useScroll = (): UseScrollResultProps => {
         }
 
         setIsScrolledTop(window.scrollY === 0);
-        lastScrollTop = scrollTopPosition <= 0 ? 0 : scrollTopPosition
+        lastScrollTop = scrollTopPosition <= 0 ? 0 : scrollTopPosition;
 
-        return (lastScrollTop);
+        return lastScrollTop;
     }, [window.scrollY, document.documentElement.scrollTop]);
 
     React.useEffect(() => {

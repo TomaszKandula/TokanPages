@@ -1,11 +1,12 @@
 import { ItemDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
+import { UseDimensionsResult } from "../../../../Shared/Hooks/useDimensions";
 import { ApplicationLanguageState } from "../../../../Store/States";
 
 export interface BaseProperties extends ViewProperties {
     isAnonymous: boolean;
     isMenuOpen: boolean;
-    width: number;
+    media: UseDimensionsResult;
     menuHandler: () => void;
     infoHandler: () => void;
     aliasName: string;
@@ -23,7 +24,7 @@ export interface BaseProperties extends ViewProperties {
     isLanguageMenuOpen: boolean;
 }
 
-export interface Properties extends BaseProperties {
+export interface NavigationViewProps extends BaseProperties {
     height?: number;
 }
 

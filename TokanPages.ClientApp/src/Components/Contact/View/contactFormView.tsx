@@ -43,8 +43,8 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
 };
 
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
-    const boxPadding = props.isMobile ? "py-6 px-3" : "p-6";
-    const cardPadding = props.isMobile ? "px-3" : "px-6";
+    const boxPadding = props.isMobile ? "py-6" : "p-6";
+    const cardPadding = props.isMobile ? "" : "px-6";
     const colPadding = props.hasIcon ? "pt-5" : "";
 
     return (

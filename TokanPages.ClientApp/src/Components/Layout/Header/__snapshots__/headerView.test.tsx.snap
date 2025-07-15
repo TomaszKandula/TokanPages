@@ -30,7 +30,7 @@ Object {
               class="bulma-cell is-flex is-flex-direction-column"
             >
               <div
-                class="bulma-content header-content-box"
+                class="bulma-content header-content-box  "
               >
                 <h1
                   class="is-size-1 has-text-grey-dark "
@@ -119,7 +119,7 @@ Object {
             class="bulma-cell is-flex is-flex-direction-column"
           >
             <div
-              class="bulma-content header-content-box"
+              class="bulma-content header-content-box  "
             >
               <h1
                 class="is-size-1 has-text-grey-dark "

@@ -12,7 +12,6 @@ export const useUserData = (): void => {
     const dispatch = useDispatch();
 
     React.useEffect(() => {
-
         const encoded = GetDataFromStorage({ key: USER_DATA }) as string;
         if (Validate.isEmpty(encoded)) {
             return;

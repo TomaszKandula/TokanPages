@@ -38,7 +38,7 @@ describe("test component: technologiesView", () => {
 
     it("should render correctly '<TechnologiesView />' when content is loaded.", () => {
         const html = render(<TechnologiesView />);
-        expect(useSelectorMock).toBeCalledTimes(1);
+        expect(useSelectorMock).toBeCalledTimes(2);
         expect(html).toMatchSnapshot();
     });
 });

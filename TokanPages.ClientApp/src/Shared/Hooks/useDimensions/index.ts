@@ -1,6 +1,6 @@
 import * as React from "react";
 
-interface UseDimensionsResult {
+export interface UseDimensionsResult {
     width: number;
     height: number;
     isMobile: boolean;

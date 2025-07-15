@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
+import { useDimensions } from "../../Shared/Hooks";
 import { TestimonialsView } from "./View/testimonialsView";
 
 interface TestimonialsProps {
@@ -8,12 +9,14 @@ interface TestimonialsProps {
 }
 
 export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
+    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const testimonials = data?.components?.sectionTestimonials;
 
     return (
         <TestimonialsView
             isLoading={data?.isLoading}
+            isMobile={media.isMobile}
             caption={testimonials?.caption}
             subtitle={testimonials?.subtitle}
             photo1={testimonials?.photo1}

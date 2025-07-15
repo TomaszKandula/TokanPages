@@ -21,7 +21,7 @@ export const ToastList = (props: ToastListProps): React.ReactElement => {
     );
 
     const handleToastRemoval = React.useCallback((id: number) => {
-        props.removeToast(id)
+        props.removeToast(id);
     }, []);
 
     React.useEffect(() => {

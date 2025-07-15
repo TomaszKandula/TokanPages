@@ -134,7 +134,7 @@ Object {
     </div>
     <div>
       <div
-        class="bulma-content"
+        class="bulma-content "
       >
         <h1
           class="bulma-title has-text-grey-dark m-0 pb-2"

@@ -4,6 +4,7 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { Animated, ProgressBar, TextField } from "../../../../Shared/Components";
 
 interface NewsletterViewProps extends ViewProperties {
+    isMobile: boolean;
     caption: string;
     text: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
@@ -34,7 +35,7 @@ export const NewsletterSectionView = (props: NewsletterViewProps): React.ReactEl
         <section className={props.background}>
             <div className="bulma-container">
                 <div className="py-6">
-                    <div className="p-6">
+                    <div className={props.isMobile ? "p-5" : "p-6"}>
                         <div className="bulma-columns bulma-is-vcentered">
                             <div className="bulma-column">
                                 <Animated dataAos="fade-down" dataAosDelay={150}>

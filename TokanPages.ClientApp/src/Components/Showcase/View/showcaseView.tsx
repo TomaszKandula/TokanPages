@@ -5,6 +5,7 @@ import { GET_SHOWCASE_IMAGE_URL } from "../../../Api";
 import { FeatureShowcaseContentDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, CustomImage } from "../../../Shared/Components";
+import { useDimensions } from "../../../Shared/Hooks";
 import Validate from "validate.js";
 import "./showcaseView.css";
 
@@ -29,6 +30,7 @@ const ActiveButton = (props: ActiveButtonProps): React.ReactElement => {
 };
 
 export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
+    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isLoading = data?.isLoading;
     const showcase = data?.components?.sectionShowcase;
@@ -41,7 +43,7 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                         <p className="is-size-3	has-text-centered has-text-link">{showcase?.caption?.toUpperCase()}</p>
                     </Animated>
                     <Animated dataAos="fade-up">
-                        <div className="bulma-columns p-6">
+                        <div className={`bulma-columns ${media.isMobile ? "p-4" : "p-6"}`}>
                             <div className="bulma-column is-flex is-align-items-center">
                                 <div className="">
                                     <h2 className="is-size-3 py-5 has-text-black">{showcase?.heading}</h2>

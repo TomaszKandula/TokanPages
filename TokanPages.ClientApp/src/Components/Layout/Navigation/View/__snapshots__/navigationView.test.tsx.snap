@@ -5,525 +5,237 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="app-bar"
+      <nav
+        class="bulma-navbar app-bar"
         style="top: 0px; min-height: 64px;"
       >
-        <nav
-          class="bulma-navbar navigation-nav-large-screen"
+        <div
+          class="bulma-navbar-start is-flex is-align-self-center"
+        >
+          <a
+            href="/en"
+            rel="noopener nofollow"
+          >
+            <img
+              alt="An application logo"
+              class="ml-4 lazyloaded"
+              height="30"
+              loading="lazy"
+              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+              title="TomKandula logo"
+              width="180"
+            />
+          </a>
+        </div>
+        <div
+          class="is-flex is-align-self-center"
         >
           <div
-            class="navigation-tool-bar"
-            style="height: 64px;"
-          >
-            <div
-              class="navigation-nav-menu navigation-nav-left"
-            >
-              <a
-                class="navigation-app-logo-small"
-                href="/en"
-                rel="noopener nofollow"
-              >
-                <img
-                  alt="An application logo"
-                  class="navigation-app-left-logo lazyloaded"
-                  loading="lazy"
-                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
-                  title="TomKandula logo"
-                />
-              </a>
-            </div>
-            <div
-              class="navigation-nav-items navigation-nav-centre"
-            >
-              <div
-                class="render-menu-list"
-              />
-            </div>
-            <div
-              class="navigation-nav-items navigation-nav-right"
-            >
-              <div
-                class="bulma-navbar-item bulma-has-dropdown navigation-languages-box null"
-              >
-                <a
-                  class="bulma-navbar-link"
-                >
-                  <img
-                    alt="A flag (en) for current language selection"
-                    class="navigation-flag-image lazyloaded"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
-                    title="Language flag"
-                  />
-                  <div>
-                    EN
-                  </div>
-                </a>
-                <div
-                  class="bulma-navbar-dropdown bulma-is-boxed bulma-is-right"
-                >
-                  <a
-                    class="bulma-navbar-item"
-                  >
-                    <img
-                      alt="A flag (English) symbolizing available language"
-                      class="navigation-flag-image lazyloaded"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
-                      title="Language flag"
-                    />
-                    <div>
-                      English
-                    </div>
-                    <div>
-                      <svg
-                        class="is-flex is-align-self-center navigation-languages-check"
-                        role="presentation"
-                        style="width: 2.25rem; height: 2.25rem;"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
-                          style="fill: currentColor;"
-                        />
-                      </svg>
-                    </div>
-                  </a>
-                  <a
-                    class="bulma-navbar-item"
-                  >
-                    <img
-                      alt="A flag (Polski) symbolizing available language"
-                      class="navigation-flag-image lazyloaded"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
-                      title="Language flag"
-                    />
-                    <div>
-                      Polski
-                    </div>
-                  </a>
-                </div>
-              </div>
-              <div
-                class="navigation-user-avatar"
-              >
-                <button
-                  class="icon-button  is-flex is-align-self-center"
-                  style="height: 48px; width: 48px;"
-                >
-                  <div
-                    class="avatar-wrapper undefined"
-                  >
-                    <img
-                      alt="User avatar"
-                      class="avatar-image"
-                      title="Avatar"
-                    />
-                  </div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </nav>
-        <nav
-          class="bulma-navbar navigation-nav-small-screen"
+            class="render-menu-list"
+          />
+        </div>
+        <div
+          class="bulma-navbar-end"
         >
           <div
-            class="navigation-tool-bar"
-            style="height: 64px;"
+            class="bulma-navbar-item bulma-has-dropdown "
           >
-            <div
-              class="navigation-nav-menu navigation-nav-left"
+            <a
+              class="bulma-navbar-link"
             >
-              <button
-                class="icon-button  is-flex is-align-self-center"
-                style="height: 48px; width: 48px;"
-              >
-                <svg
-                  role="presentation"
-                  style="width: 1.5rem; height: 1.5rem;"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
-                    style="fill: currentColor;"
-                  />
-                </svg>
-              </button>
-            </div>
+              <img
+                alt="A flag (en) for current language selection"
+                height="14"
+                loading="lazy"
+                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                title="Language flag"
+                width="14"
+              />
+              <div>
+                EN
+              </div>
+            </a>
             <div
-              class="navigation-nav-items navigation-nav-centre"
+              class="bulma-navbar-dropdown bulma-is-boxed bulma-is-right"
             >
               <a
-                class="navigation-app-logo-small"
-                href="/en"
-                rel="noopener nofollow"
+                class="bulma-navbar-item"
               >
                 <img
-                  alt="An application logo"
-                  class="navigation-app-full-logo lazyloaded"
+                  alt="A flag (English) symbolizing available language"
+                  height="14"
                   loading="lazy"
-                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
-                  title="TomKandula logo"
+                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                  title="Language flag"
+                  width="14"
                 />
+                <div>
+                  English
+                </div>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center navigation-languages-check"
+                    role="presentation"
+                    style="width: 2.25rem; height: 2.25rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
               </a>
               <a
-                class="navigation-app-logo-large"
-                href="/en"
-                rel="noopener nofollow"
-              />
-            </div>
-            <div
-              class="navigation-nav-items navigation-nav-right"
-            >
-              <div
-                class="bulma-navbar-item bulma-has-dropdown navigation-languages-box null"
+                class="bulma-navbar-item"
               >
-                <a
-                  class="bulma-navbar-link"
-                >
-                  <img
-                    alt="A flag (en) for current language selection"
-                    class="navigation-flag-image lazyloaded"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
-                    title="Language flag"
-                  />
-                  <div>
-                    EN
-                  </div>
-                </a>
-                <div
-                  class="bulma-navbar-dropdown bulma-is-boxed bulma-is-right"
-                >
-                  <a
-                    class="bulma-navbar-item"
-                  >
-                    <img
-                      alt="A flag (English) symbolizing available language"
-                      class="navigation-flag-image lazyloaded"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
-                      title="Language flag"
-                    />
-                    <div>
-                      English
-                    </div>
-                    <div>
-                      <svg
-                        class="is-flex is-align-self-center navigation-languages-check"
-                        role="presentation"
-                        style="width: 2.25rem; height: 2.25rem;"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
-                          style="fill: currentColor;"
-                        />
-                      </svg>
-                    </div>
-                  </a>
-                  <a
-                    class="bulma-navbar-item"
-                  >
-                    <img
-                      alt="A flag (Polski) symbolizing available language"
-                      class="navigation-flag-image lazyloaded"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
-                      title="Language flag"
-                    />
-                    <div>
-                      Polski
-                    </div>
-                  </a>
+                <img
+                  alt="A flag (Polski) symbolizing available language"
+                  height="14"
+                  loading="lazy"
+                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
+                  title="Language flag"
+                  width="14"
+                />
+                <div>
+                  Polski
                 </div>
-              </div>
-              <div
-                class="navigation-user-avatar"
-              >
-                <button
-                  class="icon-button  is-flex is-align-self-center"
-                  style="height: 48px; width: 48px;"
-                >
-                  <div
-                    class="avatar-wrapper undefined"
-                  >
-                    <img
-                      alt="User avatar"
-                      class="avatar-image"
-                      title="Avatar"
-                    />
-                  </div>
-                </button>
-              </div>
+              </a>
             </div>
           </div>
-        </nav>
-      </div>
+          <button
+            class="icon-button mr-4 is-flex is-align-self-center"
+            style="height: 48px; width: 48px;"
+          >
+            <div
+              class="avatar-wrapper undefined"
+            >
+              <img
+                alt="User avatar"
+                class="avatar-image"
+                title="Avatar"
+              />
+            </div>
+          </button>
+        </div>
+      </nav>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="app-bar"
+    <nav
+      class="bulma-navbar app-bar"
       style="top: 0px; min-height: 64px;"
     >
-      <nav
-        class="bulma-navbar navigation-nav-large-screen"
+      <div
+        class="bulma-navbar-start is-flex is-align-self-center"
+      >
+        <a
+          href="/en"
+          rel="noopener nofollow"
+        >
+          <img
+            alt="An application logo"
+            class="ml-4 lazyloaded"
+            height="30"
+            loading="lazy"
+            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+            title="TomKandula logo"
+            width="180"
+          />
+        </a>
+      </div>
+      <div
+        class="is-flex is-align-self-center"
       >
         <div
-          class="navigation-tool-bar"
-          style="height: 64px;"
-        >
-          <div
-            class="navigation-nav-menu navigation-nav-left"
-          >
-            <a
-              class="navigation-app-logo-small"
-              href="/en"
-              rel="noopener nofollow"
-            >
-              <img
-                alt="An application logo"
-                class="navigation-app-left-logo lazyloaded"
-                loading="lazy"
-                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
-                title="TomKandula logo"
-              />
-            </a>
-          </div>
-          <div
-            class="navigation-nav-items navigation-nav-centre"
-          >
-            <div
-              class="render-menu-list"
-            />
-          </div>
-          <div
-            class="navigation-nav-items navigation-nav-right"
-          >
-            <div
-              class="bulma-navbar-item bulma-has-dropdown navigation-languages-box null"
-            >
-              <a
-                class="bulma-navbar-link"
-              >
-                <img
-                  alt="A flag (en) for current language selection"
-                  class="navigation-flag-image lazyloaded"
-                  loading="lazy"
-                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
-                  title="Language flag"
-                />
-                <div>
-                  EN
-                </div>
-              </a>
-              <div
-                class="bulma-navbar-dropdown bulma-is-boxed bulma-is-right"
-              >
-                <a
-                  class="bulma-navbar-item"
-                >
-                  <img
-                    alt="A flag (English) symbolizing available language"
-                    class="navigation-flag-image lazyloaded"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
-                    title="Language flag"
-                  />
-                  <div>
-                    English
-                  </div>
-                  <div>
-                    <svg
-                      class="is-flex is-align-self-center navigation-languages-check"
-                      role="presentation"
-                      style="width: 2.25rem; height: 2.25rem;"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
-                        style="fill: currentColor;"
-                      />
-                    </svg>
-                  </div>
-                </a>
-                <a
-                  class="bulma-navbar-item"
-                >
-                  <img
-                    alt="A flag (Polski) symbolizing available language"
-                    class="navigation-flag-image lazyloaded"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
-                    title="Language flag"
-                  />
-                  <div>
-                    Polski
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div
-              class="navigation-user-avatar"
-            >
-              <button
-                class="icon-button  is-flex is-align-self-center"
-                style="height: 48px; width: 48px;"
-              >
-                <div
-                  class="avatar-wrapper undefined"
-                >
-                  <img
-                    alt="User avatar"
-                    class="avatar-image"
-                    title="Avatar"
-                  />
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <nav
-        class="bulma-navbar navigation-nav-small-screen"
+          class="render-menu-list"
+        />
+      </div>
+      <div
+        class="bulma-navbar-end"
       >
         <div
-          class="navigation-tool-bar"
-          style="height: 64px;"
+          class="bulma-navbar-item bulma-has-dropdown "
         >
-          <div
-            class="navigation-nav-menu navigation-nav-left"
+          <a
+            class="bulma-navbar-link"
           >
-            <button
-              class="icon-button  is-flex is-align-self-center"
-              style="height: 48px; width: 48px;"
-            >
-              <svg
-                role="presentation"
-                style="width: 1.5rem; height: 1.5rem;"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
-                  style="fill: currentColor;"
-                />
-              </svg>
-            </button>
-          </div>
+            <img
+              alt="A flag (en) for current language selection"
+              height="14"
+              loading="lazy"
+              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+              title="Language flag"
+              width="14"
+            />
+            <div>
+              EN
+            </div>
+          </a>
           <div
-            class="navigation-nav-items navigation-nav-centre"
+            class="bulma-navbar-dropdown bulma-is-boxed bulma-is-right"
           >
             <a
-              class="navigation-app-logo-small"
-              href="/en"
-              rel="noopener nofollow"
+              class="bulma-navbar-item"
             >
               <img
-                alt="An application logo"
-                class="navigation-app-full-logo lazyloaded"
+                alt="A flag (English) symbolizing available language"
+                height="14"
                 loading="lazy"
-                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
-                title="TomKandula logo"
+                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                title="Language flag"
+                width="14"
               />
+              <div>
+                English
+              </div>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center navigation-languages-check"
+                  role="presentation"
+                  style="width: 2.25rem; height: 2.25rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
             </a>
             <a
-              class="navigation-app-logo-large"
-              href="/en"
-              rel="noopener nofollow"
-            />
-          </div>
-          <div
-            class="navigation-nav-items navigation-nav-right"
-          >
-            <div
-              class="bulma-navbar-item bulma-has-dropdown navigation-languages-box null"
+              class="bulma-navbar-item"
             >
-              <a
-                class="bulma-navbar-link"
-              >
-                <img
-                  alt="A flag (en) for current language selection"
-                  class="navigation-flag-image lazyloaded"
-                  loading="lazy"
-                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
-                  title="Language flag"
-                />
-                <div>
-                  EN
-                </div>
-              </a>
-              <div
-                class="bulma-navbar-dropdown bulma-is-boxed bulma-is-right"
-              >
-                <a
-                  class="bulma-navbar-item"
-                >
-                  <img
-                    alt="A flag (English) symbolizing available language"
-                    class="navigation-flag-image lazyloaded"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
-                    title="Language flag"
-                  />
-                  <div>
-                    English
-                  </div>
-                  <div>
-                    <svg
-                      class="is-flex is-align-self-center navigation-languages-check"
-                      role="presentation"
-                      style="width: 2.25rem; height: 2.25rem;"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
-                        style="fill: currentColor;"
-                      />
-                    </svg>
-                  </div>
-                </a>
-                <a
-                  class="bulma-navbar-item"
-                >
-                  <img
-                    alt="A flag (Polski) symbolizing available language"
-                    class="navigation-flag-image lazyloaded"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
-                    title="Language flag"
-                  />
-                  <div>
-                    Polski
-                  </div>
-                </a>
+              <img
+                alt="A flag (Polski) symbolizing available language"
+                height="14"
+                loading="lazy"
+                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
+                title="Language flag"
+                width="14"
+              />
+              <div>
+                Polski
               </div>
-            </div>
-            <div
-              class="navigation-user-avatar"
-            >
-              <button
-                class="icon-button  is-flex is-align-self-center"
-                style="height: 48px; width: 48px;"
-              >
-                <div
-                  class="avatar-wrapper undefined"
-                >
-                  <img
-                    alt="User avatar"
-                    class="avatar-image"
-                    title="Avatar"
-                  />
-                </div>
-              </button>
-            </div>
+            </a>
           </div>
         </div>
-      </nav>
-    </div>
+        <button
+          class="icon-button mr-4 is-flex is-align-self-center"
+          style="height: 48px; width: 48px;"
+        >
+          <div
+            class="avatar-wrapper undefined"
+          >
+            <img
+              alt="User avatar"
+              class="avatar-image"
+              title="Avatar"
+            />
+          </div>
+        </button>
+      </div>
+    </nav>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

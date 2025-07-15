@@ -5,6 +5,7 @@ import { GET_ARTICLE_IMAGE_URL } from "../../../../Api";
 import { ArticleFeaturesContentDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { Animated, CustomImage } from "../../../../Shared/Components";
+import { useDimensions } from "../../../../Shared/Hooks";
 import Validate from "validate.js";
 import "./articleFeatureView.css";
 
@@ -29,8 +30,10 @@ const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement =>
 };
 
 export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactElement => {
+    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const features = data?.components?.sectionArticle;
+
     return (
         <section className={props.className}>
             <div className="bulma-container">
@@ -39,9 +42,11 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                         <p className="is-size-3	has-text-centered has-text-link">{features?.caption.toUpperCase()}</p>
                     </Animated>
                     <Animated dataAos="fade-up">
-                        <div className="bulma-columns bulma-is-3 is-flex-direction-row p-6">
+                        <div
+                            className={`bulma-columns bulma-is-3 is-flex-direction-row ${media.isMobile ? "p-4" : "p-6"}`}
+                        >
                             <div className="bulma-column">
-                                <div className="bulma-columns bulma-is-3">
+                                <div className={`bulma-columns bulma-is-3 ${media.isMobile ? "do-not-display" : ""}`}>
                                     <div className="bulma-column bulma-is-three-quarters">
                                         <div className="bulma-card article-feature-card-shadow">
                                             <div className="bulma-card-image">
@@ -75,7 +80,9 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                 </div>
                                 <div className="bulma-columns bulma-is-3">
                                     <div className="bulma-column is-flex is-align-self-flex-start">
-                                        <div className="bulma-card article-feature-card-shadow">
+                                        <div
+                                            className={`bulma-card article-feature-card-shadow ${media.isMobile ? "do-not-display" : ""}`}
+                                        >
                                             <div className="bulma-card-image">
                                                 <figure className="bulma-image">
                                                     <CustomImage
@@ -104,7 +111,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     </div>
                                 </div>
                             </div>
-                            <div className="bulma-column is-align-self-center p-6">
+                            <div className={`bulma-column is-align-self-center ${media.isMobile ? "p-4" : "p-6"}`}>
                                 <h2 className="is-size-3 py-5 has-text-black">{features?.title}</h2>
                                 <p className="is-size-5 py-3 has-text-grey line-height-18">{features?.description}</p>
                                 <p className="is-size-5 py-3 has-text-grey line-height-18">{features?.text}</p>

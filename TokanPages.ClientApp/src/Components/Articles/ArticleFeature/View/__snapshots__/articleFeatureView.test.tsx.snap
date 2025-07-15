@@ -33,7 +33,7 @@ Object {
                   class="bulma-column"
                 >
                   <div
-                    class="bulma-columns bulma-is-3"
+                    class="bulma-columns bulma-is-3 "
                   >
                     <div
                       class="bulma-column bulma-is-three-quarters"
@@ -89,7 +89,7 @@ Object {
                       class="bulma-column is-flex is-align-self-flex-start"
                     >
                       <div
-                        class="bulma-card article-feature-card-shadow"
+                        class="bulma-card article-feature-card-shadow "
                       >
                         <div
                           class="bulma-card-image"
@@ -201,7 +201,7 @@ Object {
                 class="bulma-column"
               >
                 <div
-                  class="bulma-columns bulma-is-3"
+                  class="bulma-columns bulma-is-3 "
                 >
                   <div
                     class="bulma-column bulma-is-three-quarters"
@@ -257,7 +257,7 @@ Object {
                     class="bulma-column is-flex is-align-self-flex-start"
                   >
                     <div
-                      class="bulma-card article-feature-card-shadow"
+                      class="bulma-card article-feature-card-shadow "
                     >
                       <div
                         class="bulma-card-image"
