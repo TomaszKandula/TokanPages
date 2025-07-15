@@ -42,13 +42,12 @@ const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement 
     return props.isDocLoading && !props.hasPdfWorkerError ? <ProgressBar size={20} /> : <RenderIcon {...props} />;
 };
 
-const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => {
-    return (
+const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => (
         <section className={props.background}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className="py-6">
-                    <div className="bulma-card">
-                        <div className="bulma-card-content">
+                    <div className="bulma-card m-4">
+                        <div className="bulma-card-content p-0">
                             <div className="is-flex is-justify-content-space-around">
                                 <RenderIconOrLoading
                                     isDocLoading={props.isDocLoading}
@@ -79,10 +78,8 @@ const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => {
             </div>
         </section>
     );
-};
 
-const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement => {
-    return (
+const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement => (
         <section className={props.background}>
             <div className="bulma-container">
                 <div className="py-6">
@@ -97,10 +94,8 @@ const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement =
             </div>
         </section>
     );
-};
 
-const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => {
-    return (
+const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => (
         <section className={props.background}>
             <div className="bulma-container">
                 <div className="py-6">
@@ -115,7 +110,7 @@ const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => 
             </div>
         </section>
     );
-};
+
 
 export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => {
     if (props.hasPdfError) {
