@@ -24,7 +24,6 @@
 @media (max-width: 1024px) {
     .header-content-box {
         max-width: 900px;
-        padding: 15px;
         margin-left: 0;
         margin-right: 0;
     }
