@@ -21,8 +21,8 @@ export const AppBar = (props: AppBarProps) => {
     }, [scroll.isScrollingUp, scroll.isScrolledTop]);
 
     return (
-        <div className="app-bar" style={{ top: top, minHeight: props.height }}>
+        <nav className="bulma-navbar app-bar" style={{ top: top, minHeight: props.height }}>
             {props.children}
-        </div>
+        </nav>
     );
 };

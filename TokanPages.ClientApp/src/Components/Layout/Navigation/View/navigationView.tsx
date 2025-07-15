@@ -8,21 +8,17 @@ import { NavigationViewProps } from "../Abstractions";
 import "./navigationView.css";
 
 export const NavigationView = (props: NavigationViewProps): React.ReactElement => (
-    <>
-        {props.backNavigationOnly ? (
-            <AppBar height={APP_BAR_HEIGHT}>
-                <div className="navigation-nav-back">
-                    <IconButton onClick={props.backPathHandler}>
-                        <Icon path={mdiArrowLeft} size={1} />
-                    </IconButton>
-                </div>
-            </AppBar>
-        ) : (
-            <AppBar height={APP_BAR_HEIGHT}>
-                <RenderToolbarLargeScreen {...props} height={APP_BAR_HEIGHT} />
-                <RenderToolbarSmallScreen {...props} height={APP_BAR_HEIGHT} />
-                <RenderDrawer {...props} />
-            </AppBar>
-        )}
-    </>
+    props.backNavigationOnly ? (
+        <AppBar height={APP_BAR_HEIGHT}>
+            <IconButton onClick={props.backPathHandler} className="m-2">
+                <Icon path={mdiArrowLeft} size={1} />
+            </IconButton>
+        </AppBar>
+    ) : (
+        <AppBar height={APP_BAR_HEIGHT}>
+            <RenderToolbarLargeScreen {...props} />
+            <RenderToolbarSmallScreen {...props} />
+            <RenderDrawer {...props} />
+        </AppBar>
+    )
 );

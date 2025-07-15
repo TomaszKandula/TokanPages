@@ -17,7 +17,6 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
     const media = useDimensions();
     const dispatch = useDispatch();
     const history = useHistory();
-    const dimensions = useDimensions();
 
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const store = useSelector((state: ApplicationState) => state.userDataStore);
@@ -81,8 +80,7 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
             isLoading={isLoading}
             isAnonymous={isAnonymous}
             isMenuOpen={isMenuOpen}
-            isMobile={media.isMobile}
-            width={dimensions.width}
+            media={media}
             menuHandler={menuHandler}
             infoHandler={infoHandler}
             aliasName={aliasName}
