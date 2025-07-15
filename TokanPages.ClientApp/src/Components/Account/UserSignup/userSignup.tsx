@@ -6,9 +6,9 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ApplicationDialogAction, UserSignupAction } from "../../../Store/Actions";
 import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
+import { useDimensions } from "../../../Shared/Hooks";
 import { UserSignupView } from "./View/userSignupView";
 import Validate from "validate.js";
-import { useDimensions } from "Shared/Hooks";
 
 const defaultForm: SignupFormInput = {
     firstName: "",
