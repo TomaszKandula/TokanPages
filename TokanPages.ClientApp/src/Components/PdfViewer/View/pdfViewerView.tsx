@@ -43,74 +43,73 @@ const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement 
 };
 
 const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => (
-        <section className={props.background}>
-            <div className="bulma-container bulma-is-max-desktop">
-                <div className="py-6">
-                    <div className="bulma-card m-4">
-                        <div className="bulma-card-content p-0">
-                            <div className="is-flex is-justify-content-space-around">
-                                <RenderIconOrLoading
-                                    isDocLoading={props.isDocLoading}
-                                    hasPdfWorkerError={props.hasPdfWorkerError}
-                                    pdfUrl={props.pdfUrl}
-                                />
-                                <p className="is-size-6 has-text-weight-semibold is-flex is-align-self-center">
-                                    {props.currentPage} / {props.numPages}
-                                </p>
-                                <div className="is-flex">
-                                    <IconButton onClick={props.onPreviousPage}>
-                                        <Icon name="ChevronLeft" size={1.1} />
-                                    </IconButton>
-                                    <IconButton onClick={props.onNextPage}>
-                                        <Icon name="ChevronRight" size={1.1} />
-                                    </IconButton>
-                                </div>
-                            </div>
-                            <PdfCanvas
-                                pdfDocument={props.pdfDocument}
-                                pageNumber={props.currentPage}
-                                scale={props.scale ?? 1.5}
-                                htmlAttributes={{ className: "pdf-canvas" }}
+    <section className={props.background}>
+        <div className="bulma-container bulma-is-max-desktop">
+            <div className="py-6">
+                <div className="bulma-card m-4">
+                    <div className="bulma-card-content p-0">
+                        <div className="is-flex is-justify-content-space-around">
+                            <RenderIconOrLoading
+                                isDocLoading={props.isDocLoading}
+                                hasPdfWorkerError={props.hasPdfWorkerError}
+                                pdfUrl={props.pdfUrl}
                             />
+                            <p className="is-size-6 has-text-weight-semibold is-flex is-align-self-center">
+                                {props.currentPage} / {props.numPages}
+                            </p>
+                            <div className="is-flex">
+                                <IconButton onClick={props.onPreviousPage}>
+                                    <Icon name="ChevronLeft" size={1.1} />
+                                </IconButton>
+                                <IconButton onClick={props.onNextPage}>
+                                    <Icon name="ChevronRight" size={1.1} />
+                                </IconButton>
+                            </div>
                         </div>
+                        <PdfCanvas
+                            pdfDocument={props.pdfDocument}
+                            pageNumber={props.currentPage}
+                            scale={props.scale ?? 1.5}
+                            htmlAttributes={{ className: "pdf-canvas" }}
+                        />
                     </div>
                 </div>
             </div>
-        </section>
-    );
+        </div>
+    </section>
+);
 
 const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement => (
-        <section className={props.background}>
-            <div className="bulma-container">
-                <div className="py-6">
-                    <CustomCard
-                        isLoading={props?.content?.isLoading}
-                        caption={props?.content?.caption}
-                        text={[props?.content?.warning]}
-                        icon={<Icon name="FileDocument" size={3} />}
-                        colour="has-text-info"
-                    />
-                </div>
+    <section className={props.background}>
+        <div className="bulma-container">
+            <div className="py-6">
+                <CustomCard
+                    isLoading={props?.content?.isLoading}
+                    caption={props?.content?.caption}
+                    text={[props?.content?.warning]}
+                    icon={<Icon name="FileDocument" size={3} />}
+                    colour="has-text-info"
+                />
             </div>
-        </section>
-    );
+        </div>
+    </section>
+);
 
 const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => (
-        <section className={props.background}>
-            <div className="bulma-container">
-                <div className="py-6">
-                    <CustomCard
-                        isLoading={props?.content?.isLoading}
-                        caption={props?.content?.caption}
-                        text={[props?.content?.error]}
-                        icon={<Icon name="AlertCircle" size={3} />}
-                        colour="has-text-danger"
-                    />
-                </div>
+    <section className={props.background}>
+        <div className="bulma-container">
+            <div className="py-6">
+                <CustomCard
+                    isLoading={props?.content?.isLoading}
+                    caption={props?.content?.caption}
+                    text={[props?.content?.error]}
+                    icon={<Icon name="AlertCircle" size={3} />}
+                    colour="has-text-danger"
+                />
             </div>
-        </section>
-    );
-
+        </div>
+    </section>
+);
 
 export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => {
     if (props.hasPdfError) {

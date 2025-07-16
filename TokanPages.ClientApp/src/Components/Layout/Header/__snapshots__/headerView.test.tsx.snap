@@ -5,7 +5,9 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section>
+      <section
+        class="mt-6 "
+      >
         <div
           class="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop"
         >
@@ -18,11 +20,11 @@ Object {
               <figure>
                 <img
                   alt="Your Software Developer"
-                  class="header-image-card lazyloaded "
+                  class="header-image-card lazyloaded undefined"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp"
                   srcset="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp 360w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-720w.webp 720w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-1440w.webp 1440w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-2880w.webp 2880w"
-                  title="Illustration"
+                  title="Tom Kandula"
                 />
               </figure>
             </div>
@@ -33,22 +35,22 @@ Object {
                 class="bulma-content header-content-box  "
               >
                 <h1
-                  class="is-size-1 has-text-grey-dark "
+                  class="is-size-1 has-text-grey-dark"
                 >
                   Welcome to my web page
                 </h1>
                 <h2
-                  class="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4 "
+                  class="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4"
                 >
                   For years...
                 </h2>
                 <h3
-                  class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 "
+                  class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4"
                 >
                   I do programming for a living...
                 </h3>
                 <h3
-                  class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 "
+                  class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4"
                 >
                   Let me know...
                 </h3>
@@ -60,7 +62,7 @@ Object {
                     href="/en/action-link"
                   >
                     <button
-                      class="bulma-button bulma-is-link bulma-is-light mr-2  "
+                      class="bulma-button bulma-is-link bulma-is-light mr-2 "
                     >
                       Read the story
                     </button>
@@ -70,7 +72,7 @@ Object {
                     href="/en/download-link"
                   >
                     <button
-                      class="bulma-button bulma-is-light mr-2  "
+                      class="bulma-button bulma-is-light mr-2 "
                     >
                       Get the CV
                     </button>
@@ -80,7 +82,7 @@ Object {
                     href="/en/showcase"
                   >
                     <button
-                      class="bulma-button bulma-is-light mr-2  "
+                      class="bulma-button bulma-is-light mr-2 "
                     >
                       Showcase
                     </button>
@@ -94,7 +96,9 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section>
+    <section
+      class="mt-6 "
+    >
       <div
         class="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop"
       >
@@ -107,11 +111,11 @@ Object {
             <figure>
               <img
                 alt="Your Software Developer"
-                class="header-image-card lazyloaded "
+                class="header-image-card lazyloaded undefined"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp"
                 srcset="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp 360w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-720w.webp 720w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-1440w.webp 1440w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-2880w.webp 2880w"
-                title="Illustration"
+                title="Tom Kandula"
               />
             </figure>
           </div>
@@ -122,22 +126,22 @@ Object {
               class="bulma-content header-content-box  "
             >
               <h1
-                class="is-size-1 has-text-grey-dark "
+                class="is-size-1 has-text-grey-dark"
               >
                 Welcome to my web page
               </h1>
               <h2
-                class="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4 "
+                class="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4"
               >
                 For years...
               </h2>
               <h3
-                class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 "
+                class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4"
               >
                 I do programming for a living...
               </h3>
               <h3
-                class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 "
+                class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4"
               >
                 Let me know...
               </h3>
@@ -149,7 +153,7 @@ Object {
                   href="/en/action-link"
                 >
                   <button
-                    class="bulma-button bulma-is-link bulma-is-light mr-2  "
+                    class="bulma-button bulma-is-link bulma-is-light mr-2 "
                   >
                     Read the story
                   </button>
@@ -159,7 +163,7 @@ Object {
                   href="/en/download-link"
                 >
                   <button
-                    class="bulma-button bulma-is-light mr-2  "
+                    class="bulma-button bulma-is-light mr-2 "
                   >
                     Get the CV
                   </button>
@@ -169,7 +173,7 @@ Object {
                   href="/en/showcase"
                 >
                   <button
-                    class="bulma-button bulma-is-light mr-2  "
+                    class="bulma-button bulma-is-light mr-2 "
                   >
                     Showcase
                   </button>
