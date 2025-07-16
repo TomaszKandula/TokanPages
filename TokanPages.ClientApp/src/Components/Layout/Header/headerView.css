@@ -1,31 +1,27 @@
-.header-image-skeleton {
-    height: 700px !important;
-    width: 700px !important;
-}
-
 .header-content-box {
     margin-top: auto;
-    margin-right: 30px;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    padding-left: 80px;
+    padding: 60px;
     background-color: white;
-    max-width: 600px;
-    margin-left: -25%;
 }
 
-@media (max-width: 1408px) {
-    .header-content-box {
-        max-width: 600px;
-        margin-left: -25%;
-    }
-}
-
-@media (max-width: 1024px) {
+@media (min-width: 768px) {
     .header-content-box {
         max-width: 900px;
         margin-left: 0;
-        margin-right: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .header-content-box {
+        max-width: 900px;
+        margin-left: -33%;
+    }
+}
+
+@media (min-width: 1408px) {
+    .header-content-box {
+        max-width: 900px;
+        margin-left: -25%;
     }
 }
 
@@ -52,6 +48,6 @@
 
 @media (min-width: 1408px) {
     .header-image-card {
-        height: 900px;
+        height: 1000px;
     }
 }

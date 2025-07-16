@@ -28,7 +28,7 @@ const TertiaryButton = (props: ButtonProps): React.ReactElement => {
 
     return (
         <Link to={props?.tertiaryButton?.href ?? ""} className="link">
-            <button className={`${baseClass} ${size} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+            <button className={`${baseClass} ${size}`}>
                 {props?.tertiaryButton?.text}
             </button>
         </Link>
@@ -41,7 +41,7 @@ const SecondaryButton = (props: ButtonProps): React.ReactElement => {
 
     return (
         <Link to={props?.secondaryButton?.href ?? ""} className="link">
-            <button className={`${baseClass} ${size} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+            <button className={`${baseClass} ${size}`}>
                 {props?.secondaryButton?.text}
             </button>
         </Link>
@@ -54,7 +54,7 @@ const PrimaryButton = (props: ButtonProps): React.ReactElement => {
 
     if (Validate.isEmpty(props?.primaryButton?.href)) {
         return (
-            <button className={`${baseClass} ${size} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+            <button className={`${baseClass} ${size}`}>
                 {props?.primaryButton?.text}
             </button>
         );
@@ -62,7 +62,7 @@ const PrimaryButton = (props: ButtonProps): React.ReactElement => {
 
     return (
         <Link to={props?.primaryButton?.href ?? ""} className="link">
-            <button className={`${baseClass} ${size} ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+            <button className={`${baseClass} ${size}`}>
                 {props?.primaryButton?.text}
             </button>
         </Link>
@@ -95,7 +95,7 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => 
                 src={photo1}
                 srcSet={set}
                 loading="lazy"
-                title="Illustration"
+                title="Tom Kandula"
                 alt="Your Software Developer"
                 className={`header-image-card lazyloaded ${props.className}`}
             />
@@ -110,35 +110,24 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const isLoading = data?.isLoading;
 
     return (
-        <section className={props.className}>
+        <section className={`mt-6 ${props.className ?? ""}`}>
             <div className="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop">
                 <div className="bulma-grid">
                     <div className="bulma-cell">
-                        <RenderPicture
-                            sources={header?.photo}
-                            className={`${isLoading ? "bulma-is-skeleton header-image-skeleton" : ""}`}
-                        />
+                        <RenderPicture sources={header?.photo} />
                     </div>
                     <div className="bulma-cell is-flex is-flex-direction-column">
-                        <div
-                            className={`bulma-content header-content-box ${media.isMobile ? "p-4" : ""} ${media.isTablet ? "p-6" : ""}`}
-                        >
-                            <h1 className={`is-size-1 has-text-grey-dark ${isLoading ? "bulma-is-skeleton" : ""}`}>
+                        <div className={`bulma-content header-content-box ${media.isMobile ? "p-4" : ""} ${media.isTablet ? "p-6" : ""}`}>
+                            <h1 className="is-size-1 has-text-grey-dark">
                                 {header?.caption}
                             </h1>
-                            <h2
-                                className={`has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4 ${isLoading ? "bulma-is-skeleton" : ""}`}
-                            >
+                            <h2 className="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4">
                                 {header?.subtitle}
                             </h2>
-                            <h3
-                                className={`has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 ${isLoading ? "bulma-is-skeleton" : ""}`}
-                            >
+                            <h3 className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4">
                                 {header?.description}
                             </h3>
-                            <h3
-                                className={`has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4 ${isLoading ? "bulma-is-skeleton" : ""}`}
-                            >
+                            <h3 className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4">
                                 {header?.hint}
                             </h3>
                             <div className="pt-4">
