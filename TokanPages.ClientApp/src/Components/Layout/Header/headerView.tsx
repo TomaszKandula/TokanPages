@@ -28,9 +28,7 @@ const TertiaryButton = (props: ButtonProps): React.ReactElement => {
 
     return (
         <Link to={props?.tertiaryButton?.href ?? ""} className="link">
-            <button className={`${baseClass} ${size}`}>
-                {props?.tertiaryButton?.text}
-            </button>
+            <button className={`${baseClass} ${size}`}>{props?.tertiaryButton?.text}</button>
         </Link>
     );
 };
@@ -41,9 +39,7 @@ const SecondaryButton = (props: ButtonProps): React.ReactElement => {
 
     return (
         <Link to={props?.secondaryButton?.href ?? ""} className="link">
-            <button className={`${baseClass} ${size}`}>
-                {props?.secondaryButton?.text}
-            </button>
+            <button className={`${baseClass} ${size}`}>{props?.secondaryButton?.text}</button>
         </Link>
     );
 };
@@ -53,18 +49,12 @@ const PrimaryButton = (props: ButtonProps): React.ReactElement => {
     const size = props.isMobile ? "bulma-is-fullwidth mb-2" : "";
 
     if (Validate.isEmpty(props?.primaryButton?.href)) {
-        return (
-            <button className={`${baseClass} ${size}`}>
-                {props?.primaryButton?.text}
-            </button>
-        );
+        return <button className={`${baseClass} ${size}`}>{props?.primaryButton?.text}</button>;
     }
 
     return (
         <Link to={props?.primaryButton?.href ?? ""} className="link">
-            <button className={`${baseClass} ${size}`}>
-                {props?.primaryButton?.text}
-            </button>
+            <button className={`${baseClass} ${size}`}>{props?.primaryButton?.text}</button>
         </Link>
     );
 };
@@ -117,10 +107,10 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                         <RenderPicture sources={header?.photo} />
                     </div>
                     <div className="bulma-cell is-flex is-flex-direction-column">
-                        <div className={`bulma-content header-content-box ${media.isMobile ? "p-4" : ""} ${media.isTablet ? "p-6" : ""}`}>
-                            <h1 className="is-size-1 has-text-grey-dark">
-                                {header?.caption}
-                            </h1>
+                        <div
+                            className={`bulma-content header-content-box ${media.isMobile ? "p-4" : ""} ${media.isTablet ? "p-6" : ""}`}
+                        >
+                            <h1 className="is-size-1 has-text-grey-dark">{header?.caption}</h1>
                             <h2 className="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4">
                                 {header?.subtitle}
                             </h2>
