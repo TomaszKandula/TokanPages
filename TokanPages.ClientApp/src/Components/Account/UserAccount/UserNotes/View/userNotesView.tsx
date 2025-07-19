@@ -1,6 +1,6 @@
 import * as React from "react";
 import { UserNoteResultDto } from "../../../../../Api/Models";
-import { Backdrop, TextArea } from "../../../../../Shared/Components";
+import { Backdrop, Skeleton, TextArea } from "../../../../../Shared/Components";
 import { ReactChangeTextEvent } from "../../../../../Shared/types";
 import Validate from "validate.js";
 import "./userNotesView.css";
@@ -66,6 +66,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
     const noteUid = props.selection ? ` (${props.selection.id.substring(0, 8)}):` : ":";
     const isEmpty = Validate.isEmpty(props.messageForm.note);
     const flexDirection = isMobileOrTablet ? "is-flex-direction-column" : "is-flex-direction-row";
+    const modifiers = "is-align-items-flex-start is-justify-content-left";
 
     return (
         <section>
@@ -74,13 +75,16 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                 <div className="py-6">
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <p className="is-size-4 has-text-grey">{props.captionText}</p>
+                            <Skeleton isLoading={props.isLoading} mode="Text" height={14}>
+                                <p className="is-size-4 has-text-grey">{props.captionText}</p>
+                            </Skeleton>
                             <hr />
                             <div className="py-4">
-                                <p className="is-size-6 has-text-grey pb-5">{props.descriptionText}</p>
-                                <div
-                                    className={`bulma-cell is-flex ${flexDirection} is-align-items-flex-start is-justify-content-left`}
-                                >
+                                <Skeleton isLoading={props.isLoading} mode="Text" height={14}>
+                                    <p className="is-size-6 has-text-grey pb-5">{props.descriptionText}</p>
+                                </Skeleton>
+                                <div className={`bulma-cell is-flex ${flexDirection} ${modifiers}`}>
+                                    <Skeleton isLoading={props.isLoading} mode="Rect" height={300}>
                                     <div className="user-notes-list-box">
                                         <p className="is-size-6 has-text-grey">{`${props.listLabel}:`}</p>
                                         <div className="user-notes-fixed-list">
@@ -110,8 +114,10 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                             className="user-notes-text-box"
                                         />
                                     </div>
+                                    </Skeleton>
                                 </div>
                                 <div className="bulma-content pt-4">
+                                    <Skeleton isLoading={props.isLoading} mode="Rect">
                                     <button
                                         type="submit"
                                         className="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
@@ -120,6 +126,8 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                     >
                                         {props.removeButtonText}
                                     </button>
+                                    </Skeleton>
+                                    <Skeleton isLoading={props.isLoading} mode="Rect">
                                     <button
                                         type="submit"
                                         className="bulma-button bulma-is-light bulma-is-fullwidth my-4"
@@ -128,6 +136,8 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                     >
                                         {props.clearButtonText}
                                     </button>
+                                    </Skeleton>
+                                    <Skeleton isLoading={props.isLoading} mode="Rect">
                                     <button
                                         type="submit"
                                         className="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
@@ -136,6 +146,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                     >
                                         {props.saveButtonText}
                                     </button>
+                                    </Skeleton>
                                 </div>
                             </div>
                         </div>
