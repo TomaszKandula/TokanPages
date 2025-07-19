@@ -35,12 +35,16 @@ export const PasswordResetView = (props: Properties): React.ReactElement => {
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <Skeleton isLoading={props.isLoading}>
                                 <div className="is-flex is-flex-direction-column is-align-items-center">
+                                    <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
                                     <Icon name="AccountCircle" size={3} className="has-text-link" />
+                                    </Skeleton>
+                                    <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
                                     <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                    </Skeleton>
                                 </div>
                                 <div className="my-5">
+                                    <Skeleton isLoading={props.isLoading} mode="Rect">
                                     <TextField
                                         required
                                         uuid="email"
@@ -50,11 +54,13 @@ export const PasswordResetView = (props: Properties): React.ReactElement => {
                                         value={props.email}
                                         placeholder={props.labelEmail}
                                     />
+                                    </Skeleton>
                                 </div>
                                 <div className="my-5">
+                                    <Skeleton isLoading={props.isLoading} mode="Rect">
                                     <ActiveButton {...props} />
+                                    </Skeleton>
                                 </div>
-                            </Skeleton>
                         </div>
                     </div>
                 </div>
