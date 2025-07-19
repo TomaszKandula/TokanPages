@@ -60,8 +60,8 @@ export const ClientsView = (props: ClientsViewProps): React.ReactElement => {
             <section className={`clients-section ${props.className ?? ""}`}>
                 <div className="bulma-container">
                     <div className="py-6">
-                        <RenderCaption isLoading={data.isLoading} {...clients} />
-                        <RenderImages isLoading={data.isLoading} {...clients} />
+                        <RenderCaption isLoading={data?.isLoading} {...clients} />
+                        <RenderImages isLoading={data?.isLoading} {...clients} />
                     </div>
                 </div>
             </section>
