@@ -1,6 +1,7 @@
 import * as React from "react";
-import { RenderNavbarItem } from "./Renderers";
 import { ItemDto } from "../../../../../Api/Models";
+import { ProgressBar } from "../../../../../Shared/Components";
+import { RenderNavbarItem } from "./Renderers";
 import "./renderNavbarMenu.css";
 
 interface RenderNavbarMenuBaseProps {
@@ -33,8 +34,9 @@ const CanContinue = (props: CanContinueProps): boolean => {
 };
 
 export const RenderNavbarMenu = (props: RenderNavbarMenuProps): React.ReactElement => {
-    if (props.items === undefined) return <div>Cannot render content.</div>;
-    if (props.items.length === 0) return <div>Cannot render content.</div>;
+    if (props.items === undefined || props.items?.length === 0) {
+        return <ProgressBar size={20} />;
+    }
 
     props.items.sort((a: ItemDto, b: ItemDto) => {
         const item1 = a.navbarMenu?.sortOrder ?? 0;

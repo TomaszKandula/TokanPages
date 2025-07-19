@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ItemDto } from "../../../../../Api/Models";
+import { ProgressBar } from "../../../../../Shared/Components";
 import { RenderSidemenuItem } from "./Renderers";
 import { v4 as uuidv4 } from "uuid";
 import "./renderSideMenu.css";
@@ -34,8 +35,9 @@ const CanContinue = (props: CanContinueProps): boolean => {
 };
 
 export const RenderSideMenu = (props: RenderSideMenuProps): React.ReactElement => {
-    if (props.items === undefined) return <div>Cannot render content.</div>;
-    if (props.items.length === 0) return <div>Cannot render content.</div>;
+    if (props.items === undefined || props.items?.length === 0) {
+        return <ProgressBar size={20} />;
+    }
 
     props.items.sort((a: ItemDto, b: ItemDto) => {
         const item1 = a.sideMenu?.sortOrder ?? 0;
