@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { GET_ARTICLE_IMAGE_URL } from "../../../../Api";
 import { ArticleFeaturesContentDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { Animated, CustomImage } from "../../../../Shared/Components";
+import { Animated, CustomImage, Skeleton } from "../../../../Shared/Components";
 import { useDimensions } from "../../../../Shared/Hooks";
 import Validate from "validate.js";
 import "./articleFeatureView.css";
@@ -13,11 +13,7 @@ interface ArticleFeatureViewProps {
     className?: string;
 }
 
-interface ArticleFeaturesContentProps extends ArticleFeaturesContentDto {
-    isLoading: boolean;
-}
-
-const ActiveButton = (props: ArticleFeaturesContentProps): React.ReactElement => {
+const ActiveButton = (props: ArticleFeaturesContentDto): React.ReactElement => {
     if (Validate.isEmpty(props?.action?.href)) {
         return <button className="bulma-button bulma-is-link bulma-is-light">{props?.action?.text}</button>;
     }
@@ -33,18 +29,20 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
     const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const features = data?.components?.sectionArticle;
+    const baseClass = "bulma-columns bulma-is-3 is-flex-direction-row";
 
     return (
         <section className={props.className}>
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">
+                        <Skeleton isLoading={data.isLoading} mode="Rect">
                         <p className="is-size-3	has-text-centered has-text-link">{features?.caption.toUpperCase()}</p>
+                        </Skeleton>
                     </Animated>
                     <Animated dataAos="fade-up">
-                        <div
-                            className={`bulma-columns bulma-is-3 is-flex-direction-row ${media.isMobile ? "p-4" : "p-6"}`}
-                        >
+                        <div className={`${baseClass} ${media.isMobile ? "p-4" : "p-6"}`}>
+                            <Skeleton isLoading={data.isLoading} mode="Rect" width={200} height={200}>
                             <div className="bulma-column">
                                 <div className={`bulma-columns bulma-is-3 ${media.isMobile ? "do-not-display" : ""}`}>
                                     <div className="bulma-column bulma-is-three-quarters">
@@ -111,12 +109,21 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     </div>
                                 </div>
                             </div>
+                            </Skeleton>
                             <div className={`bulma-column is-align-self-center ${media.isMobile ? "p-4" : "p-6"}`}>
+                                <Skeleton isLoading={data.isLoading} mode="Text">
                                 <h2 className="is-size-3 py-5 has-text-black">{features?.title}</h2>
+                                </Skeleton>
+                                <Skeleton isLoading={data.isLoading} mode="Text">
                                 <p className="is-size-5 py-3 has-text-grey line-height-18">{features?.description}</p>
+                                </Skeleton>
+                                <Skeleton isLoading={data.isLoading} mode="Text">
                                 <p className="is-size-5 py-3 has-text-grey line-height-18">{features?.text}</p>
+                                </Skeleton>
                                 <div className="has-text-left py-5">
-                                    <ActiveButton isLoading={data?.isLoading} {...features} />
+                                    <Skeleton isLoading={data.isLoading} mode="Rect">
+                                    <ActiveButton {...features} />
+                                    </Skeleton>
                                 </div>
                             </div>
                         </div>
