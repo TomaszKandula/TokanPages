@@ -38,12 +38,16 @@ export const PasswordUpdateView = (props: Properties): React.ReactElement => {
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <Skeleton isLoading={props.isLoading}>
                                 <div className="is-flex is-flex-direction-column is-align-items-center">
-                                    <Icon name="AccountCircle" size={3} className="has-text-link" />
-                                    <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                    <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                                        <Icon name="AccountCircle" size={3} className="has-text-link" />
+                                    </Skeleton>
+                                    <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
+                                        <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                    </Skeleton>
                                 </div>
                                 <div className="my-5">
+                                    <Skeleton isLoading={props.isLoading} mode="Rect">
                                     <TextFieldWithPassword
                                         className="pb-4"
                                         uuid="newPassword"
@@ -53,6 +57,8 @@ export const PasswordUpdateView = (props: Properties): React.ReactElement => {
                                         onChange={props.formHandler}
                                         isDisabled={props.disableForm || props.progress}
                                     />
+                                    </Skeleton>
+                                    <Skeleton isLoading={props.isLoading} mode="Rect">
                                     <TextFieldWithPassword
                                         className="pb-4"
                                         uuid="verifyPassword"
@@ -62,11 +68,14 @@ export const PasswordUpdateView = (props: Properties): React.ReactElement => {
                                         onChange={props.formHandler}
                                         isDisabled={props.disableForm || props.progress}
                                     />
+                                    </Skeleton>
                                 </div>
                                 <div className="my-5">
+                                    <Skeleton isLoading={props.isLoading} mode="Rect">
                                     <ActiveButton {...props} />
+                                    </Skeleton>
                                 </div>
-                            </Skeleton>
+                            
                         </div>
                     </div>
                 </div>
