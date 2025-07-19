@@ -45,44 +45,56 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
             <div className={!props.className ? "py-6" : props.className}>
                 <div className={`bulma-card ${props.isMobile ? "m-4" : ""}`}>
                     <div className="bulma-card-content">
-                        <Skeleton isLoading={props.isLoading}>
                             <div className="is-flex is-flex-direction-column is-align-items-center">
-                                <Icon name="AccountCircle" size={3} className="has-text-link" />
-                                <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                <Skeleton isLoading={!props.isLoading} mode="Circle" width={72} height={72}>
+                                    <Icon name="AccountCircle" size={3} className="has-text-link" />
+                                </Skeleton>
+                                <Skeleton isLoading={!props.isLoading} mode="Text">
+                                    <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                </Skeleton>
                             </div>
                             <div className="my-5">
-                                <TextField
-                                    required
-                                    uuid="email"
-                                    autoComplete="email"
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    value={props.email}
-                                    placeholder={props.labelEmail}
-                                    isDisabled={props.progress}
-                                    className="mb-4"
-                                />
-                                <TextFieldWithPassword
-                                    uuid="password"
-                                    value={props.password}
-                                    placeholder={props.labelPassword}
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    isDisabled={props.progress}
-                                />
+                                <Skeleton isLoading={!props.isLoading} mode="Rect">
+                                    <TextField
+                                        required
+                                        uuid="email"
+                                        autoComplete="email"
+                                        onKeyUp={props.keyHandler}
+                                        onChange={props.formHandler}
+                                        value={props.email}
+                                        placeholder={props.labelEmail}
+                                        isDisabled={props.progress}
+                                        className="mb-4"
+                                    />
+                                </Skeleton>
+                                <Skeleton isLoading={!props.isLoading} mode="Rect">
+                                    <TextFieldWithPassword
+                                        uuid="password"
+                                        value={props.password}
+                                        placeholder={props.labelPassword}
+                                        onKeyUp={props.keyHandler}
+                                        onChange={props.formHandler}
+                                        isDisabled={props.progress}
+                                    />
+                                </Skeleton>
                             </div>
                             <div className="mb-5">
-                                <ActiveButton {...props} />
+                                <Skeleton isLoading={!props.isLoading} mode="Rect">
+                                    <ActiveButton {...props} />
+                                </Skeleton>
                             </div>
                             <div className="is-flex is-flex-direction-row is-justify-content-space-between">
                                 <div className="my-2">
-                                    <RedirectTo path={props.link1?.href} name={props.link1?.text} />
+                                    <Skeleton isLoading={!props.isLoading} mode="Text" width={100} height={30}>
+                                        <RedirectTo path={props.link1?.href} name={props.link1?.text} />
+                                    </Skeleton>
                                 </div>
                                 <div className="my-2">
-                                    <RedirectTo path={props.link2?.href} name={props.link2?.text} />
+                                    <Skeleton isLoading={!props.isLoading} mode="Text" width={100} height={30}>
+                                        <RedirectTo path={props.link2?.href} name={props.link2?.text} />
+                                    </Skeleton>
                                 </div>
                             </div>
-                        </Skeleton>
                     </div>
                 </div>
             </div>
