@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { SectionAccountDeactivation } from "../../../../../Api/Models";
-import { ProgressBar, RenderParagraphs } from "../../../../../Shared/Components";
+import { ProgressBar, RenderParagraphs, Skeleton } from "../../../../../Shared/Components";
 import { UserDeactivationProps } from "../userDeactivation";
 
 interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProps {
@@ -30,15 +30,20 @@ export const UserDeactivationView = (props: UserDeactivationViewProps): React.Re
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <p className="is-size-4 has-text-grey">{props.section?.caption}</p>
+                            <Skeleton isLoading={props.isLoading} mode="Rect">
+                                <p className="is-size-4 has-text-grey">{props.section?.caption}</p>
+                            </Skeleton>
                             <hr />
                             <RenderParagraphs
+                                isLoading={props.isLoading}
                                 text={props.section?.warningText}
                                 className="is-size-6 has-text-grey line-height-20"
                             />
                             <hr />
                             <div className="has-text-right">
-                                <DeactivationButton {...props} />
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                                    <DeactivationButton {...props} />
+                                </Skeleton>
                             </div>
                         </div>
                     </div>

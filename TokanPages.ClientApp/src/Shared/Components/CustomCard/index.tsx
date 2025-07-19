@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { TColour } from "../../../Shared/types";
+import { Skeleton } from "../Skeleton";
 import { v4 as uuidv4 } from "uuid";
 import "./customCard.css";
 
@@ -28,38 +29,46 @@ const RenderIcon = (props: CustomCardProps) => {
 
 const RenderLinkButton = (props: CustomCardProps): React.ReactElement => (
     <div className="mt-6">
+        <Skeleton isLoading={props.isLoading} mode="Rect">
         <Link to={props.linkButton?.buttonLink ?? ""} className="link" rel="noopener nofollow">
-            <button className={`bulma-button ${props.isLoading ? "bulma-is-skeleton" : ""}`} disabled={props.isLoading}>
+            <button className="bulma-button" disabled={props.isLoading}>
                 {props.linkButton?.buttonLabel}
             </button>
         </Link>
+        </Skeleton>
     </div>
 );
 
 const RenderExternalButton = (props: CustomCardProps): React.ReactElement => (
-    <div className={`mt-6 ${props.isLoading ? "bulma-is-skeleton" : ""}`}>{props.externalButton}</div>
+    <div className="mt-6">
+        <Skeleton isLoading={props.isLoading} mode="Rect">
+            {props.externalButton}
+        </Skeleton>
+    </div>
 );
 
-export const CustomCard = (props: CustomCardProps): React.ReactElement => {
-    return (
+export const CustomCard = (props: CustomCardProps): React.ReactElement => (
         <div className="bulma-card">
             <div className="bulma-card-content">
                 <div className="custom-card-icon-background is-flex is-justify-content-center my-6">
                     <div className="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center">
-                        <RenderIcon {...props} />
+                        <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                            <RenderIcon {...props} />
+                        </Skeleton>
                     </div>
                 </div>
-                <h2 className={`bulma-title has-text-centered ${props.isLoading ? "bulma-is-skeleton" : ""}`}>
+                <Skeleton isLoading={props.isLoading} mode="Text" height={40}>
+                <h2 className="bulma-title has-text-centered">
                     {props.caption}
                 </h2>
+                </Skeleton>
                 <div className="my-5">
                     {props.text.map((value: string, _index: number) => (
-                        <p
-                            className={`is-size-6 has-text-centered line-height-20 ${props.isLoading ? "bulma-is-skeleton" : ""}`}
-                            key={uuidv4()}
-                        >
+                        <Skeleton isLoading={props.isLoading} mode="Text" height={14}>
+                        <p className="is-size-6 has-text-centered line-height-20" key={uuidv4()}>
                             {value}
                         </p>
+                        </Skeleton>
                     ))}
                 </div>
                 {props.linkButton ? <RenderLinkButton {...props} /> : null}
@@ -68,4 +77,3 @@ export const CustomCard = (props: CustomCardProps): React.ReactElement => {
             </div>
         </div>
     );
-};

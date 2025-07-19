@@ -1,5 +1,6 @@
 import * as React from "react";
 import { v4 as uuidv4 } from "uuid";
+import { Skeleton } from "../Skeleton";
 
 interface ReplaceProps {
     key: string;
@@ -10,6 +11,7 @@ interface RenderParagraphsProps {
     text: string[];
     className?: string;
     replace?: ReplaceProps;
+    isLoading?: boolean;
 }
 
 export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactElement => {
@@ -18,15 +20,19 @@ export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactEleme
         props.text.forEach(item => {
             if (item === props.replace?.key) {
                 render.push(
-                    <div key={uuidv4()} className={props.className}>
-                        {props.replace.object}
-                    </div>
+                    <Skeleton isLoading={props.isLoading ?? false}>
+                        <div key={uuidv4()} className={props.className}>
+                            {props.replace.object}
+                        </div>
+                    </Skeleton>
                 );
             } else {
                 render.push(
-                    <p key={uuidv4()} className={props.className}>
-                        {item}
-                    </p>
+                    <Skeleton isLoading={props.isLoading ?? false}>
+                        <p key={uuidv4()} className={props.className}>
+                            {item}
+                        </p>
+                    </Skeleton>
                 );
             }
         });
@@ -35,9 +41,11 @@ export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactEleme
     }
 
     const result = props.text.map((value: string, _index: number) => (
-        <p key={uuidv4()} className={props.className}>
-            {value}
-        </p>
+        <Skeleton isLoading={props.isLoading ?? false}>
+            <p key={uuidv4()} className={props.className}>
+                {value}
+            </p>
+        </Skeleton>
     ));
 
     return <>{result}</>;
