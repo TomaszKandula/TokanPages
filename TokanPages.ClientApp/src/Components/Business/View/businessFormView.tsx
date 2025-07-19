@@ -2,7 +2,7 @@ import * as React from "react";
 import { DescriptionItemDto, PricingDto, ServiceItemDto, TechItemsDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
-import { Icon, ProgressBar, TextArea, TextField } from "../../../Shared/Components";
+import { Icon, ProgressBar, Skeleton, TextArea, TextField } from "../../../Shared/Components";
 import { BusinessFormProps, ServiceItemCardProps, TechStackListProps } from "../Models";
 import "./businessFormView.css";
 
@@ -53,11 +53,11 @@ const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => (
     );
 
 
-const TechStackList = (props: TechStackListProps): React.ReactElement => {
-    return (
+const TechStackList = (props: TechStackListProps): React.ReactElement => (
         <>
             {props.list.map((value: TechItemsDto, index: number) => (
                 <div key={value.key} className="is-flex">
+                    <Skeleton isLoading={props.isLoading} mode="Text" width={150} height={24}>
                     <div className="checkbox-wrapper-1 is-flex is-align-self-center">
                         <input
                             type="checkbox"
@@ -72,11 +72,11 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => {
                         <label htmlFor={`${index}`} className="is-clickable"></label>
                     </div>
                     <p className="is-size-6 p-2">{value.value}</p>
+                    </Skeleton>
                 </div>
             ))}
         </>
     );
-};
 
 const ServiceItemCard = (props: ServiceItemCardProps) => {
     const isSelected = props.services.includes(props.value.id) ?? false;
@@ -100,7 +100,9 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? "py-6" : props.className}>
                     {props.hasCaption ? (
+                        <Skeleton isLoading={props.isLoading} mode="Text" height={40}>
                         <p className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</p>
+                        </Skeleton>
                     ) : (
                         <></>
                     )}
@@ -109,8 +111,12 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                             <div className="bulma-card-content">
                                 {props.hasIcon ? (
                                     <div className="is-flex is-flex-direction-column is-align-items-center">
+                                        <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
                                         <Icon name="BriefcaseVariant" size={3} className="has-text-link" />
+                                        </Skeleton>
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
                                         <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                        </Skeleton>
                                     </div>
                                 ) : (
                                     <></>
@@ -118,6 +124,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                 <div className="mt-5">
                                     <div className="bulma-columns">
                                         <div className="bulma-column">
+                                            <Skeleton isLoading={props.isLoading} mode="Rect">
                                             <TextField
                                                 required
                                                 uuid="company"
@@ -128,10 +135,12 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                                 value={props.companyText}
                                                 placeholder={props.companyLabel}
                                             />
+                                            </Skeleton>
                                         </div>
                                     </div>
                                     <div className="bulma-columns">
                                         <div className="bulma-column">
+                                            <Skeleton isLoading={props.isLoading} mode="Rect">
                                             <TextField
                                                 required
                                                 uuid="firstName"
@@ -142,8 +151,10 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                                 value={props.firstNameText}
                                                 placeholder={props.firstNameLabel}
                                             />
+                                            </Skeleton>
                                         </div>
                                         <div className="bulma-column">
+                                            <Skeleton isLoading={props.isLoading} mode="Rect">
                                             <TextField
                                                 required
                                                 uuid="lastName"
@@ -154,10 +165,12 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                                 value={props.lastNameText}
                                                 placeholder={props.lastNameLabel}
                                             />
+                                            </Skeleton>
                                         </div>
                                     </div>
                                     <div className="bulma-columns">
                                         <div className="bulma-column">
+                                            <Skeleton isLoading={props.isLoading} mode="Rect">
                                             <TextField
                                                 required
                                                 uuid="email"
@@ -168,8 +181,10 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                                 value={props.emailText}
                                                 placeholder={props.emailLabel}
                                             />
+                                            </Skeleton>
                                         </div>
                                         <div className="bulma-column">
+                                            <Skeleton isLoading={props.isLoading} mode="Rect">
                                             <TextField
                                                 required
                                                 uuid="phone"
@@ -180,10 +195,12 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                                 value={props.phoneText}
                                                 placeholder={props.phoneLabel}
                                             />
+                                            </Skeleton>
                                         </div>
                                     </div>
                                     <div className="bulma-columns">
                                         <div className="bulma-column">
+                                            <Skeleton isLoading={props.isLoading} mode="Rect" height={300}>
                                             <TextArea
                                                 required={props.description.required}
                                                 isFixedSize
@@ -194,23 +211,30 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                                 placeholder={props.description.label}
                                                 rows={props.description.rows}
                                             />
+                                            </Skeleton>
                                         </div>
                                     </div>
                                     <div className="bulma-content">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24}>
                                         <p className="is-size-5 py-2">{props.techLabel}</p>
+                                        </Skeleton>
                                     </div>
                                     <div className="bulma-content">
                                         <TechStackList
+                                            isLoading={props.isLoading}
                                             isDisabled={props.progress}
                                             list={props.techItems}
                                             handler={props.techHandler}
                                         />
                                     </div>
                                     <div className="bulma-content">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" width={300} height={24}>
                                         <p className="is-size-5 py-2">{props.pricing.caption}</p>
+                                        </Skeleton>
                                     </div>
                                     <div className="bulma-grid bulma-is-col-min-10 is-gap-2.5">
                                         {props.pricing.services.map((value: ServiceItemDto, _index: number) => (
+                                            <Skeleton isLoading={props.isLoading} mode="Rect" height={100}>
                                             <ServiceItemCard
                                                 key={value.id}
                                                 value={value}
@@ -218,13 +242,18 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                                 handler={props.serviceHandler}
                                                 services={props.serviceSelection}
                                             />
+                                            </Skeleton>
                                         ))}
                                     </div>
+                                    <Skeleton isLoading={props.isLoading} mode="Rect" height={80}>
                                     <div className="bulma-notification is-flex is-align-items-center">
                                         <Icon name="Information" size={1} className="has-text-link" />
                                         <span className="is-size-6 p-3">{props.pricing.disclaimer}</span>
                                     </div>
+                                    </Skeleton>
+                                    <Skeleton isLoading={props.isLoading} mode="Rect" height={40}>
                                     <ActiveButton {...props} />
+                                    </Skeleton>
                                 </div>
                             </div>
                         </div>
