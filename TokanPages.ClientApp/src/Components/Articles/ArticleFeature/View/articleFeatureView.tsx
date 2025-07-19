@@ -36,7 +36,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">
-                        <Skeleton isLoading={data.isLoading} mode="Rect">
+                        <Skeleton isLoading={data.isLoading} mode="Text" height={40}>
                         <p className="is-size-3	has-text-centered has-text-link">{features?.caption.toUpperCase()}</p>
                         </Skeleton>
                     </Animated>
