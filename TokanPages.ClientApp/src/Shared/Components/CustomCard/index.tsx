@@ -50,7 +50,7 @@ const RenderExternalButton = (props: CustomCardProps): React.ReactElement => (
 export const CustomCard = (props: CustomCardProps): React.ReactElement => (
     <div className="bulma-card">
         <div className="bulma-card-content">
-            <div className="custom-card-icon-background is-flex is-justify-content-center my-6">
+            <div className="custom-card-icon-background is-flex is-justify-content-center is-align-items-center my-6">
                 <div className="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center">
                     <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
                         <RenderIcon {...props} />
