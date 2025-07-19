@@ -14,12 +14,12 @@ export const ProgressBarView = (props: ProgressBarViewProps): React.ReactElement
     const colour = props.colour ?? "#6367ef";
 
     return (
-        <div className={`progress-bar-box ${className}`}>
+        <div data-testid="progress-bar-view" className={`progress-bar-box ${className}`}>
             <span
                 className="progress-bar-loader"
                 style={{
-                    height: props.size ?? "40px",
-                    width: props.size ?? "40px",
+                    height: props.size ?? 40,
+                    width: props.size ?? 40,
                     borderStyle: "solid",
                     borderWidth: `${thickness}`,
                     borderColor: `${colour}`,
