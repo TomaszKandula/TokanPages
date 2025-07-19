@@ -24,7 +24,7 @@ export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement
                         <div className="bulma-card-content">
                                 <div className="is-flex is-flex-direction-column is-align-items-center">
                                     <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                                        <Icon name="Account" size={3} className="account" />
+                                        <Icon name="AccountCircle" size={3} className="has-text-link" />
                                     </Skeleton>
                                     <Skeleton isLoading={props.isLoading}>
                                         <p className="is-size-3 has-text-grey">{props.caption}</p>
