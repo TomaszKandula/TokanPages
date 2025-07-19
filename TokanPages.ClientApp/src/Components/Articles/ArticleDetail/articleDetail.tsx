@@ -108,6 +108,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
 
     return (
         <ArticleDetailView
+            isLoading={selection.isLoading}
             isMobile={media.isMobile}
             backButtonHandler={backButtonHandler}
             articleReadCount={selection.article.readCount.toLocaleString(undefined, { minimumFractionDigits: 0 })}
