@@ -29,6 +29,9 @@ export const AccountActivateView = (props: AccountActivateViewProps): React.Reac
     if (props.hasSuccess) {
         icon = CheckIcon;
         colour = "has-text-success";
+    } else if (props.hasError) {
+        icon = AlertIcon;
+        colour = "has-text-danger";
     } else {
         icon = InfoIcon;
         colour = "has-text-info";
