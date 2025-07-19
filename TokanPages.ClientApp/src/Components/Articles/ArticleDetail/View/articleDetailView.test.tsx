@@ -24,6 +24,7 @@ describe("test articles group component: ArticleDetailView", () => {
 
         const html = render(
             <ArticleDetailView
+                isLoading={false}
                 isMobile={false}
                 backButtonHandler={jest.fn()}
                 articleReadCount={"1.000.000"}
