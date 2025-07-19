@@ -8,6 +8,7 @@ describe("test component: newsletterUpdateView", () => {
         const html = render(
             <NewsletterUpdateView
                 isLoading={false}
+                isMobile={false}
                 caption={"Update subscription email"}
                 formHandler={jest.fn()}
                 email={"ester.exposito@gmail.com"}

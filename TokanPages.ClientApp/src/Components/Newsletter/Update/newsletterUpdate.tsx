@@ -6,6 +6,7 @@ import { ValidateEmailForm } from "../../../Shared/Services/FormValidation";
 import { ReactChangeEvent } from "../../../Shared/types";
 import { ApplicationDialogAction, NewsletterUpdateAction } from "../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
+import { useDimensions } from "../../../Shared/Hooks";
 import { NewsletterUpdateView } from "./View/newsletterUpdateView";
 import Validate from "validate.js";
 
@@ -20,6 +21,7 @@ export interface NewsletterUpdateProps extends ExtendedViewProps {
 
 export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactElement => {
     const hasId = props.id === null ? false : true;
+    const media = useDimensions();
     const dispatch = useDispatch();
 
     const update = useSelector((state: ApplicationState) => state.newsletterUpdate);
@@ -106,6 +108,7 @@ export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactEleme
     return (
         <NewsletterUpdateView
             isLoading={data.isLoading}
+            isMobile={media.isMobile}
             caption={newsletter.caption}
             formHandler={formHandler}
             email={form.email}
