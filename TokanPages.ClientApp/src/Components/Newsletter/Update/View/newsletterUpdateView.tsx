@@ -15,8 +15,7 @@ interface NewsletterUpdateViewProps extends ViewProperties, ExtendedViewProps {
     labelEmail: string;
 }
 
-const ActiveButton = (props: NewsletterUpdateViewProps): React.ReactElement => {
-    return (
+const ActiveButton = (props: NewsletterUpdateViewProps): React.ReactElement => (
         <button
             onClick={props.buttonHandler}
             className="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
@@ -25,10 +24,8 @@ const ActiveButton = (props: NewsletterUpdateViewProps): React.ReactElement => {
             {!props.progress ? props.buttonText : <ProgressBar size={20} />}
         </button>
     );
-};
 
-export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.ReactElement => {
-    return (
+export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.ReactElement => (
         <section className="section">
             <div className="bulma-container bulma-is-max-tablet">
                 <div className={!props.className ? "py-6" : props.className}>
@@ -59,4 +56,3 @@ export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.Re
             </div>
         </section>
     );
-};

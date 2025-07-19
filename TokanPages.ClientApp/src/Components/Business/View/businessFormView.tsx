@@ -41,8 +41,7 @@ interface ExtendedDescriptionProps extends DescriptionItemDto {
     text: string;
 }
 
-const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => {
-    return (
+const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => (
         <button
             type="submit"
             onClick={props.buttonHandler}
@@ -52,7 +51,7 @@ const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => {
             {!props.progress ? props.buttonText : <ProgressBar size={20} />}
         </button>
     );
-};
+
 
 const TechStackList = (props: TechStackListProps): React.ReactElement => {
     return (

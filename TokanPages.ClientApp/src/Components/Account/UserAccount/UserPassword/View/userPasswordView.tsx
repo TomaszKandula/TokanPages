@@ -16,8 +16,7 @@ interface UserPasswordViewProps extends ViewProperties, UserPasswordProps {
     sectionAccountPassword: SectionAccountPassword;
 }
 
-const UpdatePasswordButton = (props: UserPasswordViewProps): React.ReactElement => {
-    return (
+const UpdatePasswordButton = (props: UserPasswordViewProps): React.ReactElement => (
         <button
             type="submit"
             onClick={props.buttonHandler}
@@ -27,10 +26,8 @@ const UpdatePasswordButton = (props: UserPasswordViewProps): React.ReactElement 
             {!props.formProgress ? props.sectionAccountPassword?.updateButtonText : <ProgressBar size={20} />}
         </button>
     );
-};
 
-export const UserPasswordView = (props: UserPasswordViewProps): React.ReactElement => {
-    return (
+export const UserPasswordView = (props: UserPasswordViewProps): React.ReactElement => (
         <section className={props.background}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? "py-6" : props.className}>
@@ -85,4 +82,3 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
             </div>
         </section>
     );
-};

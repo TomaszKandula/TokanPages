@@ -17,8 +17,7 @@ interface NewsletterViewProps extends ViewProperties {
     background?: string;
 }
 
-const ActiveButton = (props: NewsletterViewProps): React.ReactElement => {
-    return (
+const ActiveButton = (props: NewsletterViewProps): React.ReactElement => (
         <button
             type="submit"
             onClick={props.buttonHandler}
@@ -28,7 +27,6 @@ const ActiveButton = (props: NewsletterViewProps): React.ReactElement => {
             {!props.progress ? props.buttonText : <ProgressBar size={20} />}
         </button>
     );
-};
 
 export const NewsletterSectionView = (props: NewsletterViewProps): React.ReactElement => (
         <section className={props.background}>

@@ -10,8 +10,7 @@ interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProp
     section: SectionAccountDeactivation;
 }
 
-const DeactivationButton = (props: UserDeactivationViewProps): React.ReactElement => {
-    return (
+const DeactivationButton = (props: UserDeactivationViewProps): React.ReactElement => (
         <button
             type="submit"
             onClick={props.buttonHandler}
@@ -21,10 +20,8 @@ const DeactivationButton = (props: UserDeactivationViewProps): React.ReactElemen
             {!props.progress ? props.section?.deactivateButtonText : <ProgressBar size={20} />}
         </button>
     );
-};
 
-export const UserDeactivationView = (props: UserDeactivationViewProps): React.ReactElement => {
-    return (
+export const UserDeactivationView = (props: UserDeactivationViewProps): React.ReactElement => (
         <section className={props.background}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? "py-6" : props.className}>
@@ -51,4 +48,3 @@ export const UserDeactivationView = (props: UserDeactivationViewProps): React.Re
             </div>
         </section>
     );
-};

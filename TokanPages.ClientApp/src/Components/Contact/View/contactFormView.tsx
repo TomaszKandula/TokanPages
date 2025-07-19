@@ -29,8 +29,7 @@ interface ContactFormViewProps extends ViewProperties, ContactFormProps {
     minRows?: number;
 }
 
-const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
-    return (
+const ActiveButton = (props: ContactFormViewProps): React.ReactElement => (
         <button
             type="submit"
             onClick={props.buttonHandler}
@@ -40,7 +39,6 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => {
             {!props.progress ? props.buttonText : <ProgressBar size={20} />}
         </button>
     );
-};
 
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
     const boxPadding = props.isMobile ? "py-6" : "p-6";

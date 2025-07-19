@@ -15,8 +15,7 @@ interface Properties extends ViewProperties, PasswordResetProps {
     labelEmail: string;
 }
 
-const ActiveButton = (props: Properties): React.ReactElement => {
-    return (
+const ActiveButton = (props: Properties): React.ReactElement => (
         <button
             type="submit"
             onClick={props.buttonHandler}
@@ -26,10 +25,8 @@ const ActiveButton = (props: Properties): React.ReactElement => {
             {!props.progress ? props.button : <ProgressBar size={20} />}
         </button>
     );
-};
 
-export const PasswordResetView = (props: Properties): React.ReactElement => {
-    return (
+export const PasswordResetView = (props: Properties): React.ReactElement => (
         <section className={props.background}>
             <div className="bulma-container bulma-is-max-tablet">
                 <div className={!props.className ? "py-6" : props.className}>
@@ -67,4 +64,3 @@ export const PasswordResetView = (props: Properties): React.ReactElement => {
             </div>
         </section>
     );
-};

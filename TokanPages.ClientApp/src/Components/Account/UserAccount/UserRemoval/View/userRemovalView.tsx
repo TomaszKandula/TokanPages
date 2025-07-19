@@ -10,8 +10,7 @@ interface UserRemovalViewProps extends ViewProperties, UserRemovalProps {
     sectionAccountRemoval: SectionAccountRemoval;
 }
 
-const DeleteAccountButton = (props: UserRemovalViewProps): React.ReactElement => {
-    return (
+const DeleteAccountButton = (props: UserRemovalViewProps): React.ReactElement => (
         <button
             type="submit"
             onClick={props.deleteButtonHandler}
@@ -21,10 +20,8 @@ const DeleteAccountButton = (props: UserRemovalViewProps): React.ReactElement =>
             {!props.deleteAccountProgress ? props.sectionAccountRemoval?.deleteButtonText : <ProgressBar size={20} />}
         </button>
     );
-};
 
-export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement => {
-    return (
+export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement => (
         <section className={props.background}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? "py-6" : props.className}>
@@ -51,4 +48,3 @@ export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement
             </div>
         </section>
     );
-};

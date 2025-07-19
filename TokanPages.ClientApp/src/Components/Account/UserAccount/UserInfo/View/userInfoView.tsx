@@ -30,8 +30,7 @@ interface UserInfoViewProps extends ViewProperties, UserInfoProps {
     };
 }
 
-const UpdateAccountButton = (props: UserInfoViewProps): React.ReactElement => {
-    return (
+const UpdateAccountButton = (props: UserInfoViewProps): React.ReactElement => (
         <button
             type="submit"
             onClick={props.saveButtonHandler}
@@ -41,7 +40,6 @@ const UpdateAccountButton = (props: UserInfoViewProps): React.ReactElement => {
             {!props.formProgress ? props.sectionAccountInformation?.updateButtonText : <ProgressBar size={20} />}
         </button>
     );
-};
 
 const RequestVerificationButton = (props: UserInfoViewProps): React.ReactElement => {
     const clickable = (

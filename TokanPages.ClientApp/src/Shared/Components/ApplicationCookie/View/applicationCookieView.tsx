@@ -28,8 +28,7 @@ interface ApplicationCookieViewProps extends ViewProperties {
     hasPersonalization: boolean;
 }
 
-const CookieWindowOptions = (props: ApplicationCookieViewProps): React.ReactElement => {
-    return (
+const CookieWindowOptions = (props: ApplicationCookieViewProps): React.ReactElement => (
         <div data-testid="cookie-window-options" className="cookie-window-options-list">
             <label className="cookie-window-checkbox pointer-not-allowed">
                 <input type="checkbox" className="cookie-window-checkbox-input" disabled={true} checked={true} />
@@ -68,10 +67,8 @@ const CookieWindowOptions = (props: ApplicationCookieViewProps): React.ReactElem
             </label>
         </div>
     );
-};
 
-const CookieWindowActions = (props: ApplicationCookieViewProps): React.ReactElement => {
-    return (
+const CookieWindowActions = (props: ApplicationCookieViewProps): React.ReactElement => (
         <div data-testid="cookie-window-actions" className="cookie-window-actions">
             {props.buttons?.acceptButton.enabled ? (
                 <button
@@ -97,10 +94,8 @@ const CookieWindowActions = (props: ApplicationCookieViewProps): React.ReactElem
             ) : null}
         </div>
     );
-};
 
-const CookieWindowPrompt = (props: ApplicationCookieViewProps): React.ReactElement => {
-    return (
+const CookieWindowPrompt = (props: ApplicationCookieViewProps): React.ReactElement => (
         <div data-testid="cookie-window-prompt" className="cookie-window">
             <div className="cookie-window-caption">{props.caption}</div>
             <div className="cookie-window-box">
@@ -115,12 +110,12 @@ const CookieWindowPrompt = (props: ApplicationCookieViewProps): React.ReactEleme
             </div>
         </div>
     );
-};
 
 const CookieWindowLoading = (props: ApplicationCookieViewProps): React.ReactElement => {
     const maxLength = props.loading?.length - 1;
     const dateTime = new Date().toString();
     const formattedDateTime = GetDateTime({ value: dateTime, hasTimeVisible: true });
+
     return (
         <div data-testid="cookie-window-loading" className="cookie-window">
             <div className="cookie-window-caption">{props.caption}</div>
