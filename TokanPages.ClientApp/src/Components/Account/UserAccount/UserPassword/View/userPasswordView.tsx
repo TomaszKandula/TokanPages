@@ -17,27 +17,27 @@ interface UserPasswordViewProps extends ViewProperties, UserPasswordProps {
 }
 
 const UpdatePasswordButton = (props: UserPasswordViewProps): React.ReactElement => (
-        <button
-            type="submit"
-            onClick={props.buttonHandler}
-            disabled={props.formProgress}
-            className="bulma-button bulma-is-info bulma-is-light"
-        >
-            {!props.formProgress ? props.sectionAccountPassword?.updateButtonText : <ProgressBar size={20} />}
-        </button>
-    );
+    <button
+        type="submit"
+        onClick={props.buttonHandler}
+        disabled={props.formProgress}
+        className="bulma-button bulma-is-info bulma-is-light"
+    >
+        {!props.formProgress ? props.sectionAccountPassword?.updateButtonText : <ProgressBar size={20} />}
+    </button>
+);
 
 export const UserPasswordView = (props: UserPasswordViewProps): React.ReactElement => (
-        <section className={props.background}>
-            <div className="bulma-container bulma-is-max-desktop">
-                <div className={!props.className ? "py-6" : props.className}>
-                    <div className="bulma-card">
-                        <div className="bulma-card-content">
-                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                <p className="is-size-4 has-text-grey">{props.sectionAccountPassword?.caption}</p>
-                            </Skeleton>
-                            <hr />
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
+    <section className={props.background}>
+        <div className="bulma-container bulma-is-max-desktop">
+            <div className={!props.className ? "py-6" : props.className}>
+                <div className="bulma-card">
+                    <div className="bulma-card-content">
+                        <Skeleton isLoading={props.isLoading} mode="Rect">
+                            <p className="is-size-4 has-text-grey">{props.sectionAccountPassword?.caption}</p>
+                        </Skeleton>
+                        <hr />
+                        <Skeleton isLoading={props.isLoading} mode="Rect">
                             <div className="py-2">
                                 <TextFieldWithPassword
                                     uuid="oldPassword"
@@ -47,8 +47,8 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                     placeholder={props.sectionAccountPassword?.labelOldPassword}
                                 />
                             </div>
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                        </Skeleton>
+                        <Skeleton isLoading={props.isLoading} mode="Rect">
                             <div className="py-2">
                                 <TextFieldWithPassword
                                     uuid="newPassword"
@@ -58,8 +58,8 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                     placeholder={props.sectionAccountPassword?.labelNewPassword}
                                 />
                             </div>
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                        </Skeleton>
+                        <Skeleton isLoading={props.isLoading} mode="Rect">
                             <div className="py-2">
                                 <TextFieldWithPassword
                                     uuid="confirmPassword"
@@ -69,16 +69,16 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                     placeholder={props.sectionAccountPassword?.labelConfirmPassword}
                                 />
                             </div>
-                                </Skeleton>
-                            <hr />
-                            <div className="has-text-right">
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                    <UpdatePasswordButton {...props} />
-                                </Skeleton>
-                            </div>
+                        </Skeleton>
+                        <hr />
+                        <div className="has-text-right">
+                            <Skeleton isLoading={props.isLoading} mode="Rect">
+                                <UpdatePasswordButton {...props} />
+                            </Skeleton>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    );
+        </div>
+    </section>
+);

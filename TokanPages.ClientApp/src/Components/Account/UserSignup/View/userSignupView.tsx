@@ -53,16 +53,16 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
             <div className={!props.className ? "py-6" : props.className}>
                 <div className={`bulma-card ${props.isMobile ? "m-4" : ""}`}>
                     <div className="bulma-card-content">
-                            <div className="is-flex is-flex-direction-column is-align-items-center">
-                                <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                                    <Icon name="AccountCircle" size={3} className="has-text-link" />
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading} mode="Text">
-                                    <p className="is-size-3 has-text-grey">{props.caption}</p>
-                                </Skeleton>
-                            </div>
-                            <div className="my-5">
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                        <div className="is-flex is-flex-direction-column is-align-items-center">
+                            <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                                <Icon name="AccountCircle" size={3} className="has-text-link" />
+                            </Skeleton>
+                            <Skeleton isLoading={props.isLoading} mode="Text">
+                                <p className="is-size-3 has-text-grey">{props.caption}</p>
+                            </Skeleton>
+                        </div>
+                        <div className="my-5">
+                            <Skeleton isLoading={props.isLoading} mode="Rect">
                                 <TextField
                                     required
                                     uuid="firstName"
@@ -75,8 +75,8 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                     isDisabled={props.progress}
                                     className="mb-3"
                                 />
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                            </Skeleton>
+                            <Skeleton isLoading={props.isLoading} mode="Rect">
                                 <TextField
                                     required
                                     uuid="lastName"
@@ -88,8 +88,8 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                     isDisabled={props.progress}
                                     className="mb-3"
                                 />
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                            </Skeleton>
+                            <Skeleton isLoading={props.isLoading} mode="Rect">
                                 <TextField
                                     required
                                     uuid="email"
@@ -101,8 +101,8 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                     isDisabled={props.progress}
                                     className="mb-3"
                                 />
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                            </Skeleton>
+                            <Skeleton isLoading={props.isLoading} mode="Rect">
                                 <TextFieldWithPassword
                                     uuid="password"
                                     value={props.password}
@@ -111,9 +111,9 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                     onChange={props.formHandler}
                                     isDisabled={props.progress}
                                 />
-                                </Skeleton>
-                            </div>
-                            <Skeleton isLoading={props.isLoading} mode="Rect" height={300}>
+                            </Skeleton>
+                        </div>
+                        <Skeleton isLoading={props.isLoading} mode="Rect" height={300}>
                             <article className="bulma-message bulma-is-info">
                                 <div className="bulma-message-header">
                                     <p>{props.warning?.textPre}</p>
@@ -126,22 +126,22 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                                     </a>
                                 </div>
                             </article>
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
-                                <div className="bulma-notification">
-                                    <p className="is-size-6">{props.consent}</p>
-                                </div>
-                            </Skeleton>
-                            <div className="mb-5">
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                    <ActiveButton {...props} />
-                                </Skeleton>
+                        </Skeleton>
+                        <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
+                            <div className="bulma-notification">
+                                <p className="is-size-6">{props.consent}</p>
                             </div>
-                            <div className="has-text-right">
-                                <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                                    <RedirectTo path={props.link?.href} name={props.link?.text} />
-                                </Skeleton>
-                            </div>
+                        </Skeleton>
+                        <div className="mb-5">
+                            <Skeleton isLoading={props.isLoading} mode="Rect">
+                                <ActiveButton {...props} />
+                            </Skeleton>
+                        </div>
+                        <div className="has-text-right">
+                            <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
+                                <RedirectTo path={props.link?.href} name={props.link?.text} />
+                            </Skeleton>
+                        </div>
                     </div>
                 </div>
             </div>

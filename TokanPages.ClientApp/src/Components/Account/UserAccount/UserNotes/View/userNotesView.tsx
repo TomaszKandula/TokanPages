@@ -85,67 +85,67 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                                 </Skeleton>
                                 <div className={`bulma-cell is-flex ${flexDirection} ${modifiers}`}>
                                     <Skeleton isLoading={props.isLoading} mode="Rect" height={300}>
-                                    <div className="user-notes-list-box">
-                                        <p className="is-size-6 has-text-grey">{`${props.listLabel}:`}</p>
-                                        <div className="user-notes-fixed-list">
-                                            {!props.isLoading &&
-                                                props.userNotes?.map((value: UserNoteProps, index: number) => (
-                                                    <RenderRow
-                                                        key={value.id}
-                                                        id={value.id}
-                                                        note={value.id.substring(0, 8)}
-                                                        index={index}
-                                                        selection={props.selection?.id}
-                                                        onClick={props.onRowClick}
-                                                    />
-                                                ))}
+                                        <div className="user-notes-list-box">
+                                            <p className="is-size-6 has-text-grey">{`${props.listLabel}:`}</p>
+                                            <div className="user-notes-fixed-list">
+                                                {!props.isLoading &&
+                                                    props.userNotes?.map((value: UserNoteProps, index: number) => (
+                                                        <RenderRow
+                                                            key={value.id}
+                                                            id={value.id}
+                                                            note={value.id.substring(0, 8)}
+                                                            index={index}
+                                                            selection={props.selection?.id}
+                                                            onClick={props.onRowClick}
+                                                        />
+                                                    ))}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="user-notes-message-box">
-                                        <p className="is-size-6 has-text-grey">{`${props.noteLabel}${noteUid}`}</p>
-                                        <TextArea
-                                            required
-                                            isFixedSize
-                                            uuid="note"
-                                            rows={16}
-                                            onChange={props.messageHandler}
-                                            value={props.messageForm.note}
-                                            isDisabled={props.isLoading}
-                                            className="user-notes-text-box"
-                                        />
-                                    </div>
+                                        <div className="user-notes-message-box">
+                                            <p className="is-size-6 has-text-grey">{`${props.noteLabel}${noteUid}`}</p>
+                                            <TextArea
+                                                required
+                                                isFixedSize
+                                                uuid="note"
+                                                rows={16}
+                                                onChange={props.messageHandler}
+                                                value={props.messageForm.note}
+                                                isDisabled={props.isLoading}
+                                                className="user-notes-text-box"
+                                            />
+                                        </div>
                                     </Skeleton>
                                 </div>
                                 <div className="bulma-content pt-4">
                                     <Skeleton isLoading={props.isLoading} mode="Rect">
-                                    <button
-                                        type="submit"
-                                        className="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
-                                        disabled={props.isLoading || !hasNotes || !props.selection}
-                                        onClick={props.removeButtonHandler}
-                                    >
-                                        {props.removeButtonText}
-                                    </button>
+                                        <button
+                                            type="submit"
+                                            className="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
+                                            disabled={props.isLoading || !hasNotes || !props.selection}
+                                            onClick={props.removeButtonHandler}
+                                        >
+                                            {props.removeButtonText}
+                                        </button>
                                     </Skeleton>
                                     <Skeleton isLoading={props.isLoading} mode="Rect">
-                                    <button
-                                        type="submit"
-                                        className="bulma-button bulma-is-light bulma-is-fullwidth my-4"
-                                        disabled={props.isLoading}
-                                        onClick={props.clearButtonHandler}
-                                    >
-                                        {props.clearButtonText}
-                                    </button>
+                                        <button
+                                            type="submit"
+                                            className="bulma-button bulma-is-light bulma-is-fullwidth my-4"
+                                            disabled={props.isLoading}
+                                            onClick={props.clearButtonHandler}
+                                        >
+                                            {props.clearButtonText}
+                                        </button>
                                     </Skeleton>
                                     <Skeleton isLoading={props.isLoading} mode="Rect">
-                                    <button
-                                        type="submit"
-                                        className="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
-                                        disabled={props.isLoading || isEmpty}
-                                        onClick={props.saveButtonHandler}
-                                    >
-                                        {props.saveButtonText}
-                                    </button>
+                                        <button
+                                            type="submit"
+                                            className="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
+                                            disabled={props.isLoading || isEmpty}
+                                            onClick={props.saveButtonHandler}
+                                        >
+                                            {props.saveButtonText}
+                                        </button>
                                     </Skeleton>
                                 </div>
                             </div>

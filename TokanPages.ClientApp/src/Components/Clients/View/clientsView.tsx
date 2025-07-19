@@ -35,15 +35,15 @@ const RenderImages = (props: ClientsViewExtendedProps): React.ReactElement => {
             {props?.images?.map((item: ClientImageDto, _index: number) => (
                 <div className="p-6" key={uuidv4()}>
                     <Skeleton isLoading={props.isLoading} mode="Rect" width={100} height={100}>
-                    <img
-                        src={getImagePath(item.path)}
-                        loading="lazy"
-                        alt={`An image of ${item.name}`}
-                        title="Clients"
-                        height={item.heigh}
-                        width={item.width}
-                        className="lazyloaded"
-                    />
+                        <img
+                            src={getImagePath(item.path)}
+                            loading="lazy"
+                            alt={`An image of ${item.name}`}
+                            title="Clients"
+                            height={item.heigh}
+                            width={item.width}
+                            className="lazyloaded"
+                        />
                     </Skeleton>
                 </div>
             ))}

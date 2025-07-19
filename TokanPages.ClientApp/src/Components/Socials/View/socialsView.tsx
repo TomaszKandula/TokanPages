@@ -22,7 +22,9 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                 <div className="py-6">
                     <Animated dataAos="fade-down">
                         <Skeleton isLoading={isLoading} mode="Text" height={40}>
-                        <p className="is-size-3	has-text-centered has-text-link">{socials?.caption?.toUpperCase()}</p>
+                            <p className="is-size-3	has-text-centered has-text-link">
+                                {socials?.caption?.toUpperCase()}
+                            </p>
                         </Skeleton>
                     </Animated>
                     <div className={media.isMobile ? "p-4" : "p-6"}>
@@ -33,47 +35,51 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         <Link to={socials?.social1?.action?.href}>
                                             <div className="bulma-card-image">
                                                 <figure className="bulma-image">
-                                                    <Skeleton isLoading={isLoading} mode="Rect" className="socials-image">
-                                                    <CustomImage
-                                                        base={GET_SOCIALS_URL}
-                                                        source={socials?.social1?.images?.header}
+                                                    <Skeleton
+                                                        isLoading={isLoading}
+                                                        mode="Rect"
                                                         className="socials-image"
-                                                        title="Illustration"
-                                                        alt={socials?.social1?.textTitle}
-                                                    />
+                                                    >
+                                                        <CustomImage
+                                                            base={GET_SOCIALS_URL}
+                                                            source={socials?.social1?.images?.header}
+                                                            className="socials-image"
+                                                            title="Illustration"
+                                                            alt={socials?.social1?.textTitle}
+                                                        />
                                                     </Skeleton>
                                                 </figure>
                                             </div>
                                             <div className="socials-card-image-holder">
                                                 <Skeleton isLoading={isLoading} mode="Rect" className="socials-avatar">
-                                                <CustomImage
-                                                    base={GET_SOCIALS_URL}
-                                                    source={socials?.social1?.images?.avatar}
-                                                    className="socials-avatar"
-                                                    title="Socials"
-                                                    alt={socials?.social1?.textTitle}
-                                                />
+                                                    <CustomImage
+                                                        base={GET_SOCIALS_URL}
+                                                        source={socials?.social1?.images?.avatar}
+                                                        className="socials-avatar"
+                                                        title="Socials"
+                                                        alt={socials?.social1?.textTitle}
+                                                    />
                                                 </Skeleton>
                                             </div>
                                             <div className="bulma-card-content">
                                                 <div className="has-text-centered pt-6">
                                                     <Skeleton isLoading={isLoading} mode="Rect" height={24}>
-                                                    <Icon name={socials?.social1?.images?.icon} size={2} />
+                                                        <Icon name={socials?.social1?.images?.icon} size={2} />
                                                     </Skeleton>
                                                 </div>
                                                 <div className="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                    {socials?.social1?.textTitle}
+                                                        {socials?.social1?.textTitle}
                                                     </Skeleton>
                                                 </div>
                                                 <h3 className="is-size-6 has-text-grey has-text-centered py-2">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                    {socials?.social1?.textSubtitle}
+                                                        {socials?.social1?.textSubtitle}
                                                     </Skeleton>
                                                 </h3>
                                                 <h4 className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                    {socials?.social1?.textComment}
+                                                        {socials?.social1?.textComment}
                                                     </Skeleton>
                                                 </h4>
                                             </div>
@@ -87,47 +93,51 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         <Link to={socials?.social2?.action?.href}>
                                             <div className="bulma-card-image">
                                                 <figure className="bulma-image">
-                                                    <Skeleton isLoading={isLoading} mode="Rect" className="socials-image">
-                                                    <CustomImage
-                                                        base={GET_SOCIALS_URL}
-                                                        source={socials?.social2?.images?.header}
+                                                    <Skeleton
+                                                        isLoading={isLoading}
+                                                        mode="Rect"
                                                         className="socials-image"
-                                                        title="Illustration"
-                                                        alt={socials?.social2?.textTitle}
-                                                    />
+                                                    >
+                                                        <CustomImage
+                                                            base={GET_SOCIALS_URL}
+                                                            source={socials?.social2?.images?.header}
+                                                            className="socials-image"
+                                                            title="Illustration"
+                                                            alt={socials?.social2?.textTitle}
+                                                        />
                                                     </Skeleton>
                                                 </figure>
                                             </div>
                                             <div className="socials-card-image-holder">
                                                 <Skeleton isLoading={isLoading} mode="Rect" className="socials-avatar">
-                                                <CustomImage
-                                                    base={GET_SOCIALS_URL}
-                                                    source={socials?.social2?.images?.avatar}
-                                                    className="socials-avatar"
-                                                    title="Socials"
-                                                    alt={socials?.social2?.textTitle}
-                                                />
+                                                    <CustomImage
+                                                        base={GET_SOCIALS_URL}
+                                                        source={socials?.social2?.images?.avatar}
+                                                        className="socials-avatar"
+                                                        title="Socials"
+                                                        alt={socials?.social2?.textTitle}
+                                                    />
                                                 </Skeleton>
                                             </div>
                                             <div className="bulma-card-content">
                                                 <div className="has-text-centered pt-6">
                                                     <Skeleton isLoading={isLoading} mode="Rect" height={24}>
-                                                    <Icon name={socials?.social2?.images?.icon} size={2} />
+                                                        <Icon name={socials?.social2?.images?.icon} size={2} />
                                                     </Skeleton>
                                                 </div>
                                                 <div className="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                    {socials?.social2?.textTitle}
+                                                        {socials?.social2?.textTitle}
                                                     </Skeleton>
                                                 </div>
                                                 <h3 className="is-size-6 has-text-grey has-text-centered py-2">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                    {socials?.social2?.textSubtitle}
+                                                        {socials?.social2?.textSubtitle}
                                                     </Skeleton>
                                                 </h3>
                                                 <h4 className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                    {socials?.social2?.textComment}
+                                                        {socials?.social2?.textComment}
                                                     </Skeleton>
                                                 </h4>
                                             </div>
@@ -141,47 +151,51 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         <Link to={socials?.social3?.action?.href}>
                                             <div className="bulma-card-image">
                                                 <figure className="bulma-image">
-                                                    <Skeleton isLoading={isLoading} mode="Rect" className="socials-image">
-                                                    <CustomImage
-                                                        base={GET_SOCIALS_URL}
-                                                        source={socials?.social3?.images?.header}
+                                                    <Skeleton
+                                                        isLoading={isLoading}
+                                                        mode="Rect"
                                                         className="socials-image"
-                                                        title="Illustration"
-                                                        alt={socials?.social3?.textTitle}
-                                                    />
+                                                    >
+                                                        <CustomImage
+                                                            base={GET_SOCIALS_URL}
+                                                            source={socials?.social3?.images?.header}
+                                                            className="socials-image"
+                                                            title="Illustration"
+                                                            alt={socials?.social3?.textTitle}
+                                                        />
                                                     </Skeleton>
                                                 </figure>
                                             </div>
                                             <div className="socials-card-image-holder">
                                                 <Skeleton isLoading={isLoading} mode="Rect" className="socials-avatar">
-                                                <CustomImage
-                                                    base={GET_SOCIALS_URL}
-                                                    source={socials?.social3?.images?.avatar}
-                                                    className="socials-avatar"
-                                                    title="Socials"
-                                                    alt={socials?.social3?.textTitle}
-                                                />
+                                                    <CustomImage
+                                                        base={GET_SOCIALS_URL}
+                                                        source={socials?.social3?.images?.avatar}
+                                                        className="socials-avatar"
+                                                        title="Socials"
+                                                        alt={socials?.social3?.textTitle}
+                                                    />
                                                 </Skeleton>
                                             </div>
                                             <div className="bulma-card-content">
                                                 <div className="has-text-centered pt-6">
                                                     <Skeleton isLoading={isLoading} mode="Rect" height={24}>
-                                                    <Icon name={socials?.social3?.images?.icon} size={2} />
+                                                        <Icon name={socials?.social3?.images?.icon} size={2} />
                                                     </Skeleton>
                                                 </div>
                                                 <div className="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                    {socials?.social3?.textTitle}
+                                                        {socials?.social3?.textTitle}
                                                     </Skeleton>
                                                 </div>
                                                 <h3 className="is-size-6 has-text-grey has-text-centered py-2">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                    {socials?.social3?.textSubtitle}
+                                                        {socials?.social3?.textSubtitle}
                                                     </Skeleton>
                                                 </h3>
                                                 <h4 className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                    {socials?.social3?.textComment}
+                                                        {socials?.social3?.textComment}
                                                     </Skeleton>
                                                 </h4>
                                             </div>

@@ -100,11 +100,11 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const isLoading = data?.isLoading;
     const baseClass = "bulma-content header-content-box";
 
-    let size = { width: 0, height: 0 }
+    let size = { width: 0, height: 0 };
     if (media.isMobile) {
-        size = { width: 360, height: 433 }
+        size = { width: 360, height: 433 };
     } else {
-        size = { width: 720, height: 865 }
+        size = { width: 720, height: 865 };
     }
 
     return (
@@ -112,39 +112,39 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
             <div className="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop">
                 <div className="bulma-grid">
                     <div className="bulma-cell">
-                        <Skeleton isLoading={isLoading} mode="Rect" {...size} >
+                        <Skeleton isLoading={isLoading} mode="Rect" {...size}>
                             <RenderPicture sources={header?.photo} />
                         </Skeleton>
                     </div>
                     <div className="bulma-cell is-flex is-flex-direction-column">
                         <div className={`${baseClass} ${media.isMobile ? "p-4" : ""} ${media.isTablet ? "p-6" : ""}`}>
                             <Skeleton isLoading={isLoading} mode="Text" height={40}>
-                            <h1 className="is-size-1 has-text-grey-dark">{header?.caption}</h1>
+                                <h1 className="is-size-1 has-text-grey-dark">{header?.caption}</h1>
                             </Skeleton>
                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                            <h2 className="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4">
-                                {header?.subtitle}
-                            </h2>
+                                <h2 className="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4">
+                                    {header?.subtitle}
+                                </h2>
                             </Skeleton>
                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                            <h3 className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4">
-                                {header?.description}
-                            </h3>
+                                <h3 className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4">
+                                    {header?.description}
+                                </h3>
                             </Skeleton>
                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                            <h3 className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4">
-                                {header?.hint}
-                            </h3>
+                                <h3 className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4">
+                                    {header?.hint}
+                                </h3>
                             </Skeleton>
                             <div className={`pt-4 ${isLoading ? "is-flex is-gap-1.5" : ""}`}>
                                 <Skeleton isLoading={isLoading} mode="Rect" width={100}>
-                                <PrimaryButton {...header} isLoading={isLoading} isMobile={media.isMobile} />
+                                    <PrimaryButton {...header} isLoading={isLoading} isMobile={media.isMobile} />
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Rect" width={100}>
-                                <SecondaryButton {...header} isLoading={isLoading} isMobile={media.isMobile} />
+                                    <SecondaryButton {...header} isLoading={isLoading} isMobile={media.isMobile} />
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Rect" width={100}>
-                                <TertiaryButton {...header} isLoading={isLoading} isMobile={media.isMobile} />
+                                    <TertiaryButton {...header} isLoading={isLoading} isMobile={media.isMobile} />
                                 </Skeleton>
                             </div>
                         </div>

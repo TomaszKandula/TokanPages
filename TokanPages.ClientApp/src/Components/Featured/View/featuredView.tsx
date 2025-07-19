@@ -22,7 +22,9 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                 <div className="py-6">
                     <Animated dataAos="fade-down">
                         <Skeleton isLoading={isLoading} mode="Rect" height={40}>
-                        <p className="is-size-3	has-text-centered has-text-link">{featured?.caption?.toUpperCase()}</p>
+                            <p className="is-size-3	has-text-centered has-text-link">
+                                {featured?.caption?.toUpperCase()}
+                            </p>
                         </Skeleton>
                     </Animated>
                     <div className={`bulma-columns ${media.isMobile ? "p-4" : "p-6"}`}>
@@ -32,27 +34,31 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                     <div className="bulma-card">
                                         <div className="bulma-card-image">
                                             <figure className="bulma-image">
-                                                <Skeleton isLoading={isLoading} mode="Rect" className="featured-card-image">
-                                                <CustomImage
-                                                    base={GET_FEATURED_IMAGE_URL}
-                                                    source={featured?.image1}
+                                                <Skeleton
+                                                    isLoading={isLoading}
+                                                    mode="Rect"
                                                     className="featured-card-image"
-                                                    title="Illustration"
-                                                    alt={featured?.title1}
-                                                />
+                                                >
+                                                    <CustomImage
+                                                        base={GET_FEATURED_IMAGE_URL}
+                                                        source={featured?.image1}
+                                                        className="featured-card-image"
+                                                        title="Illustration"
+                                                        alt={featured?.title1}
+                                                    />
                                                 </Skeleton>
                                             </figure>
                                         </div>
                                         <div className="bulma-card-content py-6">
                                             <Skeleton isLoading={isLoading} mode="Text" height={24} disableMarginY>
-                                            <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
-                                                {featured?.title1}
-                                            </h2>
+                                                <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
+                                                    {featured?.title1}
+                                                </h2>
                                             </Skeleton>
                                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                                            <p className="is-size-5 has-text-grey-light has-text-centered">
-                                                {featured?.subtitle1}
-                                            </p>
+                                                <p className="is-size-5 has-text-grey-light has-text-centered">
+                                                    {featured?.subtitle1}
+                                                </p>
                                             </Skeleton>
                                         </div>
                                     </div>
@@ -65,27 +71,31 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                     <div className="bulma-card">
                                         <div className="bulma-card-image">
                                             <figure className="bulma-image">
-                                                <Skeleton isLoading={isLoading} mode="Rect" className="featured-card-image">
-                                                <CustomImage
-                                                    base={GET_FEATURED_IMAGE_URL}
-                                                    source={featured?.image2}
+                                                <Skeleton
+                                                    isLoading={isLoading}
+                                                    mode="Rect"
                                                     className="featured-card-image"
-                                                    title="Illustration"
-                                                    alt={featured?.title2}
-                                                />
+                                                >
+                                                    <CustomImage
+                                                        base={GET_FEATURED_IMAGE_URL}
+                                                        source={featured?.image2}
+                                                        className="featured-card-image"
+                                                        title="Illustration"
+                                                        alt={featured?.title2}
+                                                    />
                                                 </Skeleton>
                                             </figure>
                                         </div>
                                         <div className="bulma-card-content py-6">
                                             <Skeleton isLoading={isLoading} mode="Text" height={24} disableMarginY>
-                                            <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
-                                                {featured?.title2}
-                                            </h2>
+                                                <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
+                                                    {featured?.title2}
+                                                </h2>
                                             </Skeleton>
                                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                                            <p className="is-size-5 has-text-grey-light has-text-centered">
-                                                {featured?.subtitle2}
-                                            </p>
+                                                <p className="is-size-5 has-text-grey-light has-text-centered">
+                                                    {featured?.subtitle2}
+                                                </p>
                                             </Skeleton>
                                         </div>
                                     </div>
@@ -98,27 +108,31 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                     <div className="bulma-card">
                                         <div className="bulma-card-image">
                                             <figure className="bulma-image">
-                                                <Skeleton isLoading={isLoading} mode="Rect" className="featured-card-image">
-                                                <CustomImage
-                                                    base={GET_FEATURED_IMAGE_URL}
-                                                    source={featured?.image3}
+                                                <Skeleton
+                                                    isLoading={isLoading}
+                                                    mode="Rect"
                                                     className="featured-card-image"
-                                                    title="Illustration"
-                                                    alt={featured?.title3}
-                                                />
+                                                >
+                                                    <CustomImage
+                                                        base={GET_FEATURED_IMAGE_URL}
+                                                        source={featured?.image3}
+                                                        className="featured-card-image"
+                                                        title="Illustration"
+                                                        alt={featured?.title3}
+                                                    />
                                                 </Skeleton>
                                             </figure>
                                         </div>
                                         <div className="bulma-card-content py-6">
                                             <Skeleton isLoading={isLoading} mode="Text" height={24} disableMarginY>
-                                            <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
-                                                {featured?.title3}
-                                            </h2>
+                                                <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
+                                                    {featured?.title3}
+                                                </h2>
                                             </Skeleton>
                                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                                            <p className="is-size-5 has-text-grey-light has-text-centered">
-                                                {featured?.subtitle3}
-                                            </p>
+                                                <p className="is-size-5 has-text-grey-light has-text-centered">
+                                                    {featured?.subtitle3}
+                                                </p>
                                             </Skeleton>
                                         </div>
                                     </div>

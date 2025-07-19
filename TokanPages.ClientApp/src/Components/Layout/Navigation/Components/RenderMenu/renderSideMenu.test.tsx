@@ -494,9 +494,9 @@ describe("test render function 'RenderSideMenu'", () => {
     ];
 
     it("should return rendered list when items are provided, user is logged.", () => {
-        const view = render(
-            <RenderSideMenu isAnonymous={false} languageId="en" items={items} />, { wrapper: BrowserRouter }
-        );
+        const view = render(<RenderSideMenu isAnonymous={false} languageId="en" items={items} />, {
+            wrapper: BrowserRouter,
+        });
 
         const progressBar = view.queryByTestId("progress-bar-view");
 
@@ -505,9 +505,9 @@ describe("test render function 'RenderSideMenu'", () => {
     });
 
     it("should return rendered list when items are provided, user is anonymous.", () => {
-        const view = render(
-            <RenderSideMenu isAnonymous={true} languageId="en" items={items} />, { wrapper: BrowserRouter }
-        );
+        const view = render(<RenderSideMenu isAnonymous={true} languageId="en" items={items} />, {
+            wrapper: BrowserRouter,
+        });
 
         const progressBar = view.queryByTestId("progress-bar-view");
 
@@ -516,9 +516,9 @@ describe("test render function 'RenderSideMenu'", () => {
     });
 
     it("should return '<ProgressBar />' when called with items undefined.", () => {
-        const view = render(
-            <RenderSideMenu isAnonymous={true} languageId="en" items={undefined} />, { wrapper: BrowserRouter }
-        );
+        const view = render(<RenderSideMenu isAnonymous={true} languageId="en" items={undefined} />, {
+            wrapper: BrowserRouter,
+        });
 
         const progressBar = view.getByTestId("progress-bar-view");
 
@@ -527,9 +527,9 @@ describe("test render function 'RenderSideMenu'", () => {
     });
 
     it("should return '<ProgressBar />' when called with empty array of items.", () => {
-        const view = render(
-            <RenderSideMenu isAnonymous={true} languageId="en" items={[]} />, { wrapper: BrowserRouter }
-        );
+        const view = render(<RenderSideMenu isAnonymous={true} languageId="en" items={[]} />, {
+            wrapper: BrowserRouter,
+        });
 
         const progressBar = view.getByTestId("progress-bar-view");
 

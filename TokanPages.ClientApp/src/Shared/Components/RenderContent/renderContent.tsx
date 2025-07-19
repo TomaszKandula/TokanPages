@@ -120,5 +120,9 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
         }
     });
 
-    return <div data-testid="render-content" className={`bulma-content ${media.isMobile ? "px-4" : ""}`}>{renderBuffer}</div>;
+    return (
+        <div data-testid="render-content" className={`bulma-content ${media.isMobile ? "px-4" : ""}`}>
+            {renderBuffer}
+        </div>
+    );
 };

@@ -67,9 +67,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                         </div>
                         <div className="bulma-grid is-flex m-0">
                             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                                <p className="is-size-6">
-                                    {props.content.textReadTime1}
-                                </p>
+                                <p className="is-size-6">{props.content.textReadTime1}</p>
                             </Skeleton>
                             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
                                 <p className="is-size-6">
@@ -79,32 +77,30 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                         </div>
                         <div className="bulma-grid is-flex m-0">
                             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                            <p className="is-size-6">
-                                {props.content.textPublished}
-                            </p>
+                                <p className="is-size-6">{props.content.textPublished}</p>
                             </Skeleton>
                             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                            <p className="is-size-6">
-                                {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
-                            </p>
+                                <p className="is-size-6">
+                                    {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
+                                </p>
                             </Skeleton>
                         </div>
                         <div className="bulma-grid is-flex m-0">
                             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                            <p className="is-size-6">{props.content.textUpdated}</p>
+                                <p className="is-size-6">{props.content.textUpdated}</p>
                             </Skeleton>
                             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                            <p className="is-size-6">
-                                {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
-                            </p>
+                                <p className="is-size-6">
+                                    {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
+                                </p>
                             </Skeleton>
                         </div>
                         <div className="bulma-grid is-flex m-0">
                             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                            <p className="is-size-6">{props.content.textReadCount}</p>
+                                <p className="is-size-6">{props.content.textReadCount}</p>
                             </Skeleton>
                             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                            <p className="is-size-6">{props.articleReadCount}</p>
+                                <p className="is-size-6">{props.articleReadCount}</p>
                             </Skeleton>
                         </div>
                     </div>
@@ -133,25 +129,25 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                 <div className={`bulma-grid is-flex mb-5 ${props.isMobile ? "px-4" : ""}`}>
                     <div className="bulma-cell is-align-content-center">
                         <Skeleton isLoading={props.isLoading} mode="Circle" width={98} height={98} disableMarginY>
-                        {props.renderLargeAvatar}
+                            {props.renderLargeAvatar}
                         </Skeleton>
                     </div>
                     <div className="bulma-cell is-align-content-center">
                         <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                        <p className="is-size-6 has-text-weight-bold">{props.content.textWritten}</p>
+                            <p className="is-size-6 has-text-weight-bold">{props.content.textWritten}</p>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                        <p className="is-size-6">{props.renderAuthorName}</p>
+                            <p className="is-size-6">{props.renderAuthorName}</p>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                        <p className="is-size-6">
-                            {props.content.textRegistered}&nbsp;{props.authorRegistered}
-                        </p>
+                            <p className="is-size-6">
+                                {props.content.textRegistered}&nbsp;{props.authorRegistered}
+                            </p>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                        <p className="is-size-6">
-                            {props.content.textAbout}&nbsp;{props.authorShortBio}
-                        </p>
+                            <p className="is-size-6">
+                                {props.content.textAbout}&nbsp;{props.authorShortBio}
+                            </p>
                         </Skeleton>
                     </div>
                 </div>
