@@ -46,15 +46,15 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                 <div className={`bulma-card ${props.isMobile ? "m-4" : ""}`}>
                     <div className="bulma-card-content">
                             <div className="is-flex is-flex-direction-column is-align-items-center">
-                                <Skeleton isLoading={!props.isLoading} mode="Circle" width={72} height={72}>
+                                <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
                                     <Icon name="AccountCircle" size={3} className="has-text-link" />
                                 </Skeleton>
-                                <Skeleton isLoading={!props.isLoading} mode="Text">
+                                <Skeleton isLoading={props.isLoading} mode="Text">
                                     <p className="is-size-3 has-text-grey">{props.caption}</p>
                                 </Skeleton>
                             </div>
                             <div className="my-5">
-                                <Skeleton isLoading={!props.isLoading} mode="Rect">
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
                                     <TextField
                                         required
                                         uuid="email"
@@ -67,7 +67,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                         className="mb-4"
                                     />
                                 </Skeleton>
-                                <Skeleton isLoading={!props.isLoading} mode="Rect">
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
                                     <TextFieldWithPassword
                                         uuid="password"
                                         value={props.password}
@@ -79,18 +79,18 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                 </Skeleton>
                             </div>
                             <div className="mb-5">
-                                <Skeleton isLoading={!props.isLoading} mode="Rect">
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
                                     <ActiveButton {...props} />
                                 </Skeleton>
                             </div>
                             <div className="is-flex is-flex-direction-row is-justify-content-space-between">
                                 <div className="my-2">
-                                    <Skeleton isLoading={!props.isLoading} mode="Text" width={100} height={30}>
+                                    <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
                                         <RedirectTo path={props.link1?.href} name={props.link1?.text} />
                                     </Skeleton>
                                 </div>
                                 <div className="my-2">
-                                    <Skeleton isLoading={!props.isLoading} mode="Text" width={100} height={30}>
+                                    <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
                                         <RedirectTo path={props.link2?.href} name={props.link2?.text} />
                                     </Skeleton>
                                 </div>
