@@ -64,7 +64,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                         <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
                                             <Icon name="CardAccountMail" size={3} className="has-text-link" />
                                         </Skeleton>
-                                        <Skeleton isLoading={props.isLoading} mode="Text">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
                                             <p className="is-size-3 has-text-grey">{props.caption}</p>
                                         </Skeleton>
                                     </div>
