@@ -2,7 +2,7 @@ import * as React from "react";
 import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
 import { GET_USER_IMAGE } from "../../../../../Api";
 import { UserMedia } from "../../../../../Shared/enums";
-import { Backdrop, ProgressBar, TextArea, TextField, UploadUserMedia } from "../../../../../Shared/Components";
+import { Backdrop, ProgressBar, Skeleton, TextArea, TextField, UploadUserMedia } from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
@@ -82,68 +82,87 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <p className="is-size-4 has-text-grey">{props.sectionAccountInformation?.caption}</p>
+                            <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                <p className="is-size-4 has-text-grey">{props.sectionAccountInformation?.caption}</p>
+                            </Skeleton>
                             <hr />
                             <div className="py-4">
                                 <div className="bulma-columns cancel-margin-bottom">
                                     <div className="bulma-column bulma-is-one-fifth">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
                                         <p className="is-size-6 has-text-grey">
                                             {props.sectionAccountInformation?.labelUserId}
                                         </p>
+                                        </Skeleton>
                                     </div>
                                     <div className="bulma-column">
-                                        <p className="is-size-6 has-text-grey">{props.userStore?.userId}</p>
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                            <p className="is-size-6 has-text-grey">{props.userStore?.userId}</p>
+                                        </Skeleton>
                                     </div>
                                 </div>
                                 <div className="bulma-columns cancel-margin-bottom">
                                     <div className="bulma-column bulma-is-one-fifth">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
                                         <p className="is-size-6 has-text-grey">
                                             {props.sectionAccountInformation?.labelEmailStatus?.label}
                                         </p>
+                                        </Skeleton>
                                     </div>
                                     <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
                                         <p className="is-size-6 has-text-grey">
                                             <RenderEmailStatus {...props} />
                                             <RequestVerificationButton {...props} />
                                         </p>
+                                        </Skeleton>
                                     </div>
                                 </div>
                                 <div className="bulma-columns cancel-margin-bottom">
                                     <div className="bulma-column bulma-is-one-fifth">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
                                         <p className="is-size-6 has-text-grey">
                                             {props.sectionAccountInformation?.labelUserAlias}
                                         </p>
+                                        </Skeleton>
                                     </div>
                                     <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
                                         <p className="is-size-6 has-text-grey">{props.userStore?.aliasName}</p>
+                                        </Skeleton>
                                     </div>
                                 </div>
                                 <hr />
                                 <div className="bulma-columns cancel-margin-bottom">
                                     <div className="bulma-column bulma-is-one-fifth is-align-self-center">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
                                         <p className="is-size-6 has-text-grey">
                                             {props.sectionAccountInformation?.labelUserAvatar}
                                         </p>
+                                        </Skeleton>
                                     </div>
                                     <div className="bulma-column">
-                                        {props.isLoading ? null : (
+                                        <Skeleton isLoading={props.isLoading} mode="Circle" width={48} height={48} disableMarginY>
                                             <UploadUserMedia
                                                 customHandle={props.fileUploadingCustomHandle}
                                                 mediaTarget={UserMedia.userImage}
                                                 handle="userInfoSection_userImage"
                                                 previewImage={previewImage}
                                             />
-                                        )}
+                                        </Skeleton>
                                     </div>
                                 </div>
                                 <hr />
                                 <div className="bulma-columns cancel-margin-bottom">
                                     <div className="bulma-column bulma-is-one-fifth is-align-self-center">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
                                         <p className="is-size-6 has-text-grey">
                                             {props.sectionAccountInformation?.labelFirstName}
                                         </p>
+                                        </Skeleton>
                                     </div>
                                     <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect" disableMarginY>
                                         <TextField
                                             required
                                             uuid="firstName"
@@ -151,15 +170,19 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             onKeyUp={props.keyHandler}
                                             onChange={props.formHandler}
                                         />
+                                        </Skeleton>
                                     </div>
                                 </div>
                                 <div className="bulma-columns cancel-margin-bottom">
                                     <div className="bulma-column bulma-is-one-fifth is-align-self-center">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
                                         <p className="is-size-6 has-text-grey">
                                             {props.sectionAccountInformation?.labelLastName}
                                         </p>
+                                        </Skeleton>
                                     </div>
                                     <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect" disableMarginY>
                                         <TextField
                                             required
                                             uuid="lastName"
@@ -167,15 +190,19 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             onKeyUp={props.keyHandler}
                                             onChange={props.formHandler}
                                         />
+                                        </Skeleton>
                                     </div>
                                 </div>
                                 <div className="bulma-columns cancel-margin-bottom">
                                     <div className="bulma-column bulma-is-one-fifth is-align-self-center">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
                                         <p className="is-size-6 has-text-grey">
                                             {props.sectionAccountInformation?.labelEmail}
                                         </p>
+                                        </Skeleton>
                                     </div>
                                     <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect" disableMarginY>
                                         <TextField
                                             required
                                             uuid="email"
@@ -183,15 +210,19 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             onKeyUp={props.keyHandler}
                                             onChange={props.formHandler}
                                         />
+                                        </Skeleton>
                                     </div>
                                 </div>
                                 <div className="bulma-columns cancel-margin-bottom">
                                     <div className="bulma-column bulma-is-one-fifth is-align-self-center">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
                                         <p className="is-size-6 has-text-grey">
                                             {props.sectionAccountInformation?.labelShortBio}
                                         </p>
+                                        </Skeleton>
                                     </div>
                                     <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect" disableMarginY>
                                         <TextArea
                                             required
                                             isFixedSize
@@ -200,11 +231,14 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             value={props.userAbout?.message}
                                             onChange={props.descriptionHandler}
                                         />
+                                        </Skeleton>
                                     </div>
                                 </div>
                                 <hr />
                                 <div className="has-text-right">
+                                    <Skeleton isLoading={props.isLoading} mode="Rect" disableMarginY>
                                     <UpdateAccountButton {...props} />
+                                    </Skeleton>
                                 </div>
                             </div>
                         </div>

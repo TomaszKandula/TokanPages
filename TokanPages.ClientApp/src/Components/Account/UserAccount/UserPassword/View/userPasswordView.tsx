@@ -2,7 +2,7 @@ import * as React from "react";
 import { SectionAccountPassword } from "../../../../../Api/Models";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
-import { ProgressBar, TextFieldWithPassword } from "../../../../../Shared/Components";
+import { ProgressBar, Skeleton, TextFieldWithPassword } from "../../../../../Shared/Components";
 import { UserPasswordProps } from "../userPassword";
 
 interface UserPasswordViewProps extends ViewProperties, UserPasswordProps {
@@ -36,8 +36,11 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <p className="is-size-4 has-text-grey">{props.sectionAccountPassword?.caption}</p>
+                            <Skeleton isLoading={props.isLoading} mode="Rect">
+                                <p className="is-size-4 has-text-grey">{props.sectionAccountPassword?.caption}</p>
+                            </Skeleton>
                             <hr />
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
                             <div className="py-2">
                                 <TextFieldWithPassword
                                     uuid="oldPassword"
@@ -47,6 +50,8 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                     placeholder={props.sectionAccountPassword?.labelOldPassword}
                                 />
                             </div>
+                                </Skeleton>
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
                             <div className="py-2">
                                 <TextFieldWithPassword
                                     uuid="newPassword"
@@ -56,6 +61,8 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                     placeholder={props.sectionAccountPassword?.labelNewPassword}
                                 />
                             </div>
+                                </Skeleton>
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
                             <div className="py-2">
                                 <TextFieldWithPassword
                                     uuid="confirmPassword"
@@ -65,9 +72,12 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
                                     placeholder={props.sectionAccountPassword?.labelConfirmPassword}
                                 />
                             </div>
+                                </Skeleton>
                             <hr />
                             <div className="has-text-right">
-                                <UpdatePasswordButton {...props} />
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                                    <UpdatePasswordButton {...props} />
+                                </Skeleton>
                             </div>
                         </div>
                     </div>

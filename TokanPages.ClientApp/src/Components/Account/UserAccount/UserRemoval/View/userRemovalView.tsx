@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SectionAccountRemoval } from "../../../../../Api/Models";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
-import { ProgressBar, RenderParagraphs } from "../../../../../Shared/Components";
+import { ProgressBar, RenderParagraphs, Skeleton } from "../../../../../Shared/Components";
 import { UserRemovalProps } from "../userRemoval";
 
 interface UserRemovalViewProps extends ViewProperties, UserRemovalProps {
@@ -30,15 +30,20 @@ export const UserRemovalView = (props: UserRemovalViewProps): React.ReactElement
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <p className="is-size-4 has-text-grey">{props.sectionAccountRemoval?.caption}</p>
+                            <Skeleton isLoading={props.isLoading} mode="Rect">
+                                <p className="is-size-4 has-text-grey">{props.sectionAccountRemoval?.caption}</p>
+                            </Skeleton>
                             <hr />
                             <RenderParagraphs
+                                isLoading={props.isLoading} 
                                 text={props.sectionAccountRemoval?.warningText}
                                 className="is-size-6 has-text-grey line-height-20"
                             />
                             <hr />
                             <div className="has-text-right">
-                                <DeleteAccountButton {...props} />
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                                    <DeleteAccountButton {...props} />
+                                </Skeleton>
                             </div>
                         </div>
                     </div>
