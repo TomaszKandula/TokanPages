@@ -21,7 +21,7 @@ Object {
                 class="bulma-card-content"
               >
                 <div
-                  class="has-text-centered"
+                  class="is-flex is-flex-direction-column is-align-items-center"
                 >
                   <div>
                     <svg
@@ -98,7 +98,7 @@ Object {
               class="bulma-card-content"
             >
               <div
-                class="has-text-centered"
+                class="is-flex is-flex-direction-column is-align-items-center"
               >
                 <div>
                   <svg

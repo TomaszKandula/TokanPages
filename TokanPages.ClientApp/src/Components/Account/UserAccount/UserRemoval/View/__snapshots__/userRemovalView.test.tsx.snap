@@ -45,6 +45,7 @@ Object {
                   >
                     <div
                       class="progress-bar-box "
+                      data-testid="progress-bar-view"
                     >
                       <span
                         class="progress-bar-loader"
@@ -101,6 +102,7 @@ Object {
                 >
                   <div
                     class="progress-bar-box "
+                    data-testid="progress-bar-view"
                   >
                     <span
                       class="progress-bar-loader"

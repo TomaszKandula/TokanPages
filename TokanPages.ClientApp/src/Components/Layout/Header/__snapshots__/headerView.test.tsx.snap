@@ -55,7 +55,7 @@ Object {
                   Let me know...
                 </h3>
                 <div
-                  class="pt-4"
+                  class="pt-4 "
                 >
                   <a
                     class="link"
@@ -146,7 +146,7 @@ Object {
                 Let me know...
               </h3>
               <div
-                class="pt-4"
+                class="pt-4 "
               >
                 <a
                   class="link"

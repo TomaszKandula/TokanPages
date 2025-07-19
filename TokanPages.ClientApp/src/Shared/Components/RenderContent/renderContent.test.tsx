@@ -107,19 +107,27 @@ describe("test render function 'renderContent'", () => {
         ],
     };
 
-    const noItems = render(<TestComponent textObject={undefined}></TestComponent>);
-    const emptyItems = render(<TestComponent textObject={{ items: [] }}></TestComponent>);
-    const withItems = render(<TestComponent textObject={TestObject}></TestComponent>);
+    it("should render '<ProgressBar />' when called with items undefined.", () => {
+        const view = render(<TestComponent textObject={undefined}></TestComponent>);
+        const progressBar = view.getByTestId("progress-bar-view");
 
-    it("should return 'Cannot render content.' when called with items undefined.", () => {
-        expect(noItems).toMatchSnapshot();
+        expect(progressBar).toBeInTheDocument();
+        expect(view).toMatchSnapshot();
     });
 
-    it("should return 'Cannot render content.' when called with empty array of items.", () => {
-        expect(emptyItems).toMatchSnapshot();
+    it("should '<ProgressBar />' when called with empty array of items.", () => {
+        const view = render(<TestComponent textObject={{ items: [] }}></TestComponent>);
+        const progressBar = view.getByTestId("progress-bar-view");
+
+        expect(progressBar).toBeInTheDocument();
+        expect(view).toMatchSnapshot();
     });
 
     it("should correctly render passed items.", () => {
-        expect(withItems).toMatchSnapshot();
+        const view = render(<TestComponent textObject={TestObject}></TestComponent>);
+        const progressBar = view.queryByTestId("progress-bar-view");
+
+        expect(progressBar).not.toBeInTheDocument();
+        expect(view).toMatchSnapshot();
     });
 });

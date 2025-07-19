@@ -40,7 +40,7 @@ Object {
                   </div>
                 </div>
                 <h2
-                  class="bulma-title has-text-centered "
+                  class="bulma-title has-text-centered"
                 >
                   Account Activation
                 </h2>
@@ -48,12 +48,12 @@ Object {
                   class="my-5"
                 >
                   <p
-                    class="is-size-6 has-text-centered line-height-20 "
+                    class="is-size-6 has-text-centered line-height-20"
                   >
                     Your account has been successfully activated!
                   </p>
                   <p
-                    class="is-size-6 has-text-centered line-height-20 "
+                    class="is-size-6 has-text-centered line-height-20"
                   >
                     You can now sign in.
                   </p>
@@ -104,7 +104,7 @@ Object {
                 </div>
               </div>
               <h2
-                class="bulma-title has-text-centered "
+                class="bulma-title has-text-centered"
               >
                 Account Activation
               </h2>
@@ -112,12 +112,12 @@ Object {
                 class="my-5"
               >
                 <p
-                  class="is-size-6 has-text-centered line-height-20 "
+                  class="is-size-6 has-text-centered line-height-20"
                 >
                   Your account has been successfully activated!
                 </p>
                 <p
-                  class="is-size-6 has-text-centered line-height-20 "
+                  class="is-size-6 has-text-centered line-height-20"
                 >
                   You can now sign in.
                 </p>

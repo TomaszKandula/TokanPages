@@ -11,6 +11,7 @@ Object {
         >
           <div
             class="progress-bar-box "
+            data-testid="progress-bar-view"
           >
             <span
               class="progress-bar-loader"
@@ -123,6 +124,7 @@ Object {
       >
         <div
           class="progress-bar-box "
+          data-testid="progress-bar-view"
         >
           <span
             class="progress-bar-loader"
@@ -556,84 +558,38 @@ Object {
               <div
                 class="bulma-card-content"
               >
-                <p
-                  class="is-size-4 has-text-grey"
-                >
-                  User Notes
-                </p>
+                <div
+                  class="base skeleton-text my-2 "
+                  style="height: 14px;"
+                />
                 <hr />
                 <div
                   class="py-4"
                 >
-                  <p
-                    class="is-size-6 has-text-grey pb-5"
-                  >
-                    You can save up to 100000 private notes...
-                  </p>
+                  <div
+                    class="base skeleton-text my-2 "
+                    style="height: 14px;"
+                  />
                   <div
                     class="bulma-cell is-flex is-flex-direction-row is-align-items-flex-start is-justify-content-left"
                   >
                     <div
-                      class="user-notes-list-box"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        Notes:
-                      </p>
-                      <div
-                        class="user-notes-fixed-list"
-                      />
-                    </div>
-                    <div
-                      class="user-notes-message-box"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        Message:
-                      </p>
-                      <div
-                        class="bulma-field"
-                      >
-                        <div
-                          class="bulma-control  user-notes-text-box"
-                        >
-                          <textarea
-                            class="bulma-textarea   bulma-has-fixed-size"
-                            id="note"
-                            name="note"
-                            required=""
-                            rows="16"
-                          />
-                        </div>
-                      </div>
-                    </div>
+                      class="base skeleton-rect my-2 "
+                      style="height: 300px;"
+                    />
                   </div>
                   <div
                     class="bulma-content pt-4"
                   >
-                    <button
-                      class="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
-                      disabled=""
-                      type="submit"
-                    >
-                      Remove
-                    </button>
-                    <button
-                      class="bulma-button bulma-is-light bulma-is-fullwidth my-4"
-                      disabled=""
-                      type="submit"
-                    >
-                      Clear
-                    </button>
-                    <button
-                      class="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
-                      disabled=""
-                      type="submit"
-                    >
-                      Save
-                    </button>
+                    <div
+                      class="base skeleton-rect my-2 "
+                    />
+                    <div
+                      class="base skeleton-rect my-2 "
+                    />
+                    <div
+                      class="base skeleton-rect my-2 "
+                    />
                   </div>
                 </div>
               </div>
@@ -657,84 +613,38 @@ Object {
             <div
               class="bulma-card-content"
             >
-              <p
-                class="is-size-4 has-text-grey"
-              >
-                User Notes
-              </p>
+              <div
+                class="base skeleton-text my-2 "
+                style="height: 14px;"
+              />
               <hr />
               <div
                 class="py-4"
               >
-                <p
-                  class="is-size-6 has-text-grey pb-5"
-                >
-                  You can save up to 100000 private notes...
-                </p>
+                <div
+                  class="base skeleton-text my-2 "
+                  style="height: 14px;"
+                />
                 <div
                   class="bulma-cell is-flex is-flex-direction-row is-align-items-flex-start is-justify-content-left"
                 >
                   <div
-                    class="user-notes-list-box"
-                  >
-                    <p
-                      class="is-size-6 has-text-grey"
-                    >
-                      Notes:
-                    </p>
-                    <div
-                      class="user-notes-fixed-list"
-                    />
-                  </div>
-                  <div
-                    class="user-notes-message-box"
-                  >
-                    <p
-                      class="is-size-6 has-text-grey"
-                    >
-                      Message:
-                    </p>
-                    <div
-                      class="bulma-field"
-                    >
-                      <div
-                        class="bulma-control  user-notes-text-box"
-                      >
-                        <textarea
-                          class="bulma-textarea   bulma-has-fixed-size"
-                          id="note"
-                          name="note"
-                          required=""
-                          rows="16"
-                        />
-                      </div>
-                    </div>
-                  </div>
+                    class="base skeleton-rect my-2 "
+                    style="height: 300px;"
+                  />
                 </div>
                 <div
                   class="bulma-content pt-4"
                 >
-                  <button
-                    class="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
-                    disabled=""
-                    type="submit"
-                  >
-                    Remove
-                  </button>
-                  <button
-                    class="bulma-button bulma-is-light bulma-is-fullwidth my-4"
-                    disabled=""
-                    type="submit"
-                  >
-                    Clear
-                  </button>
-                  <button
-                    class="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
-                    disabled=""
-                    type="submit"
-                  >
-                    Save
-                  </button>
+                  <div
+                    class="base skeleton-rect my-2 "
+                  />
+                  <div
+                    class="base skeleton-rect my-2 "
+                  />
+                  <div
+                    class="base skeleton-rect my-2 "
+                  />
                 </div>
               </div>
             </div>

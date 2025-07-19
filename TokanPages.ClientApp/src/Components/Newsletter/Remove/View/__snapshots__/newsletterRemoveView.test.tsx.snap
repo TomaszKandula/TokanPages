@@ -40,7 +40,7 @@ Object {
                   </div>
                 </div>
                 <h2
-                  class="bulma-title has-text-centered "
+                  class="bulma-title has-text-centered"
                 >
                   Cancel your subscribtion
                 </h2>
@@ -48,23 +48,23 @@ Object {
                   class="my-5"
                 >
                   <p
-                    class="is-size-6 has-text-centered line-height-20 "
+                    class="is-size-6 has-text-centered line-height-20"
                   >
                     We are sorry to see you go...
                   </p>
                   <p
-                    class="is-size-6 has-text-centered line-height-20 "
+                    class="is-size-6 has-text-centered line-height-20"
                   >
                     ...but we understand there are circumstances
                   </p>
                   <p
-                    class="is-size-6 has-text-centered line-height-20 "
+                    class="is-size-6 has-text-centered line-height-20"
                   >
                     Please contact us should you have any questions
                   </p>
                 </div>
                 <div
-                  class="mt-6 "
+                  class="mt-6"
                 >
                   <button
                     class="bulma-button bulma-is-light bulma-is-fullwidth"
@@ -120,7 +120,7 @@ Object {
                 </div>
               </div>
               <h2
-                class="bulma-title has-text-centered "
+                class="bulma-title has-text-centered"
               >
                 Cancel your subscribtion
               </h2>
@@ -128,23 +128,23 @@ Object {
                 class="my-5"
               >
                 <p
-                  class="is-size-6 has-text-centered line-height-20 "
+                  class="is-size-6 has-text-centered line-height-20"
                 >
                   We are sorry to see you go...
                 </p>
                 <p
-                  class="is-size-6 has-text-centered line-height-20 "
+                  class="is-size-6 has-text-centered line-height-20"
                 >
                   ...but we understand there are circumstances
                 </p>
                 <p
-                  class="is-size-6 has-text-centered line-height-20 "
+                  class="is-size-6 has-text-centered line-height-20"
                 >
                   Please contact us should you have any questions
                 </p>
               </div>
               <div
-                class="mt-6 "
+                class="mt-6"
               >
                 <button
                   class="bulma-button bulma-is-light bulma-is-fullwidth"

@@ -13,6 +13,7 @@ Object {
             class="py-4"
           >
             <div
+              class="pb-5"
               data-aos="fade-down"
               data-aos-delay="0"
             >
@@ -211,6 +212,7 @@ Object {
           class="py-4"
         >
           <div
+            class="pb-5"
             data-aos="fade-down"
             data-aos-delay="0"
           >

@@ -6,26 +6,6 @@ import { ItemDto } from "../../../../../Api/Models";
 import { RenderSideMenu } from "./renderSideMenu";
 
 describe("test render function 'RenderSideMenu'", () => {
-    const noItems = render(
-        <BrowserRouter>
-            <RenderSideMenu isAnonymous={true} languageId="en" items={undefined}></RenderSideMenu>
-        </BrowserRouter>
-    );
-
-    it("should return 'Cannot render content.' when called with items undefined.", () => {
-        expect(noItems).toMatchSnapshot();
-    });
-
-    const emptyItems = render(
-        <BrowserRouter>
-            <RenderSideMenu isAnonymous={true} languageId="en" items={[]}></RenderSideMenu>
-        </BrowserRouter>
-    );
-
-    it("should return 'Cannot render content.' when called with empty array of items.", () => {
-        expect(emptyItems).toMatchSnapshot();
-    });
-
     const items: ItemDto[] = [
         {
             id: "c44bb2cd-ee75-470c-942e-5560e3589102",
@@ -513,23 +493,47 @@ describe("test render function 'RenderSideMenu'", () => {
         },
     ];
 
-    const menuItemsLogged = render(
-        <BrowserRouter>
-            <RenderSideMenu isAnonymous={false} languageId="en" items={items}></RenderSideMenu>
-        </BrowserRouter>
-    );
-
     it("should return rendered list when items are provided, user is logged.", () => {
-        expect(menuItemsLogged).toMatchSnapshot();
+        const view = render(<RenderSideMenu isAnonymous={false} languageId="en" items={items} />, {
+            wrapper: BrowserRouter,
+        });
+
+        const progressBar = view.queryByTestId("progress-bar-view");
+
+        expect(progressBar).not.toBeInTheDocument();
+        expect(view).toMatchSnapshot();
     });
 
-    const menuItemsAnonymous = render(
-        <BrowserRouter>
-            <RenderSideMenu isAnonymous={true} languageId="en" items={items}></RenderSideMenu>
-        </BrowserRouter>
-    );
-
     it("should return rendered list when items are provided, user is anonymous.", () => {
-        expect(menuItemsAnonymous).toMatchSnapshot();
+        const view = render(<RenderSideMenu isAnonymous={true} languageId="en" items={items} />, {
+            wrapper: BrowserRouter,
+        });
+
+        const progressBar = view.queryByTestId("progress-bar-view");
+
+        expect(progressBar).not.toBeInTheDocument();
+        expect(view).toMatchSnapshot();
+    });
+
+    it("should return '<ProgressBar />' when called with items undefined.", () => {
+        const view = render(<RenderSideMenu isAnonymous={true} languageId="en" items={undefined} />, {
+            wrapper: BrowserRouter,
+        });
+
+        const progressBar = view.getByTestId("progress-bar-view");
+
+        expect(progressBar).toBeInTheDocument();
+        expect(view).toMatchSnapshot();
+    });
+
+    it("should return '<ProgressBar />' when called with empty array of items.", () => {
+        const view = render(<RenderSideMenu isAnonymous={true} languageId="en" items={[]} />, {
+            wrapper: BrowserRouter,
+        });
+
+        const progressBar = view.getByTestId("progress-bar-view");
+
+        expect(progressBar).toBeInTheDocument();
+        expect(view).toMatchSnapshot();
     });
 });

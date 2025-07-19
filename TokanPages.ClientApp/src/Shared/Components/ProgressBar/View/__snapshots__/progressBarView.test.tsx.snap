@@ -7,6 +7,7 @@ Object {
     <div>
       <div
         class="progress-bar-box "
+        data-testid="progress-bar-view"
       >
         <span
           class="progress-bar-loader"
@@ -18,6 +19,7 @@ Object {
   "container": <div>
     <div
       class="progress-bar-box "
+      data-testid="progress-bar-view"
     >
       <span
         class="progress-bar-loader"

@@ -10,6 +10,7 @@ import { getHomeText, pathToRootText, pathToSubitemText, toUpperCase } from "./U
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 import "./customBreadcrumbView.css";
+import { Skeleton } from "../Skeleton";
 
 const useQuery = (): URLSearchParams => {
     return new URLSearchParams(useLocation().search);
@@ -70,31 +71,33 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
 
     return (
         <div className={`bulma-container bulma-is-max-tablet mt-6 pt-6 ${media.isMobile ? "px-4" : ""}`}>
-            <nav className="bulma-breadcrumb bulma-has-arrow-separator">
-                <ul>
-                    <li>
-                        <div className="mr-2">
-                            <div
-                                onClick={onBackToRoot}
-                                className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable"
-                            >
-                                <Icon name="Home" size={0.75} className="mx-1" />
-                                <span className="pt-2 pr-2 pb-2">{getHomeText(navigation)}</span>
-                            </div>
-                        </div>
-                    </li>
-                    {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
-                    {hasParam ? (
+            <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={18}>
+                <nav className="bulma-breadcrumb bulma-has-arrow-separator">
+                    <ul>
                         <li>
-                            <div className="mx-2">
-                                <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center">
-                                    <span className="p-2">{toUpperCase(paramValue)}</span>
+                            <div className="mr-2">
+                                <div
+                                    onClick={onBackToRoot}
+                                    className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable"
+                                >
+                                    <Icon name="Home" size={0.75} className="mx-1" />
+                                    <span className="pt-2 pr-2 pb-2">{getHomeText(navigation)}</span>
                                 </div>
                             </div>
                         </li>
-                    ) : null}
-                </ul>
-            </nav>
+                        {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
+                        {hasParam ? (
+                            <li>
+                                <div className="mx-2">
+                                    <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center">
+                                        <span className="p-2">{toUpperCase(paramValue)}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        ) : null}
+                    </ul>
+                </nav>
+            </Skeleton>
             <hr className="my-5" />
         </div>
     );

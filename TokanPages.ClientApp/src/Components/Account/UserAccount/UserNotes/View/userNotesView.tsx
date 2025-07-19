@@ -1,6 +1,6 @@
 import * as React from "react";
 import { UserNoteResultDto } from "../../../../../Api/Models";
-import { Backdrop, TextArea } from "../../../../../Shared/Components";
+import { Backdrop, Skeleton, TextArea } from "../../../../../Shared/Components";
 import { ReactChangeTextEvent } from "../../../../../Shared/types";
 import Validate from "validate.js";
 import "./userNotesView.css";
@@ -66,6 +66,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
     const noteUid = props.selection ? ` (${props.selection.id.substring(0, 8)}):` : ":";
     const isEmpty = Validate.isEmpty(props.messageForm.note);
     const flexDirection = isMobileOrTablet ? "is-flex-direction-column" : "is-flex-direction-row";
+    const modifiers = "is-align-items-flex-start is-justify-content-left";
 
     return (
         <section>
@@ -74,68 +75,78 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
                 <div className="py-6">
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <p className="is-size-4 has-text-grey">{props.captionText}</p>
+                            <Skeleton isLoading={props.isLoading} mode="Text" height={14}>
+                                <p className="is-size-4 has-text-grey">{props.captionText}</p>
+                            </Skeleton>
                             <hr />
                             <div className="py-4">
-                                <p className="is-size-6 has-text-grey pb-5">{props.descriptionText}</p>
-                                <div
-                                    className={`bulma-cell is-flex ${flexDirection} is-align-items-flex-start is-justify-content-left`}
-                                >
-                                    <div className="user-notes-list-box">
-                                        <p className="is-size-6 has-text-grey">{`${props.listLabel}:`}</p>
-                                        <div className="user-notes-fixed-list">
-                                            {!props.isLoading &&
-                                                props.userNotes?.map((value: UserNoteProps, index: number) => (
-                                                    <RenderRow
-                                                        key={value.id}
-                                                        id={value.id}
-                                                        note={value.id.substring(0, 8)}
-                                                        index={index}
-                                                        selection={props.selection?.id}
-                                                        onClick={props.onRowClick}
-                                                    />
-                                                ))}
+                                <Skeleton isLoading={props.isLoading} mode="Text" height={14}>
+                                    <p className="is-size-6 has-text-grey pb-5">{props.descriptionText}</p>
+                                </Skeleton>
+                                <div className={`bulma-cell is-flex ${flexDirection} ${modifiers}`}>
+                                    <Skeleton isLoading={props.isLoading} mode="Rect" height={300}>
+                                        <div className="user-notes-list-box">
+                                            <p className="is-size-6 has-text-grey">{`${props.listLabel}:`}</p>
+                                            <div className="user-notes-fixed-list">
+                                                {!props.isLoading &&
+                                                    props.userNotes?.map((value: UserNoteProps, index: number) => (
+                                                        <RenderRow
+                                                            key={value.id}
+                                                            id={value.id}
+                                                            note={value.id.substring(0, 8)}
+                                                            index={index}
+                                                            selection={props.selection?.id}
+                                                            onClick={props.onRowClick}
+                                                        />
+                                                    ))}
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div className="user-notes-message-box">
-                                        <p className="is-size-6 has-text-grey">{`${props.noteLabel}${noteUid}`}</p>
-                                        <TextArea
-                                            required
-                                            isFixedSize
-                                            uuid="note"
-                                            rows={16}
-                                            onChange={props.messageHandler}
-                                            value={props.messageForm.note}
-                                            isDisabled={props.isLoading}
-                                            className="user-notes-text-box"
-                                        />
-                                    </div>
+                                        <div className="user-notes-message-box">
+                                            <p className="is-size-6 has-text-grey">{`${props.noteLabel}${noteUid}`}</p>
+                                            <TextArea
+                                                required
+                                                isFixedSize
+                                                uuid="note"
+                                                rows={16}
+                                                onChange={props.messageHandler}
+                                                value={props.messageForm.note}
+                                                isDisabled={props.isLoading}
+                                                className="user-notes-text-box"
+                                            />
+                                        </div>
+                                    </Skeleton>
                                 </div>
                                 <div className="bulma-content pt-4">
-                                    <button
-                                        type="submit"
-                                        className="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
-                                        disabled={props.isLoading || !hasNotes || !props.selection}
-                                        onClick={props.removeButtonHandler}
-                                    >
-                                        {props.removeButtonText}
-                                    </button>
-                                    <button
-                                        type="submit"
-                                        className="bulma-button bulma-is-light bulma-is-fullwidth my-4"
-                                        disabled={props.isLoading}
-                                        onClick={props.clearButtonHandler}
-                                    >
-                                        {props.clearButtonText}
-                                    </button>
-                                    <button
-                                        type="submit"
-                                        className="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
-                                        disabled={props.isLoading || isEmpty}
-                                        onClick={props.saveButtonHandler}
-                                    >
-                                        {props.saveButtonText}
-                                    </button>
+                                    <Skeleton isLoading={props.isLoading} mode="Rect">
+                                        <button
+                                            type="submit"
+                                            className="bulma-button bulma-is-danger bulma-is-light bulma-is-fullwidth my-4"
+                                            disabled={props.isLoading || !hasNotes || !props.selection}
+                                            onClick={props.removeButtonHandler}
+                                        >
+                                            {props.removeButtonText}
+                                        </button>
+                                    </Skeleton>
+                                    <Skeleton isLoading={props.isLoading} mode="Rect">
+                                        <button
+                                            type="submit"
+                                            className="bulma-button bulma-is-light bulma-is-fullwidth my-4"
+                                            disabled={props.isLoading}
+                                            onClick={props.clearButtonHandler}
+                                        >
+                                            {props.clearButtonText}
+                                        </button>
+                                    </Skeleton>
+                                    <Skeleton isLoading={props.isLoading} mode="Rect">
+                                        <button
+                                            type="submit"
+                                            className="bulma-button bulma-is-light bulma-is-link bulma-is-fullwidth my-4"
+                                            disabled={props.isLoading || isEmpty}
+                                            onClick={props.saveButtonHandler}
+                                        >
+                                            {props.saveButtonText}
+                                        </button>
+                                    </Skeleton>
                                 </div>
                             </div>
                         </div>

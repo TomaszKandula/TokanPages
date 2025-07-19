@@ -40,16 +40,16 @@ Object {
                   </div>
                 </div>
                 <h2
-                  class="bulma-title has-text-centered "
+                  class="bulma-title has-text-centered"
                 />
                 <div
                   class="my-5"
                 >
                   <p
-                    class="is-size-6 has-text-centered line-height-20 "
+                    class="is-size-6 has-text-centered line-height-20"
                   />
                   <p
-                    class="is-size-6 has-text-centered line-height-20 "
+                    class="is-size-6 has-text-centered line-height-20"
                   />
                 </div>
                 <div
@@ -98,16 +98,16 @@ Object {
                 </div>
               </div>
               <h2
-                class="bulma-title has-text-centered "
+                class="bulma-title has-text-centered"
               />
               <div
                 class="my-5"
               >
                 <p
-                  class="is-size-6 has-text-centered line-height-20 "
+                  class="is-size-6 has-text-centered line-height-20"
                 />
                 <p
-                  class="is-size-6 has-text-centered line-height-20 "
+                  class="is-size-6 has-text-centered line-height-20"
                 />
               </div>
               <div

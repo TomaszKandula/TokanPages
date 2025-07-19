@@ -6,26 +6,6 @@ import { ItemDto } from "../../../../../Api/Models";
 import { RenderNavbarMenu } from "./renderNavbarMenu";
 
 describe("test render function 'RenderNavbarMenu'", () => {
-    const noItems = render(
-        <BrowserRouter>
-            <RenderNavbarMenu isAnonymous={true} languageId="en" items={undefined}></RenderNavbarMenu>
-        </BrowserRouter>
-    );
-
-    it("should return 'Cannot render content.' when called with items undefined.", () => {
-        expect(noItems).toMatchSnapshot();
-    });
-
-    const emptyItems = render(
-        <BrowserRouter>
-            <RenderNavbarMenu isAnonymous={true} languageId="en" items={[]}></RenderNavbarMenu>
-        </BrowserRouter>
-    );
-
-    it("should return 'Cannot render content.' when called with empty array of items.", () => {
-        expect(emptyItems).toMatchSnapshot();
-    });
-
     const items: ItemDto[] = [
         {
             id: "c44bb2cd-ee75-470c-942e-5560e3589102",
@@ -513,23 +493,47 @@ describe("test render function 'RenderNavbarMenu'", () => {
         },
     ];
 
-    const menuItemsLogged = render(
-        <BrowserRouter>
-            <RenderNavbarMenu isAnonymous={false} languageId="en" items={items}></RenderNavbarMenu>
-        </BrowserRouter>
-    );
-
     it("should return rendered list when items are provided and user is logged.", () => {
-        expect(menuItemsLogged).toMatchSnapshot();
+        const view = render(<RenderNavbarMenu isAnonymous={false} languageId="en" items={items} />, {
+            wrapper: BrowserRouter,
+        });
+
+        const progressBar = view.queryByTestId("progress-bar-view");
+
+        expect(progressBar).not.toBeInTheDocument();
+        expect(view).toMatchSnapshot();
     });
 
-    const menuItemsAnonymous = render(
-        <BrowserRouter>
-            <RenderNavbarMenu isAnonymous={true} languageId="en" items={items}></RenderNavbarMenu>
-        </BrowserRouter>
-    );
-
     it("should return rendered list when items are provided and user is anonymous.", () => {
-        expect(menuItemsAnonymous).toMatchSnapshot();
+        const view = render(<RenderNavbarMenu isAnonymous={true} languageId="en" items={items} />, {
+            wrapper: BrowserRouter,
+        });
+
+        const progressBar = view.queryByTestId("progress-bar-view");
+
+        expect(progressBar).not.toBeInTheDocument();
+        expect(view).toMatchSnapshot();
+    });
+
+    it("should return '<ProgressBar />' when called with items undefined.", () => {
+        const view = render(<RenderNavbarMenu isAnonymous={true} languageId="en" items={undefined} />, {
+            wrapper: BrowserRouter,
+        });
+
+        const progressBar = view.getByTestId("progress-bar-view");
+
+        expect(progressBar).toBeInTheDocument();
+        expect(view).toMatchSnapshot();
+    });
+
+    it("should return '<ProgressBar />' when called with empty array of items.", () => {
+        const view = render(<RenderNavbarMenu isAnonymous={true} languageId="en" items={[]} />, {
+            wrapper: BrowserRouter,
+        });
+
+        const progressBar = view.getByTestId("progress-bar-view");
+
+        expect(progressBar).toBeInTheDocument();
+        expect(view).toMatchSnapshot();
     });
 });
