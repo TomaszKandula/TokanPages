@@ -51,7 +51,9 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                 <div className={!props.className ? boxPadding : props.className}>
                     {props.hasCaption ? (
                         <Animated dataAos="fade-down">
+                            <Skeleton isLoading={props.isLoading} mode="Text" height={40}>
                             <p className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</p>
+                            </Skeleton>
                         </Animated>
                     ) : null}
                     <div className={cardPadding}>
