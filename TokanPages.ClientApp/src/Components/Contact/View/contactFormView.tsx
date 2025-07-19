@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../Shared/types";
-import { Animated, Icon, ProgressBar, TextArea, TextField } from "../../../Shared/Components";
+import { Animated, Icon, ProgressBar, Skeleton, TextArea, TextField } from "../../../Shared/Components";
 import { ContactFormProps } from "../contactForm";
 import "./contactFormView.css";
 
@@ -61,14 +61,19 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                             <div className="bulma-card-content background-colour-inherited">
                                 {props.hasIcon ? (
                                     <div className="is-flex is-flex-direction-column is-align-items-center">
-                                        <Icon name="CardAccountMail" size={3} className="has-text-link" />
-                                        <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                        <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                                            <Icon name="CardAccountMail" size={3} className="has-text-link" />
+                                        </Skeleton>
+                                        <Skeleton isLoading={props.isLoading} mode="Text">
+                                            <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                        </Skeleton>
                                     </div>
                                 ) : null}
                                 <div className={colPadding}>
                                     <div className="bulma-columns">
                                         <div className="bulma-column">
                                             <Animated dataAos="zoom-in">
+                                                <Skeleton isLoading={props.isLoading} mode="Rect">
                                                 <TextField
                                                     required
                                                     uuid="firstName"
@@ -78,10 +83,12 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                                     value={props.firstName}
                                                     placeholder={props.labelFirstName}
                                                 />
+                                                </Skeleton>
                                             </Animated>
                                         </div>
                                         <div className="bulma-column">
                                             <Animated dataAos="zoom-in">
+                                                <Skeleton isLoading={props.isLoading} mode="Rect">
                                                 <TextField
                                                     required
                                                     uuid="lastName"
@@ -91,12 +98,14 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                                     value={props.lastName}
                                                     placeholder={props.labelLastName}
                                                 />
+                                                </Skeleton>
                                             </Animated>
                                         </div>
                                     </div>
                                     <div className="bulma-columns">
                                         <div className="bulma-column">
                                             <Animated dataAos="zoom-in">
+                                                <Skeleton isLoading={props.isLoading} mode="Rect">
                                                 <TextField
                                                     required
                                                     uuid="email"
@@ -106,12 +115,14 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                                     value={props.email}
                                                     placeholder={props.labelEmail}
                                                 />
+                                                </Skeleton>
                                             </Animated>
                                         </div>
                                     </div>
                                     <div className="bulma-columns">
                                         <div className="bulma-column">
                                             <Animated dataAos="zoom-in">
+                                                <Skeleton isLoading={props.isLoading} mode="Rect">
                                                 <TextField
                                                     required
                                                     uuid="subject"
@@ -121,12 +132,14 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                                     value={props.subject}
                                                     placeholder={props.labelSubject}
                                                 />
+                                                </Skeleton>
                                             </Animated>
                                         </div>
                                     </div>
                                     <div className="bulma-columns">
                                         <div className="bulma-column">
                                             <Animated dataAos="zoom-in">
+                                                <Skeleton isLoading={props.isLoading} mode="Rect" height={200}>
                                                 <TextArea
                                                     isFixedSize
                                                     required
@@ -137,15 +150,20 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                                     value={props.message}
                                                     placeholder={props.labelMessage}
                                                 />
+                                                </Skeleton>
                                             </Animated>
                                         </div>
                                     </div>
                                     <div className="bulma-content">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
                                         <div className="bulma-notification">
                                             <p className="is-size-6">{props.consent}</p>
                                         </div>
+                                        </Skeleton>
                                         <Animated dataAos="fade-up">
-                                            <ActiveButton {...props} />
+                                            <Skeleton isLoading={props.isLoading} mode="Rect">
+                                                <ActiveButton {...props} />
+                                            </Skeleton>
                                         </Animated>
                                     </div>
                                 </div>
