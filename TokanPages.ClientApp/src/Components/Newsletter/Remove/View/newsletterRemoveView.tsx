@@ -5,6 +5,7 @@ import { CustomCard, Icon, ProgressBar } from "../../../../Shared/Components";
 import { ExtendedViewProps } from "../newsletterRemove";
 
 interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {
+    isMobile: boolean;
     hasEmptyId: boolean;
     contentPre: ContentDto;
     contentPost: ContentDto;
@@ -32,7 +33,7 @@ export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.Re
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
     return (
         <section className={props.background}>
-            <div className="bulma-container bulma-is-max-desktop">
+            <div className={`bulma-container bulma-is-max-desktop ${props.isMobile ? "px-4" : ""}`}>
                 <div className={!props.className ? "py-6" : props.className}>
                     <CustomCard
                         isLoading={props.isLoading}

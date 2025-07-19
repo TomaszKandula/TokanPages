@@ -4,6 +4,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { NewsletterRemoveAction } from "../../../Store/Actions";
 import { OperationStatus } from "../../../Shared/enums";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
+import { useDimensions } from "../../../Shared/Hooks";
 import { ContentDto } from "../../../Api/Models";
 import { NewsletterRemoveView } from "./View/newsletterRemoveView";
 import Validate from "validate.js";
@@ -18,6 +19,7 @@ export interface NewsletterRemoveProps extends ExtendedViewProps {
 }
 
 export const NewsletterRemove = (props: NewsletterRemoveProps): React.ReactElement => {
+    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const content = data.components.pageNewsletterRemove;
 
@@ -72,6 +74,7 @@ export const NewsletterRemove = (props: NewsletterRemoveProps): React.ReactEleme
     return (
         <NewsletterRemoveView
             isLoading={data.isLoading}
+            isMobile={media.isMobile}
             hasEmptyId={hasEmptyId}
             contentPre={contentPre}
             contentPost={contentPost}
