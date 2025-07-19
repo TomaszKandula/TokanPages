@@ -11,6 +11,7 @@ Object {
         >
           <div
             class="bulma-content "
+            data-testid="render-content"
           >
             <p
               class="is-size-5 has-text-grey-dark line-height-22"
@@ -29,6 +30,7 @@ Object {
       >
         <div
           class="bulma-content "
+          data-testid="render-content"
         >
           <p
             class="is-size-5 has-text-grey-dark line-height-22"
@@ -104,6 +106,7 @@ Object {
         >
           <div
             class="bulma-content "
+            data-testid="render-content"
           >
             <p
               class="is-size-5 has-text-grey-dark line-height-22"
@@ -122,6 +125,7 @@ Object {
       >
         <div
           class="bulma-content "
+          data-testid="render-content"
         >
           <p
             class="is-size-5 has-text-grey-dark line-height-22"
@@ -197,6 +201,7 @@ Object {
         >
           <div
             class="bulma-content "
+            data-testid="render-content"
           >
             <p
               class="is-size-5 has-text-grey-dark line-height-22"
@@ -215,6 +220,7 @@ Object {
       >
         <div
           class="bulma-content "
+          data-testid="render-content"
         >
           <p
             class="is-size-5 has-text-grey-dark line-height-22"
@@ -290,6 +296,7 @@ Object {
         >
           <div
             class="bulma-content "
+            data-testid="render-content"
           >
             <p
               class="is-size-5 has-text-grey-dark line-height-22"
@@ -308,6 +315,7 @@ Object {
       >
         <div
           class="bulma-content "
+          data-testid="render-content"
         >
           <p
             class="is-size-5 has-text-grey-dark line-height-22"
