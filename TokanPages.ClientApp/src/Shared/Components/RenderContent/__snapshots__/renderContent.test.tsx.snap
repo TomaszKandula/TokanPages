@@ -1,140 +1,94 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test render function 'renderContent' should correctly render passed items. 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body />,
-  "container": <div />,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`test render function 'renderContent' should return 'Cannot render content.' when called with empty array of items. 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body />,
-  "container": <div />,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`test render function 'renderContent' should return 'Cannot render content.' when called with items undefined. 1`] = `
+exports[`test render function 'renderContent' should '<ProgressBar />' when called with empty array of items. 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        Cannot render content.
+      <div
+        class="progress-bar-box "
+        data-testid="progress-bar-view"
+      >
+        <span
+          class="progress-bar-loader"
+          style="height: 40px; width: 40px; border-style: solid; border-width: 2px; border-color: #6367ef;"
+        />
       </div>
     </div>
-    <div>
-      <div>
-        Cannot render content.
-      </div>
+  </body>,
+  "container": <div>
+    <div
+      class="progress-bar-box "
+      data-testid="progress-bar-view"
+    >
+      <span
+        class="progress-bar-loader"
+        style="height: 40px; width: 40px; border-style: solid; border-width: 2px; border-color: #6367ef;"
+      />
     </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`test render function 'renderContent' should correctly render passed items. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
     <div>
       <div
         class="bulma-content "
+        data-testid="render-content"
       >
         <h1
           class="bulma-title has-text-grey-dark m-0 pb-2"
@@ -313,8 +267,264 @@ Object {
     </div>
   </body>,
   "container": <div>
+    <div
+      class="bulma-content "
+      data-testid="render-content"
+    >
+      <h1
+        class="bulma-title has-text-grey-dark m-0 pb-2"
+      >
+        &lt;p&gt;Test line&lt;/p&gt;
+      </h1>
+      <h2
+        class="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4"
+      >
+        &lt;p&gt;Test line&lt;/p&gt;
+      </h2>
+      <div
+        class="bulma-card my-4"
+      >
+        <div
+          class="bulma-card-image"
+        >
+          <figure
+            class="bulma-image"
+          >
+            <img
+              alt="An image of presented article text"
+              loading="lazy"
+              src="http://localhost:5000/api/v1image.jpg"
+              title="Illustration"
+            />
+          </figure>
+        </div>
+      </div>
+      <h3
+        class="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap"
+      >
+        &lt;p&gt;Test line&lt;/p&gt;
+      </h3>
+      <p
+        class="is-size-5 has-text-grey-dark line-height-22"
+      >
+        &lt;p&gt;Test line&lt;/p&gt;
+      </p>
+      <div
+        class="render-separator"
+      >
+        <span
+          class="render-separator-span"
+        />
+        <span
+          class="render-separator-span"
+        />
+        <span
+          class="render-separator-span"
+        />
+      </div>
+      <table
+        class="bulma-table bulma-is-striped bulma-is-narrow bulma-is-hoverable bulma-is-fullwidth my-6"
+      >
+        <thead>
+          <tr>
+            <td
+              class="is-size-6 has-text-weight-bold"
+            />
+            <td
+              class="is-size-6 has-text-weight-bold"
+            >
+              Header line
+            </td>
+            <td
+              class="is-size-6 has-text-weight-bold"
+            >
+              Header line
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td
+              class="is-size-6"
+            >
+              1
+            </td>
+            <td
+              class="is-size-6"
+            >
+              value
+            </td>
+            <td
+              class="is-size-6"
+            >
+              value
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="is-size-6"
+            >
+              2
+            </td>
+            <td
+              class="is-size-6"
+            >
+              value
+            </td>
+            <td
+              class="is-size-6"
+            >
+              value
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="is-size-6"
+            >
+              3
+            </td>
+            <td
+              class="is-size-6"
+            >
+              value
+            </td>
+            <td
+              class="is-size-6"
+            >
+              value
+            </td>
+          </tr>
+          <tr>
+            <td
+              class="is-size-6"
+            >
+              4
+            </td>
+            <td
+              class="is-size-6"
+            >
+              value
+            </td>
+            <td
+              class="is-size-6"
+            >
+              value
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div
+        class="bulma-card my-4"
+      >
+        <div
+          class="bulma-card-image"
+        >
+          <figure
+            class="bulma-image"
+          >
+            <img
+              alt="Video related to the presented article text"
+              class="lazyloaded"
+              loading="lazy"
+              src="http://localhost:5000/api/v1cheers-commercial.png"
+              title="Video"
+            />
+          </figure>
+        </div>
+        <div
+          class="bulma-card-content"
+        >
+          <span
+            class="is-size-6"
+          >
+            Video
+          </span>
+        </div>
+      </div>
+      <div>
+        Unknown element.
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`test render function 'renderContent' should render '<ProgressBar />' when called with items undefined. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
     <div>
-      Cannot render content.
+      <div
+        class="progress-bar-box "
+        data-testid="progress-bar-view"
+      >
+        <span
+          class="progress-bar-loader"
+          style="height: 40px; width: 40px; border-style: solid; border-width: 2px; border-color: #6367ef;"
+        />
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="progress-bar-box "
+      data-testid="progress-bar-view"
+    >
+      <span
+        class="progress-bar-loader"
+        style="height: 40px; width: 40px; border-style: solid; border-width: 2px; border-color: #6367ef;"
+      />
     </div>
   </div>,
   "debug": [Function],
