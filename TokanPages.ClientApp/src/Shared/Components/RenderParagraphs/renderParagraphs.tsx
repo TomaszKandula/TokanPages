@@ -20,16 +20,16 @@ export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactEleme
         props.text.forEach(item => {
             if (item === props.replace?.key) {
                 render.push(
-                    <Skeleton isLoading={props.isLoading ?? false}>
-                        <div key={uuidv4()} className={props.className}>
+                    <Skeleton key={uuidv4()} isLoading={props.isLoading ?? false}>
+                        <div className={props.className}>
                             {props.replace.object}
                         </div>
                     </Skeleton>
                 );
             } else {
                 render.push(
-                    <Skeleton isLoading={props.isLoading ?? false}>
-                        <p key={uuidv4()} className={props.className}>
+                    <Skeleton key={uuidv4()} isLoading={props.isLoading ?? false}>
+                        <p className={props.className}>
                             {item}
                         </p>
                     </Skeleton>
@@ -41,8 +41,8 @@ export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactEleme
     }
 
     const result = props.text.map((value: string, _index: number) => (
-        <Skeleton isLoading={props.isLoading ?? false}>
-            <p key={uuidv4()} className={props.className}>
+        <Skeleton key={uuidv4()} isLoading={props.isLoading ?? false}>
+            <p className={props.className}>
                 {value}
             </p>
         </Skeleton>
