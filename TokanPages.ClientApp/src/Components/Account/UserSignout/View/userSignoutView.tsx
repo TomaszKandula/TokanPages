@@ -13,31 +13,37 @@ interface UserSignoutViewProps extends ViewProperties, UserSignoutProps {
 }
 
 export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement => {
+    const buttonClass = "bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth";
+    const isDisabled = props.isLoading || !props.isAnonymous;
+
     return (
         <section className={props.background}>
             <div className="bulma-container bulma-is-max-tablet">
                 <div className={!props.className ? "py-6" : props.className}>
                     <div className="bulma-card">
                         <div className="bulma-card-content">
-                            <Skeleton isLoading={props.isLoading}>
                                 <div className="is-flex is-flex-direction-column is-align-items-center">
-                                    <Icon name="Account" size={3} className="account" />
-                                    <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                    <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                                        <Icon name="Account" size={3} className="account" />
+                                    </Skeleton>
+                                    <Skeleton isLoading={props.isLoading}>
+                                        <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                    </Skeleton>
                                 </div>
                                 <div className="has-text-centered mt-5">
+                                    <Skeleton isLoading={props.isLoading}>
                                     <p className="is-size-6 has-text-black">{props.status}</p>
+                                    </Skeleton>
                                 </div>
                                 <div className="mt-6 mb-3">
+                                    <Skeleton isLoading={props.isLoading} mode="Rect">
                                     <Link to={`/${props.languageId}`} className="link" rel="noopener nofollow">
-                                        <button
-                                            className="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
-                                            disabled={props.isLoading || !props.isAnonymous}
-                                        >
+                                        <button className={buttonClass} disabled={isDisabled}>
                                             {props.buttonText}
                                         </button>
                                     </Link>
+                                    </Skeleton>
                                 </div>
-                            </Skeleton>
                         </div>
                     </div>
                 </div>
