@@ -10,6 +10,7 @@ import { getHomeText, pathToRootText, pathToSubitemText, toUpperCase } from "./U
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 import "./customBreadcrumbView.css";
+import { Skeleton } from "../Skeleton";
 
 const useQuery = (): URLSearchParams => {
     return new URLSearchParams(useLocation().search);
@@ -70,6 +71,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
 
     return (
         <div className={`bulma-container bulma-is-max-tablet mt-6 pt-6 ${media.isMobile ? "px-4" : ""}`}>
+            <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={18}>
             <nav className="bulma-breadcrumb bulma-has-arrow-separator">
                 <ul>
                     <li>
@@ -95,6 +97,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
                     ) : null}
                 </ul>
             </nav>
+            </Skeleton>
             <hr className="my-5" />
         </div>
     );
