@@ -6,6 +6,7 @@ import { ProgressBar, Skeleton, TextFieldWithPassword } from "../../../../../Sha
 import { UserPasswordProps } from "../userPassword";
 
 interface UserPasswordViewProps extends ViewProperties, UserPasswordProps {
+    isMobile: boolean;
     oldPassword: string;
     newPassword: string;
     confirmPassword: string;
@@ -31,7 +32,7 @@ export const UserPasswordView = (props: UserPasswordViewProps): React.ReactEleme
     <section className={props.background}>
         <div className="bulma-container bulma-is-max-desktop">
             <div className={!props.className ? "py-6" : props.className}>
-                <div className="bulma-card">
+                <div className={`bulma-card ${props.isMobile ? "mx-4" : ""}`}>
                     <div className="bulma-card-content">
                         <Skeleton isLoading={props.isLoading} mode="Rect">
                             <p className="is-size-4 has-text-grey">{props.sectionAccountPassword?.caption}</p>
