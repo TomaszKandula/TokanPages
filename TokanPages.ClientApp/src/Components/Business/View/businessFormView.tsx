@@ -230,9 +230,8 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                 </div>
                                 <div className="bulma-grid bulma-is-col-min-10 is-gap-2.5">
                                     {props.pricing.services.map((value: ServiceItemDto, _index: number) => (
-                                        <Skeleton isLoading={props.isLoading} mode="Rect" height={100}>
+                                        <Skeleton key={value.id} isLoading={props.isLoading} mode="Rect" height={100}>
                                             <ServiceItemCard
-                                                key={value.id}
                                                 value={value}
                                                 isDisabled={props.progress}
                                                 handler={props.serviceHandler}
