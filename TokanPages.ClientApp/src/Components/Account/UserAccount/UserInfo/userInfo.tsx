@@ -11,7 +11,7 @@ import {
 } from "../../../../Store/Actions";
 import { ExecuteApiActionProps, NOTIFICATION_STATUS } from "../../../../Api";
 import { NotificationData, UserActivationData } from "../../../../Api/Models";
-import { useApiAction, useInterval } from "../../../../Shared/Hooks";
+import { useApiAction, useDimensions, useInterval } from "../../../../Shared/Hooks";
 import { useWebSockets } from "../../../../Shared/Services/WebSockets";
 import { AccountFormInput, ValidateAccountForm } from "../../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE, SET_INTERVAL_DELAY } from "../../../../Shared/constants";
@@ -35,6 +35,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const history = useHistory();
     const actions = useApiAction();
     const socket = useWebSockets();
+    const mediaQuery = useDimensions();
 
     const store = useSelector((state: ApplicationState) => state.userDataStore.userData);
     const update = useSelector((state: ApplicationState) => state.userUpdate);
@@ -288,6 +289,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     return (
         <UserInfoView
             isLoading={contentPageData.isLoading}
+            isMobile={mediaQuery.isMobile}
             userStore={store}
             accountForm={form}
             userImageName={avatarName}

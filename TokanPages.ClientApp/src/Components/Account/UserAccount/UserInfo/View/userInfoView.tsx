@@ -17,6 +17,7 @@ import { UserInfoProps } from "../userInfo";
 import "./userInfoView.css";
 
 interface UserInfoViewProps extends ViewProperties, UserInfoProps {
+    isMobile: boolean;
     fileUploadingCustomHandle?: string;
     userStore: AuthenticateUserResultDto;
     accountForm: AccountFormInput;
@@ -85,7 +86,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
             <Backdrop isLoading={props.isRequestingVerification} />
             <div className="bulma-container bulma-is-max-desktop">
                 <div className={!props.className ? "py-6" : props.className}>
-                    <div className="bulma-card">
+                    <div className={`bulma-card ${props.isMobile ? "mx-4" : ""}`}>
                         <div className="bulma-card-content">
                             <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
                                 <p className="is-size-4 has-text-grey">{props.sectionAccountInformation?.caption}</p>
