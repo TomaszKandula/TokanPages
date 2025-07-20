@@ -35,7 +35,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
         <div className="bulma-container bulma-is-max-tablet">
             <article className="py-4">
                 <Animated dataAos="fade-down" className="pb-5">
-                    <div className={`bulma-grid is-flex m-0 ${props.isMobile ? "px-4" : ""}`}>
+                    <div className={`bulma-grid is-flex m-0 ${props.isMobile ? "mx-4" : ""}`}>
                         <div className="bulma-cell is-align-content-center">
                             <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72} disableMarginY>
                                 {props.renderSmallAvatar}
@@ -126,7 +126,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
 
                 <hr className={props.isMobile ? "mx-4" : ""} />
 
-                <div className={`bulma-grid is-flex mb-5 ${props.isMobile ? "px-4" : ""}`}>
+                <div className={`bulma-grid is-flex mb-5 ${props.isMobile ? "mx-4" : ""}`}>
                     <div className="bulma-cell is-align-content-center">
                         <Skeleton isLoading={props.isLoading} mode="Circle" width={98} height={98} disableMarginY>
                             {props.renderLargeAvatar}

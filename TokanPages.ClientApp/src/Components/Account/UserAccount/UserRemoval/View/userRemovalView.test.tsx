@@ -10,6 +10,7 @@ describe("test account group component: userRemovalView", () => {
             <BrowserRouter>
                 <UserRemovalView
                     isLoading={false}
+                    isMobile={false}
                     deleteButtonHandler={jest.fn()}
                     deleteAccountProgress={true}
                     sectionAccountRemoval={{

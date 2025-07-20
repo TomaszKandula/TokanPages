@@ -6,6 +6,7 @@ import { ApplicationLanguageState } from "../../../../Store/States";
 export interface BaseProperties extends ViewProperties {
     isAnonymous: boolean;
     isMenuOpen: boolean;
+    isAlwaysVisible?: boolean;
     media: UseDimensionsResult;
     menuHandler: () => void;
     infoHandler: () => void;

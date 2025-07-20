@@ -73,7 +73,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
             <Backdrop isLoading={props.hasProgress} />
             <div className="bulma-container bulma-is-max-desktop">
                 <div className="py-6">
-                    <div className="bulma-card">
+                    <div className={`bulma-card ${props.mediaQuery.isMobile ? "mx-4" : ""}`}>
                         <div className="bulma-card-content">
                             <Skeleton isLoading={props.isLoading} mode="Text" height={14}>
                                 <p className="is-size-4 has-text-grey">{props.captionText}</p>

@@ -92,8 +92,6 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
 };
 
 export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => {
-    const cardPadding = props.isMobile ? "px-4" : "px-6";
-
     return (
         <section className={props.background}>
             <div className="bulma-container bulma-is-max-desktop">
@@ -105,155 +103,153 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                     ) : (
                         <></>
                     )}
-                    <div className={cardPadding}>
-                        <div className="bulma-card">
-                            <div className="bulma-card-content">
-                                {props.hasIcon ? (
-                                    <div className="is-flex is-flex-direction-column is-align-items-center">
-                                        <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                                            <Icon name="BriefcaseVariant" size={3} className="has-text-link" />
-                                        </Skeleton>
-                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
-                                            <p className="is-size-3 has-text-grey">{props.caption}</p>
-                                        </Skeleton>
-                                    </div>
-                                ) : (
-                                    <></>
-                                )}
-                                <div className="mt-5">
-                                    <div className="bulma-columns">
-                                        <div className="bulma-column">
-                                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                                <TextField
-                                                    required
-                                                    uuid="company"
-                                                    isDisabled={props.progress}
-                                                    maxLength={255}
-                                                    onKeyUp={props.keyHandler}
-                                                    onChange={props.formHandler}
-                                                    value={props.companyText}
-                                                    placeholder={props.companyLabel}
-                                                />
-                                            </Skeleton>
-                                        </div>
-                                    </div>
-                                    <div className="bulma-columns">
-                                        <div className="bulma-column">
-                                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                                <TextField
-                                                    required
-                                                    uuid="firstName"
-                                                    isDisabled={props.progress}
-                                                    maxLength={255}
-                                                    onKeyUp={props.keyHandler}
-                                                    onChange={props.formHandler}
-                                                    value={props.firstNameText}
-                                                    placeholder={props.firstNameLabel}
-                                                />
-                                            </Skeleton>
-                                        </div>
-                                        <div className="bulma-column">
-                                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                                <TextField
-                                                    required
-                                                    uuid="lastName"
-                                                    isDisabled={props.progress}
-                                                    maxLength={255}
-                                                    onKeyUp={props.keyHandler}
-                                                    onChange={props.formHandler}
-                                                    value={props.lastNameText}
-                                                    placeholder={props.lastNameLabel}
-                                                />
-                                            </Skeleton>
-                                        </div>
-                                    </div>
-                                    <div className="bulma-columns">
-                                        <div className="bulma-column">
-                                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                                <TextField
-                                                    required
-                                                    uuid="email"
-                                                    isDisabled={props.progress}
-                                                    maxLength={255}
-                                                    onKeyUp={props.keyHandler}
-                                                    onChange={props.formHandler}
-                                                    value={props.emailText}
-                                                    placeholder={props.emailLabel}
-                                                />
-                                            </Skeleton>
-                                        </div>
-                                        <div className="bulma-column">
-                                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                                <TextField
-                                                    required
-                                                    uuid="phone"
-                                                    isDisabled={props.progress}
-                                                    maxLength={17}
-                                                    onKeyUp={props.keyHandler}
-                                                    onChange={props.formHandler}
-                                                    value={props.phoneText}
-                                                    placeholder={props.phoneLabel}
-                                                />
-                                            </Skeleton>
-                                        </div>
-                                    </div>
-                                    <div className="bulma-columns">
-                                        <div className="bulma-column">
-                                            <Skeleton isLoading={props.isLoading} mode="Rect" height={300}>
-                                                <TextArea
-                                                    required={props.description.required}
-                                                    isFixedSize
-                                                    uuid="description"
-                                                    isDisabled={props.progress}
-                                                    onChange={props.descriptionHandler}
-                                                    value={props.description.text}
-                                                    placeholder={props.description.label}
-                                                    rows={props.description.rows}
-                                                />
-                                            </Skeleton>
-                                        </div>
-                                    </div>
-                                    <div className="bulma-content">
-                                        <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24}>
-                                            <p className="is-size-5 py-2">{props.techLabel}</p>
-                                        </Skeleton>
-                                    </div>
-                                    <div className="bulma-content">
-                                        <TechStackList
-                                            isLoading={props.isLoading}
-                                            isDisabled={props.progress}
-                                            list={props.techItems}
-                                            handler={props.techHandler}
-                                        />
-                                    </div>
-                                    <div className="bulma-content">
-                                        <Skeleton isLoading={props.isLoading} mode="Text" width={300} height={24}>
-                                            <p className="is-size-5 py-2">{props.pricing.caption}</p>
-                                        </Skeleton>
-                                    </div>
-                                    <div className="bulma-grid bulma-is-col-min-10 is-gap-2.5">
-                                        {props.pricing.services.map((value: ServiceItemDto, _index: number) => (
-                                            <Skeleton isLoading={props.isLoading} mode="Rect" height={100}>
-                                                <ServiceItemCard
-                                                    key={value.id}
-                                                    value={value}
-                                                    isDisabled={props.progress}
-                                                    handler={props.serviceHandler}
-                                                    services={props.serviceSelection}
-                                                />
-                                            </Skeleton>
-                                        ))}
-                                    </div>
-                                    <Skeleton isLoading={props.isLoading} mode="Rect" height={80}>
-                                        <div className="bulma-notification is-flex is-align-items-center">
-                                            <Icon name="Information" size={1} className="has-text-link" />
-                                            <span className="is-size-6 p-3">{props.pricing.disclaimer}</span>
-                                        </div>
+                    <div className={`bulma-card ${props.isMobile ? "mx-4" : "mx-6"}`}>
+                        <div className="bulma-card-content">
+                            {props.hasIcon ? (
+                                <div className="is-flex is-flex-direction-column is-align-items-center">
+                                    <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                                        <Icon name="BriefcaseVariant" size={3} className="has-text-link" />
                                     </Skeleton>
-                                    <Skeleton isLoading={props.isLoading} mode="Rect" height={40}>
-                                        <ActiveButton {...props} />
+                                    <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
+                                        <p className="is-size-3 has-text-grey">{props.caption}</p>
                                     </Skeleton>
                                 </div>
+                            ) : (
+                                <></>
+                            )}
+                            <div className="mt-5">
+                                <div className="bulma-columns">
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect">
+                                            <TextField
+                                                required
+                                                uuid="company"
+                                                isDisabled={props.progress}
+                                                maxLength={255}
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.companyText}
+                                                placeholder={props.companyLabel}
+                                            />
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <div className="bulma-columns">
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect">
+                                            <TextField
+                                                required
+                                                uuid="firstName"
+                                                isDisabled={props.progress}
+                                                maxLength={255}
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.firstNameText}
+                                                placeholder={props.firstNameLabel}
+                                            />
+                                        </Skeleton>
+                                    </div>
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect">
+                                            <TextField
+                                                required
+                                                uuid="lastName"
+                                                isDisabled={props.progress}
+                                                maxLength={255}
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.lastNameText}
+                                                placeholder={props.lastNameLabel}
+                                            />
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <div className="bulma-columns">
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect">
+                                            <TextField
+                                                required
+                                                uuid="email"
+                                                isDisabled={props.progress}
+                                                maxLength={255}
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.emailText}
+                                                placeholder={props.emailLabel}
+                                            />
+                                        </Skeleton>
+                                    </div>
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect">
+                                            <TextField
+                                                required
+                                                uuid="phone"
+                                                isDisabled={props.progress}
+                                                maxLength={17}
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.phoneText}
+                                                placeholder={props.phoneLabel}
+                                            />
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <div className="bulma-columns">
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect" height={300}>
+                                            <TextArea
+                                                required={props.description.required}
+                                                isFixedSize
+                                                uuid="description"
+                                                isDisabled={props.progress}
+                                                onChange={props.descriptionHandler}
+                                                value={props.description.text}
+                                                placeholder={props.description.label}
+                                                rows={props.description.rows}
+                                            />
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <div className="bulma-content">
+                                    <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24}>
+                                        <p className="is-size-5 py-2">{props.techLabel}</p>
+                                    </Skeleton>
+                                </div>
+                                <div className="bulma-content">
+                                    <TechStackList
+                                        isLoading={props.isLoading}
+                                        isDisabled={props.progress}
+                                        list={props.techItems}
+                                        handler={props.techHandler}
+                                    />
+                                </div>
+                                <div className="bulma-content">
+                                    <Skeleton isLoading={props.isLoading} mode="Text" width={300} height={24}>
+                                        <p className="is-size-5 py-2">{props.pricing.caption}</p>
+                                    </Skeleton>
+                                </div>
+                                <div className="bulma-grid bulma-is-col-min-10 is-gap-2.5">
+                                    {props.pricing.services.map((value: ServiceItemDto, _index: number) => (
+                                        <Skeleton isLoading={props.isLoading} mode="Rect" height={100}>
+                                            <ServiceItemCard
+                                                key={value.id}
+                                                value={value}
+                                                isDisabled={props.progress}
+                                                handler={props.serviceHandler}
+                                                services={props.serviceSelection}
+                                            />
+                                        </Skeleton>
+                                    ))}
+                                </div>
+                                <Skeleton isLoading={props.isLoading} mode="Rect" height={80}>
+                                    <div className="bulma-notification is-flex is-align-items-center">
+                                        <Icon name="Information" size={1} className="has-text-link" />
+                                        <span className="is-size-6 p-3">{props.pricing.disclaimer}</span>
+                                    </div>
+                                </Skeleton>
+                                <Skeleton isLoading={props.isLoading} mode="Rect" height={40}>
+                                    <ActiveButton {...props} />
+                                </Skeleton>
                             </div>
                         </div>
                     </div>

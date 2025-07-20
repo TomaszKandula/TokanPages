@@ -53,8 +53,8 @@ describe("test account group component: passwordUpdate", () => {
             </BrowserRouter>
         );
 
-        expect(useSelectorMock).toBeCalledTimes(4);
-        expect(useDispatchMock).toBeCalledTimes(1);
+        expect(useSelectorMock).toBeCalledTimes(8);
+        expect(useDispatchMock).toBeCalledTimes(2);
         expect(html).toMatchSnapshot();
     });
 });

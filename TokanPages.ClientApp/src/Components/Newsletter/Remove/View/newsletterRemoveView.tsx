@@ -5,6 +5,7 @@ import { CustomCard, Icon, ProgressBar } from "../../../../Shared/Components";
 import { ExtendedViewProps } from "../newsletterRemove";
 
 interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {
+    isMobile: boolean;
     hasEmptyId: boolean;
     contentPre: ContentDto;
     contentPost: ContentDto;

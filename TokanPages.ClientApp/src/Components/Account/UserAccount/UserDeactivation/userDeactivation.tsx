@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { IconType, OperationStatus } from "../../../../Shared/enums";
+import { useDimensions } from "../../../../Shared/Hooks";
 import { ApplicationDialogAction, UserDataStoreAction, UserUpdateAction } from "../../../../Store/Actions";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { UserDeactivationView } from "./View/userDeactivationView";
@@ -15,6 +16,7 @@ export interface UserDeactivationProps {
 export const UserDeactivation = (props: UserDeactivationProps): React.ReactElement => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const media = useDimensions();
 
     const store = useSelector((state: ApplicationState) => state.userDataStore.userData);
     const update = useSelector((state: ApplicationState) => state.userUpdate);
@@ -82,6 +84,7 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
     return (
         <UserDeactivationView
             isLoading={data.isLoading}
+            isMobile={media.isMobile}
             buttonHandler={deactivateButtonHandler}
             progress={hasProgress}
             section={account.sectionAccountDeactivation}

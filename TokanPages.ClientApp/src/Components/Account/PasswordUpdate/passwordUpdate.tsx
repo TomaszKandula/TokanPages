@@ -7,6 +7,7 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../Store/Actions";
 import { UpdateFormInput, ValidateUpdateForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
+import { useDimensions } from "../../../Shared/Hooks";
 import { PasswordUpdateView } from "./View/passwordUpdateView";
 import Validate from "validate.js";
 
@@ -37,6 +38,7 @@ export interface PasswordUpdateProps {
 
 export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement => {
     const queryParam = useQuery();
+    const media = useDimensions();
     const dispatch = useDispatch();
 
     const store = useSelector((state: ApplicationState) => state.userDataStore);
@@ -144,6 +146,7 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
     return (
         <PasswordUpdateView
             isLoading={data?.isLoading}
+            isMobile={media.isMobile}
             progress={hasProgress}
             caption={password?.caption}
             button={password?.button}

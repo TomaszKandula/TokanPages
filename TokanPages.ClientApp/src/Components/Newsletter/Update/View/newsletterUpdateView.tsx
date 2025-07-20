@@ -5,6 +5,7 @@ import { Icon, ProgressBar, Skeleton, TextField } from "../../../../Shared/Compo
 import { ExtendedViewProps } from "../newsletterUpdate";
 
 interface NewsletterUpdateViewProps extends ViewProperties, ExtendedViewProps {
+    isMobile: boolean;
     caption: string;
     formHandler: (event: ReactChangeEvent) => void;
     email: string;
@@ -29,7 +30,7 @@ export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.Re
     <section className="section">
         <div className="bulma-container bulma-is-max-tablet">
             <div className={!props.className ? "py-6" : props.className}>
-                <div className="bulma-card">
+                <div className={`bulma-card ${props.isMobile ? "mx-4" : ""}`}>
                     <div className="bulma-card-content">
                         <div className="is-flex is-flex-direction-column is-align-items-center">
                             <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>

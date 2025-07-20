@@ -33,7 +33,7 @@ const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
 };
 
 export const ScrollToTop = (): React.ReactElement => {
-    const scroll = useScroll();
+    const scroll = useScroll({ offset: 64 });
 
     return (
         <div style={{ visibility: scroll.isScrolledTop ? "hidden" : "visible" }}>
