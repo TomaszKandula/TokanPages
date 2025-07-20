@@ -10,6 +10,7 @@ describe("test account group component: userInfoView", () => {
             <BrowserRouter>
                 <UserInfoView
                     isLoading={false}
+                    isMobile={false}
                     userStore={{
                         userId: "123456789",
                         isVerified: false,
