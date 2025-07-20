@@ -12,7 +12,7 @@ export const PasswordUpdatePage = (): React.ReactElement => {
 
     return (
         <>
-            <Navigation backNavigationOnly={true} />
+            <Navigation backNavigationOnly />
             <main className="pt-6">
                 <PasswordUpdate />
             </main>

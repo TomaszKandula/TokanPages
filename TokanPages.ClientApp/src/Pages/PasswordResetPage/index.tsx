@@ -9,7 +9,7 @@ export const PasswordResetPage = (): React.ReactElement => {
 
     return (
         <>
-            <Navigation backNavigationOnly={true} />
+            <Navigation backNavigationOnly />
             <main className="pt-6">
                 <PasswordReset />
             </main>
