@@ -2,6 +2,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { TColour } from "../../../Shared/types";
+import { useDimensions } from "../../../Shared/Hooks";
 import { Skeleton } from "../Skeleton";
 import { v4 as uuidv4 } from "uuid";
 import "./customCard.css";
@@ -47,8 +48,11 @@ const RenderExternalButton = (props: CustomCardProps): React.ReactElement => (
     </div>
 );
 
-export const CustomCard = (props: CustomCardProps): React.ReactElement => (
-    <div className="bulma-card">
+export const CustomCard = (props: CustomCardProps): React.ReactElement => { 
+    const media = useDimensions();
+
+    return (
+    <div className={`bulma-card ${media.isMobile ? "mx-4" : ""}`}>
         <div className="bulma-card-content">
             <div className="custom-card-icon-background is-flex is-justify-content-center is-align-items-center my-6">
                 <div className="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center">
@@ -75,3 +79,4 @@ export const CustomCard = (props: CustomCardProps): React.ReactElement => (
         </div>
     </div>
 );
+};
