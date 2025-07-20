@@ -5,6 +5,7 @@ import { ProgressBar, RenderParagraphs, Skeleton } from "../../../../../Shared/C
 import { UserDeactivationProps } from "../userDeactivation";
 
 interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProps {
+    isMobile: boolean;
     buttonHandler: () => void;
     progress: boolean;
     section: SectionAccountDeactivation;
@@ -25,7 +26,7 @@ export const UserDeactivationView = (props: UserDeactivationViewProps): React.Re
     <section className={props.background}>
         <div className="bulma-container bulma-is-max-desktop">
             <div className={!props.className ? "py-6" : props.className}>
-                <div className="bulma-card">
+                <div className={`bulma-card ${props.isMobile ? "mx-4" : ""}`}>
                     <div className="bulma-card-content">
                         <Skeleton isLoading={props.isLoading} mode="Rect">
                             <p className="is-size-4 has-text-grey">{props.section?.caption}</p>
