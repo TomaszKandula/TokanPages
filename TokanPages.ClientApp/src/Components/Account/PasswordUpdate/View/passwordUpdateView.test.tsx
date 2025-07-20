@@ -10,6 +10,7 @@ describe("test account group component: updatePasswordView", () => {
             <BrowserRouter>
                 <PasswordUpdateView
                     isLoading={false}
+                    isMobile={false}
                     progress={false}
                     caption="Update password"
                     button="Submit"

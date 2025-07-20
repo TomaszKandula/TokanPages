@@ -10,6 +10,7 @@ describe("test account group component: resetPasswordView", () => {
             <BrowserRouter>
                 <PasswordResetView
                     isLoading={false}
+                    isMobile={false}
                     progress={false}
                     caption="Reset Password"
                     button="Reset"
