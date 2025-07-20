@@ -100,7 +100,7 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const isLoading = data?.isLoading;
     const baseClass = "bulma-content header-content-box";
 
-    let size = { width: 0, height: 0 };
+    let size;
     if (media.isMobile) {
         size = { width: 360, height: 433 };
     } else {
