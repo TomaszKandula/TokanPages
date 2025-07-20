@@ -28,9 +28,9 @@ const ActiveButton = (props: NewsletterUpdateViewProps): React.ReactElement => (
 
 export const NewsletterUpdateView = (props: NewsletterUpdateViewProps): React.ReactElement => (
     <section className="section">
-        <div className={`bulma-container bulma-is-max-tablet ${props.isMobile ? "px-4" : ""}`}>
+        <div className="bulma-container bulma-is-max-tablet">
             <div className={!props.className ? "py-6" : props.className}>
-                <div className="bulma-card">
+                <div className={`bulma-card ${props.isMobile ? "mx-4" : ""}`}>
                     <div className="bulma-card-content">
                         <div className="is-flex is-flex-direction-column is-align-items-center">
                             <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
