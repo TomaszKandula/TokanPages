@@ -2,7 +2,7 @@ import "../../../../setupTests";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { render } from "@testing-library/react";
-import { PasswordResetView } from "./resetPasswordView";
+import { PasswordResetView } from "./passwordResetView";
 
 describe("test account group component: resetPasswordView", () => {
     it("should render correctly '<ResetPasswordView />' when content is loaded.", () => {

@@ -7,7 +7,7 @@ import { ApplicationDialogAction, UserPasswordResetAction } from "../../../Store
 import { ResetFormInput, ValidateResetForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { useDimensions } from "../../../Shared/Hooks";
-import { PasswordResetView } from "./View/resetPasswordView";
+import { PasswordResetView } from "./View/passwordResetView";
 import Validate from "validate.js";
 
 const formDefaultValues: ResetFormInput = {
