@@ -92,8 +92,6 @@ const ServiceItemCard = (props: ServiceItemCardProps) => {
 };
 
 export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => {
-    const cardPadding = props.isMobile ? "px-4" : "px-6";
-
     return (
         <section className={props.background}>
             <div className="bulma-container bulma-is-max-desktop">
@@ -105,8 +103,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                     ) : (
                         <></>
                     )}
-                    <div className={cardPadding}>
-                        <div className="bulma-card">
+                        <div className={`bulma-card ${props.isMobile ? "mx-4" : "mx-6"}`}>
                             <div className="bulma-card-content">
                                 {props.hasIcon ? (
                                     <div className="is-flex is-flex-direction-column is-align-items-center">
@@ -256,7 +253,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    
                 </div>
             </div>
         </section>
