@@ -24,8 +24,8 @@ const CheckIcon = <Icon name="Check" size={3} />;
 const InfoIcon = <Icon name="Information" size={3} />;
 
 export const AccountActivateView = (props: AccountActivateViewProps): React.ReactElement => {
-    let icon = AlertIcon;
-    let colour: TColour = "has-text-danger";
+    let icon;
+    let colour;
     if (props.hasSuccess) {
         icon = CheckIcon;
         colour = "has-text-success";
@@ -55,7 +55,7 @@ export const AccountActivateView = (props: AccountActivateViewProps): React.Reac
                             caption={props.caption}
                             text={[props.text1, props.text2]}
                             icon={icon}
-                            colour={colour}
+                            colour={colour as TColour}
                         />
                     )}
                 </div>
