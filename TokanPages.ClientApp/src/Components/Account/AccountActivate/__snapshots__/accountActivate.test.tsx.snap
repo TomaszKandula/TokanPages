@@ -13,13 +13,13 @@ Object {
             class="py-6"
           >
             <div
-              class="bulma-card"
+              class="bulma-card "
             >
               <div
                 class="bulma-card-content"
               >
                 <div
-                  class="custom-card-icon-background is-flex is-justify-content-center my-6"
+                  class="custom-card-icon-background is-flex is-justify-content-center is-align-items-center my-6"
                 >
                   <div
                     class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
@@ -71,13 +71,13 @@ Object {
           class="py-6"
         >
           <div
-            class="bulma-card"
+            class="bulma-card "
           >
             <div
               class="bulma-card-content"
             >
               <div
-                class="custom-card-icon-background is-flex is-justify-content-center my-6"
+                class="custom-card-icon-background is-flex is-justify-content-center is-align-items-center my-6"
               >
                 <div
                   class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
