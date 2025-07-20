@@ -5,13 +5,18 @@ interface UseScrollResultProps {
     isScrolledTop: boolean;
 }
 
-export const useScroll = (): UseScrollResultProps => {
+interface UseScrollProps {
+    offset?: number;
+}
+
+export const useScroll = (props: UseScrollProps): UseScrollResultProps => {
     let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
 
     const [isScrollingUp, setIsScrollingUp] = React.useState(window.scrollY === 0);
     const [isScrolledTop, setIsScrolledTop] = React.useState(window.scrollY === 0);
 
     const handleScrolling = React.useCallback(() => {
+        const referenceValue = props.offset ?? 0;
         const scrollTopPosition = window.scrollY || document.documentElement.scrollTop;
 
         if (scrollTopPosition > lastScrollTop) {
@@ -20,8 +25,8 @@ export const useScroll = (): UseScrollResultProps => {
             setIsScrollingUp(true);
         }
 
-        setIsScrolledTop(window.scrollY === 0);
-        lastScrollTop = scrollTopPosition <= 0 ? 0 : scrollTopPosition;
+        setIsScrolledTop(window.scrollY <= referenceValue);
+        lastScrollTop = scrollTopPosition <= referenceValue ? referenceValue : scrollTopPosition;
 
         return lastScrollTop;
     }, [window.scrollY, document.documentElement.scrollTop]);
