@@ -64,7 +64,7 @@ const ExecuteStoreAction = async (props: ExecuteStoreActionProps): Promise<void>
 };
 
 const ExecuteApiAction = async (props: ExecuteApiActionProps): Promise<ExecuteApiActionResultProps> => {
-    let result: ExecuteApiActionResultProps = { };
+    let result: ExecuteApiActionResultProps = {};
     try {
         const body = GetProcessedBody(props.configuration);
         const hasFormData = body instanceof FormData;
@@ -154,5 +154,5 @@ export const useApiAction = () => {
         storeAction: ExecuteStoreAction,
         apiAction: ExecuteApiAction,
         logAction: ExecuteLogAction,
-    }
-}
+    };
+};

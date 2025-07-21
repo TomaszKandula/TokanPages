@@ -6,6 +6,58 @@ Object {
   "baseElement": <body>
     <div>
       <div
+        class="is-flex is-flex-direction-column is-align-items-center"
+      >
+        <div
+          class="collapsible-transition"
+          style="height: 20px;"
+        >
+          <div
+            class="collapsible-content"
+          >
+            <div
+              class="collapsible-gradient collapsible-gradient-expanded"
+              style="height: 20px;"
+            />
+            <div>
+              <p>
+                Test line 1
+              </p>
+              <p>
+                Test line 2
+              </p>
+              <p>
+                Test line 3
+              </p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="icon-button collapsible-expand collapsible-expand-open is-flex is-align-self-center"
+          style="height: 48px; width: 48px;"
+        >
+          <div>
+            <svg
+              class="is-flex is-align-self-center has-text-grey"
+              role="presentation"
+              style="width: 1.5rem; height: 1.5rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                style="fill: currentColor;"
+              />
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="is-flex is-flex-direction-column is-align-items-center"
+    >
+      <div
         class="collapsible-transition"
         style="height: 20px;"
       >
@@ -30,82 +82,24 @@ Object {
         </div>
       </div>
       <button
-        aria-expanded="true"
-        aria-label="show more"
-        class="MuiButtonBase-root MuiIconButton-root collapsible-expand collapsible-expand-open"
-        tabindex="0"
-        type="button"
+        class="icon-button collapsible-expand collapsible-expand-open is-flex is-align-self-center"
+        style="height: 48px; width: 48px;"
       >
-        <span
-          class="MuiIconButton-label"
-        >
+        <div>
           <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root"
-            focusable="false"
+            class="is-flex is-align-self-center has-text-grey"
+            role="presentation"
+            style="width: 1.5rem; height: 1.5rem;"
             viewBox="0 0 24 24"
           >
             <path
-              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+              style="fill: currentColor;"
             />
           </svg>
-        </span>
-        <span
-          class="MuiTouchRipple-root"
-        />
+        </div>
       </button>
     </div>
-  </body>,
-  "container": <div>
-    <div
-      class="collapsible-transition"
-      style="height: 20px;"
-    >
-      <div
-        class="collapsible-content"
-      >
-        <div
-          class="collapsible-gradient collapsible-gradient-expanded"
-          style="height: 20px;"
-        />
-        <div>
-          <p>
-            Test line 1
-          </p>
-          <p>
-            Test line 2
-          </p>
-          <p>
-            Test line 3
-          </p>
-        </div>
-      </div>
-    </div>
-    <button
-      aria-expanded="true"
-      aria-label="show more"
-      class="MuiButtonBase-root MuiIconButton-root collapsible-expand collapsible-expand-open"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiIconButton-label"
-      >
-        <svg
-          aria-hidden="true"
-          class="MuiSvgIcon-root"
-          focusable="false"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-          />
-        </svg>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </button>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -167,6 +161,58 @@ Object {
   "baseElement": <body>
     <div>
       <div
+        class="is-flex is-flex-direction-column is-align-items-center"
+      >
+        <div
+          class="collapsible-transition"
+          style="height: 20px;"
+        >
+          <div
+            class="collapsible-content"
+          >
+            <div
+              class="collapsible-gradient"
+              style="height: 20px;"
+            />
+            <div>
+              <p>
+                Test line 1
+              </p>
+              <p>
+                Test line 2
+              </p>
+              <p>
+                Test line 3
+              </p>
+            </div>
+          </div>
+        </div>
+        <button
+          class="icon-button collapsible-expand is-flex is-align-self-center"
+          style="height: 48px; width: 48px;"
+        >
+          <div>
+            <svg
+              class="is-flex is-align-self-center has-text-grey"
+              role="presentation"
+              style="width: 1.5rem; height: 1.5rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                style="fill: currentColor;"
+              />
+            </svg>
+          </div>
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="is-flex is-flex-direction-column is-align-items-center"
+    >
+      <div
         class="collapsible-transition"
         style="height: 20px;"
       >
@@ -191,82 +237,24 @@ Object {
         </div>
       </div>
       <button
-        aria-expanded="false"
-        aria-label="show more"
-        class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
-        tabindex="0"
-        type="button"
+        class="icon-button collapsible-expand is-flex is-align-self-center"
+        style="height: 48px; width: 48px;"
       >
-        <span
-          class="MuiIconButton-label"
-        >
+        <div>
           <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root"
-            focusable="false"
+            class="is-flex is-align-self-center has-text-grey"
+            role="presentation"
+            style="width: 1.5rem; height: 1.5rem;"
             viewBox="0 0 24 24"
           >
             <path
-              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+              style="fill: currentColor;"
             />
           </svg>
-        </span>
-        <span
-          class="MuiTouchRipple-root"
-        />
+        </div>
       </button>
     </div>
-  </body>,
-  "container": <div>
-    <div
-      class="collapsible-transition"
-      style="height: 20px;"
-    >
-      <div
-        class="collapsible-content"
-      >
-        <div
-          class="collapsible-gradient"
-          style="height: 20px;"
-        />
-        <div>
-          <p>
-            Test line 1
-          </p>
-          <p>
-            Test line 2
-          </p>
-          <p>
-            Test line 3
-          </p>
-        </div>
-      </div>
-    </div>
-    <button
-      aria-expanded="false"
-      aria-label="show more"
-      class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
-      tabindex="0"
-      type="button"
-    >
-      <span
-        class="MuiIconButton-label"
-      >
-        <svg
-          aria-hidden="true"
-          class="MuiSvgIcon-root"
-          focusable="false"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-          />
-        </svg>
-      </span>
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </button>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

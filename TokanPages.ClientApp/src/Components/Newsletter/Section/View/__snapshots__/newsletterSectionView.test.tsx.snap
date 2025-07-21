@@ -5,128 +5,79 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <div
-          class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+          class="bulma-container"
         >
           <div
-            class="text-centre pt-64 pb-64"
+            class="py-6"
           >
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+              class="p-6"
             >
               <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
+                class="bulma-columns bulma-is-vcentered"
               >
                 <div
-                  data-aos="fade-down"
-                  data-aos-delay="0"
-                >
-                  <p
-                    class="MuiTypography-root newsletter-caption MuiTypography-body1"
-                  >
-                    Join the newsletter!
-                  </p>
-                </div>
-                <div
-                  data-aos="zoom-in"
-                  data-aos-delay="0"
-                >
-                  <p
-                    class="MuiTypography-root newsletter-text MuiTypography-body1"
-                  >
-                    We will never share your email address.
-                  </p>
-                </div>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
-              >
-                <div
-                  data-aos="zoom-in"
-                  data-aos-delay="0"
+                  class="bulma-column"
                 >
                   <div
-                    class="newsletter-container"
+                    data-aos="fade-down"
+                    data-aos-delay="150"
+                  >
+                    <p
+                      class="is-size-3 has-text-grey-dark has-text-centered"
+                    >
+                      Join the newsletter!
+                    </p>
+                  </div>
+                  <div
+                    data-aos="zoom-in"
+                    data-aos-delay="200"
+                  >
+                    <p
+                      class="is-size-5 has-text-grey has-text-centered"
+                    >
+                      We will never share your email address.
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="bulma-column"
+                >
+                  <div
+                    data-aos="zoom-in"
+                    data-aos-delay="300"
                   >
                     <div
-                      class="newsletter-box"
+                      class="bulma-control  "
                     >
-                      <div
-                        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
-                      >
-                        <div
-                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-7"
-                        >
-                          <div
-                            class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
-                          >
-                            <label
-                              class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined Mui-required Mui-required"
-                              data-shrink="false"
-                              for="email_newletter"
-                              id="email_newletter-label"
-                            >
-                              Email address
-                              <span
-                                aria-hidden="true"
-                                class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                              >
-                                 
-                                *
-                              </span>
-                            </label>
-                            <div
-                              class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
-                            >
-                              <input
-                                aria-invalid="false"
-                                autocomplete="email"
-                                class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
-                                id="email_newletter"
-                                name="email"
-                                required=""
-                                type="text"
-                                value="ester.exposito@gmail.com"
-                              />
-                              <fieldset
-                                aria-hidden="true"
-                                class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
-                              >
-                                <legend
-                                  class="PrivateNotchedOutline-legendLabelled-3"
-                                >
-                                  <span>
-                                    Email address
-                                     *
-                                  </span>
-                                </legend>
-                              </fieldset>
-                            </div>
-                          </div>
-                        </div>
-                        <div
-                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-5"
-                        >
-                          <button
-                            class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
-                            tabindex="0"
-                            type="submit"
-                          >
-                            <span
-                              class="MuiButton-label"
-                            >
-                              Subscribe
-                            </span>
-                            <span
-                              class="MuiTouchRipple-root"
-                            />
-                          </button>
-                        </div>
-                      </div>
+                      <input
+                        autocomplete="email"
+                        class="bulma-input   "
+                        id="email"
+                        name="email"
+                        placeholder="Email address"
+                        required=""
+                        type="text"
+                        value="ester.exposito@gmail.com"
+                      />
                     </div>
+                  </div>
+                </div>
+                <div
+                  class="bulma-column"
+                >
+                  <div
+                    data-aos="zoom-in"
+                    data-aos-delay="350"
+                  >
+                    <button
+                      class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
+                      type="submit"
+                    >
+                      Subscribe
+                    </button>
                   </div>
                 </div>
               </div>
@@ -137,128 +88,79 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <div
-        class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+        class="bulma-container"
       >
         <div
-          class="text-centre pt-64 pb-64"
+          class="py-6"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
+            class="p-6"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-5"
+              class="bulma-columns bulma-is-vcentered"
             >
               <div
-                data-aos="fade-down"
-                data-aos-delay="0"
-              >
-                <p
-                  class="MuiTypography-root newsletter-caption MuiTypography-body1"
-                >
-                  Join the newsletter!
-                </p>
-              </div>
-              <div
-                data-aos="zoom-in"
-                data-aos-delay="0"
-              >
-                <p
-                  class="MuiTypography-root newsletter-text MuiTypography-body1"
-                >
-                  We will never share your email address.
-                </p>
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-7"
-            >
-              <div
-                data-aos="zoom-in"
-                data-aos-delay="0"
+                class="bulma-column"
               >
                 <div
-                  class="newsletter-container"
+                  data-aos="fade-down"
+                  data-aos-delay="150"
+                >
+                  <p
+                    class="is-size-3 has-text-grey-dark has-text-centered"
+                  >
+                    Join the newsletter!
+                  </p>
+                </div>
+                <div
+                  data-aos="zoom-in"
+                  data-aos-delay="200"
+                >
+                  <p
+                    class="is-size-5 has-text-grey has-text-centered"
+                  >
+                    We will never share your email address.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="bulma-column"
+              >
+                <div
+                  data-aos="zoom-in"
+                  data-aos-delay="300"
                 >
                   <div
-                    class="newsletter-box"
+                    class="bulma-control  "
                   >
-                    <div
-                      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2"
-                    >
-                      <div
-                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-7"
-                      >
-                        <div
-                          class="MuiFormControl-root MuiTextField-root MuiFormControl-fullWidth"
-                        >
-                          <label
-                            class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense MuiInputLabel-outlined Mui-required Mui-required"
-                            data-shrink="false"
-                            for="email_newletter"
-                            id="email_newletter-label"
-                          >
-                            Email address
-                            <span
-                              aria-hidden="true"
-                              class="MuiFormLabel-asterisk MuiInputLabel-asterisk"
-                            >
-                               
-                              *
-                            </span>
-                          </label>
-                          <div
-                            class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-marginDense MuiOutlinedInput-marginDense"
-                          >
-                            <input
-                              aria-invalid="false"
-                              autocomplete="email"
-                              class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputMarginDense MuiOutlinedInput-inputMarginDense"
-                              id="email_newletter"
-                              name="email"
-                              required=""
-                              type="text"
-                              value="ester.exposito@gmail.com"
-                            />
-                            <fieldset
-                              aria-hidden="true"
-                              class="PrivateNotchedOutline-root-1 MuiOutlinedInput-notchedOutline"
-                            >
-                              <legend
-                                class="PrivateNotchedOutline-legendLabelled-3"
-                              >
-                                <span>
-                                  Email address
-                                   *
-                                </span>
-                              </legend>
-                            </fieldset>
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-5"
-                      >
-                        <button
-                          class="MuiButtonBase-root MuiButton-root MuiButton-contained button MuiButton-fullWidth"
-                          tabindex="0"
-                          type="submit"
-                        >
-                          <span
-                            class="MuiButton-label"
-                          >
-                            Subscribe
-                          </span>
-                          <span
-                            class="MuiTouchRipple-root"
-                          />
-                        </button>
-                      </div>
-                    </div>
+                    <input
+                      autocomplete="email"
+                      class="bulma-input   "
+                      id="email"
+                      name="email"
+                      placeholder="Email address"
+                      required=""
+                      type="text"
+                      value="ester.exposito@gmail.com"
+                    />
                   </div>
+                </div>
+              </div>
+              <div
+                class="bulma-column"
+              >
+                <div
+                  data-aos="zoom-in"
+                  data-aos-delay="350"
+                >
+                  <button
+                    class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
+                    type="submit"
+                  >
+                    Subscribe
+                  </button>
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { Item } from "../../../Shared/Components/RenderMenu/Models";
+import { ItemDto } from "./Common/itemDto";
 
 export interface NavigationContentDto {
     language: string;
@@ -6,7 +6,7 @@ export interface NavigationContentDto {
     userInfo: UserInfoProps;
     menu: {
         image: string;
-        items: Item[];
+        items: ItemDto[];
     };
 }
 

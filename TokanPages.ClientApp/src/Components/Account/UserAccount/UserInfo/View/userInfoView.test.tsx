@@ -10,6 +10,7 @@ describe("test account group component: userInfoView", () => {
             <BrowserRouter>
                 <UserInfoView
                     isLoading={false}
+                    isMobile={false}
                     userStore={{
                         userId: "123456789",
                         isVerified: false,
@@ -48,6 +49,7 @@ describe("test account group component: userInfoView", () => {
                     formProgress={false}
                     keyHandler={jest.fn()}
                     formHandler={jest.fn()}
+                    descriptionHandler={jest.fn()}
                     switchHandler={jest.fn()}
                     saveButtonHandler={jest.fn()}
                     verifyButtonHandler={jest.fn()}
@@ -68,9 +70,9 @@ describe("test account group component: userInfoView", () => {
                         updateButtonText: "Update",
                         uploadAvatarButtonText: "Upload",
                     }}
-                    background="class-colour-white"
+                    background="has-background-white"
                     userAbout={{
-                        multiline: undefined,
+                        message: "",
                         minRows: undefined,
                     }}
                     fileUploadingCustomHandle="UserFile-Avatar"

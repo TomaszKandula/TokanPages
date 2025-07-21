@@ -10,12 +10,14 @@ describe("test component: businessFormView", () => {
             <BrowserRouter>
                 <BusinessFormView
                     isLoading={false}
+                    isMobile={false}
                     caption="Business Inquiry"
                     progress={false}
                     buttonText="Submit"
                     keyHandler={jest.fn()}
                     formHandler={jest.fn()}
                     buttonHandler={jest.fn()}
+                    descriptionHandler={jest.fn()}
                     techHandler={jest.fn()}
                     serviceHandler={jest.fn()}
                     serviceSelection={["ABC", "CDE"]}
@@ -45,7 +47,6 @@ describe("test component: businessFormView", () => {
                     description={{
                         text: "",
                         label: "",
-                        multiline: false,
                         rows: 0,
                         required: true,
                     }}
@@ -65,8 +66,8 @@ describe("test component: businessFormView", () => {
                             },
                         ],
                     }}
-                    className="mt-15 mb-15"
-                    background="class-colour-white"
+                    className="mt-5 mb-5"
+                    background="has-background-white"
                     hasIcon={true}
                     hasCaption={true}
                     hasShadow={true}

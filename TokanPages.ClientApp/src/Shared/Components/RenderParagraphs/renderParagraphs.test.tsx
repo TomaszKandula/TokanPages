@@ -9,9 +9,9 @@ describe("test render function 'RenderParagraphs'", () => {
         const list = ["item1", "item2", "item3"];
         const output = `
             <span data-testid="test-list">
-                <p class="MuiTypography-root MuiTypography-body1">item1</p>
-                <p class="MuiTypography-root MuiTypography-body1">item2</p>
-                <p class="MuiTypography-root MuiTypography-body1">item3</p>
+                <p>item1</p>
+                <p>item2</p>
+                <p>item3</p>
             </span>`;
 
         const expected = output.replace(/\s+/g, " ").replaceAll(" <", "<");

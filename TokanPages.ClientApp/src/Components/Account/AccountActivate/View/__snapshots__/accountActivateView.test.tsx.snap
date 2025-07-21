@@ -5,60 +5,61 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <div
-          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+          class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="pt-0 pb-15"
+            class="py-6"
           >
             <div
-              class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+              class="bulma-card "
             >
               <div
-                class="MuiCardContent-root card-content"
+                class="bulma-card-content"
               >
                 <div
-                  class="custom-card-background mt-25 mb-25"
+                  class="custom-card-icon-background is-flex is-justify-content-center is-align-items-center my-6"
                 >
                   <div
-                    class="custom-card-icon-holder vertical-centre"
+                    class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                   >
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root custom-card-icon vertical-centre alert-success"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"
-                      />
-                    </svg>
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center custom-card-icon has-text-success"
+                        role="presentation"
+                        style="width: 4.5rem; height: 4.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
                 <h2
-                  class="custom-card-caption text-centre"
+                  class="bulma-title has-text-centered"
                 >
                   Account Activation
                 </h2>
                 <div
-                  class="mt-48"
+                  class="my-5"
                 >
-                  <div
-                    class="custom-card-text text-centre"
+                  <p
+                    class="is-size-6 has-text-centered line-height-20"
                   >
                     Your account has been successfully activated!
-                  </div>
-                  <div
-                    class="custom-card-text text-centre"
+                  </p>
+                  <p
+                    class="is-size-6 has-text-centered line-height-20"
                   >
                     You can now sign in.
-                  </div>
+                  </p>
                 </div>
                 <div
-                  class="mb-48"
+                  class="mb-4"
                 />
               </div>
             </div>
@@ -68,60 +69,61 @@ Object {
     </div>
   </body>,
   "container": <div>
-    <section
-      class="section "
-    >
+    <section>
       <div
-        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+        class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="pt-0 pb-15"
+          class="py-6"
         >
           <div
-            class="MuiPaper-root MuiCard-root card MuiPaper-elevation0 MuiPaper-rounded"
+            class="bulma-card "
           >
             <div
-              class="MuiCardContent-root card-content"
+              class="bulma-card-content"
             >
               <div
-                class="custom-card-background mt-25 mb-25"
+                class="custom-card-icon-background is-flex is-justify-content-center is-align-items-center my-6"
               >
                 <div
-                  class="custom-card-icon-holder vertical-centre"
+                  class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                 >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root custom-card-icon vertical-centre alert-success"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"
-                    />
-                  </svg>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center custom-card-icon has-text-success"
+                      role="presentation"
+                      style="width: 4.5rem; height: 4.5rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
               <h2
-                class="custom-card-caption text-centre"
+                class="bulma-title has-text-centered"
               >
                 Account Activation
               </h2>
               <div
-                class="mt-48"
+                class="my-5"
               >
-                <div
-                  class="custom-card-text text-centre"
+                <p
+                  class="is-size-6 has-text-centered line-height-20"
                 >
                   Your account has been successfully activated!
-                </div>
-                <div
-                  class="custom-card-text text-centre"
+                </p>
+                <p
+                  class="is-size-6 has-text-centered line-height-20"
                 >
                   You can now sign in.
-                </div>
+                </p>
               </div>
               <div
-                class="mb-48"
+                class="mb-4"
               />
             </div>
           </div>

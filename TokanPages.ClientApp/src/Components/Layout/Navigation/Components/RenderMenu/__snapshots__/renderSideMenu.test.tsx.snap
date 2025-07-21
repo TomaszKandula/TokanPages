@@ -1,0 +1,1133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test render function 'RenderSideMenu' should return '<ProgressBar />' when called with empty array of items. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="progress-bar-box "
+        data-testid="progress-bar-view"
+      >
+        <span
+          class="progress-bar-loader"
+          style="height: 20px; width: 20px; border-style: solid; border-width: 2px; border-color: #6367ef;"
+        />
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="progress-bar-box "
+      data-testid="progress-bar-view"
+    >
+      <span
+        class="progress-bar-loader"
+        style="height: 20px; width: 20px; border-style: solid; border-width: 2px; border-color: #6367ef;"
+      />
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`test render function 'RenderSideMenu' should return '<ProgressBar />' when called with items undefined. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="progress-bar-box "
+        data-testid="progress-bar-view"
+      >
+        <span
+          class="progress-bar-loader"
+          style="height: 20px; width: 20px; border-style: solid; border-width: 2px; border-color: #6367ef;"
+        />
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="progress-bar-box "
+      data-testid="progress-bar-view"
+    >
+      <span
+        class="progress-bar-loader"
+        style="height: 20px; width: 20px; border-style: solid; border-width: 2px; border-color: #6367ef;"
+      />
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`test render function 'RenderSideMenu' should return rendered list when items are provided, user is anonymous. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <aside
+        class="bulma-menu p-3 sidemenu-background"
+      >
+        <ul
+          class="bulma-menu-list"
+        >
+          <li>
+            <a
+              href="/en"
+            >
+              <span>
+                Home
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/account/signin"
+            >
+              <span>
+                Sign in
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/account/signup"
+            >
+              <span>
+                Sign up
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/showcase"
+            >
+              <span>
+                Showcase
+              </span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span>
+                Github
+              </span>
+            </a>
+            <ul
+              class="bulma-menu-list"
+            >
+              <li>
+                <a
+                  class="href undefined"
+                  href="https://github.com/TomaszKandula?tab=overview"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <span>
+                    Profile
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="href undefined"
+                  href="https://github.com/TomaszKandula/TokanPages"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <span>
+                    Tokan Pages Project
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="href undefined"
+                  href="https://github.com/TomaszKandula/EmailSender"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <span>
+                    Email Sender Project
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="/en/articles"
+            >
+              <span>
+                Tech Articles
+              </span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span>
+                My interests
+              </span>
+            </a>
+            <ul
+              class="bulma-menu-list"
+            >
+              <li>
+                <a
+                  href="/en/photography"
+                >
+                  <span>
+                    Photography
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/football"
+                >
+                  <span>
+                    Football
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/guitar"
+                >
+                  <span>
+                    Guitar
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/bicycle"
+                >
+                  <span>
+                    Bicycle
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/electronics"
+                >
+                  <span>
+                    Electronics
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="/en/contact"
+            >
+              <span>
+                Contact
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/about"
+            >
+              <span>
+                About
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/terms"
+            >
+              <span>
+                Terms of use
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/policy"
+            >
+              <span>
+                Privacy policy
+              </span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </body>,
+  "container": <div>
+    <aside
+      class="bulma-menu p-3 sidemenu-background"
+    >
+      <ul
+        class="bulma-menu-list"
+      >
+        <li>
+          <a
+            href="/en"
+          >
+            <span>
+              Home
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/en/account/signin"
+          >
+            <span>
+              Sign in
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/en/account/signup"
+          >
+            <span>
+              Sign up
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/en/showcase"
+          >
+            <span>
+              Showcase
+            </span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <span>
+              Github
+            </span>
+          </a>
+          <ul
+            class="bulma-menu-list"
+          >
+            <li>
+              <a
+                class="href undefined"
+                href="https://github.com/TomaszKandula?tab=overview"
+                rel="noopener nofollow"
+                target="_blank"
+              >
+                <span>
+                  Profile
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="href undefined"
+                href="https://github.com/TomaszKandula/TokanPages"
+                rel="noopener nofollow"
+                target="_blank"
+              >
+                <span>
+                  Tokan Pages Project
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="href undefined"
+                href="https://github.com/TomaszKandula/EmailSender"
+                rel="noopener nofollow"
+                target="_blank"
+              >
+                <span>
+                  Email Sender Project
+                </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            href="/en/articles"
+          >
+            <span>
+              Tech Articles
+            </span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <span>
+              My interests
+            </span>
+          </a>
+          <ul
+            class="bulma-menu-list"
+          >
+            <li>
+              <a
+                href="/en/photography"
+              >
+                <span>
+                  Photography
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/en/football"
+              >
+                <span>
+                  Football
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/en/guitar"
+              >
+                <span>
+                  Guitar
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/en/bicycle"
+              >
+                <span>
+                  Bicycle
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/en/electronics"
+              >
+                <span>
+                  Electronics
+                </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            href="/en/contact"
+          >
+            <span>
+              Contact
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/en/about"
+          >
+            <span>
+              About
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/en/terms"
+          >
+            <span>
+              Terms of use
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/en/policy"
+          >
+            <span>
+              Privacy policy
+            </span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`test render function 'RenderSideMenu' should return rendered list when items are provided, user is logged. 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <aside
+        class="bulma-menu p-3 sidemenu-background"
+      >
+        <ul
+          class="bulma-menu-list"
+        >
+          <li>
+            <a
+              href="/en"
+            >
+              <span>
+                Home
+              </span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span>
+                Account
+              </span>
+            </a>
+            <ul
+              class="bulma-menu-list"
+            >
+              <li>
+                <div
+                  class="undefined link-disabled"
+                >
+                  <span>
+                    User articles
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div
+                  class="undefined link-disabled"
+                >
+                  <span>
+                    User notes
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div
+                  class="undefined link-disabled"
+                >
+                  <span>
+                    User files
+                  </span>
+                </div>
+              </li>
+              <li>
+                <a
+                  href="/en/account"
+                >
+                  <span>
+                    User settings
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/signout"
+                >
+                  <span>
+                    Sign out
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="/en/showcase"
+            >
+              <span>
+                Showcase
+              </span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span>
+                Github
+              </span>
+            </a>
+            <ul
+              class="bulma-menu-list"
+            >
+              <li>
+                <a
+                  class="href undefined"
+                  href="https://github.com/TomaszKandula?tab=overview"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <span>
+                    Profile
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="href undefined"
+                  href="https://github.com/TomaszKandula/TokanPages"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <span>
+                    Tokan Pages Project
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="href undefined"
+                  href="https://github.com/TomaszKandula/EmailSender"
+                  rel="noopener nofollow"
+                  target="_blank"
+                >
+                  <span>
+                    Email Sender Project
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="/en/articles"
+            >
+              <span>
+                Tech Articles
+              </span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span>
+                My interests
+              </span>
+            </a>
+            <ul
+              class="bulma-menu-list"
+            >
+              <li>
+                <a
+                  href="/en/photography"
+                >
+                  <span>
+                    Photography
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/football"
+                >
+                  <span>
+                    Football
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/guitar"
+                >
+                  <span>
+                    Guitar
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/bicycle"
+                >
+                  <span>
+                    Bicycle
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/en/electronics"
+                >
+                  <span>
+                    Electronics
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a
+              href="/en/contact"
+            >
+              <span>
+                Contact
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/about"
+            >
+              <span>
+                About
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/terms"
+            >
+              <span>
+                Terms of use
+              </span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="/en/policy"
+            >
+              <span>
+                Privacy policy
+              </span>
+            </a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </body>,
+  "container": <div>
+    <aside
+      class="bulma-menu p-3 sidemenu-background"
+    >
+      <ul
+        class="bulma-menu-list"
+      >
+        <li>
+          <a
+            href="/en"
+          >
+            <span>
+              Home
+            </span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <span>
+              Account
+            </span>
+          </a>
+          <ul
+            class="bulma-menu-list"
+          >
+            <li>
+              <div
+                class="undefined link-disabled"
+              >
+                <span>
+                  User articles
+                </span>
+              </div>
+            </li>
+            <li>
+              <div
+                class="undefined link-disabled"
+              >
+                <span>
+                  User notes
+                </span>
+              </div>
+            </li>
+            <li>
+              <div
+                class="undefined link-disabled"
+              >
+                <span>
+                  User files
+                </span>
+              </div>
+            </li>
+            <li>
+              <a
+                href="/en/account"
+              >
+                <span>
+                  User settings
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/en/signout"
+              >
+                <span>
+                  Sign out
+                </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            href="/en/showcase"
+          >
+            <span>
+              Showcase
+            </span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <span>
+              Github
+            </span>
+          </a>
+          <ul
+            class="bulma-menu-list"
+          >
+            <li>
+              <a
+                class="href undefined"
+                href="https://github.com/TomaszKandula?tab=overview"
+                rel="noopener nofollow"
+                target="_blank"
+              >
+                <span>
+                  Profile
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="href undefined"
+                href="https://github.com/TomaszKandula/TokanPages"
+                rel="noopener nofollow"
+                target="_blank"
+              >
+                <span>
+                  Tokan Pages Project
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="href undefined"
+                href="https://github.com/TomaszKandula/EmailSender"
+                rel="noopener nofollow"
+                target="_blank"
+              >
+                <span>
+                  Email Sender Project
+                </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            href="/en/articles"
+          >
+            <span>
+              Tech Articles
+            </span>
+          </a>
+        </li>
+        <li>
+          <a>
+            <span>
+              My interests
+            </span>
+          </a>
+          <ul
+            class="bulma-menu-list"
+          >
+            <li>
+              <a
+                href="/en/photography"
+              >
+                <span>
+                  Photography
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/en/football"
+              >
+                <span>
+                  Football
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/en/guitar"
+              >
+                <span>
+                  Guitar
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/en/bicycle"
+              >
+                <span>
+                  Bicycle
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="/en/electronics"
+              >
+                <span>
+                  Electronics
+                </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            href="/en/contact"
+          >
+            <span>
+              Contact
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/en/about"
+          >
+            <span>
+              About
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/en/terms"
+          >
+            <span>
+              Terms of use
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/en/policy"
+          >
+            <span>
+              Privacy policy
+            </span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

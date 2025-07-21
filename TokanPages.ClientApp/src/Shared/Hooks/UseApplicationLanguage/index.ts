@@ -27,7 +27,15 @@ const GetDefaultId = (items: LanguageItemDto[]): string | undefined => {
     return undefined;
 };
 
-export const useApplicationLanguage = (manifest: GetContentManifestDto): void => {
+interface UseApplicationLanguageReturnProps {
+    isNormalMode: boolean;
+}
+
+export const useApplicationLanguage = (manifest?: GetContentManifestDto): UseApplicationLanguageReturnProps => {
+    if (!manifest) {
+        return { isNormalMode: false };
+    }
+
     const dispatch = useDispatch();
     const defaultId = GetDefaultId(manifest.languages);
     const pathname = window.location.pathname;
@@ -84,4 +92,8 @@ export const useApplicationLanguage = (manifest: GetContentManifestDto): void =>
             })
         );
     }
+
+    return {
+        isNormalMode: true,
+    };
 };

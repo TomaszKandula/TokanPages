@@ -6,14 +6,16 @@ import { IconType, OperationStatus } from "../../../Shared/enums";
 import { ValidateEmailForm } from "../../../Shared/Services/FormValidation";
 import { NewsletterAddAction, ApplicationDialogAction } from "../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
+import { useDimensions } from "../../../Shared/Hooks";
 import { NewsletterSectionView } from "./View/newsletterSectionView";
 import Validate from "validate.js";
 
 interface NewsletterProps {
-    background?: string;
+    className?: string;
 }
 
 export const NewsletterSection = (props: NewsletterProps): React.ReactElement => {
+    const media = useDimensions();
     const dispatch = useDispatch();
 
     const add = useSelector((state: ApplicationState) => state.newsletterAdd);
@@ -96,6 +98,7 @@ export const NewsletterSection = (props: NewsletterProps): React.ReactElement =>
     return (
         <NewsletterSectionView
             isLoading={data?.isLoading}
+            isMobile={media.isMobile}
             caption={newsletter?.caption}
             text={newsletter?.text}
             keyHandler={keyHandler}
@@ -105,7 +108,7 @@ export const NewsletterSection = (props: NewsletterProps): React.ReactElement =>
             progress={hasProgress}
             buttonText={newsletter?.button}
             labelEmail={newsletter?.labelEmail}
-            background={props.background}
+            background={props.className}
         />
     );
 };

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { Card } from "@material-ui/core";
 import { TextItem } from "../../Models/TextModel";
 import { github } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { RaiseError } from "../../../../../Shared/Services/ErrorServices";
@@ -50,15 +49,17 @@ export const RenderGist = (props: TextItem): React.ReactElement => {
     }, [updateContent]);
 
     return (
-        <Card elevation={3} className="render-gist-card">
-            <SyntaxHighlighter
-                className="render-gist-syntax-highlighter"
-                style={github}
-                language={props.type}
-                showLineNumbers={true}
-            >
-                {gistContent}
-            </SyntaxHighlighter>
-        </Card>
+        <div className="bulma-card">
+            <div className="bulma-card-content">
+                <SyntaxHighlighter
+                    className="render-gist-syntax-highlighter"
+                    style={github}
+                    language={props.type}
+                    showLineNumbers={true}
+                >
+                    {gistContent}
+                </SyntaxHighlighter>
+            </div>
+        </div>
     );
 };

@@ -10,6 +10,7 @@ describe("test account group component: userDeactivationView", () => {
             <BrowserRouter>
                 <UserDeactivationView
                     isLoading={false}
+                    isMobile={false}
                     progress={false}
                     buttonHandler={jest.fn()}
                     section={{

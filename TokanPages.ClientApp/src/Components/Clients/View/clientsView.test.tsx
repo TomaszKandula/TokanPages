@@ -8,7 +8,7 @@ describe("test component: clientsView", () => {
     it("should render correctly '<ClientsView />' when content is loaded.", () => {
         const html = render(
             <BrowserRouter>
-                <ClientsView background="class-colour-white" />
+                <ClientsView className="has-background-white" />
             </BrowserRouter>
         );
 

@@ -1,8 +1,6 @@
 import * as React from "react";
-import BackupIcon from "@material-ui/icons/Backup";
-import { IconButton } from "@material-ui/core";
 import { ReactChangeEvent } from "../../../../Shared/types";
-import { UserAvatar } from "../../../../Shared/Components";
+import { Icon, IconButton, UserAvatar } from "../../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
@@ -29,8 +27,7 @@ export const UploadUserMediaView = (props: Properties): React.ReactElement => {
                 multiple={false}
                 onChange={props.inputHandler}
             />
-
-            <IconButton component="span" size="small" disabled={!props.buttonState} className="button-upload">
+            <IconButton className="button-upload">
                 {hasPreviewImage ? (
                     <UserAvatar
                         altSource={props.previewImage ?? ""}
@@ -38,7 +35,7 @@ export const UploadUserMediaView = (props: Properties): React.ReactElement => {
                         className="user-avatar-avatar-button"
                     />
                 ) : (
-                    <BackupIcon />
+                    <Icon name="CloudUpload" size={1} />
                 )}
             </IconButton>
         </label>

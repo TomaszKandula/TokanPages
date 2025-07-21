@@ -1,5 +1,6 @@
 import { IsRunningOnIOS } from "./Services/IsRunningOnIOS";
 
+export const APP_BAR_HEIGHT: number = 64;
 export const DELAY_3_SECONDS: number = 3000;
 export const DELAY_30_SECONDS: number = 30000;
 export const SET_INTERVAL_DELAY: number = IsRunningOnIOS() ? DELAY_3_SECONDS : DELAY_30_SECONDS;

@@ -10,9 +10,9 @@ export const SigninPage = (): React.ReactElement => {
 
     return (
         <>
-            <Navigation backNavigationOnly={true} />
-            <main>
-                <UserSignin className="pt-120 pb-240" />
+            <Navigation backNavigationOnly />
+            <main className="pt-6">
+                <UserSignin />
             </main>
         </>
     );

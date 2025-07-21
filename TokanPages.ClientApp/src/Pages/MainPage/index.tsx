@@ -40,16 +40,16 @@ export const MainPage = (): React.ReactElement => {
             <main>
                 <Header />
                 <Clients />
-                <Technologies background="background-colour-light-grey" />
+                <Technologies className="has-background-white-bis" />
                 <Showcase />
-                <ArticleFeature background="background-colour-light-grey" />
+                <ArticleFeature className="has-background-white-bis" />
                 <Featured />
-                <Testimonials background="background-colour-light-grey" />
+                <Testimonials className="has-background-white-bis" />
                 <Socials />
-                <NewsletterSection background="background-colour-light-grey" />
+                <NewsletterSection className="has-background-white-bis" />
                 <ContactForm hasCaption={true} />
             </main>
-            <Footer />
+            <Footer className="has-background-white-bis" />
         </>
     );
 };

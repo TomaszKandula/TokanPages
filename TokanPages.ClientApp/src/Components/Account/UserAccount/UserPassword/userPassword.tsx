@@ -6,15 +6,18 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../../Store/Actions";
 import { PasswordFormInput, ValidatePasswordForm } from "../../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
+import { useDimensions } from "../../../../Shared/Hooks";
 import { UserPasswordView } from "./View/userPasswordView";
 import Validate from "validate.js";
 
 export interface UserPasswordProps {
+    className?: string;
     background?: string;
 }
 
 export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
     const dispatch = useDispatch();
+    const media = useDimensions();
 
     const update = useSelector((state: ApplicationState) => state.userPasswordUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -128,6 +131,7 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
     return (
         <UserPasswordView
             isLoading={data.isLoading}
+            isMobile={media.isMobile}
             oldPassword={form.oldPassword}
             newPassword={form.newPassword}
             confirmPassword={form.confirmPassword}
@@ -136,6 +140,7 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
             formHandler={formHandler}
             buttonHandler={buttonHandler}
             sectionAccountPassword={account.sectionAccountPassword}
+            className={props.className}
             background={props.background}
         />
     );

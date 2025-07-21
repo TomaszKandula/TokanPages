@@ -1,0 +1,10 @@
+.app-bar {
+    z-index: 30;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: top 225ms cubic-bezier(0, 0, 0.2, 1);
+    background: white;
+    box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%);
+}

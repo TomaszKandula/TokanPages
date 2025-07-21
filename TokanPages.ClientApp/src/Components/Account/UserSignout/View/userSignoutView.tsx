@@ -1,14 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Skeleton } from "@material-ui/lab";
-import Container from "@material-ui/core/Container";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import { AccountCircle } from "@material-ui/icons";
 import { ViewProperties } from "../../../../Shared/Abstractions";
+import { Icon, Skeleton } from "../../../../Shared/Components";
 import { UserSignoutProps } from "../userSignout";
 
 interface UserSignoutViewProps extends ViewProperties, UserSignoutProps {
@@ -20,43 +13,41 @@ interface UserSignoutViewProps extends ViewProperties, UserSignoutProps {
 }
 
 export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement => {
+    const buttonClass = "bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth";
+    const isDisabled = props.isLoading || !props.isAnonymous;
+
     return (
-        <section className={`section ${props.background} ?? ""`}>
-            <Container maxWidth="sm">
-                <div className={!props.className ? "pt-32 pb-80" : props.className}>
-                    <Card elevation={0} className="card">
-                        <CardContent className="card-content">
-                            <div className="text-centre mb-25">
-                                <AccountCircle className="account" />
-                                <Typography className="caption">
-                                    {props.isLoading ? <Skeleton variant="text" /> : props.caption}
-                                </Typography>
+        <section className={props.background}>
+            <div className="bulma-container bulma-is-max-tablet">
+                <div className={!props.className ? "py-6" : props.className}>
+                    <div className="bulma-card">
+                        <div className="bulma-card-content">
+                            <div className="is-flex is-flex-direction-column is-align-items-center">
+                                <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                                    <Icon name="AccountCircle" size={3} className="has-text-link" />
+                                </Skeleton>
+                                <Skeleton isLoading={props.isLoading}>
+                                    <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                </Skeleton>
                             </div>
-                            <div>
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12}>
-                                        <Typography className="status">
-                                            {props.isLoading ? <Skeleton variant="text" /> : props.status}
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
+                            <div className="has-text-centered mt-5">
+                                <Skeleton isLoading={props.isLoading}>
+                                    <p className="is-size-6 has-text-black">{props.status}</p>
+                                </Skeleton>
                             </div>
-                            <div className="mt-32">
-                                <Link to={`/${props.languageId}`} className="link" rel="noopener nofollow">
-                                    <Button
-                                        fullWidth
-                                        variant="contained"
-                                        className="button"
-                                        disabled={props.isLoading || !props.isAnonymous}
-                                    >
-                                        {props.buttonText}
-                                    </Button>
-                                </Link>
+                            <div className="mt-6 mb-3">
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                                    <Link to={`/${props.languageId}`} className="link" rel="noopener nofollow">
+                                        <button className={buttonClass} disabled={isDisabled}>
+                                            {props.buttonText}
+                                        </button>
+                                    </Link>
+                                </Skeleton>
                             </div>
-                        </CardContent>
-                    </Card>
+                        </div>
+                    </div>
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };

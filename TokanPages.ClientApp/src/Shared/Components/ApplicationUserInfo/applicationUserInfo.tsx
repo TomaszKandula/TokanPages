@@ -22,7 +22,7 @@ export const ApplicationUserInfo = (): React.ReactElement => {
 
     return (
         <ApplicationUserInfoView
-            state={store?.isShown ?? false}
+            isOpen={store?.isShown ?? false}
             content={navigation?.userInfo}
             data={dto}
             closeHandler={onClickHandler}

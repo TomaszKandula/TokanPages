@@ -20,9 +20,9 @@ export const NewsletterRemovePage = (): React.ReactElement => {
 
     return (
         <>
-            <Navigation backNavigationOnly={true} />
-            <main>
-                <NewsletterRemove id={id} className="pt-120 pb-240" />
+            <Navigation backNavigationOnly />
+            <main className="pt-6">
+                <NewsletterRemove id={id} />
             </main>
         </>
     );

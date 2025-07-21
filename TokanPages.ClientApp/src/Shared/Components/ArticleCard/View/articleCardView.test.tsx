@@ -8,6 +8,7 @@ describe("test articles group component: ArticleCardView", () => {
         const html = render(
             <ArticleCardView
                 isLoading={false}
+                isMobile={false}
                 imageUrl="/images/card.jpg"
                 title="Article title"
                 description="Article short description"

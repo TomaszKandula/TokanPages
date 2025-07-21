@@ -10,9 +10,9 @@ export const BusinessPage = () => {
 
     return (
         <>
-            <Navigation backNavigationOnly={true} />
-            <main>
-                <BusinessForm hasCaption={false} hasIcon={true} hasShadow={true} className="pt-120 pb-240" />
+            <Navigation backNavigationOnly />
+            <main className="pt-6">
+                <BusinessForm hasIcon hasShadow />
             </main>
         </>
     );

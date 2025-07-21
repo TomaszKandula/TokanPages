@@ -9,3 +9,7 @@ export type { RowItemDto } from "./rowItemDto";
 export type { ServiceItemDto } from "./serviceItemDto";
 export type { TechItemsDto } from "./techItemsDto";
 export type { TextItemDto } from "./textItemDto";
+export type { FieldsDto } from "./fieldsDto";
+export type { ItemDto } from "./itemDto";
+export type { MenuDto } from "./menuDto";
+export type { SubitemDto } from "./subItemDto";

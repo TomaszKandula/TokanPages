@@ -1,95 +1,25 @@
-.article-flag-image {
-    height: 24px;
-    width: 24px;
-    padding: 1px;
-    align-self: center;
-}
-
-.article-card-button-holder {
-    margin-left: auto;
-    margin-right: 15px;
-}
-
-.article-card {
-    display: flex;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    border-radius: 15px !important;
-    box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%) !important;
-}
-
-@media (max-width: 700px) {
-    .article-card {
-        display: block;
-    }
-}
-
-.article-card-content {
-    width: 100%;
-}
-
-.article-card-title {
-    font-size: 1.5rem !important;
-    line-height: 1.5 !important;
-    font-weight: 400 !important;
-    color: black;
-}
-
-.article-card-description {
-    font-size: 1rem !important;
-    font-weight: 400 !important;
-    color: #9e9e9e;
-}
-
-.article-card-action-container {
+.article-box-content {
     position: relative;
-}
-
-.article-card-action-small {
-    height: 50px;
-}
-
-.article-card-action-large {
-    height: 100px;
-}
-
-.article-card-action {
     width: 100%;
-    padding: 0 !important;
-    position: absolute;
-    bottom: 0;
+    padding: 16px;
 }
 
-.article-card-details {
-    margin-right: auto;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
+.article-box-content-text {
+    height: 120px;
 }
 
-.article-card-item-icon {
-    color: #757575;
-    align-self: center;
-}
-
-.article-card-item-value {
-    padding: 5px;
-    align-self: center;
-}
-
-.article-card-details-separator {
-    margin: 5px;
-}
-
-.article-card-image {
-    height: auto;
-    width: 180px !important;
+.article-box-image {
+    height: 200px !important;
     min-height: 180px;
+    object-fit: cover;
 }
 
-@media (max-width: 700px) {
-    .article-card-image {
-        height: 180px;
-        width: 100% !important;
-    }
+.article-box-image-desktop {
+    border-top-left-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+}
+
+.article-box-image-mobile {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
 }

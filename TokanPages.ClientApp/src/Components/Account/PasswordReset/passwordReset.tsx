@@ -6,7 +6,8 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ApplicationDialogAction, UserPasswordResetAction } from "../../../Store/Actions";
 import { ResetFormInput, ValidateResetForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
-import { PasswordResetView } from "./View/resetPasswordView";
+import { useDimensions } from "../../../Shared/Hooks";
+import { PasswordResetView } from "./View/passwordResetView";
 import Validate from "validate.js";
 
 const formDefaultValues: ResetFormInput = {
@@ -20,6 +21,7 @@ export interface PasswordResetProps {
 
 export const PasswordReset = (props: PasswordResetProps): React.ReactElement => {
     const dispatch = useDispatch();
+    const media = useDimensions();
 
     const reset = useSelector((state: ApplicationState) => state.userPasswordReset);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -102,6 +104,7 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
     return (
         <PasswordResetView
             isLoading={data?.isLoading}
+            isMobile={media.isMobile}
             progress={hasProgress}
             caption={content?.caption}
             button={content?.button}

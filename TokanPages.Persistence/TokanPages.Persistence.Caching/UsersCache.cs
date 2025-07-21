@@ -76,7 +76,7 @@ public class UsersCache : IUsersCache
         if (noCache)
             return await _mediator.Send(new GetUserNotesQuery());
 
-        var userId = _userService.GetActiveUser();
+        var userId = _userService.GetLoggedUserId();
         var key = $"{_environment.EnvironmentName}:user:notes:{userId}";
         var value = await _redisDistributedCache.GetObjectAsync<GetUserNotesQueryResult>(key);
         if (value is not null) return value;

@@ -9,9 +9,9 @@ export const SignoutPage = (): React.ReactElement => {
 
     return (
         <>
-            <Navigation backNavigationOnly={true} />
-            <main>
-                <UserSignout className="pt-120 pb-240" />
+            <Navigation backNavigationOnly />
+            <main className="pt-6">
+                <UserSignout />
             </main>
         </>
     );

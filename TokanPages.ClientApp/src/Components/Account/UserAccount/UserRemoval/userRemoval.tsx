@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { IconType, OperationStatus } from "../../../../Shared/enums";
+import { useDimensions } from "../../../../Shared/Hooks";
 import { UserRemovalView } from "./View/userRemovalView";
 
 import {
@@ -15,12 +16,14 @@ import {
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
 export interface UserRemovalProps {
+    className?: string;
     background?: string;
 }
 
 export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const media = useDimensions();
 
     const remove = useSelector((state: ApplicationState) => state.userRemove);
     const error = useSelector((state: ApplicationState) => state.applicationError);
@@ -83,9 +86,11 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
     return (
         <UserRemovalView
             isLoading={data.isLoading}
+            isMobile={media.isMobile}
             deleteButtonHandler={deleteButtonHandler}
             deleteAccountProgress={hasProgress}
             sectionAccountRemoval={account.sectionAccountRemoval}
+            className={props.className}
             background={props.background}
         />
     );

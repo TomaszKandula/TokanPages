@@ -21,9 +21,9 @@ export const ActivationPage = (): React.ReactElement => {
 
     return (
         <>
-            <Navigation backNavigationOnly={true} />
-            <main>
-                <AccountActivate id={id} type={type} className="pt-120 pb-240" />
+            <Navigation backNavigationOnly />
+            <main className="pt-6">
+                <AccountActivate id={id} type={type} />
             </main>
         </>
     );

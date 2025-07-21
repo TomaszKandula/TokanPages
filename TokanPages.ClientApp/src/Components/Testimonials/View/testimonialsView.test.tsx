@@ -26,6 +26,7 @@ describe("test component: testimonialsView", () => {
         const html = render(
             <TestimonialsView
                 isLoading={false}
+                isMobile={false}
                 caption={testContent.caption}
                 subtitle={testContent.subtitle}
                 photo1={testContent.photo1}

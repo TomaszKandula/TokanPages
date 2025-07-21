@@ -4,9 +4,6 @@
     "private": true,
     "description": "Main client application project",
     "dependencies": {
-        "@material-ui/core": "^4.12.3",
-        "@material-ui/icons": "^4.11.2",
-        "@material-ui/lab": "^4.0.0-alpha.60",
         "@microsoft/signalr": "^8.0.0",
         "@unhead/react": "^2.0.5",
         "aos": "^2.3.4",
@@ -35,6 +32,8 @@
         "@babel/plugin-transform-react-jsx": "^7.14.9",
         "@commitlint/cli": "^16.2.1",
         "@commitlint/config-conventional": "^16.2.1",
+        "@mdi/js": "^7.4.47",
+        "@mdi/react": "^1.6.1",
         "@testing-library/jest-dom": "^5.16.2",
         "@testing-library/react": "12.1.5",
         "@types/aos": "^3.0.4",

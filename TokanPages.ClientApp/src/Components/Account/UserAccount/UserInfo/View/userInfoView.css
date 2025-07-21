@@ -1,49 +1,7 @@
-.backdrop {
-    z-index: 9999 !important;
-    color: #ffffff;
-}
-
-.user-id {
-    margin-bottom: 30px;
-}
-
-@media (max-width: 600px) {
-    .user-id {
-        margin-bottom: 15px;
-    }
-}
-
-.user-alias {
-    margin-bottom: 30px;
-}
-
-@media (max-width: 600px) {
-    .user-alias {
-        margin-bottom: 15px;
-    }
-}
-
-.user-email-status {
-    margin-bottom: 4px;
-}
-
-@media (max-width: 600px) {
-    .user-email-status {
-        margin-bottom: 0;
-    }
-}
-
-.user-email-verification {
+.has-pointer {
     cursor: pointer;
-    color: red;
-    text-decoration: underline;
 }
 
-.user-avatar-text {
-    margin-left: 15px !important;
-}
-
-.user-account-text-item {
-    padding-top: 5px;
-    padding-bottom: 5px;
+.cancel-margin-bottom {
+    margin-bottom: 0 !important;
 }
