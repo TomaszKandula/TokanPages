@@ -6,28 +6,36 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="clients-section class-colour-white"
+        class="clients-section has-background-white"
       >
         <div
-          class="MuiContainer-root MuiContainer-maxWidthLg"
+          class="bulma-container"
         >
           <div
-            class="clients-render-images mt-15 mb-64"
-          />
+            class="py-6"
+          >
+            <div
+              class="is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-center"
+            />
+          </div>
         </div>
       </section>
     </div>
   </body>,
   "container": <div>
     <section
-      class="clients-section class-colour-white"
+      class="clients-section has-background-white"
     >
       <div
-        class="MuiContainer-root MuiContainer-maxWidthLg"
+        class="bulma-container"
       >
         <div
-          class="clients-render-images mt-15 mb-64"
-        />
+          class="py-6"
+        >
+          <div
+            class="is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-center"
+          />
+        </div>
       </div>
     </section>
   </div>,

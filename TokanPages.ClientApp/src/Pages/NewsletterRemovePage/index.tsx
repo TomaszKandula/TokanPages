@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
 import { usePageContent, useUnhead } from "../../Shared/Hooks";
-import { NewsletterRemove } from "../../Components/NewsletterRemove";
+import { NewsletterRemove } from "../../Components/Newsletter";
 import { Navigation } from "../../Components/Layout";
 
 const useQuery = () => {
@@ -20,9 +20,9 @@ export const NewsletterRemovePage = (): React.ReactElement => {
 
     return (
         <>
-            <Navigation backNavigationOnly={true} />
-            <main>
-                <NewsletterRemove id={id} className="pt-120 pb-240" />
+            <Navigation backNavigationOnly />
+            <main className="pt-6">
+                <NewsletterRemove id={id} />
             </main>
         </>
     );

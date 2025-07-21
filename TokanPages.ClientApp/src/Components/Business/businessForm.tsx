@@ -1,16 +1,17 @@
 import * as React from "react";
 import { BusinessFormView } from "./View/businessFormView";
 import { useDispatch, useSelector } from "react-redux";
+import { TechItemsDto } from "../../Api/Models";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
 import { IconType, OperationStatus } from "../../Shared/enums";
+import { useDimensions } from "../../Shared/Hooks";
 import { INTERNAL_MESSAGE_TEXT, INTERNAL_SUBJECT_TEXT, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { formatPhoneNumber } from "../../Shared/Services/Converters";
 import { ValidateBusinessForm } from "../../Shared/Services/FormValidation";
-import { ReactChangeEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../Shared/types";
 import { BusinessFormProps, MessageFormProps } from "./Models";
 import Validate from "validate.js";
-import { TechItemsDto } from "Api/Models";
 
 const formDefault: MessageFormProps = {
     company: "",
@@ -56,6 +57,7 @@ const resetTechStack = (input?: TechItemsDto[]): TechItemsDto[] => {
 };
 
 export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
+    const media = useDimensions();
     const dispatch = useDispatch();
 
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
@@ -69,6 +71,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [form, setForm] = React.useState<MessageFormProps>(formDefault);
+    const [description, setDescription] = React.useState({ description: "" });
     const [techStackItems, setTechStackItems] = React.useState<TechItemsDto[] | undefined>(undefined);
     const [services, setServices] = React.useState<string[]>([]);
     const [hasProgress, setHasProgress] = React.useState(false);
@@ -163,15 +166,22 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
         [form, form.phone]
     );
 
+    const descriptionHandler = React.useCallback(
+        (event: ReactChangeTextEvent) => {
+            setDescription({ ...description, [event.currentTarget.name]: event.currentTarget.value });
+        },
+        [description]
+    );
+
     const techHandler = React.useCallback(
-        (event: ReactChangeEvent, isChecked: boolean) => {
+        (event: ReactChangeEvent) => {
             if (!techStackItems) {
                 return;
             }
 
-            const index = Number(event.currentTarget.id);
+            const index = Number(event.target.id);
             const data = techStackItems.slice();
-            data[index].isChecked = isChecked;
+            data[index].isChecked = event.target.checked;
             setTechStackItems(data);
         },
         [techStackItems]
@@ -214,7 +224,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             lastName: form.lastName,
             email: form.email,
             phone: form.phone,
-            description: form.description,
+            description: description.description,
             techStack: techStack,
             services: services,
         });
@@ -232,16 +242,18 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
                 icon: IconType.warning,
             })
         );
-    }, [form, templates, services, techStackItems]);
+    }, [form, description, templates, services, techStackItems]);
 
     return (
         <BusinessFormView
             isLoading={data.isLoading}
+            isMobile={media.isMobile}
             caption={businessForm.caption}
             progress={hasProgress}
             buttonText={businessForm.buttonText}
             keyHandler={keyHandler}
             formHandler={formHandler}
+            descriptionHandler={descriptionHandler}
             buttonHandler={buttonHandler}
             techHandler={techHandler}
             serviceHandler={serviceHandler}
@@ -259,9 +271,8 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             techLabel={businessForm.techLabel}
             techItems={techStackItems ?? []}
             description={{
-                text: form.description,
+                text: description.description,
                 label: businessForm.description.label,
-                multiline: businessForm.description.multiline,
                 rows: businessForm.description.rows,
                 required: businessForm.description.required,
             }}

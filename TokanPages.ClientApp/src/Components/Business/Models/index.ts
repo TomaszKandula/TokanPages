@@ -13,14 +13,14 @@ export interface MessageFormProps {
 }
 
 export interface TechStackListProps {
+    isLoading: boolean;
     isDisabled: boolean;
     list: TechItemsDto[];
-    handler: (event: ReactChangeEvent, isChecked: boolean) => void;
+    handler: (event: ReactChangeEvent) => void;
 }
 
 export interface ServiceItemCardProps {
     isDisabled: boolean;
-    key: React.Key | null | undefined;
     value: ServiceItemDto;
     handler: (event: ReactMouseEvent) => void;
     services: string[];

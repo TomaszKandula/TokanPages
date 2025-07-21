@@ -1,0 +1,196 @@
+/*
+    This CSS overwrites Bulma's navbar to keep navbar visible and fully functional on screens below 1024px.
+*/
+@media screen and (max-width: 1024px) {
+    .bulma-navbar,
+    .bulma-navbar-menu,
+    .bulma-navbar-start,
+    .bulma-navbar-end {
+        align-items: stretch;
+        display: flex;
+    }
+    .bulma-navbar {
+        min-height: var(--bulma-navbar-height);
+    }
+    .bulma-navbar.bulma-is-spaced {
+        padding: var(--bulma-navbar-padding-vertical) var(--bulma-navbar-padding-horizontal);
+    }
+    .bulma-navbar.bulma-is-spaced .bulma-navbar-start,
+    .bulma-navbar.bulma-is-spaced .bulma-navbar-end {
+        align-items: center;
+    }
+    .bulma-navbar.bulma-is-spaced a.bulma-navbar-item,
+    .bulma-navbar.bulma-is-spaced .bulma-navbar-link {
+        border-radius: var(--bulma-radius);
+    }
+    .bulma-navbar.bulma-is-transparent {
+        --bulma-navbar-item-background-a: 0;
+    }
+    .bulma-navbar.bulma-is-transparent .bulma-navbar-dropdown a.bulma-navbar-item {
+        background-color: hsl(
+            var(--bulma-navbar-h),
+            var(--bulma-navbar-s),
+            calc(var(--bulma-navbar-item-background-l) + var(--bulma-navbar-item-background-l-delta))
+        );
+    }
+    .bulma-navbar.bulma-is-transparent .bulma-navbar-dropdown a.bulma-navbar-item.bulma-is-active,
+    .bulma-navbar.bulma-is-transparent .bulma-navbar-dropdown a.bulma-navbar-item.bulma-is-selected {
+        --bulma-navbar-h: var(--bulma-navbar-item-selected-h);
+        --bulma-navbar-s: var(--bulma-navbar-item-selected-s);
+        --bulma-navbar-l: var(--bulma-navbar-item-selected-l);
+        --bulma-navbar-item-background-l: var(--bulma-navbar-item-selected-background-l);
+        --bulma-navbar-item-color-l: var(--bulma-navbar-item-selected-color-l);
+    }
+    .bulma-navbar-burger {
+        display: none;
+    }
+    .bulma-navbar-item,
+    .bulma-navbar-link {
+        align-items: center;
+        display: flex;
+    }
+    .bulma-navbar-item.bulma-has-dropdown {
+        align-items: stretch;
+    }
+    .bulma-navbar-item.bulma-has-dropdown-up .bulma-navbar-link::after {
+        transform: rotate(135deg) translate(0.25em, -0.25em);
+    }
+    .bulma-navbar-item.bulma-has-dropdown-up .bulma-navbar-dropdown {
+        border-bottom-color: var(--bulma-navbar-dropdown-border-color);
+        border-bottom-style: var(--bulma-navbar-dropdown-border-style);
+        border-bottom-width: var(--bulma-navbar-dropdown-border-width);
+        border-radius: var(--bulma-navbar-dropdown-radius) var(--bulma-navbar-dropdown-radius) 0 0;
+        border-top: none;
+        bottom: 100%;
+        box-shadow: 0 -0.5em 0.5em hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-invert-l), 0.1);
+        top: auto;
+    }
+    .bulma-navbar-item.bulma-is-active .bulma-navbar-dropdown,
+    .bulma-navbar-item.bulma-is-hoverable:focus .bulma-navbar-dropdown,
+    .bulma-navbar-item.bulma-is-hoverable:focus-within .bulma-navbar-dropdown,
+    .bulma-navbar-item.bulma-is-hoverable:hover .bulma-navbar-dropdown {
+        display: block;
+    }
+    .bulma-navbar.bulma-is-spaced .bulma-navbar-item.bulma-is-active .bulma-navbar-dropdown,
+    .bulma-navbar-item.bulma-is-active .bulma-navbar-dropdown.bulma-is-boxed,
+    .bulma-navbar.bulma-is-spaced .bulma-navbar-item.bulma-is-hoverable:focus .bulma-navbar-dropdown,
+    .bulma-navbar-item.bulma-is-hoverable:focus .bulma-navbar-dropdown.bulma-is-boxed,
+    .bulma-navbar.bulma-is-spaced .bulma-navbar-item.bulma-is-hoverable:focus-within .bulma-navbar-dropdown,
+    .bulma-navbar-item.bulma-is-hoverable:focus-within .bulma-navbar-dropdown.bulma-is-boxed,
+    .bulma-navbar.bulma-is-spaced .bulma-navbar-item.bulma-is-hoverable:hover .bulma-navbar-dropdown,
+    .bulma-navbar-item.bulma-is-hoverable:hover .bulma-navbar-dropdown.bulma-is-boxed {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+    .bulma-navbar-menu {
+        flex-grow: 1;
+        flex-shrink: 0;
+    }
+    .bulma-navbar-start {
+        justify-content: flex-start;
+        margin-inline-end: auto;
+    }
+    .bulma-navbar-end {
+        justify-content: flex-end;
+        margin-inline-start: auto;
+    }
+    .bulma-navbar-dropdown {
+        background-color: var(--bulma-navbar-dropdown-background-color);
+        border-end-start-radius: var(--bulma-navbar-dropdown-radius);
+        border-end-end-radius: var(--bulma-navbar-dropdown-radius);
+        border-top-color: var(--bulma-navbar-dropdown-border-color);
+        border-top-style: var(--bulma-navbar-dropdown-border-style);
+        border-top-width: var(--bulma-navbar-dropdown-border-width);
+        box-shadow: 0 0.5em 0.5em hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-invert-l), 0.1);
+        display: none;
+        font-size: 0.875rem;
+        inset-inline-start: 0;
+        min-width: 100%;
+        position: absolute;
+        top: 100%;
+        z-index: var(--bulma-navbar-dropdown-z);
+    }
+    .bulma-navbar-dropdown .bulma-navbar-item {
+        padding: 0.375rem 1rem;
+        white-space: nowrap;
+    }
+    .bulma-navbar-dropdown a.bulma-navbar-item {
+        padding-inline-end: 3rem;
+    }
+    .bulma-navbar-dropdown a.bulma-navbar-item:not(.is-active, .is-selected) {
+        background-color: hsl(
+            var(--bulma-navbar-dropdown-item-h),
+            var(--bulma-navbar-dropdown-item-s),
+            calc(var(--bulma-navbar-dropdown-item-background-l) + var(--bulma-navbar-item-background-l-delta))
+        );
+        color: hsl(
+            var(--bulma-navbar-dropdown-item-h),
+            var(--bulma-navbar-dropdown-item-s),
+            var(--bulma-navbar-dropdown-item-color-l)
+        );
+    }
+    .bulma-navbar.bulma-is-spaced .bulma-navbar-dropdown,
+    .bulma-navbar-dropdown.bulma-is-boxed {
+        border-radius: var(--bulma-navbar-dropdown-boxed-radius);
+        border-top: none;
+        box-shadow: var(--bulma-navbar-dropdown-boxed-shadow);
+        display: block;
+        opacity: 0;
+        pointer-events: none;
+        top: calc(100% + (var(--bulma-navbar-dropdown-offset)));
+        transform: translateY(-5px);
+        transition-duration: var(--bulma-duration);
+        transition-property: opacity, transform;
+    }
+    .bulma-navbar-dropdown.bulma-is-right {
+        left: auto;
+        right: 0;
+    }
+    .bulma-navbar-divider {
+        display: block;
+    }
+    .bulma-navbar > .bulma-container .bulma-navbar-brand,
+    .bulma-container > .bulma-navbar .bulma-navbar-brand {
+        margin-inline-start: -0.75rem;
+    }
+    .bulma-navbar > .bulma-container .bulma-navbar-menu,
+    .bulma-container > .bulma-navbar .bulma-navbar-menu {
+        margin-inline-end: -0.75rem;
+    }
+    .bulma-navbar.bulma-is-fixed-bottom-desktop,
+    .bulma-navbar.bulma-is-fixed-top-desktop {
+        left: 0;
+        position: fixed;
+        right: 0;
+        z-index: var(--bulma-navbar-fixed-z);
+    }
+    .bulma-navbar.bulma-is-fixed-bottom-desktop {
+        bottom: 0;
+    }
+    .bulma-navbar.bulma-is-fixed-bottom-desktop.bulma-has-shadow {
+        box-shadow: 0 -0.125em 0.1875em hsla(var(--bulma-scheme-h), var(--bulma-scheme-s), var(--bulma-scheme-invert-l), 0.1);
+    }
+    .bulma-navbar.bulma-is-fixed-top-desktop {
+        top: 0;
+    }
+    html.bulma-has-navbar-fixed-top-desktop,
+    body.bulma-has-navbar-fixed-top-desktop {
+        padding-top: var(--bulma-navbar-height);
+    }
+    html.bulma-has-navbar-fixed-bottom-desktop,
+    body.bulma-has-navbar-fixed-bottom-desktop {
+        padding-bottom: var(--bulma-navbar-height);
+    }
+    html.bulma-has-spaced-navbar-fixed-top,
+    body.bulma-has-spaced-navbar-fixed-top {
+        padding-top: calc(var(--bulma-navbar-height) + var(--bulma-navbar-padding-vertical) * 2);
+    }
+    html.bulma-has-spaced-navbar-fixed-bottom,
+    body.bulma-has-spaced-navbar-fixed-bottom {
+        padding-bottom: calc(var(--bulma-navbar-height) + var(--bulma-navbar-padding-vertical) * 2);
+    }
+}
+.bulma-hero.bulma-is-fullheight-with-navbar {
+    min-height: calc(100vh - var(--bulma-navbar-height));
+}

@@ -1,11 +1,7 @@
 import * as React from "react";
-import { Card, CardContent, Container } from "@material-ui/core";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import ReportProblemIcon from "@material-ui/icons/ReportProblem";
-import DescriptionIcon from "@material-ui/icons/Description";
-import ErrorIcon from "@material-ui/icons/Error";
-import { CustomCard, DownloadAsset, PdfCanvas, ProgressBar } from "../../../Shared/Components";
+import { CustomCard, DownloadAsset, Icon, IconButton, PdfCanvas, ProgressBar } from "../../../Shared/Components";
+import { ReactMouseEvent } from "../../../Shared/types";
+import "./pdfViewerView.css";
 
 interface PdfViewerViewProps {
     isDocLoading: boolean;
@@ -24,8 +20,8 @@ interface PdfViewerViewProps {
     scale?: number;
     pdfUrl?: string;
     background?: string;
-    onPreviousPage?: React.MouseEventHandler<SVGSVGElement>;
-    onNextPage?: React.MouseEventHandler<SVGSVGElement>;
+    onPreviousPage?: (event: ReactMouseEvent) => void;
+    onNextPage?: (event: ReactMouseEvent) => void;
 }
 
 interface RenderIconOrErrorProps {
@@ -35,87 +31,85 @@ interface RenderIconOrErrorProps {
 }
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
-    return props.hasPdfWorkerError ? <ReportProblemIcon /> : <DownloadAsset url={props.pdfUrl ?? ""} />;
+    return props.hasPdfWorkerError ? (
+        <Icon name="AlertOctagon" size={3} />
+    ) : (
+        <DownloadAsset url={props.pdfUrl ?? ""} className="has-text-black" />
+    );
 };
 
 const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement => {
     return props.isDocLoading && !props.hasPdfWorkerError ? <ProgressBar size={20} /> : <RenderIcon {...props} />;
 };
 
-const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => {
-    return (
-        <section className={`section ${props.background ?? ""}`}>
-            <Container className="container-wide-1000">
-                <div className="pt-80 pb-48">
-                    <Card elevation={0} className="card">
-                        <CardContent className="card-content">
-                            <div className="pdf-header">
-                                <div className="pdf-header-download-icon">
-                                    <RenderIconOrLoading
-                                        isDocLoading={props.isDocLoading}
-                                        hasPdfWorkerError={props.hasPdfWorkerError}
-                                        pdfUrl={props.pdfUrl}
-                                    />
-                                </div>
-                                <div className="pdf-header-pages">
-                                    {props.currentPage} / {props.numPages}
-                                </div>
-                                <div className="pdf-header-buttons-container">
-                                    <NavigateBeforeIcon className="pdf-header-buttons" onClick={props.onPreviousPage} />
-                                    <NavigateNextIcon className="pdf-header-buttons" onClick={props.onNextPage} />
-                                </div>
+const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => (
+    <section className={props.background}>
+        <div className="bulma-container bulma-is-max-desktop">
+            <div className="py-6">
+                <div className="bulma-card m-4">
+                    <div className="bulma-card-content p-0">
+                        <div className="is-flex is-justify-content-space-around">
+                            <RenderIconOrLoading
+                                isDocLoading={props.isDocLoading}
+                                hasPdfWorkerError={props.hasPdfWorkerError}
+                                pdfUrl={props.pdfUrl}
+                            />
+                            <p className="is-size-6 has-text-weight-semibold is-flex is-align-self-center">
+                                {props.currentPage} / {props.numPages}
+                            </p>
+                            <div className="is-flex">
+                                <IconButton onClick={props.onPreviousPage}>
+                                    <Icon name="ChevronLeft" size={1.1} />
+                                </IconButton>
+                                <IconButton onClick={props.onNextPage}>
+                                    <Icon name="ChevronRight" size={1.1} />
+                                </IconButton>
                             </div>
-                            <div className="pdf-canvas-wrapper">
-                                <PdfCanvas
-                                    pdfDocument={props.pdfDocument}
-                                    pageNumber={props.currentPage}
-                                    scale={props.scale ?? 1.5}
-                                    htmlAttributes={{ className: "pdf-canvas" }}
-                                />
-                            </div>
-                        </CardContent>
-                    </Card>
+                        </div>
+                        <PdfCanvas
+                            pdfDocument={props.pdfDocument}
+                            pageNumber={props.currentPage}
+                            scale={props.scale ?? 1.5}
+                            htmlAttributes={{ className: "pdf-canvas" }}
+                        />
+                    </div>
                 </div>
-            </Container>
-        </section>
-    );
-};
+            </div>
+        </div>
+    </section>
+);
 
-const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement => {
-    return (
-        <section className={`section ${props.background ?? ""}`}>
-            <Container className="container-wide">
-                <div className="pt-80 pb-48">
-                    <CustomCard
-                        isLoading={props?.content?.isLoading}
-                        caption={props?.content?.caption}
-                        text={[props?.content?.warning]}
-                        icon={<DescriptionIcon />}
-                        colour="info"
-                    />
-                </div>
-            </Container>
-        </section>
-    );
-};
+const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement => (
+    <section className={props.background}>
+        <div className="bulma-container">
+            <div className="py-6">
+                <CustomCard
+                    isLoading={props?.content?.isLoading}
+                    caption={props?.content?.caption}
+                    text={[props?.content?.warning]}
+                    icon={<Icon name="FileDocument" size={3} />}
+                    colour="has-text-info"
+                />
+            </div>
+        </div>
+    </section>
+);
 
-const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => {
-    return (
-        <section className={`section ${props.background ?? ""}`}>
-            <Container className="container-wide">
-                <div className="pt-80 pb-48">
-                    <CustomCard
-                        isLoading={props?.content?.isLoading}
-                        caption={props?.content?.caption}
-                        text={[props?.content?.error]}
-                        icon={<ErrorIcon />}
-                        colour="error"
-                    />
-                </div>
-            </Container>
-        </section>
-    );
-};
+const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => (
+    <section className={props.background}>
+        <div className="bulma-container">
+            <div className="py-6">
+                <CustomCard
+                    isLoading={props?.content?.isLoading}
+                    caption={props?.content?.caption}
+                    text={[props?.content?.error]}
+                    icon={<Icon name="AlertCircle" size={3} />}
+                    colour="has-text-danger"
+                />
+            </div>
+        </div>
+    </section>
+);
 
 export const PdfViewerView = (props: PdfViewerViewProps): React.ReactElement => {
     if (props.hasPdfError) {

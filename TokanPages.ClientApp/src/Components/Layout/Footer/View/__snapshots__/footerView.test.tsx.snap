@@ -6,138 +6,166 @@ Object {
   "baseElement": <body>
     <div>
       <footer
-        class="footer-page-footer"
+        class="bulma-footer "
       >
         <div
-          class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+          class="bulma-content has-text-centered"
         >
-          <div
-            class="footer-copyright-box footer-centred"
+          <p
+            class="is-size-5"
           >
-            <p
-              class="MuiTypography-root footer-copyright MuiTypography-body1"
+            <span
+              class="ml-2 mr-2"
             >
               © Tomasz Kandula
-               | 
+            </span>
+            <span>
+              |
+            </span>
+            <span
+              class="ml-2 mr-2"
+            >
               All rights reserved
-               | 
-              <a
-                class="footer-links"
-                href="/terms"
-                rel="noopener nofollow"
-              >
+            </span>
+            <span>
+              |
+            </span>
+            <a
+              class="footer-links ml-2 mr-2"
+              href="/terms"
+            >
+              <span>
                 Terms of use
-              </a>
-               |
-               
-              <a
-                class="footer-links"
-                href="/policy"
-                rel="noopener nofollow"
-              >
+              </span>
+            </a>
+            <span>
+              |
+            </span>
+            <a
+              class="footer-links ml-2 mr-2"
+              href="/policy"
+            >
+              <span>
                 Privacy policy
-              </a>
-            </p>
-          </div>
+              </span>
+            </a>
+          </p>
+          <p
+            class="is-size-6"
+          >
+            1.0
+          </p>
           <div
-            class="footer-icon-box footer-centred"
+            class="is-flex is-justify-content-center"
           >
             <a
-              aria-disabled="false"
-              aria-label="LinkedInIcon"
-              class="MuiButtonBase-root MuiIconButton-root footer-icon"
+              class="href undefined"
               href="https://www.linkedin.com/"
               rel="noopener nofollow"
-              tabindex="0"
               target="_blank"
             >
-              <span
-                class="MuiIconButton-label"
+              <button
+                class="icon-button  is-flex is-align-self-center"
+                style="height: 48px; width: 48px;"
               >
-                <span
-                  aria-hidden="true"
-                  class="material-icons MuiIcon-root"
-                >
-                  linkedinicon
-                </span>
-              </span>
-              <span
-                class="MuiTouchRipple-root"
-              />
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center "
+                    role="presentation"
+                    style="width: 2.25rem; height: 2.25rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+              </button>
             </a>
           </div>
-          <div
-            class="pb-64"
-          />
         </div>
       </footer>
     </div>
   </body>,
   "container": <div>
     <footer
-      class="footer-page-footer"
+      class="bulma-footer "
     >
       <div
-        class="MuiContainer-root container-wide MuiContainer-maxWidthLg"
+        class="bulma-content has-text-centered"
       >
-        <div
-          class="footer-copyright-box footer-centred"
+        <p
+          class="is-size-5"
         >
-          <p
-            class="MuiTypography-root footer-copyright MuiTypography-body1"
+          <span
+            class="ml-2 mr-2"
           >
             © Tomasz Kandula
-             | 
+          </span>
+          <span>
+            |
+          </span>
+          <span
+            class="ml-2 mr-2"
+          >
             All rights reserved
-             | 
-            <a
-              class="footer-links"
-              href="/terms"
-              rel="noopener nofollow"
-            >
+          </span>
+          <span>
+            |
+          </span>
+          <a
+            class="footer-links ml-2 mr-2"
+            href="/terms"
+          >
+            <span>
               Terms of use
-            </a>
-             |
-             
-            <a
-              class="footer-links"
-              href="/policy"
-              rel="noopener nofollow"
-            >
+            </span>
+          </a>
+          <span>
+            |
+          </span>
+          <a
+            class="footer-links ml-2 mr-2"
+            href="/policy"
+          >
+            <span>
               Privacy policy
-            </a>
-          </p>
-        </div>
+            </span>
+          </a>
+        </p>
+        <p
+          class="is-size-6"
+        >
+          1.0
+        </p>
         <div
-          class="footer-icon-box footer-centred"
+          class="is-flex is-justify-content-center"
         >
           <a
-            aria-disabled="false"
-            aria-label="LinkedInIcon"
-            class="MuiButtonBase-root MuiIconButton-root footer-icon"
+            class="href undefined"
             href="https://www.linkedin.com/"
             rel="noopener nofollow"
-            tabindex="0"
             target="_blank"
           >
-            <span
-              class="MuiIconButton-label"
+            <button
+              class="icon-button  is-flex is-align-self-center"
+              style="height: 48px; width: 48px;"
             >
-              <span
-                aria-hidden="true"
-                class="material-icons MuiIcon-root"
-              >
-                linkedinicon
-              </span>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
+              <div>
+                <svg
+                  class="is-flex is-align-self-center "
+                  role="presentation"
+                  style="width: 2.25rem; height: 2.25rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+            </button>
           </a>
         </div>
-        <div
-          class="pb-64"
-        />
       </div>
     </footer>
   </div>,

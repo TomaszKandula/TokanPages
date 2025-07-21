@@ -3,224 +3,146 @@
 exports[`test view component for application diaog box should render correctly view component with passed props. 1`] = `
 Object {
   "asFragment": [Function],
-  "baseElement": <body
-    style="padding-right: 0px; overflow: hidden;"
-  >
-    <div
-      aria-hidden="true"
-    >
+  "baseElement": <body>
+    <div>
       <div
-        class="MuiDialog-root"
-        role="presentation"
-        style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
+        class="bulma-modal bulma-is-active"
       >
         <div
-          data-test="sentinelStart"
-          tabindex="0"
+          class="bulma-modal-background"
         />
         <div
-          class="MuiDialog-container MuiDialog-scrollPaper"
-          role="none presentation"
-          style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-          tabindex="-1"
+          class="bulma-modal-card py-6 my-6"
         >
-          <div
-            aria-describedby="alert-dialog-description"
-            aria-labelledby="alert-dialog-title"
-            class="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiPaper-elevation24 MuiPaper-rounded"
-            role="dialog"
+          <header
+            class="bulma-modal-card-head"
           >
-            <div
-              class="MuiDialogTitle-root dialog-box-title"
-              id="alert-dialog-title"
-            >
-              <h2
-                class="MuiTypography-root MuiTypography-h6"
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-info"
+                role="presentation"
+                style="width: 2.25rem; height: 2.25rem;"
+                viewBox="0 0 24 24"
               >
-                <div
-                  class="dialog-box-icon-holder"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root dialog-box-info-icon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
-                    />
-                  </svg>
-                  Test title
-                </div>
-              </h2>
+                <path
+                  d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                  style="fill: currentColor;"
+                />
+              </svg>
             </div>
-            <hr
-              class="MuiDivider-root"
+            <p
+              class="bulma-modal-card-title p-3"
+            >
+              Test title
+            </p>
+            <button
+              aria-label="close"
+              class="bulma-delete"
             />
-            <div
-              class="MuiDialogContent-root"
-            >
-              <span
-                class="MuiTypography-root dialog-box-description MuiTypography-body1"
-                id="alert-dialog-description"
-              >
-                <p
-                  class="MuiTypography-root MuiTypography-body1"
-                >
-                  Test item 1
-                </p>
-                <p
-                  class="MuiTypography-root MuiTypography-body1"
-                >
-                  Test item 2
-                </p>
-              </span>
-            </div>
-            <hr
-              class="MuiDivider-root"
-            />
-            <div
-              class="MuiDialogActions-root MuiDialogActions-spacing"
-            >
-              <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text button Mui-focusVisible Mui-focusVisible"
-                tabindex="0"
-                type="button"
-              >
-                <span
-                  class="MuiButton-label"
-                >
-                  OK
-                </span>
-                <span
-                  class="MuiTouchRipple-root"
-                >
-                  <span
-                    class="MuiTouchRipple-ripple MuiTouchRipple-rippleVisible MuiTouchRipple-ripplePulsate"
-                    style="width: 1px; height: 1px; top: -0.5px; left: -0.5px;"
-                  >
-                    <span
-                      class="MuiTouchRipple-child MuiTouchRipple-childPulsate"
-                    />
-                  </span>
-                </span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div
-          data-test="sentinelEnd"
-          tabindex="0"
-        />
-      </div>
-    </div>
-  </body>,
-  "container": <div
-    aria-hidden="true"
-  >
-    <div
-      class="MuiDialog-root"
-      role="presentation"
-      style="position: fixed; z-index: 1300; right: 0px; bottom: 0px; top: 0px; left: 0px;"
-    >
-      <div
-        data-test="sentinelStart"
-        tabindex="0"
-      />
-      <div
-        class="MuiDialog-container MuiDialog-scrollPaper"
-        role="none presentation"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-        tabindex="-1"
-      >
-        <div
-          aria-describedby="alert-dialog-description"
-          aria-labelledby="alert-dialog-title"
-          class="MuiPaper-root MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm MuiPaper-elevation24 MuiPaper-rounded"
-          role="dialog"
-        >
-          <div
-            class="MuiDialogTitle-root dialog-box-title"
-            id="alert-dialog-title"
+          </header>
+          <section
+            class="bulma-modal-card-body"
           >
-            <h2
-              class="MuiTypography-root MuiTypography-h6"
-            >
-              <div
-                class="dialog-box-icon-holder"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root dialog-box-info-icon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
-                  />
-                </svg>
-                Test title
-              </div>
-            </h2>
-          </div>
-          <hr
-            class="MuiDivider-root"
-          />
-          <div
-            class="MuiDialogContent-root"
-          >
-            <span
-              class="MuiTypography-root dialog-box-description MuiTypography-body1"
-              id="alert-dialog-description"
+            <div
+              class="bulma-content"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1"
+                class="is-size-6 has-text-dark"
               >
                 Test item 1
               </p>
               <p
-                class="MuiTypography-root MuiTypography-body1"
+                class="is-size-6 has-text-dark"
               >
                 Test item 2
               </p>
-            </span>
-          </div>
-          <hr
-            class="MuiDivider-root"
-          />
-          <div
-            class="MuiDialogActions-root MuiDialogActions-spacing"
+            </div>
+          </section>
+          <footer
+            class="bulma-modal-card-foot is-justify-content-flex-end"
           >
-            <button
-              class="MuiButtonBase-root MuiButton-root MuiButton-text button Mui-focusVisible Mui-focusVisible"
-              tabindex="0"
-              type="button"
+            <div
+              class="bulma-buttons"
             >
-              <span
-                class="MuiButton-label"
+              <button
+                class="bulma-button bulma-is-link bulma-is-light"
               >
                 OK
-              </span>
-              <span
-                class="MuiTouchRipple-root"
-              >
-                <span
-                  class="MuiTouchRipple-ripple MuiTouchRipple-rippleVisible MuiTouchRipple-ripplePulsate"
-                  style="width: 1px; height: 1px; top: -0.5px; left: -0.5px;"
-                >
-                  <span
-                    class="MuiTouchRipple-child MuiTouchRipple-childPulsate"
-                  />
-                </span>
-              </span>
-            </button>
-          </div>
+              </button>
+            </div>
+          </footer>
         </div>
       </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="bulma-modal bulma-is-active"
+    >
       <div
-        data-test="sentinelEnd"
-        tabindex="0"
+        class="bulma-modal-background"
       />
+      <div
+        class="bulma-modal-card py-6 my-6"
+      >
+        <header
+          class="bulma-modal-card-head"
+        >
+          <div>
+            <svg
+              class="is-flex is-align-self-center has-text-info"
+              role="presentation"
+              style="width: 2.25rem; height: 2.25rem;"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                style="fill: currentColor;"
+              />
+            </svg>
+          </div>
+          <p
+            class="bulma-modal-card-title p-3"
+          >
+            Test title
+          </p>
+          <button
+            aria-label="close"
+            class="bulma-delete"
+          />
+        </header>
+        <section
+          class="bulma-modal-card-body"
+        >
+          <div
+            class="bulma-content"
+          >
+            <p
+              class="is-size-6 has-text-dark"
+            >
+              Test item 1
+            </p>
+            <p
+              class="is-size-6 has-text-dark"
+            >
+              Test item 2
+            </p>
+          </div>
+        </section>
+        <footer
+          class="bulma-modal-card-foot is-justify-content-flex-end"
+        >
+          <div
+            class="bulma-buttons"
+          >
+            <button
+              class="bulma-button bulma-is-link bulma-is-light"
+            >
+              OK
+            </button>
+          </div>
+        </footer>
+      </div>
     </div>
   </div>,
   "debug": [Function],

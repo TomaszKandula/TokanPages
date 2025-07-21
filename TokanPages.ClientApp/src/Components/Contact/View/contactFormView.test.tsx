@@ -10,6 +10,7 @@ describe("test component: contactFormView", () => {
             <BrowserRouter>
                 <ContactFormView
                     isLoading={false}
+                    isMobile={false}
                     caption="Contact me"
                     text="If you have any questions..."
                     hasCaption={true}
@@ -17,12 +18,12 @@ describe("test component: contactFormView", () => {
                     hasIcon={true}
                     keyHandler={jest.fn()}
                     formHandler={jest.fn()}
+                    messageHandler={jest.fn()}
                     firstName="Ester"
                     lastName="Exposito"
                     email="ester.exposito@gmail.com"
                     subject="Test subject"
                     message="Test message..."
-                    terms={false}
                     buttonHandler={jest.fn()}
                     progress={false}
                     buttonText="Submit"
@@ -32,7 +33,6 @@ describe("test component: contactFormView", () => {
                     labelEmail="Email address"
                     labelSubject="Subject"
                     labelMessage="Message"
-                    multiline={false}
                     minRows={undefined}
                 />
             </BrowserRouter>

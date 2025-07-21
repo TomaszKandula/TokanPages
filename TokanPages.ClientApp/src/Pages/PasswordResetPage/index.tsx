@@ -9,9 +9,9 @@ export const PasswordResetPage = (): React.ReactElement => {
 
     return (
         <>
-            <Navigation backNavigationOnly={true} />
-            <main>
-                <PasswordReset className="pt-120 pb-240" />
+            <Navigation backNavigationOnly />
+            <main className="pt-6">
+                <PasswordReset />
             </main>
         </>
     );

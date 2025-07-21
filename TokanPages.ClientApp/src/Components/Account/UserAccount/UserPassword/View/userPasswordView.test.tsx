@@ -10,6 +10,7 @@ describe("test account group component: userPasswordView", () => {
             <BrowserRouter>
                 <UserPasswordView
                     isLoading={false}
+                    isMobile={false}
                     oldPassword="Provide old password"
                     newPassword="Provide new password"
                     confirmPassword="Confirm new password"

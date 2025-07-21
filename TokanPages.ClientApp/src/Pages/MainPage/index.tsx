@@ -5,7 +5,7 @@ import { Technologies } from "../../Components/Technologies";
 import { Featured } from "../../Components/Featured";
 import { Testimonials } from "../../Components/Testimonials";
 import { Socials } from "../../Components/Socials";
-import { Newsletter } from "../../Components/Newsletter";
+import { NewsletterSection } from "../../Components/Newsletter";
 import { ContactForm } from "../../Components/Contact";
 import { ArticleFeature } from "../../Components/Articles";
 import { Navigation, Header, Footer } from "../../Components/Layout";
@@ -40,16 +40,16 @@ export const MainPage = (): React.ReactElement => {
             <main>
                 <Header />
                 <Clients />
-                <Technologies background="background-colour-light-grey" />
+                <Technologies className="has-background-white-bis" />
                 <Showcase />
-                <ArticleFeature background="background-colour-light-grey" />
+                <ArticleFeature className="has-background-white-bis" />
                 <Featured />
-                <Testimonials background="background-colour-light-grey" />
+                <Testimonials className="has-background-white-bis" />
                 <Socials />
-                <Newsletter background="background-colour-light-grey" />
+                <NewsletterSection className="has-background-white-bis" />
                 <ContactForm hasCaption={true} />
             </main>
-            <Footer />
+            <Footer className="has-background-white-bis" />
         </>
     );
 };

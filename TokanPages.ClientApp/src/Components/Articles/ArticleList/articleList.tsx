@@ -2,6 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
+import { useDimensions } from "../../../Shared/Hooks";
 import { ArticleListView } from "./View/articleListView";
 
 export interface ArticleListProps {
@@ -9,6 +10,7 @@ export interface ArticleListProps {
 }
 
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
+    const media = useDimensions();
     const dispatch = useDispatch();
     const article = useSelector((state: ApplicationState) => state.articleListing);
 
@@ -22,5 +24,12 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
     }, [article.isLoading, article.articles]);
 
-    return <ArticleListView isLoading={article.isLoading} articles={article.articles} background={props.background} />;
+    return (
+        <ArticleListView
+            isLoading={article.isLoading}
+            isMobile={media.isMobile}
+            articles={article.articles}
+            background={props.background}
+        />
+    );
 };

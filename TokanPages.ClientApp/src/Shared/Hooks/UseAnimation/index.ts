@@ -12,4 +12,4 @@ export const useAnimation = (): void => {
         const intervalId = InitializeAnimations();
         return () => clearInterval(intervalId);
     }, []);
-}
+};

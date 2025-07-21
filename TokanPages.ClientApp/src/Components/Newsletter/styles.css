@@ -1,0 +1,29 @@
+.newsletter-container {
+    display: flex;
+    height: 100%;
+}
+
+.newsletter-box {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 100%;
+}
+
+.newsletter-caption {
+    font-size: 2rem !important;
+}
+
+.newsletter-text {
+    font-size: 1.2rem !important;
+    color: #757575;
+}
+
+.newsletter-update-account {
+    font-size: 72px !important;
+    color: #6367ef;
+}
+
+.newsletter-update-caption {
+    font-size: 1.8rem !important;
+    color: #9e9e9e;
+}

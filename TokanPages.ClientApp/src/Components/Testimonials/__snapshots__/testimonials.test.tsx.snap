@@ -5,62 +5,304 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <section
-        class="section "
-      >
+      <section>
         <div
-          class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
+          class="bulma-container"
         >
           <div
-            class="text-centre pt-64 testimonials-bottom-padding"
+            class="py-6"
           >
             <div
               data-aos="fade-down"
               data-aos-delay="0"
             >
               <p
-                class="MuiTypography-root testimonials-caption-text MuiTypography-body1"
+                class="is-size-3	has-text-centered has-text-link"
               >
                 TESTIMONIALS
               </p>
             </div>
-          </div>
-          <div
-            class="text-centre pb-120"
-          >
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
+              class="bulma-columns p-6"
             >
               <div
-                class="MuiGrid-root testimonials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+                class="bulma-column "
               >
                 <div
                   data-aos="fade-up"
                   data-aos-delay="350"
                 >
                   <div
-                    class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation0 MuiPaper-rounded"
+                    class="bulma-card"
                   >
                     <img
                       alt="Picture of Joanna"
-                      class="MuiCardMedia-root testimonials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                      class="testimonials-card-image lazyloaded"
                       loading="lazy"
                       src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
                       title="Testimonials"
                     />
                     <div
-                      class="MuiCardContent-root testimonials-card-content"
+                      class="bulma-card-content mt-6"
                     >
                       <p
-                        class="MuiTypography-root testimonials-card-title MuiTypography-body1"
+                        class="is-size-4 has-text-centered has-text-weight-semibold mt-6 p-4"
                       >
                         Joanna
                       </p>
                       <p
-                        class="MuiTypography-root testimonials-card-subheader MuiTypography-body1"
+                        class="is-size-6 has-text-centered has-text-link p-2"
                       >
                         Senior Digital Tax Specialist
                       </p>
+                      <div
+                        class="is-flex is-flex-direction-column is-align-items-center"
+                      >
+                        <div
+                          class="collapsible-transition"
+                          style="height: 120px;"
+                        >
+                          <div
+                            class="collapsible-content"
+                          >
+                            <div
+                              class="collapsible-gradient"
+                              style="height: 120px;"
+                            />
+                            <h4
+                              class="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
+                            >
+                              Joe is very motivated...
+                            </h4>
+                          </div>
+                        </div>
+                        <button
+                          class="icon-button collapsible-expand is-flex is-align-self-center"
+                          style="height: 48px; width: 48px;"
+                        >
+                          <div>
+                            <svg
+                              class="is-flex is-align-self-center has-text-grey"
+                              role="presentation"
+                              style="width: 1.5rem; height: 1.5rem;"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                                style="fill: currentColor;"
+                              />
+                            </svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bulma-column "
+              >
+                <div
+                  data-aos="fade-up"
+                  data-aos-delay="150"
+                >
+                  <div
+                    class="bulma-card"
+                  >
+                    <img
+                      alt="Picture of Adama"
+                      class="testimonials-card-image lazyloaded"
+                      loading="lazy"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
+                      title="Testimonials"
+                    />
+                    <div
+                      class="bulma-card-content mt-6"
+                    >
+                      <p
+                        class="is-size-4 has-text-centered has-text-weight-semibold mt-6 p-4"
+                      >
+                        Adama
+                      </p>
+                      <p
+                        class="is-size-6 has-text-centered has-text-link p-2"
+                      >
+                        Full-stack Developer chez DFDS POLSKA
+                      </p>
+                      <div
+                        class="is-flex is-flex-direction-column is-align-items-center"
+                      >
+                        <div
+                          class="collapsible-transition"
+                        >
+                          <div
+                            class="collapsible-content"
+                          >
+                            <div
+                              class="collapsible-gradient"
+                            />
+                            <h4
+                              class="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
+                            >
+                              Joe have done very good work...
+                            </h4>
+                          </div>
+                        </div>
+                        <button
+                          class="icon-button collapsible-expand is-flex is-align-self-center"
+                          style="height: 48px; width: 48px;"
+                        >
+                          <div>
+                            <svg
+                              class="is-flex is-align-self-center has-text-grey"
+                              role="presentation"
+                              style="width: 1.5rem; height: 1.5rem;"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                                style="fill: currentColor;"
+                              />
+                            </svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bulma-column "
+              >
+                <div
+                  data-aos="fade-up"
+                  data-aos-delay="250"
+                >
+                  <div
+                    class="bulma-card"
+                  >
+                    <img
+                      alt="Picture of Scott"
+                      class="testimonials-card-image lazyloaded"
+                      loading="lazy"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/scott.webp"
+                      title="Testimonials"
+                    />
+                    <div
+                      class="bulma-card-content mt-6"
+                    >
+                      <p
+                        class="is-size-4 has-text-centered has-text-weight-semibold mt-6 p-4"
+                      >
+                        Scott
+                      </p>
+                      <p
+                        class="is-size-6 has-text-centered has-text-link p-2"
+                      >
+                        BPO
+                      </p>
+                      <div
+                        class="is-flex is-flex-direction-column is-align-items-center"
+                      >
+                        <div
+                          class="collapsible-transition"
+                        >
+                          <div
+                            class="collapsible-content"
+                          >
+                            <div
+                              class="collapsible-gradient"
+                            />
+                            <h4
+                              class="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
+                            >
+                              Joe is one of those rare talents...
+                            </h4>
+                          </div>
+                        </div>
+                        <button
+                          class="icon-button collapsible-expand is-flex is-align-self-center"
+                          style="height: 48px; width: 48px;"
+                        >
+                          <div>
+                            <svg
+                              class="is-flex is-align-self-center has-text-grey"
+                              role="presentation"
+                              style="width: 1.5rem; height: 1.5rem;"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                                style="fill: currentColor;"
+                              />
+                            </svg>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section>
+      <div
+        class="bulma-container"
+      >
+        <div
+          class="py-6"
+        >
+          <div
+            data-aos="fade-down"
+            data-aos-delay="0"
+          >
+            <p
+              class="is-size-3	has-text-centered has-text-link"
+            >
+              TESTIMONIALS
+            </p>
+          </div>
+          <div
+            class="bulma-columns p-6"
+          >
+            <div
+              class="bulma-column "
+            >
+              <div
+                data-aos="fade-up"
+                data-aos-delay="350"
+              >
+                <div
+                  class="bulma-card"
+                >
+                  <img
+                    alt="Picture of Joanna"
+                    class="testimonials-card-image lazyloaded"
+                    loading="lazy"
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
+                    title="Testimonials"
+                  />
+                  <div
+                    class="bulma-card-content mt-6"
+                  >
+                    <p
+                      class="is-size-4 has-text-centered has-text-weight-semibold mt-6 p-4"
+                    >
+                      Joanna
+                    </p>
+                    <p
+                      class="is-size-6 has-text-centered has-text-link p-2"
+                    >
+                      Senior Digital Tax Specialist
+                    </p>
+                    <div
+                      class="is-flex is-flex-direction-column is-align-items-center"
+                    >
                       <div
                         class="collapsible-transition"
                         style="height: 120px;"
@@ -73,429 +315,175 @@ Object {
                             style="height: 120px;"
                           />
                           <h4
-                            class="testimonials-card-text"
+                            class="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
                           >
                             Joe is very motivated...
                           </h4>
                         </div>
                       </div>
                       <button
-                        aria-label="show more"
-                        class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
-                        tabindex="0"
-                        type="button"
+                        class="icon-button collapsible-expand is-flex is-align-self-center"
+                        style="height: 48px; width: 48px;"
                       >
-                        <span
-                          class="MuiIconButton-label"
-                        >
+                        <div>
                           <svg
-                            aria-hidden="true"
-                            class="MuiSvgIcon-root"
-                            focusable="false"
+                            class="is-flex is-align-self-center has-text-grey"
+                            role="presentation"
+                            style="width: 1.5rem; height: 1.5rem;"
                             viewBox="0 0 24 24"
                           >
                             <path
-                              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                              d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                              style="fill: currentColor;"
                             />
                           </svg>
-                        </span>
-                        <span
-                          class="MuiTouchRipple-root"
-                        />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="MuiGrid-root testimonials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
-              >
-                <div
-                  data-aos="fade-up"
-                  data-aos-delay="150"
-                >
-                  <div
-                    class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
-                  >
-                    <img
-                      alt="Picture of Adama"
-                      class="MuiCardMedia-root testimonials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
-                      title="Testimonials"
-                    />
-                    <div
-                      class="MuiCardContent-root testimonials-card-content"
-                    >
-                      <p
-                        class="MuiTypography-root testimonials-card-title MuiTypography-body1"
-                      >
-                        Adama
-                      </p>
-                      <p
-                        class="MuiTypography-root testimonials-card-subheader MuiTypography-body1"
-                      >
-                        Full-stack Developer chez DFDS POLSKA
-                      </p>
-                      <div
-                        class="collapsible-transition"
-                      >
-                        <div
-                          class="collapsible-content"
-                        >
-                          <div
-                            class="collapsible-gradient"
-                          />
-                          <h4
-                            class="testimonials-card-text"
-                          >
-                            Joe have done very good work...
-                          </h4>
                         </div>
-                      </div>
-                      <button
-                        aria-label="show more"
-                        class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
-                        tabindex="0"
-                        type="button"
-                      >
-                        <span
-                          class="MuiIconButton-label"
-                        >
-                          <svg
-                            aria-hidden="true"
-                            class="MuiSvgIcon-root"
-                            focusable="false"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                            />
-                          </svg>
-                        </span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="MuiGrid-root testimonials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
-              >
-                <div
-                  data-aos="fade-up"
-                  data-aos-delay="250"
-                >
-                  <div
-                    class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
-                  >
-                    <img
-                      alt="Picture of Scott"
-                      class="MuiCardMedia-root testimonials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/scott.webp"
-                      title="Testimonials"
-                    />
-                    <div
-                      class="MuiCardContent-root testimonials-card-content"
-                    >
-                      <p
-                        class="MuiTypography-root testimonials-card-title MuiTypography-body1"
-                      >
-                        Scott
-                      </p>
-                      <p
-                        class="MuiTypography-root testimonials-card-subheader MuiTypography-body1"
-                      >
-                        BPO
-                      </p>
-                      <div
-                        class="collapsible-transition"
-                      >
-                        <div
-                          class="collapsible-content"
-                        >
-                          <div
-                            class="collapsible-gradient"
-                          />
-                          <h4
-                            class="testimonials-card-text"
-                          >
-                            Joe is one of those rare talents...
-                          </h4>
-                        </div>
-                      </div>
-                      <button
-                        aria-label="show more"
-                        class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
-                        tabindex="0"
-                        type="button"
-                      >
-                        <span
-                          class="MuiIconButton-label"
-                        >
-                          <svg
-                            aria-hidden="true"
-                            class="MuiSvgIcon-root"
-                            focusable="false"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                            />
-                          </svg>
-                        </span>
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </body>,
-  "container": <div>
-    <section
-      class="section "
-    >
-      <div
-        class="MuiContainer-root container-super-wide MuiContainer-maxWidthLg"
-      >
-        <div
-          class="text-centre pt-64 testimonials-bottom-padding"
-        >
-          <div
-            data-aos="fade-down"
-            data-aos-delay="0"
-          >
-            <p
-              class="MuiTypography-root testimonials-caption-text MuiTypography-body1"
-            >
-              TESTIMONIALS
-            </p>
-          </div>
-        </div>
-        <div
-          class="text-centre pb-120"
-        >
-          <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-6"
-          >
             <div
-              class="MuiGrid-root testimonials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
-            >
-              <div
-                data-aos="fade-up"
-                data-aos-delay="350"
-              >
-                <div
-                  class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation0 MuiPaper-rounded"
-                >
-                  <img
-                    alt="Picture of Joanna"
-                    class="MuiCardMedia-root testimonials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
-                    title="Testimonials"
-                  />
-                  <div
-                    class="MuiCardContent-root testimonials-card-content"
-                  >
-                    <p
-                      class="MuiTypography-root testimonials-card-title MuiTypography-body1"
-                    >
-                      Joanna
-                    </p>
-                    <p
-                      class="MuiTypography-root testimonials-card-subheader MuiTypography-body1"
-                    >
-                      Senior Digital Tax Specialist
-                    </p>
-                    <div
-                      class="collapsible-transition"
-                      style="height: 120px;"
-                    >
-                      <div
-                        class="collapsible-content"
-                      >
-                        <div
-                          class="collapsible-gradient"
-                          style="height: 120px;"
-                        />
-                        <h4
-                          class="testimonials-card-text"
-                        >
-                          Joe is very motivated...
-                        </h4>
-                      </div>
-                    </div>
-                    <button
-                      aria-label="show more"
-                      class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
-                      tabindex="0"
-                      type="button"
-                    >
-                      <span
-                        class="MuiIconButton-label"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="MuiSvgIcon-root"
-                          focusable="false"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
-                          />
-                        </svg>
-                      </span>
-                      <span
-                        class="MuiTouchRipple-root"
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root testimonials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+              class="bulma-column "
             >
               <div
                 data-aos="fade-up"
                 data-aos-delay="150"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
+                  class="bulma-card"
                 >
                   <img
                     alt="Picture of Adama"
-                    class="MuiCardMedia-root testimonials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                    class="testimonials-card-image lazyloaded"
                     loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
                     title="Testimonials"
                   />
                   <div
-                    class="MuiCardContent-root testimonials-card-content"
+                    class="bulma-card-content mt-6"
                   >
                     <p
-                      class="MuiTypography-root testimonials-card-title MuiTypography-body1"
+                      class="is-size-4 has-text-centered has-text-weight-semibold mt-6 p-4"
                     >
                       Adama
                     </p>
                     <p
-                      class="MuiTypography-root testimonials-card-subheader MuiTypography-body1"
+                      class="is-size-6 has-text-centered has-text-link p-2"
                     >
                       Full-stack Developer chez DFDS POLSKA
                     </p>
                     <div
-                      class="collapsible-transition"
+                      class="is-flex is-flex-direction-column is-align-items-center"
                     >
                       <div
-                        class="collapsible-content"
+                        class="collapsible-transition"
                       >
                         <div
-                          class="collapsible-gradient"
-                        />
-                        <h4
-                          class="testimonials-card-text"
+                          class="collapsible-content"
                         >
-                          Joe have done very good work...
-                        </h4>
-                      </div>
-                    </div>
-                    <button
-                      aria-label="show more"
-                      class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
-                      tabindex="0"
-                      type="button"
-                    >
-                      <span
-                        class="MuiIconButton-label"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="MuiSvgIcon-root"
-                          focusable="false"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                          <div
+                            class="collapsible-gradient"
                           />
-                        </svg>
-                      </span>
-                    </button>
+                          <h4
+                            class="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
+                          >
+                            Joe have done very good work...
+                          </h4>
+                        </div>
+                      </div>
+                      <button
+                        class="icon-button collapsible-expand is-flex is-align-self-center"
+                        style="height: 48px; width: 48px;"
+                      >
+                        <div>
+                          <svg
+                            class="is-flex is-align-self-center has-text-grey"
+                            role="presentation"
+                            style="width: 1.5rem; height: 1.5rem;"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                              style="fill: currentColor;"
+                            />
+                          </svg>
+                        </div>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div
-              class="MuiGrid-root testimonials-card-holder MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4"
+              class="bulma-column "
             >
               <div
                 data-aos="fade-up"
                 data-aos-delay="250"
               >
                 <div
-                  class="MuiPaper-root MuiCard-root testimonials-card MuiPaper-elevation3 MuiPaper-rounded"
+                  class="bulma-card"
                 >
                   <img
                     alt="Picture of Scott"
-                    class="MuiCardMedia-root testimonials-card-image lazyloaded MuiCardMedia-media MuiCardMedia-img"
+                    class="testimonials-card-image lazyloaded"
                     loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/scott.webp"
                     title="Testimonials"
                   />
                   <div
-                    class="MuiCardContent-root testimonials-card-content"
+                    class="bulma-card-content mt-6"
                   >
                     <p
-                      class="MuiTypography-root testimonials-card-title MuiTypography-body1"
+                      class="is-size-4 has-text-centered has-text-weight-semibold mt-6 p-4"
                     >
                       Scott
                     </p>
                     <p
-                      class="MuiTypography-root testimonials-card-subheader MuiTypography-body1"
+                      class="is-size-6 has-text-centered has-text-link p-2"
                     >
                       BPO
                     </p>
                     <div
-                      class="collapsible-transition"
+                      class="is-flex is-flex-direction-column is-align-items-center"
                     >
                       <div
-                        class="collapsible-content"
+                        class="collapsible-transition"
                       >
                         <div
-                          class="collapsible-gradient"
-                        />
-                        <h4
-                          class="testimonials-card-text"
+                          class="collapsible-content"
                         >
-                          Joe is one of those rare talents...
-                        </h4>
-                      </div>
-                    </div>
-                    <button
-                      aria-label="show more"
-                      class="MuiButtonBase-root MuiIconButton-root collapsible-expand"
-                      tabindex="0"
-                      type="button"
-                    >
-                      <span
-                        class="MuiIconButton-label"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="MuiSvgIcon-root"
-                          focusable="false"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                          <div
+                            class="collapsible-gradient"
                           />
-                        </svg>
-                      </span>
-                    </button>
+                          <h4
+                            class="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
+                          >
+                            Joe is one of those rare talents...
+                          </h4>
+                        </div>
+                      </div>
+                      <button
+                        class="icon-button collapsible-expand is-flex is-align-self-center"
+                        style="height: 48px; width: 48px;"
+                      >
+                        <div>
+                          <svg
+                            class="is-flex is-align-self-center has-text-grey"
+                            role="presentation"
+                            style="width: 1.5rem; height: 1.5rem;"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"
+                              style="fill: currentColor;"
+                            />
+                          </svg>
+                        </div>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

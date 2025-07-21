@@ -1,0 +1,15 @@
+.article-feature-card-shadow {
+    box-shadow: 0 2px 20px 0 rgb(0 0 0 / 20%);
+}
+
+.article-feature-image {
+    object-fit: cover;
+}
+
+.article-feature-image-large {
+    min-height: 336px;
+}
+
+.article-feature-image-small {
+    min-height: 256px;
+}

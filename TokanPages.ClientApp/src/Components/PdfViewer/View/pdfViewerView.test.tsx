@@ -26,7 +26,7 @@ describe("test component: pdfViewerView", () => {
                     pdfUrl="https://test.com/documents/some_document.pdf"
                     onPreviousPage={jest.fn()}
                     onNextPage={jest.fn()}
-                    background="class-colour-white"
+                    background="has-background-white"
                 />
             </BrowserRouter>
         );

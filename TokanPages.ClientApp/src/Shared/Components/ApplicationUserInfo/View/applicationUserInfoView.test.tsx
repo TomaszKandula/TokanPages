@@ -52,7 +52,7 @@ describe("test view component for application user info", () => {
 
         const html = render(
             <ApplicationUserInfoView
-                state={true}
+                isOpen={true}
                 content={userInfo}
                 data={testData}
                 disablePortal={true}

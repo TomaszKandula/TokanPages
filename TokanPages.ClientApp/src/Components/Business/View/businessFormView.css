@@ -1,0 +1,39 @@
+.business-unselected {
+    border: 1px solid #efefef;
+    border-radius: 10px !important;
+    background-color: white;
+}
+
+.business-selected {
+    border: 1.5px solid #6367ef;
+    border-radius: 10px !important;
+    background-color: white;
+}
+
+.business-disabled {
+    cursor: wait;
+}
+
+.business-enabled {
+    cursor: pointer;
+}
+
+.business-items {
+    position: relative;
+    min-height: 130px;
+}
+
+.business-items:hover {
+    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 10%) !important;
+}
+
+.business-item-text {
+    position: absolute;
+    padding: 15px;
+}
+
+.business-item-price {
+    position: absolute;
+    padding: 15px;
+    bottom: 0;
+}

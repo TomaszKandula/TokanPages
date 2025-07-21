@@ -1,19 +1,23 @@
 import * as React from "react";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Container from "@material-ui/core/Container";
-import Skeleton from "@material-ui/lab/Skeleton";
-import { Button, CircularProgress, Grid, TextField, Typography, Backdrop } from "@material-ui/core";
 import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
 import { GET_USER_IMAGE } from "../../../../../Api";
 import { UserMedia } from "../../../../../Shared/enums";
-import { CustomDivider, UploadUserMedia } from "../../../../../Shared/Components";
+import {
+    Backdrop,
+    ProgressBar,
+    Skeleton,
+    TextArea,
+    TextField,
+    UploadUserMedia,
+} from "../../../../../Shared/Components";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
 import { ViewProperties } from "../../../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { UserInfoProps } from "../userInfo";
+import "./userInfoView.css";
 
 interface UserInfoViewProps extends ViewProperties, UserInfoProps {
+    isMobile: boolean;
     fileUploadingCustomHandle?: string;
     userStore: AuthenticateUserResultDto;
     accountForm: AccountFormInput;
@@ -23,51 +27,40 @@ interface UserInfoViewProps extends ViewProperties, UserInfoProps {
     formProgress: boolean;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
+    descriptionHandler: (event: ReactChangeTextEvent) => void;
     switchHandler: (event: ReactChangeEvent) => void;
     saveButtonHandler: () => void;
     verifyButtonHandler: () => void;
     sectionAccountInformation: SectionAccountInformation;
     userAbout?: {
-        multiline?: boolean;
         minRows?: number;
+        message: string;
     };
 }
 
-interface Properties extends UserInfoViewProps {
-    value: string;
-}
-
-const RenderText = (props: Properties): React.ReactElement => {
-    return props.isLoading ? <Skeleton variant="text" /> : <>{props.value}</>;
-};
-
-const UpdateAccountButton = (props: UserInfoViewProps): React.ReactElement => {
-    return (
-        <Button
-            fullWidth
-            type="submit"
-            variant="contained"
-            onClick={props.saveButtonHandler}
-            disabled={props.formProgress}
-            className="button-update"
-        >
-            {!props.formProgress ? props.sectionAccountInformation?.updateButtonText : <CircularProgress size={20} />}
-        </Button>
-    );
-};
+const UpdateAccountButton = (props: UserInfoViewProps): React.ReactElement => (
+    <button
+        type="submit"
+        onClick={props.saveButtonHandler}
+        disabled={props.formProgress}
+        className="bulma-button bulma-is-info bulma-is-light"
+    >
+        {!props.formProgress ? props.sectionAccountInformation?.updateButtonText : <ProgressBar size={20} />}
+    </button>
+);
 
 const RequestVerificationButton = (props: UserInfoViewProps): React.ReactElement => {
     const clickable = (
-        <Typography component="span" onClick={props.verifyButtonHandler} className="user-email-verification">
+        <span onClick={props.verifyButtonHandler} className="has-text-danger is-underlined has-pointer">
             request verification
-        </Typography>
+        </span>
     );
 
     const link = (
         <>
-            <Typography component="span">&nbsp;(</Typography>
+            <span>&nbsp;(</span>
             {clickable}
-            <Typography component="span">)</Typography>
+            <span>)</span>
         </>
     );
 
@@ -82,10 +75,6 @@ const RenderEmailStatus = (props: UserInfoViewProps): React.ReactElement => {
     );
 };
 
-const RenderLoadingOrStatus = (props: UserInfoViewProps): React.ReactElement => {
-    return props.isLoading ? <Skeleton variant="text" /> : <RenderEmailStatus {...props} />;
-};
-
 export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
     const previewImage = GET_USER_IMAGE.replace("{id}", props.userStore.userId).replace(
         "{name}",
@@ -93,205 +82,181 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
     );
 
     return (
-        <section className={`section ${props.background ?? ""}`}>
-            <Backdrop className="backdrop" open={props.isRequestingVerification}>
-                <CircularProgress color="inherit" />
-            </Backdrop>
-            <Container className="container-wide">
-                <div className="pt-120 pb-40">
-                    <Card elevation={0} className="card">
-                        <CardContent className="card-content">
-                            <Typography component="span" className="caption black">
-                                <RenderText {...props} value={props.sectionAccountInformation?.caption} />
-                            </Typography>
-
-                            <CustomDivider mt={15} mb={8} />
-
-                            <div className="pt-25 pb-8">
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12} sm={3}>
-                                        <Typography component="span" className="label">
-                                            <RenderText
-                                                {...props}
-                                                value={props.sectionAccountInformation?.labelUserId}
-                                            />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} sm={9}>
-                                        <Typography component="span" className="user-id">
-                                            <RenderText {...props} value={props.userStore?.userId} />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} sm={3}>
-                                        <Typography component="span" className="label">
-                                            <RenderText
-                                                {...props}
-                                                value={props.sectionAccountInformation?.labelEmailStatus?.label}
-                                            />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} sm={9}>
-                                        <Typography className="user-email-status">
-                                            <RenderLoadingOrStatus {...props} />
-                                            <RequestVerificationButton {...props} />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} sm={3}>
-                                        <Typography component="span" className="label">
-                                            <RenderText
-                                                {...props}
-                                                value={props.sectionAccountInformation?.labelUserAlias}
-                                            />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} sm={9}>
-                                        <Typography component="span" className="user-alias">
-                                            <RenderText {...props} value={props.userStore?.aliasName} />
-                                        </Typography>
-                                    </Grid>
-                                </Grid>
-
-                                <CustomDivider mt={25} mb={25} />
-
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12} sm={3} className="label-centered">
-                                        <Typography component="span" className="label">
-                                            <RenderText
-                                                {...props}
-                                                value={props.sectionAccountInformation?.labelUserAvatar}
-                                            />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} sm={9}>
-                                        {props.isLoading ? null : (
+        <section className={props.background}>
+            <Backdrop isLoading={props.isRequestingVerification} />
+            <div className="bulma-container bulma-is-max-desktop">
+                <div className={!props.className ? "py-6" : props.className}>
+                    <div className={`bulma-card ${props.isMobile ? "mx-4" : ""}`}>
+                        <div className="bulma-card-content">
+                            <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                <p className="is-size-4 has-text-grey">{props.sectionAccountInformation?.caption}</p>
+                            </Skeleton>
+                            <hr />
+                            <div className="py-4">
+                                <div className="bulma-columns cancel-margin-bottom">
+                                    <div className="bulma-column bulma-is-one-fifth">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                            <p className="is-size-6 has-text-grey">
+                                                {props.sectionAccountInformation?.labelUserId}
+                                            </p>
+                                        </Skeleton>
+                                    </div>
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                            <p className="is-size-6 has-text-grey">{props.userStore?.userId}</p>
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <div className="bulma-columns cancel-margin-bottom">
+                                    <div className="bulma-column bulma-is-one-fifth">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                            <p className="is-size-6 has-text-grey">
+                                                {props.sectionAccountInformation?.labelEmailStatus?.label}
+                                            </p>
+                                        </Skeleton>
+                                    </div>
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                            <p className="is-size-6 has-text-grey">
+                                                <RenderEmailStatus {...props} />
+                                                <RequestVerificationButton {...props} />
+                                            </p>
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <div className="bulma-columns cancel-margin-bottom">
+                                    <div className="bulma-column bulma-is-one-fifth">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                            <p className="is-size-6 has-text-grey">
+                                                {props.sectionAccountInformation?.labelUserAlias}
+                                            </p>
+                                        </Skeleton>
+                                    </div>
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                            <p className="is-size-6 has-text-grey">{props.userStore?.aliasName}</p>
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="bulma-columns cancel-margin-bottom">
+                                    <div className="bulma-column bulma-is-one-fifth is-align-self-center">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                            <p className="is-size-6 has-text-grey">
+                                                {props.sectionAccountInformation?.labelUserAvatar}
+                                            </p>
+                                        </Skeleton>
+                                    </div>
+                                    <div className="bulma-column">
+                                        <Skeleton
+                                            isLoading={props.isLoading}
+                                            mode="Circle"
+                                            width={48}
+                                            height={48}
+                                            disableMarginY
+                                        >
                                             <UploadUserMedia
                                                 customHandle={props.fileUploadingCustomHandle}
                                                 mediaTarget={UserMedia.userImage}
                                                 handle="userInfoSection_userImage"
                                                 previewImage={previewImage}
                                             />
-                                        )}
-                                    </Grid>
-                                </Grid>
-
-                                <CustomDivider mt={25} mb={32} />
-
-                                <Grid container spacing={2}>
-                                    <Grid item xs={12} sm={3} className="label-centered">
-                                        <Typography component="span" className="label">
-                                            <RenderText
-                                                {...props}
-                                                value={props.sectionAccountInformation?.labelFirstName}
-                                            />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} sm={9}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="40px" />
-                                        ) : (
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="bulma-columns cancel-margin-bottom">
+                                    <div className="bulma-column bulma-is-one-fifth is-align-self-center">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                            <p className="is-size-6 has-text-grey">
+                                                {props.sectionAccountInformation?.labelFirstName}
+                                            </p>
+                                        </Skeleton>
+                                    </div>
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect" disableMarginY>
                                             <TextField
                                                 required
-                                                fullWidth
-                                                id="firstName"
-                                                name="firstName"
-                                                variant="outlined"
+                                                uuid="firstName"
                                                 value={props.accountForm?.firstName}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                             />
-                                        )}
-                                    </Grid>
-                                    <Grid item xs={12} sm={3} className="label-centered">
-                                        <Typography component="span" className="label">
-                                            <RenderText
-                                                {...props}
-                                                value={props.sectionAccountInformation?.labelLastName}
-                                            />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} sm={9}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="40px" />
-                                        ) : (
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <div className="bulma-columns cancel-margin-bottom">
+                                    <div className="bulma-column bulma-is-one-fifth is-align-self-center">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                            <p className="is-size-6 has-text-grey">
+                                                {props.sectionAccountInformation?.labelLastName}
+                                            </p>
+                                        </Skeleton>
+                                    </div>
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect" disableMarginY>
                                             <TextField
                                                 required
-                                                fullWidth
-                                                id="lastName"
-                                                name="lastName"
-                                                variant="outlined"
+                                                uuid="lastName"
                                                 value={props.accountForm?.lastName}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                             />
-                                        )}
-                                    </Grid>
-                                    <Grid item xs={12} sm={3} className="label-centered">
-                                        <Typography component="span" className="label">
-                                            <RenderText
-                                                {...props}
-                                                value={props.sectionAccountInformation?.labelEmail}
-                                            />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} sm={9}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="40px" />
-                                        ) : (
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <div className="bulma-columns cancel-margin-bottom">
+                                    <div className="bulma-column bulma-is-one-fifth is-align-self-center">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                            <p className="is-size-6 has-text-grey">
+                                                {props.sectionAccountInformation?.labelEmail}
+                                            </p>
+                                        </Skeleton>
+                                    </div>
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect" disableMarginY>
                                             <TextField
                                                 required
-                                                fullWidth
-                                                id="email"
-                                                name="email"
-                                                variant="outlined"
+                                                uuid="email"
                                                 value={props.accountForm?.email}
                                                 onKeyUp={props.keyHandler}
                                                 onChange={props.formHandler}
                                             />
-                                        )}
-                                    </Grid>
-                                    <Grid item xs={12} sm={3} className="label-centered">
-                                        <Typography component="span" className="label">
-                                            <RenderText
-                                                {...props}
-                                                value={props.sectionAccountInformation?.labelShortBio}
-                                            />
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={12} sm={9}>
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="100%" height="40px" />
-                                        ) : (
-                                            <TextField
-                                                required
-                                                fullWidth
-                                                multiline={props.userAbout?.multiline}
-                                                minRows={props.userAbout?.minRows}
-                                                id="userAboutText"
-                                                name="userAboutText"
-                                                variant="outlined"
-                                                value={props.accountForm?.userAboutText}
-                                                onChange={props.formHandler}
-                                            />
-                                        )}
-                                    </Grid>
-                                </Grid>
-
-                                <CustomDivider mt={40} mb={15} />
-
-                                <Grid className="button-container-update">
-                                    <div className="mt-15 mb-15">
-                                        {props.isLoading ? (
-                                            <Skeleton variant="rect" width="150px" height="40px" />
-                                        ) : (
-                                            <UpdateAccountButton {...props} />
-                                        )}
+                                        </Skeleton>
                                     </div>
-                                </Grid>
+                                </div>
+                                <div className="bulma-columns cancel-margin-bottom">
+                                    <div className="bulma-column bulma-is-one-fifth is-align-self-center">
+                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
+                                            <p className="is-size-6 has-text-grey">
+                                                {props.sectionAccountInformation?.labelShortBio}
+                                            </p>
+                                        </Skeleton>
+                                    </div>
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect" disableMarginY>
+                                            <TextArea
+                                                required
+                                                isFixedSize
+                                                rows={props.userAbout?.minRows}
+                                                uuid="userAboutText"
+                                                value={props.userAbout?.message}
+                                                onChange={props.descriptionHandler}
+                                            />
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="has-text-right">
+                                    <Skeleton isLoading={props.isLoading} mode="Rect" disableMarginY>
+                                        <UpdateAccountButton {...props} />
+                                    </Skeleton>
+                                </div>
                             </div>
-                        </CardContent>
-                    </Card>
+                        </div>
+                    </div>
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };

@@ -10,9 +10,9 @@ export const ContactPage = () => {
 
     return (
         <>
-            <Navigation backNavigationOnly={true} />
-            <main>
-                <ContactForm hasCaption={false} hasIcon={true} hasShadow={true} className="pt-120 pb-240" />
+            <Navigation backNavigationOnly />
+            <main className="pt-6">
+                <ContactForm hasIcon hasShadow />
             </main>
         </>
     );

@@ -35,5 +35,5 @@ export const useErrorBoundaryContent = (): ErrorBoundaryProps => {
         linkHref: result?.linkHref ?? defaultContent.linkHref,
         linkText: result?.linkText ?? defaultContent.linkText,
         footer: result?.footer ?? defaultContent.footer,
-    }
-}
+    };
+};

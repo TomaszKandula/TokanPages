@@ -1,15 +1,20 @@
 import * as React from "react";
-import GetAppIcon from "@material-ui/icons/GetApp";
+import { IconButton } from "../IconButton";
+import { Icon } from "../Icon/icon";
 
 interface DownloadAssetProps {
     url: string;
+    size?: number;
+    className?: string;
 }
 
 export const DownloadAsset = (props: DownloadAssetProps): React.ReactElement => {
     const url = `${props.url}&canDownload=true`;
     return (
-        <a href={url} className="download-asset">
-            <GetAppIcon />
-        </a>
+        <IconButton>
+            <a href={url}>
+                <Icon name="Download" size={props.size ?? 1.1} className={props.className} />
+            </a>
+        </IconButton>
     );
 };

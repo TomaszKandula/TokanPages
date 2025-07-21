@@ -1,113 +1,122 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import CodeIcon from "@material-ui/icons/Code";
-import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
-import StorageIcon from "@material-ui/icons/Storage";
-import CloudIcon from "@material-ui/icons/Cloud";
-import Skeleton from "@material-ui/lab/Skeleton";
-import { Typography } from "@material-ui/core";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated } from "../../../Shared/Components";
+import { Animated, Icon, Skeleton } from "../../../Shared/Components";
+import { useDimensions } from "../../../Shared/Hooks";
 
 interface TechnologiesViewProps {
-    background?: string;
+    className?: string;
 }
 
 export const TechnologiesView = (props: TechnologiesViewProps): React.ReactElement => {
+    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const isLoading = data?.isLoading;
     const technology = data?.components?.sectionTechnologies;
 
     return (
-        <section className={`section ${props.background ?? ""}`}>
-            <Container className="container-super-wide">
-                <div className="technology-box">
-                    <Animated dataAos="fade-down" className="mb-64">
-                        <Typography className="technology-caption-text">
-                            {data?.isLoading ? <Skeleton variant="text" /> : technology?.caption?.toUpperCase()}
-                        </Typography>
+        <section className={props.className}>
+            <div className="bulma-container">
+                <div className="py-6">
+                    <Animated dataAos="fade-down">
+                        <Skeleton isLoading={isLoading} mode="Text" height={40}>
+                            <p className="is-size-3	has-text-centered has-text-link">
+                                {technology?.caption?.toUpperCase()}
+                            </p>
+                        </Skeleton>
                     </Animated>
-                    <Grid container spacing={6}>
-                        <Grid item xs={12} sm={6}>
-                            <Animated dataAos="fade-up" className="flex-centre mb-15">
-                                {data?.isLoading ? (
-                                    <Skeleton variant="circle" className="technology-skeleton-circle" />
-                                ) : (
-                                    <CodeIcon className="technology-icon" />
-                                )}
-                                <h3 className="technology-feature-title">
-                                    {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title1}
-                                </h3>
-                            </Animated>
-                            <Animated dataAos="fade-up">
-                                {data?.isLoading ? (
-                                    <Skeleton variant="text" />
-                                ) : (
-                                    <h4 className="technology-feature-text">{technology?.text1}</h4>
-                                )}
-                            </Animated>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <Animated dataAos="fade-up" className="flex-centre mb-15">
-                                {data?.isLoading ? (
-                                    <Skeleton variant="circle" className="technology-skeleton-circle" />
-                                ) : (
-                                    <LibraryBooksIcon className="technology-icon" />
-                                )}
-                                <h3 className="technology-feature-title">
-                                    {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title2}
-                                </h3>
-                            </Animated>
-                            <Animated dataAos="fade-up">
-                                {data?.isLoading ? (
-                                    <Skeleton variant="text" />
-                                ) : (
-                                    <h4 className="technology-feature-text">{technology?.text2}</h4>
-                                )}
-                            </Animated>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <Animated dataAos="fade-up" className="flex-centre mb-15">
-                                {data?.isLoading ? (
-                                    <Skeleton variant="circle" className="technology-skeleton-circle" />
-                                ) : (
-                                    <StorageIcon className="technology-icon" />
-                                )}
-                                <h3 className="technology-feature-title">
-                                    {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title3}
-                                </h3>
-                            </Animated>
-                            <Animated dataAos="fade-up">
-                                {data?.isLoading ? (
-                                    <Skeleton variant="text" />
-                                ) : (
-                                    <h4 className="technology-feature-text">{technology?.text3}</h4>
-                                )}
-                            </Animated>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <Animated dataAos="fade-up" className="flex-centre mb-15">
-                                {data?.isLoading ? (
-                                    <Skeleton variant="circle" className="technology-skeleton-circle" />
-                                ) : (
-                                    <CloudIcon color="primary" className="technology-icon" />
-                                )}
-                                <h3 className="technology-feature-title">
-                                    {data?.isLoading ? <Skeleton variant="text" width="250px" /> : technology?.title4}
-                                </h3>
-                            </Animated>
-                            <Animated dataAos="fade-up">
-                                {data?.isLoading ? (
-                                    <Skeleton variant="text" />
-                                ) : (
-                                    <h4 className="technology-feature-text">{technology?.text4}</h4>
-                                )}
-                            </Animated>
-                        </Grid>
-                    </Grid>
+                    <div className={media.isMobile ? "p-4" : "p-6"}>
+                        <div className="bulma-columns">
+                            <div className="bulma-column">
+                                <Animated dataAos="fade-up" className="is-flex is-align-items-center py-2">
+                                    <Skeleton isLoading={isLoading} mode="Circle" width={40} height={40}>
+                                        <Icon
+                                            name="CodeBraces"
+                                            size={1.2}
+                                            className="has-text-link is-flex is-align-self-center mr-2"
+                                        />
+                                    </Skeleton>
+                                    <Skeleton isLoading={isLoading} mode="Text" width={200} className="ml-2">
+                                        <h3 className="is-size-4 py-5 has-text-black">{technology?.title1}</h3>
+                                    </Skeleton>
+                                </Animated>
+                                <Animated dataAos="fade-up">
+                                    <Skeleton isLoading={isLoading} mode="Text" height={100}>
+                                        <h4 className="is-size-5 py-2 has-text-grey line-height-18">
+                                            {technology?.text1}
+                                        </h4>
+                                    </Skeleton>
+                                </Animated>
+                            </div>
+                            <div className="bulma-column">
+                                <Animated dataAos="fade-up" className="is-flex is-align-items-center py-2">
+                                    <Skeleton isLoading={isLoading} mode="Circle" width={40} height={40}>
+                                        <Icon
+                                            name="Bookshelf"
+                                            size={1.2}
+                                            className="has-text-link is-flex is-align-self-center mr-2"
+                                        />
+                                    </Skeleton>
+                                    <Skeleton isLoading={isLoading} mode="Text" width={200} className="ml-2">
+                                        <h3 className="is-size-4 py-5 has-text-black">{technology?.title2}</h3>
+                                    </Skeleton>
+                                </Animated>
+                                <Animated dataAos="fade-up">
+                                    <Skeleton isLoading={isLoading} mode="Text" height={100}>
+                                        <h4 className="is-size-5 py-2 has-text-grey line-height-18">
+                                            {technology?.text2}
+                                        </h4>
+                                    </Skeleton>
+                                </Animated>
+                            </div>
+                        </div>
+                        <div className="bulma-columns">
+                            <div className="bulma-column">
+                                <Animated dataAos="fade-up" className="is-flex is-align-items-center py-2">
+                                    <Skeleton isLoading={isLoading} mode="Circle" width={40} height={40}>
+                                        <Icon
+                                            name="Server"
+                                            size={1.2}
+                                            className="has-text-link is-flex is-align-self-center mr-2"
+                                        />
+                                    </Skeleton>
+                                    <Skeleton isLoading={isLoading} mode="Text" width={200} className="ml-2">
+                                        <h3 className="is-size-4 py-5 has-text-black">{technology?.title3}</h3>
+                                    </Skeleton>
+                                </Animated>
+                                <Animated dataAos="fade-up">
+                                    <Skeleton isLoading={isLoading} mode="Text" height={100}>
+                                        <h4 className="is-size-5 py-2 has-text-grey line-height-18">
+                                            {technology?.text3}
+                                        </h4>
+                                    </Skeleton>
+                                </Animated>
+                            </div>
+                            <div className="bulma-column">
+                                <Animated dataAos="fade-up" className="is-flex is-align-items-center py-2">
+                                    <Skeleton isLoading={isLoading} mode="Circle" width={40} height={40}>
+                                        <Icon
+                                            name="Cloud"
+                                            size={1.2}
+                                            className="has-text-link is-flex is-align-self-center mr-2"
+                                        />
+                                    </Skeleton>
+                                    <Skeleton isLoading={isLoading} mode="Text" width={200} className="ml-2">
+                                        <h3 className="is-size-4 py-5 has-text-black">{technology?.title4}</h3>
+                                    </Skeleton>
+                                </Animated>
+                                <Animated dataAos="fade-up">
+                                    <Skeleton isLoading={isLoading} mode="Text" height={100}>
+                                        <h4 className="is-size-5 py-2 has-text-grey line-height-18">
+                                            {technology?.text4}
+                                        </h4>
+                                    </Skeleton>
+                                </Animated>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </Container>
+            </div>
         </section>
     );
 };

@@ -1,0 +1,25 @@
+.article-box-content {
+    position: relative;
+    width: 100%;
+    padding: 16px;
+}
+
+.article-box-content-text {
+    height: 120px;
+}
+
+.article-box-image {
+    height: 200px !important;
+    min-height: 180px;
+    object-fit: cover;
+}
+
+.article-box-image-desktop {
+    border-top-left-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+}
+
+.article-box-image-mobile {
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}

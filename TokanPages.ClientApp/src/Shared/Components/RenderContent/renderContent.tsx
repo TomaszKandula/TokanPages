@@ -1,7 +1,8 @@
 import * as React from "react";
+import { useDimensions } from "../../../Shared/Hooks";
 import { TextObject } from "./Models/TextModel";
 import { Languages } from "../../languages";
-
+import { ProgressBar } from "..";
 import {
     RenderSuperTitle,
     RenderText,
@@ -13,8 +14,11 @@ import {
 } from "./Renderers";
 
 export const RenderContent = (textObject: TextObject | undefined): React.ReactElement => {
-    if (textObject === undefined) return <div>Cannot render content.</div>;
-    if (textObject.items.length === 0) return <div>Cannot render content.</div>;
+    const media = useDimensions();
+
+    if (textObject === undefined || textObject?.items?.length === 0) {
+        return <ProgressBar />;
+    }
 
     const renderBuffer: React.ReactElement[] = [];
     textObject.items.forEach(item => {
@@ -116,5 +120,9 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
         }
     });
 
-    return <>{renderBuffer}</>;
+    return (
+        <div data-testid="render-content" className={`bulma-content ${media.isMobile ? "mx-4" : ""}`}>
+            {renderBuffer}
+        </div>
+    );
 };

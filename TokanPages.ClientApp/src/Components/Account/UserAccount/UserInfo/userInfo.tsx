@@ -11,12 +11,12 @@ import {
 } from "../../../../Store/Actions";
 import { ExecuteApiActionProps, NOTIFICATION_STATUS } from "../../../../Api";
 import { NotificationData, UserActivationData } from "../../../../Api/Models";
-import { useApiAction, useInterval } from "../../../../Shared/Hooks";
+import { useApiAction, useDimensions, useInterval } from "../../../../Shared/Hooks";
 import { useWebSockets } from "../../../../Shared/Services/WebSockets";
 import { AccountFormInput, ValidateAccountForm } from "../../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE, SET_INTERVAL_DELAY } from "../../../../Shared/constants";
 import { IconType, OperationStatus } from "../../../../Shared/enums";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UserInfoView } from "./View/userInfoView";
 import Validate from "validate.js";
 
@@ -26,6 +26,7 @@ interface UpdateStoreProps {
 }
 
 export interface UserInfoProps {
+    className?: string;
     background?: string;
 }
 
@@ -34,6 +35,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const history = useHistory();
     const actions = useApiAction();
     const socket = useWebSockets();
+    const mediaQuery = useDimensions();
 
     const store = useSelector((state: ApplicationState) => state.userDataStore.userData);
     const update = useSelector((state: ApplicationState) => state.userUpdate);
@@ -61,6 +63,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const [isUserActivated, setIsUserActivated] = React.useState({ checked: true });
     const [canCheckAltStatus, setCheckAltStatus] = React.useState(false);
     const [form, setForm] = React.useState(formDefault);
+    const [description, setDescription] = React.useState({ userAboutText: store.shortBio ?? "" });
     const [isRequesting, setRequesting] = React.useState(false);
     const [hasProgress, setHasProgress] = React.useState(false);
     const [canUpdateStore, setUpdateStore] = React.useState<UpdateStoreProps | undefined>(undefined);
@@ -92,6 +95,13 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
         },
         [form]
+    );
+
+    const descriptionHandler = React.useCallback(
+        (event: ReactChangeTextEvent) => {
+            setDescription({ ...description, [event.currentTarget.name]: event.currentTarget.value });
+        },
+        [description]
     );
 
     const switchHandler = React.useCallback(
@@ -136,7 +146,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                     firstName: form.firstName,
                     lastName: form.lastName,
                     emailAddress: form.email,
-                    userAboutText: form.userAboutText,
+                    userAboutText: description.userAboutText,
                 })
             );
 
@@ -150,7 +160,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                     firstName: form.firstName,
                     lastName: form.lastName,
                     email: form.email,
-                    shortBio: form.userAboutText,
+                    shortBio: description.userAboutText,
                     isVerified: update.response.shouldVerifyEmail,
                 })
             );
@@ -174,7 +184,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
         form.firstName,
         form.lastName,
         form.email,
-        form.userAboutText,
+        description.userAboutText,
         isUserActivated.checked,
         hasProgress,
         hasError,
@@ -279,6 +289,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     return (
         <UserInfoView
             isLoading={contentPageData.isLoading}
+            isMobile={mediaQuery.isMobile}
             userStore={store}
             accountForm={form}
             userImageName={avatarName}
@@ -287,10 +298,16 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             formProgress={hasProgress}
             keyHandler={keyHandler}
             formHandler={formHandler}
+            descriptionHandler={descriptionHandler}
             switchHandler={switchHandler}
             saveButtonHandler={saveButtonHandler}
             verifyButtonHandler={verifyButtonHandler}
             sectionAccountInformation={account.sectionAccountInformation}
+            userAbout={{
+                minRows: 6,
+                message: description.userAboutText,
+            }}
+            className={props.className}
             background={props.background}
         />
     );

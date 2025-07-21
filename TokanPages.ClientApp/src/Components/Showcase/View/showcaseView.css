@@ -1,0 +1,4 @@
+.showcase-feature-image {
+    height: 512px !important;
+    object-fit: cover;
+}

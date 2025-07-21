@@ -1,9 +1,11 @@
 export { useAnimation } from "./UseAnimation";
 export { useApiAction } from "./UseApiAction";
 export { useApplicationLanguage } from "./UseApplicationLanguage";
+export { useDimensions } from "./useDimensions";
 export { useErrorBoundaryContent } from "./UseErrorBoundaryContent";
 export { useInterval } from "./UseInterval";
 export { usePageContent } from "./UsePageContent";
+export { useScroll } from "./UseScroll";
 export { useHash } from "./UseHash";
 export { useSnapshot } from "./UseSnapshot";
 export { useUnhead } from "./UseUnhead";

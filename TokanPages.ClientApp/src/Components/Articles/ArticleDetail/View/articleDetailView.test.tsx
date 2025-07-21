@@ -14,7 +14,8 @@ describe("test articles group component: ArticleDetailView", () => {
             textSurname: "Last name:",
             textRegistered: "Registered at:",
             textLanguage: "Article language:",
-            textReadTime: "Read time:",
+            textReadTime1: "Read time:",
+            textReadTime2: "min.",
             textPublished: "Published at:",
             textUpdated: "Updated at:",
             textWritten: "Written by",
@@ -23,15 +24,13 @@ describe("test articles group component: ArticleDetailView", () => {
 
         const html = render(
             <ArticleDetailView
+                isLoading={false}
+                isMobile={false}
                 backButtonHandler={jest.fn()}
                 articleReadCount={"1.000.000"}
-                openPopoverHandler={jest.fn()}
-                closePopoverHandler={jest.fn()}
                 renderSmallAvatar={<div>renderSmallAvatar</div>}
                 renderLargeAvatar={<div>renderLargeAvatar</div>}
                 authorAliasName="Ester"
-                popoverOpen={false}
-                popoverElement={null}
                 authorFirstName="Ester"
                 authorLastName="Exposito"
                 authorRegistered=""

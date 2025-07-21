@@ -1,0 +1,80 @@
+/*
+  Master stylesheet file for UI components
+  -----------------------------------------
+  Because SPA is pre-rendered on the backend side, 
+  JSS has been abandoned; the styles generated on the fly 
+  that are typically included in the HTML head are not
+  optimal for pre-rendered React applications.
+
+  Security note
+  -------------
+  Due to a high probability of interference in what a user sees, 
+  applications should strictly control CSS. In particular, 
+  this applies to situations where CSS is generated dynamically.
+  An application MUST use an external resource (downloaded 
+  using the tag <link rel="stylesheet"=) to load a dynamically 
+  created sheet. 
+  One MUST NOT dynamically generate contents placed directly 
+  inside the «style» element.
+  An application SHOULD NOT dynamically (on the server's side) 
+  generate the contents of the style attribute (an application 
+  MAY define the relevant CSS classes and use the class attribute 
+  whose value will be variable).
+  An application MAY modify features of elements within JavaScript 
+  code (e.g. by using the css) function in the Query library)
+  An application MUST NOT use the pseudo function expression.
+*/
+
+@import url("spinner.css");
+@import url("error.css");
+@import url("bulma.css");
+@import url("checkbox.css");
+@import url("lines.css");
+
+/* BASELINE */
+
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+strong,
+b {
+    font-weight: 700;
+}
+
+body {
+    color: rgba(0, 0, 0, 0.87);
+    margin: 0;
+    font-size: 0.875rem;
+    font-family: Ubuntu, sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    background-color: #ffffff;
+}
+
+@media print {
+    body {
+        background-color: #ffffff;
+    }
+}
+
+/* SHARED STYLES BY COMPONENTS */
+
+.lazyloaded {
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 1s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.do-not-display {
+    display: none !important;
+}

@@ -1,36 +1,27 @@
 import * as React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import InfoIcon from "@material-ui/icons/Info";
-import WarningIcon from "@material-ui/icons/Warning";
-import ErrorIcon from "@material-ui/icons/Error";
-import { Divider, Typography } from "@material-ui/core";
 import { IconType } from "../../../enums";
-import { RenderParagraphs } from "../../../../Shared/Components/RenderParagraphs/renderParagraphs";
-import { RenderList } from "../../../../Shared/Components/RenderList/renderList";
+import { RenderParagraphs, RenderList, Icon } from "../../../../Shared/Components";
 
 interface Properties {
-    state: boolean;
+    isOpen: boolean;
     icon: IconType | undefined;
     title: string | undefined;
     message: string[] | undefined;
-    validation?: object | undefined;
+    validation?: object;
     disablePortal?: boolean;
     hideBackdrop?: boolean;
     closeHandler: () => void;
 }
 
 const RenderIcon = (props: Properties): React.ReactElement | null => {
+    const iconSize = 1.5;
     switch (props.icon) {
         case IconType.info:
-            return <InfoIcon className="dialog-box-info-icon" />;
+            return <Icon name="Information" size={iconSize} className="has-text-info" />;
         case IconType.warning:
-            return <WarningIcon className="dialog-box-warning-icon" />;
+            return <Icon name="Alert" size={iconSize} className="has-text-warning" />;
         case IconType.error:
-            return <ErrorIcon className="dialog-box-error-icon" />;
+            return <Icon name="AlertCircle" size={iconSize} className="has-text-danger" />;
         default:
             return null;
     }
@@ -55,59 +46,37 @@ const RenderValidationList = (props: Properties): React.ReactElement => {
         });
     }
 
-    return <RenderList list={result} className="mt-10 mb-10" />;
+    return <RenderList list={result} className="my-3" />;
 };
 
-const RenderDialogContent = (props: Properties): React.ReactElement => {
-    return (
-        <>
-            <DialogTitle id="alert-dialog-title" className="dialog-box-title">
-                <div className="dialog-box-icon-holder">
-                    <RenderIcon {...props} />
-                    {props.title}
-                </div>
-            </DialogTitle>
-            <Divider />
-            <DialogContent>
-                <Typography component="span" className="dialog-box-description" id="alert-dialog-description">
+export const ApplicationDialogBoxView = (props: Properties): React.ReactElement => (
+    <div className={`bulma-modal ${props.isOpen ? "bulma-is-active" : ""}`}>
+        <div className="bulma-modal-background"></div>
+        <div className="bulma-modal-card py-6 my-6">
+            <header className="bulma-modal-card-head">
+                <RenderIcon {...props} />
+                <p className="bulma-modal-card-title p-3">{props.title}</p>
+                <button className="bulma-delete" aria-label="close" onClick={props.closeHandler}></button>
+            </header>
+            <section className="bulma-modal-card-body">
+                <div className="bulma-content">
                     <RenderParagraphs
+                        className="is-size-6 has-text-dark"
                         text={props.message ?? []}
                         replace={{
                             key: "{LIST}",
                             object: <RenderValidationList {...props} />,
                         }}
                     />
-                </Typography>
-            </DialogContent>
-            <Divider />
-            <DialogActions>
-                <Button onClick={props.closeHandler} className="button" autoFocus>
-                    OK
-                </Button>
-            </DialogActions>
-        </>
-    );
-};
-
-const RenderDialogBox = (props: Properties): React.ReactElement => {
-    const hasTitle = props?.title !== undefined;
-    const hasIcon = props?.icon !== undefined;
-    const hasMessage = props?.message && props?.message?.length !== 0;
-
-    return (
-        <Dialog
-            open={props.state}
-            onClose={props.closeHandler}
-            disablePortal={props.disablePortal}
-            hideBackdrop={props.hideBackdrop}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-        >
-            {hasTitle && hasIcon && hasMessage ? <RenderDialogContent {...props} /> : <></>}
-        </Dialog>
-    );
-};
-
-export const ApplicationDialogBoxView = (props: Properties): React.ReactElement => {
-    return <RenderDialogBox {...props} />;
-};
+                </div>
+            </section>
+            <footer className="bulma-modal-card-foot is-justify-content-flex-end">
+                <div className="bulma-buttons">
+                    <button className="bulma-button bulma-is-link bulma-is-light" onClick={props.closeHandler}>
+                        OK
+                    </button>
+                </div>
+            </footer>
+        </div>
+    </div>
+);

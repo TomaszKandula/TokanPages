@@ -1,25 +1,19 @@
 import * as React from "react";
-import Container from "@material-ui/core/Container";
-import { Grid, Popover, Tooltip, Typography } from "@material-ui/core";
-import ThumbUpIcon from "@material-ui/icons/ThumbUp";
-import Emoji from "react-emoji-render";
 import { GET_FLAG_URL } from "../../../../Api";
 import { ArticleContentDto } from "../../../../Api/Models";
-import { Animated, CustomDivider, RenderImage } from "../../../../Shared/Components";
+import { Animated, Icon, CustomImage, Skeleton } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
-import { ReactMouseEvent } from "../../../../Shared/types";
 import { ExtendedViewProps } from "../articleDetail";
+import "./articleDetailView.css";
 
 interface ArticleDetailViewProps extends ExtendedViewProps {
+    isLoading: boolean;
+    isMobile: boolean;
     backButtonHandler: () => void;
     articleReadCount: string;
-    openPopoverHandler: (event: ReactMouseEvent) => void;
-    closePopoverHandler: () => void;
     renderSmallAvatar: React.ReactElement;
     renderLargeAvatar: React.ReactElement;
     authorAliasName: string;
-    popoverOpen: boolean;
-    popoverElement: HTMLElement | null;
     authorFirstName: string;
     authorLastName: string;
     authorRegistered: string;
@@ -28,7 +22,7 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
     articleUpdatedAt: string;
     articleContent: React.ReactElement;
     renderLikesLeft: string;
-    thumbsHandler: any;
+    thumbsHandler: () => void;
     totalLikes: string;
     renderAuthorName: string;
     authorShortBio: string;
@@ -36,150 +30,128 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
     content: ArticleContentDto;
 }
 
-export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => {
-    const readTime = props.content.textReadTime.replace("{TIME}", props.articleReadTime);
-    return (
-        <section className={`section ${props.background ?? ""}`}>
-            <Container className="container">
-                <article className="pb-96">
-                    <Animated dataAos="fade-down">
-                        <Grid container spacing={2}>
-                            <Grid item>
-                                <div onMouseEnter={props.openPopoverHandler} onMouseLeave={props.closePopoverHandler}>
-                                    {props.renderSmallAvatar}
-                                </div>
-                            </Grid>
-                            <Grid item xs zeroMinWidth>
-                                <Typography className="article-details-alias-name" component="div" align="left">
-                                    {props.authorAliasName}
-                                </Typography>
-                                <Popover
-                                    id="mouse-over-popover"
-                                    className="article-details-popover"
-                                    open={props.popoverOpen}
-                                    anchorEl={props.popoverElement}
-                                    anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-                                    transformOrigin={{ vertical: "top", horizontal: "left" }}
-                                    onClose={props.closePopoverHandler}
-                                    disableRestoreFocus
-                                >
-                                    <div className="article-details-user">
-                                        <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            {props.content.textFirstName}&nbsp;{props.authorFirstName}
-                                        </Typography>
-                                        <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            {props.content.textSurname}&nbsp;{props.authorLastName}
-                                        </Typography>
-                                        <Typography component="p" variant="subtitle2" color="textSecondary">
-                                            {props.content.textRegistered}&nbsp;{props.authorRegistered}
-                                        </Typography>
-                                    </div>
-                                </Popover>
-                            </Grid>
-                        </Grid>
-                        <div className="mt-8 mb-40">
-                            <div className="article-details-text-block">
-                                <Typography component="p" variant="subtitle1">
-                                    {props.content.textLanguage}&nbsp;
-                                </Typography>
-                                <RenderImage
+export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => (
+    <section className={props.background}>
+        <div className="bulma-container bulma-is-max-tablet">
+            <article className="py-4">
+                <Animated dataAos="fade-down" className="pb-5">
+                    <div className={`bulma-grid is-flex m-0 ${props.isMobile ? "mx-4" : ""}`}>
+                        <div className="bulma-cell is-align-content-center">
+                            <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72} disableMarginY>
+                                {props.renderSmallAvatar}
+                            </Skeleton>
+                        </div>
+                        <div className="bulma-cell is-align-content-center">
+                            <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={24} disableMarginY>
+                                <p className="is-size-5">{props.authorAliasName}</p>
+                            </Skeleton>
+                        </div>
+                    </div>
+
+                    <div className={props.isMobile ? "px-4 pt-4 pb-6" : "py-4"}>
+                        <div className="bulma-grid is-flex m-0">
+                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                                <p className="bulma-cell is-align-content-center is-size-6">
+                                    {props.content.textLanguage}
+                                </p>
+                            </Skeleton>
+                            <Skeleton isLoading={props.isLoading} mode="Rect" width={100} height={12}>
+                                <CustomImage
                                     base={GET_FLAG_URL}
                                     source={props.flagImage}
                                     title="Articles"
                                     alt="An article language flag"
-                                    className="article-details-flag-image"
+                                    className="article-details-flag is-flex is-align-self-center"
                                 />
-                            </div>
-                            <Typography component="p" variant="subtitle1">
-                                {readTime}
-                            </Typography>
-                            <div className="article-details-text-block">
-                                <Typography component="p" variant="subtitle1">
-                                    {props.content.textPublished}
-                                </Typography>
-                                <Typography
-                                    component="p"
-                                    variant="subtitle1"
-                                    className="article-details-text-padding-left"
-                                >
-                                    {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
-                                </Typography>
-                            </div>
-                            <div className="article-details-text-block">
-                                <Typography component="p" variant="subtitle1">
-                                    {props.content.textUpdated}
-                                </Typography>
-                                <Typography
-                                    component="p"
-                                    variant="subtitle1"
-                                    className="article-details-text-padding-left"
-                                >
-                                    {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
-                                </Typography>
-                            </div>
-                            <div className="article-details-text-block">
-                                <Typography component="p" variant="subtitle1">
-                                    {props.content.textReadCount}
-                                </Typography>
-                                <Typography
-                                    component="p"
-                                    variant="subtitle1"
-                                    className="article-details-text-padding-left"
-                                >
-                                    {props.articleReadCount}
-                                </Typography>
-                            </div>
+                            </Skeleton>
                         </div>
-                    </Animated>
-                    <Animated dataAos="fade-up">{props.articleContent}</Animated>
-                    <div className="mt-40">
-                        <Grid container spacing={2}>
-                            <Grid item>
-                                <Tooltip
-                                    title={
-                                        <span className="article-details-likes-tip">
-                                            {<Emoji text={props.renderLikesLeft} />}
-                                        </span>
-                                    }
-                                    arrow
-                                >
-                                    <ThumbUpIcon
-                                        className="article-details-thumbs-medium"
-                                        onClick={props.thumbsHandler}
-                                    />
-                                </Tooltip>
-                            </Grid>
-                            <Grid item xs zeroMinWidth>
-                                <Typography component="p" variant="subtitle1">
-                                    {props.totalLikes}
-                                </Typography>
-                            </Grid>
-                        </Grid>
+                        <div className="bulma-grid is-flex m-0">
+                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                                <p className="is-size-6">{props.content.textReadTime1}</p>
+                            </Skeleton>
+                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                                <p className="is-size-6">
+                                    {props.articleReadTime} {props.content.textReadTime2}
+                                </p>
+                            </Skeleton>
+                        </div>
+                        <div className="bulma-grid is-flex m-0">
+                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                                <p className="is-size-6">{props.content.textPublished}</p>
+                            </Skeleton>
+                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                                <p className="is-size-6">
+                                    {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
+                                </p>
+                            </Skeleton>
+                        </div>
+                        <div className="bulma-grid is-flex m-0">
+                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                                <p className="is-size-6">{props.content.textUpdated}</p>
+                            </Skeleton>
+                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                                <p className="is-size-6">
+                                    {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
+                                </p>
+                            </Skeleton>
+                        </div>
+                        <div className="bulma-grid is-flex m-0">
+                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                                <p className="is-size-6">{props.content.textReadCount}</p>
+                            </Skeleton>
+                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                                <p className="is-size-6">{props.articleReadCount}</p>
+                            </Skeleton>
+                        </div>
                     </div>
+                </Animated>
 
-                    <CustomDivider mt={32} mb={32} />
+                <Animated dataAos="fade-up">{props.articleContent}</Animated>
 
-                    <Grid container spacing={2}>
-                        <Grid item>{props.renderLargeAvatar}</Grid>
-                        <Grid item xs zeroMinWidth>
-                            <Typography className="alias-name" component="span" variant="h6" color="textSecondary">
-                                {props.content.textWritten}
-                            </Typography>
-                            <Typography component="p" variant="h6" className="article-details-text-500">
-                                {props.renderAuthorName}
-                            </Typography>
-                            <Typography
-                                className="alias-name"
-                                component="span"
-                                variant="subtitle1"
-                                color="textSecondary"
-                            >
+                <div className={props.isMobile ? "px-4 mt-6" : "mt-6"}>
+                    <div className="bulma-grid is-flex">
+                        <div className="bulma-cell is-align-content-center">
+                            <Icon
+                                name="ThumbUp"
+                                size={1.2}
+                                className="article-details-thumbup"
+                                onClick={props.thumbsHandler}
+                            />
+                        </div>
+                        <div className="bulma-cell is-align-content-center">
+                            <p>{props.totalLikes}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr className={props.isMobile ? "mx-4" : ""} />
+
+                <div className={`bulma-grid is-flex mb-5 ${props.isMobile ? "mx-4" : ""}`}>
+                    <div className="bulma-cell is-align-content-center">
+                        <Skeleton isLoading={props.isLoading} mode="Circle" width={98} height={98} disableMarginY>
+                            {props.renderLargeAvatar}
+                        </Skeleton>
+                    </div>
+                    <div className="bulma-cell is-align-content-center">
+                        <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                            <p className="is-size-6 has-text-weight-bold">{props.content.textWritten}</p>
+                        </Skeleton>
+                        <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                            <p className="is-size-6">{props.renderAuthorName}</p>
+                        </Skeleton>
+                        <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                            <p className="is-size-6">
+                                {props.content.textRegistered}&nbsp;{props.authorRegistered}
+                            </p>
+                        </Skeleton>
+                        <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                            <p className="is-size-6">
                                 {props.content.textAbout}&nbsp;{props.authorShortBio}
-                            </Typography>
-                        </Grid>
-                    </Grid>
-                </article>
-            </Container>
-        </section>
-    );
-};
+                            </p>
+                        </Skeleton>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+);

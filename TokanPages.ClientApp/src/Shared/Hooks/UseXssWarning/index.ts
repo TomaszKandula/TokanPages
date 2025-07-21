@@ -55,6 +55,5 @@ export const useXssWarning = (): void => {
                 ";"
         );
         console.log(warning.text3);
-    
     }, [language]);
 };

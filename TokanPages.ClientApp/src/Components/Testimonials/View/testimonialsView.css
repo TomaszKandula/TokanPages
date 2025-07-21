@@ -1,0 +1,14 @@
+.testimonials-card-image {
+    height: 140px !important;
+    width: 140px !important;
+    border-style: solid;
+    border-width: 4px;
+    border-color: #6367ef;
+    border-radius: 50%;
+    margin: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    position: absolute;
+    z-index: 999;
+}

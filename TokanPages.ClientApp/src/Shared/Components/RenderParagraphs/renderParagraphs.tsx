@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Typography } from "@material-ui/core";
 import { v4 as uuidv4 } from "uuid";
+import { Skeleton } from "../Skeleton";
 
 interface ReplaceProps {
     key: string;
@@ -9,8 +9,9 @@ interface ReplaceProps {
 
 interface RenderParagraphsProps {
     text: string[];
-    className?: string | undefined;
-    replace?: ReplaceProps | undefined;
+    className?: string;
+    replace?: ReplaceProps;
+    isLoading?: boolean;
 }
 
 export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactElement => {
@@ -19,15 +20,15 @@ export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactEleme
         props.text.forEach(item => {
             if (item === props.replace?.key) {
                 render.push(
-                    <div key={uuidv4()} className={props.className}>
-                        {props.replace.object}
-                    </div>
+                    <Skeleton key={uuidv4()} isLoading={props.isLoading ?? false}>
+                        <div className={props.className}>{props.replace.object}</div>
+                    </Skeleton>
                 );
             } else {
                 render.push(
-                    <Typography key={uuidv4()} component="p" className={props.className}>
-                        {item}
-                    </Typography>
+                    <Skeleton key={uuidv4()} isLoading={props.isLoading ?? false}>
+                        <p className={props.className}>{item}</p>
+                    </Skeleton>
                 );
             }
         });
@@ -35,10 +36,10 @@ export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactEleme
         return <>{render}</>;
     }
 
-    const result = props.text.map((value: string, index: number) => (
-        <Typography key={index} component="p" className={props.className}>
-            {value}
-        </Typography>
+    const result = props.text.map((value: string, _index: number) => (
+        <Skeleton key={uuidv4()} isLoading={props.isLoading ?? false}>
+            <p className={props.className}>{value}</p>
+        </Skeleton>
     ));
 
     return <>{result}</>;

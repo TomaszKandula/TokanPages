@@ -1,19 +1,22 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
+import { useDimensions } from "../../Shared/Hooks";
 import { TestimonialsView } from "./View/testimonialsView";
 
 interface TestimonialsProps {
-    background?: string;
+    className?: string;
 }
 
 export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
+    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const testimonials = data?.components?.sectionTestimonials;
 
     return (
         <TestimonialsView
             isLoading={data?.isLoading}
+            isMobile={media.isMobile}
             caption={testimonials?.caption}
             subtitle={testimonials?.subtitle}
             photo1={testimonials?.photo1}
@@ -28,7 +31,7 @@ export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
             name3={testimonials?.name3}
             occupation3={testimonials?.occupation3}
             text3={testimonials?.text3}
-            background={props.background}
+            background={props.className}
         />
     );
 };

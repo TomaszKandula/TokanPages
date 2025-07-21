@@ -42,7 +42,7 @@ describe("test component: showcaseView", () => {
             </BrowserRouter>
         );
 
-        expect(useSelectorMock).toBeCalledTimes(1);
+        expect(useSelectorMock).toBeCalledTimes(2);
         expect(html).toMatchSnapshot();
     });
 });
