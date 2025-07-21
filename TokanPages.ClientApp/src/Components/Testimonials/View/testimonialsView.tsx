@@ -107,7 +107,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                 <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
                                     <CustomImage
                                         base={GET_TESTIMONIALS_URL}
-                                        source={props.photo1}
+                                        source={props.photo3}
                                         className="testimonials-card-image"
                                         title="Testimonials"
                                         alt={`Picture of ${props.name3}`}
