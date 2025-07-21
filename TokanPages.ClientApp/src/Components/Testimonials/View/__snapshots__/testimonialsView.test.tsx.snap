@@ -185,7 +185,7 @@ Object {
                       alt="Picture of Scott"
                       class="testimonials-card-image lazyloaded"
                       loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/Scott"
                       title="Testimonials"
                     />
                     <div
@@ -430,7 +430,7 @@ Object {
                     alt="Picture of Scott"
                     class="testimonials-card-image lazyloaded"
                     loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/Scott"
                     title="Testimonials"
                   />
                   <div
