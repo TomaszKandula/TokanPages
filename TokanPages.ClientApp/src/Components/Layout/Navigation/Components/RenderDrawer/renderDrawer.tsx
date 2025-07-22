@@ -9,7 +9,7 @@ import "./renderDrawer.css";
 interface RenderDrawerProps {
     isAnonymous: boolean;
     isMenuOpen: boolean;
-    menuHandler: () => void;
+    triggerSideMenu: () => void;
     logo: string;
     menu: { image: string; items: ItemDto[] };
     languageId: string;
@@ -18,27 +18,31 @@ interface RenderDrawerProps {
 export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
     const dimensions = useDimensions();
 
-    const [canOpen, setCanOpen] = React.useState(false);
-    const [canClose, setCanClose] = React.useState(false);
+    const [canOpenMenu, setCanOpenMenu] = React.useState(false);
+    const [canCloseMenu, setCanCloseMenu] = React.useState(false);
+    const [canShowBackdrop, setCanShowBackdrop] = React.useState(false);
 
     const menuHandler = React.useCallback(() => {
-        setCanClose(true);
+        setCanCloseMenu(true);
     }, []);
 
     React.useEffect(() => {
-        if (props.isMenuOpen && !canOpen) {
-            setTimeout(() => setCanOpen(true), 100);
+        if (props.isMenuOpen && !canCloseMenu) {
+            setTimeout(() => setCanShowBackdrop(true), 250);
+            setTimeout(() => setCanOpenMenu(true), 330);
         }
+    }, [props.isMenuOpen, canCloseMenu]);
 
-        if (props.isMenuOpen && canClose) {
-            setCanOpen(false);
+    React.useEffect(() => {
+        if (props.isMenuOpen && canCloseMenu) {
+            setTimeout(() => setCanShowBackdrop(false), 330);
+            setTimeout(() => setCanOpenMenu(false), 250);
             setTimeout(() => {
-                props.menuHandler();
-                setCanClose(false);
-                setCanOpen(false);
-            }, 250);
+                props.triggerSideMenu();
+                setCanCloseMenu(false);
+            }, 430);
         }
-    }, [props.isMenuOpen, canOpen, canClose]);
+    }, [props.isMenuOpen, canCloseMenu]);
 
     if (!props.isMenuOpen) {
         return <></>;
@@ -47,12 +51,15 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
     return (
         <nav
             className="navigation-nav-drawer-root"
-            style={{ width: dimensions.width, left: canOpen ? 0 : -dimensions.width }}
+            style={{ 
+                width: dimensions.width, 
+                left: canOpenMenu ? 0 : -dimensions.width,
+            }}
             onMouseLeave={menuHandler}
         >
             <div
                 className="navigation-nav-drawer-backdrop"
-                style={{ opacity: canOpen ? 1 : 0 }}
+                style={{ opacity: canShowBackdrop ? 1 : 0 }}
                 onClick={menuHandler}
             ></div>
             <div className="navigation-nav-drawer-container">
