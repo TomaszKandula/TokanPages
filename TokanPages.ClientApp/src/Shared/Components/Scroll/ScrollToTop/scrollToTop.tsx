@@ -1,23 +1,8 @@
 import * as React from "react";
-import { useLocation } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiChevronUp } from "@mdi/js";
 import { useScroll } from "../../../../Shared/Hooks";
 import "./scrollToTop.css";
-
-export interface Properties {
-    children: React.ReactElement | React.ReactElement[];
-}
-
-export const ClearPageStart = (props: Properties): React.ReactElement => {
-    const location = useLocation();
-
-    React.useEffect(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    }, [location]);
-
-    return <>{props.children}</>;
-};
 
 const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const ownerDocument = (event.target as HTMLDivElement).ownerDocument || document;
