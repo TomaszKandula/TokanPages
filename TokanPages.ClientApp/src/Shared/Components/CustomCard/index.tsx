@@ -67,9 +67,7 @@ export const CustomCard = (props: CustomCardProps): React.ReactElement => {
                 <div className="my-5">
                     {props.text.map((value: string, _index: number) => (
                         <Skeleton key={uuidv4()} isLoading={props.isLoading} mode="Text" height={14}>
-                            <p className="is-size-6 has-text-centered line-height-20">
-                                {value}
-                            </p>
+                            <p className="is-size-6 has-text-centered line-height-20">{value}</p>
                         </Skeleton>
                     ))}
                 </div>

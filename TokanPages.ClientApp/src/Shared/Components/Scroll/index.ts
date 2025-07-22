@@ -1,2 +1,3 @@
 export { ProgressOnScroll } from "./ProgressOnScroll";
-export { ScrollToTop, ClearPageStart } from "./ScrollToTop/scrollToTop";
+export { ScrollToTop } from "./ScrollToTop";
+export { ClearPageStart } from "./ClearPageStart";

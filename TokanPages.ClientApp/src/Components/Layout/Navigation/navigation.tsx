@@ -52,7 +52,7 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
         [language]
     );
 
-    const menuHandler = React.useCallback(() => {
+    const triggerSideMenu = React.useCallback(() => {
         setIsMenuOpen(!isMenuOpen);
     }, [isMenuOpen]);
 
@@ -83,7 +83,7 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
             isMenuOpen={isMenuOpen}
             isAlwaysVisible={props.isAlwaysVisible}
             media={media}
-            menuHandler={menuHandler}
+            triggerSideMenu={triggerSideMenu}
             infoHandler={infoHandler}
             aliasName={aliasName}
             avatarName={avatarName}

@@ -11,24 +11,21 @@ interface UseScrollProps {
 
 export const useScroll = (props: UseScrollProps): UseScrollResultProps => {
     let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
+    const isScrolledTop = window.scrollY === 0;
+    const offset = props.offset ?? 0;
 
-    const [isScrollingUp, setIsScrollingUp] = React.useState(window.scrollY === 0);
-    const [isScrolledTop, setIsScrolledTop] = React.useState(window.scrollY === 0);
+    const [isScrollingUp, setIsScrollingUp] = React.useState(isScrolledTop);
 
     const handleScrolling = React.useCallback(() => {
-        const referenceValue = props.offset ?? 0;
         const scrollTopPosition = window.scrollY || document.documentElement.scrollTop;
 
-        if (scrollTopPosition > lastScrollTop) {
+        if (scrollTopPosition > lastScrollTop - offset) {
             setIsScrollingUp(false);
         } else {
             setIsScrollingUp(true);
         }
 
-        setIsScrolledTop(window.scrollY <= referenceValue);
-        lastScrollTop = scrollTopPosition <= referenceValue ? referenceValue : scrollTopPosition;
-
-        return lastScrollTop;
+        lastScrollTop = scrollTopPosition <= offset ? offset : scrollTopPosition;
     }, [window.scrollY, document.documentElement.scrollTop]);
 
     React.useEffect(() => {
