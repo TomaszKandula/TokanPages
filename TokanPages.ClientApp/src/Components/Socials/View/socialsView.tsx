@@ -62,9 +62,11 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 </Skeleton>
                                             </div>
                                             <div className="bulma-card-content">
-                                                <div className="has-text-centered pt-6">
+                                                <div className="is-flex is-justify-content-center pt-6">
                                                     <Skeleton isLoading={isLoading} mode="Rect" height={24}>
-                                                        <Icon name={socials?.social1?.images?.icon} size={2} />
+                                                        <figure className="bulma-image bulma-is-32x32">
+                                                            <Icon name={socials?.social1?.images?.icon} size={2} />
+                                                        </figure>
                                                     </Skeleton>
                                                 </div>
                                                 <div className="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2">
@@ -120,9 +122,11 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 </Skeleton>
                                             </div>
                                             <div className="bulma-card-content">
-                                                <div className="has-text-centered pt-6">
+                                                <div className="is-flex is-justify-content-center pt-6">
                                                     <Skeleton isLoading={isLoading} mode="Rect" height={24}>
-                                                        <Icon name={socials?.social2?.images?.icon} size={2} />
+                                                        <figure className="bulma-image bulma-is-32x32">
+                                                            <Icon name={socials?.social2?.images?.icon} size={2} />
+                                                        </figure>
                                                     </Skeleton>
                                                 </div>
                                                 <div className="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2">
@@ -178,9 +182,11 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 </Skeleton>
                                             </div>
                                             <div className="bulma-card-content">
-                                                <div className="has-text-centered pt-6">
+                                                <div className="is-flex is-justify-content-center pt-6">
                                                     <Skeleton isLoading={isLoading} mode="Rect" height={24}>
-                                                        <Icon name={socials?.social3?.images?.icon} size={2} />
+                                                        <figure className="bulma-image bulma-is-32x32">
+                                                            <Icon name={socials?.social3?.images?.icon} size={2} />
+                                                        </figure>
                                                     </Skeleton>
                                                 </div>
                                                 <div className="is-size-5 has-text-dark has-text-weight-semibold has-text-centered py-2">
