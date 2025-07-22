@@ -55,7 +55,9 @@ export const FooterView = (props: Properties): React.ReactElement => {
                         {props?.icons?.map((item: IconDto, _index: number) => (
                             <Link to={item.href} key={uuidv4()} aria-label={item.name}>
                                 <IconButton>
-                                    <Icon name={item.name} size={1.5} />
+                                    <figure className="is-flex is-align-self-center bulma-image bulma-is-24x24">
+                                        <Icon name={item.name} size={1.5} />
+                                    </figure>
                                 </IconButton>
                             </Link>
                         ))}
