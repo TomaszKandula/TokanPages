@@ -6,7 +6,7 @@ import { NavigationView } from "../../Navigation/View/navigationView";
 import { ItemDto } from "../../../../Api/Models";
 import { ApplicationLanguageState } from "../../../../Store/States";
 
-describe("test component: featuresView", () => {
+describe("test component: NavigationView", () => {
     it("should render correctly '<NavigationView />' when content is loaded.", () => {
         const items: ItemDto = {
             id: "79a6c65d-08b8-479b-9507-97feb05e30c2",
@@ -74,7 +74,6 @@ describe("test component: featuresView", () => {
         };
 
         const html = render(
-            <BrowserRouter>
                 <NavigationView
                     isLoading={false}
                     isAnonymous={false}
@@ -94,7 +93,7 @@ describe("test component: featuresView", () => {
                     isLanguageMenuOpen={false}
                     backPathHandler={jest.fn()}
                 />
-            </BrowserRouter>
+            , { wrapper: BrowserRouter }
         );
 
         expect(html).toMatchSnapshot();
