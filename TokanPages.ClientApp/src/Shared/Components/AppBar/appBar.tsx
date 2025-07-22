@@ -19,7 +19,7 @@ export const AppBar = (props: AppBarProps) => {
         } else {
             setTop(-height);
         }
-    }, [scroll]);
+    }, [scroll.isScrollingUp, scroll.isScrolledTop]);
 
     return (
         <nav className="bulma-navbar app-bar" style={{ top: top, minHeight: props.height }}>
