@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`test component: featuresView should render correctly '<NavigationView />' when content is loaded. 1`] = `
+exports[`test component: NavigationView should render correctly '<NavigationView />' when content is loaded. 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
