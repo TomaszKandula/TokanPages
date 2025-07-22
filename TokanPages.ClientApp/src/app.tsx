@@ -40,7 +40,7 @@ const RenderApplication = (props: RenderApplicationProps): React.ReactElement =>
             {hasSnapshotMode ? null : (
                 <>
                     <ApplicationCookie />
-                    <ApplicationToaster hasAutoClose={true} AutoCloseDurationSec={15} position="top-right" />
+                    <ApplicationToaster hasAutoClose AutoCloseDurationSec={15} position="top-right" />
                     <ApplicationDialogBox />
                     <ApplicationUserInfo />
                     <ScrollToTop />
