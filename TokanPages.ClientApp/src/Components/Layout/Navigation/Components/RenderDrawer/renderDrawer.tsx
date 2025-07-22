@@ -51,8 +51,8 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
     return (
         <nav
             className="navigation-nav-drawer-root"
-            style={{ 
-                width: dimensions.width, 
+            style={{
+                width: dimensions.width,
                 left: canOpenMenu ? 0 : -dimensions.width,
             }}
             onMouseLeave={menuHandler}

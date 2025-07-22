@@ -19,14 +19,13 @@ export const useScroll = (props: UseScrollProps): UseScrollResultProps => {
     const handleScrolling = React.useCallback(() => {
         const scrollTopPosition = window.scrollY || document.documentElement.scrollTop;
 
-        if (scrollTopPosition > (lastScrollTop - offset)) {
+        if (scrollTopPosition > lastScrollTop - offset) {
             setIsScrollingUp(false);
         } else {
             setIsScrollingUp(true);
         }
 
         lastScrollTop = scrollTopPosition <= offset ? offset : scrollTopPosition;
-
     }, [window.scrollY, document.documentElement.scrollTop]);
 
     React.useEffect(() => {

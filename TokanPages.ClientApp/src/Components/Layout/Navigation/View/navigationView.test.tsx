@@ -74,26 +74,26 @@ describe("test component: NavigationView", () => {
         };
 
         const html = render(
-                <NavigationView
-                    isLoading={false}
-                    isAnonymous={false}
-                    isMenuOpen={false}
-                    media={{ isDesktop: true, isMobile: false, isTablet: false, width: 430, height: 932 }}
-                    triggerSideMenu={jest.fn()}
-                    infoHandler={jest.fn()}
-                    avatarName=""
-                    avatarSource=""
-                    aliasName=""
-                    menu={{ image: "", items: [items] }}
-                    logo="logo.svg"
-                    languages={languages}
-                    languageId="en"
-                    languagePickHandler={jest.fn()}
-                    languageMenuHandler={jest.fn()}
-                    isLanguageMenuOpen={false}
-                    backPathHandler={jest.fn()}
-                />
-            , { wrapper: BrowserRouter }
+            <NavigationView
+                isLoading={false}
+                isAnonymous={false}
+                isMenuOpen={false}
+                media={{ isDesktop: true, isMobile: false, isTablet: false, width: 430, height: 932 }}
+                triggerSideMenu={jest.fn()}
+                infoHandler={jest.fn()}
+                avatarName=""
+                avatarSource=""
+                aliasName=""
+                menu={{ image: "", items: [items] }}
+                logo="logo.svg"
+                languages={languages}
+                languageId="en"
+                languagePickHandler={jest.fn()}
+                languageMenuHandler={jest.fn()}
+                isLanguageMenuOpen={false}
+                backPathHandler={jest.fn()}
+            />,
+            { wrapper: BrowserRouter }
         );
 
         expect(html).toMatchSnapshot();
