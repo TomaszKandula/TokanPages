@@ -1,3 +1,19 @@
+# [0.156.0](https://github.com/TomaszKandula/TokanPages/compare/v0.155.0...v0.156.0) (2025-07-23)
+
+
+### Bug Fixes
+
+* remove unnecessary z-index ([c6b70ae](https://github.com/TomaszKandula/TokanPages/commit/c6b70ae04a9f87588658574e2ad835c0da114ed4))
+* resolve found issues w/side menu animations (open/close) ([179647a](https://github.com/TomaszKandula/TokanPages/commit/179647acd3333550e76fdb8d3a2571eb88fae650))
+* resolve found issues with menu hidding/scrolling to top ([6d8b817](https://github.com/TomaszKandula/TokanPages/commit/6d8b817a27ef46330e2f81b6bafc430b8ac56858))
+* use <figour> to wrap custom svg icon ([e7be9e9](https://github.com/TomaszKandula/TokanPages/commit/e7be9e9b7cacc44517eded086d3afeed5b3d43f0))
+* use <figour> to wrap custom svg icon ([0a9deca](https://github.com/TomaszKandula/TokanPages/commit/0a9decadc262e31ed2f999480d673a2a3823654c))
+
+
+### Features
+
+* improve scrolling ([0ebc862](https://github.com/TomaszKandula/TokanPages/commit/0ebc86200d7eff83e2155b8bdd7c81953a219579))
+
 # [0.155.0](https://github.com/TomaszKandula/TokanPages/compare/v0.154.0...v0.155.0) (2025-07-21)
 
 
