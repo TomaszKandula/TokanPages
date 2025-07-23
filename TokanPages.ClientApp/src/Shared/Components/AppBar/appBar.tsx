@@ -10,7 +10,7 @@ interface AppBarProps {
 export const AppBar = (props: AppBarProps) => {
     const height = props.height ?? 50;
 
-    const scroll = useScroll({ offset: height });
+    const scroll = useScroll({ treshold: props.height });
     const [top, setTop] = React.useState(0);
 
     React.useEffect(() => {

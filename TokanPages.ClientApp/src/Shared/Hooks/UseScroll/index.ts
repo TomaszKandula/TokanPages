@@ -6,27 +6,38 @@ interface UseScrollResultProps {
 }
 
 interface UseScrollProps {
-    offset?: number;
+    treshold?: number;
 }
+
+const THRESHOLD = 0.5;
 
 export const useScroll = (props: UseScrollProps): UseScrollResultProps => {
     let lastScrollTop = window.scrollY || document.documentElement.scrollTop;
-    const isScrolledTop = window.scrollY === 0;
-    const offset = props.offset ?? 0;
+    const treshold = props.treshold ?? THRESHOLD;
 
-    const [isScrollingUp, setIsScrollingUp] = React.useState(isScrolledTop);
+    const [isScrollingUp, setIsScrollingUp] = React.useState(window.scrollY < treshold);
+    const [isScrolledTop, setIsScrolledTop] = React.useState(window.scrollY < treshold);
 
     const handleScrolling = React.useCallback(() => {
         const scrollTopPosition = window.scrollY || document.documentElement.scrollTop;
 
-        if (scrollTopPosition > lastScrollTop - offset) {
+        if (scrollTopPosition > lastScrollTop) {
             setIsScrollingUp(false);
         } else {
             setIsScrollingUp(true);
         }
 
-        lastScrollTop = scrollTopPosition <= offset ? offset : scrollTopPosition;
+        lastScrollTop = scrollTopPosition < treshold ? treshold : scrollTopPosition;
+        setIsScrolledTop(window.scrollY < treshold);
     }, [window.scrollY, document.documentElement.scrollTop]);
+
+    React.useEffect(() => {
+        if (window.scrollY < treshold) {
+            setIsScrolledTop(true);
+        } else {
+            setIsScrolledTop(false);
+        }
+    }, [window.scrollY]);
 
     React.useEffect(() => {
         window.addEventListener("scroll", handleScrolling);

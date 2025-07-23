@@ -2,6 +2,7 @@ import * as React from "react";
 import Icon from "@mdi/react";
 import { mdiChevronUp } from "@mdi/js";
 import { useScroll } from "../../../../Shared/Hooks";
+import { APP_BAR_HEIGHT } from "../../../../Shared/constants";
 import "./scrollToTop.css";
 
 const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -18,7 +19,7 @@ const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
 };
 
 export const ScrollToTop = (): React.ReactElement => {
-    const scroll = useScroll({ offset: 64 });
+    const scroll = useScroll({ treshold: APP_BAR_HEIGHT });
 
     return (
         <div style={{ visibility: scroll.isScrolledTop ? "hidden" : "visible" }}>
