@@ -8,7 +8,7 @@ export interface BaseProperties extends ViewProperties {
     isMenuOpen: boolean;
     isAlwaysVisible?: boolean;
     media: UseDimensionsResult;
-    menuHandler: () => void;
+    triggerSideMenu: () => void;
     infoHandler: () => void;
     aliasName: string;
     avatarName: string;

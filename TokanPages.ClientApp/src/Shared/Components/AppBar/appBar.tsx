@@ -4,21 +4,16 @@ import "./appBar.css";
 
 interface AppBarProps {
     height?: number;
-    isAlwaysVisible?: boolean;
     children: React.ReactElement | React.ReactElement[];
 }
 
 export const AppBar = (props: AppBarProps) => {
     const height = props.height ?? 50;
 
-    const scroll = useScroll({ offset: height });
+    const scroll = useScroll({ treshold: props.height });
     const [top, setTop] = React.useState(0);
 
     React.useEffect(() => {
-        if (props.isAlwaysVisible === true) {
-            return;
-        }
-
         if (scroll.isScrollingUp || scroll.isScrolledTop) {
             setTop(0);
         } else {

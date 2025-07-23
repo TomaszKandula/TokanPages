@@ -68,18 +68,22 @@ Object {
                 class="icon-button  is-flex is-align-self-center"
                 style="height: 48px; width: 48px;"
               >
-                <div>
-                  <svg
-                    class="is-flex is-align-self-center "
-                    role="presentation"
-                    style="width: 2.25rem; height: 2.25rem;"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      style="fill: currentColor;"
-                    />
-                  </svg>
-                </div>
+                <figure
+                  class="is-flex is-align-self-center bulma-image bulma-is-24x24"
+                >
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center "
+                      role="presentation"
+                      style="width: 2.25rem; height: 2.25rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                </figure>
               </button>
             </a>
           </div>
@@ -151,18 +155,22 @@ Object {
               class="icon-button  is-flex is-align-self-center"
               style="height: 48px; width: 48px;"
             >
-              <div>
-                <svg
-                  class="is-flex is-align-self-center "
-                  role="presentation"
-                  style="width: 2.25rem; height: 2.25rem;"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    style="fill: currentColor;"
-                  />
-                </svg>
-              </div>
+              <figure
+                class="is-flex is-align-self-center bulma-image bulma-is-24x24"
+              >
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center "
+                    role="presentation"
+                    style="width: 2.25rem; height: 2.25rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+              </figure>
             </button>
           </a>
         </div>

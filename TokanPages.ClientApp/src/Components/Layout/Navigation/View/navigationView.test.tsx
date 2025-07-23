@@ -6,7 +6,7 @@ import { NavigationView } from "../../Navigation/View/navigationView";
 import { ItemDto } from "../../../../Api/Models";
 import { ApplicationLanguageState } from "../../../../Store/States";
 
-describe("test component: featuresView", () => {
+describe("test component: NavigationView", () => {
     it("should render correctly '<NavigationView />' when content is loaded.", () => {
         const items: ItemDto = {
             id: "79a6c65d-08b8-479b-9507-97feb05e30c2",
@@ -74,27 +74,26 @@ describe("test component: featuresView", () => {
         };
 
         const html = render(
-            <BrowserRouter>
-                <NavigationView
-                    isLoading={false}
-                    isAnonymous={false}
-                    isMenuOpen={false}
-                    media={{ isDesktop: true, isMobile: false, isTablet: false, width: 430, height: 932 }}
-                    menuHandler={jest.fn()}
-                    infoHandler={jest.fn()}
-                    avatarName=""
-                    avatarSource=""
-                    aliasName=""
-                    menu={{ image: "", items: [items] }}
-                    logo="logo.svg"
-                    languages={languages}
-                    languageId="en"
-                    languagePickHandler={jest.fn()}
-                    languageMenuHandler={jest.fn()}
-                    isLanguageMenuOpen={false}
-                    backPathHandler={jest.fn()}
-                />
-            </BrowserRouter>
+            <NavigationView
+                isLoading={false}
+                isAnonymous={false}
+                isMenuOpen={false}
+                media={{ isDesktop: true, isMobile: false, isTablet: false, width: 430, height: 932 }}
+                triggerSideMenu={jest.fn()}
+                infoHandler={jest.fn()}
+                avatarName=""
+                avatarSource=""
+                aliasName=""
+                menu={{ image: "", items: [items] }}
+                logo="logo.svg"
+                languages={languages}
+                languageId="en"
+                languagePickHandler={jest.fn()}
+                languageMenuHandler={jest.fn()}
+                isLanguageMenuOpen={false}
+                backPathHandler={jest.fn()}
+            />,
+            { wrapper: BrowserRouter }
         );
 
         expect(html).toMatchSnapshot();

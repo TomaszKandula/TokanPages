@@ -1,23 +1,9 @@
 import * as React from "react";
-import { useLocation } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiChevronUp } from "@mdi/js";
 import { useScroll } from "../../../../Shared/Hooks";
+import { APP_BAR_HEIGHT } from "../../../../Shared/constants";
 import "./scrollToTop.css";
-
-export interface Properties {
-    children: React.ReactElement | React.ReactElement[];
-}
-
-export const ClearPageStart = (props: Properties): React.ReactElement => {
-    const location = useLocation();
-
-    React.useEffect(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    }, [location]);
-
-    return <>{props.children}</>;
-};
 
 const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     const ownerDocument = (event.target as HTMLDivElement).ownerDocument || document;
@@ -33,7 +19,7 @@ const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
 };
 
 export const ScrollToTop = (): React.ReactElement => {
-    const scroll = useScroll({ offset: 64 });
+    const scroll = useScroll({ treshold: APP_BAR_HEIGHT });
 
     return (
         <div style={{ visibility: scroll.isScrolledTop ? "hidden" : "visible" }}>

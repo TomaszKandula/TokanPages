@@ -6,7 +6,7 @@ import { NavigationViewProps } from "../../Abstractions";
 
 export const RenderMenuIcon = (props: NavigationViewProps): React.ReactElement => {
     return (
-        <IconButton aria-label="menu" onClick={props.menuHandler}>
+        <IconButton aria-label="menu" onClick={props.triggerSideMenu}>
             <Icon path={mdiMenu} size={1} />
         </IconButton>
     );
