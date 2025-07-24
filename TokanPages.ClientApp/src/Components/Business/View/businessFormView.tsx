@@ -90,10 +90,10 @@ const RenderHeader = (props: BusinessFormViewProps): React.ReactElement => (
     props.hasIcon ? (
         <div className="is-flex is-flex-direction-column is-align-items-center">
             <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                <Icon name="Briefcase" size={3} className="has-text-link" />
+                <Icon name="Briefcase" size={2.5} className="card-icon-colour" />
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
-                <p className="is-size-3 has-text-grey">{props.caption}</p>
+                <p className="is-size-3 has-text-black">{props.caption}</p>
             </Skeleton>
         </div>
     ) : (
