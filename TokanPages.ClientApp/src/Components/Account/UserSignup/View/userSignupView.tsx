@@ -11,6 +11,7 @@ import {
     Icon,
     ProgressBar,
     Skeleton,
+    Notification,
 } from "../../../../Shared/Components";
 import { UserSignupProps } from "../userSignup";
 
@@ -45,13 +46,6 @@ const ActiveButton = (props: UserSignupViewProps): React.ReactElement => (
     >
         {!props.progress ? props.button : <ProgressBar size={20} />}
     </button>
-);
-
-const RenderNotification = (props: UserSignupViewProps): React.ReactElement => (
-    <div className="bulma-notification bulma-is-info bulma-is-light is-flex is-align-items-center">
-        <Icon name="Information" size={1} className="has-text-link" />
-        <span className="is-size-6 ml-4">{props.consent}</span>
-    </div>
 );
 
 export const UserSignupView = (props: UserSignupViewProps): React.ReactElement => (
@@ -135,7 +129,7 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                             </article>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
-                            <RenderNotification {...props} />
+                            <Notification text={props.consent} />
                         </Skeleton>
                         <div className="mb-5">
                             <Skeleton isLoading={props.isLoading} mode="Rect">
