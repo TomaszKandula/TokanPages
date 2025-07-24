@@ -20,7 +20,7 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => (
     <>
         <div className="bulma-content">
             <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24}>
-                <p className="is-size-5 py-2">{props.techLabel}</p>
+                <p className="is-size-5">{props.techLabel}</p>
             </Skeleton>
             {props.list.map((value: OfferItemDto, index: number) => (
             <div key={value.key} className="is-flex">
@@ -50,7 +50,7 @@ const ServiceItems = (props: ServiceItemsProps): React.ReactElement => (
     <>
         <div className="bulma-content">
             <Skeleton isLoading={props.isLoading} mode="Text" width={300} height={24}>
-                <p className="is-size-5 py-2">{props.caption}</p>
+                <p className="is-size-5">{props.caption}</p>
             </Skeleton>
             {props.list.map((value: OfferItemDto, index: number) => (
             <div key={value.key} className="is-flex">
@@ -69,7 +69,6 @@ const ServiceItems = (props: ServiceItemsProps): React.ReactElement => (
                     <label htmlFor={`${index}`} className="is-clickable"></label>
                 </div>
                 <p className="is-size-6 p-1">{value.value}</p>
-                {/* <span>({value.price})</span> */}
             </Skeleton>
             </div>
         ))}
@@ -91,7 +90,7 @@ const RenderHeader = (props: BusinessFormViewProps): React.ReactElement => (
     props.hasIcon ? (
         <div className="is-flex is-flex-direction-column is-align-items-center">
             <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                <Icon name="BriefcaseVariant" size={3} className="has-text-link" />
+                <Icon name="Briefcase" size={3} className="has-text-link" />
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
                 <p className="is-size-3 has-text-grey">{props.caption}</p>
@@ -103,7 +102,7 @@ const RenderHeader = (props: BusinessFormViewProps): React.ReactElement => (
 );
 
 const RendetTaxNotification = (props: BusinessFormViewProps): React.ReactElement => (
-    <div className="bulma-notification is-flex is-align-items-center">
+    <div className="bulma-notification bulma-is-info bulma-is-light is-flex is-align-items-center">
         <Icon name="Information" size={1} className="has-text-link" />
         <span className="is-size-6 p-2">{props.pricing.disclaimer}</span>
     </div>
