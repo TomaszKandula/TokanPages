@@ -40,9 +40,17 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => (
     </button>
 );
 
+const RenderNotification = (props: ContactFormViewProps): React.ReactElement => (
+    <div className="bulma-notification bulma-is-info bulma-is-light is-flex is-align-items-center">
+        <Icon name="Information" size={1} className="has-text-link" />
+        <span className="is-size-6 ml-4">{props.consent}</span>
+    </div>
+);
+
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
+    const captionPadding = props.hasIcon ? "px-6" : "px-6 pt-6";
     const boxPadding = props.isMobile ? "py-6" : "p-6";
-    const cardPadding = props.isMobile ? "" : "px-6";
+    const cardPadding = props.isMobile ? "" : captionPadding;
     const colPadding = props.hasIcon ? "pt-5" : "";
 
     return (
@@ -158,9 +166,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                     </div>
                                     <div className="bulma-content">
                                         <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
-                                            <div className="bulma-notification">
-                                                <p className="is-size-6">{props.consent}</p>
-                                            </div>
+                                            <RenderNotification {...props} />
                                         </Skeleton>
                                         <Animated dataAos="fade-up">
                                             <Skeleton isLoading={props.isLoading} mode="Rect">
