@@ -10,7 +10,8 @@ import { INTERNAL_MESSAGE_TEXT, INTERNAL_SUBJECT_TEXT, RECEIVED_ERROR_MESSAGE } 
 import { formatPhoneNumber } from "../../Shared/Services/Converters";
 import { ValidateBusinessForm } from "../../Shared/Services/FormValidation";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../Shared/types";
-import { BusinessFormProps, MessageFormProps } from "./Models";
+import { getSelection, resetSelection, valueCleanUp } from "./Utilities";
+import { BusinessFormProps, MessageFormProps } from "./Types";
 import Validate from "validate.js";
 
 const formDefault: MessageFormProps = {
@@ -22,38 +23,6 @@ const formDefault: MessageFormProps = {
     description: "",
     techStack: [""],
     services: [""],
-};
-
-const valueCleanUp = (input: string): string => {
-    return input.replaceAll(" ", "").replaceAll("(", "").replaceAll(")", "");
-};
-
-const getSelection = (input?: OfferItemDto[]): string[] => {
-    if (!input) {
-        return [""];
-    }
-
-    const result: string[] = [];
-    input.forEach(item => {
-        if (item.isChecked) {
-            result.push(item.value);
-        }
-    });
-
-    return result;
-};
-
-const resetSelection = (input?: OfferItemDto[]): OfferItemDto[] => {
-    if (!input) {
-        return [];
-    }
-
-    const result: OfferItemDto[] = [];
-    input.forEach(item => {
-        result.push({ ...item, isChecked: false });
-    });
-
-    return result;
 };
 
 export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {

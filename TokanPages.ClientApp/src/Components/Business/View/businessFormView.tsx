@@ -1,46 +1,8 @@
 import * as React from "react";
-import { DescriptionItemDto, PricingDto, OfferItemDto } from "../../../Api/Models";
-import { ViewProperties } from "../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { OfferItemDto } from "../../../Api/Models";
 import { Icon, ProgressBar, Skeleton, TextArea, TextField } from "../../../Shared/Components";
-import { BusinessFormProps, ServiceItemsProps, TechStackListProps } from "../Models";
+import { BusinessFormViewProps, ServiceItemsProps, TechStackListProps } from "../Types";
 import "./businessFormView.css";
-
-interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
-    isMobile: boolean;
-    caption: string;
-    progress: boolean;
-    buttonText: string;
-    hasTechItems: boolean;
-    keyHandler: (event: ReactKeyboardEvent) => void;
-    formHandler: (event: ReactChangeEvent) => void;
-    descriptionHandler: (event: ReactChangeTextEvent) => void;
-    buttonHandler: () => void;
-    techHandler: (event: ReactChangeEvent) => void;
-    serviceHandler: (event: ReactChangeEvent) => void;
-}
-
-interface FormProps {
-    companyText: string;
-    companyLabel: string;
-    firstNameText: string;
-    firstNameLabel: string;
-    lastNameText: string;
-    lastNameLabel: string;
-    emailText: string;
-    emailLabel: string;
-    phoneText: string;
-    phoneLabel: string;
-    techLabel: string;
-    techItems: OfferItemDto[];
-    serviceItems: OfferItemDto[];
-    description: ExtendedDescriptionProps;
-    pricing: PricingDto;
-}
-
-interface ExtendedDescriptionProps extends DescriptionItemDto {
-    text: string;
-}
 
 const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => (
     <button
