@@ -78,3 +78,7 @@ body {
 .do-not-display {
     display: none !important;
 }
+
+.card-icon-colour {
+    color: hsla(233, 100%, 73%, 1);
+}
