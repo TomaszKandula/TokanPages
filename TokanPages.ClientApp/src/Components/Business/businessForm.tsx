@@ -269,6 +269,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             phoneText={form.phone}
             phoneLabel={businessForm.phoneLabel}
             techLabel={businessForm.techLabel}
+            hasTechItems={businessForm.hasTechItems}
             techItems={techStackItems ?? []}
             description={{
                 text: description.description,

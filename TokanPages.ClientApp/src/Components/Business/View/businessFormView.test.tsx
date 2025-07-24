@@ -32,6 +32,7 @@ describe("test component: businessFormView", () => {
                     phoneText=""
                     phoneLabel="Business phone"
                     techLabel="Which technologies are you interested in?"
+                    hasTechItems={false}
                     techItems={[
                         {
                             value: "ABC",

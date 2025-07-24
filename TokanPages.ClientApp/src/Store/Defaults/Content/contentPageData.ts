@@ -158,6 +158,7 @@ export const ContentPageData: ContentPageDataState = {
             emailLabel: "",
             phoneLabel: "",
             techLabel: "",
+            hasTechItems: false,
             techItems: [],
             description: {
                 label: "",

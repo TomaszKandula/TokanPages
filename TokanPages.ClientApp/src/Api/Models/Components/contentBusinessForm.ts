@@ -12,6 +12,7 @@ export interface BusinessFormContentDto {
     emailLabel: string;
     phoneLabel: string;
     techLabel: string;
+    hasTechItems: boolean;
     techItems: TechItemsDto[];
     description: DescriptionItemDto;
     pricing: PricingDto;

@@ -15,6 +15,8 @@ export interface MessageFormProps {
 export interface TechStackListProps {
     isLoading: boolean;
     isDisabled: boolean;
+    hasTechItems: boolean;
+    techLabel: string;
     list: TechItemsDto[];
     handler: (event: ReactChangeEvent) => void;
 }
