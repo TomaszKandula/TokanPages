@@ -47,6 +47,13 @@ const ActiveButton = (props: UserSignupViewProps): React.ReactElement => (
     </button>
 );
 
+const RenderNotification = (props: UserSignupViewProps): React.ReactElement => (
+    <div className="bulma-notification bulma-is-info bulma-is-light is-flex is-align-items-center">
+        <Icon name="Information" size={1} className="has-text-link" />
+        <span className="is-size-6 ml-4">{props.consent}</span>
+    </div>
+);
+
 export const UserSignupView = (props: UserSignupViewProps): React.ReactElement => (
     <section className={props.background}>
         <div className="bulma-container bulma-is-max-tablet">
@@ -128,9 +135,7 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                             </article>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
-                            <div className="bulma-notification">
-                                <p className="is-size-6">{props.consent}</p>
-                            </div>
+                            <RenderNotification {...props} />
                         </Skeleton>
                         <div className="mb-5">
                             <Skeleton isLoading={props.isLoading} mode="Rect">
