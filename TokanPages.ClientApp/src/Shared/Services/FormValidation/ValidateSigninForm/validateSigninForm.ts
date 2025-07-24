@@ -2,7 +2,7 @@ import Validate from "validate.js";
 import { SigninFormInput } from "..";
 
 export const ValidateSigninForm = (props: SigninFormInput): object | undefined => {
-    let constraints = {
+    const constraints = {
         email: {
             email: {
                 message: props.content.emailInvalid,
