@@ -1,8 +1,8 @@
 import Validate from "validate.js";
 import { BusinessFormInput } from "../Abstractions/BusinessFormInput";
 
-export const ValidateBusinessForm = (props: BusinessFormInput): object | undefined => {
-    let constraints = {
+export const ValidateBusinessForm = (props: BusinessFormInput, hasTechItems?: boolean): object | undefined => {
+    const baseConstraints = {
         company: {
             presence: true,
             length: {
@@ -48,14 +48,6 @@ export const ValidateBusinessForm = (props: BusinessFormInput): object | undefin
                 message: "must be between 2 and 10 000 characters",
             },
         },
-        techStack: {
-            presence: true,
-            length: {
-                minimum: 1,
-                maximum: 100,
-                message: "must be selected",
-            },
-        },
         services: {
             presence: true,
             length: {
@@ -65,6 +57,19 @@ export const ValidateBusinessForm = (props: BusinessFormInput): object | undefin
             },
         },
     };
+
+    const optionalConstraints = {
+        techStack: {
+            presence: true,
+            length: {
+                minimum: 1,
+                maximum: 100,
+                message: "must be selected",
+            },
+        },
+    };
+
+    const constraints = hasTechItems ? { ...baseConstraints, ...optionalConstraints } : { ...baseConstraints }
 
     return Validate(
         {

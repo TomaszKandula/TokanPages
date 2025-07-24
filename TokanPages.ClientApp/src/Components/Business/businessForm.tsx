@@ -187,7 +187,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             description: description.description,
             techStack: techStack,
             services: services,
-        });
+        }, businessForm.hasTechItems);
 
         if (!Validate.isDefined(result)) {
             setHasProgress(true);
