@@ -1,9 +1,9 @@
 import * as React from "react";
-import { DescriptionItemDto, PricingDto, ServiceItemDto, TechItemsDto } from "../../../Api/Models";
+import { DescriptionItemDto, PricingDto, OfferItemDto } from "../../../Api/Models";
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { Icon, ProgressBar, Skeleton, TextArea, TextField } from "../../../Shared/Components";
-import { BusinessFormProps, ServiceItemCardProps, TechStackListProps } from "../Models";
+import { BusinessFormProps, ServiceItemsProps, TechStackListProps } from "../Models";
 import "./businessFormView.css";
 
 interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
@@ -17,8 +17,7 @@ interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormP
     descriptionHandler: (event: ReactChangeTextEvent) => void;
     buttonHandler: () => void;
     techHandler: (event: ReactChangeEvent) => void;
-    serviceHandler: (event: ReactMouseEvent) => void;
-    serviceSelection: string[];
+    serviceHandler: (event: ReactChangeEvent) => void;
 }
 
 interface FormProps {
@@ -33,7 +32,8 @@ interface FormProps {
     phoneText: string;
     phoneLabel: string;
     techLabel: string;
-    techItems: TechItemsDto[];
+    techItems: OfferItemDto[];
+    serviceItems: OfferItemDto[];
     description: ExtendedDescriptionProps;
     pricing: PricingDto;
 }
@@ -60,9 +60,7 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => (
             <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24}>
                 <p className="is-size-5 py-2">{props.techLabel}</p>
             </Skeleton>
-        </div>
-        <div className="bulma-content">
-        {props.list.map((value: TechItemsDto, index: number) => (
+            {props.list.map((value: OfferItemDto, index: number) => (
             <div key={value.key} className="is-flex">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={150} height={24}>
                     <div className="checkbox-wrapper-1 is-flex is-align-self-center">
@@ -86,37 +84,32 @@ const TechStackList = (props: TechStackListProps): React.ReactElement => (
     </> : <></>
 );
 
-const ServiceItemCard = (props: ServiceItemCardProps): React.ReactElement => {
-    const isSelected = props.services.includes(props.value.id) ?? false;
-    const style = isSelected ? "business-selected" : "business-unselected";
-    const disabled = props.isDisabled ? "business-disabled" : "business-enabled";
-    const className = `bulma-cell business-items ${style} ${disabled}`;
-
-    return (
-        <div id={props.value.id} data-disabled={props.isDisabled} className={className} onClick={props.handler}>
-            <p className="is-size-6 business-item-text">{props.value.text}</p>
-            <p className="is-size-7 has-text-weight-bold business-item-price">{props.value.price}</p>
-        </div>
-    );
-};
-
-const ServiceItems = (props: BusinessFormViewProps): React.ReactElement => (
+const ServiceItems = (props: ServiceItemsProps): React.ReactElement => (
     <>
         <div className="bulma-content">
             <Skeleton isLoading={props.isLoading} mode="Text" width={300} height={24}>
-                <p className="is-size-5 py-2">{props.pricing.caption}</p>
+                <p className="is-size-5 py-2">{props.caption}</p>
             </Skeleton>
-        </div>
-        <div className="bulma-grid bulma-is-col-min-10 is-gap-2.5">
-        {props.pricing.services.map((value: ServiceItemDto, _index: number) => (
-            <Skeleton key={value.id} isLoading={props.isLoading} mode="Rect" height={100}>
-                <ServiceItemCard
-                    value={value}
-                    isDisabled={props.progress}
-                    handler={props.serviceHandler}
-                    services={props.serviceSelection}
-                />
+            {props.list.map((value: OfferItemDto, index: number) => (
+            <div key={value.key} className="is-flex">
+            <Skeleton isLoading={props.isLoading} mode="Rect" height={100}>
+                <div className="checkbox-wrapper-1 is-flex is-align-self-center">
+                    <input
+                        type="checkbox"
+                        id={`${index}`}
+                        name={`service-${index}`}
+                        disabled={props.isDisabled}
+                        onChange={props.handler}
+                        checked={value.isChecked}
+                        tabIndex={-1}
+                        className="substituted"
+                    />
+                    <label htmlFor={`${index}`} className="is-clickable"></label>
+                </div>
+                <p className="is-size-6 p-1">{value.value}</p>
+                {/* <span>({value.price})</span> */}
             </Skeleton>
+            </div>
         ))}
         </div>
     </>
@@ -257,14 +250,20 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                             </div>
                                         </div>
                                         <TechStackList
-                                            hasTechItems={props.hasTechItems}
                                             isLoading={props.isLoading}
                                             isDisabled={props.progress}
+                                            hasTechItems={props.hasTechItems}
                                             techLabel={props.techLabel}
                                             list={props.techItems}
                                             handler={props.techHandler}
                                         />
-                                        <ServiceItems {...props} />
+                                        <ServiceItems
+                                            isLoading={props.isLoading}
+                                            isDisabled={props.progress}
+                                            caption={props.pricing.caption}
+                                            list={props.serviceItems}
+                                            handler={props.serviceHandler}
+                                        />
                                         <Skeleton isLoading={props.isLoading} mode="Rect" height={80}>
                                             <RendetTaxNotification {...props} />
                                         </Skeleton>

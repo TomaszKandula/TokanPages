@@ -20,7 +20,7 @@ describe("test component: businessFormView", () => {
                     descriptionHandler={jest.fn()}
                     techHandler={jest.fn()}
                     serviceHandler={jest.fn()}
-                    serviceSelection={["ABC", "CDE"]}
+                    serviceItems={[{ key: 1, value: "Super service (20 USD/hour)", isChecked: false }]}
                     companyText=""
                     companyLabel="Company name"
                     firstNameText=""
@@ -56,14 +56,14 @@ describe("test component: businessFormView", () => {
                         disclaimer: "",
                         services: [
                             {
-                                id: "web",
-                                text: "Web Development",
-                                price: "30 USD/h",
+                                key: 0,
+                                value: "Web Development (30 USD/hour)",
+                                isChecked: false,
                             },
                             {
-                                id: "mobile",
-                                text: "Mobile Development",
-                                price: "45 USD/h",
+                                key: 1,
+                                value: "Mobile Development (45 USD/hour)",
+                                isChecked: false,
                             },
                         ],
                     }}

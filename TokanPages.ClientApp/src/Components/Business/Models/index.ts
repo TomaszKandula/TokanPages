@@ -1,5 +1,5 @@
-import { ServiceItemDto, TechItemsDto } from "../../../Api/Models";
-import { ReactChangeEvent, ReactMouseEvent } from "../../../Shared/types";
+import { OfferItemDto } from "../../../Api/Models";
+import { ReactChangeEvent } from "../../../Shared/types";
 
 export interface MessageFormProps {
     company: string;
@@ -17,15 +17,16 @@ export interface TechStackListProps {
     isDisabled: boolean;
     hasTechItems: boolean;
     techLabel: string;
-    list: TechItemsDto[];
+    list: OfferItemDto[];
     handler: (event: ReactChangeEvent) => void;
 }
 
-export interface ServiceItemCardProps {
+export interface ServiceItemsProps {
+    isLoading: boolean;
     isDisabled: boolean;
-    value: ServiceItemDto;
-    handler: (event: ReactMouseEvent) => void;
-    services: string[];
+    caption: string;
+    list: OfferItemDto[];
+    handler: (event: ReactChangeEvent) => void;
 }
 
 export interface BusinessFormProps {
