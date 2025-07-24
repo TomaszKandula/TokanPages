@@ -101,10 +101,10 @@ const RenderHeader = (props: BusinessFormViewProps): React.ReactElement => (
     )
 );
 
-const RendetTaxNotification = (props: BusinessFormViewProps): React.ReactElement => (
+const RenderTaxNotification = (props: BusinessFormViewProps): React.ReactElement => (
     <div className="bulma-notification bulma-is-info bulma-is-light is-flex is-align-items-center">
         <Icon name="Information" size={1} className="has-text-link" />
-        <span className="is-size-6 p-2">{props.pricing.disclaimer}</span>
+        <span className="is-size-6 ml-4">{props.pricing.disclaimer}</span>
     </div>
 );
 
@@ -226,7 +226,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                             handler={props.serviceHandler}
                                         />
                                         <Skeleton isLoading={props.isLoading} mode="Rect" height={80}>
-                                            <RendetTaxNotification {...props} />
+                                            <RenderTaxNotification {...props} />
                                         </Skeleton>
                                         <Skeleton isLoading={props.isLoading} mode="Rect" height={40}>
                                             <ActiveButton {...props} />
