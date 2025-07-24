@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../Shared/types";
-import { Animated, Icon, ProgressBar, Skeleton, TextArea, TextField } from "../../../Shared/Components";
+import { Animated, Icon, ProgressBar, Skeleton, TextArea, TextField, Notification } from "../../../Shared/Components";
 import { ContactFormProps } from "../contactForm";
 import "./contactFormView.css";
 
@@ -38,13 +38,6 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => (
     >
         {!props.progress ? props.buttonText : <ProgressBar size={20} />}
     </button>
-);
-
-const RenderNotification = (props: ContactFormViewProps): React.ReactElement => (
-    <div className="bulma-notification bulma-is-info bulma-is-light is-flex is-align-items-center">
-        <Icon name="Information" size={1} className="has-text-link" />
-        <span className="is-size-6 ml-4">{props.consent}</span>
-    </div>
 );
 
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
@@ -166,7 +159,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                     </div>
                                     <div className="bulma-content">
                                         <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
-                                            <RenderNotification {...props} />
+                                            <Notification text={props.consent} />
                                         </Skeleton>
                                         <Animated dataAos="fade-up">
                                             <Skeleton isLoading={props.isLoading} mode="Rect">
