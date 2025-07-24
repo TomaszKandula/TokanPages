@@ -1,6 +1,6 @@
 import * as React from "react";
 import { OfferItemDto } from "../../../Api/Models";
-import { Icon, ProgressBar, Skeleton, TextArea, TextField } from "../../../Shared/Components";
+import { Icon, ProgressBar, Skeleton, TextArea, TextField, Notification } from "../../../Shared/Components";
 import { BusinessFormViewProps, ServiceItemsProps, TechStackListProps } from "../Types";
 import "./businessFormView.css";
 
@@ -99,13 +99,6 @@ const RenderHeader = (props: BusinessFormViewProps): React.ReactElement => (
     ) : (
         <></>
     )
-);
-
-const RenderTaxNotification = (props: BusinessFormViewProps): React.ReactElement => (
-    <div className="bulma-notification bulma-is-info bulma-is-light is-flex is-align-items-center">
-        <Icon name="Information" size={1} className="has-text-link" />
-        <span className="is-size-6 ml-4">{props.pricing.disclaimer}</span>
-    </div>
 );
 
 export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => (
@@ -226,7 +219,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                             handler={props.serviceHandler}
                                         />
                                         <Skeleton isLoading={props.isLoading} mode="Rect" height={80}>
-                                            <RenderTaxNotification {...props} />
+                                            <Notification text={props.pricing.disclaimer} />
                                         </Skeleton>
                                         <Skeleton isLoading={props.isLoading} mode="Rect" height={40}>
                                             <ActiveButton {...props} />
