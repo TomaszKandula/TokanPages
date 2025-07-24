@@ -1,6 +1,6 @@
+import { OfferItemDto } from "./Common";
 import { DescriptionItemDto } from "./Common/descriptionItemDto";
 import { PricingDto } from "./Common/pricingDto";
-import { TechItemsDto } from "./Common/techItemsDto";
 
 export interface BusinessFormContentDto {
     language: string;
@@ -11,9 +11,9 @@ export interface BusinessFormContentDto {
     lastNameLabel: string;
     emailLabel: string;
     phoneLabel: string;
+    description: DescriptionItemDto;
     techLabel: string;
     hasTechItems: boolean;
-    techItems: TechItemsDto[];
-    description: DescriptionItemDto;
+    techItems: OfferItemDto[];
     pricing: PricingDto;
 }
