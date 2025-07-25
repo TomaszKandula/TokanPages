@@ -19,7 +19,7 @@ export const PdfViewerPage = () => {
     return (
         <>
             <Navigation backNavigationOnly isAlwaysVisible={media.isMobile} />
-            <main className="mt-6">
+            <main>
                 <PdfViewer pdfFile={name} />
             </main>
         </>
