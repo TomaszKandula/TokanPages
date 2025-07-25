@@ -35,7 +35,6 @@ export interface BusinessFormProps {
     hasIcon?: boolean;
     hasShadow?: boolean;
     className?: string;
-    background?: string;
 }
 
 export interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {

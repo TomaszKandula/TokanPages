@@ -247,7 +247,6 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             }}
             presentation={businessForm.presentation}
             className={props.className}
-            background={props.background}
             hasIcon={props.hasIcon}
             hasCaption={props.hasCaption}
             hasShadow={props.hasShadow}

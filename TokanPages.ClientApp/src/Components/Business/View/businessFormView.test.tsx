@@ -88,7 +88,6 @@ describe("test component: businessFormView", () => {
                         },
                     }}
                     className="mt-5 mb-5"
-                    background="has-background-white"
                     hasIcon={true}
                     hasCaption={true}
                     hasShadow={true}

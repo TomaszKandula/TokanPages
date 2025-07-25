@@ -113,12 +113,12 @@ const RenderHeader = (props: BusinessFormViewProps): React.ReactElement =>
     );
 
 export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => (
-    <section className={props.background}>
+    <section className={props.className}>
         <div className="bulma-container">
-            <div className={`bulma-columns ${!props.className ? "p-6" : props.className}`}>
-                <div className="bulma-column">
+            <div className={`bulma-columns mb-6 ${props.isMobile ? "px-4 py-6" : "py-6"}`}>
+                <div className="bulma-column bulma-is-half">
                     <RenderCaption {...props} />
-                    <div className="bulma-card mx-4">
+                    <div className="bulma-card">
                         <div className="bulma-card-content">
                             <RenderHeader {...props} />
                             <div className="mt-5">
@@ -238,7 +238,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                         </div>
                     </div>
                 </div>
-                <div className="bulma-column px-6">
+                <div className={`bulma-column ${props.isMobile ? "" : "pl-6"}`}>
                     <div className="is-flex my-5">
                         <figure className="bulma-image bulma-is-128x128">
                             <CustomImage
@@ -271,7 +271,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                         <div className="bulma-fixed-grid">
                             <div className="bulma-grid is-gap-7">
                                 {props.presentation.logos.images.map((value: ImageDto, _index: number) => (
-                                    <div className="bulma-cell is-flex is-align-self-center" key={uuidv4()}>
+                                    <div className="bulma-cell is-flex is-justify-content-center is-align-self-center" key={uuidv4()}>
                                         <CustomImage
                                             base={GET_ICONS_URL}
                                             source={value.link}
