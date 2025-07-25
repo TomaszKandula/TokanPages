@@ -22,7 +22,7 @@ export const ActivationPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly />
-            <main className="pt-6">
+            <main>
                 <AccountActivate id={id} type={type} />
             </main>
         </>
