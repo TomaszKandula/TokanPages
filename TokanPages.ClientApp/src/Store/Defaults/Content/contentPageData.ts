@@ -170,6 +170,26 @@ export const ContentPageData: ContentPageDataState = {
                 disclaimer: "",
                 services: [],
             },
+            presentation: {
+                image: {
+                    link: "",
+                    title: "",
+                    alt: "",
+                    width: 0,
+                    heigh: 0
+                },
+                title: "",
+                subtitle: "",
+                icon: {
+                    name: "",
+                    href: ""
+                },
+                description: "",
+                logos: {
+                    title: "",
+                    images: []
+                }
+            }
         },
         sectionClients: {
             language: "",

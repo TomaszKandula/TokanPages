@@ -1,5 +1,6 @@
 import { OfferItemDto } from "./Common";
 import { DescriptionItemDto } from "./Common/descriptionItemDto";
+import { PresentationDto } from "./Common/presentationDto";
 import { PricingDto } from "./Common/pricingDto";
 
 export interface BusinessFormContentDto {
@@ -16,4 +17,5 @@ export interface BusinessFormContentDto {
     hasTechItems: boolean;
     techItems: OfferItemDto[];
     pricing: PricingDto;
+    presentation: PresentationDto;
 }
