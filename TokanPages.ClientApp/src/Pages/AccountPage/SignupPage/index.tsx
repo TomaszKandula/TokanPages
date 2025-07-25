@@ -1,6 +1,6 @@
 import * as React from "react";
 import { UserSignup } from "../../../Components/Account";
-import { Navigation } from "../../../Components/Layout";
+import { Footer, Navigation } from "../../../Components/Layout";
 import { usePageContent, useSnapshot, useUnhead } from "../../../Shared/Hooks";
 
 export const SignupPage = (): React.ReactElement => {
@@ -10,10 +10,11 @@ export const SignupPage = (): React.ReactElement => {
 
     return (
         <>
-            <Navigation backNavigationOnly />
+            <Navigation />
             <main>
                 <UserSignup />
             </main>
+            <Footer />
         </>
     );
 };

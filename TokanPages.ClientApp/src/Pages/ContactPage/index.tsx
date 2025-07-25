@@ -1,7 +1,7 @@
 import React from "react";
 import { usePageContent, useSnapshot, useUnhead } from "../../Shared/Hooks";
 import { ContactForm } from "../../Components/Contact";
-import { Navigation } from "../../Components/Layout";
+import { Footer, Navigation } from "../../Components/Layout";
 
 export const ContactPage = () => {
     useUnhead("ContactPage");
@@ -10,10 +10,11 @@ export const ContactPage = () => {
 
     return (
         <>
-            <Navigation backNavigationOnly />
+            <Navigation />
             <main>
                 <ContactForm hasIcon hasShadow />
             </main>
+            <Footer />
         </>
     );
 };
