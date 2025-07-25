@@ -69,7 +69,7 @@ export const ValidateBusinessForm = (props: BusinessFormInput, hasTechItems?: bo
         },
     };
 
-    const constraints = hasTechItems ? { ...baseConstraints, ...optionalConstraints } : { ...baseConstraints }
+    const constraints = hasTechItems ? { ...baseConstraints, ...optionalConstraints } : { ...baseConstraints };
 
     return Validate(
         {
