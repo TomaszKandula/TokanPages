@@ -19,7 +19,7 @@ export const SettingsPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={isAnonymous} />
-            <main className="pt-6">
+            <main>
                 {isAnonymous ? (
                     <AccessDenied />
                 ) : (
