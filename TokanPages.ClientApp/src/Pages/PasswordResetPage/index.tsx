@@ -1,7 +1,7 @@
 import * as React from "react";
 import { usePageContent, useUnhead } from "../../Shared/Hooks";
 import { PasswordReset } from "../../Components/Account";
-import { Navigation } from "../../Components/Layout";
+import { Footer, Navigation } from "../../Components/Layout";
 
 export const PasswordResetPage = (): React.ReactElement => {
     useUnhead("PasswordResetPage");
@@ -13,6 +13,7 @@ export const PasswordResetPage = (): React.ReactElement => {
             <main>
                 <PasswordReset />
             </main>
+            <Footer />
         </>
     );
 };

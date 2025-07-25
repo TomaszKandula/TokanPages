@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useDimensions, usePageContent, useUnhead } from "../../Shared/Hooks";
 import { PdfViewer } from "../../Components/PdfViewer";
-import { Navigation } from "../../Components/Layout";
+import { Footer, Navigation } from "../../Components/Layout";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -22,6 +22,7 @@ export const PdfViewerPage = () => {
             <main>
                 <PdfViewer pdfFile={name} />
             </main>
+            <Footer />
         </>
     );
 };

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useLocation } from "react-router-dom";
 import { usePageContent, useUnhead } from "../../../Shared/Hooks";
 import { AccountActivate } from "../../../Components/Account";
-import { Navigation } from "../../../Components/Layout";
+import { Footer, Navigation } from "../../../Components/Layout";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -25,6 +25,7 @@ export const ActivationPage = (): React.ReactElement => {
             <main>
                 <AccountActivate id={id} type={type} />
             </main>
+            <Footer />
         </>
     );
 };

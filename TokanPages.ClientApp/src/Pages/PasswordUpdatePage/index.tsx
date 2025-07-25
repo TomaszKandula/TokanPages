@@ -1,7 +1,7 @@
 import * as React from "react";
 import { usePageContent, useUnhead } from "../../Shared/Hooks";
 import { PasswordUpdate } from "../../Components/Account";
-import { Navigation } from "../../Components/Layout";
+import { Footer, Navigation } from "../../Components/Layout";
 
 export const PasswordUpdatePage = (): React.ReactElement => {
     useUnhead("PasswordUpdatePage");
@@ -16,6 +16,7 @@ export const PasswordUpdatePage = (): React.ReactElement => {
             <main>
                 <PasswordUpdate />
             </main>
+            <Footer />
         </>
     );
 };
