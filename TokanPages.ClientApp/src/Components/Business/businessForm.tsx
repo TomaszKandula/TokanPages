@@ -178,16 +178,19 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const buttonHandler = React.useCallback(() => {
         const techStack = getSelection(techStackItems);
         const services = getSelection(serviceItems);
-        const result = ValidateBusinessForm({
-            company: form.company,
-            firstName: form.firstName,
-            lastName: form.lastName,
-            email: form.email,
-            phone: form.phone,
-            description: description.description,
-            techStack: techStack,
-            services: services,
-        }, businessForm.hasTechItems);
+        const result = ValidateBusinessForm(
+            {
+                company: form.company,
+                firstName: form.firstName,
+                lastName: form.lastName,
+                email: form.email,
+                phone: form.phone,
+                description: description.description,
+                techStack: techStack,
+                services: services,
+            },
+            businessForm.hasTechItems
+        );
 
         if (!Validate.isDefined(result)) {
             setHasProgress(true);
