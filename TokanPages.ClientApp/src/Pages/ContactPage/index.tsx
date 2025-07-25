@@ -11,7 +11,7 @@ export const ContactPage = () => {
     return (
         <>
             <Navigation backNavigationOnly />
-            <main className="pt-6">
+            <main>
                 <ContactForm hasIcon hasShadow />
             </main>
         </>
