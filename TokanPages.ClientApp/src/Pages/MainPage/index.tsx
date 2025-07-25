@@ -49,7 +49,7 @@ export const MainPage = (): React.ReactElement => {
                 <NewsletterSection className="has-background-white-bis" />
                 <ContactForm hasCaption={true} />
             </main>
-            <Footer className="has-background-white-bis" />
+            <Footer/>
         </>
     );
 };
