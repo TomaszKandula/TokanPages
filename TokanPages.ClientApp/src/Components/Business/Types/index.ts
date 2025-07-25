@@ -1,5 +1,5 @@
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { DescriptionItemDto, OfferItemDto, PricingDto } from "../../../Api/Models";
+import { DescriptionItemDto, OfferItemDto, PresentationDto, PricingDto } from "../../../Api/Models";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../Shared/types";
 
 export interface MessageFormProps {
@@ -68,6 +68,7 @@ export interface FormProps {
     serviceItems: OfferItemDto[];
     description: ExtendedDescriptionProps;
     pricing: PricingDto;
+    presentation: PresentationDto;
 }
 
 export interface ExtendedDescriptionProps extends DescriptionItemDto {

@@ -67,6 +67,26 @@ describe("test component: businessFormView", () => {
                             },
                         ],
                     }}
+                    presentation={{
+                image: {
+                    link: "",
+                    title: "",
+                    alt: "",
+                    width: 0,
+                    heigh: 0
+                },
+                title: "",
+                subtitle: "",
+                icon: {
+                    name: "",
+                    href: ""
+                },
+                description: "",
+                logos: {
+                    title: "",
+                    images: []
+                }
+            }}
                     className="mt-5 mb-5"
                     background="has-background-white"
                     hasIcon={true}

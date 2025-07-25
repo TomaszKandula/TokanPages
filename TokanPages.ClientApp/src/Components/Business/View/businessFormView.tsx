@@ -1,8 +1,10 @@
 import * as React from "react";
-import { OfferItemDto } from "../../../Api/Models";
-import { Icon, ProgressBar, Skeleton, TextArea, TextField, Notification } from "../../../Shared/Components";
+import { GET_ICONS_URL, GET_IMAGES_URL } from "../../../Api";
+import { ImageDto, OfferItemDto } from "../../../Api/Models";
+import { Icon, ProgressBar, Skeleton, TextArea, TextField, Notification, CustomImage, Link } from "../../../Shared/Components";
 import { BusinessFormViewProps, ServiceItemsProps, TechStackListProps } from "../Types";
 import "./businessFormView.css";
+import { v4 as uuidv4 } from "uuid";
 
 const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => (
     <button
@@ -230,8 +232,55 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                         </div>
                     </div>
                     <div className="bulma-column">
-                        <div className={!props.className ? "py-6" : props.className}>
-                            
+                        <div className={!props.className ? "p-6" : props.className}>
+                            <div className="is-flex my-5">
+                                <figure className="bulma-image bulma-is-128x128">
+                                    <CustomImage
+                                        base={GET_IMAGES_URL}
+                                        source={props.presentation.image.link}
+                                        title={props.presentation.image.title}
+                                        alt={props.presentation.image.alt}
+                                        className="bulma-is-rounded"
+                                    />                                        
+                                </figure>
+                                <div className="bulma-content ml-4 is-flex is-flex-direction-column is-align-self-center is-gap-0.5">
+                                    <div className="is-size-4 has-text-weight-bold">
+                                        {props.presentation.title}
+                                    </div>
+                                    <div className="is-size-5 has-text-weight-semibold has-text-link">
+                                        {props.presentation.subtitle}
+                                    </div>
+                                    <Link to={props.presentation.icon.href} key={uuidv4()} aria-label={props.presentation.icon.name}>
+                                        <figure className="bulma-image bulma-is-24x24">
+                                            <Icon name={props.presentation.icon.name} size={1.5} />
+                                        </figure>
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className="bulma-content">
+                                <p className="is-size-6">
+                                    {props.presentation.description}
+                                </p>
+                                <h2 className="is-size-3 my-6">
+                                    {props.presentation.logos.title}
+                                </h2>
+                                <div className="bulma-fixed-grid">
+                                    <div className="bulma-grid is-gap-7">
+                                    {props.presentation.logos.images.map((value: ImageDto, _index: number) => (
+                                        <div className="bulma-cell is-flex is-align-self-center" key={uuidv4()}>
+                                            <CustomImage
+                                                base={GET_ICONS_URL}
+                                                source={value.link}
+                                                title={value.title}
+                                                alt={value.alt}
+                                                width={value.width}
+                                                height={value.heigh}
+                                            />
+                                        </div>
+                                    ))}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
