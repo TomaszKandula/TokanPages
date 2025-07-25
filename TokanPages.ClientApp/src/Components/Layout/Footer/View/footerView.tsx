@@ -19,7 +19,11 @@ interface Properties {
     hasLegalInfo: boolean;
     icons: IconDto[];
     hasIcons: boolean;
-    className?: string;
+}
+
+interface LoaderProps {
+    isLoading: boolean;
+    children: React.ReactElement;
 }
 
 const SetTermsLink = (props: Properties): React.ReactElement => (
@@ -34,13 +38,16 @@ const SetPolicyLink = (props: Properties): React.ReactElement => (
     </Link>
 );
 
+const Loader = (props: LoaderProps): React.ReactElement => (
+    props.isLoading ? (<ProgressBar size={32} />) : (<>{props.children}</>)
+);
+
 export const FooterView = (props: Properties): React.ReactElement => {
     return (
-        <footer className={`bulma-footer ${props.className ?? ""}`}>
-            {props.isLoading ? (
-                <ProgressBar size={32} />
-            ) : (
-                <div className="bulma-content has-text-centered">
+        <footer className="bulma-footer has-background-white">
+            <hr />
+            <Loader isLoading={props.isLoading}>
+                <div className="bulma-content has-text-centered pt-6">
                     <p className="is-size-5">
                         <span className="ml-2 mr-2">{props?.legalInfo.copyright}</span>
                         <span>|</span>
@@ -63,7 +70,7 @@ export const FooterView = (props: Properties): React.ReactElement => {
                         ))}
                     </div>
                 </div>
-            )}
+            </Loader>
         </footer>
     );
 };
