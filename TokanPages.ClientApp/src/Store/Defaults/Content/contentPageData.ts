@@ -176,20 +176,20 @@ export const ContentPageData: ContentPageDataState = {
                     title: "",
                     alt: "",
                     width: 0,
-                    heigh: 0
+                    heigh: 0,
                 },
                 title: "",
                 subtitle: "",
                 icon: {
                     name: "",
-                    href: ""
+                    href: "",
                 },
                 description: "",
                 logos: {
                     title: "",
-                    images: []
-                }
-            }
+                    images: [],
+                },
+            },
         },
         sectionClients: {
             language: "",
