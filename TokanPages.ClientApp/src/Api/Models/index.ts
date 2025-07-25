@@ -142,4 +142,6 @@ export type {
     MenuDto,
     SubitemDto,
     ItemDto,
+    ImageDto,
+    PresentationDto,
 } from "./Components/Common/";

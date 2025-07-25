@@ -12,3 +12,5 @@ export type { ItemDto } from "./itemDto";
 export type { MenuDto } from "./menuDto";
 export type { SubitemDto } from "./subItemDto";
 export type { OfferItemDto } from "./offerItemDto";
+export type { ImageDto } from "./imageDto";
+export type { PresentationDto } from "./presentationDto";
