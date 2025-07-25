@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../Shared/types";
-import { Animated, Icon, ProgressBar, Skeleton, TextArea, TextField } from "../../../Shared/Components";
+import { Animated, Icon, ProgressBar, Skeleton, TextArea, TextField, Notification } from "../../../Shared/Components";
 import { ContactFormProps } from "../contactForm";
 import "./contactFormView.css";
 
@@ -41,8 +41,9 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => (
 );
 
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
+    const captionPadding = props.hasIcon ? "px-6" : "px-6 pt-6";
     const boxPadding = props.isMobile ? "py-6" : "p-6";
-    const cardPadding = props.isMobile ? "" : "px-6";
+    const cardPadding = props.isMobile ? "" : captionPadding;
     const colPadding = props.hasIcon ? "pt-5" : "";
 
     return (
@@ -64,10 +65,10 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                 {props.hasIcon ? (
                                     <div className="is-flex is-flex-direction-column is-align-items-center">
                                         <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                                            <Icon name="CardAccountMail" size={3} className="has-text-link" />
+                                            <Icon name="CardAccountMail" size={2.5} className="card-icon-colour" />
                                         </Skeleton>
                                         <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
-                                            <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                            <p className="is-size-3 has-text-black">{props.caption}</p>
                                         </Skeleton>
                                     </div>
                                 ) : null}
@@ -158,9 +159,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                     </div>
                                     <div className="bulma-content">
                                         <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
-                                            <div className="bulma-notification">
-                                                <p className="is-size-6">{props.consent}</p>
-                                            </div>
+                                            <Notification text={props.consent} />
                                         </Skeleton>
                                         <Animated dataAos="fade-up">
                                             <Skeleton isLoading={props.isLoading} mode="Rect">

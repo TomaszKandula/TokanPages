@@ -11,7 +11,7 @@ export const SignupPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly />
-            <main className="pt-6">
+            <main>
                 <UserSignup />
             </main>
         </>

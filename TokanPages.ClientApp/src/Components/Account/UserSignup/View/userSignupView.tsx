@@ -11,6 +11,7 @@ import {
     Icon,
     ProgressBar,
     Skeleton,
+    Notification,
 } from "../../../../Shared/Components";
 import { UserSignupProps } from "../userSignup";
 
@@ -55,10 +56,10 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                     <div className="bulma-card-content">
                         <div className="is-flex is-flex-direction-column is-align-items-center">
                             <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                                <Icon name="AccountCircle" size={3} className="has-text-link" />
+                                <Icon name="AccountCircle" size={2.5} className="card-icon-colour" />
                             </Skeleton>
                             <Skeleton isLoading={props.isLoading} mode="Text">
-                                <p className="is-size-3 has-text-grey">{props.caption}</p>
+                                <p className="is-size-3 has-text-black">{props.caption}</p>
                             </Skeleton>
                         </div>
                         <div className="my-5">
@@ -128,9 +129,7 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                             </article>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
-                            <div className="bulma-notification">
-                                <p className="is-size-6">{props.consent}</p>
-                            </div>
+                            <Notification text={props.consent} />
                         </Skeleton>
                         <div className="mb-5">
                             <Skeleton isLoading={props.isLoading} mode="Rect">

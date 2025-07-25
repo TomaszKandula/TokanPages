@@ -70,7 +70,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
     }, [window.location.pathname]);
 
     return (
-        <div className={`bulma-container bulma-is-max-tablet mt-6 pt-6 ${media.isMobile ? "px-4" : ""}`}>
+        <div className={`bulma-container bulma-is-max-tablet pt-6 ${media.isMobile ? "px-4" : ""}`}>
             <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={18}>
                 <nav className="bulma-breadcrumb bulma-has-arrow-separator">
                     <ul>

@@ -23,9 +23,9 @@ Object {
                 >
                   <div>
                     <svg
-                      class="is-flex is-align-self-center has-text-link"
+                      class="is-flex is-align-self-center card-icon-colour"
                       role="presentation"
-                      style="width: 4.5rem; height: 4.5rem;"
+                      style="width: 3.75rem; height: 3.75rem;"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -35,7 +35,7 @@ Object {
                     </svg>
                   </div>
                   <p
-                    class="is-size-3 has-text-grey"
+                    class="is-size-3 has-text-black"
                   >
                     Create a new account
                   </p>
@@ -169,13 +169,26 @@ Object {
                   </div>
                 </article>
                 <div
-                  class="bulma-notification"
+                  class="bulma-notification bulma-is-info bulma-is-light is-flex is-align-items-center"
                 >
-                  <p
-                    class="is-size-6"
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-link"
+                      role="presentation"
+                      style="width: 1.5rem; height: 1.5rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <span
+                    class="is-size-6 ml-4"
                   >
                     I agree to the terms of use and privacy policy.
-                  </p>
+                  </span>
                 </div>
                 <div
                   class="mb-5"
@@ -223,9 +236,9 @@ Object {
               >
                 <div>
                   <svg
-                    class="is-flex is-align-self-center has-text-link"
+                    class="is-flex is-align-self-center card-icon-colour"
                     role="presentation"
-                    style="width: 4.5rem; height: 4.5rem;"
+                    style="width: 3.75rem; height: 3.75rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -235,7 +248,7 @@ Object {
                   </svg>
                 </div>
                 <p
-                  class="is-size-3 has-text-grey"
+                  class="is-size-3 has-text-black"
                 >
                   Create a new account
                 </p>
@@ -369,13 +382,26 @@ Object {
                 </div>
               </article>
               <div
-                class="bulma-notification"
+                class="bulma-notification bulma-is-info bulma-is-light is-flex is-align-items-center"
               >
-                <p
-                  class="is-size-6"
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-link"
+                    role="presentation"
+                    style="width: 1.5rem; height: 1.5rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="is-size-6 ml-4"
                 >
                   I agree to the terms of use and privacy policy.
-                </p>
+                </span>
               </div>
               <div
                 class="mb-5"

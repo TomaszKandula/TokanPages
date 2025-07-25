@@ -20,7 +20,7 @@
 
 .business-items {
     position: relative;
-    min-height: 130px;
+    min-height: 100px;
 }
 
 .business-items:hover {
@@ -29,11 +29,11 @@
 
 .business-item-text {
     position: absolute;
-    padding: 15px;
+    padding: 10px;
 }
 
 .business-item-price {
     position: absolute;
-    padding: 15px;
+    padding: 10px;
     bottom: 0;
 }

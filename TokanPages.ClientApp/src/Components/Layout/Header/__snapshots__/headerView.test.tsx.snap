@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="mt-6 "
+        class=""
       >
         <div
           class="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop"
@@ -97,7 +97,7 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="mt-6 "
+      class=""
     >
       <div
         class="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop"

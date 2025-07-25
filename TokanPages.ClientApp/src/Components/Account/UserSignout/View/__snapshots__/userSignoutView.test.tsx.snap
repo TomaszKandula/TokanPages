@@ -25,9 +25,9 @@ Object {
                 >
                   <div>
                     <svg
-                      class="is-flex is-align-self-center has-text-link"
+                      class="is-flex is-align-self-center card-icon-colour"
                       role="presentation"
-                      style="width: 4.5rem; height: 4.5rem;"
+                      style="width: 3.75rem; height: 3.75rem;"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -37,7 +37,7 @@ Object {
                     </svg>
                   </div>
                   <p
-                    class="is-size-3 has-text-grey"
+                    class="is-size-3 has-text-black"
                   >
                     Sign out
                   </p>
@@ -95,9 +95,9 @@ Object {
               >
                 <div>
                   <svg
-                    class="is-flex is-align-self-center has-text-link"
+                    class="is-flex is-align-self-center card-icon-colour"
                     role="presentation"
-                    style="width: 4.5rem; height: 4.5rem;"
+                    style="width: 3.75rem; height: 3.75rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -107,7 +107,7 @@ Object {
                   </svg>
                 </div>
                 <p
-                  class="is-size-3 has-text-grey"
+                  class="is-size-3 has-text-black"
                 >
                   Sign out
                 </p>
