@@ -56,27 +56,7 @@ Object {
                   </p>
                 </div>
                 <div
-                  class="mt-6"
-                >
-                  <div
-                    class="mt-6 mb-3"
-                  >
-                    <a
-                      class="link"
-                      href="/en"
-                      rel="noopener nofollow"
-                    >
-                      <button
-                        class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
-                        disabled=""
-                      >
-                        Go back to main
-                      </button>
-                    </a>
-                  </div>
-                </div>
-                <div
-                  class="mb-2"
+                  class="mb-4"
                 />
               </div>
             </div>
@@ -137,27 +117,7 @@ Object {
                 </p>
               </div>
               <div
-                class="mt-6"
-              >
-                <div
-                  class="mt-6 mb-3"
-                >
-                  <a
-                    class="link"
-                    href="/en"
-                    rel="noopener nofollow"
-                  >
-                    <button
-                      class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
-                      disabled=""
-                    >
-                      Go back to main
-                    </button>
-                  </a>
-                </div>
-              </div>
-              <div
-                class="mb-2"
+                class="mb-4"
               />
             </div>
           </div>
