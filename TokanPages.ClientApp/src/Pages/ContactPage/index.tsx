@@ -6,7 +6,10 @@ import { Footer, Navigation } from "../../Components/Layout";
 export const ContactPage = () => {
     useUnhead("ContactPage");
     useSnapshot();
-    usePageContent(["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "sectionContactForm"], "ContactPage");
+    usePageContent(
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "sectionContactForm"],
+        "ContactPage"
+    );
 
     return (
         <>

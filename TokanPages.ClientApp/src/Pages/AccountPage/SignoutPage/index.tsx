@@ -5,7 +5,10 @@ import { Footer, Navigation } from "../../../Components/Layout";
 
 export const SignoutPage = (): React.ReactElement => {
     useUnhead("SignoutPage");
-    usePageContent(["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountUserSignout"], "SignoutPage");
+    usePageContent(
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountUserSignout"],
+        "SignoutPage"
+    );
 
     return (
         <>

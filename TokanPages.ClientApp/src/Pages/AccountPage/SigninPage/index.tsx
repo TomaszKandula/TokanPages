@@ -6,7 +6,10 @@ import { usePageContent, useSnapshot, useUnhead } from "../../../Shared/Hooks";
 export const SigninPage = (): React.ReactElement => {
     useUnhead("SigninPage");
     useSnapshot();
-    usePageContent(["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountUserSignin"], "SigninPage");
+    usePageContent(
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountUserSignin"],
+        "SigninPage"
+    );
 
     return (
         <>

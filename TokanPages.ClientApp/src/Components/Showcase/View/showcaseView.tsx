@@ -41,7 +41,9 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                 <div className="py-6">
                     <Animated dataAos="fade-down">
                         <Skeleton isLoading={isLoading} mode="Text" height={40}>
-                        <p className="is-size-3	has-text-centered has-text-link">{showcase?.caption?.toUpperCase()}</p>
+                            <p className="is-size-3	has-text-centered has-text-link">
+                                {showcase?.caption?.toUpperCase()}
+                            </p>
                         </Skeleton>
                     </Animated>
                     <Animated dataAos="fade-up">
@@ -64,13 +66,13 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                                     <div className="bulma-card-image">
                                         <figure className="bulma-image">
                                             <Skeleton isLoading={isLoading} mode="Rect" height={400}>
-                                            <CustomImage
-                                                base={GET_SHOWCASE_IMAGE_URL}
-                                                source={showcase?.image}
-                                                className="showcase-feature-image"
-                                                title="Illustration"
-                                                alt="An image illustrating showcase section"
-                                            />
+                                                <CustomImage
+                                                    base={GET_SHOWCASE_IMAGE_URL}
+                                                    source={showcase?.image}
+                                                    className="showcase-feature-image"
+                                                    title="Illustration"
+                                                    alt="An image illustrating showcase section"
+                                                />
                                             </Skeleton>
                                         </figure>
                                     </div>

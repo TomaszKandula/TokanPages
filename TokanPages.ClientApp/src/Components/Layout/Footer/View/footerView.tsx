@@ -38,9 +38,8 @@ const SetPolicyLink = (props: Properties): React.ReactElement => (
     </Link>
 );
 
-const Loader = (props: LoaderProps): React.ReactElement => (
-    props.isLoading ? (<ProgressBar size={32} />) : (<>{props.children}</>)
-);
+const Loader = (props: LoaderProps): React.ReactElement =>
+    props.isLoading ? <ProgressBar size={32} /> : <>{props.children}</>;
 
 export const FooterView = (props: Properties): React.ReactElement => {
     return (

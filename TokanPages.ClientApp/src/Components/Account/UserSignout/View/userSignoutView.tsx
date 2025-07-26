@@ -20,23 +20,24 @@ export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement
         <section className={props.className}>
             <div className="bulma-container bulma-is-max-tablet">
                 <div className="py-6">
-                <CustomCard
-                    isLoading={props.isLoading}
-                    caption={props.caption}
-                    text={[props.status]}
-                    icon={<Icon name="Check" size={3} />}
-                    colour="has-text-success"
-                    externalButton={
-                        <div className="mt-6 mb-3">
-                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                <Link to={`/${props.languageId}`} className="link" rel="noopener nofollow">
-                                    <button className={buttonClass} disabled={isDisabled}>
-                                        {props.buttonText}
-                                    </button>
-                                </Link>
-                            </Skeleton>
-                        </div>}
-                />
+                    <CustomCard
+                        isLoading={props.isLoading}
+                        caption={props.caption}
+                        text={[props.status]}
+                        icon={<Icon name="Check" size={3} />}
+                        colour="has-text-success"
+                        externalButton={
+                            <div className="mt-6 mb-3">
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                                    <Link to={`/${props.languageId}`} className="link" rel="noopener nofollow">
+                                        <button className={buttonClass} disabled={isDisabled}>
+                                            {props.buttonText}
+                                        </button>
+                                    </Link>
+                                </Skeleton>
+                            </div>
+                        }
+                    />
                 </div>
             </div>
         </section>
