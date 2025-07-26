@@ -115,8 +115,8 @@ const RenderHeader = (props: BusinessFormViewProps): React.ReactElement =>
 export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container">
-            <div className={`bulma-columns mb-6 ${props.isMobile ? "px-4 py-6" : "py-6"}`}>
-                <div className="bulma-column bulma-is-half">
+            <div className="bulma-columns mx-4 my-6">
+                <div className="bulma-column bulma-is-half p-0">
                     <RenderCaption {...props} />
                     <div className="bulma-card">
                         <div className="bulma-card-content">
@@ -238,7 +238,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                         </div>
                     </div>
                 </div>
-                <div className={`bulma-column ${props.isMobile ? "" : "pl-6"}`}>
+                <div className={`bulma-column ${props.isMobile ? "p-0 mt-6" : "ml-6"}`}>
                     <div className="is-flex my-5">
                         <Skeleton isLoading={props.isLoading} mode="Circle" width={128} height={128}>
                             <figure className="bulma-image bulma-is-128x128">
