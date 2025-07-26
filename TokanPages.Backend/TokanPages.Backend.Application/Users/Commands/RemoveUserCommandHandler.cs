@@ -87,6 +87,16 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
 
     private async Task RemoveFromUser(Guid userId, CancellationToken cancellationToken = default)
     {
+        var userNotes = await DatabaseContext.UserNotes
+            .Where(userNotes => userNotes.UserId == userId)
+            .ToListAsync(cancellationToken);
+
+        if (userNotes.Any())
+        {
+            DatabaseContext.RemoveRange(userNotes);
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(userNotes)}");
+        }
+
         var userPhotos = await DatabaseContext.UserPhotos
             .Where(userPhotos => userPhotos.UserId == userId)
             .ToListAsync(cancellationToken);
