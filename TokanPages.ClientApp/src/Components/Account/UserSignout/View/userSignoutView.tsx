@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { ViewProperties } from "../../../../Shared/Abstractions";
-import { Icon, Skeleton } from "../../../../Shared/Components";
+import { CustomCard, Icon, Skeleton } from "../../../../Shared/Components";
 import { UserSignoutProps } from "../userSignout";
 
 interface UserSignoutViewProps extends ViewProperties, UserSignoutProps {
@@ -20,32 +20,23 @@ export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement
         <section className={props.className}>
             <div className="bulma-container bulma-is-max-tablet">
                 <div className="py-6">
-                    <div className="bulma-card">
-                        <div className="bulma-card-content">
-                            <div className="is-flex is-flex-direction-column is-align-items-center">
-                                <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                                    <Icon name="AccountCircle" size={2.5} className="card-icon-colour" />
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading}>
-                                    <p className="is-size-3 has-text-black">{props.caption}</p>
-                                </Skeleton>
-                            </div>
-                            <div className="has-text-centered mt-5">
-                                <Skeleton isLoading={props.isLoading}>
-                                    <p className="is-size-6 has-text-black">{props.status}</p>
-                                </Skeleton>
-                            </div>
-                            <div className="mt-6 mb-3">
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                    <Link to={`/${props.languageId}`} className="link" rel="noopener nofollow">
-                                        <button className={buttonClass} disabled={isDisabled}>
-                                            {props.buttonText}
-                                        </button>
-                                    </Link>
-                                </Skeleton>
-                            </div>
-                        </div>
-                    </div>
+                <CustomCard
+                    isLoading={props.isLoading}
+                    caption={props.caption}
+                    text={[props.status]}
+                    icon={<Icon name="Check" size={3} />}
+                    colour="has-text-success"
+                    externalButton={
+                        <div className="mt-6 mb-3">
+                            <Skeleton isLoading={props.isLoading} mode="Rect">
+                                <Link to={`/${props.languageId}`} className="link" rel="noopener nofollow">
+                                    <button className={buttonClass} disabled={isDisabled}>
+                                        {props.buttonText}
+                                    </button>
+                                </Link>
+                            </Skeleton>
+                        </div>}
+                />
                 </div>
             </div>
         </section>
