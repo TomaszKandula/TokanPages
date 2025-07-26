@@ -12,7 +12,6 @@ import Validate from "validate.js";
 
 export interface UserPasswordProps {
     className?: string;
-    background?: string;
 }
 
 export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
@@ -141,7 +140,6 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
             buttonHandler={buttonHandler}
             sectionAccountPassword={account.sectionAccountPassword}
             className={props.className}
-            background={props.background}
         />
     );
 };
