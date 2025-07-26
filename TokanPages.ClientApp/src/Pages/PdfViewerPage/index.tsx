@@ -10,7 +10,7 @@ const useQuery = () => {
 
 export const PdfViewerPage = () => {
     useUnhead("PdfViewerPage");
-    usePageContent(["navigation", "footer", "templates", "cookiesPrompt", "pagePdfViewer"], "PdfViewerPage");
+    usePageContent(["navigation", "layoutFooter", "templates", "cookiesPrompt", "pagePdfViewer"], "PdfViewerPage");
     const media = useDimensions();
 
     const queryParam = useQuery();

@@ -11,7 +11,7 @@ const useQuery = () => {
 export const NewsletterUpdatePage = (): React.ReactElement => {
     useUnhead("NewsletterUpdatePage");
     usePageContent(
-        ["layoutNavigation", "templates", "sectionCookiesPrompt", "pageNewsletterUpdate"],
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageNewsletterUpdate"],
         "NewsletterUpdatePage"
     );
 

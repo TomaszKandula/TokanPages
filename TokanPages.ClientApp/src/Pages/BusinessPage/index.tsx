@@ -6,7 +6,7 @@ import { Footer, Navigation } from "../../Components/Layout";
 export const BusinessPage = () => {
     useUnhead("BusinessPage");
     useSnapshot();
-    usePageContent(["layoutNavigation", "templates", "sectionCookiesPrompt", "pageBusinessForm"], "BusinessPage");
+    usePageContent(["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageBusinessForm"], "BusinessPage");
 
     return (
         <>

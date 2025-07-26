@@ -11,7 +11,7 @@ const useQuery = () => {
 export const ActivationPage = (): React.ReactElement => {
     useUnhead("ActivationPage");
     usePageContent(
-        ["layoutNavigation", "templates", "sectionCookiesPrompt", "accountSettings", "accountActivate"],
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountSettings", "accountActivate"],
         "ActivationPage"
     );
 
