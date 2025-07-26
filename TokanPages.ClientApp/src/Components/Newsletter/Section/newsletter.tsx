@@ -108,7 +108,7 @@ export const NewsletterSection = (props: NewsletterProps): React.ReactElement =>
             progress={hasProgress}
             buttonText={newsletter?.button}
             labelEmail={newsletter?.labelEmail}
-            background={props.className}
+            className={props.className}
         />
     );
 };

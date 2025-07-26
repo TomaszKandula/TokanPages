@@ -14,7 +14,7 @@ interface NewsletterViewProps extends ViewProperties {
     progress: boolean;
     buttonText: string;
     labelEmail: string;
-    background?: string;
+    className?: string;
 }
 
 const ActiveButton = (props: NewsletterViewProps): React.ReactElement => (
@@ -29,7 +29,7 @@ const ActiveButton = (props: NewsletterViewProps): React.ReactElement => (
 );
 
 export const NewsletterSectionView = (props: NewsletterViewProps): React.ReactElement => (
-    <section className={props.background}>
+    <section className={props.className}>
         <div className="bulma-container">
             <div className="py-6">
                 <div className={props.isMobile ? "p-5" : "p-6"}>

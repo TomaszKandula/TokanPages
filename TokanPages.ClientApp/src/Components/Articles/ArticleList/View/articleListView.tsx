@@ -31,7 +31,7 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => (
 );
 
 export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => (
-    <section className={props.background}>
+    <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet pb-6">
             <div className={props.isMobile ? "p-4" : "py-4"}>
                 {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
