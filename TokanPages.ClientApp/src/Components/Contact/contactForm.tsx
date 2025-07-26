@@ -23,7 +23,6 @@ export interface ContactFormProps {
     hasCaption?: boolean;
     hasIcon?: boolean;
     hasShadow?: boolean;
-    background?: string;
     className?: string;
 }
 
@@ -159,7 +158,6 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
             labelSubject={contactForm?.labelSubject}
             labelMessage={contactForm?.labelMessage}
             minRows={6}
-            background={props.background}
             hasIcon={props.hasIcon}
             hasCaption={props.hasCaption}
             hasShadow={props.hasShadow}

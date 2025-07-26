@@ -47,9 +47,9 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
     const colPadding = props.hasIcon ? "pt-5" : "";
 
     return (
-        <section className={props.background}>
+        <section className={props.className}>
             <div className="bulma-container bulma-is-max-desktop">
-                <div className={!props.className ? boxPadding : props.className}>
+                <div className={boxPadding}>
                     {props.hasCaption ? (
                         <Animated dataAos="fade-down">
                             <Skeleton isLoading={props.isLoading} mode="Text" height={40}>

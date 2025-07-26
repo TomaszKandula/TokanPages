@@ -11,7 +11,6 @@ import Validate from "validate.js";
 
 export interface ExtendedViewProps {
     className?: string;
-    background?: string;
 }
 
 export interface NewsletterRemoveProps extends ExtendedViewProps {
@@ -83,7 +82,6 @@ export const NewsletterRemove = (props: NewsletterRemoveProps): React.ReactEleme
             progress={hasProgress}
             isRemoved={isRemoved}
             className={props.className}
-            background={props.background}
         />
     );
 };
