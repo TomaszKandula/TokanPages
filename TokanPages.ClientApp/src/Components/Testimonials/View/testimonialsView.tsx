@@ -20,11 +20,11 @@ interface TestimonialsViewProps extends ViewProperties {
     name3: string;
     occupation3: string;
     text3: string;
-    background?: string;
+    className?: string;
 }
 
 export const TestimonialsView = (props: TestimonialsViewProps): React.ReactElement => (
-    <section className={props.background}>
+    <section className={props.className}>
         <div className="bulma-container">
             <div className="py-6">
                 <Animated dataAos="fade-down">
