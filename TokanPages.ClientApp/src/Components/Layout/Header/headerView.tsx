@@ -80,16 +80,14 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => 
     const set = `${photo1} 360w, ${photo2} 720w, ${photo3} 1440w, ${photo4} 2880w`;
 
     return (
-        <figure>
-            <img
-                src={photo1}
-                srcSet={set}
-                loading="lazy"
-                title="Tom Kandula"
-                alt="Your Software Developer"
-                className={`header-image-card lazyloaded ${props.className}`}
-            />
-        </figure>
+        <img
+            src={photo1}
+            srcSet={set}
+            loading="lazy"
+            title="Tom Kandula"
+            alt="Your Software Developer"
+            className={`header-image header-figure lazyloaded ${props.className}`}
+        />
     );
 };
 
