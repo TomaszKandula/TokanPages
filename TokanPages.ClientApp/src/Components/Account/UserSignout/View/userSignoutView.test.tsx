@@ -16,7 +16,6 @@ describe("test account group component: userSignoutView", () => {
                     buttonText={"Go back to main"}
                     isAnonymous={false}
                     className="mt-5"
-                    background="has-background-white"
                 />
             </BrowserRouter>
         );

@@ -49,9 +49,9 @@ const ActiveButton = (props: UserSignupViewProps): React.ReactElement => (
 );
 
 export const UserSignupView = (props: UserSignupViewProps): React.ReactElement => (
-    <section className={props.background}>
+    <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet">
-            <div className={!props.className ? "py-6" : props.className}>
+            <div className="py-6">
                 <div className={`bulma-card ${props.isMobile ? "m-4" : ""}`}>
                     <div className="bulma-card-content">
                         <div className="is-flex is-flex-direction-column is-align-items-center">
