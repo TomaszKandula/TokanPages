@@ -27,7 +27,6 @@ interface UpdateStoreProps {
 
 export interface UserInfoProps {
     className?: string;
-    background?: string;
 }
 
 export const UserInfo = (props: UserInfoProps): React.ReactElement => {
@@ -308,7 +307,6 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                 message: description.userAboutText,
             }}
             className={props.className}
-            background={props.background}
         />
     );
 };
