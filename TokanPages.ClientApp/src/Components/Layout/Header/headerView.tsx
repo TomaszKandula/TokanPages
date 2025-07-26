@@ -8,21 +8,19 @@ import { Link, Skeleton } from "../../../Shared/Components";
 import Validate from "validate.js";
 import "./headerView.css";
 
-interface BaseProps {
-    isLoading: boolean;
-    isMobile: boolean;
-}
-
 interface HeaderViewProps {
     className?: string;
 }
 
-interface RenderPictureProps extends BaseProps {
+interface RenderPictureProps {
     sources: HeaderPhotoDto | undefined;
     className?: string;
 }
 
-interface ButtonProps extends BaseProps, HeaderContentDto {}
+interface ButtonProps extends HeaderContentDto {
+    isLoading: boolean;
+    isMobile: boolean;
+}
 
 const TertiaryButton = (props: ButtonProps): React.ReactElement => {
     const baseClass = "bulma-button bulma-is-light mr-2";
@@ -81,24 +79,15 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => 
     const photo4 = `${GET_IMAGES_URL}/${props.sources.w2880}`;
     const set = `${photo1} 360w, ${photo2} 720w, ${photo3} 1440w, ${photo4} 2880w`;
 
-    let size;
-    if (props.isMobile) {
-        size = { width: 433, height: 360 };
-    } else {
-        size = { width: 865, height: 720 };
-    }
-
     return (
-        <Skeleton isLoading={props.isLoading} mode="Rect" {...size} disableMarginY>
-            <img
-                src={photo1}
-                srcSet={set}
-                loading="lazy"
-                title="Tom Kandula"
-                alt="Your Software Developer"
-                className={`header-image header-figure lazyloaded ${props.className}`}
-            />
-        </Skeleton>
+        <img
+            src={photo1}
+            srcSet={set}
+            loading="lazy"
+            title="Tom Kandula"
+            alt="Your Software Developer"
+            className={`header-image header-figure lazyloaded ${props.className}`}
+        />
     );
 };
 
@@ -109,12 +98,21 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const isLoading = data?.isLoading;
     const baseClass = "bulma-content header-content-box";
 
+    let size;
+    if (media.isMobile) {
+        size = { width: 433, height: 360 };
+    } else {
+        size = { width: 865, height: 720 };
+    }
+
     return (
         <section className={props.className ?? ""}>
             <div className="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop">
                 <div className="bulma-grid">
                     <div className="bulma-cell">
-                        <RenderPicture sources={header?.photo} isLoading={isLoading} isMobile={media.isMobile} />
+                        <Skeleton isLoading={isLoading} mode="Rect" {...size} disableMarginY>
+                            <RenderPicture sources={header?.photo} />
+                        </Skeleton>
                     </div>
                     <div className="bulma-cell is-flex is-flex-direction-column">
                         <div className={`${baseClass} ${media.isMobile ? "p-4" : ""} ${media.isTablet ? "p-6" : ""}`}>
