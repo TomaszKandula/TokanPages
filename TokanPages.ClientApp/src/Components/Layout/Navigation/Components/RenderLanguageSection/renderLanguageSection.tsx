@@ -7,7 +7,7 @@ import { GET_FLAG_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
 import { v4 as uuidv4 } from "uuid";
 
-const baseStyle = "bulma-navbar-item bulma-has-dropdown";
+const baseStyle = "bulma-navbar-item bulma-has-dropdown mr-4";
 
 const RenderSelection = (props: BaseProperties): React.ReactElement => (
     <div className={`${baseStyle} ${props.isLanguageMenuOpen ? "bulma-is-active" : ""}`}>
@@ -32,6 +32,7 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
                         alt={`A flag (${item.name}) symbolizing available language`}
                         width={14}
                         height={14}
+                        className="mr-4"
                     />
                     <div>{item.name}</div>
                     <RenderLanguageIcon selection={item.id} languageId={props.languageId} />
