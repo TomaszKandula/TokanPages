@@ -36,7 +36,7 @@ const RenderReadCount = (props: RenderReadCountProps): React.ReactElement => {
     ) : (
         <>
             <Icon name="Eye" size={1} className="mr-2" />
-            <p>{props.readCount}</p>
+            <p className="m-0">{props.readCount}</p>
         </>
     );
 };
@@ -47,7 +47,7 @@ const RenderTotalLikes = (props: RenderTotalLikesProps): React.ReactElement => {
     ) : (
         <>
             <Icon name="ThumbUp" size={1} className="mx-2" />
-            <p>{props.totalLikes}</p>
+            <p className="m-0">{props.totalLikes}</p>
         </>
     );
 };
