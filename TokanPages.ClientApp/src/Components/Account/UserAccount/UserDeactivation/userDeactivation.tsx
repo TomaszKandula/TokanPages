@@ -10,7 +10,6 @@ import { UserDeactivationView } from "./View/userDeactivationView";
 
 export interface UserDeactivationProps {
     className?: string;
-    background?: string;
 }
 
 export const UserDeactivation = (props: UserDeactivationProps): React.ReactElement => {
@@ -89,7 +88,6 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
             progress={hasProgress}
             section={account.sectionAccountDeactivation}
             className={props.className}
-            background={props.background}
         />
     );
 };
