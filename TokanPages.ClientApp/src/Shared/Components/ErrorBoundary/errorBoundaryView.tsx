@@ -10,7 +10,7 @@ export const ErrorBoundaryView = () => {
     return (
         <div className="bulma-container is-flex is-justify-content-center is-align-self-center">
             <div className="mt-6 pt-6" style={{ minWidth: media.isDesktop ? "720px" : undefined }}>
-                <CustomCard 
+                <CustomCard
                     isLoading={false}
                     caption={content?.title}
                     text={[content?.subtitle, content?.text]}

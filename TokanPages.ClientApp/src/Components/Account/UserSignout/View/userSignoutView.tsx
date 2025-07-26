@@ -12,17 +12,17 @@ interface UserSignoutViewProps extends ViewProperties, UserSignoutProps {
 }
 
 export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement => (
-        <section className={props.className}>
-            <div className="bulma-container bulma-is-max-tablet">
-                <div className="py-6">
-                    <CustomCard
-                        isLoading={props.isLoading}
-                        caption={props.caption}
-                        text={props.status}
-                        icon={<Icon name="Check" size={3} />}
-                        colour="has-text-success"
-                    />
-                </div>
+    <section className={props.className}>
+        <div className="bulma-container bulma-is-max-tablet">
+            <div className="py-6">
+                <CustomCard
+                    isLoading={props.isLoading}
+                    caption={props.caption}
+                    text={props.status}
+                    icon={<Icon name="Check" size={3} />}
+                    colour="has-text-success"
+                />
             </div>
-        </section>
-    );
+        </div>
+    </section>
+);

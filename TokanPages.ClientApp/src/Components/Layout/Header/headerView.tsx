@@ -22,8 +22,7 @@ interface RenderPictureProps extends BaseProps {
     className?: string;
 }
 
-interface ButtonProps extends BaseProps, HeaderContentDto {
-}
+interface ButtonProps extends BaseProps, HeaderContentDto {}
 
 const TertiaryButton = (props: ButtonProps): React.ReactElement => {
     const baseClass = "bulma-button bulma-is-light mr-2";
