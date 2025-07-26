@@ -28,9 +28,9 @@ const ActiveButton = (props: Properties): React.ReactElement => (
 );
 
 export const PasswordResetView = (props: Properties): React.ReactElement => (
-    <section className={props.background}>
+    <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet">
-            <div className={!props.className ? "py-6" : props.className}>
+            <div className="py-6">
                 <div className={`bulma-card ${props.isMobile ? "mx-4" : ""}`}>
                     <div className="bulma-card-content">
                         <div className="is-flex is-flex-direction-column is-align-items-center">
