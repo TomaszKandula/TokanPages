@@ -4,11 +4,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { FooterView } from "./View/footerView";
 import validate from "validate.js";
 
-interface FooterProps {
-    className?: string;
-}
-
-export const Footer = (props: FooterProps): React.ReactElement => {
+export const Footer = (): React.ReactElement => {
     const versionDateTime: string = process.env.REACT_APP_VERSION_DATE_TIME ?? "";
     const versionNumber: string = process.env.REACT_APP_VERSION_NUMBER ?? "";
     const versionInfo: string = `Version ${versionNumber} (${versionDateTime})`;
@@ -33,7 +29,6 @@ export const Footer = (props: FooterProps): React.ReactElement => {
             hasLegalInfo={hasLegalInfo}
             icons={footer?.icons}
             hasIcons={footer?.icons.length > 0}
-            className={props.className}
         />
     );
 };

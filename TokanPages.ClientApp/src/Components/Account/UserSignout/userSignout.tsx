@@ -8,7 +8,6 @@ import Validate from "validate.js";
 
 export interface UserSignoutProps {
     className?: string;
-    background?: string;
 }
 
 export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
@@ -54,7 +53,6 @@ export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
             buttonText={contentData?.buttonText}
             isAnonymous={isAnonymous}
             className={props.className}
-            background={props.background}
         />
     );
 };

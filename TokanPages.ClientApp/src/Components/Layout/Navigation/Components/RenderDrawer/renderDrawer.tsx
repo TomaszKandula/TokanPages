@@ -28,15 +28,15 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
 
     React.useEffect(() => {
         if (props.isMenuOpen && !canCloseMenu) {
-            setTimeout(() => setCanShowBackdrop(true), 250);
-            setTimeout(() => setCanOpenMenu(true), 330);
+            setTimeout(() => setCanShowBackdrop(true), 150);
+            setTimeout(() => setCanOpenMenu(true), 250);
         }
     }, [props.isMenuOpen, canCloseMenu]);
 
     React.useEffect(() => {
         if (props.isMenuOpen && canCloseMenu) {
-            setTimeout(() => setCanShowBackdrop(false), 330);
-            setTimeout(() => setCanOpenMenu(false), 250);
+            setTimeout(() => setCanShowBackdrop(false), 250);
+            setTimeout(() => setCanOpenMenu(false), 150);
             setTimeout(() => {
                 props.triggerSideMenu();
                 setCanCloseMenu(false);

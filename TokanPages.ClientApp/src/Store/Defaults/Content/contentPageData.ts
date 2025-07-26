@@ -513,8 +513,8 @@ export const ContentPageData: ContentPageDataState = {
         accountUserSignout: {
             language: "",
             caption: "",
-            onProcessing: "",
-            onFinish: "",
+            onProcessing: [""],
+            onFinish: [""],
             buttonText: "",
         },
         accountUserSignup: {

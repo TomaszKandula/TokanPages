@@ -82,10 +82,10 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
     );
 
     return (
-        <section className={props.background}>
+        <section className={props.className}>
             <Backdrop isLoading={props.isRequestingVerification} />
             <div className="bulma-container bulma-is-max-desktop">
-                <div className={!props.className ? "py-6" : props.className}>
+                <div className="pt-6 pb-4">
                     <div className={`bulma-card ${props.isMobile ? "mx-4" : ""}`}>
                         <div className="bulma-card-content">
                             <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>

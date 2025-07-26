@@ -30,36 +30,32 @@ Object {
                 class="bulma-columns p-6"
               >
                 <div
-                  class="bulma-column is-flex is-align-items-center"
+                  class="bulma-column is-flex is-flex-direction-column is-align-self-center"
                 >
-                  <div
-                    class=""
+                  <h2
+                    class="is-size-3 py-5 has-text-black"
                   >
-                    <h2
-                      class="is-size-3 py-5 has-text-black"
+                    Most notable projects
+                  </h2>
+                  <p
+                    class="is-size-5 py-3 has-text-grey line-height-18"
+                  >
+                    Let's look at some of...
+                  </p>
+                  <div
+                    class="has-text-left py-5"
+                  >
+                    <a
+                      class="link"
+                      href="/en/showcase"
+                      rel="noopener nofollow"
                     >
-                      Most notable projects
-                    </h2>
-                    <p
-                      class="is-size-5 py-3 has-text-grey line-height-18"
-                    >
-                      Let's look at some of...
-                    </p>
-                    <div
-                      class="has-text-left py-5"
-                    >
-                      <a
-                        class="link"
-                        href="/en/showcase"
-                        rel="noopener nofollow"
+                      <button
+                        class="bulma-button bulma-is-link bulma-is-light"
                       >
-                        <button
-                          class="bulma-button bulma-is-link bulma-is-light"
-                        >
-                          Go to showcase
-                        </button>
-                      </a>
-                    </div>
+                        Go to showcase
+                      </button>
+                    </a>
                   </div>
                 </div>
                 <div
@@ -75,9 +71,11 @@ Object {
                         class="bulma-image"
                       >
                         <img
+                          alt="An image illustrating showcase section"
                           class="showcase-feature-image lazyloaded"
                           loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/showcase/image.webp"
+                          title="Illustration"
                         />
                       </figure>
                     </div>
@@ -116,36 +114,32 @@ Object {
               class="bulma-columns p-6"
             >
               <div
-                class="bulma-column is-flex is-align-items-center"
+                class="bulma-column is-flex is-flex-direction-column is-align-self-center"
               >
-                <div
-                  class=""
+                <h2
+                  class="is-size-3 py-5 has-text-black"
                 >
-                  <h2
-                    class="is-size-3 py-5 has-text-black"
+                  Most notable projects
+                </h2>
+                <p
+                  class="is-size-5 py-3 has-text-grey line-height-18"
+                >
+                  Let's look at some of...
+                </p>
+                <div
+                  class="has-text-left py-5"
+                >
+                  <a
+                    class="link"
+                    href="/en/showcase"
+                    rel="noopener nofollow"
                   >
-                    Most notable projects
-                  </h2>
-                  <p
-                    class="is-size-5 py-3 has-text-grey line-height-18"
-                  >
-                    Let's look at some of...
-                  </p>
-                  <div
-                    class="has-text-left py-5"
-                  >
-                    <a
-                      class="link"
-                      href="/en/showcase"
-                      rel="noopener nofollow"
+                    <button
+                      class="bulma-button bulma-is-link bulma-is-light"
                     >
-                      <button
-                        class="bulma-button bulma-is-link bulma-is-light"
-                      >
-                        Go to showcase
-                      </button>
-                    </a>
-                  </div>
+                      Go to showcase
+                    </button>
+                  </a>
                 </div>
               </div>
               <div
@@ -161,9 +155,11 @@ Object {
                       class="bulma-image"
                     >
                       <img
+                        alt="An image illustrating showcase section"
                         class="showcase-feature-image lazyloaded"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/showcase/image.webp"
+                        title="Illustration"
                       />
                     </figure>
                   </div>

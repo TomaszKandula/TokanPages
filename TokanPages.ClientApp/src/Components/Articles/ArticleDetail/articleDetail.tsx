@@ -16,7 +16,7 @@ import { ArticleDetailView } from "./View/articleDetailView";
 import Validate from "validate.js";
 
 export interface ExtendedViewProps {
-    background?: string;
+    className?: string;
 }
 
 export interface ArticleDetailProps extends ExtendedViewProps {
@@ -149,7 +149,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             authorShortBio={selection.article.author.shortBio}
             flagImage={flagImage}
             content={content}
-            background={props.background}
+            className={props.className}
         />
     );
 };

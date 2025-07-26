@@ -19,6 +19,7 @@ interface CustomCardProps extends ViewProperties {
     colour: TColour;
     linkButton?: OptionsProps;
     externalButton?: React.ReactElement;
+    externalContent?: React.ReactElement;
 }
 
 const RenderIcon = (props: CustomCardProps) => {
@@ -71,6 +72,7 @@ export const CustomCard = (props: CustomCardProps): React.ReactElement => {
                         </Skeleton>
                     ))}
                 </div>
+                {props.externalContent}
                 {props.linkButton ? <RenderLinkButton {...props} /> : null}
                 {props.externalButton ? <RenderExternalButton {...props} /> : null}
                 <div className={props.linkButton || props.externalButton ? "mb-2" : "mb-4"}></div>

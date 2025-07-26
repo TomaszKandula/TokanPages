@@ -10,7 +10,7 @@ Object {
           class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="py-6"
+            class="py-4"
           >
             <div
               class="bulma-card "
@@ -58,7 +58,7 @@ Object {
         class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="py-6"
+          class="py-4"
         >
           <div
             class="bulma-card "

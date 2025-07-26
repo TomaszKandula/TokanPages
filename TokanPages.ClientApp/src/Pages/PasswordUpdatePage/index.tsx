@@ -1,12 +1,12 @@
 import * as React from "react";
 import { usePageContent, useUnhead } from "../../Shared/Hooks";
 import { PasswordUpdate } from "../../Components/Account";
-import { Navigation } from "../../Components/Layout";
+import { Footer, Navigation } from "../../Components/Layout";
 
 export const PasswordUpdatePage = (): React.ReactElement => {
     useUnhead("PasswordUpdatePage");
     usePageContent(
-        ["layoutNavigation", "templates", "sectionCookiesPrompt", "pagePasswordUpdate"],
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pagePasswordUpdate"],
         "PasswordUpdatePage"
     );
 
@@ -16,6 +16,7 @@ export const PasswordUpdatePage = (): React.ReactElement => {
             <main>
                 <PasswordUpdate />
             </main>
+            <Footer />
         </>
     );
 };

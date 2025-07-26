@@ -19,7 +19,7 @@ interface PdfViewerViewProps {
     pdfDocument: any;
     scale?: number;
     pdfUrl?: string;
-    background?: string;
+    className?: string;
     onPreviousPage?: (event: ReactMouseEvent) => void;
     onNextPage?: (event: ReactMouseEvent) => void;
 }
@@ -43,7 +43,7 @@ const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement 
 };
 
 const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => (
-    <section className={props.background}>
+    <section className={props.className}>
         <div className="bulma-container bulma-is-max-desktop">
             <div className="py-6">
                 <div className="bulma-card m-4">
@@ -80,7 +80,7 @@ const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => (
 );
 
 const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement => (
-    <section className={props.background}>
+    <section className={props.className}>
         <div className="bulma-container">
             <div className="py-6">
                 <CustomCard
@@ -96,7 +96,7 @@ const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement =
 );
 
 const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => (
-    <section className={props.background}>
+    <section className={props.className}>
         <div className="bulma-container">
             <div className="py-6">
                 <CustomCard
