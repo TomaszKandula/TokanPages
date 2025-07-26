@@ -16,7 +16,6 @@ const formDefaultValues: ResetFormInput = {
 
 export interface PasswordResetProps {
     className?: string;
-    background?: string;
 }
 
 export const PasswordReset = (props: PasswordResetProps): React.ReactElement => {
@@ -114,7 +113,6 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
             buttonHandler={buttonHandler}
             labelEmail={content?.labelEmail}
             className={props.className}
-            background={props.background}
         />
     );
 };
