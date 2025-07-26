@@ -29,9 +29,9 @@ const UpdatePasswordButton = (props: UserPasswordViewProps): React.ReactElement 
 );
 
 export const UserPasswordView = (props: UserPasswordViewProps): React.ReactElement => (
-    <section className={props.background}>
+    <section className={props.className}>
         <div className="bulma-container bulma-is-max-desktop">
-            <div className={!props.className ? "py-6" : props.className}>
+            <div className="py-4">
                 <div className={`bulma-card ${props.isMobile ? "mx-4" : ""}`}>
                     <div className="bulma-card-content">
                         <Skeleton isLoading={props.isLoading} mode="Rect">
