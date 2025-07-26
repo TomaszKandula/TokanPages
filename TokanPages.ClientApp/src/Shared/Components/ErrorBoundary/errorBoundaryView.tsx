@@ -1,20 +1,31 @@
 import * as React from "react";
-import { useErrorBoundaryContent } from "../../../Shared/Hooks";
+import { useDimensions, useErrorBoundaryContent } from "../../../Shared/Hooks";
+import { CustomCard } from "../CustomCard";
+import { Icon } from "../Icon";
 
 export const ErrorBoundaryView = () => {
+    const media = useDimensions();
     const content = useErrorBoundaryContent();
 
     return (
-        <div id="error">
-            <div className="error">
-                <h1>{content?.title}</h1>
-                <h2>{content?.subtitle}</h2>
-                <div className="error-text">
-                    <p>{content?.text}</p>
-                    <a href={content?.linkHref}>{content?.linkText}</a>
-                    <hr />
-                    <p>{content?.footer}</p>
-                </div>
+        <div className="bulma-container is-flex is-justify-content-center is-align-self-center">
+            <div className="mt-6 pt-6" style={{ minWidth: media.isDesktop ? "720px" : undefined }}>
+                <CustomCard 
+                    isLoading={false}
+                    caption={content?.title}
+                    text={[content?.subtitle, content?.text]}
+                    icon={<Icon name="Alert" size={3} />}
+                    colour="has-text-danger"
+                    externalContent={
+                        <div className="">
+                            <hr />
+                            <a href={content?.linkHref}>
+                                <p>{content?.linkText}</p>
+                            </a>
+                            <p>{content?.footer}</p>
+                        </div>
+                    }
+                />
             </div>
         </div>
     );
