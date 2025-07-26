@@ -73,7 +73,7 @@ Object {
                     data-aos-delay="350"
                   >
                     <button
-                      class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
+                      class="bulma-button bulma-is-fullwidth"
                       type="submit"
                     >
                       Subscribe
@@ -156,7 +156,7 @@ Object {
                   data-aos-delay="350"
                 >
                   <button
-                    class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
+                    class="bulma-button bulma-is-fullwidth"
                     type="submit"
                   >
                     Subscribe
