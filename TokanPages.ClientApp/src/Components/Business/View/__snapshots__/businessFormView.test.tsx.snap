@@ -12,10 +12,10 @@ Object {
           class="bulma-container"
         >
           <div
-            class="bulma-columns mb-6 py-6"
+            class="bulma-columns mx-4 my-6"
           >
             <div
-              class="bulma-column bulma-is-half"
+              class="bulma-column bulma-is-half p-0"
             >
               <p
                 class="is-size-3	has-text-centered has-text-link"
@@ -240,7 +240,7 @@ Object {
               </div>
             </div>
             <div
-              class="bulma-column pl-6"
+              class="bulma-column ml-6"
             >
               <div
                 class="is-flex my-5"
@@ -297,10 +297,10 @@ Object {
         class="bulma-container"
       >
         <div
-          class="bulma-columns mb-6 py-6"
+          class="bulma-columns mx-4 my-6"
         >
           <div
-            class="bulma-column bulma-is-half"
+            class="bulma-column bulma-is-half p-0"
           >
             <p
               class="is-size-3	has-text-centered has-text-link"
@@ -525,7 +525,7 @@ Object {
             </div>
           </div>
           <div
-            class="bulma-column pl-6"
+            class="bulma-column ml-6"
           >
             <div
               class="is-flex my-5"
