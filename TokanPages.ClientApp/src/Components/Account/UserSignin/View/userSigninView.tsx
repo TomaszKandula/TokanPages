@@ -64,7 +64,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                     value={props.email}
                                     placeholder={props.labelEmail}
                                     isDisabled={props.progress}
-                                    className="mb-4"
+                                    className="mb-5"
                                 />
                             </Skeleton>
                             <Skeleton isLoading={props.isLoading} mode="Rect">
