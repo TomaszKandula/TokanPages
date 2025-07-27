@@ -27,15 +27,11 @@ export const UploadUserMediaView = (props: Properties): React.ReactElement => {
                 multiple={false}
                 onChange={props.inputHandler}
             />
-                {hasPreviewImage ? (
-                    <UserAvatar
-                        altSource={props.previewImage ?? ""}
-                        isLarge={false}
-                        className="is-clickable"
-                    />
-                ) : (
-                    <Icon name="CloudUpload" size={1} />
-                )}
+            {hasPreviewImage ? (
+                <UserAvatar altSource={props.previewImage ?? ""} isLarge={false} className="is-clickable" />
+            ) : (
+                <Icon name="CloudUpload" size={1} />
+            )}
         </label>
     );
 };
