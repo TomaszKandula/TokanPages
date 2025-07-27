@@ -16,7 +16,7 @@ public class UpdateUserCommand : IRequest<UpdateUserCommandResult>
 
     public string? EmailAddress { get; set; }
 
-    public string? UserAboutText { get; set; }
+    public string? Description { get; set; }
 
     public string? UserImageName { get; set; }
 
