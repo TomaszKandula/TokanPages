@@ -22,17 +22,15 @@ interface UserInfoViewProps extends ViewProperties, UserInfoProps {
     userStore: AuthenticateUserResultDto;
     accountForm: AccountFormInput;
     userImageName: string;
-    isUserActivated: boolean;
     isRequestingVerification: boolean;
     formProgress: boolean;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
     descriptionHandler: (event: ReactChangeTextEvent) => void;
-    switchHandler: (event: ReactChangeEvent) => void;
     saveButtonHandler: () => void;
     verifyButtonHandler: () => void;
     sectionAccountInformation: SectionAccountInformation;
-    userAbout?: {
+    description?: {
         minRows?: number;
         message: string;
     };
@@ -229,7 +227,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                     <div className="bulma-column bulma-is-one-fifth is-align-self-center">
                                         <Skeleton isLoading={props.isLoading} mode="Text" height={24} disableMarginY>
                                             <p className="is-size-6 has-text-grey">
-                                                {props.sectionAccountInformation?.labelShortBio}
+                                                {props.sectionAccountInformation?.labelDescription}
                                             </p>
                                         </Skeleton>
                                     </div>
@@ -238,9 +236,9 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             <TextArea
                                                 required
                                                 isFixedSize
-                                                rows={props.userAbout?.minRows}
-                                                uuid="userAboutText"
-                                                value={props.userAbout?.message}
+                                                uuid="description"
+                                                rows={props.description?.minRows}
+                                                value={props.description?.message}
                                                 onChange={props.descriptionHandler}
                                             />
                                         </Skeleton>

@@ -1,12 +1,10 @@
 import * as React from "react";
-import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import {
     ApplicationDialogAction,
     UserUpdateAction,
     UserDataStoreAction,
-    UserSigninAction,
     UserEmailVerificationAction,
 } from "../../../../Store/Actions";
 import { ExecuteApiActionProps, NOTIFICATION_STATUS } from "../../../../Api";
@@ -31,7 +29,6 @@ export interface UserInfoProps {
 
 export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const dispatch = useDispatch();
-    const history = useHistory();
     const actions = useApiAction();
     const socket = useWebSockets();
     const mediaQuery = useDimensions();
@@ -42,7 +39,6 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const verification = useSelector((state: ApplicationState) => state.userEmailVerification);
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = contentPageData.components.templates;
     const account = contentPageData.components.accountSettings;
 
@@ -55,14 +51,12 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
 
     const formDefault: AccountFormInput = {
         ...store,
-        userAboutText: store.shortBio ?? "",
+        description: store.shortBio ?? "",
     };
 
     const avatarName = Validate.isEmpty(store.avatarName) ? "N/A" : store.avatarName;
-    const [isUserActivated, setIsUserActivated] = React.useState({ checked: true });
     const [canCheckAltStatus, setCheckAltStatus] = React.useState(false);
     const [form, setForm] = React.useState(formDefault);
-    const [description, setDescription] = React.useState({ userAboutText: store.shortBio ?? "" });
     const [isRequesting, setRequesting] = React.useState(false);
     const [hasProgress, setHasProgress] = React.useState(false);
     const [canUpdateStore, setUpdateStore] = React.useState<UpdateStoreProps | undefined>(undefined);
@@ -72,13 +66,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
 
         dispatch(UserUpdateAction.clear());
         setHasProgress(false);
-
-        if (!isUserActivated.checked) {
-            dispatch(UserSigninAction.clear());
-            dispatch(UserDataStoreAction.clear());
-            history.push(`/${languageId}`);
-        }
-    }, [hasProgress, languageId]);
+    }, [hasProgress]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -98,16 +86,9 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
 
     const descriptionHandler = React.useCallback(
         (event: ReactChangeTextEvent) => {
-            setDescription({ ...description, [event.currentTarget.name]: event.currentTarget.value });
+            setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
         },
-        [description]
-    );
-
-    const switchHandler = React.useCallback(
-        (event: ReactChangeEvent) => {
-            setIsUserActivated({ ...isUserActivated, [event.target.name]: event.target.checked });
-        },
-        [isUserActivated]
+        [form]
     );
 
     const saveButtonHandler = React.useCallback(() => {
@@ -125,27 +106,32 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                 icon: IconType.warning,
             })
         );
-    }, [form]);
+    }, [form, template.forms.textAccountSettings, template.templates.user.updateWarning]);
 
     const verifyButtonHandler = React.useCallback(() => {
         setRequesting(true);
     }, [isRequesting]);
 
+    /* UPDATE USER DATA */
     React.useEffect(() => {
+        if (!hasProgress) {
+            return;
+        }
+
         if (hasError) {
             clear();
             return;
         }
 
-        if (hasUpdateNotStarted && hasProgress) {
+        if (hasUpdateNotStarted) {
             dispatch(
                 UserUpdateAction.update({
                     id: store.userId,
-                    isActivated: isUserActivated.checked,
+                    isActivated: true,
                     firstName: form.firstName,
                     lastName: form.lastName,
                     emailAddress: form.email,
-                    userAboutText: description.userAboutText,
+                    description: form.description,
                 })
             );
 
@@ -159,17 +145,15 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                     firstName: form.firstName,
                     lastName: form.lastName,
                     email: form.email,
-                    shortBio: description.userAboutText,
-                    isVerified: update.response.shouldVerifyEmail,
+                    shortBio: form.description,
+                    isVerified: !update.response.shouldVerifyEmail,
                 })
             );
 
             dispatch(
                 ApplicationDialogAction.raise({
                     title: template.forms.textAccountSettings,
-                    message: isUserActivated.checked
-                        ? template.templates.user.updateSuccess
-                        : template.templates.user.deactivation,
+                    message: template.templates.user.updateSuccess,
                     icon: IconType.info,
                 })
             );
@@ -178,19 +162,20 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
         }
     }, [
         store,
-        update,
-        template,
+        update.response.shouldVerifyEmail,
+        template.forms.textAccountSettings,
+        template.templates.user.updateSuccess,
         form.firstName,
         form.lastName,
         form.email,
-        description.userAboutText,
-        isUserActivated.checked,
+        form.description,
         hasProgress,
         hasError,
         hasUpdateNotStarted,
         hasUpdateFinished,
     ]);
 
+    /* UPLOAD USER AVATAR */
     React.useEffect(() => {
         if (hasMediaUploadFinished) {
             if (media.handle === undefined) return;
@@ -201,6 +186,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
         }
     }, [store, media.handle, media.payload?.blobName, hasMediaUploadFinished]);
 
+    /* REQUEST EMAIL VERIFICATION */
     React.useEffect(() => {
         if (hasError) {
             return;
@@ -230,13 +216,15 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
         }
     }, [hasError, isRequesting, template, form.email, hasVerificationNotStarted, hasVerificationFinished]);
 
+    /*  */
     React.useEffect(() => {
         if (canUpdateStore?.canUpdate) {
             dispatch(UserDataStoreAction.update({ ...store, isVerified: canUpdateStore.isVerified }));
             setUpdateStore(undefined);
         }
-    }, [store, canUpdateStore?.canUpdate]);
+    }, [store, canUpdateStore?.canUpdate, canUpdateStore?.isVerified]);
 
+    /* START WEBSOCKETS */
     React.useEffect(() => {
         socket.startConnection()?.then(() => {
             socket.registerHandler("user_activated", (notification: string) => {
@@ -247,13 +235,14 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
         });
     }, []);
 
+    /* STOP WEBSOCKETS */
     React.useEffect(() => {
         return () => {
             socket.stopConnection();
         };
     }, []);
 
-    // Check notification status via HTTP in case WebSockets fails.
+    /* HTTP POLLING IN CASE WEBSOCKETS FAILS */
     useInterval(async () => {
         if (store.isVerified) {
             return;
@@ -292,19 +281,17 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             userStore={store}
             accountForm={form}
             userImageName={avatarName}
-            isUserActivated={isUserActivated.checked}
             isRequestingVerification={isRequesting}
             formProgress={hasProgress}
             keyHandler={keyHandler}
             formHandler={formHandler}
             descriptionHandler={descriptionHandler}
-            switchHandler={switchHandler}
             saveButtonHandler={saveButtonHandler}
             verifyButtonHandler={verifyButtonHandler}
             sectionAccountInformation={account.sectionAccountInformation}
-            userAbout={{
+            description={{
                 minRows: 6,
-                message: description.userAboutText,
+                message: form.description,
             }}
             className={props.className}
         />
