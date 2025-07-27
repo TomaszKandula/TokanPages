@@ -39,6 +39,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const verification = useSelector((state: ApplicationState) => state.userEmailVerification);
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const template = contentPageData.components.templates;
     const account = contentPageData.components.accountSettings;
 
@@ -195,6 +196,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
         if (hasVerificationNotStarted && isRequesting) {
             dispatch(
                 UserEmailVerificationAction.verify({
+                    languageId: languageId,
                     emailAddress: form.email,
                 })
             );
@@ -214,7 +216,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                 })
             );
         }
-    }, [hasError, isRequesting, template, form.email, hasVerificationNotStarted, hasVerificationFinished]);
+    }, [hasError, isRequesting, template, form.email, hasVerificationNotStarted, hasVerificationFinished, languageId]);
 
     /*  */
     React.useEffect(() => {
