@@ -22,7 +22,7 @@ export const ValidateAccountForm = (props: AccountFormInput): object | undefined
                 message: "does not look like a valid email",
             },
         },
-        userAboutText: {
+        description: {
             presence: true,
             length: {
                 minimum: 2,
@@ -36,7 +36,7 @@ export const ValidateAccountForm = (props: AccountFormInput): object | undefined
             firstName: props.firstName,
             lastName: props.lastName,
             email: props.email,
-            userAboutText: props.userAboutText,
+            description: props.description,
         },
         constraints
     );
