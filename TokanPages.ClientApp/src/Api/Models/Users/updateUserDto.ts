@@ -5,7 +5,7 @@ export interface UpdateUserDto {
     firstName?: string;
     lastName?: string;
     emailAddress?: string;
-    userAboutText?: string;
+    description?: string;
     userImageName?: string;
     userVideoName?: string;
 }
