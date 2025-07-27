@@ -9,6 +9,11 @@ namespace TokanPages.Sender.Dto.Mailer;
 public class SendMessageDto
 {
     /// <summary>
+    /// User specific language ID.
+    /// </summary>
+    public string LanguageId { get; set; } = "";
+
+    /// <summary>
     /// First name.
     /// </summary>
     public string FirstName { get; set; } = "";

@@ -10,6 +10,11 @@ namespace TokanPages.Sender.Dto.Mailer;
 public class SendNewsletterDto
 {
     /// <summary>
+    /// User specific language ID.
+    /// </summary>
+    public string LanguageId { get; set; } = "";
+
+    /// <summary>
     /// List of subscriber details.
     /// </summary>
     public IEnumerable<SubscriberInfo>? SubscriberInfo { get; set; }
