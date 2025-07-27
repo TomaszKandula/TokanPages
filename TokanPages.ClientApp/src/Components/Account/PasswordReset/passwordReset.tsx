@@ -25,7 +25,7 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
     const reset = useSelector((state: ApplicationState) => state.userPasswordReset);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const template = data?.components.templates;
     const content = data?.components.pagePasswordReset;
 

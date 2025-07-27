@@ -21,7 +21,7 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
     const update = useSelector((state: ApplicationState) => state.userUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const template = data.components.templates;
     const account = data.components.accountSettings;
 

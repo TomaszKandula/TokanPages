@@ -32,7 +32,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const templates = data.components.templates;
     const businessForm = data.components.pageBusinessForm;
 

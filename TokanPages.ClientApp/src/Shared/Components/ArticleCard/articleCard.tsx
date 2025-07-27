@@ -24,7 +24,7 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
     const media = useDimensions();
 
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
 
     const isLoading = data?.isLoading;
     const content = data?.components?.pageArticle;
