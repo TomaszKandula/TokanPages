@@ -59,9 +59,9 @@ public class UpdateUserCommandValidator : AbstractValidator<UpdateUserCommand>
                 .WithMessage(ValidationCodes.EMAIL_TOO_LONG);
         });
 
-        When(command => command.UserAboutText != null, () =>
+        When(command => command.Description != null, () =>
         {
-            RuleFor(command => command.UserAboutText)
+            RuleFor(command => command.Description)
                 .NotEmpty()
                 .WithErrorCode(nameof(ValidationCodes.REQUIRED))
                 .WithMessage(ValidationCodes.REQUIRED)

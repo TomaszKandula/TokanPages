@@ -6,17 +6,25 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="avatar-wrapper user-avatar-avatar-large "
+        class="has-background-grey-light is-flex is-justify-content-center is-align-items-center default-avatar-large"
       >
-        T
+        <h2
+          class="is-size-4 has-text-white"
+        >
+          T
+        </h2>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="avatar-wrapper user-avatar-avatar-large "
+      class="has-background-grey-light is-flex is-justify-content-center is-align-items-center default-avatar-large"
     >
-      T
+      <h2
+        class="is-size-4 has-text-white"
+      >
+        T
+      </h2>
     </div>
   </div>,
   "debug": [Function],
@@ -78,29 +86,29 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="avatar-wrapper user-avatar-avatar-large "
+      <figure
+        class="bulma-image bulma-is-96x96 "
       >
         <img
           alt="User avatar"
-          class="avatar-image"
+          class="bulma-is-rounded"
           src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
           title="Avatar"
         />
-      </div>
+      </figure>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="avatar-wrapper user-avatar-avatar-large "
+    <figure
+      class="bulma-image bulma-is-96x96 "
     >
       <img
         alt="User avatar"
-        class="avatar-image"
+        class="bulma-is-rounded"
         src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
         title="Avatar"
       />
-    </div>
+    </figure>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
@@ -162,17 +170,25 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="avatar-wrapper user-avatar-avatar-small "
+        class="has-background-grey-light is-flex is-justify-content-center is-align-items-center default-avatar-small"
       >
-        T
+        <h2
+          class="is-size-4 has-text-white"
+        >
+          T
+        </h2>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="avatar-wrapper user-avatar-avatar-small "
+      class="has-background-grey-light is-flex is-justify-content-center is-align-items-center default-avatar-small"
     >
-      T
+      <h2
+        class="is-size-4 has-text-white"
+      >
+        T
+      </h2>
     </div>
   </div>,
   "debug": [Function],
@@ -234,29 +250,29 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div
-        class="avatar-wrapper user-avatar-avatar-small "
+      <figure
+        class="bulma-image bulma-is-48x48 "
       >
         <img
           alt="User avatar"
-          class="avatar-image"
+          class="bulma-is-rounded"
           src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
           title="Avatar"
         />
-      </div>
+      </figure>
     </div>
   </body>,
   "container": <div>
-    <div
-      class="avatar-wrapper user-avatar-avatar-small "
+    <figure
+      class="bulma-image bulma-is-48x48 "
     >
       <img
         alt="User avatar"
-        class="avatar-image"
+        class="bulma-is-rounded"
         src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
         title="Avatar"
       />
-    </div>
+    </figure>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

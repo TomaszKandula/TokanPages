@@ -39,12 +39,16 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
     }, [hasProgress]);
 
     React.useEffect(() => {
+        if (!hasProgress) {
+            return;
+        }
+
         if (hasError) {
             clear();
             return;
         }
 
-        if (hasUpdateNotStarted && hasProgress) {
+        if (hasUpdateNotStarted) {
             dispatch(
                 UserUpdateAction.update({
                     id: store.userId,
@@ -68,7 +72,7 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
             dispatch(UserUpdateAction.clear());
             history.push(`/${languageId}`);
         }
-    }, [store, template, hasProgress, hasError, hasUpdateNotStarted, hasUpdateFinished]);
+    }, [store, template, languageId, hasProgress, hasError, hasUpdateNotStarted, hasUpdateFinished]);
 
     const deactivateButtonHandler = React.useCallback(() => {
         if (update?.status !== OperationStatus.notStarted) {

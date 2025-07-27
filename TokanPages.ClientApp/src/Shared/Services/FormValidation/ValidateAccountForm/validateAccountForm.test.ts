@@ -8,7 +8,7 @@ describe("verify account form validation methods", () => {
             firstName: "Ester",
             lastName: "Exposito",
             email: "ester.exposito@gmail.com",
-            userAboutText: "Spanish Software Developer",
+            description: "Spanish Software Developer",
         };
 
         // Act
@@ -24,7 +24,7 @@ describe("verify account form validation methods", () => {
             firstName: "E",
             lastName: "",
             email: " ",
-            userAboutText: "Spanish",
+            description: "Spanish",
         };
 
         // Act

@@ -41,7 +41,7 @@ public class UpdateUserDto
     /// <summary>
     /// User 'about section' text.
     /// </summary>
-    public string? UserAboutText { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// User image name/path.

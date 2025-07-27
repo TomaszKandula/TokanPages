@@ -1,22 +1,11 @@
-.avatar-wrapper {
-    height: 40px;
-    width: 40px;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    font-size: 1.25rem;
-    align-items: center;
-    line-height: 1;
-    user-select: none;
+.default-avatar-small {
+    height: 48px;
+    width: 48px;
     border-radius: 50%;
-    justify-content: center;
 }
 
-.avatar-image {
-    color: transparent;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    text-align: center;
-    text-indent: 10000px;
+.default-avatar-large {
+    height: 96px;
+    width: 96px;
+    border-radius: 50%;
 }

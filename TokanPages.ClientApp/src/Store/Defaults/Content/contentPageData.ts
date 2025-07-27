@@ -54,7 +54,7 @@ export const ContentPageData: ContentPageDataState = {
                 labelFirstName: "",
                 labelLastName: "",
                 labelEmail: "",
-                labelShortBio: "",
+                labelDescription: "",
                 labelUserAvatar: "",
                 updateButtonText: "",
                 uploadAvatarButtonText: "",
