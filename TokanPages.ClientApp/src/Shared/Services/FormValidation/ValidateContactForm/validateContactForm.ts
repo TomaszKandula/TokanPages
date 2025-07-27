@@ -2,7 +2,7 @@ import Validate from "validate.js";
 import { ContactFormInput } from "..";
 
 export const ValidateContactForm = (props: ContactFormInput): object | undefined => {
-    let constraints = {
+    const constraints = {
         firstName: {
             presence: true,
             length: {

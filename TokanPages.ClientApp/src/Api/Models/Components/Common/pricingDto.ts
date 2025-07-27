@@ -1,7 +1,7 @@
-import { ServiceItemDto } from "./serviceItemDto";
+import { OfferItemDto } from "./offerItemDto";
 
 export interface PricingDto {
     caption: string;
     disclaimer: string;
-    services: ServiceItemDto[];
+    services: OfferItemDto[];
 }

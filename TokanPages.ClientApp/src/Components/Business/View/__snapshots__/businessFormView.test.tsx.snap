@@ -6,13 +6,301 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="has-background-white"
+        class="mt-5 mb-5"
       >
         <div
-          class="bulma-container bulma-is-max-desktop"
+          class="bulma-container"
         >
           <div
-            class="mt-5 mb-5"
+            class="bulma-columns mx-4 my-6"
+          >
+            <div
+              class="bulma-column bulma-is-half p-0"
+            >
+              <p
+                class="is-size-3	has-text-centered has-text-link"
+              >
+                BUSINESS INQUIRY
+              </p>
+              <div
+                class="bulma-card"
+              >
+                <div
+                  class="bulma-card-content"
+                >
+                  <div
+                    class="is-flex is-flex-direction-column is-align-items-center"
+                  >
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center card-icon-colour"
+                        role="presentation"
+                        style="width: 3.75rem; height: 3.75rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V19A2,2 0 0,1 20,21H4C2.89,21 2,20.1 2,19V8C2,6.89 2.89,6 4,6H8V4C8,2.89 8.89,2 10,2M14,6V4H10V6H14Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                    <p
+                      class="is-size-3 has-text-black"
+                    >
+                      Business Inquiry
+                    </p>
+                  </div>
+                  <div
+                    class="mt-5"
+                  >
+                    <div
+                      class="bulma-columns"
+                    >
+                      <div
+                        class="bulma-column"
+                      >
+                        <div
+                          class="bulma-control  "
+                        >
+                          <input
+                            class="bulma-input   "
+                            id="company"
+                            maxlength="255"
+                            name="company"
+                            placeholder="Company name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="bulma-columns"
+                    >
+                      <div
+                        class="bulma-column"
+                      >
+                        <div
+                          class="bulma-control  "
+                        >
+                          <input
+                            class="bulma-input   "
+                            id="firstName"
+                            maxlength="255"
+                            name="firstName"
+                            placeholder="First name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="bulma-column"
+                      >
+                        <div
+                          class="bulma-control  "
+                        >
+                          <input
+                            class="bulma-input   "
+                            id="lastName"
+                            maxlength="255"
+                            name="lastName"
+                            placeholder="Last name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="bulma-columns"
+                    >
+                      <div
+                        class="bulma-column"
+                      >
+                        <div
+                          class="bulma-control  "
+                        >
+                          <input
+                            class="bulma-input   "
+                            id="email"
+                            maxlength="255"
+                            name="email"
+                            placeholder="Email"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                      <div
+                        class="bulma-column"
+                      >
+                        <div
+                          class="bulma-control  "
+                        >
+                          <input
+                            class="bulma-input   "
+                            id="phone"
+                            maxlength="17"
+                            name="phone"
+                            placeholder="Business phone"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="bulma-columns"
+                    >
+                      <div
+                        class="bulma-column"
+                      >
+                        <div
+                          class="bulma-field"
+                        >
+                          <div
+                            class="bulma-control  "
+                          >
+                            <textarea
+                              class="bulma-textarea   "
+                              id="description"
+                              name="description"
+                              placeholder=""
+                              required=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="bulma-content"
+                    >
+                      <p
+                        class="is-size-5"
+                      />
+                      <div
+                        class="is-flex"
+                      >
+                        <div
+                          class="checkbox-wrapper-1 is-flex is-align-self-center"
+                        >
+                          <input
+                            class="substituted"
+                            id="0"
+                            name="service-0"
+                            tabindex="-1"
+                            type="checkbox"
+                          />
+                          <label
+                            class="is-clickable"
+                            for="0"
+                          />
+                        </div>
+                        <p
+                          class="is-size-6 p-1"
+                        >
+                          Super service (20 USD/hour)
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="bulma-notification is-flex is-align-items-center"
+                    >
+                      <div>
+                        <svg
+                          class="is-flex is-align-self-center has-text-link"
+                          role="presentation"
+                          style="width: 1.5rem; height: 1.5rem;"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                            style="fill: currentColor;"
+                          />
+                        </svg>
+                      </div>
+                      <span
+                        class="is-size-6 ml-4"
+                      />
+                    </div>
+                    <button
+                      class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
+                      type="submit"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bulma-column ml-6"
+            >
+              <div
+                class="is-flex my-5"
+              >
+                <figure
+                  class="bulma-image bulma-is-128x128"
+                />
+                <div
+                  class="bulma-content ml-4 is-flex is-flex-direction-column is-align-self-center is-gap-0.5"
+                >
+                  <div
+                    class="is-size-4 has-text-weight-bold"
+                  />
+                  <div
+                    class="is-size-5 has-text-weight-semibold has-text-link"
+                  />
+                  <a
+                    href="/"
+                  >
+                    <figure
+                      class="bulma-image bulma-is-24x24"
+                    />
+                  </a>
+                </div>
+              </div>
+              <div
+                class="bulma-content"
+              >
+                <p
+                  class="is-size-6"
+                />
+                <h2
+                  class="is-size-3 my-6"
+                />
+                <div
+                  class="bulma-fixed-grid"
+                >
+                  <div
+                    class="bulma-grid is-gap-7"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="mt-5 mb-5"
+    >
+      <div
+        class="bulma-container"
+      >
+        <div
+          class="bulma-columns mx-4 my-6"
+        >
+          <div
+            class="bulma-column bulma-is-half p-0"
           >
             <p
               class="is-size-3	has-text-centered has-text-link"
@@ -20,7 +308,7 @@ Object {
               BUSINESS INQUIRY
             </p>
             <div
-              class="bulma-card mx-6"
+              class="bulma-card"
             >
               <div
                 class="bulma-card-content"
@@ -30,19 +318,19 @@ Object {
                 >
                   <div>
                     <svg
-                      class="is-flex is-align-self-center has-text-link"
+                      class="is-flex is-align-self-center card-icon-colour"
                       role="presentation"
-                      style="width: 4.5rem; height: 4.5rem;"
+                      style="width: 3.75rem; height: 3.75rem;"
                       viewBox="0 0 24 24"
                     >
                       <path
-                        d="M10 16V15H3L3 19C3 20.11 3.89 21 5 21H19C20.11 21 21 20.11 21 19V15H14V16H10M20 7H16V5L14 3H10L8 5V7H4C2.9 7 2 7.9 2 9V12C2 13.11 2.89 14 4 14H10V12H14V14H20C21.1 14 22 13.1 22 12V9C22 7.9 21.1 7 20 7M14 7H10V5H14V7Z"
+                        d="M10,2H14A2,2 0 0,1 16,4V6H20A2,2 0 0,1 22,8V19A2,2 0 0,1 20,21H4C2.89,21 2,20.1 2,19V8C2,6.89 2.89,6 4,6H8V4C8,2.89 8.89,2 10,2M14,6V4H10V6H14Z"
                         style="fill: currentColor;"
                       />
                     </svg>
                   </div>
                   <p
-                    class="is-size-3 has-text-grey"
+                    class="is-size-3 has-text-black"
                   >
                     Business Inquiry
                   </p>
@@ -165,7 +453,7 @@ Object {
                           class="bulma-control  "
                         >
                           <textarea
-                            class="bulma-textarea   bulma-has-fixed-size"
+                            class="bulma-textarea   "
                             id="description"
                             name="description"
                             placeholder=""
@@ -179,14 +467,8 @@ Object {
                     class="bulma-content"
                   >
                     <p
-                      class="is-size-5 py-2"
-                    >
-                      Which technologies are you interested in?
-                    </p>
-                  </div>
-                  <div
-                    class="bulma-content"
-                  >
+                      class="is-size-5"
+                    />
                     <div
                       class="is-flex"
                     >
@@ -196,7 +478,7 @@ Object {
                         <input
                           class="substituted"
                           id="0"
-                          name="tech-0"
+                          name="service-0"
                           tabindex="-1"
                           type="checkbox"
                         />
@@ -206,76 +488,9 @@ Object {
                         />
                       </div>
                       <p
-                        class="is-size-6 p-2"
+                        class="is-size-6 p-1"
                       >
-                        ABC
-                      </p>
-                    </div>
-                    <div
-                      class="is-flex"
-                    >
-                      <div
-                        class="checkbox-wrapper-1 is-flex is-align-self-center"
-                      >
-                        <input
-                          class="substituted"
-                          id="1"
-                          name="tech-1"
-                          tabindex="-1"
-                          type="checkbox"
-                        />
-                        <label
-                          class="is-clickable"
-                          for="1"
-                        />
-                      </div>
-                      <p
-                        class="is-size-6 p-2"
-                      >
-                        CDE
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="bulma-content"
-                  >
-                    <p
-                      class="is-size-5 py-2"
-                    />
-                  </div>
-                  <div
-                    class="bulma-grid bulma-is-col-min-10 is-gap-2.5"
-                  >
-                    <div
-                      class="bulma-cell business-items business-unselected business-enabled"
-                      data-disabled="false"
-                      id="web"
-                    >
-                      <p
-                        class="is-size-6 business-item-text"
-                      >
-                        Web Development
-                      </p>
-                      <p
-                        class="is-size-6 has-text-weight-semibold business-item-price"
-                      >
-                        30 USD/h
-                      </p>
-                    </div>
-                    <div
-                      class="bulma-cell business-items business-unselected business-enabled"
-                      data-disabled="false"
-                      id="mobile"
-                    >
-                      <p
-                        class="is-size-6 business-item-text"
-                      >
-                        Mobile Development
-                      </p>
-                      <p
-                        class="is-size-6 has-text-weight-semibold business-item-price"
-                      >
-                        45 USD/h
+                        Super service (20 USD/hour)
                       </p>
                     </div>
                   </div>
@@ -296,7 +511,7 @@ Object {
                       </svg>
                     </div>
                     <span
-                      class="is-size-6 p-3"
+                      class="is-size-6 ml-4"
                     />
                   </div>
                   <button
@@ -309,311 +524,48 @@ Object {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
-  </body>,
-  "container": <div>
-    <section
-      class="has-background-white"
-    >
-      <div
-        class="bulma-container bulma-is-max-desktop"
-      >
-        <div
-          class="mt-5 mb-5"
-        >
-          <p
-            class="is-size-3	has-text-centered has-text-link"
-          >
-            BUSINESS INQUIRY
-          </p>
           <div
-            class="bulma-card mx-6"
+            class="bulma-column ml-6"
           >
             <div
-              class="bulma-card-content"
+              class="is-flex my-5"
             >
+              <figure
+                class="bulma-image bulma-is-128x128"
+              />
               <div
-                class="is-flex is-flex-direction-column is-align-items-center"
+                class="bulma-content ml-4 is-flex is-flex-direction-column is-align-self-center is-gap-0.5"
               >
-                <div>
-                  <svg
-                    class="is-flex is-align-self-center has-text-link"
-                    role="presentation"
-                    style="width: 4.5rem; height: 4.5rem;"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M10 16V15H3L3 19C3 20.11 3.89 21 5 21H19C20.11 21 21 20.11 21 19V15H14V16H10M20 7H16V5L14 3H10L8 5V7H4C2.9 7 2 7.9 2 9V12C2 13.11 2.89 14 4 14H10V12H14V14H20C21.1 14 22 13.1 22 12V9C22 7.9 21.1 7 20 7M14 7H10V5H14V7Z"
-                      style="fill: currentColor;"
-                    />
-                  </svg>
-                </div>
-                <p
-                  class="is-size-3 has-text-grey"
+                <div
+                  class="is-size-4 has-text-weight-bold"
+                />
+                <div
+                  class="is-size-5 has-text-weight-semibold has-text-link"
+                />
+                <a
+                  href="/"
                 >
-                  Business Inquiry
-                </p>
+                  <figure
+                    class="bulma-image bulma-is-24x24"
+                  />
+                </a>
               </div>
+            </div>
+            <div
+              class="bulma-content"
+            >
+              <p
+                class="is-size-6"
+              />
+              <h2
+                class="is-size-3 my-6"
+              />
               <div
-                class="mt-5"
+                class="bulma-fixed-grid"
               >
                 <div
-                  class="bulma-columns"
-                >
-                  <div
-                    class="bulma-column"
-                  >
-                    <div
-                      class="bulma-control  "
-                    >
-                      <input
-                        class="bulma-input   "
-                        id="company"
-                        maxlength="255"
-                        name="company"
-                        placeholder="Company name"
-                        required=""
-                        type="text"
-                        value=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="bulma-columns"
-                >
-                  <div
-                    class="bulma-column"
-                  >
-                    <div
-                      class="bulma-control  "
-                    >
-                      <input
-                        class="bulma-input   "
-                        id="firstName"
-                        maxlength="255"
-                        name="firstName"
-                        placeholder="First name"
-                        required=""
-                        type="text"
-                        value=""
-                      />
-                    </div>
-                  </div>
-                  <div
-                    class="bulma-column"
-                  >
-                    <div
-                      class="bulma-control  "
-                    >
-                      <input
-                        class="bulma-input   "
-                        id="lastName"
-                        maxlength="255"
-                        name="lastName"
-                        placeholder="Last name"
-                        required=""
-                        type="text"
-                        value=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="bulma-columns"
-                >
-                  <div
-                    class="bulma-column"
-                  >
-                    <div
-                      class="bulma-control  "
-                    >
-                      <input
-                        class="bulma-input   "
-                        id="email"
-                        maxlength="255"
-                        name="email"
-                        placeholder="Email"
-                        required=""
-                        type="text"
-                        value=""
-                      />
-                    </div>
-                  </div>
-                  <div
-                    class="bulma-column"
-                  >
-                    <div
-                      class="bulma-control  "
-                    >
-                      <input
-                        class="bulma-input   "
-                        id="phone"
-                        maxlength="17"
-                        name="phone"
-                        placeholder="Business phone"
-                        required=""
-                        type="text"
-                        value=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="bulma-columns"
-                >
-                  <div
-                    class="bulma-column"
-                  >
-                    <div
-                      class="bulma-field"
-                    >
-                      <div
-                        class="bulma-control  "
-                      >
-                        <textarea
-                          class="bulma-textarea   bulma-has-fixed-size"
-                          id="description"
-                          name="description"
-                          placeholder=""
-                          required=""
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  class="bulma-content"
-                >
-                  <p
-                    class="is-size-5 py-2"
-                  >
-                    Which technologies are you interested in?
-                  </p>
-                </div>
-                <div
-                  class="bulma-content"
-                >
-                  <div
-                    class="is-flex"
-                  >
-                    <div
-                      class="checkbox-wrapper-1 is-flex is-align-self-center"
-                    >
-                      <input
-                        class="substituted"
-                        id="0"
-                        name="tech-0"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="is-clickable"
-                        for="0"
-                      />
-                    </div>
-                    <p
-                      class="is-size-6 p-2"
-                    >
-                      ABC
-                    </p>
-                  </div>
-                  <div
-                    class="is-flex"
-                  >
-                    <div
-                      class="checkbox-wrapper-1 is-flex is-align-self-center"
-                    >
-                      <input
-                        class="substituted"
-                        id="1"
-                        name="tech-1"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="is-clickable"
-                        for="1"
-                      />
-                    </div>
-                    <p
-                      class="is-size-6 p-2"
-                    >
-                      CDE
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="bulma-content"
-                >
-                  <p
-                    class="is-size-5 py-2"
-                  />
-                </div>
-                <div
-                  class="bulma-grid bulma-is-col-min-10 is-gap-2.5"
-                >
-                  <div
-                    class="bulma-cell business-items business-unselected business-enabled"
-                    data-disabled="false"
-                    id="web"
-                  >
-                    <p
-                      class="is-size-6 business-item-text"
-                    >
-                      Web Development
-                    </p>
-                    <p
-                      class="is-size-6 has-text-weight-semibold business-item-price"
-                    >
-                      30 USD/h
-                    </p>
-                  </div>
-                  <div
-                    class="bulma-cell business-items business-unselected business-enabled"
-                    data-disabled="false"
-                    id="mobile"
-                  >
-                    <p
-                      class="is-size-6 business-item-text"
-                    >
-                      Mobile Development
-                    </p>
-                    <p
-                      class="is-size-6 has-text-weight-semibold business-item-price"
-                    >
-                      45 USD/h
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class="bulma-notification is-flex is-align-items-center"
-                >
-                  <div>
-                    <svg
-                      class="is-flex is-align-self-center has-text-link"
-                      role="presentation"
-                      style="width: 1.5rem; height: 1.5rem;"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
-                        style="fill: currentColor;"
-                      />
-                    </svg>
-                  </div>
-                  <span
-                    class="is-size-6 p-3"
-                  />
-                </div>
-                <button
-                  class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
-                  type="submit"
-                >
-                  Submit
-                </button>
+                  class="bulma-grid is-gap-7"
+                />
               </div>
             </div>
           </div>

@@ -19,15 +19,15 @@ export const SettingsPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly={isAnonymous} />
-            <main className="pt-6">
+            <main>
                 {isAnonymous ? (
                     <AccessDenied />
                 ) : (
                     <>
-                        <UserInfo className="pt-6 pb-4" />
-                        <UserPassword className="py-4" />
-                        <UserDeactivation className="py-4" />
-                        <UserRemoval className="pt-4 pb-6" />
+                        <UserInfo />
+                        <UserPassword />
+                        <UserDeactivation />
+                        <UserRemoval />
                     </>
                 )}
             </main>

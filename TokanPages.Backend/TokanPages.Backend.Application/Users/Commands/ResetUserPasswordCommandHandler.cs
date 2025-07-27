@@ -59,7 +59,7 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
 
         var messageId = await PrepareNotificationUncommitted(cancellationToken);
         await CommitAllChanges(cancellationToken);
-        await SendNotification(messageId, request.EmailAddress!, resetId, expirationDate, cancellationToken);
+        await SendNotification(messageId, request.LanguageId, request.EmailAddress!, resetId, expirationDate, cancellationToken);
 
         return Unit.Value;
     }
@@ -80,10 +80,11 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
         return messageId;
     }
 
-    private async Task SendNotification(Guid messageId, string emailAddress, Guid resetId, DateTime expirationDate, CancellationToken cancellationToken)
+    private async Task SendNotification(Guid messageId, string languageId, string emailAddress, Guid resetId, DateTime expirationDate, CancellationToken cancellationToken)
     {
         var configuration = new ResetPasswordConfiguration
         {
+            LanguageId = languageId,
             MessageId = messageId,
             EmailAddress = emailAddress,
             ResetId = resetId,

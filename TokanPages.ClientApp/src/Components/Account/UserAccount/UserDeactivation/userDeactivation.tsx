@@ -10,7 +10,6 @@ import { UserDeactivationView } from "./View/userDeactivationView";
 
 export interface UserDeactivationProps {
     className?: string;
-    background?: string;
 }
 
 export const UserDeactivation = (props: UserDeactivationProps): React.ReactElement => {
@@ -22,7 +21,7 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
     const update = useSelector((state: ApplicationState) => state.userUpdate);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const template = data.components.templates;
     const account = data.components.accountSettings;
 
@@ -40,12 +39,16 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
     }, [hasProgress]);
 
     React.useEffect(() => {
+        if (!hasProgress) {
+            return;
+        }
+
         if (hasError) {
             clear();
             return;
         }
 
-        if (hasUpdateNotStarted && hasProgress) {
+        if (hasUpdateNotStarted) {
             dispatch(
                 UserUpdateAction.update({
                     id: store.userId,
@@ -69,7 +72,7 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
             dispatch(UserUpdateAction.clear());
             history.push(`/${languageId}`);
         }
-    }, [store, template, hasProgress, hasError, hasUpdateNotStarted, hasUpdateFinished]);
+    }, [store, template, languageId, hasProgress, hasError, hasUpdateNotStarted, hasUpdateFinished]);
 
     const deactivateButtonHandler = React.useCallback(() => {
         if (update?.status !== OperationStatus.notStarted) {
@@ -89,7 +92,6 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
             progress={hasProgress}
             section={account.sectionAccountDeactivation}
             className={props.className}
-            background={props.background}
         />
     );
 };

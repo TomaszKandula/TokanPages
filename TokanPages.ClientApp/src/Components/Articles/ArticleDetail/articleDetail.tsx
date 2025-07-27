@@ -16,7 +16,7 @@ import { ArticleDetailView } from "./View/articleDetailView";
 import Validate from "validate.js";
 
 export interface ExtendedViewProps {
-    background?: string;
+    className?: string;
 }
 
 export interface ArticleDetailProps extends ExtendedViewProps {
@@ -30,7 +30,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
     const user = useSelector((state: ApplicationState) => state.userDataStore);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const template = data.components.templates.templates.articles;
     const content = data.components.pageArticle;
 
@@ -149,7 +149,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             authorShortBio={selection.article.author.shortBio}
             flagImage={flagImage}
             content={content}
-            background={props.background}
+            className={props.className}
         />
     );
 };

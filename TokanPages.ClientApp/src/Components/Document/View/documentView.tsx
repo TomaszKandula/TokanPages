@@ -6,7 +6,7 @@ import { useHash } from "../../../Shared/Hooks";
 interface DocumentViewProps {
     isLoading: boolean;
     items: TextItem[];
-    background?: string;
+    className?: string;
 }
 
 export const DocumentView = (props: DocumentViewProps): React.ReactElement => {
@@ -35,7 +35,7 @@ export const DocumentView = (props: DocumentViewProps): React.ReactElement => {
     }, [hash, props.isLoading]);
 
     return (
-        <section className={props.background}>
+        <section className={props.className}>
             <article className="bulma-container bulma-is-max-tablet">
                 {props.isLoading ? (
                     <ProgressBar className="my-5" thickness={4} />

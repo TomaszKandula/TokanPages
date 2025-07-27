@@ -59,9 +59,6 @@ public class EmailSenderService : IEmailSenderService
         var activationPath = _configuration.GetValue<string>("Paths_Activation");
         var updatePasswordPath = _configuration.GetValue<string>("Paths_UpdatePassword");
 
-        var activationUrl = $"{origin}{activationPath}";
-        var updatePasswordUrl = $"{origin}{updatePasswordPath}";
-
         var subject = configuration switch
         {
             CreateUserConfiguration => "New user registration",
@@ -90,17 +87,17 @@ public class EmailSenderService : IEmailSenderService
         {
             CreateUserConfiguration model => new Dictionary<string, string>
             {
-                { "{ACTIVATION_LINK}", $"{activationUrl}{model.ActivationId}" },
+                { "{ACTIVATION_LINK}", $"{origin}/{model.LanguageId}{activationPath}{model.ActivationId}" },
                 { "{EXPIRATION}", $"{model.ActivationIdEnds}" }
             },
             ResetPasswordConfiguration model => new Dictionary<string, string>
             {
-                { "{RESET_LINK}", $"{updatePasswordUrl}{model.ResetId}" },
+                { "{RESET_LINK}", $"{origin}/{model.LanguageId}{updatePasswordPath}{model.ResetId}" },
                 { "{EXPIRATION}", $"{model.ExpirationDate}" }
             },
             VerifyEmailConfiguration model => new Dictionary<string, string>
             {
-                { "{VERIFICATION_LINK}", $"{activationUrl}{model.VerificationId}" },
+                { "{VERIFICATION_LINK}", $"{origin}/{model.LanguageId}{activationPath}{model.VerificationId}" },
                 { "{EXPIRATION}", $"{model.VerificationIdEnds}" }
             },
             _ => new Dictionary<string, string>()

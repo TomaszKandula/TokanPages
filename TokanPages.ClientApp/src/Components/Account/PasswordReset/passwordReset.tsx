@@ -16,7 +16,6 @@ const formDefaultValues: ResetFormInput = {
 
 export interface PasswordResetProps {
     className?: string;
-    background?: string;
 }
 
 export const PasswordReset = (props: PasswordResetProps): React.ReactElement => {
@@ -26,6 +25,7 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
     const reset = useSelector((state: ApplicationState) => state.userPasswordReset);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const template = data?.components.templates;
     const content = data?.components.pagePasswordReset;
 
@@ -51,6 +51,7 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
         if (hasNotStarted && hasProgress) {
             dispatch(
                 UserPasswordResetAction.reset({
+                    languageId: languageId,
                     emailAddress: form.email,
                 })
             );
@@ -69,7 +70,7 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
                 })
             );
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, template, languageId]);
 
     const keyHandler = React.useCallback((event: ReactKeyboardEvent) => {
         if (event.code === "Enter") {
@@ -114,7 +115,6 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
             buttonHandler={buttonHandler}
             labelEmail={content?.labelEmail}
             className={props.className}
-            background={props.background}
         />
     );
 };

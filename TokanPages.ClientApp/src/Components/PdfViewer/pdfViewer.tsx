@@ -11,7 +11,7 @@ import Validate from "validate.js";
 interface PdfViewerProps {
     pdfFile: string;
     scale?: number;
-    background?: string;
+    className?: string;
 }
 
 const pdfWorkerUrl = `${window.location.origin}/${PDF_WORKER_URL}`;
@@ -133,7 +133,7 @@ export const PdfViewer = (props: PdfViewerProps): React.ReactElement => {
             numPages={numPages}
             pdfDocument={pdfDocument}
             scale={props.scale}
-            background={props.background}
+            className={props.className}
             pdfUrl={url}
             onPreviousPage={onPreviousPageHandler}
             onNextPage={onNextPageHandler}

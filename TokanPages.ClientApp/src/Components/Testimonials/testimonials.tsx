@@ -31,7 +31,7 @@ export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
             name3={testimonials?.name3}
             occupation3={testimonials?.occupation3}
             text3={testimonials?.text3}
-            background={props.className}
+            className={props.className}
         />
     );
 };

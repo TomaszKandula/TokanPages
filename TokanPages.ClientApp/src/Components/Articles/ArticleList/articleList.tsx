@@ -6,7 +6,7 @@ import { useDimensions } from "../../../Shared/Hooks";
 import { ArticleListView } from "./View/articleListView";
 
 export interface ArticleListProps {
-    background?: string;
+    className?: string;
 }
 
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
@@ -29,7 +29,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             isLoading={article.isLoading}
             isMobile={media.isMobile}
             articles={article.articles}
-            background={props.background}
+            className={props.className}
         />
     );
 };

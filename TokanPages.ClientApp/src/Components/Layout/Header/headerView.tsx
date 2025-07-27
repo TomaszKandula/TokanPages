@@ -80,16 +80,14 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => 
     const set = `${photo1} 360w, ${photo2} 720w, ${photo3} 1440w, ${photo4} 2880w`;
 
     return (
-        <figure>
-            <img
-                src={photo1}
-                srcSet={set}
-                loading="lazy"
-                title="Tom Kandula"
-                alt="Your Software Developer"
-                className={`header-image-card lazyloaded ${props.className}`}
-            />
-        </figure>
+        <img
+            src={photo1}
+            srcSet={set}
+            loading="lazy"
+            title="Tom Kandula"
+            alt="Your Software Developer"
+            className={`header-image header-figure lazyloaded ${props.className}`}
+        />
     );
 };
 
@@ -102,17 +100,17 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
 
     let size;
     if (media.isMobile) {
-        size = { width: 360, height: 433 };
+        size = { width: 433, height: 360 };
     } else {
-        size = { width: 720, height: 865 };
+        size = { width: 865, height: 720 };
     }
 
     return (
-        <section className={`mt-6 ${props.className ?? ""}`}>
+        <section className={props.className ?? ""}>
             <div className="bulma-fixed-grid bulma-has-1-cols-mobile bulma-has-1-cols-tablet bulma-has-2-cols-desktop">
                 <div className="bulma-grid">
                     <div className="bulma-cell">
-                        <Skeleton isLoading={isLoading} mode="Rect" {...size}>
+                        <Skeleton isLoading={isLoading} mode="Rect" {...size} disableMarginY>
                             <RenderPicture sources={header?.photo} />
                         </Skeleton>
                     </div>

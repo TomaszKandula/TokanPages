@@ -17,16 +17,16 @@ Object {
           <header
             class="bulma-modal-card-head"
           >
-            <div
-              class="avatar-wrapper user-avatar-avatar-small "
+            <figure
+              class="bulma-image bulma-is-48x48 "
             >
               <img
                 alt="User avatar"
-                class="avatar-image"
+                class="bulma-is-rounded"
                 src="http://localhost:5000/api/v1/users/5f4d15e2-0d32-4e20-b5f0-5a736152e993/getUserImage?blobName=tester-avatar-icon.png"
                 title="Avatar"
               />
-            </div>
+            </figure>
             <p
               class="bulma-modal-card-title p-3"
             >
@@ -219,16 +219,16 @@ Object {
         <header
           class="bulma-modal-card-head"
         >
-          <div
-            class="avatar-wrapper user-avatar-avatar-small "
+          <figure
+            class="bulma-image bulma-is-48x48 "
           >
             <img
               alt="User avatar"
-              class="avatar-image"
+              class="bulma-is-rounded"
               src="http://localhost:5000/api/v1/users/5f4d15e2-0d32-4e20-b5f0-5a736152e993/getUserImage?blobName=tester-avatar-icon.png"
               title="Avatar"
             />
-          </div>
+          </figure>
           <p
             class="bulma-modal-card-title p-3"
           >

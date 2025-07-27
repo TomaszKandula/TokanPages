@@ -20,7 +20,7 @@ describe("test component: businessFormView", () => {
                     descriptionHandler={jest.fn()}
                     techHandler={jest.fn()}
                     serviceHandler={jest.fn()}
-                    serviceSelection={["ABC", "CDE"]}
+                    serviceItems={[{ key: 1, value: "Super service (20 USD/hour)", isChecked: false }]}
                     companyText=""
                     companyLabel="Company name"
                     firstNameText=""
@@ -32,6 +32,7 @@ describe("test component: businessFormView", () => {
                     phoneText=""
                     phoneLabel="Business phone"
                     techLabel="Which technologies are you interested in?"
+                    hasTechItems={false}
                     techItems={[
                         {
                             value: "ABC",
@@ -55,19 +56,38 @@ describe("test component: businessFormView", () => {
                         disclaimer: "",
                         services: [
                             {
-                                id: "web",
-                                text: "Web Development",
-                                price: "30 USD/h",
+                                key: 0,
+                                value: "Web Development (30 USD/hour)",
+                                isChecked: false,
                             },
                             {
-                                id: "mobile",
-                                text: "Mobile Development",
-                                price: "45 USD/h",
+                                key: 1,
+                                value: "Mobile Development (45 USD/hour)",
+                                isChecked: false,
                             },
                         ],
                     }}
+                    presentation={{
+                        image: {
+                            link: "",
+                            title: "",
+                            alt: "",
+                            width: 0,
+                            heigh: 0,
+                        },
+                        title: "",
+                        subtitle: "",
+                        icon: {
+                            name: "",
+                            href: "",
+                        },
+                        description: "",
+                        logos: {
+                            title: "",
+                            images: [],
+                        },
+                    }}
                     className="mt-5 mb-5"
-                    background="has-background-white"
                     hasIcon={true}
                     hasCaption={true}
                     hasShadow={true}

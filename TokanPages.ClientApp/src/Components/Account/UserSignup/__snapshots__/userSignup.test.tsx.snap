@@ -7,319 +7,198 @@ Object {
     <div>
       <section>
         <div
-          class="bulma-container bulma-is-max-tablet"
+          class="bulma-container"
         >
           <div
-            class="py-6"
+            class="bulma-columns mx-4 my-6"
           >
             <div
-              class="bulma-card "
+              class="bulma-column bulma-is-half p-0"
             >
               <div
-                class="bulma-card-content"
+                class="bulma-card"
               >
                 <div
-                  class="is-flex is-flex-direction-column is-align-items-center"
-                >
-                  <div>
-                    <svg
-                      class="is-flex is-align-self-center has-text-link"
-                      role="presentation"
-                      style="width: 4.5rem; height: 4.5rem;"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"
-                        style="fill: currentColor;"
-                      />
-                    </svg>
-                  </div>
-                  <p
-                    class="is-size-3 has-text-grey"
-                  >
-                    Create a new account
-                  </p>
-                </div>
-                <div
-                  class="my-5"
+                  class="bulma-card-content"
                 >
                   <div
-                    class="bulma-control  mb-3"
+                    class="is-flex is-flex-direction-column is-align-items-center"
                   >
-                    <input
-                      autocomplete="one-time-code"
-                      class="bulma-input   "
-                      id="firstName"
-                      name="firstName"
-                      placeholder="First name"
-                      required=""
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    class="bulma-control  mb-3"
-                  >
-                    <input
-                      autocomplete="one-time-code"
-                      class="bulma-input   "
-                      id="lastName"
-                      name="lastName"
-                      placeholder="Last name"
-                      required=""
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    class="bulma-control  mb-3"
-                  >
-                    <input
-                      autocomplete="one-time-code"
-                      class="bulma-input   "
-                      id="email"
-                      name="email"
-                      placeholder="Email address"
-                      required=""
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    class="bulma-control bulma-has-icons-right "
-                  >
-                    <input
-                      class="bulma-input   "
-                      id="password"
-                      name="password"
-                      placeholder="Password"
-                      type="password"
-                      value=""
-                    />
-                    <span
-                      class="bulma-icon bulma-is-right text-field-with-password"
-                    >
-                      <button
-                        class="icon-button-no-hover  is-flex is-align-self-center"
-                        style="height: 48px; width: 48px;"
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center card-icon-colour"
+                        role="presentation"
+                        style="width: 3.75rem; height: 3.75rem;"
+                        viewBox="0 0 24 24"
                       >
-                        <div>
-                          <svg
-                            class="is-flex is-align-self-center "
-                            role="presentation"
-                            style="width: 1.5rem; height: 1.5rem;"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"
-                              style="fill: currentColor;"
-                            />
-                          </svg>
+                        <path
+                          d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                    <p
+                      class="is-size-3 has-text-black"
+                    >
+                      Create a new account
+                    </p>
+                  </div>
+                  <div
+                    class="my-5"
+                  >
+                    <div
+                      class="bulma-columns"
+                    >
+                      <div
+                        class="bulma-column pb-0"
+                      >
+                        <div
+                          class="bulma-control  mb-3"
+                        >
+                          <input
+                            autocomplete="one-time-code"
+                            class="bulma-input   "
+                            id="firstName"
+                            name="firstName"
+                            placeholder="First name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
                         </div>
-                      </button>
+                      </div>
+                      <div
+                        class="bulma-column pb-0"
+                      >
+                        <div
+                          class="bulma-control  mb-3"
+                        >
+                          <input
+                            autocomplete="one-time-code"
+                            class="bulma-input   "
+                            id="lastName"
+                            name="lastName"
+                            placeholder="Last name"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="bulma-columns"
+                    >
+                      <div
+                        class="bulma-column pb-0"
+                      >
+                        <div
+                          class="bulma-control  mb-3"
+                        >
+                          <input
+                            autocomplete="one-time-code"
+                            class="bulma-input   "
+                            id="email"
+                            name="email"
+                            placeholder="Email address"
+                            required=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="bulma-columns"
+                    >
+                      <div
+                        class="bulma-column"
+                      >
+                        <div
+                          class="bulma-control bulma-has-icons-right "
+                        >
+                          <input
+                            class="bulma-input   "
+                            id="password"
+                            name="password"
+                            placeholder="Password"
+                            type="password"
+                            value=""
+                          />
+                          <span
+                            class="bulma-icon bulma-is-right text-field-with-password"
+                          >
+                            <button
+                              class="icon-button-no-hover  is-flex is-align-self-center"
+                              style="height: 48px; width: 48px;"
+                            >
+                              <div>
+                                <svg
+                                  class="is-flex is-align-self-center "
+                                  role="presentation"
+                                  style="width: 1.5rem; height: 1.5rem;"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"
+                                    style="fill: currentColor;"
+                                  />
+                                </svg>
+                              </div>
+                            </button>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="bulma-notification is-flex is-align-items-center"
+                  >
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-link"
+                        role="presentation"
+                        style="width: 1.5rem; height: 1.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      class="is-size-6 ml-4"
+                    >
+                      I agree to the terms of use and privacy policy.
                     </span>
                   </div>
-                </div>
-                <article
-                  class="bulma-message bulma-is-info"
-                >
                   <div
-                    class="bulma-message-header"
+                    class="mb-5"
                   >
-                    <p>
-                      Password requirements:
-                    </p>
+                    <button
+                      class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
+                      type="submit"
+                    >
+                      Sign up
+                    </button>
                   </div>
                   <div
-                    class="bulma-message-body bulma-content"
+                    class="has-text-right"
                   >
-                    <ul
-                      class="list-box"
-                    >
-                      <li>
-                        between 15..50 characters
-                      </li>
-                      <li>
-                        minimum one large letter
-                      </li>
-                      <li>
-                        minimum one small letter
-                      </li>
-                      <li>
-                        minimum one number
-                      </li>
-                    </ul>
-                    <p
-                      class=""
-                    >
-                      We recommend to use password generator to generate very strong and long password; to be used within browser password manager (1Password, Bitwarden, KeePass).
-                    </p>
-                    <p
-                      class=""
-                    >
-                      Recommendation based on the following reading:
-                    </p>
                     <a
-                      href="https://www.fbi.gov/contact-us/field-offices/elpaso/news/fbi-tech-tuesday-strong-passphrases-and-account-protection"
+                      href="//account/signin"
                       rel="noopener nofollow"
-                      target="_blank"
                     >
-                      Strong Passphrases and Account Protection
+                      Already have an account? Sign in
                     </a>
                   </div>
-                </article>
-                <div
-                  class="bulma-notification"
-                >
-                  <p
-                    class="is-size-6"
-                  >
-                    I agree to the terms of use and privacy policy.
-                  </p>
-                </div>
-                <div
-                  class="mb-5"
-                >
-                  <button
-                    class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
-                    type="submit"
-                  >
-                    Sign up
-                  </button>
-                </div>
-                <div
-                  class="has-text-right"
-                >
-                  <a
-                    href="//account/signin"
-                    rel="noopener nofollow"
-                  >
-                    Already have an account? Sign in
-                  </a>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </body>,
-  "container": <div>
-    <section>
-      <div
-        class="bulma-container bulma-is-max-tablet"
-      >
-        <div
-          class="py-6"
-        >
-          <div
-            class="bulma-card "
-          >
             <div
-              class="bulma-card-content"
+              class="bulma-column ml-6 is-flex is-align-self-center"
             >
-              <div
-                class="is-flex is-flex-direction-column is-align-items-center"
-              >
-                <div>
-                  <svg
-                    class="is-flex is-align-self-center has-text-link"
-                    role="presentation"
-                    style="width: 4.5rem; height: 4.5rem;"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"
-                      style="fill: currentColor;"
-                    />
-                  </svg>
-                </div>
-                <p
-                  class="is-size-3 has-text-grey"
-                >
-                  Create a new account
-                </p>
-              </div>
-              <div
-                class="my-5"
-              >
-                <div
-                  class="bulma-control  mb-3"
-                >
-                  <input
-                    autocomplete="one-time-code"
-                    class="bulma-input   "
-                    id="firstName"
-                    name="firstName"
-                    placeholder="First name"
-                    required=""
-                    type="text"
-                    value=""
-                  />
-                </div>
-                <div
-                  class="bulma-control  mb-3"
-                >
-                  <input
-                    autocomplete="one-time-code"
-                    class="bulma-input   "
-                    id="lastName"
-                    name="lastName"
-                    placeholder="Last name"
-                    required=""
-                    type="text"
-                    value=""
-                  />
-                </div>
-                <div
-                  class="bulma-control  mb-3"
-                >
-                  <input
-                    autocomplete="one-time-code"
-                    class="bulma-input   "
-                    id="email"
-                    name="email"
-                    placeholder="Email address"
-                    required=""
-                    type="text"
-                    value=""
-                  />
-                </div>
-                <div
-                  class="bulma-control bulma-has-icons-right "
-                >
-                  <input
-                    class="bulma-input   "
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    value=""
-                  />
-                  <span
-                    class="bulma-icon bulma-is-right text-field-with-password"
-                  >
-                    <button
-                      class="icon-button-no-hover  is-flex is-align-self-center"
-                      style="height: 48px; width: 48px;"
-                    >
-                      <div>
-                        <svg
-                          class="is-flex is-align-self-center "
-                          role="presentation"
-                          style="width: 1.5rem; height: 1.5rem;"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"
-                            style="fill: currentColor;"
-                          />
-                        </svg>
-                      </div>
-                    </button>
-                  </span>
-                </div>
-              </div>
               <article
                 class="bulma-message bulma-is-info"
               >
@@ -368,36 +247,255 @@ Object {
                   </a>
                 </div>
               </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section>
+      <div
+        class="bulma-container"
+      >
+        <div
+          class="bulma-columns mx-4 my-6"
+        >
+          <div
+            class="bulma-column bulma-is-half p-0"
+          >
+            <div
+              class="bulma-card"
+            >
               <div
-                class="bulma-notification"
+                class="bulma-card-content"
               >
-                <p
-                  class="is-size-6"
+                <div
+                  class="is-flex is-flex-direction-column is-align-items-center"
                 >
-                  I agree to the terms of use and privacy policy.
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center card-icon-colour"
+                      role="presentation"
+                      style="width: 3.75rem; height: 3.75rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="is-size-3 has-text-black"
+                  >
+                    Create a new account
+                  </p>
+                </div>
+                <div
+                  class="my-5"
+                >
+                  <div
+                    class="bulma-columns"
+                  >
+                    <div
+                      class="bulma-column pb-0"
+                    >
+                      <div
+                        class="bulma-control  mb-3"
+                      >
+                        <input
+                          autocomplete="one-time-code"
+                          class="bulma-input   "
+                          id="firstName"
+                          name="firstName"
+                          placeholder="First name"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                    <div
+                      class="bulma-column pb-0"
+                    >
+                      <div
+                        class="bulma-control  mb-3"
+                      >
+                        <input
+                          autocomplete="one-time-code"
+                          class="bulma-input   "
+                          id="lastName"
+                          name="lastName"
+                          placeholder="Last name"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="bulma-columns"
+                  >
+                    <div
+                      class="bulma-column pb-0"
+                    >
+                      <div
+                        class="bulma-control  mb-3"
+                      >
+                        <input
+                          autocomplete="one-time-code"
+                          class="bulma-input   "
+                          id="email"
+                          name="email"
+                          placeholder="Email address"
+                          required=""
+                          type="text"
+                          value=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="bulma-columns"
+                  >
+                    <div
+                      class="bulma-column"
+                    >
+                      <div
+                        class="bulma-control bulma-has-icons-right "
+                      >
+                        <input
+                          class="bulma-input   "
+                          id="password"
+                          name="password"
+                          placeholder="Password"
+                          type="password"
+                          value=""
+                        />
+                        <span
+                          class="bulma-icon bulma-is-right text-field-with-password"
+                        >
+                          <button
+                            class="icon-button-no-hover  is-flex is-align-self-center"
+                            style="height: 48px; width: 48px;"
+                          >
+                            <div>
+                              <svg
+                                class="is-flex is-align-self-center "
+                                role="presentation"
+                                style="width: 1.5rem; height: 1.5rem;"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"
+                                  style="fill: currentColor;"
+                                />
+                              </svg>
+                            </div>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="bulma-notification is-flex is-align-items-center"
+                >
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-link"
+                      role="presentation"
+                      style="width: 1.5rem; height: 1.5rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <span
+                    class="is-size-6 ml-4"
+                  >
+                    I agree to the terms of use and privacy policy.
+                  </span>
+                </div>
+                <div
+                  class="mb-5"
+                >
+                  <button
+                    class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
+                    type="submit"
+                  >
+                    Sign up
+                  </button>
+                </div>
+                <div
+                  class="has-text-right"
+                >
+                  <a
+                    href="//account/signin"
+                    rel="noopener nofollow"
+                  >
+                    Already have an account? Sign in
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bulma-column ml-6 is-flex is-align-self-center"
+          >
+            <article
+              class="bulma-message bulma-is-info"
+            >
+              <div
+                class="bulma-message-header"
+              >
+                <p>
+                  Password requirements:
                 </p>
               </div>
               <div
-                class="mb-5"
+                class="bulma-message-body bulma-content"
               >
-                <button
-                  class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
-                  type="submit"
+                <ul
+                  class="list-box"
                 >
-                  Sign up
-                </button>
-              </div>
-              <div
-                class="has-text-right"
-              >
+                  <li>
+                    between 15..50 characters
+                  </li>
+                  <li>
+                    minimum one large letter
+                  </li>
+                  <li>
+                    minimum one small letter
+                  </li>
+                  <li>
+                    minimum one number
+                  </li>
+                </ul>
+                <p
+                  class=""
+                >
+                  We recommend to use password generator to generate very strong and long password; to be used within browser password manager (1Password, Bitwarden, KeePass).
+                </p>
+                <p
+                  class=""
+                >
+                  Recommendation based on the following reading:
+                </p>
                 <a
-                  href="//account/signin"
+                  href="https://www.fbi.gov/contact-us/field-offices/elpaso/news/fbi-tech-tuesday-strong-passphrases-and-account-protection"
                   rel="noopener nofollow"
+                  target="_blank"
                 >
-                  Already have an account? Sign in
+                  Strong Passphrases and Account Protection
                 </a>
               </div>
-            </div>
+            </article>
           </div>
         </div>
       </div>

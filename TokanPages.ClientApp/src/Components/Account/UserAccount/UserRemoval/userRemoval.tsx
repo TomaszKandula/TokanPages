@@ -17,7 +17,6 @@ import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 
 export interface UserRemovalProps {
     className?: string;
-    background?: string;
 }
 
 export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
@@ -28,7 +27,7 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
     const remove = useSelector((state: ApplicationState) => state.userRemove);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const template = data.components.templates;
     const account = data.components.accountSettings;
 
@@ -91,7 +90,6 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
             deleteAccountProgress={hasProgress}
             sectionAccountRemoval={account.sectionAccountRemoval}
             className={props.className}
-            background={props.background}
         />
     );
 };

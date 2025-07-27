@@ -23,7 +23,6 @@ export interface ContactFormProps {
     hasCaption?: boolean;
     hasIcon?: boolean;
     hasShadow?: boolean;
-    background?: string;
     className?: string;
 }
 
@@ -34,6 +33,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const templates = data?.components?.templates;
     const contactForm = data?.components?.sectionContactForm;
 
@@ -60,6 +60,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
         if (hasNotStarted && hasProgress) {
             dispatch(
                 ApplicationMessageAction.send({
+                    languageId: languageId,
                     firstName: form.firstName,
                     lastName: form.lastName,
                     userEmail: form.email,
@@ -85,7 +86,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
                 })
             );
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, message, form]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, message, form, languageId]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -159,7 +160,6 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
             labelSubject={contactForm?.labelSubject}
             labelMessage={contactForm?.labelMessage}
             minRows={6}
-            background={props.background}
             hasIcon={props.hasIcon}
             hasCaption={props.hasCaption}
             hasShadow={props.hasShadow}

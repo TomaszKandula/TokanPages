@@ -54,7 +54,7 @@ export const ContentPageData: ContentPageDataState = {
                 labelFirstName: "",
                 labelLastName: "",
                 labelEmail: "",
-                labelShortBio: "",
+                labelDescription: "",
                 labelUserAvatar: "",
                 updateButtonText: "",
                 uploadAvatarButtonText: "",
@@ -158,6 +158,7 @@ export const ContentPageData: ContentPageDataState = {
             emailLabel: "",
             phoneLabel: "",
             techLabel: "",
+            hasTechItems: false,
             techItems: [],
             description: {
                 label: "",
@@ -168,6 +169,26 @@ export const ContentPageData: ContentPageDataState = {
                 caption: "",
                 disclaimer: "",
                 services: [],
+            },
+            presentation: {
+                image: {
+                    link: "",
+                    title: "",
+                    alt: "",
+                    width: 0,
+                    heigh: 0,
+                },
+                title: "",
+                subtitle: "",
+                icon: {
+                    name: "",
+                    href: "",
+                },
+                description: "",
+                logos: {
+                    title: "",
+                    images: [],
+                },
             },
         },
         sectionClients: {
@@ -492,8 +513,8 @@ export const ContentPageData: ContentPageDataState = {
         accountUserSignout: {
             language: "",
             caption: "",
-            onProcessing: "",
-            onFinish: "",
+            onProcessing: [""],
+            onFinish: [""],
             buttonText: "",
         },
         accountUserSignup: {

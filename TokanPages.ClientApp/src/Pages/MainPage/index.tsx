@@ -39,17 +39,17 @@ export const MainPage = (): React.ReactElement => {
             <Navigation />
             <main>
                 <Header />
-                <Clients />
-                <Technologies className="has-background-white-bis" />
-                <Showcase />
-                <ArticleFeature className="has-background-white-bis" />
-                <Featured />
-                <Testimonials className="has-background-white-bis" />
-                <Socials />
-                <NewsletterSection className="has-background-white-bis" />
+                <Clients className="has-background-white-ter" />
+                <Technologies />
+                <Showcase className="has-background-white-bis" />
+                <ArticleFeature />
+                <Featured className="has-background-white-bis" />
+                <Testimonials />
+                <Socials className="has-background-white-bis" />
+                <NewsletterSection className="has-background-info-95" />
                 <ContactForm hasCaption={true} />
             </main>
-            <Footer className="has-background-white-bis" />
+            <Footer />
         </>
     );
 };

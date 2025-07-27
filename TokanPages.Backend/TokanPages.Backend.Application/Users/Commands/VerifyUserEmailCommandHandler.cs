@@ -43,7 +43,7 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
 
         var messageId = await PrepareNotificationUncommitted(cancellationToken);
         await CommitAllChanges(cancellationToken);
-        await SendNotification(messageId, request.EmailAddress, activationId, activationIdEnds, cancellationToken);
+        await SendNotification(messageId, request.LanguageId, request.EmailAddress, activationId, activationIdEnds, cancellationToken);
 
         LoggerService.LogInformation($"Sending activation email to verify user email address.");
         return Unit.Value;
@@ -65,10 +65,11 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
         return messageId;
     }
 
-    private async Task SendNotification(Guid messageId, string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
+    private async Task SendNotification(Guid messageId, string languageId, string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
     {
         var configuration = new VerifyEmailConfiguration
         {
+            LanguageId = languageId,
             MessageId = messageId,
             EmailAddress = emailAddress,
             VerificationId = activationId,

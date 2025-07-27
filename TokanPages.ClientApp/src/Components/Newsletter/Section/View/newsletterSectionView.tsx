@@ -14,14 +14,14 @@ interface NewsletterViewProps extends ViewProperties {
     progress: boolean;
     buttonText: string;
     labelEmail: string;
-    background?: string;
+    className?: string;
 }
 
 const ActiveButton = (props: NewsletterViewProps): React.ReactElement => (
     <button
         type="submit"
         onClick={props.buttonHandler}
-        className="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
+        className="bulma-button bulma-is-fullwidth"
         disabled={props.progress}
     >
         {!props.progress ? props.buttonText : <ProgressBar size={20} />}
@@ -29,7 +29,7 @@ const ActiveButton = (props: NewsletterViewProps): React.ReactElement => (
 );
 
 export const NewsletterSectionView = (props: NewsletterViewProps): React.ReactElement => (
-    <section className={props.background}>
+    <section className={props.className}>
         <div className="bulma-container">
             <div className="py-6">
                 <div className={props.isMobile ? "p-5" : "p-6"}>

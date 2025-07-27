@@ -25,7 +25,7 @@ export interface SectionAccountInformation {
     labelFirstName: string;
     labelLastName: string;
     labelEmail: string;
-    labelShortBio: string;
+    labelDescription: string;
     labelUserAvatar: string;
     updateButtonText: string;
     uploadAvatarButtonText: string;

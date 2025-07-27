@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BusinessFormView } from "./View/businessFormView";
 import { useDispatch, useSelector } from "react-redux";
-import { TechItemsDto } from "../../Api/Models";
+import { OfferItemDto } from "../../Api/Models";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
 import { IconType, OperationStatus } from "../../Shared/enums";
@@ -9,8 +9,9 @@ import { useDimensions } from "../../Shared/Hooks";
 import { INTERNAL_MESSAGE_TEXT, INTERNAL_SUBJECT_TEXT, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { formatPhoneNumber } from "../../Shared/Services/Converters";
 import { ValidateBusinessForm } from "../../Shared/Services/FormValidation";
-import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent, ReactMouseEvent } from "../../Shared/types";
-import { BusinessFormProps, MessageFormProps } from "./Models";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../Shared/types";
+import { getSelection, resetSelection, valueCleanUp } from "./Utilities";
+import { BusinessFormProps, MessageFormProps } from "./Types";
 import Validate from "validate.js";
 
 const formDefault: MessageFormProps = {
@@ -24,38 +25,6 @@ const formDefault: MessageFormProps = {
     services: [""],
 };
 
-const valueCleanUp = (input: string): string => {
-    return input.replaceAll(" ", "").replaceAll("(", "").replaceAll(")", "");
-};
-
-const getTechSelection = (input?: TechItemsDto[]): string[] => {
-    if (!input) {
-        return [""];
-    }
-
-    let result: string[] = [];
-    input.forEach(item => {
-        if (item.isChecked) {
-            result.push(item.value);
-        }
-    });
-
-    return result;
-};
-
-const resetTechStack = (input?: TechItemsDto[]): TechItemsDto[] => {
-    if (!input) {
-        return [];
-    }
-
-    let result: TechItemsDto[] = [];
-    input.forEach(item => {
-        result.push({ ...item, isChecked: false });
-    });
-
-    return result;
-};
-
 export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const media = useDimensions();
     const dispatch = useDispatch();
@@ -63,6 +32,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const templates = data.components.templates;
     const businessForm = data.components.pageBusinessForm;
 
@@ -72,8 +42,8 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
 
     const [form, setForm] = React.useState<MessageFormProps>(formDefault);
     const [description, setDescription] = React.useState({ description: "" });
-    const [techStackItems, setTechStackItems] = React.useState<TechItemsDto[] | undefined>(undefined);
-    const [services, setServices] = React.useState<string[]>([]);
+    const [techStackItems, setTechStackItems] = React.useState<OfferItemDto[] | undefined>(undefined);
+    const [serviceItems, setServiceItems] = React.useState<OfferItemDto[] | undefined>(undefined);
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const clearForm = React.useCallback(() => {
@@ -81,8 +51,8 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             return;
         }
 
-        setTechStackItems(resetTechStack(techStackItems));
-        setServices([""]);
+        setTechStackItems(resetSelection(techStackItems));
+        setServiceItems(undefined);
         setForm(formDefault);
         setHasProgress(false);
         dispatch(ApplicationMessageAction.clear());
@@ -92,7 +62,11 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
         if (!techStackItems && businessForm.techItems.length > 0) {
             setTechStackItems(businessForm.techItems);
         }
-    }, [businessForm.techItems]);
+
+        if (!serviceItems && businessForm.pricing.services.length > 0) {
+            setServiceItems(businessForm.pricing.services);
+        }
+    }, [businessForm.techItems, businessForm.pricing.services]);
 
     React.useEffect(() => {
         if (hasError) {
@@ -101,7 +75,8 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
         }
 
         if (hasNotStarted && hasProgress) {
-            const techStack = getTechSelection(techStackItems);
+            const techStack = getSelection(techStackItems);
+            const services = getSelection(serviceItems);
             const data = JSON.stringify({
                 ...form,
                 techStack: techStack,
@@ -110,6 +85,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
 
             dispatch(
                 ApplicationMessageAction.send({
+                    languageId: languageId,
                     firstName: form.firstName,
                     lastName: form.lastName,
                     userEmail: form.email,
@@ -134,7 +110,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
                 })
             );
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, techStackItems, services]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, techStackItems, serviceItems, languageId]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -188,46 +164,35 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     );
 
     const serviceHandler = React.useCallback(
-        (event: ReactMouseEvent) => {
-            event.preventDefault();
-            const data = event.currentTarget.getAttribute("data-disabled") as string;
-            const isDisabled = JSON.parse(data);
-            if (isDisabled) {
+        (event: ReactChangeEvent) => {
+            if (!serviceItems) {
                 return;
             }
 
-            const id = event.currentTarget.id;
-            if (!services) {
-                const data = [];
-                data.push(id);
-                setServices(data);
-            } else {
-                const data = services.slice();
-                const index = data.indexOf(id);
-                if (!data.includes(id)) {
-                    data.push(id);
-                    setServices(data);
-                } else {
-                    data.splice(index, 1);
-                    setServices(data);
-                }
-            }
+            const index = Number(event.target.id);
+            const data = serviceItems.slice();
+            data[index].isChecked = event.target.checked;
+            setServiceItems(data);
         },
-        [services]
+        [serviceItems]
     );
 
     const buttonHandler = React.useCallback(() => {
-        const techStack = getTechSelection(techStackItems);
-        const result = ValidateBusinessForm({
-            company: form.company,
-            firstName: form.firstName,
-            lastName: form.lastName,
-            email: form.email,
-            phone: form.phone,
-            description: description.description,
-            techStack: techStack,
-            services: services,
-        });
+        const techStack = getSelection(techStackItems);
+        const services = getSelection(serviceItems);
+        const result = ValidateBusinessForm(
+            {
+                company: form.company,
+                firstName: form.firstName,
+                lastName: form.lastName,
+                email: form.email,
+                phone: form.phone,
+                description: description.description,
+                techStack: techStack,
+                services: services,
+            },
+            businessForm.hasTechItems
+        );
 
         if (!Validate.isDefined(result)) {
             setHasProgress(true);
@@ -242,7 +207,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
                 icon: IconType.warning,
             })
         );
-    }, [form, description, templates, services, techStackItems]);
+    }, [form, description, templates, serviceItems, techStackItems]);
 
     return (
         <BusinessFormView
@@ -257,7 +222,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             buttonHandler={buttonHandler}
             techHandler={techHandler}
             serviceHandler={serviceHandler}
-            serviceSelection={services}
+            serviceItems={serviceItems ?? []}
             companyText={form.company}
             companyLabel={businessForm.companyLabel}
             firstNameText={form.firstName}
@@ -269,6 +234,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             phoneText={form.phone}
             phoneLabel={businessForm.phoneLabel}
             techLabel={businessForm.techLabel}
+            hasTechItems={businessForm.hasTechItems}
             techItems={techStackItems ?? []}
             description={{
                 text: description.description,
@@ -281,8 +247,8 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
                 disclaimer: businessForm.pricing.disclaimer,
                 services: businessForm.pricing.services,
             }}
+            presentation={businessForm.presentation}
             className={props.className}
-            background={props.background}
             hasIcon={props.hasIcon}
             hasCaption={props.hasCaption}
             hasShadow={props.hasShadow}

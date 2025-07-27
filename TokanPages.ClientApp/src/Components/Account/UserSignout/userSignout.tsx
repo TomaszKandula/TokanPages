@@ -8,7 +8,6 @@ import Validate from "validate.js";
 
 export interface UserSignoutProps {
     className?: string;
-    background?: string;
 }
 
 export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
@@ -18,7 +17,7 @@ export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
     const signout = useSelector((state: ApplicationState) => state.userSignout);
     const store = useSelector((state: ApplicationState) => state.userDataStore);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const contentData = data.components.accountUserSignout;
 
     const isUserTokenRevoked = signout.userTokenStatus === OperationStatus.hasFinished;
@@ -54,7 +53,6 @@ export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
             buttonText={contentData?.buttonText}
             isAnonymous={isAnonymous}
             className={props.className}
-            background={props.background}
         />
     );
 };

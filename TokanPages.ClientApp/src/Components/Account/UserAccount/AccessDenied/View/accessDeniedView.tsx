@@ -12,7 +12,7 @@ interface AccessDeniedViewProps extends AccessDeniedProps {
 
 export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactElement => {
     return (
-        <section className={props.background}>
+        <section className={props.className}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className="py-6">
                     <CustomCard

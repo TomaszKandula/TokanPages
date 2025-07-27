@@ -2,7 +2,7 @@ import * as React from "react";
 import { useLocation } from "react-router-dom";
 import { usePageContent, useUnhead } from "../../Shared/Hooks";
 import { NewsletterUpdate } from "../../Components/Newsletter";
-import { Navigation } from "../../Components/Layout";
+import { Footer, Navigation } from "../../Components/Layout";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -11,7 +11,7 @@ const useQuery = () => {
 export const NewsletterUpdatePage = (): React.ReactElement => {
     useUnhead("NewsletterUpdatePage");
     usePageContent(
-        ["layoutNavigation", "templates", "sectionCookiesPrompt", "pageNewsletterUpdate"],
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageNewsletterUpdate"],
         "NewsletterUpdatePage"
     );
 
@@ -21,9 +21,10 @@ export const NewsletterUpdatePage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly />
-            <main className="pt-6">
+            <main>
                 <NewsletterUpdate id={id} />
             </main>
+            <Footer />
         </>
     );
 };

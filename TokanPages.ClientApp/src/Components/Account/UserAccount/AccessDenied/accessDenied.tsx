@@ -4,12 +4,12 @@ import { ApplicationState } from "../../../../Store/Configuration";
 import { AccessDeniedView } from "./View/accessDeniedView";
 
 export interface AccessDeniedProps {
-    background?: string;
+    className?: string;
 }
 
 export const AccessDenied = (props: AccessDeniedProps): React.ReactElement => {
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const accessDeniedCaption = contentPageData.components.accountSettings?.sectionAccessDenied?.accessDeniedCaption;
     const accessDeniedPrompt = contentPageData.components.accountSettings?.sectionAccessDenied?.accessDeniedPrompt;
     const homeButtonText = contentPageData.components.accountSettings?.sectionAccessDenied?.homeButtonText;
@@ -21,7 +21,7 @@ export const AccessDenied = (props: AccessDeniedProps): React.ReactElement => {
             accessDeniedCaption={accessDeniedCaption}
             accessDeniedPrompt={accessDeniedPrompt}
             homeButtonText={homeButtonText}
-            background={props.background}
+            className={props.className}
         />
     );
 };

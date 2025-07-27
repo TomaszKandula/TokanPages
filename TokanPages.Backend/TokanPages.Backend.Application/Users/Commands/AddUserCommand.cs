@@ -4,6 +4,8 @@ namespace TokanPages.Backend.Application.Users.Commands;
 
 public class AddUserCommand : IRequest<Guid>
 {
+    public string LanguageId { get; set; } = "";
+
     public string FirstName { get; set; } = "";
 
     public string LastName { get; set; } = "";

@@ -41,16 +41,14 @@ describe("test account group component: userInfoView", () => {
                         firstName: "Ester",
                         lastName: "Exposito",
                         email: "ester.exposito@gmail.com",
-                        userAboutText: "Spanish Developer",
+                        description: "Spanish Developer",
                     }}
                     userImageName=""
-                    isUserActivated={true}
                     isRequestingVerification={false}
                     formProgress={false}
                     keyHandler={jest.fn()}
                     formHandler={jest.fn()}
                     descriptionHandler={jest.fn()}
-                    switchHandler={jest.fn()}
                     saveButtonHandler={jest.fn()}
                     verifyButtonHandler={jest.fn()}
                     sectionAccountInformation={{
@@ -65,13 +63,13 @@ describe("test account group component: userInfoView", () => {
                         labelFirstName: "First name:",
                         labelLastName: "last name:",
                         labelEmail: "Email:",
-                        labelShortBio: "Bio:",
+                        labelDescription: "Bio:",
                         labelUserAvatar: "Avatar:",
                         updateButtonText: "Update",
                         uploadAvatarButtonText: "Upload",
                     }}
-                    background="has-background-white"
-                    userAbout={{
+                    className="has-background-white"
+                    description={{
                         message: "",
                         minRows: undefined,
                     }}

@@ -38,7 +38,7 @@ Object {
           class="bulma-navbar-end"
         >
           <div
-            class="bulma-navbar-item bulma-has-dropdown "
+            class="bulma-navbar-item bulma-has-dropdown mr-4 "
           >
             <a
               class="bulma-navbar-link"
@@ -63,6 +63,7 @@ Object {
               >
                 <img
                   alt="A flag (English) symbolizing available language"
+                  class="mr-4 lazyloaded"
                   height="14"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
@@ -91,6 +92,7 @@ Object {
               >
                 <img
                   alt="A flag (Polski) symbolizing available language"
+                  class="mr-4 lazyloaded"
                   height="14"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
@@ -107,15 +109,15 @@ Object {
             class="icon-button mr-4 is-flex is-align-self-center"
             style="height: 48px; width: 48px;"
           >
-            <div
-              class="avatar-wrapper undefined"
+            <figure
+              class="bulma-image "
             >
               <img
                 alt="User avatar"
-                class="avatar-image"
+                class="bulma-is-rounded"
                 title="Avatar"
               />
-            </div>
+            </figure>
           </button>
         </div>
       </nav>
@@ -155,7 +157,7 @@ Object {
         class="bulma-navbar-end"
       >
         <div
-          class="bulma-navbar-item bulma-has-dropdown "
+          class="bulma-navbar-item bulma-has-dropdown mr-4 "
         >
           <a
             class="bulma-navbar-link"
@@ -180,6 +182,7 @@ Object {
             >
               <img
                 alt="A flag (English) symbolizing available language"
+                class="mr-4 lazyloaded"
                 height="14"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
@@ -208,6 +211,7 @@ Object {
             >
               <img
                 alt="A flag (Polski) symbolizing available language"
+                class="mr-4 lazyloaded"
                 height="14"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
@@ -224,15 +228,15 @@ Object {
           class="icon-button mr-4 is-flex is-align-self-center"
           style="height: 48px; width: 48px;"
         >
-          <div
-            class="avatar-wrapper undefined"
+          <figure
+            class="bulma-image "
           >
             <img
               alt="User avatar"
-              class="avatar-image"
+              class="bulma-is-rounded"
               title="Avatar"
             />
-          </div>
+          </figure>
         </button>
       </div>
     </nav>

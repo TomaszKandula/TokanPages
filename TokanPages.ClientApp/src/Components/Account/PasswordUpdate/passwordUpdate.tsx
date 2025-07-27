@@ -33,7 +33,6 @@ const formDefaultValues: UpdateFormInput = {
 
 export interface PasswordUpdateProps {
     className?: string;
-    background?: string;
 }
 
 export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement => {
@@ -159,7 +158,6 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
             labelNewPassword={password?.labelNewPassword}
             labelVerifyPassword={password?.labelVerifyPassword}
             className={props.className}
-            background={props.background}
         />
     );
 };

@@ -127,7 +127,7 @@ export const RenderInternalLink = (props: TextItem): React.ReactElement => {
     const media = useDimensions();
 
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
 
     const hasImage = !Validate.isEmpty(props.propImg);
     const imageUrl = hasImage ? GET_NON_VIDEO_ASSET.replace("{name}", props.propImg!) : "";

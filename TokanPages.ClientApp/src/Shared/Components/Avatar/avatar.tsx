@@ -13,12 +13,20 @@ export const Avatar = (props: AvatarProps): React.ReactElement => {
     const hasSrc = props.src && props.src !== "";
 
     if (!hasSrc && props.children) {
-        return <div className={`avatar-wrapper ${props.className}`}>{props.children}</div>;
+        const baseClass = "has-background-grey-light is-flex is-justify-content-center is-align-items-center";
+        let className;
+        if (props.className?.includes("96x96")) {
+            className = `${baseClass} default-avatar-large`;
+        } else {
+            className = `${baseClass} default-avatar-small`;
+        }
+
+        return <div className={className}>{props.children}</div>;
     }
 
     return (
-        <div className={`avatar-wrapper ${props.className}`}>
-            <img alt={props.alt} title={props.title} src={props.src} className="avatar-image" />
-        </div>
+        <figure className={`bulma-image ${props.className ?? ""}`}>
+            <img alt={props.alt} title={props.title} src={props.src} className="bulma-is-rounded" />
+        </figure>
     );
 };

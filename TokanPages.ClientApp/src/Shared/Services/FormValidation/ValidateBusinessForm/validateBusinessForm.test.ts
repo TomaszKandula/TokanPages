@@ -23,6 +23,25 @@ describe("verify business form validation methods", () => {
         expect(result).toBeUndefined();
     });
 
+    it("should return undefined, when business form is filled correctly without TechStack.", () => {
+        // Arrange
+        const form: BusinessFormInput = {
+            company: "Espana Software",
+            firstName: "Ester",
+            lastName: "Exposito",
+            email: "ester.exposito@gmail.com",
+            phone: "(00) 111 222 333",
+            description: "Write me an awesome app...",
+            services: ["web", "mobile"],
+        };
+
+        // Act
+        const result = ValidateBusinessForm(form, false);
+
+        // Assert
+        expect(result).toBeUndefined();
+    });
+
     it("should return defined, when business form is missing 'company'.", () => {
         // Arrange
         const form: BusinessFormInput = {
@@ -136,7 +155,7 @@ describe("verify business form validation methods", () => {
         };
 
         // Act
-        const result = ValidateBusinessForm(form);
+        const result = ValidateBusinessForm(form, true);
 
         // Assert
         expect(result).toBeDefined();

@@ -3,7 +3,7 @@ import { PasswordFormInput } from "..";
 import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter } from "../Helpers";
 
 export const ValidatePasswordForm = (props: PasswordFormInput): object | undefined => {
-    let constraints = {
+    const constraints = {
         oldPassword: {
             presence: true,
             length: {

@@ -12,11 +12,10 @@ describe("test account group component: userSignoutView", () => {
                     isLoading={false}
                     languageId="en"
                     caption="Sign out"
-                    status="Signing out current user..., please wait."
+                    status={["Signing out current user..., please wait."]}
                     buttonText={"Go back to main"}
                     isAnonymous={false}
                     className="mt-5"
-                    background="has-background-white"
                 />
             </BrowserRouter>
         );

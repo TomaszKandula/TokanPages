@@ -26,7 +26,7 @@ export const UserNotesPage = (): React.ReactElement => {
     return (
         <>
             <Navigation />
-            <main className="pt-6">{isAnonymous ? <AccessDenied /> : <UserNotes />}</main>
+            <main>{isAnonymous ? <AccessDenied /> : <UserNotes />}</main>
             <Footer />
         </>
     );

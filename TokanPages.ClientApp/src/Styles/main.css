@@ -25,9 +25,8 @@
   An application MUST NOT use the pseudo function expression.
 */
 
-@import url("spinner.css");
-@import url("error.css");
 @import url("bulma.css");
+@import url("spinner.css");
 @import url("checkbox.css");
 @import url("lines.css");
 
@@ -77,4 +76,8 @@ body {
 
 .do-not-display {
     display: none !important;
+}
+
+.card-icon-colour {
+    color: hsla(233, 100%, 73%, 1);
 }

@@ -18,7 +18,7 @@ public class UpdateUserCommandValidatorTest : TestBase
             UserAlias = DataUtilityService.GetRandomString(),
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
-            UserAboutText = DataUtilityService.GetRandomString(),
+            Description = DataUtilityService.GetRandomString(),
             UserImageName = DataUtilityService.GetRandomString(),
             UserVideoName = DataUtilityService.GetRandomString()
         };
@@ -42,7 +42,7 @@ public class UpdateUserCommandValidatorTest : TestBase
             UserAlias = string.Empty,
             FirstName = string.Empty,
             LastName = string.Empty,
-            UserAboutText = string.Empty,
+            Description = string.Empty,
             UserImageName = string.Empty,
             UserVideoName = string.Empty,
         };
@@ -73,7 +73,7 @@ public class UpdateUserCommandValidatorTest : TestBase
             FirstName = DataUtilityService.GetRandomString(500),
             LastName = DataUtilityService.GetRandomString(500),
             EmailAddress = DataUtilityService.GetRandomEmail(500),
-            UserAboutText = DataUtilityService.GetRandomString(500),
+            Description = DataUtilityService.GetRandomString(500),
             UserImageName = DataUtilityService.GetRandomString(500),
             UserVideoName = DataUtilityService.GetRandomString(500)
         };

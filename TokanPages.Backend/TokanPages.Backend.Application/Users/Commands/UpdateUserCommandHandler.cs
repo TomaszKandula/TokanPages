@@ -55,7 +55,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
         user.EmailAddress = request.EmailAddress ?? user.EmailAddress;
         user.ModifiedAt = _dateTimeService.Now;
         user.ModifiedBy = user.Id;
-        user.IsVerified = shouldVerify;
+        user.IsVerified = !shouldVerify;
     }
 
     private async Task UpdateUserInfoUncommitted(Guid userId, UpdateUserCommand request, CancellationToken cancellationToken = default)
@@ -71,7 +71,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
                 UserId = userId,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-                UserAboutText = request.UserAboutText,
+                UserAboutText = request.Description,
                 UserImageName = request.UserImageName,
                 UserVideoName = request.UserVideoName,
                 CreatedBy = userId,
@@ -84,7 +84,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
         {
             userInfo.FirstName = request.FirstName ?? userInfo.FirstName;
             userInfo.LastName = request.LastName ?? userInfo.LastName;
-            userInfo.UserAboutText = request.UserAboutText ?? userInfo.UserAboutText;
+            userInfo.UserAboutText = request.Description ?? userInfo.UserAboutText;
             userInfo.UserImageName = request.UserImageName ?? userInfo.UserImageName;
             userInfo.UserVideoName = request.UserVideoName ?? userInfo.UserVideoName;
             userInfo.ModifiedBy = userId;

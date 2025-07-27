@@ -34,8 +34,8 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
         var newsletterUpdatePath = _configuration.GetValue<string>("Paths_NewsletterUpdate");
         var newsletterRemovePath = _configuration.GetValue<string>("Paths_NewsletterRemove");
 
-        var newsletterUpdateLink = $"{origin}{newsletterUpdatePath}";
-        var newsletterRemoveLink = $"{origin}{newsletterRemovePath}";
+        var newsletterUpdateLink = $"{origin}/{request.LanguageId}{newsletterUpdatePath}";
+        var newsletterRemoveLink = $"{origin}/{request.LanguageId}{newsletterRemovePath}";
 
         LoggerService.LogInformation($"Update subscriber base URL: {newsletterUpdateLink}.");
         LoggerService.LogInformation($"Unsubscribe base URL: {newsletterRemoveLink}.");

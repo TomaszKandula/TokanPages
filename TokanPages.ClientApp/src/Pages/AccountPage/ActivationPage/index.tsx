@@ -2,7 +2,7 @@ import * as React from "react";
 import { useLocation } from "react-router-dom";
 import { usePageContent, useUnhead } from "../../../Shared/Hooks";
 import { AccountActivate } from "../../../Components/Account";
-import { Navigation } from "../../../Components/Layout";
+import { Footer, Navigation } from "../../../Components/Layout";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -11,7 +11,7 @@ const useQuery = () => {
 export const ActivationPage = (): React.ReactElement => {
     useUnhead("ActivationPage");
     usePageContent(
-        ["layoutNavigation", "templates", "sectionCookiesPrompt", "accountSettings", "accountActivate"],
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountSettings", "accountActivate"],
         "ActivationPage"
     );
 
@@ -22,9 +22,10 @@ export const ActivationPage = (): React.ReactElement => {
     return (
         <>
             <Navigation backNavigationOnly />
-            <main className="pt-6">
+            <main>
                 <AccountActivate id={id} type={type} />
             </main>
+            <Footer />
         </>
     );
 };

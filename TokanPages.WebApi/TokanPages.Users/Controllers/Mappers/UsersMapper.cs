@@ -59,6 +59,7 @@ public static class UsersMapper
     /// <returns>Command object.</returns>
     public static VerifyUserEmailCommand MapToVerifyUserEmailCommand(VerifyUserEmailDto model) => new()
     {
+        LanguageId = model.LanguageId,
         EmailAddress = model.EmailAddress
     };
 
@@ -69,6 +70,7 @@ public static class UsersMapper
     /// <returns>Command object.</returns>
     public static ResetUserPasswordCommand MapToResetUserPasswordCommand(ResetUserPasswordDto model) => new()
     {
+        LanguageId = model.LanguageId,
         EmailAddress = model.EmailAddress
     };
 
@@ -91,6 +93,7 @@ public static class UsersMapper
     /// <returns>Command object.</returns>
     public static AddUserCommand MapToAddUserCommand(AddUserDto model) => new() 
     { 
+        LanguageId = model.LanguageId,
         EmailAddress = model.EmailAddress,
         FirstName = model.FirstName,
         LastName = model.LastName,
@@ -110,7 +113,7 @@ public static class UsersMapper
         FirstName = model.FirstName,
         LastName = model.LastName,
         EmailAddress = model.EmailAddress,
-        UserAboutText = model.UserAboutText,
+        Description = model.Description,
         UserImageName = model.UserImageName,
         UserVideoName = model.UserVideoName
     };

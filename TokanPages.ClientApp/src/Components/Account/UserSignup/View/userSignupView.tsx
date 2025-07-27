@@ -11,6 +11,7 @@ import {
     Icon,
     ProgressBar,
     Skeleton,
+    Notification,
 } from "../../../../Shared/Components";
 import { UserSignupProps } from "../userSignup";
 
@@ -48,101 +49,117 @@ const ActiveButton = (props: UserSignupViewProps): React.ReactElement => (
 );
 
 export const UserSignupView = (props: UserSignupViewProps): React.ReactElement => (
-    <section className={props.background}>
-        <div className="bulma-container bulma-is-max-tablet">
-            <div className={!props.className ? "py-6" : props.className}>
-                <div className={`bulma-card ${props.isMobile ? "m-4" : ""}`}>
-                    <div className="bulma-card-content">
-                        <div className="is-flex is-flex-direction-column is-align-items-center">
-                            <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                                <Icon name="AccountCircle" size={3} className="has-text-link" />
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Text">
-                                <p className="is-size-3 has-text-grey">{props.caption}</p>
-                            </Skeleton>
-                        </div>
-                        <div className="my-5">
-                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                <TextField
-                                    required
-                                    uuid="firstName"
-                                    autoComplete="one-time-code"
-                                    autoFocus={true}
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    value={props.firstName}
-                                    placeholder={props.labelFirstName}
-                                    isDisabled={props.progress}
-                                    className="mb-3"
-                                />
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                <TextField
-                                    required
-                                    uuid="lastName"
-                                    autoComplete="one-time-code"
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    value={props.lastName}
-                                    placeholder={props.labelLastName}
-                                    isDisabled={props.progress}
-                                    className="mb-3"
-                                />
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                <TextField
-                                    required
-                                    uuid="email"
-                                    autoComplete="one-time-code"
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    value={props.email}
-                                    placeholder={props.labelEmail}
-                                    isDisabled={props.progress}
-                                    className="mb-3"
-                                />
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                <TextFieldWithPassword
-                                    uuid="password"
-                                    value={props.password}
-                                    placeholder={props.labelPassword}
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    isDisabled={props.progress}
-                                />
-                            </Skeleton>
-                        </div>
-                        <Skeleton isLoading={props.isLoading} mode="Rect" height={300}>
-                            <article className="bulma-message bulma-is-info">
-                                <div className="bulma-message-header">
-                                    <p>{props.warning?.textPre}</p>
-                                </div>
-                                <div className="bulma-message-body bulma-content">
-                                    <RenderList list={props.warning?.textList} className="" />
-                                    <RenderParagraphs text={props.warning?.textPost} className="" />
-                                    <a href={props.warning?.textNist?.href} target="_blank" rel="noopener nofollow">
-                                        {props.warning?.textNist?.text}
-                                    </a>
-                                </div>
-                            </article>
-                        </Skeleton>
-                        <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
-                            <div className="bulma-notification">
-                                <p className="is-size-6">{props.consent}</p>
+    <section className={props.className}>
+        <div className="bulma-container">
+            <div className="bulma-columns mx-4 my-6">
+                <div className="bulma-column bulma-is-half p-0">
+                    <div className="bulma-card">
+                        <div className="bulma-card-content">
+                            <div className="is-flex is-flex-direction-column is-align-items-center">
+                                <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                                    <Icon name="AccountCircle" size={2.5} className="card-icon-colour" />
+                                </Skeleton>
+                                <Skeleton isLoading={props.isLoading} mode="Text">
+                                    <p className="is-size-3 has-text-black">{props.caption}</p>
+                                </Skeleton>
                             </div>
-                        </Skeleton>
-                        <div className="mb-5">
-                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                <ActiveButton {...props} />
+                            <div className="my-5">
+                                <div className="bulma-columns">
+                                    <div className="bulma-column pb-0">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect">
+                                            <TextField
+                                                required
+                                                uuid="firstName"
+                                                autoComplete="one-time-code"
+                                                autoFocus={true}
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.firstName}
+                                                placeholder={props.labelFirstName}
+                                                isDisabled={props.progress}
+                                                className="mb-3"
+                                            />
+                                        </Skeleton>
+                                    </div>
+                                    <div className="bulma-column pb-0">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect">
+                                            <TextField
+                                                required
+                                                uuid="lastName"
+                                                autoComplete="one-time-code"
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.lastName}
+                                                placeholder={props.labelLastName}
+                                                isDisabled={props.progress}
+                                                className="mb-3"
+                                            />
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <div className="bulma-columns">
+                                    <div className="bulma-column pb-0">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect">
+                                            <TextField
+                                                required
+                                                uuid="email"
+                                                autoComplete="one-time-code"
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                value={props.email}
+                                                placeholder={props.labelEmail}
+                                                isDisabled={props.progress}
+                                                className="mb-3"
+                                            />
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                                <div className="bulma-columns">
+                                    <div className="bulma-column">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect">
+                                            <TextFieldWithPassword
+                                                uuid="password"
+                                                value={props.password}
+                                                placeholder={props.labelPassword}
+                                                onKeyUp={props.keyHandler}
+                                                onChange={props.formHandler}
+                                                isDisabled={props.progress}
+                                            />
+                                        </Skeleton>
+                                    </div>
+                                </div>
+                            </div>
+                            <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
+                                <Notification text={props.consent} />
                             </Skeleton>
-                        </div>
-                        <div className="has-text-right">
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                                <RedirectTo path={props.link?.href} name={props.link?.text} />
-                            </Skeleton>
+                            <div className="mb-5">
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                                    <ActiveButton {...props} />
+                                </Skeleton>
+                            </div>
+                            <div className="has-text-right">
+                                <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
+                                    <RedirectTo path={props.link?.href} name={props.link?.text} />
+                                </Skeleton>
+                            </div>
                         </div>
                     </div>
+                </div>
+                <div className={`bulma-column ${props.isMobile ? "p-0 mt-6" : "ml-6"} is-flex is-align-self-center`}>
+                    <Skeleton isLoading={props.isLoading} mode="Rect" height={300}>
+                        <article className="bulma-message bulma-is-info">
+                            <div className="bulma-message-header">
+                                <p>{props.warning?.textPre}</p>
+                            </div>
+                            <div className="bulma-message-body bulma-content">
+                                <RenderList list={props.warning?.textList} className="" />
+                                <RenderParagraphs text={props.warning?.textPost} className="" />
+                                <a href={props.warning?.textNist?.href} target="_blank" rel="noopener nofollow">
+                                    {props.warning?.textNist?.text}
+                                </a>
+                            </div>
+                        </article>
+                    </Skeleton>
                 </div>
             </div>
         </div>

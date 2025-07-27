@@ -6,67 +6,58 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="has-background-white"
+        class="mt-5"
       >
         <div
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="mt-5"
+            class="py-6"
           >
             <div
-              class="bulma-card"
+              class="bulma-card "
             >
               <div
                 class="bulma-card-content"
               >
                 <div
-                  class="is-flex is-flex-direction-column is-align-items-center"
+                  class="custom-card-icon-background is-flex is-justify-content-center is-align-items-center my-6"
                 >
-                  <div>
-                    <svg
-                      class="is-flex is-align-self-center has-text-link"
-                      role="presentation"
-                      style="width: 4.5rem; height: 4.5rem;"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"
-                        style="fill: currentColor;"
-                      />
-                    </svg>
-                  </div>
-                  <p
-                    class="is-size-3 has-text-grey"
+                  <div
+                    class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                   >
-                    Sign out
-                  </p>
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center custom-card-icon has-text-success"
+                        role="presentation"
+                        style="width: 4.5rem; height: 4.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
+                <h2
+                  class="bulma-title has-text-centered"
+                >
+                  Sign out
+                </h2>
                 <div
-                  class="has-text-centered mt-5"
+                  class="my-5"
                 >
                   <p
-                    class="is-size-6 has-text-black"
+                    class="is-size-6 has-text-centered line-height-20"
                   >
                     Signing out current user..., please wait.
                   </p>
                 </div>
                 <div
-                  class="mt-6 mb-3"
-                >
-                  <a
-                    class="link"
-                    href="/en"
-                    rel="noopener nofollow"
-                  >
-                    <button
-                      class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
-                      disabled=""
-                    >
-                      Go back to main
-                    </button>
-                  </a>
-                </div>
+                  class="mb-4"
+                />
               </div>
             </div>
           </div>
@@ -76,67 +67,58 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="has-background-white"
+      class="mt-5"
     >
       <div
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="mt-5"
+          class="py-6"
         >
           <div
-            class="bulma-card"
+            class="bulma-card "
           >
             <div
               class="bulma-card-content"
             >
               <div
-                class="is-flex is-flex-direction-column is-align-items-center"
+                class="custom-card-icon-background is-flex is-justify-content-center is-align-items-center my-6"
               >
-                <div>
-                  <svg
-                    class="is-flex is-align-self-center has-text-link"
-                    role="presentation"
-                    style="width: 4.5rem; height: 4.5rem;"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"
-                      style="fill: currentColor;"
-                    />
-                  </svg>
-                </div>
-                <p
-                  class="is-size-3 has-text-grey"
+                <div
+                  class="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center"
                 >
-                  Sign out
-                </p>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center custom-card-icon has-text-success"
+                      role="presentation"
+                      style="width: 4.5rem; height: 4.5rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                </div>
               </div>
+              <h2
+                class="bulma-title has-text-centered"
+              >
+                Sign out
+              </h2>
               <div
-                class="has-text-centered mt-5"
+                class="my-5"
               >
                 <p
-                  class="is-size-6 has-text-black"
+                  class="is-size-6 has-text-centered line-height-20"
                 >
                   Signing out current user..., please wait.
                 </p>
               </div>
               <div
-                class="mt-6 mb-3"
-              >
-                <a
-                  class="link"
-                  href="/en"
-                  rel="noopener nofollow"
-                >
-                  <button
-                    class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
-                    disabled=""
-                  >
-                    Go back to main
-                  </button>
-                </a>
-              </div>
+                class="mb-4"
+              />
             </div>
           </div>
         </div>

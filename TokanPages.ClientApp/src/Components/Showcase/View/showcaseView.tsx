@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { GET_SHOWCASE_IMAGE_URL } from "../../../Api";
 import { FeatureShowcaseContentDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated, CustomImage } from "../../../Shared/Components";
+import { Animated, CustomImage, Skeleton } from "../../../Shared/Components";
 import { useDimensions } from "../../../Shared/Hooks";
 import Validate from "validate.js";
 import "./showcaseView.css";
@@ -40,28 +40,40 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
             <div className="bulma-container">
                 <div className="py-6">
                     <Animated dataAos="fade-down">
-                        <p className="is-size-3	has-text-centered has-text-link">{showcase?.caption?.toUpperCase()}</p>
+                        <Skeleton isLoading={isLoading} mode="Text" height={40}>
+                            <p className="is-size-3	has-text-centered has-text-link">
+                                {showcase?.caption?.toUpperCase()}
+                            </p>
+                        </Skeleton>
                     </Animated>
                     <Animated dataAos="fade-up">
                         <div className={`bulma-columns ${media.isMobile ? "p-4" : "p-6"}`}>
-                            <div className="bulma-column is-flex is-align-items-center">
-                                <div className="">
+                            <div className="bulma-column is-flex is-flex-direction-column is-align-self-center">
+                                <Skeleton isLoading={isLoading} mode="Text">
                                     <h2 className="is-size-3 py-5 has-text-black">{showcase?.heading}</h2>
+                                </Skeleton>
+                                <Skeleton isLoading={isLoading} mode="Text">
                                     <p className="is-size-5 py-3 has-text-grey line-height-18">{showcase?.text}</p>
+                                </Skeleton>
+                                <Skeleton isLoading={isLoading} mode="Rect">
                                     <div className="has-text-left py-5">
                                         <ActiveButton isLoading={isLoading} {...showcase} />
                                     </div>
-                                </div>
+                                </Skeleton>
                             </div>
                             <div className="bulma-column">
                                 <div className="bulma-card">
                                     <div className="bulma-card-image">
                                         <figure className="bulma-image">
-                                            <CustomImage
-                                                base={GET_SHOWCASE_IMAGE_URL}
-                                                source={showcase?.image}
-                                                className="showcase-feature-image"
-                                            />
+                                            <Skeleton isLoading={isLoading} mode="Rect" height={400}>
+                                                <CustomImage
+                                                    base={GET_SHOWCASE_IMAGE_URL}
+                                                    source={showcase?.image}
+                                                    className="showcase-feature-image"
+                                                    title="Illustration"
+                                                    alt="An image illustrating showcase section"
+                                                />
+                                            </Skeleton>
                                         </figure>
                                     </div>
                                 </div>
