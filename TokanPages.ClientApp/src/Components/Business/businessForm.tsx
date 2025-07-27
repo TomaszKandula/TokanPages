@@ -32,6 +32,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const templates = data.components.templates;
     const businessForm = data.components.pageBusinessForm;
 
@@ -84,6 +85,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
 
             dispatch(
                 ApplicationMessageAction.send({
+                    languageId: languageId,
                     firstName: form.firstName,
                     lastName: form.lastName,
                     userEmail: form.email,
@@ -108,7 +110,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
                 })
             );
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, techStackItems, serviceItems]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, techStackItems, serviceItems, languageId]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {

@@ -17,7 +17,7 @@ export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
     const signout = useSelector((state: ApplicationState) => state.userSignout);
     const store = useSelector((state: ApplicationState) => state.userDataStore);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const contentData = data.components.accountUserSignout;
 
     const isUserTokenRevoked = signout.userTokenStatus === OperationStatus.hasFinished;

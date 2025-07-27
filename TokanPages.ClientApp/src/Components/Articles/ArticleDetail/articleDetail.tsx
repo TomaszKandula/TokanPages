@@ -30,7 +30,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
     const user = useSelector((state: ApplicationState) => state.userDataStore);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const template = data.components.templates.templates.articles;
     const content = data.components.pageArticle;
 

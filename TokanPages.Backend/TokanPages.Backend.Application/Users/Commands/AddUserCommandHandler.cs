@@ -71,7 +71,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             var id = await PrepareNotificationUncommitted(cancellationToken);
             await CommitAllChanges(cancellationToken);
 
-            await SendNotification(id, request.EmailAddress, activationId, activationIdEnds, cancellationToken);
+            await SendNotification(id, request.LanguageId, request.EmailAddress, activationId, activationIdEnds, cancellationToken);
             LoggerService.LogInformation($"Re-registering new user after ActivationId expired, user id: {users.Id}.");
             return users.Id;
         }
@@ -94,7 +94,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         await SetupDefaultPermissionsUncommitted(newUserId, adminUser?.UserId, cancellationToken);
         await CommitAllChanges(cancellationToken);
 
-        await SendNotification(messageId, request.EmailAddress, activationId, expirationDate, cancellationToken);
+        await SendNotification(messageId, request.LanguageId, request.EmailAddress, activationId, expirationDate, cancellationToken);
 
         var info = adminUser is not null ? $"Admin (ID: {adminUser.UserId})" : $"System (ID: {Guid.Empty})";
         LoggerService.LogInformation($"Registering new user account, user id: {newUserId}.");
@@ -232,10 +232,11 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         return messageId;
     }
 
-    private async Task SendNotification(Guid messageId, string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
+    private async Task SendNotification(Guid messageId, string languageId, string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)
     {
         var configuration = new CreateUserConfiguration
         {
+            LanguageId = languageId,
             MessageId = messageId,
             EmailAddress = emailAddress,
             ActivationId = activationId,

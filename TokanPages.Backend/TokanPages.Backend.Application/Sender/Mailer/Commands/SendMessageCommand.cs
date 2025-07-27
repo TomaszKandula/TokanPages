@@ -4,6 +4,8 @@ namespace TokanPages.Backend.Application.Sender.Mailer.Commands;
 
 public class SendMessageCommand : IRequest<Unit>
 {
+    public string LanguageId { get; set; } = "";
+
     public string FirstName { get; set; } = "";
 
     public string LastName { get; set; } = "";

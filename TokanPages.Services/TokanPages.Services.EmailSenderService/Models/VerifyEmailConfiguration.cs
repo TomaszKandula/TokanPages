@@ -6,6 +6,8 @@ namespace TokanPages.Services.EmailSenderService.Models;
 [ExcludeFromCodeCoverage]
 public class VerifyEmailConfiguration : IEmailConfiguration
 {
+    public string LanguageId { get; set; } = "";
+
     public Guid MessageId { get; set; }
 
     public string EmailAddress { get; set; } = "";

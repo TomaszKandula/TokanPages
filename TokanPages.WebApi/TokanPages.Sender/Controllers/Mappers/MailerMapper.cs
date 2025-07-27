@@ -17,6 +17,7 @@ public static class MailerMapper
     /// <returns>Command object.</returns>
     public static SendMessageCommand MapToSendMessageCommand(SendMessageDto model) => new()
     {
+        LanguageId = model.LanguageId,
         UserEmail = model.UserEmail,
         FirstName = model.FirstName,
         LastName = model.LastName,
@@ -39,6 +40,7 @@ public static class MailerMapper
             Email = dto.Email,
             Id = dto.Id
         }),
+        LanguageId = model.LanguageId,
         Subject = model.Subject,
         Message = model.Message
     };

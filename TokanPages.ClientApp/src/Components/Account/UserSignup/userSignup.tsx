@@ -40,6 +40,7 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
     const signup = useSelector((state: ApplicationState) => state.userSignup);
     const error = useSelector((state: ApplicationState) => state.applicationError);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
     const template = data?.components.templates;
     const content = data?.components.accountUserSignup;
 
@@ -66,6 +67,7 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
             const userAlias: string = `${form.firstName.substring(0, 2)}${form.lastName.substring(0, 3)}`;
             dispatch(
                 UserSignupAction.signup({
+                    languageId: languageId,
                     userAlias: userAlias,
                     firstName: form.firstName,
                     lastName: form.lastName,
@@ -88,7 +90,7 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
                 })
             );
         }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, template, languageId]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
