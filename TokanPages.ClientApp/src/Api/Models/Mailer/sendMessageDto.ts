@@ -1,4 +1,5 @@
 export interface SendMessageDto {
+    languageId: string;
     firstName: string;
     lastName: string;
     userEmail: string;
