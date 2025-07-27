@@ -109,15 +109,15 @@ Object {
             class="icon-button mr-4 is-flex is-align-self-center"
             style="height: 48px; width: 48px;"
           >
-            <div
-              class="avatar-wrapper undefined"
+            <figure
+              class="bulma-image "
             >
               <img
                 alt="User avatar"
-                class="avatar-image"
+                class="bulma-is-rounded"
                 title="Avatar"
               />
-            </div>
+            </figure>
           </button>
         </div>
       </nav>
@@ -228,15 +228,15 @@ Object {
           class="icon-button mr-4 is-flex is-align-self-center"
           style="height: 48px; width: 48px;"
         >
-          <div
-            class="avatar-wrapper undefined"
+          <figure
+            class="bulma-image "
           >
             <img
               alt="User avatar"
-              class="avatar-image"
+              class="bulma-is-rounded"
               title="Avatar"
             />
-          </div>
+          </figure>
         </button>
       </div>
     </nav>

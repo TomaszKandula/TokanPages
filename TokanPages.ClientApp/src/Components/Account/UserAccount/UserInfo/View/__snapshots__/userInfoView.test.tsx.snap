@@ -132,21 +132,16 @@ Object {
                           name="UserFile-Avatar"
                           type="file"
                         />
-                        <button
-                          class="icon-button button-upload is-flex is-align-self-center"
-                          style="height: 48px; width: 48px;"
+                        <figure
+                          class="bulma-image bulma-is-48x48 is-clickable"
                         >
-                          <div
-                            class="avatar-wrapper user-avatar-avatar-small user-avatar-avatar-button"
-                          >
-                            <img
-                              alt="User avatar"
-                              class="avatar-image"
-                              src="http://localhost:5000/api/v1/users/123456789/getUserImage?blobName="
-                              title="Avatar"
-                            />
-                          </div>
-                        </button>
+                          <img
+                            alt="User avatar"
+                            class="bulma-is-rounded"
+                            src="http://localhost:5000/api/v1/users/123456789/getUserImage?blobName="
+                            title="Avatar"
+                          />
+                        </figure>
                       </label>
                     </div>
                   </div>
@@ -261,8 +256,8 @@ Object {
                         >
                           <textarea
                             class="bulma-textarea   bulma-has-fixed-size"
-                            id="userAboutText"
-                            name="userAboutText"
+                            id="description"
+                            name="description"
                             required=""
                           />
                         </div>
@@ -416,21 +411,16 @@ Object {
                         name="UserFile-Avatar"
                         type="file"
                       />
-                      <button
-                        class="icon-button button-upload is-flex is-align-self-center"
-                        style="height: 48px; width: 48px;"
+                      <figure
+                        class="bulma-image bulma-is-48x48 is-clickable"
                       >
-                        <div
-                          class="avatar-wrapper user-avatar-avatar-small user-avatar-avatar-button"
-                        >
-                          <img
-                            alt="User avatar"
-                            class="avatar-image"
-                            src="http://localhost:5000/api/v1/users/123456789/getUserImage?blobName="
-                            title="Avatar"
-                          />
-                        </div>
-                      </button>
+                        <img
+                          alt="User avatar"
+                          class="bulma-is-rounded"
+                          src="http://localhost:5000/api/v1/users/123456789/getUserImage?blobName="
+                          title="Avatar"
+                        />
+                      </figure>
                     </label>
                   </div>
                 </div>
@@ -545,8 +535,8 @@ Object {
                       >
                         <textarea
                           class="bulma-textarea   bulma-has-fixed-size"
-                          id="userAboutText"
-                          name="userAboutText"
+                          id="description"
+                          name="description"
                           required=""
                         />
                       </div>
