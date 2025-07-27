@@ -1,0 +1,11 @@
+.default-avatar-small {
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+}
+
+.default-avatar-large {
+    height: 96px;
+    width: 96px;
+    border-radius: 50%;
+}
