@@ -74,9 +74,8 @@ const RenderEmailStatus = (props: UserInfoViewProps): React.ReactElement => {
     );
 };
 
-const GetImageURL = (props: UserInfoViewProps): string => (
-    GET_USER_IMAGE.replace("{id}", props.userStore.userId).replace("{name}", props.userImageName)
-);
+const GetImageURL = (props: UserInfoViewProps): string =>
+    GET_USER_IMAGE.replace("{id}", props.userStore.userId).replace("{name}", props.userImageName);
 
 export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
     const previewImage = Validate.isEmpty(props.userImageName) ? "" : GetImageURL({ ...props });
