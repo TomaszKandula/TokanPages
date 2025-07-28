@@ -14,6 +14,7 @@ import { AccountFormInput } from "../../../../../Shared/Services/FormValidation"
 import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
 import { UserInfoProps } from "../userInfo";
+import Validate from "validate.js";
 import "./userInfoView.css";
 
 interface UserInfoViewProps extends ViewProperties, UserInfoProps {
@@ -73,11 +74,12 @@ const RenderEmailStatus = (props: UserInfoViewProps): React.ReactElement => {
     );
 };
 
+const GetImageURL = (props: UserInfoViewProps): string => (
+    GET_USER_IMAGE.replace("{id}", props.userStore.userId).replace("{name}", props.userImageName)
+);
+
 export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
-    const previewImage = GET_USER_IMAGE.replace("{id}", props.userStore.userId).replace(
-        "{name}",
-        props.userImageName ?? ""
-    );
+    const previewImage = Validate.isEmpty(props.userImageName) ? "" : GetImageURL({ ...props });
 
     return (
         <section className={props.className}>
