@@ -55,7 +55,6 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
         description: store.shortBio ?? "",
     };
 
-    const avatarName = Validate.isEmpty(store.avatarName) ? "N/A" : store.avatarName;
     const [canCheckAltStatus, setCheckAltStatus] = React.useState(false);
     const [form, setForm] = React.useState(formDefault);
     const [isRequesting, setRequesting] = React.useState(false);
@@ -282,7 +281,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
             isMobile={mediaQuery.isMobile}
             userStore={store}
             accountForm={form}
-            userImageName={avatarName}
+            userImageName={store.avatarName}
             isRequestingVerification={isRequesting}
             formProgress={hasProgress}
             keyHandler={keyHandler}

@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="has-background-grey-light is-flex is-justify-content-center is-align-items-center default-avatar-large"
+        class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center default-avatar-large"
       >
         <h2
           class="is-size-4 has-text-white"
@@ -18,7 +18,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="has-background-grey-light is-flex is-justify-content-center is-align-items-center default-avatar-large"
+      class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center default-avatar-large"
     >
       <h2
         class="is-size-4 has-text-white"
@@ -170,7 +170,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="has-background-grey-light is-flex is-justify-content-center is-align-items-center default-avatar-small"
+        class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center default-avatar-small"
       >
         <h2
           class="is-size-4 has-text-white"
@@ -182,7 +182,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="has-background-grey-light is-flex is-justify-content-center is-align-items-center default-avatar-small"
+      class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center default-avatar-small"
     >
       <h2
         class="is-size-4 has-text-white"
