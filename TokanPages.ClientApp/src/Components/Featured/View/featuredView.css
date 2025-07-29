@@ -1,3 +1,8 @@
 .featured-card-image {
     height: 256px !important;
+    object-fit: cover;
+}
+
+.featured-card-height {
+    min-height: 175px;
 }

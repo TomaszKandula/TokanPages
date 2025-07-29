@@ -16,7 +16,7 @@ export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
     return (
         <TestimonialsView
             isLoading={data?.isLoading}
-            isMobile={media.isMobile}
+            media={media}
             caption={testimonials?.caption}
             subtitle={testimonials?.subtitle}
             photo1={testimonials?.photo1}

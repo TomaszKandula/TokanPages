@@ -49,7 +49,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                                 </Skeleton>
                                             </figure>
                                         </div>
-                                        <div className="bulma-card-content py-6">
+                                        <div className="bulma-card-content featured-card-height is-align-content-center">
                                             <Skeleton isLoading={isLoading} mode="Text" height={24} disableMarginY>
                                                 <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
                                                     {featured?.title1}
@@ -86,7 +86,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                                 </Skeleton>
                                             </figure>
                                         </div>
-                                        <div className="bulma-card-content py-6">
+                                        <div className="bulma-card-content featured-card-height is-align-content-center">
                                             <Skeleton isLoading={isLoading} mode="Text" height={24} disableMarginY>
                                                 <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
                                                     {featured?.title2}
@@ -123,7 +123,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                                 </Skeleton>
                                             </figure>
                                         </div>
-                                        <div className="bulma-card-content py-6">
+                                        <div className="bulma-card-content featured-card-height is-align-content-center">
                                             <Skeleton isLoading={isLoading} mode="Text" height={24} disableMarginY>
                                                 <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
                                                     {featured?.title3}
