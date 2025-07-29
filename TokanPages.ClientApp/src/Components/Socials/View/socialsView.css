@@ -22,3 +22,7 @@
     height: 156px !important;
     object-fit: cover;
 }
+
+.socials-text {
+    height: 85px;
+}

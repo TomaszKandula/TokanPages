@@ -16,6 +16,15 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
     const isLoading = data?.isLoading;
     const socials = data?.components?.sectionSocials;
 
+    let paddings;
+    if (media.isDesktop || media.isMobile) {
+        paddings = "pt-4 pb-6";
+    }
+
+    if (media.isTablet) {
+        paddings = "pt-4 pb-4 px-2";
+    }
+
     return (
         <section className={props.className}>
             <div className="bulma-container">
@@ -61,7 +70,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                     />
                                                 </Skeleton>
                                             </div>
-                                            <div className="bulma-card-content">
+                                            <div className={`bulma-card-content ${paddings}`}>
                                                 <div className="is-flex is-justify-content-center pt-6">
                                                     <Skeleton isLoading={isLoading} mode="Rect" height={24}>
                                                         <figure className="bulma-image bulma-is-32x32">
@@ -74,7 +83,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                         {socials?.social1?.textTitle}
                                                     </Skeleton>
                                                 </div>
-                                                <h3 className="is-size-6 has-text-grey has-text-centered py-2">
+                                                <h3 className="is-size-6 has-text-grey has-text-centered py-2 socials-text">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
                                                         {socials?.social1?.textSubtitle}
                                                     </Skeleton>
@@ -121,7 +130,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                     />
                                                 </Skeleton>
                                             </div>
-                                            <div className="bulma-card-content">
+                                            <div className={`bulma-card-content ${paddings}`}>
                                                 <div className="is-flex is-justify-content-center pt-6">
                                                     <Skeleton isLoading={isLoading} mode="Rect" height={24}>
                                                         <figure className="bulma-image bulma-is-32x32">
@@ -134,7 +143,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                         {socials?.social2?.textTitle}
                                                     </Skeleton>
                                                 </div>
-                                                <h3 className="is-size-6 has-text-grey has-text-centered py-2">
+                                                <h3 className="is-size-6 has-text-grey has-text-centered py-2 socials-text">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
                                                         {socials?.social2?.textSubtitle}
                                                     </Skeleton>
@@ -181,7 +190,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                     />
                                                 </Skeleton>
                                             </div>
-                                            <div className="bulma-card-content">
+                                            <div className={`bulma-card-content ${paddings}`}>
                                                 <div className="is-flex is-justify-content-center pt-6">
                                                     <Skeleton isLoading={isLoading} mode="Rect" height={24}>
                                                         <figure className="bulma-image bulma-is-32x32">
@@ -194,7 +203,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                         {socials?.social3?.textTitle}
                                                     </Skeleton>
                                                 </div>
-                                                <h3 className="is-size-6 has-text-grey has-text-centered py-2">
+                                                <h3 className="is-size-6 has-text-grey has-text-centered py-2 socials-text">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
                                                         {socials?.social3?.textSubtitle}
                                                     </Skeleton>
