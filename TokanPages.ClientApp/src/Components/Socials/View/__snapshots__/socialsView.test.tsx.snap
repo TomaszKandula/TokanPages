@@ -71,7 +71,7 @@ Object {
                           />
                         </div>
                         <div
-                          class="bulma-card-content"
+                          class="bulma-card-content pt-4 pb-6"
                         >
                           <div
                             class="is-flex is-justify-content-center pt-6"
@@ -99,7 +99,7 @@ Object {
                             Somebody
                           </div>
                           <h3
-                            class="is-size-6 has-text-grey has-text-centered py-2"
+                            class="is-size-6 has-text-grey has-text-centered py-2 socials-text"
                           >
                             Software Engineer...
                           </h3>
@@ -156,7 +156,7 @@ Object {
                           />
                         </div>
                         <div
-                          class="bulma-card-content"
+                          class="bulma-card-content pt-4 pb-6"
                         >
                           <div
                             class="is-flex is-justify-content-center pt-6"
@@ -190,7 +190,7 @@ Object {
                             Somebody
                           </div>
                           <h3
-                            class="is-size-6 has-text-grey has-text-centered py-2"
+                            class="is-size-6 has-text-grey has-text-centered py-2 socials-text"
                           >
                             JavaScript/TypeScript...
                           </h3>
@@ -247,7 +247,7 @@ Object {
                           />
                         </div>
                         <div
-                          class="bulma-card-content"
+                          class="bulma-card-content pt-4 pb-6"
                         >
                           <div
                             class="is-flex is-justify-content-center pt-6"
@@ -277,7 +277,7 @@ Object {
                             TomKandula
                           </div>
                           <h3
-                            class="is-size-6 has-text-grey has-text-centered py-2"
+                            class="is-size-6 has-text-grey has-text-centered py-2 socials-text"
                           >
                             Photographer 📸 ...
                           </h3>
@@ -365,7 +365,7 @@ Object {
                         />
                       </div>
                       <div
-                        class="bulma-card-content"
+                        class="bulma-card-content pt-4 pb-6"
                       >
                         <div
                           class="is-flex is-justify-content-center pt-6"
@@ -393,7 +393,7 @@ Object {
                           Somebody
                         </div>
                         <h3
-                          class="is-size-6 has-text-grey has-text-centered py-2"
+                          class="is-size-6 has-text-grey has-text-centered py-2 socials-text"
                         >
                           Software Engineer...
                         </h3>
@@ -450,7 +450,7 @@ Object {
                         />
                       </div>
                       <div
-                        class="bulma-card-content"
+                        class="bulma-card-content pt-4 pb-6"
                       >
                         <div
                           class="is-flex is-justify-content-center pt-6"
@@ -484,7 +484,7 @@ Object {
                           Somebody
                         </div>
                         <h3
-                          class="is-size-6 has-text-grey has-text-centered py-2"
+                          class="is-size-6 has-text-grey has-text-centered py-2 socials-text"
                         >
                           JavaScript/TypeScript...
                         </h3>
@@ -541,7 +541,7 @@ Object {
                         />
                       </div>
                       <div
-                        class="bulma-card-content"
+                        class="bulma-card-content pt-4 pb-6"
                       >
                         <div
                           class="is-flex is-justify-content-center pt-6"
@@ -571,7 +571,7 @@ Object {
                           TomKandula
                         </div>
                         <h3
-                          class="is-size-6 has-text-grey has-text-centered py-2"
+                          class="is-size-6 has-text-grey has-text-centered py-2 socials-text"
                         >
                           Photographer 📸 ...
                         </h3>
