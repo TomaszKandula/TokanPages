@@ -57,7 +57,7 @@ Object {
                         </figure>
                       </div>
                       <div
-                        class="bulma-card-content py-6"
+                        class="bulma-card-content featured-card-height is-align-content-center"
                       >
                         <h2
                           class="is-size-4 has-text-weight-semibold has-text-centered"
@@ -106,7 +106,7 @@ Object {
                         </figure>
                       </div>
                       <div
-                        class="bulma-card-content py-6"
+                        class="bulma-card-content featured-card-height is-align-content-center"
                       >
                         <h2
                           class="is-size-4 has-text-weight-semibold has-text-centered"
@@ -155,7 +155,7 @@ Object {
                         </figure>
                       </div>
                       <div
-                        class="bulma-card-content py-6"
+                        class="bulma-card-content featured-card-height is-align-content-center"
                       >
                         <h2
                           class="is-size-4 has-text-weight-semibold has-text-centered"
@@ -231,7 +231,7 @@ Object {
                       </figure>
                     </div>
                     <div
-                      class="bulma-card-content py-6"
+                      class="bulma-card-content featured-card-height is-align-content-center"
                     >
                       <h2
                         class="is-size-4 has-text-weight-semibold has-text-centered"
@@ -280,7 +280,7 @@ Object {
                       </figure>
                     </div>
                     <div
-                      class="bulma-card-content py-6"
+                      class="bulma-card-content featured-card-height is-align-content-center"
                     >
                       <h2
                         class="is-size-4 has-text-weight-semibold has-text-centered"
@@ -329,7 +329,7 @@ Object {
                       </figure>
                     </div>
                     <div
-                      class="bulma-card-content py-6"
+                      class="bulma-card-content featured-card-height is-align-content-center"
                     >
                       <h2
                         class="is-size-4 has-text-weight-semibold has-text-centered"
