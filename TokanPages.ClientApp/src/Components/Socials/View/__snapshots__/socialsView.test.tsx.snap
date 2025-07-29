@@ -98,11 +98,15 @@ Object {
                           >
                             Somebody
                           </div>
-                          <h3
-                            class="is-size-6 has-text-grey has-text-centered py-2 socials-text"
+                          <div
+                            class="is-align-content-center socials-text"
                           >
-                            Software Engineer...
-                          </h3>
+                            <h3
+                              class="is-size-6 has-text-grey has-text-centered py-2"
+                            >
+                              Software Engineer...
+                            </h3>
+                          </div>
                           <h4
                             class="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2"
                           >
@@ -189,11 +193,15 @@ Object {
                           >
                             Somebody
                           </div>
-                          <h3
-                            class="is-size-6 has-text-grey has-text-centered py-2 socials-text"
+                          <div
+                            class="is-align-content-center socials-text"
                           >
-                            JavaScript/TypeScript...
-                          </h3>
+                            <h3
+                              class="is-size-6 has-text-grey has-text-centered py-2"
+                            >
+                              JavaScript/TypeScript...
+                            </h3>
+                          </div>
                           <h4
                             class="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2"
                           >
@@ -276,11 +284,15 @@ Object {
                           >
                             TomKandula
                           </div>
-                          <h3
-                            class="is-size-6 has-text-grey has-text-centered py-2 socials-text"
+                          <div
+                            class="is-align-content-center socials-text"
                           >
-                            Photographer 📸 ...
-                          </h3>
+                            <h3
+                              class="is-size-6 has-text-grey has-text-centered py-2"
+                            >
+                              Photographer 📸 ...
+                            </h3>
+                          </div>
                           <h4
                             class="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2"
                           >
@@ -392,11 +404,15 @@ Object {
                         >
                           Somebody
                         </div>
-                        <h3
-                          class="is-size-6 has-text-grey has-text-centered py-2 socials-text"
+                        <div
+                          class="is-align-content-center socials-text"
                         >
-                          Software Engineer...
-                        </h3>
+                          <h3
+                            class="is-size-6 has-text-grey has-text-centered py-2"
+                          >
+                            Software Engineer...
+                          </h3>
+                        </div>
                         <h4
                           class="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2"
                         >
@@ -483,11 +499,15 @@ Object {
                         >
                           Somebody
                         </div>
-                        <h3
-                          class="is-size-6 has-text-grey has-text-centered py-2 socials-text"
+                        <div
+                          class="is-align-content-center socials-text"
                         >
-                          JavaScript/TypeScript...
-                        </h3>
+                          <h3
+                            class="is-size-6 has-text-grey has-text-centered py-2"
+                          >
+                            JavaScript/TypeScript...
+                          </h3>
+                        </div>
                         <h4
                           class="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2"
                         >
@@ -570,11 +590,15 @@ Object {
                         >
                           TomKandula
                         </div>
-                        <h3
-                          class="is-size-6 has-text-grey has-text-centered py-2 socials-text"
+                        <div
+                          class="is-align-content-center socials-text"
                         >
-                          Photographer 📸 ...
-                        </h3>
+                          <h3
+                            class="is-size-6 has-text-grey has-text-centered py-2"
+                          >
+                            Photographer 📸 ...
+                          </h3>
+                        </div>
                         <h4
                           class="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2"
                         >
