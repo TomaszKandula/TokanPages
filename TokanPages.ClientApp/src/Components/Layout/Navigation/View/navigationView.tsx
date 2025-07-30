@@ -9,7 +9,11 @@ import { NavigationViewProps } from "../Abstractions";
 export const NavigationView = (props: NavigationViewProps): React.ReactElement =>
     props.backNavigationOnly ? (
         <AppBar height={APP_BAR_HEIGHT}>
-            <IconButton hasNoHoverEffect={props.media.isMobile || props.media.isTablet} onClick={props.backPathHandler} className="m-2">
+            <IconButton
+                hasNoHoverEffect={props.media.isMobile || props.media.isTablet}
+                onClick={props.backPathHandler}
+                className="m-2"
+            >
                 <Icon path={mdiArrowLeft} size={1} />
             </IconButton>
         </AppBar>

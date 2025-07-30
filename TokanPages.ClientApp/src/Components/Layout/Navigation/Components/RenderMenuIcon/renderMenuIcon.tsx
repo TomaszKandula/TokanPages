@@ -5,7 +5,11 @@ import { IconButton } from "../../../../../Shared/Components";
 import { NavigationViewProps } from "../../Abstractions";
 
 export const RenderMenuIcon = (props: NavigationViewProps): React.ReactElement => (
-    <IconButton aria-label="menu" hasNoHoverEffect={props.media.isMobile || props.media.isTablet}  onClick={props.triggerSideMenu}>
+    <IconButton
+        aria-label="menu"
+        hasNoHoverEffect={props.media.isMobile || props.media.isTablet}
+        onClick={props.triggerSideMenu}
+    >
         <Icon path={mdiMenu} size={1} />
     </IconButton>
 );
