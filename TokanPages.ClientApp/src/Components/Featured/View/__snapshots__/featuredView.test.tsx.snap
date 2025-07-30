@@ -60,12 +60,12 @@ Object {
                         class="bulma-card-content featured-card-height is-align-content-center"
                       >
                         <h2
-                          class="is-size-4 has-text-weight-semibold has-text-centered"
+                          class="is-size-5 has-text-weight-semibold has-text-centered"
                         >
                           Memory Management
                         </h2>
                         <p
-                          class="is-size-5 has-text-grey-light has-text-centered"
+                          class="is-size-6 has-text-grey-light has-text-centered"
                         >
                           The basics you should know, when writing an application...
                         </p>
@@ -109,12 +109,12 @@ Object {
                         class="bulma-card-content featured-card-height is-align-content-center"
                       >
                         <h2
-                          class="is-size-4 has-text-weight-semibold has-text-centered"
+                          class="is-size-5 has-text-weight-semibold has-text-centered"
                         >
                           Stored Procedures
                         </h2>
                         <p
-                          class="is-size-5 has-text-grey-light has-text-centered"
+                          class="is-size-6 has-text-grey-light has-text-centered"
                         >
                           I explain why I do not need them that much...
                         </p>
@@ -158,12 +158,12 @@ Object {
                         class="bulma-card-content featured-card-height is-align-content-center"
                       >
                         <h2
-                          class="is-size-4 has-text-weight-semibold has-text-centered"
+                          class="is-size-5 has-text-weight-semibold has-text-centered"
                         >
                           SQL Injection
                         </h2>
                         <p
-                          class="is-size-5 has-text-grey-light has-text-centered"
+                          class="is-size-6 has-text-grey-light has-text-centered"
                         >
                           This article will explore the issue in greater detail...
                         </p>
@@ -234,12 +234,12 @@ Object {
                       class="bulma-card-content featured-card-height is-align-content-center"
                     >
                       <h2
-                        class="is-size-4 has-text-weight-semibold has-text-centered"
+                        class="is-size-5 has-text-weight-semibold has-text-centered"
                       >
                         Memory Management
                       </h2>
                       <p
-                        class="is-size-5 has-text-grey-light has-text-centered"
+                        class="is-size-6 has-text-grey-light has-text-centered"
                       >
                         The basics you should know, when writing an application...
                       </p>
@@ -283,12 +283,12 @@ Object {
                       class="bulma-card-content featured-card-height is-align-content-center"
                     >
                       <h2
-                        class="is-size-4 has-text-weight-semibold has-text-centered"
+                        class="is-size-5 has-text-weight-semibold has-text-centered"
                       >
                         Stored Procedures
                       </h2>
                       <p
-                        class="is-size-5 has-text-grey-light has-text-centered"
+                        class="is-size-6 has-text-grey-light has-text-centered"
                       >
                         I explain why I do not need them that much...
                       </p>
@@ -332,12 +332,12 @@ Object {
                       class="bulma-card-content featured-card-height is-align-content-center"
                     >
                       <h2
-                        class="is-size-4 has-text-weight-semibold has-text-centered"
+                        class="is-size-5 has-text-weight-semibold has-text-centered"
                       >
                         SQL Injection
                       </h2>
                       <p
-                        class="is-size-5 has-text-grey-light has-text-centered"
+                        class="is-size-6 has-text-grey-light has-text-centered"
                       >
                         This article will explore the issue in greater detail...
                       </p>
