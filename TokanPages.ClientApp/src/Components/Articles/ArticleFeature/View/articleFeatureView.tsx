@@ -44,7 +44,9 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                         </Skeleton>
                     </Animated>
                     <Animated dataAos="fade-up">
-                        <div className={`bulma-columns bulma-is-3 is-flex-direction-row ${media.isMobile ? "m-4" : "m-6"}`}>
+                        <div
+                            className={`bulma-columns bulma-is-3 is-flex-direction-row ${media.isMobile ? "m-4" : "m-6"}`}
+                        >
                             <Skeleton isLoading={isLoading} mode="Rect" width={200} height={200}>
                                 <div className={`bulma-column ${media.isMobile ? "p-0" : "p-2"}`}>
                                     <div
@@ -115,7 +117,9 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     </div>
                                 </div>
                             </Skeleton>
-                            <div className={`bulma-column is-align-self-center py-3 pr-0 ${media.isDesktop ? "pl-6" : tabletPadding}`}>
+                            <div
+                                className={`bulma-column is-align-self-center py-3 pr-0 ${media.isDesktop ? "pl-6" : tabletPadding}`}
+                            >
                                 <Skeleton isLoading={isLoading} mode="Text">
                                     <h2 className="is-size-3 py-5 has-text-black">{features?.title}</h2>
                                 </Skeleton>
