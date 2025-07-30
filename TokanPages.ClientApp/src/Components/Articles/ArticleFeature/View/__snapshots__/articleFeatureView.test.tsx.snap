@@ -27,7 +27,7 @@ Object {
               data-aos-delay="0"
             >
               <div
-                class="bulma-columns bulma-is-3 is-flex-direction-row p-6"
+                class="bulma-columns bulma-is-3 is-flex-direction-row m-6"
               >
                 <div
                   class="bulma-column"
@@ -195,7 +195,7 @@ Object {
             data-aos-delay="0"
           >
             <div
-              class="bulma-columns bulma-is-3 is-flex-direction-row p-6"
+              class="bulma-columns bulma-is-3 is-flex-direction-row m-6"
             >
               <div
                 class="bulma-column"
