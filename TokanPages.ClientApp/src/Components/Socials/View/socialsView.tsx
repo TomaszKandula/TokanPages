@@ -36,8 +36,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                             </p>
                         </Skeleton>
                     </Animated>
-                    <div className={media.isMobile ? "m-4" : "m-6"}>
-                        <div className="bulma-columns">
+                        <div className={`bulma-columns ${media.isMobile ? "m-4" : "m-6"}`}>
                             <div className={`bulma-column is-clickable ${media.isMobile ? "mt-6" : ""}`}>
                                 <Animated dataAos="fade-up" dataAosDelay={350}>
                                     <div className="bulma-card">
@@ -225,7 +224,6 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                 </Animated>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </section>

@@ -51,12 +51,12 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                         </div>
                                         <div className="bulma-card-content featured-card-height is-align-content-center">
                                             <Skeleton isLoading={isLoading} mode="Text" height={24} disableMarginY>
-                                                <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
+                                                <h2 className="is-size-5 has-text-weight-semibold has-text-centered">
                                                     {featured?.title1}
                                                 </h2>
                                             </Skeleton>
                                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                                                <p className="is-size-5 has-text-grey-light has-text-centered">
+                                                <p className="is-size-6 has-text-grey-light has-text-centered">
                                                     {featured?.subtitle1}
                                                 </p>
                                             </Skeleton>
@@ -88,12 +88,12 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                         </div>
                                         <div className="bulma-card-content featured-card-height is-align-content-center">
                                             <Skeleton isLoading={isLoading} mode="Text" height={24} disableMarginY>
-                                                <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
+                                                <h2 className="is-size-5 has-text-weight-semibold has-text-centered">
                                                     {featured?.title2}
                                                 </h2>
                                             </Skeleton>
                                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                                                <p className="is-size-5 has-text-grey-light has-text-centered">
+                                                <p className="is-size-6 has-text-grey-light has-text-centered">
                                                     {featured?.subtitle2}
                                                 </p>
                                             </Skeleton>
@@ -125,12 +125,12 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                         </div>
                                         <div className="bulma-card-content featured-card-height is-align-content-center">
                                             <Skeleton isLoading={isLoading} mode="Text" height={24} disableMarginY>
-                                                <h2 className="is-size-4 has-text-weight-semibold has-text-centered">
+                                                <h2 className="is-size-5 has-text-weight-semibold has-text-centered">
                                                     {featured?.title3}
                                                 </h2>
                                             </Skeleton>
                                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                                                <p className="is-size-5 has-text-grey-light has-text-centered">
+                                                <p className="is-size-6 has-text-grey-light has-text-centered">
                                                     {featured?.subtitle3}
                                                 </p>
                                             </Skeleton>
