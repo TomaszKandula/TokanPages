@@ -47,7 +47,7 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                         </Skeleton>
                     </Animated>
                     <Animated dataAos="fade-up">
-                        <div className={`bulma-columns ${media.isMobile ? "p-4" : "p-6"}`}>
+                        <div className={`bulma-columns ${media.isMobile ? "m-2" : "m-6"}`}>
                             <div className="bulma-column is-flex is-flex-direction-column is-align-self-center">
                                 <Skeleton isLoading={isLoading} mode="Text">
                                     <h2 className="is-size-3 py-5 has-text-black">{showcase?.heading}</h2>

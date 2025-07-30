@@ -44,7 +44,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                         </Skeleton>
                     </Animated>
                     <Animated dataAos="fade-up">
-                        <div className={`${baseClass} ${media.isMobile ? "p-4" : "p-6"}`}>
+                        <div className={`${baseClass} ${media.isMobile ? "m-2" : "m-6"}`}>
                             <Skeleton isLoading={isLoading} mode="Rect" width={200} height={200}>
                                 <div className="bulma-column">
                                     <div

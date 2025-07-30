@@ -36,7 +36,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                             </p>
                         </Skeleton>
                     </Animated>
-                    <div className={media.isMobile ? "p-4" : "p-6"}>
+                    <div className={media.isMobile ? "m-4" : "m-6"}>
                         <div className="bulma-columns">
                             <div className={`bulma-column is-clickable ${media.isMobile ? "mt-6" : ""}`}>
                                 <Animated dataAos="fade-up" dataAosDelay={350}>

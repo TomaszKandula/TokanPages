@@ -27,7 +27,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                             </p>
                         </Skeleton>
                     </Animated>
-                    <div className={`bulma-columns ${media.isMobile ? "p-4" : "p-6"}`}>
+                    <div className={`bulma-columns ${media.isMobile ? "m-2" : "m-6"}`}>
                         <div className={`bulma-column is-clickable ${media.isMobile ? "mt-6" : ""}`}>
                             <Animated dataAos="fade-up" dataAosDelay={350}>
                                 <Link to={featured?.link1}>
