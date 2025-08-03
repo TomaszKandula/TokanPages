@@ -18,7 +18,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
     const height = props.media.isDesktop ? APP_BAR_HEIGHT_DESKTOP : APP_BAR_HEIGHT_NON_DESKTOP;
 
     return (
-        <AppBar height={height}>
+        <AppBar height={height} offset={2}>
             <RenderToolbarLargeScreen {...props} />
             <RenderToolbarSmallScreen {...props} />
             <RenderDrawer {...props} />

@@ -4,11 +4,13 @@ import "./appBar.css";
 
 interface AppBarProps {
     height?: number;
+    offset?: number;
     children: React.ReactElement | React.ReactElement[];
 }
 
 export const AppBar = (props: AppBarProps) => {
     const height = props.height ?? 50;
+    const offset = props.offset ?? 0;
 
     const scroll = useScroll({ treshold: props.height });
     const [top, setTop] = React.useState(0);
@@ -17,7 +19,7 @@ export const AppBar = (props: AppBarProps) => {
         if (scroll.isScrollingUp || scroll.isScrolledTop) {
             setTop(0);
         } else {
-            setTop(-height);
+            setTop(-height-offset);
         }
     }, [scroll.isScrollingUp, scroll.isScrolledTop]);
 
