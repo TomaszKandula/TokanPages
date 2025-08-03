@@ -1,4 +1,4 @@
-import { ItemDto, SignupProps } from "../../../../Api/Models";
+import { NavigationContentDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { UseDimensionsResult } from "../../../../Shared/Hooks/useDimensions";
 import { ApplicationLanguageState } from "../../../../Store/States";
@@ -14,9 +14,7 @@ export interface BaseProperties extends ViewProperties {
     aliasName: string;
     avatarName: string;
     avatarSource: string;
-    signup: SignupProps;
-    logo: string;
-    menu: { image: string; items: ItemDto[] };
+    navigation: NavigationContentDto;
     backNavigationOnly?: boolean;
     backPathFragment?: string;
     backPathHandler: () => void;
