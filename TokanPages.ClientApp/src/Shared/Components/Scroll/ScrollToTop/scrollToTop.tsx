@@ -1,8 +1,8 @@
 import * as React from "react";
 import Icon from "@mdi/react";
 import { mdiChevronUp } from "@mdi/js";
-import { useScroll } from "../../../../Shared/Hooks";
-import { APP_BAR_HEIGHT } from "../../../../Shared/constants";
+import { useDimensions, useScroll } from "../../../../Shared/Hooks";
+import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP } from "../../../../Shared/constants";
 import "./scrollToTop.css";
 
 const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -19,7 +19,9 @@ const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
 };
 
 export const ScrollToTop = (): React.ReactElement => {
-    const scroll = useScroll({ treshold: APP_BAR_HEIGHT });
+    const media = useDimensions();
+    const treshold = media.isDesktop ? APP_BAR_HEIGHT_DESKTOP : APP_BAR_HEIGHT_NON_DESKTOP;
+    const scroll = useScroll({ treshold: treshold });
 
     return (
         <div style={{ visibility: scroll.isScrolledTop ? "hidden" : "visible" }}>
