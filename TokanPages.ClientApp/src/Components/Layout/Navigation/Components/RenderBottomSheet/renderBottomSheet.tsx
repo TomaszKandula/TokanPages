@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContentDto } from "../../../../../Api/Models";
 import { useDimensions } from "../../../../../Shared/Hooks";
-import { Icon } from "../../../../../Shared/Components";
+import { Icon, IconButton } from "../../../../../Shared/Components";
 import "./renderBottomSheet.css";
 
 interface RenderBottomSheetProps {
@@ -14,7 +14,6 @@ interface RenderBottomSheetProps {
 
 export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactElement => {
     const dimensions = useDimensions();
-    const height = dimensions.height + props.bottomSheetHeight;
 
     const [canOpenBottomSheet, setCanOpenBottomSheet] = React.useState(false);
     const [canCloseBottomSheet, setCanCloseBottomSheet] = React.useState(false);
@@ -51,7 +50,7 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
             className="bottomsheet-nav-drawer-root"
             style={{
                 width: dimensions.width,
-                bottom: canOpenBottomSheet ? -height : -dimensions.height,
+                bottom: canOpenBottomSheet ? -dimensions.height + props.bottomSheetHeight : -dimensions.height,
             }}
             onMouseLeave={menuHandler}
         >
@@ -64,7 +63,9 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
                 <div className="navbar-top-line"></div>
                 <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 my-5">
                     <h2 className="is-size-5 has-text-weight-semibold">{props.navigation?.languageMenu.caption}</h2>
-                    <Icon name="CloseBoxOutline" size={1.2} className="has-text-link" onClick={menuHandler} />
+                    <IconButton onClick={menuHandler} hasNoHoverEffect className="no-select">
+                        <Icon name="CloseBoxOutline" size={1.2} className="has-text-link" />
+                    </IconButton>
                 </div>
                 {props.children}
             </div>
