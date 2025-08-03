@@ -84,6 +84,7 @@ describe("test component: NavigationView", () => {
                 avatarName=""
                 avatarSource=""
                 aliasName=""
+                signup={{ caption: "", link: "" }}
                 menu={{ image: "", items: [items] }}
                 logo="logo.svg"
                 languages={languages}
