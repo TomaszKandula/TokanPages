@@ -1,16 +1,20 @@
 import React from "react";
+import { NavigationContentDto } from "../../../../../Api/Models";
 import { useDimensions } from "../../../../../Shared/Hooks";
+import { Icon } from "../../../../../Shared/Components";
 import "./renderBottomSheet.css";
 
 interface RenderBottomSheetProps {
     bottomSheetHeight: number;
     isBottomSheetOpen: boolean;
+    navigation: NavigationContentDto;
     triggerBottomSheet: () => void;
     children: React.ReactElement | React.ReactElement[];
 }
 
 export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactElement => {
     const dimensions = useDimensions();
+    const height = dimensions.height + props.bottomSheetHeight;
 
     const [canOpenBottomSheet, setCanOpenBottomSheet] = React.useState(false);
     const [canCloseBottomSheet, setCanCloseBottomSheet] = React.useState(false);
@@ -22,8 +26,8 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
 
     React.useEffect(() => {
         if (props.isBottomSheetOpen && !canCloseBottomSheet) {
-            setTimeout(() => setCanShowBackdrop(true), 150);
-            setTimeout(() => setCanOpenBottomSheet(true), 250);
+            setTimeout(() => setCanShowBackdrop(true), 75);
+            setTimeout(() => setCanOpenBottomSheet(true), 175);
         }
     }, [props.isBottomSheetOpen, canCloseBottomSheet]);
 
@@ -47,9 +51,9 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
             className="bottomsheet-nav-drawer-root"
             style={{
                 width: dimensions.width,
-                bottom: canOpenBottomSheet ? -dimensions.height + props.bottomSheetHeight : -dimensions.height,
+                bottom: canOpenBottomSheet ? -height : -dimensions.height,
             }}
-            //onMouseLeave={menuHandler}
+            onMouseLeave={menuHandler}
         >
             <div
                 className="bottomsheet-nav-drawer-backdrop"
@@ -57,6 +61,11 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
                 onClick={menuHandler}
             ></div>
             <div className="bottomsheet-nav-drawer-container" style={{ height: props.bottomSheetHeight }}>
+                <div className="navbar-top-line"></div>
+                <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 my-5">
+                    <h2 className="is-size-5 has-text-weight-semibold">{props.navigation?.languageMenu.caption}</h2>
+                    <Icon name="CloseBoxOutline" size={1.2} className="has-text-link" onClick={menuHandler} />
+                </div>
                 {props.children}
             </div>
         </nav>
