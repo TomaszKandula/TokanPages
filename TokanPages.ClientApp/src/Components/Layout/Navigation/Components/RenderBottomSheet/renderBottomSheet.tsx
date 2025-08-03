@@ -6,7 +6,7 @@ interface RenderBottomSheetProps {
     bottomSheetHeight: number;
     isBottomSheetOpen: boolean;
     triggerBottomSheet: () => void;
-    content: React.ReactElement | React.ReactElement[];
+    children: React.ReactElement | React.ReactElement[];
 }
 
 export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactElement => {
@@ -57,7 +57,7 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
                 onClick={menuHandler}
             ></div>
             <div className="bottomsheet-nav-drawer-container" style={{ height: props.bottomSheetHeight }}>
-                {props.content}
+                {props.children}
             </div>
         </nav>
     );
