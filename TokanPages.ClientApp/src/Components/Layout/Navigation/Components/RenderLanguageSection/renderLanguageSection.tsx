@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseProperties } from "../../Abstractions";
 import { RenderAvatarIcon } from "../RenderAvatarIcon";
-import { RenderLanguageIcon } from "../RenderLanguageIcon";
+import { RenderSelectionIcon } from "../RenderSelectionIcon";
 import { CustomImage } from "../../../../../Shared/Components";
 import { GET_FLAG_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
@@ -32,7 +32,7 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
                         className="bulma-image bulma-is-16x16 mr-4"
                     />
                     <div>{item.name}</div>
-                    <RenderLanguageIcon selection={item.id} languageId={props.languageId} />
+                    <RenderSelectionIcon selection={item.id} languageId={props.languageId} />
                 </a>
             ))}
         </div>
