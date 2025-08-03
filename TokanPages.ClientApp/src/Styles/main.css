@@ -25,7 +25,6 @@
   An application MUST NOT use the pseudo function expression.
 */
 
-@import url("bulma.css");
 @import url("spinner.css");
 @import url("checkbox.css");
 @import url("lines.css");
