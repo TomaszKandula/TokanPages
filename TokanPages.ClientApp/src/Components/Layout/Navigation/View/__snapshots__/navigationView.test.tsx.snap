@@ -45,11 +45,10 @@ Object {
             >
               <img
                 alt="A flag (en) for current language selection"
-                height="14"
+                class="bulma-image bulma-is-16x16 lazyloaded"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                 title="Language flag"
-                width="14"
               />
               <div>
                 EN
@@ -63,12 +62,10 @@ Object {
               >
                 <img
                   alt="A flag (English) symbolizing available language"
-                  class="mr-4 lazyloaded"
-                  height="14"
+                  class="bulma-image bulma-is-16x16 mr-4 lazyloaded"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                   title="Language flag"
-                  width="14"
                 />
                 <div>
                   English
@@ -92,12 +89,10 @@ Object {
               >
                 <img
                   alt="A flag (Polski) symbolizing available language"
-                  class="mr-4 lazyloaded"
-                  height="14"
+                  class="bulma-image bulma-is-16x16 mr-4 lazyloaded"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
                   title="Language flag"
-                  width="14"
                 />
                 <div>
                   Polski
@@ -164,11 +159,10 @@ Object {
           >
             <img
               alt="A flag (en) for current language selection"
-              height="14"
+              class="bulma-image bulma-is-16x16 lazyloaded"
               loading="lazy"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
               title="Language flag"
-              width="14"
             />
             <div>
               EN
@@ -182,12 +176,10 @@ Object {
             >
               <img
                 alt="A flag (English) symbolizing available language"
-                class="mr-4 lazyloaded"
-                height="14"
+                class="bulma-image bulma-is-16x16 mr-4 lazyloaded"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                 title="Language flag"
-                width="14"
               />
               <div>
                 English
@@ -211,12 +203,10 @@ Object {
             >
               <img
                 alt="A flag (Polski) symbolizing available language"
-                class="mr-4 lazyloaded"
-                height="14"
+                class="bulma-image bulma-is-16x16 mr-4 lazyloaded"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
                 title="Language flag"
-                width="14"
               />
               <div>
                 Polski
