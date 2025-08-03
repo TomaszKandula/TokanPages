@@ -1,6 +1,6 @@
 import * as React from "react";
 import { GET_ICONS_URL } from "../../../../../Api";
-import { ItemDto } from "../../../../../Api/Models";
+import { NavigationContentDto } from "../../../../../Api/Models";
 import { CustomImage } from "../../../../../Shared/Components";
 import { useDimensions } from "../../../../../Shared/Hooks";
 import { RenderSideMenu } from "../RenderMenu";
@@ -10,8 +10,7 @@ interface RenderDrawerProps {
     isAnonymous: boolean;
     isMenuOpen: boolean;
     triggerSideMenu: () => void;
-    logo: string;
-    menu: { image: string; items: ItemDto[] };
+    navigation: NavigationContentDto;
     languageId: string;
 }
 
@@ -66,7 +65,7 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
                 <div className="navigation-nav-drawer-hero">
                     <CustomImage
                         base={GET_ICONS_URL}
-                        source={props?.menu?.image}
+                        source={props.navigation?.menu?.image}
                         title="Logo"
                         alt="An application logo"
                         className="navigation-nav-drawer-logo"
@@ -75,7 +74,7 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
                 <RenderSideMenu
                     isAnonymous={props.isAnonymous}
                     languageId={props.languageId}
-                    items={props.menu?.items}
+                    items={props.navigation.menu?.items}
                 />
             </div>
         </nav>
