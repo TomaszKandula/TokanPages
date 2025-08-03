@@ -21,7 +21,7 @@ Object {
               class="ml-4 lazyloaded"
               height="30"
               loading="lazy"
-              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.webp"
               title="TomKandula logo"
               width="180"
             />
@@ -135,7 +135,7 @@ Object {
             class="ml-4 lazyloaded"
             height="30"
             loading="lazy"
-            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.webp"
             title="TomKandula logo"
             width="180"
           />
