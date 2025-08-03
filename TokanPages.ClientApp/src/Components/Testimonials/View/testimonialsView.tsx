@@ -43,7 +43,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             <p className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</p>
                         </Skeleton>
                     </Animated>
-                    <div className={`bulma-columns ${props.media.isMobile ? "p-4" : "p-6"}`}>
+                    <div className={`bulma-columns ${props.media.isMobile ? "m-2" : "m-6"}`}>
                         <div className={`bulma-column ${props.media.isMobile ? "mt-6" : ""}`}>
                             <Animated dataAos="fade-up" dataAosDelay={350}>
                                 <div className="bulma-card">

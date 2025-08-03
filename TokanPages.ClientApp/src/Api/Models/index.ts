@@ -88,7 +88,12 @@ export type { FeatureShowcaseContentDto } from "./Components/featureShowcaseCont
 export type { ArticleContentDto } from "./Components/articleContentDto";
 export type { ArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
 export type { DocumentContentDto } from "./Components/documentContentDto";
-export type { NavigationContentDto, UserInfoProps } from "./Components/navigationContentDto";
+export type {
+    NavigationContentDto,
+    UserInfoProps,
+    SignupProps,
+    LanguageMenuProps,
+} from "./Components/navigationContentDto";
 export type { HeaderContentDto, HeaderPhotoDto } from "./Components/headerContentDto";
 export type { FooterContentDto } from "./Components/footerContentDto";
 export type { ClientsContentDto, ClientImageDto } from "./Components/clientsContentDto";

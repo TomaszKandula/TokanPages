@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BaseProperties } from "../../Abstractions";
 import { RenderAvatarIcon } from "../RenderAvatarIcon";
-import { RenderLanguageIcon } from "../RenderLanguageIcon";
+import { RenderSelectionIcon } from "../RenderSelectionIcon";
 import { CustomImage } from "../../../../../Shared/Components";
 import { GET_FLAG_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
@@ -17,8 +17,7 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
                 source={`${props.languageId}.png`}
                 title="Language flag"
                 alt={`A flag (${props.languageId}) for current language selection`}
-                width={14}
-                height={14}
+                className="bulma-image bulma-is-16x16"
             />
             <div>{props.languageId?.toUpperCase()}</div>
         </a>
@@ -30,12 +29,10 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
                         source={`${item.id}.png`}
                         title="Language flag"
                         alt={`A flag (${item.name}) symbolizing available language`}
-                        width={14}
-                        height={14}
-                        className="mr-4"
+                        className="bulma-image bulma-is-16x16 mr-4"
                     />
                     <div>{item.name}</div>
-                    <RenderLanguageIcon selection={item.id} languageId={props.languageId} />
+                    <RenderSelectionIcon selection={item.id} languageId={props.languageId} />
                 </a>
             ))}
         </div>

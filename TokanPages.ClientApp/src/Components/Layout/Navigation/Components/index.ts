@@ -1,8 +1,9 @@
 export { RenderAvatarIcon } from "./RenderAvatarIcon";
-export { RenderLanguageIcon } from "./RenderLanguageIcon";
+export { RenderSelectionIcon } from "./RenderSelectionIcon";
 export { RenderLanguageSection } from "./RenderLanguageSection";
 export { RenderNavbarMenu, RenderSideMenu } from "./RenderMenu";
 export { RenderMenuIcon } from "./RenderMenuIcon";
 export { RenderToolbarLargeScreen } from "./RenderToolbarLargeScreen";
 export { RenderToolbarSmallScreen } from "./RenderToolbarSmallScreen";
 export { RenderDrawer } from "./RenderDrawer";
+export { RenderBottomSheet } from "./RenderBottomSheet";

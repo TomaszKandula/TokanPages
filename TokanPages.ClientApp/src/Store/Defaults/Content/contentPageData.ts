@@ -296,6 +296,13 @@ export const ContentPageData: ContentPageDataState = {
         layoutNavigation: {
             language: "",
             logo: "",
+            languageMenu: {
+                caption: "",
+            },
+            signup: {
+                caption: "",
+                link: "",
+            },
             userInfo: {
                 textUserAlias: "",
                 textRegistered: "",

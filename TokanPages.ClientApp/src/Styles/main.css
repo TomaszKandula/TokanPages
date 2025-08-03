@@ -25,7 +25,6 @@
   An application MUST NOT use the pseudo function expression.
 */
 
-@import url("bulma.css");
 @import url("spinner.css");
 @import url("checkbox.css");
 @import url("lines.css");
@@ -57,6 +56,7 @@ body {
     font-weight: 400;
     line-height: 1.43;
     background-color: #ffffff;
+    scrollbar-color: rgb(110, 110, 110) rgb(246, 246, 246);
 }
 
 @media print {
@@ -72,6 +72,20 @@ body {
     transition-property: opacity;
     transition-duration: 1s;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.no-select {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.no-select:focus {
+    outline: none !important;
 }
 
 .do-not-display {

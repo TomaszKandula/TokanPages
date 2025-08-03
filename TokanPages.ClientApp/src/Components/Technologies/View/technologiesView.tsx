@@ -25,7 +25,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                             </p>
                         </Skeleton>
                     </Animated>
-                    <div className={media.isMobile ? "p-4" : "p-6"}>
+                    <div className={media.isMobile ? "m-4" : "m-6"}>
                         <div className="bulma-columns">
                             <div className="bulma-column">
                                 <Animated dataAos="fade-up" className="is-flex is-align-items-center py-2">

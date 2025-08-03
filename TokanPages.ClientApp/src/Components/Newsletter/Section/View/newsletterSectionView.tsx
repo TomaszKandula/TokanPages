@@ -32,7 +32,7 @@ export const NewsletterSectionView = (props: NewsletterViewProps): React.ReactEl
     <section className={props.className}>
         <div className="bulma-container">
             <div className="py-6">
-                <div className={props.isMobile ? "p-5" : "p-6"}>
+                <div className={props.isMobile ? "m-5" : "m-6"}>
                     <div className="bulma-columns bulma-is-vcentered">
                         <div className="bulma-column">
                             <Animated dataAos="fade-down" dataAosDelay={150}>

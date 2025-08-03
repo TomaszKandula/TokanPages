@@ -35,7 +35,7 @@ const RenderImages = (props: ClientsViewExtendedProps): React.ReactElement => {
     return (
         <div className="is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-center">
             {props?.images?.map((item: ClientImageDto, _index: number) => (
-                <div className={`${props.isDesktop ? "px-6" : "p-6"}`} key={uuidv4()}>
+                <div className={`${props.isDesktop ? "mx-6" : "m-6"}`} key={uuidv4()}>
                     <Skeleton isLoading={props.isLoading} mode="Rect" width={100} height={100}>
                         <img
                             src={getImagePath(item.path)}
