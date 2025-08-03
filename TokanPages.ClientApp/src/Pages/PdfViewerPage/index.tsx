@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { useDimensions, usePageContent, useUnhead } from "../../Shared/Hooks";
+import { usePageContent, useUnhead } from "../../Shared/Hooks";
 import { PdfViewer } from "../../Components/PdfViewer";
 import { Footer, Navigation } from "../../Components/Layout";
 
@@ -11,14 +11,13 @@ const useQuery = () => {
 export const PdfViewerPage = () => {
     useUnhead("PdfViewerPage");
     usePageContent(["navigation", "layoutFooter", "templates", "cookiesPrompt", "pagePdfViewer"], "PdfViewerPage");
-    const media = useDimensions();
 
     const queryParam = useQuery();
     const name = queryParam.get("name") ?? "";
 
     return (
         <>
-            <Navigation backNavigationOnly isAlwaysVisible={media.isMobile} />
+            <Navigation backNavigationOnly />
             <main>
                 <PdfViewer pdfFile={name} />
             </main>
