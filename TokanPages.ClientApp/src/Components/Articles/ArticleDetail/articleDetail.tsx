@@ -118,7 +118,6 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
                     isLarge={false}
                     avatarName={selection.article.author.avatarName}
                     userLetter={userLetter}
-                    className="has-background-grey-light has-text-light"
                 />
             }
             renderLargeAvatar={
@@ -127,7 +126,6 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
                     isLarge={true}
                     avatarName={selection.article.author.avatarName}
                     userLetter={userLetter}
-                    className="has-background-grey-light has-text-light"
                 />
             }
             authorAliasName={selection.article.author.aliasName}

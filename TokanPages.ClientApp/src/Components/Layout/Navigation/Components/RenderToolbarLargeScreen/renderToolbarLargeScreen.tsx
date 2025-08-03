@@ -13,7 +13,7 @@ export const RenderToolbarLargeScreen = (props: NavigationViewProps): React.Reac
                 <Link to={`/${props.languageId}`} rel="noopener nofollow">
                     <CustomImage
                         base={GET_ICONS_URL}
-                        source={props?.logo}
+                        source={props.navigation?.logo}
                         title="TomKandula logo"
                         alt="An application logo"
                         width={180}
@@ -26,7 +26,7 @@ export const RenderToolbarLargeScreen = (props: NavigationViewProps): React.Reac
                 <RenderNavbarMenu
                     isAnonymous={props.isAnonymous}
                     languageId={props.languageId}
-                    items={props.menu?.items}
+                    items={props.navigation?.menu?.items}
                 />
             </div>
             <div className="bulma-navbar-end">{props.isLoading ? null : <RenderLanguageSection {...props} />}</div>

@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <nav
-        class="bulma-navbar app-bar"
+        class="bulma-navbar app-bar  "
         style="top: 0px; min-height: 64px;"
       >
         <div
@@ -21,7 +21,7 @@ Object {
               class="ml-4 lazyloaded"
               height="30"
               loading="lazy"
-              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.webp"
               title="TomKandula logo"
               width="180"
             />
@@ -45,11 +45,10 @@ Object {
             >
               <img
                 alt="A flag (en) for current language selection"
-                height="14"
+                class="bulma-image bulma-is-16x16 lazyloaded"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                 title="Language flag"
-                width="14"
               />
               <div>
                 EN
@@ -63,21 +62,19 @@ Object {
               >
                 <img
                   alt="A flag (English) symbolizing available language"
-                  class="mr-4 lazyloaded"
-                  height="14"
+                  class="bulma-image bulma-is-16x16 mr-4 lazyloaded"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                   title="Language flag"
-                  width="14"
                 />
                 <div>
                   English
                 </div>
                 <div>
                   <svg
-                    class="is-flex is-align-self-center navigation-languages-check"
+                    class="is-flex is-align-self-center has-text-link"
                     role="presentation"
-                    style="width: 2.25rem; height: 2.25rem;"
+                    style="width: 1.125rem; height: 1.125rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -92,12 +89,10 @@ Object {
               >
                 <img
                   alt="A flag (Polski) symbolizing available language"
-                  class="mr-4 lazyloaded"
-                  height="14"
+                  class="bulma-image bulma-is-16x16 mr-4 lazyloaded"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
                   title="Language flag"
-                  width="14"
                 />
                 <div>
                   Polski
@@ -125,7 +120,7 @@ Object {
   </body>,
   "container": <div>
     <nav
-      class="bulma-navbar app-bar"
+      class="bulma-navbar app-bar  "
       style="top: 0px; min-height: 64px;"
     >
       <div
@@ -140,7 +135,7 @@ Object {
             class="ml-4 lazyloaded"
             height="30"
             loading="lazy"
-            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.svg"
+            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.webp"
             title="TomKandula logo"
             width="180"
           />
@@ -164,11 +159,10 @@ Object {
           >
             <img
               alt="A flag (en) for current language selection"
-              height="14"
+              class="bulma-image bulma-is-16x16 lazyloaded"
               loading="lazy"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
               title="Language flag"
-              width="14"
             />
             <div>
               EN
@@ -182,21 +176,19 @@ Object {
             >
               <img
                 alt="A flag (English) symbolizing available language"
-                class="mr-4 lazyloaded"
-                height="14"
+                class="bulma-image bulma-is-16x16 mr-4 lazyloaded"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                 title="Language flag"
-                width="14"
               />
               <div>
                 English
               </div>
               <div>
                 <svg
-                  class="is-flex is-align-self-center navigation-languages-check"
+                  class="is-flex is-align-self-center has-text-link"
                   role="presentation"
-                  style="width: 2.25rem; height: 2.25rem;"
+                  style="width: 1.125rem; height: 1.125rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -211,12 +203,10 @@ Object {
             >
               <img
                 alt="A flag (Polski) symbolizing available language"
-                class="mr-4 lazyloaded"
-                height="14"
+                class="bulma-image bulma-is-16x16 mr-4 lazyloaded"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
                 title="Language flag"
-                width="14"
               />
               <div>
                 Polski

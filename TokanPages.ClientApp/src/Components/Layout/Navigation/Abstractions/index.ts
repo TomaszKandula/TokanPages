@@ -1,4 +1,4 @@
-import { ItemDto } from "../../../../Api/Models";
+import { NavigationContentDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { UseDimensionsResult } from "../../../../Shared/Hooks/useDimensions";
 import { ApplicationLanguageState } from "../../../../Store/States";
@@ -6,15 +6,15 @@ import { ApplicationLanguageState } from "../../../../Store/States";
 export interface BaseProperties extends ViewProperties {
     isAnonymous: boolean;
     isMenuOpen: boolean;
-    isAlwaysVisible?: boolean;
+    isBottomSheetOpen: boolean;
     media: UseDimensionsResult;
     triggerSideMenu: () => void;
+    triggerBottomSheet: () => void;
     infoHandler: () => void;
     aliasName: string;
     avatarName: string;
     avatarSource: string;
-    logo: string;
-    menu: { image: string; items: ItemDto[] };
+    navigation: NavigationContentDto;
     backNavigationOnly?: boolean;
     backPathFragment?: string;
     backPathHandler: () => void;
@@ -32,4 +32,10 @@ export interface NavigationViewProps extends BaseProperties {
 export interface LanguageSelectionProps {
     selection: string;
     languageId: string;
+    size?: number;
+}
+
+export interface ListSeparatorProps {
+    length: number;
+    index: number;
 }

@@ -11,7 +11,6 @@ import Validate from "validate.js";
 interface NavigationProps {
     backNavigationOnly?: boolean;
     backPathFragment?: string;
-    isAlwaysVisible?: boolean;
 }
 
 export const Navigation = (props: NavigationProps): React.ReactElement => {
@@ -32,6 +31,7 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
     const avatarSource = GET_USER_IMAGE.replace("{id}", userId).replace("{name}", avatarName);
 
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [isBottomSheetOpen, setIsBottomSheetOpen] = React.useState(false);
     const [isLanguageMenuOpen, setIsLanguageMenuOpen] = React.useState(false);
 
     const languagePickHandler = React.useCallback(
@@ -55,6 +55,10 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
     const triggerSideMenu = React.useCallback(() => {
         setIsMenuOpen(!isMenuOpen);
     }, [isMenuOpen]);
+
+    const triggerBottomSheet = React.useCallback(() => {
+        setIsBottomSheetOpen(!isBottomSheetOpen);
+    }, [isBottomSheetOpen]);
 
     const languageMenuHandler = React.useCallback(() => {
         setIsLanguageMenuOpen(!isLanguageMenuOpen);
@@ -81,15 +85,15 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
             isLoading={isLoading}
             isAnonymous={isAnonymous}
             isMenuOpen={isMenuOpen}
-            isAlwaysVisible={props.isAlwaysVisible}
+            isBottomSheetOpen={isBottomSheetOpen}
             media={media}
             triggerSideMenu={triggerSideMenu}
+            triggerBottomSheet={triggerBottomSheet}
             infoHandler={infoHandler}
             aliasName={aliasName}
             avatarName={avatarName}
             avatarSource={avatarSource}
-            logo={navigation?.logo}
-            menu={navigation?.menu}
+            navigation={navigation}
             backNavigationOnly={props.backNavigationOnly}
             backPathFragment={props.backPathFragment}
             backPathHandler={backButtonHandler}

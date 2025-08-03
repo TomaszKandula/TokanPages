@@ -13,7 +13,8 @@ export const Avatar = (props: AvatarProps): React.ReactElement => {
     const hasSrc = props.src && props.src !== "";
 
     if (!hasSrc && props.children) {
-        const baseClass = "has-background-grey-light is-flex is-justify-content-center is-align-items-center";
+        const baseClass =
+            "has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center";
         let className;
         if (props.className?.includes("96x96")) {
             className = `${baseClass} default-avatar-large`;
