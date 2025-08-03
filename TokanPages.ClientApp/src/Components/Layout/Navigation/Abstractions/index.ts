@@ -6,8 +6,10 @@ import { ApplicationLanguageState } from "../../../../Store/States";
 export interface BaseProperties extends ViewProperties {
     isAnonymous: boolean;
     isMenuOpen: boolean;
+    isBottomSheetOpen: boolean;
     media: UseDimensionsResult;
     triggerSideMenu: () => void;
+    triggerBottomSheet: () => void;
     infoHandler: () => void;
     aliasName: string;
     avatarName: string;
