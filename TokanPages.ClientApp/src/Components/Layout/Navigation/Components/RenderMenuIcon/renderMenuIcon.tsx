@@ -8,6 +8,7 @@ export const RenderMenuIcon = (props: NavigationViewProps): React.ReactElement =
     <IconButton
         aria-label="menu"
         hasNoHoverEffect={props.media.isMobile || props.media.isTablet}
+        className="no-select"
         onClick={props.triggerSideMenu}
     >
         <Icon path={mdiMenu} size={1} />

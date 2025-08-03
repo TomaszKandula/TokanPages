@@ -22,7 +22,7 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => {
                 className="is-flex is-justify-content-space-between is-align-items-center"
                 style={{ height: APP_BAR_HEIGHT_NON_DESKTOP_TOP }}
             >
-                <a className="bulma-navbar-start is-flex is-align-items-center ml-4" onClick={props.triggerBottomSheet}>
+                <a className="bulma-navbar-start is-flex is-align-items-center ml-4 no-select" onClick={props.triggerBottomSheet}>
                     <CustomImage
                         base={GET_FLAG_URL}
                         source={`${props.languageId}.png`}

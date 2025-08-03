@@ -25,7 +25,7 @@ export const ScrollToTop = (): React.ReactElement => {
 
     return (
         <div style={{ visibility: scroll.isScrolledTop ? "hidden" : "visible" }}>
-            <div onClick={handleClick} role="presentation" className="scroll-to-top">
+            <div onClick={handleClick} role="presentation" className="scroll-to-top no-select">
                 <div aria-label="scroll back to top" className="scroll-to-top-button">
                     <Icon path={mdiChevronUp} size={1} />
                 </div>
