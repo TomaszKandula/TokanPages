@@ -34,4 +34,10 @@ export interface NavigationViewProps extends BaseProperties {
 export interface LanguageSelectionProps {
     selection: string;
     languageId: string;
+    size?: number;
+}
+
+export interface ListSeparatorProps {
+    length: number;
+    index: number;
 }
