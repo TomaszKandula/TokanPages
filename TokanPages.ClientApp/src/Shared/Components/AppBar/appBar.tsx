@@ -21,12 +21,15 @@ export const AppBar = (props: AppBarProps) => {
         if (scroll.isScrollingUp || scroll.isScrolledTop) {
             setTop(0);
         } else {
-            setTop(-height-offset);
+            setTop(-height - offset);
         }
     }, [scroll.isScrollingUp, scroll.isScrolledTop]);
 
     return (
-        <nav className={`bulma-navbar app-bar ${isMobileOrTablet ? "is-flex" : ""} `} style={{ top: top, minHeight: props.height }}>
+        <nav
+            className={`bulma-navbar app-bar ${isMobileOrTablet ? "is-flex" : ""} `}
+            style={{ top: top, minHeight: props.height }}
+        >
             {props.children}
         </nav>
     );
