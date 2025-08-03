@@ -93,9 +93,7 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
             aliasName={aliasName}
             avatarName={avatarName}
             avatarSource={avatarSource}
-            signup={navigation?.signup}
-            logo={navigation?.logo}
-            menu={navigation?.menu}
+            navigation={navigation}
             backNavigationOnly={props.backNavigationOnly}
             backPathFragment={props.backPathFragment}
             backPathHandler={backButtonHandler}
