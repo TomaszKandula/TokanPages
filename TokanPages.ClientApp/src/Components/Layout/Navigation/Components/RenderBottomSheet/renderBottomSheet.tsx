@@ -49,7 +49,7 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
                 width: dimensions.width,
                 bottom: canOpenBottomSheet ? -dimensions.height + props.bottomSheetHeight : -dimensions.height,
             }}
-            onMouseLeave={menuHandler}
+            //onMouseLeave={menuHandler}
         >
             <div
                 className="bottomsheet-nav-drawer-backdrop"
