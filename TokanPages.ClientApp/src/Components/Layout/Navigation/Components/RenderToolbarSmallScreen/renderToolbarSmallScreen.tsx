@@ -22,7 +22,10 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => {
                 className="is-flex is-justify-content-space-between is-align-items-center"
                 style={{ height: APP_BAR_HEIGHT_NON_DESKTOP_TOP }}
             >
-                <a className="bulma-navbar-start is-flex is-align-items-center ml-4 no-select" onClick={props.triggerBottomSheet}>
+                <a
+                    className="bulma-navbar-start is-flex is-align-items-center ml-4 no-select"
+                    onClick={props.triggerBottomSheet}
+                >
                     <CustomImage
                         base={GET_FLAG_URL}
                         source={`${props.languageId}.png`}
@@ -66,26 +69,26 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => {
 };
 
 const RenderLanguages = (props: NavigationViewProps): React.ReactElement => (
-        <div className="is-flex is-flex-direction-column m-4">
-            {props.languages?.languages.map((item: LanguageItemDto, index: number) => (
-                <React.Fragment key={uuidv4()}>
-                    <a className="is-flex is-align-items-center" onClick={() => props.languagePickHandler(item.id)}>
-                        <CustomImage
-                            base={GET_FLAG_URL}
-                            source={`${item.id}.png`}
-                            title="Language flag"
-                            alt={`A flag (${item.name}) symbolizing available language`}
-                            className="bulma-image bulma-is-24x24 my-2 ml-0 mr-2"
-                        />
-                        <h4 className="is-size-6 has-text-black m-2">{item.name}</h4>
-                        <div className="ml-4">
-                            <RenderSelectionIcon selection={item.id} languageId={props.languageId} />
-                        </div>
-                    </a>
-                    <ListSeparator length={props.languages?.languages.length} index={index} />
-                </React.Fragment>
-            ))}
-        </div>
+    <div className="is-flex is-flex-direction-column m-4">
+        {props.languages?.languages.map((item: LanguageItemDto, index: number) => (
+            <React.Fragment key={uuidv4()}>
+                <a className="is-flex is-align-items-center" onClick={() => props.languagePickHandler(item.id)}>
+                    <CustomImage
+                        base={GET_FLAG_URL}
+                        source={`${item.id}.png`}
+                        title="Language flag"
+                        alt={`A flag (${item.name}) symbolizing available language`}
+                        className="bulma-image bulma-is-24x24 my-2 ml-0 mr-2"
+                    />
+                    <h4 className="is-size-6 has-text-black m-2">{item.name}</h4>
+                    <div className="ml-4">
+                        <RenderSelectionIcon selection={item.id} languageId={props.languageId} />
+                    </div>
+                </a>
+                <ListSeparator length={props.languages?.languages.length} index={index} />
+            </React.Fragment>
+        ))}
+    </div>
 );
 
 export const RenderToolbarSmallScreen = (props: NavigationViewProps): React.ReactElement => (

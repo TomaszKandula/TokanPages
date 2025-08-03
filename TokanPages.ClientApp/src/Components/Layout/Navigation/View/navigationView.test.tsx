@@ -90,7 +90,7 @@ describe("test component: NavigationView", () => {
                     language: "en",
                     logo: "logo.webp",
                     languageMenu: {
-                        caption: "Select language"
+                        caption: "Select language",
                     },
                     signup: {
                         caption: "Create a new account",
@@ -101,12 +101,12 @@ describe("test component: NavigationView", () => {
                         textRegistered: "2025-07-07",
                         textRoles: "",
                         textPermissions: "",
-                        textButton: "OK"
+                        textButton: "OK",
                     },
                     menu: {
                         image: "background.webp",
                         items: [items],
-                    }
+                    },
                 }}
                 languages={languages}
                 languageId="en"
