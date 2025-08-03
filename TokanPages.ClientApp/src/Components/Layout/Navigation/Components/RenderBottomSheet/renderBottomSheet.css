@@ -1,0 +1,33 @@
+.bottomsheet-nav-drawer-root {
+    z-index: 1200;
+    position: fixed;
+    bottom: 0;
+    height: 100%;
+    outline: 0;
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+    transition: bottom 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.bottomsheet-nav-drawer-backdrop {
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bottomsheet-nav-drawer-container {
+    z-index: 1100;
+    overflow-y: auto;
+    width: 100%;
+    background-color: white;
+}
