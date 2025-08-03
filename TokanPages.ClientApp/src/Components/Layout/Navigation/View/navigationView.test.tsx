@@ -86,9 +86,28 @@ describe("test component: NavigationView", () => {
                 avatarName=""
                 avatarSource=""
                 aliasName=""
-                signup={{ caption: "", link: "" }}
-                menu={{ image: "", items: [items] }}
-                logo="logo.svg"
+                navigation={{
+                    language: "en",
+                    logo: "logo.webp",
+                    languageMenu: {
+                        caption: "Select language"
+                    },
+                    signup: {
+                        caption: "Create a new account",
+                        link: "/en/signup",
+                    },
+                    userInfo: {
+                        textUserAlias: "tokan",
+                        textRegistered: "2025-07-07",
+                        textRoles: "",
+                        textPermissions: "",
+                        textButton: "OK"
+                    },
+                    menu: {
+                        image: "background.webp",
+                        items: [items],
+                    }
+                }}
                 languages={languages}
                 languageId="en"
                 languagePickHandler={jest.fn()}
