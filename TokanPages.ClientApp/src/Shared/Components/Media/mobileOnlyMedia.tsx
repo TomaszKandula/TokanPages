@@ -8,4 +8,4 @@ export interface MobileOnlyMediaProps {
 export const MobileOnlyMedia = (props: MobileOnlyMediaProps): React.ReactElement => {
     const media = useDimensions();
     return media.isMobile ? <>{props.children}</> : <></>;
-}
+};

@@ -47,7 +47,7 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
             className="bottomsheet-nav-drawer-root"
             style={{
                 width: dimensions.width,
-                bottom: canOpenBottomSheet ? -dimensions.height + props.bottomSheetHeight : -dimensions.height
+                bottom: canOpenBottomSheet ? -dimensions.height + props.bottomSheetHeight : -dimensions.height,
             }}
             onMouseLeave={menuHandler}
         >
@@ -61,4 +61,4 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
             </div>
         </nav>
     );
-}
+};

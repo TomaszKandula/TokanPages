@@ -12,4 +12,4 @@ export const Media: MediaProps = {
     DesktopOnly: DesktopOnlyMedia,
     TabletOnly: TabletOnlyMedia,
     MobileOnly: MobileOnlyMedia,
-}
+};

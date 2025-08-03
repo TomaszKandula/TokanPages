@@ -8,4 +8,4 @@ export interface DesktopOnlyMediaProps {
 export const DesktopOnlyMedia = (props: DesktopOnlyMediaProps): React.ReactElement => {
     const media = useDimensions();
     return media.isDesktop ? <>{props.children}</> : <></>;
-}
+};

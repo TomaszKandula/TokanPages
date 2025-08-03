@@ -8,4 +8,4 @@ export interface TabletOnlyMediaProps {
 export const TabletOnlyMedia = (props: TabletOnlyMediaProps): React.ReactElement => {
     const media = useDimensions();
     return media.isTablet ? <>{props.children}</> : <></>;
-}
+};

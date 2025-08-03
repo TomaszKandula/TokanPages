@@ -298,7 +298,7 @@ export const ContentPageData: ContentPageDataState = {
             logo: "",
             signup: {
                 caption: "",
-                link: ""
+                link: "",
             },
             userInfo: {
                 textUserAlias: "",

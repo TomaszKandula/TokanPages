@@ -8,16 +8,13 @@ import { NavigationViewProps } from "../Abstractions";
 
 const RenderBackNavigationOnly = (props: NavigationViewProps): React.ReactElement => (
     <AppBar height={APP_BAR_HEIGHT_DESKTOP}>
-        <IconButton
-            hasNoHoverEffect={props.media.isMobile || props.media.isTablet}
-            onClick={props.backPathHandler}
-        >
+        <IconButton hasNoHoverEffect={props.media.isMobile || props.media.isTablet} onClick={props.backPathHandler}>
             <Icon path={mdiArrowLeft} size={1} />
         </IconButton>
     </AppBar>
 );
 
-const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement => { 
+const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement => {
     const height = props.media.isDesktop ? APP_BAR_HEIGHT_DESKTOP : APP_BAR_HEIGHT_NON_DESKTOP;
 
     return (
@@ -29,6 +26,5 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
     );
 };
 
-export const NavigationView = (props: NavigationViewProps): React.ReactElement => (
-    props.backNavigationOnly ? <RenderBackNavigationOnly {...props} /> : <RenderFullNavigation {...props} />
-);
+export const NavigationView = (props: NavigationViewProps): React.ReactElement =>
+    props.backNavigationOnly ? <RenderBackNavigationOnly {...props} /> : <RenderFullNavigation {...props} />;
