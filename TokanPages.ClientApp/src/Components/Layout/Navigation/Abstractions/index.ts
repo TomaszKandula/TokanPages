@@ -1,4 +1,4 @@
-import { ItemDto } from "../../../../Api/Models";
+import { ItemDto, SignupProps } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { UseDimensionsResult } from "../../../../Shared/Hooks/useDimensions";
 import { ApplicationLanguageState } from "../../../../Store/States";
@@ -6,13 +6,13 @@ import { ApplicationLanguageState } from "../../../../Store/States";
 export interface BaseProperties extends ViewProperties {
     isAnonymous: boolean;
     isMenuOpen: boolean;
-    isAlwaysVisible?: boolean;
     media: UseDimensionsResult;
     triggerSideMenu: () => void;
     infoHandler: () => void;
     aliasName: string;
     avatarName: string;
     avatarSource: string;
+    signup: SignupProps;
     logo: string;
     menu: { image: string; items: ItemDto[] };
     backNavigationOnly?: boolean;

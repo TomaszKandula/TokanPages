@@ -1,18 +1,13 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { NavigationViewProps } from "../../Abstractions";
 import { RenderMenuIcon } from "../RenderMenuIcon";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../../Api";
-import { ApplicationState } from "../../../../../Store/Configuration";
 import { CustomImage, Icon, Link, Media } from "../../../../../Shared/Components";
 import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP_TOP } from "Shared/constants";
 import "./renderToolbarSmallScreen.css";
 
 const RenderDoubleToolbar = (props: NavigationViewProps) => { 
-    const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const signup = props.menu.items.filter((item) => item.link?.includes("signup") ? item : undefined)[0];
-
     return (
         <div className="is-flex is-flex-direction-column is-flex-grow-1">
             <div className="is-flex is-justify-content-space-between is-align-items-center" style={{ height: APP_BAR_HEIGHT_NON_DESKTOP_TOP }}>
@@ -27,9 +22,9 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => {
                     <div className="has-text-black ml-2">{props.languageId?.toUpperCase()}</div>
                     <Icon name="ChevronDown" size={0.75} className="ml-1" />
                 </a>
-                <Link to={signup.link ?? ""} className="bulma-navbar-end is-flex mr-4">
+                <Link to={props.signup.link} className="bulma-navbar-end is-flex mr-4">
                     <Icon name="PlusCircleOutline" size={0.75} className="mr-1" />
-                    <p className="is-size-7 has-text-black">{data.components.accountUserSignup.caption}</p>
+                    <p className="is-size-7 has-text-black">{props.signup.caption}</p>
                 </Link>
             </div>
             <hr className="navbar-top-section"/>

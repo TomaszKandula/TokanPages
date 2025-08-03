@@ -11,7 +11,6 @@ import Validate from "validate.js";
 interface NavigationProps {
     backNavigationOnly?: boolean;
     backPathFragment?: string;
-    isAlwaysVisible?: boolean;
 }
 
 export const Navigation = (props: NavigationProps): React.ReactElement => {
@@ -81,13 +80,13 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
             isLoading={isLoading}
             isAnonymous={isAnonymous}
             isMenuOpen={isMenuOpen}
-            isAlwaysVisible={props.isAlwaysVisible}
             media={media}
             triggerSideMenu={triggerSideMenu}
             infoHandler={infoHandler}
             aliasName={aliasName}
             avatarName={avatarName}
             avatarSource={avatarSource}
+            signup={navigation?.signup}
             logo={navigation?.logo}
             menu={navigation?.menu}
             backNavigationOnly={props.backNavigationOnly}
