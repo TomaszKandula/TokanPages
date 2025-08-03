@@ -1,3 +1,56 @@
+# [0.158.0](https://github.com/TomaszKandula/TokanPages/compare/v0.157.0...v0.158.0) (2025-08-03)
+
+
+### Bug Fixes
+
+* add missing class styles ([a99dd98](https://github.com/TomaszKandula/TokanPages/commit/a99dd982846d10c0fa9dd38ec7622972d1d8fa73))
+* add missing text colour ([7b69e6a](https://github.com/TomaszKandula/TokanPages/commit/7b69e6a4f4b368a5de61798cd1bc6c03fd100516))
+* align sections, correct paddings/margins ([931ac64](https://github.com/TomaszKandula/TokanPages/commit/931ac6422bddc333fdcbd9955898da2dde74cf04))
+* correct condition ([0cb0116](https://github.com/TomaszKandula/TokanPages/commit/0cb011632ed13ab05718064dd2a2795781d3369b))
+* correct paddings for mobile/tablet/desktop ([7bf0f94](https://github.com/TomaszKandula/TokanPages/commit/7bf0f943fd4e509113fbeb5875568d712856e6b0))
+* correct paddings for mobile/tablet/desktop ([831fb18](https://github.com/TomaszKandula/TokanPages/commit/831fb1849c6d5fb61349bbdfe0ce36523881a38a))
+* layouting issues ([b691e90](https://github.com/TomaszKandula/TokanPages/commit/b691e90e1a1a023808f6010d3c9131691508112d))
+* make it centered ([32a2371](https://github.com/TomaszKandula/TokanPages/commit/32a23710e9f39e98d5d3c9005bd1d361966efe68))
+* remove non-compliant prop ([01bfead](https://github.com/TomaszKandula/TokanPages/commit/01bfeadca2baf0290281d3cae235b495f18785af))
+* remove unnecessary class names ([7b93c35](https://github.com/TomaszKandula/TokanPages/commit/7b93c35a9325eeccbeb07e6f5eb6c018a9e98758))
+* remove unnecessary code ([f827f39](https://github.com/TomaszKandula/TokanPages/commit/f827f3994ad690fa5cf83f8e55cd986a8b5137c3))
+* set missing object-fit ([8ece0e4](https://github.com/TomaszKandula/TokanPages/commit/8ece0e47bc9cf544817e6f6d4be1e55dd05c87ed))
+
+
+### Features
+
+* add botom sheet component ([52a6d8a](https://github.com/TomaszKandula/TokanPages/commit/52a6d8a1fc94ad5a8bab281d770c5986bf7ef205))
+* add media component ([81519a9](https://github.com/TomaszKandula/TokanPages/commit/81519a975383403ddbc8b5dc01e6d875c91e2133))
+* add optional offset ([c08cd87](https://github.com/TomaszKandula/TokanPages/commit/c08cd877d579595dca97d1a1f31ca7d96c9ea45f))
+* add style ([d2a9ca4](https://github.com/TomaszKandula/TokanPages/commit/d2a9ca42c3bd68fa90ba528177c0b7584b1af0f1))
+* add tabindex to the body ([4e35937](https://github.com/TomaszKandula/TokanPages/commit/4e35937db0b5c34b89e37bb61357771a74e329d0))
+* change contract ([a2a14c8](https://github.com/TomaszKandula/TokanPages/commit/a2a14c824a7906da7fb64b370fa012a0b7ebb81a))
+* change contract ([e33c6cc](https://github.com/TomaszKandula/TokanPages/commit/e33c6cc8fc6c986afe07e2ad2ff38cc438fc39f9))
+* change contract ([1e891c9](https://github.com/TomaszKandula/TokanPages/commit/1e891c970e6da2c54fb6da61c587f226a8c7af87))
+* change contract ([2d2cfbf](https://github.com/TomaszKandula/TokanPages/commit/2d2cfbfb347ed2a14ff020bb297d265a6f275109))
+* change contract, update render ([4c9d4d0](https://github.com/TomaszKandula/TokanPages/commit/4c9d4d092083309880f424d14c364991e96d363c))
+* change flag dimensions ([32d3fcf](https://github.com/TomaszKandula/TokanPages/commit/32d3fcf74edfd418289db8c0b9332f50252b8b13))
+* change timings ([99c5d33](https://github.com/TomaszKandula/TokanPages/commit/99c5d337ff3284917d1fd272396cbf8c29b0add9))
+* change viewport settings ([8219a1d](https://github.com/TomaszKandula/TokanPages/commit/8219a1d7ed96262d28aa381fc5930a98e1009f9d))
+* disable hover effect on mobile and tablet devices ([856f63b](https://github.com/TomaszKandula/TokanPages/commit/856f63b54db0bb1f258aebf2c98062bf9c1e788e))
+* extend constants ([098f731](https://github.com/TomaszKandula/TokanPages/commit/098f731d4150f4ee1e42b402df2d234f1e096b9c))
+* extend model ([df8d6d6](https://github.com/TomaszKandula/TokanPages/commit/df8d6d683fd5c41abdcf790219330a294c5784d5))
+* extend models ([9c8506f](https://github.com/TomaszKandula/TokanPages/commit/9c8506f26d82525585a37ace6ca1d050103b99e4))
+* prevent blue highlighting on mobile/tablet devices ([4460d2c](https://github.com/TomaszKandula/TokanPages/commit/4460d2c271f60968ee5a8181691df85391c21ed2))
+* redesign toolbar for mobile/tablet devices ([58d5272](https://github.com/TomaszKandula/TokanPages/commit/58d527230123b2e22414667c4c0737b1c59c8131))
+* remove unused code ([f3b45cd](https://github.com/TomaszKandula/TokanPages/commit/f3b45cdbb89b613685d838ed60f687ddf9190413))
+* remove unused code, pass new prop ([8dd8b4a](https://github.com/TomaszKandula/TokanPages/commit/8dd8b4a429357e29c074c8603989a5907c5c2cbc))
+* remove unused overwrite ([4266e9f](https://github.com/TomaszKandula/TokanPages/commit/4266e9fbd17bd665e61ad2556f39eea8d37a794c))
+* replace paddings w/margins ([d3155ad](https://github.com/TomaszKandula/TokanPages/commit/d3155adb3dc6a82b6475af9f49aa6c74f606165f))
+* set is-flex for mobile/tablet devices ([7da4071](https://github.com/TomaszKandula/TokanPages/commit/7da407124a69025ea5b4abcd8417da5d59d8b42f))
+* treshold depends on the media ([5b050c8](https://github.com/TomaszKandula/TokanPages/commit/5b050c8ee6cf036a0064dbe82326873b506adcad))
+* uncomment feature ([49b61e4](https://github.com/TomaszKandula/TokanPages/commit/49b61e4a5f672e4b4b1cf1024f9f393dac695eb7))
+* update language list ([84a8fab](https://github.com/TomaszKandula/TokanPages/commit/84a8fabb5a79bd70c13a5ce1fbcfedc5b4e1e4ad))
+* update types ([7696a0f](https://github.com/TomaszKandula/TokanPages/commit/7696a0f432cce87f73dd1bc676d40ce3aa4d56b0))
+* use bottom sheet to render available languages ([1b1f972](https://github.com/TomaszKandula/TokanPages/commit/1b1f9721dc6dce27953065191081487288357a45))
+* use children ([5c60adc](https://github.com/TomaszKandula/TokanPages/commit/5c60adc44133f23473fb07f92550016f39485d7f))
+* use icon button ([5ff049e](https://github.com/TomaszKandula/TokanPages/commit/5ff049e3c1d8cd22227c079e150e6148bec9f308))
+
 # [0.157.0](https://github.com/TomaszKandula/TokanPages/compare/v0.156.0...v0.157.0) (2025-07-27)
 
 
