@@ -72,9 +72,9 @@ Object {
                 </div>
                 <div>
                   <svg
-                    class="is-flex is-align-self-center navigation-languages-check"
+                    class="is-flex is-align-self-center has-text-link"
                     role="presentation"
-                    style="width: 2.25rem; height: 2.25rem;"
+                    style="width: 1.125rem; height: 1.125rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -186,9 +186,9 @@ Object {
               </div>
               <div>
                 <svg
-                  class="is-flex is-align-self-center navigation-languages-check"
+                  class="is-flex is-align-self-center has-text-link"
                   role="presentation"
-                  style="width: 2.25rem; height: 2.25rem;"
+                  style="width: 1.125rem; height: 1.125rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
