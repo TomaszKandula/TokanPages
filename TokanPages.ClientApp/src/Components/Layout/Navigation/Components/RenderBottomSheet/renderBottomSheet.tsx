@@ -61,10 +61,10 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
             ></div>
             <div className="bottomsheet-nav-drawer-container" style={{ height: props.bottomSheetHeight }}>
                 <div className="navbar-top-line"></div>
-                <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 my-5">
-                    <h2 className="is-size-5 has-text-weight-semibold">{props.navigation?.languageMenu.caption}</h2>
+                <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 mt-2">
+                    <h2 className="is-size-4 has-text-weight-semibold">{props.navigation?.languageMenu.caption}</h2>
                     <IconButton onClick={menuHandler} hasNoHoverEffect className="no-select">
-                        <Icon name="CloseBoxOutline" size={1.2} className="has-text-link" />
+                        <Icon name="WindowClose" size={1.5} className="has-text-grey-dark" />
                     </IconButton>
                 </div>
                 {props.children}

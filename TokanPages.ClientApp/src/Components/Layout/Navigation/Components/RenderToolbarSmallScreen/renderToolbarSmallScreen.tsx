@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { ListSeparatorProps, NavigationViewProps } from "../../Abstractions";
+import { NavigationViewProps } from "../../Abstractions";
 import { RenderMenuIcon } from "../RenderMenuIcon";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
@@ -11,12 +11,11 @@ import { RenderSelectionIcon } from "..";
 import "./renderToolbarSmallScreen.css";
 import { v4 as uuidv4 } from "uuid";
 
-const ListSeparator = (props: ListSeparatorProps): React.ReactElement | null => {
-    return props.length === props.index + 1 ? null : <hr className="mx-0 my-1" />;
+const listSeparator = (length: number, index: number): string => {
+    return length === index + 1 ? "" : "line-separator";
 };
 
-const RenderDoubleToolbar = (props: NavigationViewProps) => {
-    return (
+const RenderDoubleToolbar = (props: NavigationViewProps) => (
         <div className="is-flex is-flex-direction-column is-flex-grow-1">
             <div
                 className="is-flex is-justify-content-space-between is-align-items-center"
@@ -41,7 +40,7 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => {
                     <p className="is-size-7 has-text-black">{props.navigation?.signup?.caption}</p>
                 </Link>
             </div>
-            <hr className="navbar-top-section" />
+            <hr className="line-separator" />
             <div
                 className="is-flex is-justify-content-space-between is-align-items-center"
                 style={{ height: APP_BAR_HEIGHT_DESKTOP }}
@@ -66,26 +65,26 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => {
             </div>
         </div>
     );
-};
 
 const RenderLanguages = (props: NavigationViewProps): React.ReactElement => (
     <div className="is-flex is-flex-direction-column m-4">
         {props.languages?.languages.map((item: LanguageItemDto, index: number) => (
             <React.Fragment key={uuidv4()}>
-                <a className="is-flex is-align-items-center" onClick={() => props.languagePickHandler(item.id)}>
-                    <CustomImage
-                        base={GET_FLAG_URL}
-                        source={`${item.id}.png`}
-                        title="Language flag"
-                        alt={`A flag (${item.name}) symbolizing available language`}
-                        className="bulma-image bulma-is-24x24 my-2 ml-0 mr-2"
-                    />
-                    <h4 className="is-size-6 has-text-black m-2">{item.name}</h4>
-                    <div className="ml-4">
-                        <RenderSelectionIcon selection={item.id} languageId={props.languageId} />
-                    </div>
-                </a>
-                <ListSeparator length={props.languages?.languages.length} index={index} />
+                <div className={`navbar-list-item is-align-content-center ${listSeparator(props.languages?.languages.length, index)}`}>
+                    <a className="is-flex is-align-items-center" onClick={() => props.languagePickHandler(item.id)}>
+                        <CustomImage
+                            base={GET_FLAG_URL}
+                            source={`${item.id}.png`}
+                            title="Language flag"
+                            alt={`A flag (${item.name}) symbolizing available language`}
+                            className="bulma-image bulma-is-24x24 my-2 mx-0"
+                        />
+                        <h4 className="is-size-6 has-text-black has-text-weight-semibold m-2 ml-4">{item.name}</h4>
+                        <div className="ml-4">
+                            <RenderSelectionIcon selection={item.id} languageId={props.languageId} size={1} />
+                        </div>
+                    </a>
+                </div>
             </React.Fragment>
         ))}
     </div>
@@ -95,13 +94,13 @@ export const RenderToolbarSmallScreen = (props: NavigationViewProps): React.Reac
     <>
         <Media.TabletOnly>
             <RenderDoubleToolbar {...props} />
-            <RenderBottomSheet {...props} bottomSheetHeight={420}>
+            <RenderBottomSheet {...props} bottomSheetHeight={460}>
                 <RenderLanguages {...props} />
             </RenderBottomSheet>
         </Media.TabletOnly>
         <Media.MobileOnly>
             <RenderDoubleToolbar {...props} />
-            <RenderBottomSheet {...props} bottomSheetHeight={420}>
+            <RenderBottomSheet {...props} bottomSheetHeight={460}>
                 <RenderLanguages {...props} />
             </RenderBottomSheet>
         </Media.MobileOnly>
