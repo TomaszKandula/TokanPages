@@ -79,7 +79,15 @@ describe("test component: NavigationView", () => {
                 isAnonymous={false}
                 isMenuOpen={false}
                 isBottomSheetOpen={false}
-                media={{ hasPortrait: true, hasLandscape: false, isDesktop: true, isMobile: false, isTablet: false, width: 430, height: 932 }}
+                media={{
+                    hasPortrait: true,
+                    hasLandscape: false,
+                    isDesktop: true,
+                    isMobile: false,
+                    isTablet: false,
+                    width: 430,
+                    height: 932,
+                }}
                 triggerSideMenu={jest.fn()}
                 triggerBottomSheet={jest.fn()}
                 infoHandler={jest.fn()}
