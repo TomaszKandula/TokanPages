@@ -33,7 +33,7 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
 export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet">
-            <article className="my-4">
+            <article className="py-4">
                 <Animated dataAos="fade-down" className="mb-5">
                     <div className={`bulma-grid is-flex m-0 ${props.isMobile ? "mx-4" : ""}`}>
                         <div className="bulma-cell is-align-content-center">
