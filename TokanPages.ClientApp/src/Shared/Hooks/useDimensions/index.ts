@@ -36,7 +36,7 @@ export const useDimensions = (): UseDimensionsResult => {
 
     React.useEffect(() => {
         let widthValue = width;
-        if (hasLandscape) {
+        if (hasLandscape && width < 1024) {
             widthValue = height;
         } else {
             widthValue = width;
