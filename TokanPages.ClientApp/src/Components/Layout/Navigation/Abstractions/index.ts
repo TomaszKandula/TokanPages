@@ -34,8 +34,3 @@ export interface LanguageSelectionProps {
     languageId: string;
     size?: number;
 }
-
-export interface ListSeparatorProps {
-    length: number;
-    index: number;
-}
