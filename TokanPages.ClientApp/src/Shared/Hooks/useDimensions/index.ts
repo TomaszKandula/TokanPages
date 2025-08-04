@@ -3,6 +3,8 @@ import * as React from "react";
 export interface UseDimensionsResult {
     width: number;
     height: number;
+    hasPortrait: boolean;
+    hasLandscape: boolean;
     isMobile: boolean;
     isTablet: boolean;
     isDesktop: boolean;
@@ -11,6 +13,8 @@ export interface UseDimensionsResult {
 export const useDimensions = (): UseDimensionsResult => {
     const [width, setWidth] = React.useState(window.innerWidth);
     const [height, setHeight] = React.useState(window.innerHeight);
+    const [hasLandscape, setHasLandscape] = React.useState(false);
+    const [hasPortrait, setHasPortrait] = React.useState(false);
     const [isMobile, setIsMobile] = React.useState(false);
     const [isTablet, setIsTablet] = React.useState(false);
     const [isDesktop, setIsDesktop] = React.useState(false);
@@ -21,27 +25,44 @@ export const useDimensions = (): UseDimensionsResult => {
     };
 
     React.useEffect(() => {
+        if (width > height) {
+            setHasPortrait(false);
+            setHasLandscape(true);
+        } else {
+            setHasPortrait(true);
+            setHasLandscape(false);
+        }
+    }, [width, height]);
+
+    React.useEffect(() => {
+        let widthValue = width;
+        if (hasLandscape) {
+            widthValue = height;
+        } else {
+            widthValue = width;
+        }
+
         /* MOBILE */
-        if (width <= 768) {
+        if (widthValue <= 768) {
             setIsMobile(true);
             setIsTablet(false);
             setIsDesktop(false);
         }
 
         /* TABLET */
-        if (width > 768 && width < 1024) {
+        if (widthValue > 768 && widthValue < 1024) {
             setIsMobile(false);
             setIsTablet(true);
             setIsDesktop(false);
         }
 
         /* DESKTOP */
-        if (width >= 1024) {
+        if (widthValue >= 1024) {
             setIsMobile(false);
             setIsTablet(false);
             setIsDesktop(true);
         }
-    }, [width]);
+    }, [width, height, hasLandscape]);
 
     React.useEffect(() => {
         window.addEventListener("resize", updateDimensions);
@@ -51,6 +72,8 @@ export const useDimensions = (): UseDimensionsResult => {
     return {
         width,
         height,
+        hasPortrait,
+        hasLandscape,
         isMobile,
         isTablet,
         isDesktop,
