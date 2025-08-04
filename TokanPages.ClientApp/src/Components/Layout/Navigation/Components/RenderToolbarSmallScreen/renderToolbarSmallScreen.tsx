@@ -94,13 +94,13 @@ export const RenderToolbarSmallScreen = (props: NavigationViewProps): React.Reac
     <>
         <Media.TabletOnly>
             <RenderDoubleToolbar {...props} />
-            <RenderBottomSheet {...props} bottomSheetHeight={460}>
+            <RenderBottomSheet {...props}>
                 <RenderLanguages {...props} />
             </RenderBottomSheet>
         </Media.TabletOnly>
         <Media.MobileOnly>
             <RenderDoubleToolbar {...props} />
-            <RenderBottomSheet {...props} bottomSheetHeight={460}>
+            <RenderBottomSheet {...props}>
                 <RenderLanguages {...props} />
             </RenderBottomSheet>
         </Media.MobileOnly>
