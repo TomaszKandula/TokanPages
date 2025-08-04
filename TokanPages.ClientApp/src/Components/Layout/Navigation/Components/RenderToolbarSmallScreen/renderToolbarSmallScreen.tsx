@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { NavigationViewProps } from "../../Abstractions";
+import { NavigationViewProps, RenderLanguageListProps } from "../../Abstractions";
 import { RenderMenuIcon } from "../RenderMenuIcon";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
@@ -66,12 +66,16 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => (
     </div>
 );
 
-const RenderLanguages = (props: NavigationViewProps): React.ReactElement => (
-    <div className="is-flex is-flex-direction-column m-4">
-        {props.languages?.languages.map((item: LanguageItemDto, index: number) => (
+const RenderLanguageList = (props: RenderLanguageListProps): React.ReactElement => { 
+    const baseClass = "navbar-list-item is-align-content-center";
+    const length = props.languages?.languages.length;
+    
+    return (
+    <>
+    {props.languages?.languages.map((item: LanguageItemDto, index: number) => (
             <React.Fragment key={uuidv4()}>
                 <div
-                    className={`navbar-list-item is-align-content-center ${listSeparator(props.languages?.languages.length, index)}`}
+                    className={`${props.hasBulmaCells ? "bulma-cell line-separator" : ""} ${baseClass} ${!props.hasBulmaCells ? listSeparator(length, index) : ""}`}
                 >
                     <a className="is-flex is-align-items-center" onClick={() => props.languagePickHandler(item.id)}>
                         <CustomImage
@@ -88,7 +92,17 @@ const RenderLanguages = (props: NavigationViewProps): React.ReactElement => (
                     </a>
                 </div>
             </React.Fragment>
-        ))}
+        ))}</>
+);
+};
+
+const RenderLanguages = (props: NavigationViewProps): React.ReactElement => (
+    props.media.hasLandscape && props.media.isMobile ?
+    <div className="bulma-grid bulma-is-col-min-10 m-4">
+        <RenderLanguageList {...props} hasBulmaCells />
+    </div> 
+    : <div className="is-flex is-flex-direction-column m-4">
+        <RenderLanguageList {...props} />
     </div>
 );
 
