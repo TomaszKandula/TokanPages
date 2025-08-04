@@ -10,10 +10,10 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <article
-            class="py-4"
+            class="my-4"
           >
             <div
-              class="pb-5"
+              class="mb-5"
               data-aos="fade-down"
               data-aos-delay="0"
             >
@@ -38,7 +38,7 @@ Object {
                 </div>
               </div>
               <div
-                class="py-4"
+                class="my-4"
               >
                 <div
                   class="bulma-grid is-flex m-0"
@@ -116,13 +116,8 @@ Object {
                 </div>
               </div>
             </div>
-            <div
-              data-aos="fade-up"
-              data-aos-delay="0"
-            >
-              <div>
-                articleContent
-              </div>
+            <div>
+              articleContent
             </div>
             <div
               class="mt-6"
@@ -209,10 +204,10 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <article
-          class="py-4"
+          class="my-4"
         >
           <div
-            class="pb-5"
+            class="mb-5"
             data-aos="fade-down"
             data-aos-delay="0"
           >
@@ -237,7 +232,7 @@ Object {
               </div>
             </div>
             <div
-              class="py-4"
+              class="my-4"
             >
               <div
                 class="bulma-grid is-flex m-0"
@@ -315,13 +310,8 @@ Object {
               </div>
             </div>
           </div>
-          <div
-            data-aos="fade-up"
-            data-aos-delay="0"
-          >
-            <div>
-              articleContent
-            </div>
+          <div>
+            articleContent
           </div>
           <div
             class="mt-6"

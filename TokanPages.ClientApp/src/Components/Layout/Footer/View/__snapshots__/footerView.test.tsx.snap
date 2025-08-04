@@ -5,10 +5,12 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
+      <hr
+        class="line-separator"
+      />
       <footer
         class="bulma-footer has-background-white"
       >
-        <hr />
         <div
           class="bulma-content has-text-centered pt-6"
         >
@@ -93,10 +95,12 @@ Object {
     </div>
   </body>,
   "container": <div>
+    <hr
+      class="line-separator"
+    />
     <footer
       class="bulma-footer has-background-white"
     >
-      <hr />
       <div
         class="bulma-content has-text-centered pt-6"
       >

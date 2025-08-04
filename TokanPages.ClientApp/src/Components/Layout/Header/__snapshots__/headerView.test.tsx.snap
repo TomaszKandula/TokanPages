@@ -30,7 +30,7 @@ Object {
               class="bulma-cell is-flex is-flex-direction-column"
             >
               <div
-                class="bulma-content header-content-box  "
+                class="bulma-content header-content-box p-4 "
               >
                 <h1
                   class="is-size-1 has-text-grey-dark"
@@ -60,7 +60,7 @@ Object {
                     href="/en/action-link"
                   >
                     <button
-                      class="bulma-button bulma-is-link bulma-is-light mr-2 "
+                      class="bulma-button bulma-is-link bulma-is-light mr-2 bulma-is-fullwidth mb-2"
                     >
                       Read the story
                     </button>
@@ -70,7 +70,7 @@ Object {
                     href="/en/download-link"
                   >
                     <button
-                      class="bulma-button bulma-is-light mr-2 "
+                      class="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2"
                     >
                       Get the CV
                     </button>
@@ -80,7 +80,7 @@ Object {
                     href="/en/showcase"
                   >
                     <button
-                      class="bulma-button bulma-is-light mr-2 "
+                      class="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2"
                     >
                       Showcase
                     </button>
@@ -119,7 +119,7 @@ Object {
             class="bulma-cell is-flex is-flex-direction-column"
           >
             <div
-              class="bulma-content header-content-box  "
+              class="bulma-content header-content-box p-4 "
             >
               <h1
                 class="is-size-1 has-text-grey-dark"
@@ -149,7 +149,7 @@ Object {
                   href="/en/action-link"
                 >
                   <button
-                    class="bulma-button bulma-is-link bulma-is-light mr-2 "
+                    class="bulma-button bulma-is-link bulma-is-light mr-2 bulma-is-fullwidth mb-2"
                   >
                     Read the story
                   </button>
@@ -159,7 +159,7 @@ Object {
                   href="/en/download-link"
                 >
                   <button
-                    class="bulma-button bulma-is-light mr-2 "
+                    class="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2"
                   >
                     Get the CV
                   </button>
@@ -169,7 +169,7 @@ Object {
                   href="/en/showcase"
                 >
                   <button
-                    class="bulma-button bulma-is-light mr-2 "
+                    class="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2"
                   >
                     Showcase
                   </button>
