@@ -33,8 +33,8 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
 export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet">
-            <article className="py-4">
-                <Animated dataAos="fade-down" className="pb-5">
+            <article className="my-4">
+                <Animated dataAos="fade-down" className="mb-5">
                     <div className={`bulma-grid is-flex m-0 ${props.isMobile ? "mx-4" : ""}`}>
                         <div className="bulma-cell is-align-content-center">
                             <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72} disableMarginY>
@@ -48,7 +48,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                         </div>
                     </div>
 
-                    <div className={props.isMobile ? "px-4 pt-4 pb-6" : "py-4"}>
+                    <div className={props.isMobile ? "mx-4 mt-4 mb-6" : "my-4"}>
                         <div className="bulma-grid is-flex m-0">
                             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
                                 <p className="bulma-cell is-align-content-center is-size-6">
@@ -106,9 +106,9 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                     </div>
                 </Animated>
 
-                <Animated dataAos="fade-up">{props.articleContent}</Animated>
+                {props.articleContent}
 
-                <div className={props.isMobile ? "px-4 mt-6" : "mt-6"}>
+                <div className={props.isMobile ? "mx-4 mt-6" : "mt-6"}>
                     <div className="bulma-grid is-flex">
                         <div className="bulma-cell is-align-content-center">
                             <Icon
