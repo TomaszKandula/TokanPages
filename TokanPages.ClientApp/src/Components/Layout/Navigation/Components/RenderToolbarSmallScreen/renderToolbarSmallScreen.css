@@ -1,12 +1,8 @@
-.navbar-top-section {
-    margin: 0;
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: rgb(216, 216, 216);
+.navbar-list-item {
+    height: 56px;
 }
 
 .navbar-top-line {
     height: 4px;
     background: #6367ef;
-    /* background: linear-gradient(90deg,rgba(130, 0, 255, 1) 0%, rgba(250, 0, 255, 1) 100%); */
 }
