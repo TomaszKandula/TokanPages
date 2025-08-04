@@ -42,7 +42,7 @@ const Loader = (props: LoaderProps): React.ReactElement =>
     props.isLoading ? <ProgressBar size={32} /> : <>{props.children}</>;
 
 export const FooterView = (props: Properties): React.ReactElement => (
-        <>
+    <>
         <hr className="line-separator" />
         <footer className="bulma-footer has-background-white">
             <Loader isLoading={props.isLoading}>
@@ -71,5 +71,5 @@ export const FooterView = (props: Properties): React.ReactElement => (
                 </div>
             </Loader>
         </footer>
-        </>
-    );
+    </>
+);
