@@ -87,7 +87,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="bulma-content m-0 p-0 mx-4"
+        class="bulma-content m-0 p-0 "
         data-testid="render-content"
       >
         <h1
@@ -268,7 +268,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="bulma-content m-0 p-0 mx-4"
+      class="bulma-content m-0 p-0 "
       data-testid="render-content"
     >
       <h1

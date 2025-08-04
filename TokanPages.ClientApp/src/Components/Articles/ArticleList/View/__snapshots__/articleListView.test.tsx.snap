@@ -17,14 +17,14 @@ Object {
               data-aos-delay="0"
             >
               <div
-                class="bulma-box is-flex p-0 mb-6 is-flex-direction-column"
+                class="bulma-box is-flex p-0 mb-6 is-flex-direction-row"
               >
                 <figure
                   class="bulma-image"
                 >
                   <img
                     alt="An article card for given article"
-                    class="article-box-image article-box-image-mobile lazyloaded"
+                    class="article-box-image article-box-image-desktop lazyloaded"
                     loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp"
                     title="Article illustration"
@@ -137,14 +137,14 @@ Object {
             data-aos-delay="0"
           >
             <div
-              class="bulma-box is-flex p-0 mb-6 is-flex-direction-column"
+              class="bulma-box is-flex p-0 mb-6 is-flex-direction-row"
             >
               <figure
                 class="bulma-image"
               >
                 <img
                   alt="An article card for given article"
-                  class="article-box-image article-box-image-mobile lazyloaded"
+                  class="article-box-image article-box-image-desktop lazyloaded"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getArticleAsset?id=8919332f-6654-4346-946f-5204cb7a3234&assetName=image.webp"
                   title="Article illustration"

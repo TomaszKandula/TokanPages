@@ -15,7 +15,7 @@ Object {
             class="py-6"
           >
             <div
-              class="bulma-card mx-4"
+              class="bulma-card "
             >
               <div
                 class="bulma-card-content"
@@ -76,7 +76,7 @@ Object {
           class="py-6"
         >
           <div
-            class="bulma-card mx-4"
+            class="bulma-card "
           >
             <div
               class="bulma-card-content"

@@ -12,7 +12,7 @@ Object {
           class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="pt-6 pb-4"
+            class="mt-6 mb-4"
           >
             <div
               class="bulma-card "
@@ -27,304 +27,19 @@ Object {
                 </p>
                 <hr />
                 <div
-                  class="py-4"
+                  class="bulma-columns m-0 py-2"
                 >
                   <div
-                    class="bulma-columns cancel-margin-bottom"
-                  >
-                    <div
-                      class="bulma-column bulma-is-one-fifth"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        User ID:
-                      </p>
-                    </div>
-                    <div
-                      class="bulma-column"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        123456789
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="bulma-columns cancel-margin-bottom"
-                  >
-                    <div
-                      class="bulma-column bulma-is-one-fifth"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        Status
-                      </p>
-                    </div>
-                    <div
-                      class="bulma-column"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        Unverified
-                        <span>
-                           (
-                        </span>
-                        <span
-                          class="has-text-danger is-underlined has-pointer"
-                        >
-                          request verification
-                        </span>
-                        <span>
-                          )
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                  <div
-                    class="bulma-columns cancel-margin-bottom"
-                  >
-                    <div
-                      class="bulma-column bulma-is-one-fifth"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        User alias:
-                      </p>
-                    </div>
-                    <div
-                      class="bulma-column"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        Ester
-                      </p>
-                    </div>
-                  </div>
-                  <hr />
-                  <div
-                    class="bulma-columns cancel-margin-bottom"
-                  >
-                    <div
-                      class="bulma-column bulma-is-one-fifth is-align-self-center"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        Avatar:
-                      </p>
-                    </div>
-                    <div
-                      class="bulma-column"
-                    >
-                      <label
-                        for="UserFile-Avatar"
-                      >
-                        <input
-                          accept=""
-                          hidden=""
-                          id="UserFile-Avatar"
-                          name="UserFile-Avatar"
-                          type="file"
-                        />
-                        <div>
-                          <svg
-                            class="is-flex is-align-self-center has-text-grey is-clickable"
-                            role="presentation"
-                            style="width: 2.25rem; height: 2.25rem;"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M11 20H6.5Q4.22 20 2.61 18.43 1 16.85 1 14.58 1 12.63 2.17 11.1 3.35 9.57 5.25 9.15 5.88 6.85 7.75 5.43 9.63 4 12 4 14.93 4 16.96 6.04 19 8.07 19 11 20.73 11.2 21.86 12.5 23 13.78 23 15.5 23 17.38 21.69 18.69 20.38 20 18.5 20H13V12.85L14.6 14.4L16 13L12 9L8 13L9.4 14.4L11 12.85Z"
-                              style="fill: currentColor;"
-                            />
-                          </svg>
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-                  <hr />
-                  <div
-                    class="bulma-columns cancel-margin-bottom"
-                  >
-                    <div
-                      class="bulma-column bulma-is-one-fifth is-align-self-center"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        First name:
-                      </p>
-                    </div>
-                    <div
-                      class="bulma-column"
-                    >
-                      <div
-                        class="bulma-control  "
-                      >
-                        <input
-                          class="bulma-input   "
-                          id="firstName"
-                          name="firstName"
-                          required=""
-                          type="text"
-                          value="Ester"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="bulma-columns cancel-margin-bottom"
-                  >
-                    <div
-                      class="bulma-column bulma-is-one-fifth is-align-self-center"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        last name:
-                      </p>
-                    </div>
-                    <div
-                      class="bulma-column"
-                    >
-                      <div
-                        class="bulma-control  "
-                      >
-                        <input
-                          class="bulma-input   "
-                          id="lastName"
-                          name="lastName"
-                          required=""
-                          type="text"
-                          value="Exposito"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="bulma-columns cancel-margin-bottom"
-                  >
-                    <div
-                      class="bulma-column bulma-is-one-fifth is-align-self-center"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        Email:
-                      </p>
-                    </div>
-                    <div
-                      class="bulma-column"
-                    >
-                      <div
-                        class="bulma-control  "
-                      >
-                        <input
-                          class="bulma-input   "
-                          id="email"
-                          name="email"
-                          required=""
-                          type="text"
-                          value="ester.exposito@gmail.com"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="bulma-columns cancel-margin-bottom"
-                  >
-                    <div
-                      class="bulma-column bulma-is-one-fifth is-align-self-center"
-                    >
-                      <p
-                        class="is-size-6 has-text-grey"
-                      >
-                        Bio:
-                      </p>
-                    </div>
-                    <div
-                      class="bulma-column"
-                    >
-                      <div
-                        class="bulma-field"
-                      >
-                        <div
-                          class="bulma-control  "
-                        >
-                          <textarea
-                            class="bulma-textarea   bulma-has-fixed-size"
-                            id="description"
-                            name="description"
-                            required=""
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <hr />
-                  <div
-                    class="has-text-right"
-                  >
-                    <button
-                      class="bulma-button bulma-is-info bulma-is-light"
-                      type="submit"
-                    >
-                      Update
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </body>,
-  "container": <div>
-    <section
-      class="has-background-white"
-    >
-      <div
-        class="bulma-container bulma-is-max-desktop"
-      >
-        <div
-          class="pt-6 pb-4"
-        >
-          <div
-            class="bulma-card "
-          >
-            <div
-              class="bulma-card-content"
-            >
-              <p
-                class="is-size-4 has-text-grey"
-              >
-                USER DETAILS
-              </p>
-              <hr />
-              <div
-                class="py-4"
-              >
-                <div
-                  class="bulma-columns cancel-margin-bottom"
-                >
-                  <div
-                    class="bulma-column bulma-is-one-fifth"
+                    class="bulma-column bulma-is-one-fifth p-0"
                   >
                     <p
-                      class="is-size-6 has-text-grey"
+                      class="is-size-6 has-text-grey-darker"
                     >
                       User ID:
                     </p>
                   </div>
                   <div
-                    class="bulma-column"
+                    class="bulma-column p-0"
                   >
                     <p
                       class="is-size-6 has-text-grey"
@@ -334,19 +49,19 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="bulma-columns cancel-margin-bottom"
+                  class="bulma-columns m-0 py-2"
                 >
                   <div
-                    class="bulma-column bulma-is-one-fifth"
+                    class="bulma-column bulma-is-one-fifth p-0"
                   >
                     <p
-                      class="is-size-6 has-text-grey"
+                      class="is-size-6 has-text-grey-darker"
                     >
                       Status
                     </p>
                   </div>
                   <div
-                    class="bulma-column"
+                    class="bulma-column p-0"
                   >
                     <p
                       class="is-size-6 has-text-grey"
@@ -367,19 +82,19 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="bulma-columns cancel-margin-bottom"
+                  class="bulma-columns m-0 py-2"
                 >
                   <div
-                    class="bulma-column bulma-is-one-fifth"
+                    class="bulma-column bulma-is-one-fifth p-0"
                   >
                     <p
-                      class="is-size-6 has-text-grey"
+                      class="is-size-6 has-text-grey-darker"
                     >
                       User alias:
                     </p>
                   </div>
                   <div
-                    class="bulma-column"
+                    class="bulma-column p-0"
                   >
                     <p
                       class="is-size-6 has-text-grey"
@@ -390,20 +105,16 @@ Object {
                 </div>
                 <hr />
                 <div
-                  class="bulma-columns cancel-margin-bottom"
+                  class="bulma-block m-0 py-2"
                 >
                   <div
-                    class="bulma-column bulma-is-one-fifth is-align-self-center"
+                    class="is-flex is-align-items-center p-0"
                   >
                     <p
-                      class="is-size-6 has-text-grey"
+                      class="is-size-6 has-text-grey-darker mr-4"
                     >
                       Avatar:
                     </p>
-                  </div>
-                  <div
-                    class="bulma-column"
-                  >
                     <label
                       for="UserFile-Avatar"
                     >
@@ -432,19 +143,19 @@ Object {
                 </div>
                 <hr />
                 <div
-                  class="bulma-columns cancel-margin-bottom"
+                  class="bulma-columns m-0 py-2"
                 >
                   <div
-                    class="bulma-column bulma-is-one-fifth is-align-self-center"
+                    class="bulma-column bulma-is-one-fifth is-align-self-center p-0"
                   >
                     <p
-                      class="is-size-6 has-text-grey"
+                      class="is-size-6 has-text-grey-darker"
                     >
                       First name:
                     </p>
                   </div>
                   <div
-                    class="bulma-column"
+                    class="bulma-column p-0"
                   >
                     <div
                       class="bulma-control  "
@@ -461,19 +172,19 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="bulma-columns cancel-margin-bottom"
+                  class="bulma-columns m-0 py-2"
                 >
                   <div
-                    class="bulma-column bulma-is-one-fifth is-align-self-center"
+                    class="bulma-column bulma-is-one-fifth is-align-self-center p-0"
                   >
                     <p
-                      class="is-size-6 has-text-grey"
+                      class="is-size-6 has-text-grey-darker"
                     >
                       last name:
                     </p>
                   </div>
                   <div
-                    class="bulma-column"
+                    class="bulma-column p-0"
                   >
                     <div
                       class="bulma-control  "
@@ -490,19 +201,19 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="bulma-columns cancel-margin-bottom"
+                  class="bulma-columns m-0 py-2"
                 >
                   <div
-                    class="bulma-column bulma-is-one-fifth is-align-self-center"
+                    class="bulma-column bulma-is-one-fifth is-align-self-center p-0"
                   >
                     <p
-                      class="is-size-6 has-text-grey"
+                      class="is-size-6 has-text-grey-darker"
                     >
                       Email:
                     </p>
                   </div>
                   <div
-                    class="bulma-column"
+                    class="bulma-column p-0"
                   >
                     <div
                       class="bulma-control  "
@@ -519,19 +230,19 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="bulma-columns cancel-margin-bottom"
+                  class="bulma-columns m-0 py-2"
                 >
                   <div
-                    class="bulma-column bulma-is-one-fifth is-align-self-center"
+                    class="bulma-column bulma-is-one-fifth is-align-self-center p-0"
                   >
                     <p
-                      class="is-size-6 has-text-grey"
+                      class="is-size-6 has-text-grey-darker"
                     >
                       Bio:
                     </p>
                   </div>
                   <div
-                    class="bulma-column"
+                    class="bulma-column p-0"
                   >
                     <div
                       class="bulma-field"
@@ -560,6 +271,279 @@ Object {
                     Update
                   </button>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="has-background-white"
+    >
+      <div
+        class="bulma-container bulma-is-max-desktop"
+      >
+        <div
+          class="mt-6 mb-4"
+        >
+          <div
+            class="bulma-card "
+          >
+            <div
+              class="bulma-card-content"
+            >
+              <p
+                class="is-size-4 has-text-grey"
+              >
+                USER DETAILS
+              </p>
+              <hr />
+              <div
+                class="bulma-columns m-0 py-2"
+              >
+                <div
+                  class="bulma-column bulma-is-one-fifth p-0"
+                >
+                  <p
+                    class="is-size-6 has-text-grey-darker"
+                  >
+                    User ID:
+                  </p>
+                </div>
+                <div
+                  class="bulma-column p-0"
+                >
+                  <p
+                    class="is-size-6 has-text-grey"
+                  >
+                    123456789
+                  </p>
+                </div>
+              </div>
+              <div
+                class="bulma-columns m-0 py-2"
+              >
+                <div
+                  class="bulma-column bulma-is-one-fifth p-0"
+                >
+                  <p
+                    class="is-size-6 has-text-grey-darker"
+                  >
+                    Status
+                  </p>
+                </div>
+                <div
+                  class="bulma-column p-0"
+                >
+                  <p
+                    class="is-size-6 has-text-grey"
+                  >
+                    Unverified
+                    <span>
+                       (
+                    </span>
+                    <span
+                      class="has-text-danger is-underlined has-pointer"
+                    >
+                      request verification
+                    </span>
+                    <span>
+                      )
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div
+                class="bulma-columns m-0 py-2"
+              >
+                <div
+                  class="bulma-column bulma-is-one-fifth p-0"
+                >
+                  <p
+                    class="is-size-6 has-text-grey-darker"
+                  >
+                    User alias:
+                  </p>
+                </div>
+                <div
+                  class="bulma-column p-0"
+                >
+                  <p
+                    class="is-size-6 has-text-grey"
+                  >
+                    Ester
+                  </p>
+                </div>
+              </div>
+              <hr />
+              <div
+                class="bulma-block m-0 py-2"
+              >
+                <div
+                  class="is-flex is-align-items-center p-0"
+                >
+                  <p
+                    class="is-size-6 has-text-grey-darker mr-4"
+                  >
+                    Avatar:
+                  </p>
+                  <label
+                    for="UserFile-Avatar"
+                  >
+                    <input
+                      accept=""
+                      hidden=""
+                      id="UserFile-Avatar"
+                      name="UserFile-Avatar"
+                      type="file"
+                    />
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-grey is-clickable"
+                        role="presentation"
+                        style="width: 2.25rem; height: 2.25rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M11 20H6.5Q4.22 20 2.61 18.43 1 16.85 1 14.58 1 12.63 2.17 11.1 3.35 9.57 5.25 9.15 5.88 6.85 7.75 5.43 9.63 4 12 4 14.93 4 16.96 6.04 19 8.07 19 11 20.73 11.2 21.86 12.5 23 13.78 23 15.5 23 17.38 21.69 18.69 20.38 20 18.5 20H13V12.85L14.6 14.4L16 13L12 9L8 13L9.4 14.4L11 12.85Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              <hr />
+              <div
+                class="bulma-columns m-0 py-2"
+              >
+                <div
+                  class="bulma-column bulma-is-one-fifth is-align-self-center p-0"
+                >
+                  <p
+                    class="is-size-6 has-text-grey-darker"
+                  >
+                    First name:
+                  </p>
+                </div>
+                <div
+                  class="bulma-column p-0"
+                >
+                  <div
+                    class="bulma-control  "
+                  >
+                    <input
+                      class="bulma-input   "
+                      id="firstName"
+                      name="firstName"
+                      required=""
+                      type="text"
+                      value="Ester"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bulma-columns m-0 py-2"
+              >
+                <div
+                  class="bulma-column bulma-is-one-fifth is-align-self-center p-0"
+                >
+                  <p
+                    class="is-size-6 has-text-grey-darker"
+                  >
+                    last name:
+                  </p>
+                </div>
+                <div
+                  class="bulma-column p-0"
+                >
+                  <div
+                    class="bulma-control  "
+                  >
+                    <input
+                      class="bulma-input   "
+                      id="lastName"
+                      name="lastName"
+                      required=""
+                      type="text"
+                      value="Exposito"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bulma-columns m-0 py-2"
+              >
+                <div
+                  class="bulma-column bulma-is-one-fifth is-align-self-center p-0"
+                >
+                  <p
+                    class="is-size-6 has-text-grey-darker"
+                  >
+                    Email:
+                  </p>
+                </div>
+                <div
+                  class="bulma-column p-0"
+                >
+                  <div
+                    class="bulma-control  "
+                  >
+                    <input
+                      class="bulma-input   "
+                      id="email"
+                      name="email"
+                      required=""
+                      type="text"
+                      value="ester.exposito@gmail.com"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bulma-columns m-0 py-2"
+              >
+                <div
+                  class="bulma-column bulma-is-one-fifth is-align-self-center p-0"
+                >
+                  <p
+                    class="is-size-6 has-text-grey-darker"
+                  >
+                    Bio:
+                  </p>
+                </div>
+                <div
+                  class="bulma-column p-0"
+                >
+                  <div
+                    class="bulma-field"
+                  >
+                    <div
+                      class="bulma-control  "
+                    >
+                      <textarea
+                        class="bulma-textarea   bulma-has-fixed-size"
+                        id="description"
+                        name="description"
+                        required=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <div
+                class="has-text-right"
+              >
+                <button
+                  class="bulma-button bulma-is-info bulma-is-light"
+                  type="submit"
+                >
+                  Update
+                </button>
               </div>
             </div>
           </div>

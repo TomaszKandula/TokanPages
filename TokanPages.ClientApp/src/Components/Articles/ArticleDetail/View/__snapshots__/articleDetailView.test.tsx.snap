@@ -10,7 +10,7 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <article
-            class="my-4"
+            class="py-4"
           >
             <div
               class="mb-5"
@@ -204,7 +204,7 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <article
-          class="my-4"
+          class="py-4"
         >
           <div
             class="mb-5"

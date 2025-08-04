@@ -10,7 +10,7 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="bulma-content m-0 p-0 mx-4"
+            class="bulma-content m-0 p-0 "
             data-testid="render-content"
           >
             <p
@@ -29,7 +29,7 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="bulma-content m-0 p-0 mx-4"
+          class="bulma-content m-0 p-0 "
           data-testid="render-content"
         >
           <p
@@ -105,7 +105,7 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="bulma-content m-0 p-0 mx-4"
+            class="bulma-content m-0 p-0 "
             data-testid="render-content"
           >
             <p
@@ -124,7 +124,7 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="bulma-content m-0 p-0 mx-4"
+          class="bulma-content m-0 p-0 "
           data-testid="render-content"
         >
           <p
@@ -200,7 +200,7 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="bulma-content m-0 p-0 mx-4"
+            class="bulma-content m-0 p-0 "
             data-testid="render-content"
           >
             <p
@@ -219,7 +219,7 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="bulma-content m-0 p-0 mx-4"
+          class="bulma-content m-0 p-0 "
           data-testid="render-content"
         >
           <p
@@ -295,7 +295,7 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="bulma-content m-0 p-0 mx-4"
+            class="bulma-content m-0 p-0 "
             data-testid="render-content"
           >
             <p
@@ -314,7 +314,7 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="bulma-content m-0 p-0 mx-4"
+          class="bulma-content m-0 p-0 "
           data-testid="render-content"
         >
           <p

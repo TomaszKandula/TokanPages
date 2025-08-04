@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <nav
-        class="bulma-navbar app-bar is-flex "
+        class="bulma-navbar app-bar  "
         style="top: 0px; min-height: 64px;"
       >
         <div
@@ -120,7 +120,7 @@ Object {
   </body>,
   "container": <div>
     <nav
-      class="bulma-navbar app-bar is-flex "
+      class="bulma-navbar app-bar  "
       style="top: 0px; min-height: 64px;"
     >
       <div
