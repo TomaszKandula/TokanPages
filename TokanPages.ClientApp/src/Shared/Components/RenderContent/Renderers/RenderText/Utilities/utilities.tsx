@@ -7,8 +7,9 @@ import { ApplicationState } from "../../../../../../Store/Configuration";
 import { ArticleItemBase } from "../../../Models";
 import { TextItem } from "../../../Models/TextModel";
 import { useDimensions, useHash } from "../../../../../../Shared/Hooks";
-import { ArticleCard, ArticleCardView, Icon, ProgressBar, RenderList } from "../../../../../../Shared/Components";
+import { ArticleCard, ArticleCardView, Icon, ProgressBar, RenderHtml, RenderList } from "../../../../../../Shared/Components";
 import { TComponent } from "../../../../../../Shared/types";
+import { TagType } from "../../../../../../Shared/Components/RenderHtml/types";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 import "./utilities.css";
@@ -26,7 +27,9 @@ interface LinkProps {
 }
 
 interface ProcessParagraphsProps {
+    tag: TagType;
     html: string | undefined;
+    className?: string
 }
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
@@ -191,30 +194,26 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
 /* HEADER COMPONENT */
 
 export const RenderTitle = (props: DataProps): React.ReactElement => {
-    return <h1 className="bulma-title has-text-grey-dark m-0 pb-2">{props.value ?? NO_CONTENT}</h1>;
+    return <RenderHtml value={props.value ?? NO_CONTENT} tag="h1" className="bulma-title has-text-grey-dark m-0 pb-2" />;
 };
 
 export const RenderSubtitle = (props: DataProps): React.ReactElement => {
     return (
-        <h2 className="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4">
-            {props.value ?? NO_CONTENT}
-        </h2>
+        <RenderHtml value={props.value ?? NO_CONTENT} tag="h2" className="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4" />
     );
 };
 
 export const RenderHeader1 = (props: DataProps): React.ReactElement => {
-    return <h1 className="bulma-title has-text-grey-dark">{props.value ?? NO_CONTENT}</h1>;
+    return <RenderHtml value={props.value ?? NO_CONTENT} tag="h1" className="bulma-title has-text-grey-dark" />;
 };
 
 export const RenderHeader2 = (props: DataProps): React.ReactElement => {
-    return <h2 className="bulma-subtitle has-text-grey-dark">{props.value ?? NO_CONTENT}</h2>;
+    return <RenderHtml value={props.value ?? NO_CONTENT} tag="h2" className="bulma-subtitle has-text-grey-dark" />;
 };
 
 export const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
     return (
-        <h3 className="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap">
-            {props.value ?? NO_CONTENT}
-        </h3>
+        <RenderHtml value={props.value ?? NO_CONTENT} tag="h3" className="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap" />
     );
 };
 
@@ -230,29 +229,23 @@ export const RenderParagraph = (props: TextItem): React.ReactElement => {
     switch (prop) {
         case "blockquote":
             return (
-                <blockquote className={classStyle}>
-                    <ProcessParagraphs html={html as string} />
-                </blockquote>
+                <ProcessParagraphs tag="blockquote" html={html as string} className={classStyle} />
             );
         case "span":
-            return <span className={classStyle}>{html ?? NO_CONTENT}</span>;
+            return <RenderHtml value={html as string} tag="span" className={classStyle} />;
         case "ul":
             return <RenderList list={html as string[]} type="ul" className={classStyle} />;
         case "ol":
             return <RenderList list={html as string[]} type="ol" className={classStyle} />;
         case "div":
             return (
-                <div className={classStyle}>
-                    <ProcessParagraphs html={html as string} />
-                </div>
+                <ProcessParagraphs tag="div" html={html as string} className={classStyle} />
             );
         case "br":
             return <div className="my-4">&nbsp;</div>;
         default:
             return (
-                <p className={classStyle}>
-                    <ProcessParagraphs html={html as string} />
-                </p>
+                <ProcessParagraphs tag="p" html={html as string} className={classStyle} />
             );
     }
 };
@@ -260,14 +253,17 @@ export const RenderParagraph = (props: TextItem): React.ReactElement => {
 export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactElement => {
     const result: React.ReactElement[] = [];
 
+    /* WE DO NOT PROCESS EMPTY INPUT */
     if (!props.html || (props.html && props.html === "")) {
         return <>{NO_CONTENT}</>;
     }
 
+    /* CHECK IF WE HAVE ENCODED LINK */
     if (!props.html.includes("__{") && !props.html.includes("}__")) {
-        return <>{props.html}</>;
+        return <RenderHtml value={props.html} tag={props.tag} className={props.className} />;
     }
 
+    /* PROCESS LINK ENCODED AS JSON */
     const array = props.html.split("__");
     if (array.length > 0) {
         array.forEach(item => {
@@ -290,8 +286,10 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
             }
         });
     } else {
-        return <>{props.html}</>;
+        /* RETURN "AS IS" */
+        return <RenderHtml value={props.html} tag={props.tag} className={props.className} />;
     }
 
-    return <>{result}</>;
+    /* RETURN PROCESSED TEXT WITH LINK */
+    return <div className="bulma-content">{result}</div>;
 };
