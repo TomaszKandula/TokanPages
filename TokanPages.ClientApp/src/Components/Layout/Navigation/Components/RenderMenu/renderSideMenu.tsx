@@ -18,12 +18,15 @@ interface CanContinueProps extends RenderSideMenuBaseProps {
 }
 
 const CanContinue = (props: CanContinueProps): boolean => {
-    const accountPath = `/${props.languageId}/account`;
-    const signinPath = `/${props.languageId}/account/signin`;
-    const signupPath = `/${props.languageId}/account/signup`;
+    const accountPath = "account";
+    const signinPath = "signin";
+    const signupPath = "signup";
 
-    const isAnonymous = props.isAnonymous && props.item.link === accountPath;
-    const isNotAnonymous = !props.isAnonymous && (props.item.link === signinPath || props.item.link === signupPath);
+    const hasAccountGroup = props.item.link?.includes(accountPath);
+    const hasNoSigningLinks = !props.item.link?.includes(signinPath) && !props.item.link?.includes(signupPath);
+    const hasSigningLinks = props.item.link?.includes(signinPath) || props.item.link?.includes(signupPath);
+    const isAnonymous = props.isAnonymous && hasAccountGroup && hasNoSigningLinks;
+    const isNotAnonymous = !props.isAnonymous && hasSigningLinks;
     const hasSideMenu = props.item.sideMenu?.enabled ?? false;
 
     if (isAnonymous) return false;
