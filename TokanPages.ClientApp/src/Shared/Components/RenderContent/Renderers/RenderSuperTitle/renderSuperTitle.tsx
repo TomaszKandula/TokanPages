@@ -2,6 +2,7 @@ import * as React from "react";
 import { TextItem } from "../../Models";
 import { API_BASE_URI } from "../../../../../Api";
 import { CustomImage } from "../../../../../Shared/Components/CustomImage/customImage";
+import { RenderHtml } from "../../../../../Shared/Components";
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
 
@@ -14,8 +15,8 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
     return (
         <div className="bulma-content is-flex is-justify-content-space-between">
             <div className="is-flex is-flex-direction-column">
-                <p className="bulma-title bulma-is-3 has-text-grey-darker">{props.propTitle ?? NO_CONTENT}</p>
-                <p className="bulma-subtitle bulma-is-5 has-text-grey-darker">{props.propSubtitle ?? NO_CONTENT}</p>
+                <RenderHtml value={props.propTitle ?? NO_CONTENT} tag="p" className="bulma-title bulma-is-3 has-text-grey-darker" />
+                <RenderHtml value={props.propSubtitle ?? NO_CONTENT} tag="p" className="bulma-subtitle bulma-is-5 has-text-grey-darker" />
             </div>
             <figure className="is-flex is-align-items-center">
                 <CustomImage
