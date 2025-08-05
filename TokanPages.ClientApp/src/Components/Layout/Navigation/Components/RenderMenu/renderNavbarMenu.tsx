@@ -2,7 +2,6 @@ import * as React from "react";
 import { ItemDto } from "../../../../../Api/Models";
 import { ProgressBar } from "../../../../../Shared/Components";
 import { RenderNavbarItem } from "./Renderers";
-import "./renderNavbarMenu.css";
 
 interface RenderNavbarMenuBaseProps {
     isAnonymous: boolean;
@@ -89,5 +88,5 @@ export const RenderNavbarMenu = (props: RenderNavbarMenuProps): React.ReactEleme
         }
     });
 
-    return <div className="render-menu-list">{renderBuffer}</div>;
+    return <div className="is-flex is-flex-wrap-nowrap is-justify-content-space-between is-align-items-center">{renderBuffer}</div>;
 };

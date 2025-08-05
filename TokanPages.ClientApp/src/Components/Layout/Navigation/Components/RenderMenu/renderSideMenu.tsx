@@ -3,7 +3,6 @@ import { ItemDto } from "../../../../../Api/Models";
 import { ProgressBar } from "../../../../../Shared/Components";
 import { RenderSidemenuItem } from "./Renderers";
 import { v4 as uuidv4 } from "uuid";
-import "./renderSideMenu.css";
 
 interface RenderSideMenuBaseProps {
     isAnonymous: boolean;
@@ -104,7 +103,7 @@ export const RenderSideMenu = (props: RenderSideMenuProps): React.ReactElement =
     });
 
     return (
-        <aside className="bulma-menu p-3 sidemenu-background">
+        <aside className="bulma-menu p-3 has-background-white">
             <ul className="bulma-menu-list">{renderBuffer}</ul>
         </aside>
     );
