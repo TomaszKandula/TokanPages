@@ -34,18 +34,3 @@
     background-color: white;
     touch-action: manipulation;
 }
-
-.navigation-nav-drawer-hero {
-    height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ebecfb;
-}
-
-.navigation-nav-drawer-logo {
-    height: 120px;
-    margin-left: auto;
-    margin-right: auto;
-    align-self: center;
-}

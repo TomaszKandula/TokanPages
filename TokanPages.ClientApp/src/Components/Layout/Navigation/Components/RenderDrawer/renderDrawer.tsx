@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GET_ICONS_URL } from "../../../../../Api";
 import { NavigationContentDto } from "../../../../../Api/Models";
-import { CustomImage } from "../../../../../Shared/Components";
+import { CustomImage, Icon, IconButton } from "../../../../../Shared/Components";
 import { useDimensions } from "../../../../../Shared/Hooks";
 import { RenderSideMenu } from "../RenderMenu";
 import "./renderDrawer.css";
@@ -62,15 +62,21 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
                 onClick={menuHandler}
             ></div>
             <div className="navigation-nav-drawer-container">
-                <div className="navigation-nav-drawer-hero">
+                <div className="is-flex is-justify-content-space-between">
                     <CustomImage
                         base={GET_ICONS_URL}
                         source={props.navigation?.menu?.image}
                         title="Logo"
                         alt="An application logo"
-                        className="navigation-nav-drawer-logo"
+                        className="m-2"
+                        width={40}
+                        height={40}
                     />
+                    <IconButton hasNoHoverEffect className="no-select mr-2">
+                        <Icon name="WindowClose" size={1} onClick={menuHandler} />
+                    </IconButton>
                 </div>
+                <hr className="line-separator" />
                 <RenderSideMenu
                     isAnonymous={props.isAnonymous}
                     languageId={props.languageId}
