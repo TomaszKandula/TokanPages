@@ -4,7 +4,7 @@ import { GET_IMAGES_URL } from "../../../Api";
 import { HeaderContentDto, HeaderPhotoDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { useDimensions } from "../../../Shared/Hooks";
-import { Link, Skeleton } from "../../../Shared/Components";
+import { Link, RenderHtml, Skeleton } from "../../../Shared/Components";
 import Validate from "validate.js";
 import "./headerView.css";
 
@@ -120,19 +120,13 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                                 <h1 className="is-size-1 has-text-grey-dark">{header?.caption}</h1>
                             </Skeleton>
                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                                <h2 className="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4">
-                                    {header?.subtitle}
-                                </h2>
+                                <RenderHtml value={header?.subtitle} tag="h2" className="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4" />
                             </Skeleton>
                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                                <h3 className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4">
-                                    {header?.description}
-                                </h3>
+                                <RenderHtml value={header?.description} tag="h3" className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4" />
                             </Skeleton>
                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                                <h3 className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4">
-                                    {header?.hint}
-                                </h3>
+                                <RenderHtml value={header?.hint} tag="h3" className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4" />
                             </Skeleton>
                             <div className={`pt-4 ${isLoading ? "is-flex is-gap-1.5" : ""}`}>
                                 <Skeleton isLoading={isLoading} mode="Rect" width={100}>
