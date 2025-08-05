@@ -29,6 +29,10 @@ const RenderOutput = (props: RenderOutputProps): React.ReactElement => {
             return <h5 data-testid={props.testId} { ...attributes }></h5>;
         case "h6":
             return <h6 data-testid={props.testId} { ...attributes }></h6>;
+        case "blockquote":
+            return <blockquote data-testid={props.testId} { ...attributes }></blockquote>;
+        case "li":
+            return <li data-testid={props.testId} { ...attributes }></li>;
         default:
             return <div data-testid={props.testId} { ...attributes }></div>
     }
