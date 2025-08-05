@@ -68,7 +68,7 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
                         source={props.navigation?.menu?.image}
                         title="Logo"
                         alt="An application logo"
-                        className="m-2"
+                        className="ml-4"
                         width={40}
                         height={40}
                     />
