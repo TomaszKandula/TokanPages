@@ -1,4 +1,4 @@
-export type TagType = "p" | "span" | "div";
+export type TagType = "p" | "span" | "div" | "h1"| "h2" | "h3" | "h4" | "h5" | "h6";
 
 export interface ProcessTextProps {
     value: string;
