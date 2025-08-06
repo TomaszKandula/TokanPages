@@ -77,11 +77,11 @@ Object {
                             class="bulma-image bulma-is-32x32"
                           >
                             <svg
+                              class="is-flex is-align-self-center "
                               fill="#000000"
-                              height="2rem"
+                              style="width: 2rem; height: 2rem;"
                               version="1.1"
                               viewBox="0 0 32 32"
-                              width="2rem"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
@@ -166,10 +166,10 @@ Object {
                             class="bulma-image bulma-is-32x32"
                           >
                             <svg
+                              class="is-flex is-align-self-center "
                               fill="none"
-                              height="2rem"
+                              style="width: 2rem; height: 2rem;"
                               viewBox="0 0 48 48"
-                              width="2rem"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <circle
@@ -261,10 +261,10 @@ Object {
                             class="bulma-image bulma-is-32x32"
                           >
                             <svg
+                              class="is-flex is-align-self-center "
                               fill="none"
-                              height="2rem"
+                              style="width: 2rem; height: 2rem;"
                               viewBox="0 0 24 24"
-                              width="2rem"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
@@ -379,11 +379,11 @@ Object {
                           class="bulma-image bulma-is-32x32"
                         >
                           <svg
+                            class="is-flex is-align-self-center "
                             fill="#000000"
-                            height="2rem"
+                            style="width: 2rem; height: 2rem;"
                             version="1.1"
                             viewBox="0 0 32 32"
-                            width="2rem"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path
@@ -468,10 +468,10 @@ Object {
                           class="bulma-image bulma-is-32x32"
                         >
                           <svg
+                            class="is-flex is-align-self-center "
                             fill="none"
-                            height="2rem"
+                            style="width: 2rem; height: 2rem;"
                             viewBox="0 0 48 48"
-                            width="2rem"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <circle
@@ -563,10 +563,10 @@ Object {
                           class="bulma-image bulma-is-32x32"
                         >
                           <svg
+                            class="is-flex is-align-self-center "
                             fill="none"
-                            height="2rem"
+                            style="width: 2rem; height: 2rem;"
                             viewBox="0 0 24 24"
-                            width="2rem"
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <path

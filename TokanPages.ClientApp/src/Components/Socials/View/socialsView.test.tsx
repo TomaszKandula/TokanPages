@@ -71,7 +71,7 @@ describe("test component: socialsView", () => {
 
     it("should render correctly '<SocialsView />' when content is loaded.", () => {
         const html = render(<SocialsView />);
-        expect(useSelectorMock).toBeCalledTimes(2);
+        expect(useSelectorMock).toBeCalledTimes(3);
         expect(html).toMatchSnapshot();
     });
 });

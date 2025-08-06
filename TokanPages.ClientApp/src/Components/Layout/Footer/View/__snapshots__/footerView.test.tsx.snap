@@ -5,10 +5,12 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
+      <hr
+        class="line-separator"
+      />
       <footer
         class="bulma-footer has-background-white"
       >
-        <hr />
         <div
           class="bulma-content has-text-centered pt-6"
         >
@@ -76,7 +78,7 @@ Object {
                     <svg
                       class="is-flex is-align-self-center "
                       role="presentation"
-                      style="width: 2.25rem; height: 2.25rem;"
+                      style="width: 1.5rem; height: 1.5rem;"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -93,10 +95,12 @@ Object {
     </div>
   </body>,
   "container": <div>
+    <hr
+      class="line-separator"
+    />
     <footer
       class="bulma-footer has-background-white"
     >
-      <hr />
       <div
         class="bulma-content has-text-centered pt-6"
       >
@@ -164,7 +168,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 2.25rem; height: 2.25rem;"
+                    style="width: 1.5rem; height: 1.5rem;"
                     viewBox="0 0 24 24"
                   >
                     <path

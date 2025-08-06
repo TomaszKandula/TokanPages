@@ -168,193 +168,496 @@ Object {
   "baseElement": <body>
     <div>
       <aside
-        class="bulma-menu p-3 sidemenu-background"
+        class="bulma-menu p-3 has-background-white"
       >
         <ul
           class="bulma-menu-list"
         >
           <li>
             <a
+              class="is-flex"
               href="/en"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Home
-              </span>
+              </p>
             </a>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/account/signin"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Sign in
-              </span>
+              </p>
             </a>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/account/signup"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Sign up
-              </span>
+              </p>
             </a>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/showcase"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Showcase
-              </span>
+              </p>
             </a>
           </li>
           <li>
-            <a>
-              <span>
-                Github
-              </span>
-            </a>
+            <div
+              class="is-flex is-align-items-center my-2 ml-3"
+            >
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                fill="none"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="24"
+                  cy="24"
+                  fill="#181717"
+                  r="20"
+                />
+                <path
+                  d="M6.81348 34.235C9.24811 38.3138 13.0939 41.4526 17.6772 42.9784C18.6779 43.1614 19.0425 42.5438 19.0425 42.0134C19.0425 41.7938 19.0388 41.4058 19.0339 40.8866C19.0282 40.2852 19.0208 39.5079 19.0155 38.6124C13.4524 39.8206 12.2787 35.931 12.2787 35.931C11.3689 33.6215 10.0576 33.0064 10.0576 33.0064C8.2417 31.7651 10.1951 31.7896 10.1951 31.7896C12.2025 31.9321 13.2584 33.8511 13.2584 33.8511C15.0424 36.9071 17.94 36.0243 19.0794 35.5135C19.2611 34.2207 19.7767 33.3391 20.3489 32.8394C15.908 32.3348 11.2387 30.6183 11.2387 22.9545C11.2387 20.7715 12.0184 18.9863 13.2977 17.5879C13.0914 17.082 12.4051 15.0488 13.4929 12.2949C13.4929 12.2949 15.1725 11.7571 18.9934 14.3453C20.5883 13.9021 22.2998 13.6798 24.0003 13.6725C25.6983 13.6798 27.4099 13.9021 29.0072 14.3453C32.8256 11.7571 34.5016 12.2949 34.5016 12.2949C35.5931 15.0488 34.9067 17.082 34.7005 17.5879C35.9823 18.9863 36.757 20.7715 36.757 22.9545C36.757 30.638 32.0804 32.3286 27.6247 32.8234C28.343 33.441 28.9827 34.6614 28.9827 36.5277C28.9827 38.3152 28.9717 39.8722 28.9644 40.9035C28.9608 41.4143 28.9581 41.7962 28.9581 42.0134C28.9581 42.5487 29.3178 43.1712 30.3332 42.976C33.9844 41.7572 37.1671 39.5154 39.5403 36.5903C35.8734 41.1108 30.274 44 23.9997 44C16.6943 44 10.3038 40.0832 6.81348 34.235Z"
+                  fill="white"
+                />
+              </svg>
+              <a
+                class="p-0 m-0"
+              >
+                <p
+                  class="ml-2"
+                >
+                  Github
+                </p>
+              </a>
+            </div>
             <ul
               class="bulma-menu-list"
+              style="margin-left: 20px;"
             >
               <li>
                 <a
-                  class="href undefined"
+                  class="href is-flex"
                   href="https://github.com/TomaszKandula?tab=overview"
                   rel="noopener nofollow"
                   target="_blank"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Profile
-                  </span>
+                  </p>
                 </a>
               </li>
               <li>
                 <a
-                  class="href undefined"
+                  class="href is-flex"
                   href="https://github.com/TomaszKandula/TokanPages"
                   rel="noopener nofollow"
                   target="_blank"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Tokan Pages Project
-                  </span>
+                  </p>
                 </a>
               </li>
               <li>
                 <a
-                  class="href undefined"
+                  class="href is-flex"
                   href="https://github.com/TomaszKandula/EmailSender"
                   rel="noopener nofollow"
                   target="_blank"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Email Sender Project
-                  </span>
+                  </p>
                 </a>
               </li>
             </ul>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/articles"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Tech Articles
-              </span>
+              </p>
             </a>
           </li>
           <li>
-            <a>
-              <span>
-                My interests
-              </span>
-            </a>
+            <div
+              class="is-flex is-align-items-center my-2 ml-3"
+            >
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <a
+                class="p-0 m-0"
+              >
+                <p
+                  class="ml-2"
+                >
+                  My interests
+                </p>
+              </a>
+            </div>
             <ul
               class="bulma-menu-list"
+              style="margin-left: 20px;"
             >
               <li>
                 <a
+                  class="is-flex"
                   href="/en/photography"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Photography
-                  </span>
+                  </p>
                 </a>
               </li>
               <li>
                 <a
+                  class="is-flex"
                   href="/en/football"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Football
-                  </span>
+                  </p>
                 </a>
               </li>
               <li>
                 <a
+                  class="is-flex"
                   href="/en/guitar"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Guitar
-                  </span>
+                  </p>
                 </a>
               </li>
               <li>
                 <a
+                  class="is-flex"
                   href="/en/bicycle"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Bicycle
-                  </span>
+                  </p>
                 </a>
               </li>
               <li>
                 <a
+                  class="is-flex"
                   href="/en/electronics"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Electronics
-                  </span>
+                  </p>
                 </a>
               </li>
             </ul>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/contact"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Contact
-              </span>
+              </p>
             </a>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/about"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 About
-              </span>
+              </p>
             </a>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/terms"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M2.3,20.28L11.9,10.68L10.5,9.26L9.78,9.97C9.39,10.36 8.76,10.36 8.37,9.97L7.66,9.26C7.27,8.87 7.27,8.24 7.66,7.85L13.32,2.19C13.71,1.8 14.34,1.8 14.73,2.19L15.44,2.9C15.83,3.29 15.83,3.92 15.44,4.31L14.73,5L16.15,6.43C16.54,6.04 17.17,6.04 17.56,6.43C17.95,6.82 17.95,7.46 17.56,7.85L18.97,9.26L19.68,8.55C20.07,8.16 20.71,8.16 21.1,8.55L21.8,9.26C22.19,9.65 22.19,10.29 21.8,10.68L16.15,16.33C15.76,16.72 15.12,16.72 14.73,16.33L14.03,15.63C13.63,15.24 13.63,14.6 14.03,14.21L14.73,13.5L13.32,12.09L3.71,21.7C3.32,22.09 2.69,22.09 2.3,21.7C1.91,21.31 1.91,20.67 2.3,20.28M20,19A2,2 0 0,1 22,21V22H12V21A2,2 0 0,1 14,19H20Z"
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Terms of use
-              </span>
+              </p>
             </a>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/policy"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Privacy policy
-              </span>
+              </p>
             </a>
           </li>
         </ul>
@@ -363,193 +666,496 @@ Object {
   </body>,
   "container": <div>
     <aside
-      class="bulma-menu p-3 sidemenu-background"
+      class="bulma-menu p-3 has-background-white"
     >
       <ul
         class="bulma-menu-list"
       >
         <li>
           <a
+            class="is-flex"
             href="/en"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Home
-            </span>
+            </p>
           </a>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/account/signin"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Sign in
-            </span>
+            </p>
           </a>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/account/signup"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Sign up
-            </span>
+            </p>
           </a>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/showcase"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Showcase
-            </span>
+            </p>
           </a>
         </li>
         <li>
-          <a>
-            <span>
-              Github
-            </span>
-          </a>
+          <div
+            class="is-flex is-align-items-center my-2 ml-3"
+          >
+            <svg
+              class="is-flex is-align-self-center has-text-grey-dark"
+              fill="none"
+              style="width: 1.3rem; height: 1.3rem;"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="24"
+                cy="24"
+                fill="#181717"
+                r="20"
+              />
+              <path
+                d="M6.81348 34.235C9.24811 38.3138 13.0939 41.4526 17.6772 42.9784C18.6779 43.1614 19.0425 42.5438 19.0425 42.0134C19.0425 41.7938 19.0388 41.4058 19.0339 40.8866C19.0282 40.2852 19.0208 39.5079 19.0155 38.6124C13.4524 39.8206 12.2787 35.931 12.2787 35.931C11.3689 33.6215 10.0576 33.0064 10.0576 33.0064C8.2417 31.7651 10.1951 31.7896 10.1951 31.7896C12.2025 31.9321 13.2584 33.8511 13.2584 33.8511C15.0424 36.9071 17.94 36.0243 19.0794 35.5135C19.2611 34.2207 19.7767 33.3391 20.3489 32.8394C15.908 32.3348 11.2387 30.6183 11.2387 22.9545C11.2387 20.7715 12.0184 18.9863 13.2977 17.5879C13.0914 17.082 12.4051 15.0488 13.4929 12.2949C13.4929 12.2949 15.1725 11.7571 18.9934 14.3453C20.5883 13.9021 22.2998 13.6798 24.0003 13.6725C25.6983 13.6798 27.4099 13.9021 29.0072 14.3453C32.8256 11.7571 34.5016 12.2949 34.5016 12.2949C35.5931 15.0488 34.9067 17.082 34.7005 17.5879C35.9823 18.9863 36.757 20.7715 36.757 22.9545C36.757 30.638 32.0804 32.3286 27.6247 32.8234C28.343 33.441 28.9827 34.6614 28.9827 36.5277C28.9827 38.3152 28.9717 39.8722 28.9644 40.9035C28.9608 41.4143 28.9581 41.7962 28.9581 42.0134C28.9581 42.5487 29.3178 43.1712 30.3332 42.976C33.9844 41.7572 37.1671 39.5154 39.5403 36.5903C35.8734 41.1108 30.274 44 23.9997 44C16.6943 44 10.3038 40.0832 6.81348 34.235Z"
+                fill="white"
+              />
+            </svg>
+            <a
+              class="p-0 m-0"
+            >
+              <p
+                class="ml-2"
+              >
+                Github
+              </p>
+            </a>
+          </div>
           <ul
             class="bulma-menu-list"
+            style="margin-left: 20px;"
           >
             <li>
               <a
-                class="href undefined"
+                class="href is-flex"
                 href="https://github.com/TomaszKandula?tab=overview"
                 rel="noopener nofollow"
                 target="_blank"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Profile
-                </span>
+                </p>
               </a>
             </li>
             <li>
               <a
-                class="href undefined"
+                class="href is-flex"
                 href="https://github.com/TomaszKandula/TokanPages"
                 rel="noopener nofollow"
                 target="_blank"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Tokan Pages Project
-                </span>
+                </p>
               </a>
             </li>
             <li>
               <a
-                class="href undefined"
+                class="href is-flex"
                 href="https://github.com/TomaszKandula/EmailSender"
                 rel="noopener nofollow"
                 target="_blank"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Email Sender Project
-                </span>
+                </p>
               </a>
             </li>
           </ul>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/articles"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Tech Articles
-            </span>
+            </p>
           </a>
         </li>
         <li>
-          <a>
-            <span>
-              My interests
-            </span>
-          </a>
+          <div
+            class="is-flex is-align-items-center my-2 ml-3"
+          >
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <a
+              class="p-0 m-0"
+            >
+              <p
+                class="ml-2"
+              >
+                My interests
+              </p>
+            </a>
+          </div>
           <ul
             class="bulma-menu-list"
+            style="margin-left: 20px;"
           >
             <li>
               <a
+                class="is-flex"
                 href="/en/photography"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Photography
-                </span>
+                </p>
               </a>
             </li>
             <li>
               <a
+                class="is-flex"
                 href="/en/football"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Football
-                </span>
+                </p>
               </a>
             </li>
             <li>
               <a
+                class="is-flex"
                 href="/en/guitar"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Guitar
-                </span>
+                </p>
               </a>
             </li>
             <li>
               <a
+                class="is-flex"
                 href="/en/bicycle"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Bicycle
-                </span>
+                </p>
               </a>
             </li>
             <li>
               <a
+                class="is-flex"
                 href="/en/electronics"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Electronics
-                </span>
+                </p>
               </a>
             </li>
           </ul>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/contact"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Contact
-            </span>
+            </p>
           </a>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/about"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               About
-            </span>
+            </p>
           </a>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/terms"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M2.3,20.28L11.9,10.68L10.5,9.26L9.78,9.97C9.39,10.36 8.76,10.36 8.37,9.97L7.66,9.26C7.27,8.87 7.27,8.24 7.66,7.85L13.32,2.19C13.71,1.8 14.34,1.8 14.73,2.19L15.44,2.9C15.83,3.29 15.83,3.92 15.44,4.31L14.73,5L16.15,6.43C16.54,6.04 17.17,6.04 17.56,6.43C17.95,6.82 17.95,7.46 17.56,7.85L18.97,9.26L19.68,8.55C20.07,8.16 20.71,8.16 21.1,8.55L21.8,9.26C22.19,9.65 22.19,10.29 21.8,10.68L16.15,16.33C15.76,16.72 15.12,16.72 14.73,16.33L14.03,15.63C13.63,15.24 13.63,14.6 14.03,14.21L14.73,13.5L13.32,12.09L3.71,21.7C3.32,22.09 2.69,22.09 2.3,21.7C1.91,21.31 1.91,20.67 2.3,20.28M20,19A2,2 0 0,1 22,21V22H12V21A2,2 0 0,1 14,19H20Z"
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Terms of use
-            </span>
+            </p>
           </a>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/policy"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Privacy policy
-            </span>
+            </p>
           </a>
         </li>
       </ul>
@@ -615,231 +1221,598 @@ Object {
   "baseElement": <body>
     <div>
       <aside
-        class="bulma-menu p-3 sidemenu-background"
+        class="bulma-menu p-3 has-background-white"
       >
         <ul
           class="bulma-menu-list"
         >
           <li>
             <a
+              class="is-flex"
               href="/en"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Home
-              </span>
+              </p>
             </a>
           </li>
           <li>
-            <a>
-              <span>
-                Account
-              </span>
-            </a>
+            <div
+              class="is-flex is-align-items-center my-2 ml-3"
+            >
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <a
+                class="p-0 m-0"
+              >
+                <p
+                  class="ml-2"
+                >
+                  Account
+                </p>
+              </a>
+            </div>
             <ul
               class="bulma-menu-list"
+              style="margin-left: 20px;"
             >
               <li>
-                <div
-                  class="undefined link-disabled"
-                >
-                  <span>
-                    User articles
-                  </span>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="undefined link-disabled"
-                >
-                  <span>
-                    User notes
-                  </span>
-                </div>
-              </li>
-              <li>
-                <div
-                  class="undefined link-disabled"
-                >
-                  <span>
-                    User files
-                  </span>
-                </div>
-              </li>
-              <li>
                 <a
-                  href="/en/account"
+                  class="is-flex link-disabled"
                 >
-                  <span>
-                    User settings
-                  </span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
+                    User articles
+                  </p>
                 </a>
               </li>
               <li>
                 <a
+                  class="is-flex link-disabled"
+                >
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
+                    User notes
+                  </p>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="is-flex link-disabled"
+                >
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
+                    User files
+                  </p>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="is-flex"
+                  href="/en/account"
+                >
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
+                    User settings
+                  </p>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="is-flex"
                   href="/en/signout"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Sign out
-                  </span>
+                  </p>
                 </a>
               </li>
             </ul>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/showcase"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Showcase
-              </span>
+              </p>
             </a>
           </li>
           <li>
-            <a>
-              <span>
-                Github
-              </span>
-            </a>
+            <div
+              class="is-flex is-align-items-center my-2 ml-3"
+            >
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                fill="none"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="24"
+                  cy="24"
+                  fill="#181717"
+                  r="20"
+                />
+                <path
+                  d="M6.81348 34.235C9.24811 38.3138 13.0939 41.4526 17.6772 42.9784C18.6779 43.1614 19.0425 42.5438 19.0425 42.0134C19.0425 41.7938 19.0388 41.4058 19.0339 40.8866C19.0282 40.2852 19.0208 39.5079 19.0155 38.6124C13.4524 39.8206 12.2787 35.931 12.2787 35.931C11.3689 33.6215 10.0576 33.0064 10.0576 33.0064C8.2417 31.7651 10.1951 31.7896 10.1951 31.7896C12.2025 31.9321 13.2584 33.8511 13.2584 33.8511C15.0424 36.9071 17.94 36.0243 19.0794 35.5135C19.2611 34.2207 19.7767 33.3391 20.3489 32.8394C15.908 32.3348 11.2387 30.6183 11.2387 22.9545C11.2387 20.7715 12.0184 18.9863 13.2977 17.5879C13.0914 17.082 12.4051 15.0488 13.4929 12.2949C13.4929 12.2949 15.1725 11.7571 18.9934 14.3453C20.5883 13.9021 22.2998 13.6798 24.0003 13.6725C25.6983 13.6798 27.4099 13.9021 29.0072 14.3453C32.8256 11.7571 34.5016 12.2949 34.5016 12.2949C35.5931 15.0488 34.9067 17.082 34.7005 17.5879C35.9823 18.9863 36.757 20.7715 36.757 22.9545C36.757 30.638 32.0804 32.3286 27.6247 32.8234C28.343 33.441 28.9827 34.6614 28.9827 36.5277C28.9827 38.3152 28.9717 39.8722 28.9644 40.9035C28.9608 41.4143 28.9581 41.7962 28.9581 42.0134C28.9581 42.5487 29.3178 43.1712 30.3332 42.976C33.9844 41.7572 37.1671 39.5154 39.5403 36.5903C35.8734 41.1108 30.274 44 23.9997 44C16.6943 44 10.3038 40.0832 6.81348 34.235Z"
+                  fill="white"
+                />
+              </svg>
+              <a
+                class="p-0 m-0"
+              >
+                <p
+                  class="ml-2"
+                >
+                  Github
+                </p>
+              </a>
+            </div>
             <ul
               class="bulma-menu-list"
+              style="margin-left: 20px;"
             >
               <li>
                 <a
-                  class="href undefined"
+                  class="href is-flex"
                   href="https://github.com/TomaszKandula?tab=overview"
                   rel="noopener nofollow"
                   target="_blank"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Profile
-                  </span>
+                  </p>
                 </a>
               </li>
               <li>
                 <a
-                  class="href undefined"
+                  class="href is-flex"
                   href="https://github.com/TomaszKandula/TokanPages"
                   rel="noopener nofollow"
                   target="_blank"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Tokan Pages Project
-                  </span>
+                  </p>
                 </a>
               </li>
               <li>
                 <a
-                  class="href undefined"
+                  class="href is-flex"
                   href="https://github.com/TomaszKandula/EmailSender"
                   rel="noopener nofollow"
                   target="_blank"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Email Sender Project
-                  </span>
+                  </p>
                 </a>
               </li>
             </ul>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/articles"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Tech Articles
-              </span>
+              </p>
             </a>
           </li>
           <li>
-            <a>
-              <span>
-                My interests
-              </span>
-            </a>
+            <div
+              class="is-flex is-align-items-center my-2 ml-3"
+            >
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <a
+                class="p-0 m-0"
+              >
+                <p
+                  class="ml-2"
+                >
+                  My interests
+                </p>
+              </a>
+            </div>
             <ul
               class="bulma-menu-list"
+              style="margin-left: 20px;"
             >
               <li>
                 <a
+                  class="is-flex"
                   href="/en/photography"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Photography
-                  </span>
+                  </p>
                 </a>
               </li>
               <li>
                 <a
+                  class="is-flex"
                   href="/en/football"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Football
-                  </span>
+                  </p>
                 </a>
               </li>
               <li>
                 <a
+                  class="is-flex"
                   href="/en/guitar"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Guitar
-                  </span>
+                  </p>
                 </a>
               </li>
               <li>
                 <a
+                  class="is-flex"
                   href="/en/bicycle"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Bicycle
-                  </span>
+                  </p>
                 </a>
               </li>
               <li>
                 <a
+                  class="is-flex"
                   href="/en/electronics"
                 >
-                  <span>
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 1.3rem; height: 1.3rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="ml-2"
+                  >
                     Electronics
-                  </span>
+                  </p>
                 </a>
               </li>
             </ul>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/contact"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Contact
-              </span>
+              </p>
             </a>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/about"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 About
-              </span>
+              </p>
             </a>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/terms"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M2.3,20.28L11.9,10.68L10.5,9.26L9.78,9.97C9.39,10.36 8.76,10.36 8.37,9.97L7.66,9.26C7.27,8.87 7.27,8.24 7.66,7.85L13.32,2.19C13.71,1.8 14.34,1.8 14.73,2.19L15.44,2.9C15.83,3.29 15.83,3.92 15.44,4.31L14.73,5L16.15,6.43C16.54,6.04 17.17,6.04 17.56,6.43C17.95,6.82 17.95,7.46 17.56,7.85L18.97,9.26L19.68,8.55C20.07,8.16 20.71,8.16 21.1,8.55L21.8,9.26C22.19,9.65 22.19,10.29 21.8,10.68L16.15,16.33C15.76,16.72 15.12,16.72 14.73,16.33L14.03,15.63C13.63,15.24 13.63,14.6 14.03,14.21L14.73,13.5L13.32,12.09L3.71,21.7C3.32,22.09 2.69,22.09 2.3,21.7C1.91,21.31 1.91,20.67 2.3,20.28M20,19A2,2 0 0,1 22,21V22H12V21A2,2 0 0,1 14,19H20Z"
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Terms of use
-              </span>
+              </p>
             </a>
           </li>
           <li>
             <a
+              class="is-flex"
               href="/en/policy"
             >
-              <span>
+              <div>
+                <svg
+                  class="is-flex is-align-self-center has-text-grey-dark"
+                  role="presentation"
+                  style="width: 1.3rem; height: 1.3rem;"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    style="fill: currentColor;"
+                  />
+                </svg>
+              </div>
+              <p
+                class="ml-2"
+              >
                 Privacy policy
-              </span>
+              </p>
             </a>
           </li>
         </ul>
@@ -848,231 +1821,598 @@ Object {
   </body>,
   "container": <div>
     <aside
-      class="bulma-menu p-3 sidemenu-background"
+      class="bulma-menu p-3 has-background-white"
     >
       <ul
         class="bulma-menu-list"
       >
         <li>
           <a
+            class="is-flex"
             href="/en"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Home
-            </span>
+            </p>
           </a>
         </li>
         <li>
-          <a>
-            <span>
-              Account
-            </span>
-          </a>
+          <div
+            class="is-flex is-align-items-center my-2 ml-3"
+          >
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <a
+              class="p-0 m-0"
+            >
+              <p
+                class="ml-2"
+              >
+                Account
+              </p>
+            </a>
+          </div>
           <ul
             class="bulma-menu-list"
+            style="margin-left: 20px;"
           >
             <li>
-              <div
-                class="undefined link-disabled"
-              >
-                <span>
-                  User articles
-                </span>
-              </div>
-            </li>
-            <li>
-              <div
-                class="undefined link-disabled"
-              >
-                <span>
-                  User notes
-                </span>
-              </div>
-            </li>
-            <li>
-              <div
-                class="undefined link-disabled"
-              >
-                <span>
-                  User files
-                </span>
-              </div>
-            </li>
-            <li>
               <a
-                href="/en/account"
+                class="is-flex link-disabled"
               >
-                <span>
-                  User settings
-                </span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
+                  User articles
+                </p>
               </a>
             </li>
             <li>
               <a
+                class="is-flex link-disabled"
+              >
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
+                  User notes
+                </p>
+              </a>
+            </li>
+            <li>
+              <a
+                class="is-flex link-disabled"
+              >
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
+                  User files
+                </p>
+              </a>
+            </li>
+            <li>
+              <a
+                class="is-flex"
+                href="/en/account"
+              >
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
+                  User settings
+                </p>
+              </a>
+            </li>
+            <li>
+              <a
+                class="is-flex"
                 href="/en/signout"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12,17A2,2 0 0,0 14,15C14,13.89 13.1,13 12,13A2,2 0 0,0 10,15A2,2 0 0,0 12,17M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V10C4,8.89 4.9,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Sign out
-                </span>
+                </p>
               </a>
             </li>
           </ul>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/showcase"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Showcase
-            </span>
+            </p>
           </a>
         </li>
         <li>
-          <a>
-            <span>
-              Github
-            </span>
-          </a>
+          <div
+            class="is-flex is-align-items-center my-2 ml-3"
+          >
+            <svg
+              class="is-flex is-align-self-center has-text-grey-dark"
+              fill="none"
+              style="width: 1.3rem; height: 1.3rem;"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="24"
+                cy="24"
+                fill="#181717"
+                r="20"
+              />
+              <path
+                d="M6.81348 34.235C9.24811 38.3138 13.0939 41.4526 17.6772 42.9784C18.6779 43.1614 19.0425 42.5438 19.0425 42.0134C19.0425 41.7938 19.0388 41.4058 19.0339 40.8866C19.0282 40.2852 19.0208 39.5079 19.0155 38.6124C13.4524 39.8206 12.2787 35.931 12.2787 35.931C11.3689 33.6215 10.0576 33.0064 10.0576 33.0064C8.2417 31.7651 10.1951 31.7896 10.1951 31.7896C12.2025 31.9321 13.2584 33.8511 13.2584 33.8511C15.0424 36.9071 17.94 36.0243 19.0794 35.5135C19.2611 34.2207 19.7767 33.3391 20.3489 32.8394C15.908 32.3348 11.2387 30.6183 11.2387 22.9545C11.2387 20.7715 12.0184 18.9863 13.2977 17.5879C13.0914 17.082 12.4051 15.0488 13.4929 12.2949C13.4929 12.2949 15.1725 11.7571 18.9934 14.3453C20.5883 13.9021 22.2998 13.6798 24.0003 13.6725C25.6983 13.6798 27.4099 13.9021 29.0072 14.3453C32.8256 11.7571 34.5016 12.2949 34.5016 12.2949C35.5931 15.0488 34.9067 17.082 34.7005 17.5879C35.9823 18.9863 36.757 20.7715 36.757 22.9545C36.757 30.638 32.0804 32.3286 27.6247 32.8234C28.343 33.441 28.9827 34.6614 28.9827 36.5277C28.9827 38.3152 28.9717 39.8722 28.9644 40.9035C28.9608 41.4143 28.9581 41.7962 28.9581 42.0134C28.9581 42.5487 29.3178 43.1712 30.3332 42.976C33.9844 41.7572 37.1671 39.5154 39.5403 36.5903C35.8734 41.1108 30.274 44 23.9997 44C16.6943 44 10.3038 40.0832 6.81348 34.235Z"
+                fill="white"
+              />
+            </svg>
+            <a
+              class="p-0 m-0"
+            >
+              <p
+                class="ml-2"
+              >
+                Github
+              </p>
+            </a>
+          </div>
           <ul
             class="bulma-menu-list"
+            style="margin-left: 20px;"
           >
             <li>
               <a
-                class="href undefined"
+                class="href is-flex"
                 href="https://github.com/TomaszKandula?tab=overview"
                 rel="noopener nofollow"
                 target="_blank"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Profile
-                </span>
+                </p>
               </a>
             </li>
             <li>
               <a
-                class="href undefined"
+                class="href is-flex"
                 href="https://github.com/TomaszKandula/TokanPages"
                 rel="noopener nofollow"
                 target="_blank"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Tokan Pages Project
-                </span>
+                </p>
               </a>
             </li>
             <li>
               <a
-                class="href undefined"
+                class="href is-flex"
                 href="https://github.com/TomaszKandula/EmailSender"
                 rel="noopener nofollow"
                 target="_blank"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Email Sender Project
-                </span>
+                </p>
               </a>
             </li>
           </ul>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/articles"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Tech Articles
-            </span>
+            </p>
           </a>
         </li>
         <li>
-          <a>
-            <span>
-              My interests
-            </span>
-          </a>
+          <div
+            class="is-flex is-align-items-center my-2 ml-3"
+          >
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <a
+              class="p-0 m-0"
+            >
+              <p
+                class="ml-2"
+              >
+                My interests
+              </p>
+            </a>
+          </div>
           <ul
             class="bulma-menu-list"
+            style="margin-left: 20px;"
           >
             <li>
               <a
+                class="is-flex"
                 href="/en/photography"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Photography
-                </span>
+                </p>
               </a>
             </li>
             <li>
               <a
+                class="is-flex"
                 href="/en/football"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Football
-                </span>
+                </p>
               </a>
             </li>
             <li>
               <a
+                class="is-flex"
                 href="/en/guitar"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Guitar
-                </span>
+                </p>
               </a>
             </li>
             <li>
               <a
+                class="is-flex"
                 href="/en/bicycle"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Bicycle
-                </span>
+                </p>
               </a>
             </li>
             <li>
               <a
+                class="is-flex"
                 href="/en/electronics"
               >
-                <span>
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 1.3rem; height: 1.3rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="ml-2"
+                >
                   Electronics
-                </span>
+                </p>
               </a>
             </li>
           </ul>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/contact"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Contact
-            </span>
+            </p>
           </a>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/about"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               About
-            </span>
+            </p>
           </a>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/terms"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M2.3,20.28L11.9,10.68L10.5,9.26L9.78,9.97C9.39,10.36 8.76,10.36 8.37,9.97L7.66,9.26C7.27,8.87 7.27,8.24 7.66,7.85L13.32,2.19C13.71,1.8 14.34,1.8 14.73,2.19L15.44,2.9C15.83,3.29 15.83,3.92 15.44,4.31L14.73,5L16.15,6.43C16.54,6.04 17.17,6.04 17.56,6.43C17.95,6.82 17.95,7.46 17.56,7.85L18.97,9.26L19.68,8.55C20.07,8.16 20.71,8.16 21.1,8.55L21.8,9.26C22.19,9.65 22.19,10.29 21.8,10.68L16.15,16.33C15.76,16.72 15.12,16.72 14.73,16.33L14.03,15.63C13.63,15.24 13.63,14.6 14.03,14.21L14.73,13.5L13.32,12.09L3.71,21.7C3.32,22.09 2.69,22.09 2.3,21.7C1.91,21.31 1.91,20.67 2.3,20.28M20,19A2,2 0 0,1 22,21V22H12V21A2,2 0 0,1 14,19H20Z"
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Terms of use
-            </span>
+            </p>
           </a>
         </li>
         <li>
           <a
+            class="is-flex"
             href="/en/policy"
           >
-            <span>
+            <div>
+              <svg
+                class="is-flex is-align-self-center has-text-grey-dark"
+                role="presentation"
+                style="width: 1.3rem; height: 1.3rem;"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  style="fill: currentColor;"
+                />
+              </svg>
+            </div>
+            <p
+              class="ml-2"
+            >
               Privacy policy
-            </span>
+            </p>
           </a>
         </li>
       </ul>

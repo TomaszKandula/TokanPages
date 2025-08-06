@@ -27,7 +27,7 @@ const NavbarItemWithSubitems = (props: NavbarItemWithSubitemsProps): React.React
                         to={item.link as string}
                         isDisabled={!item.enabled}
                     >
-                        <Icon name={item.icon as string} size={0.8} />
+                        <Icon name={item.icon as string} size={1.2} />
                         <span>{item.value}</span>
                     </Link>
                 ))}

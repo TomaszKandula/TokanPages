@@ -44,8 +44,8 @@ describe("test account group component: passwordReset", () => {
             </BrowserRouter>
         );
 
-        expect(useSelectorMock).toBeCalledTimes(8);
-        expect(useDispatchMock).toBeCalledTimes(2);
+        expect(useSelectorMock).toBeCalledTimes(12);
+        expect(useDispatchMock).toBeCalledTimes(3);
         expect(html).toMatchSnapshot();
     });
 });

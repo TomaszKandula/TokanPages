@@ -7,9 +7,17 @@ import { ApplicationState } from "../../../../../../Store/Configuration";
 import { ArticleItemBase } from "../../../Models";
 import { TextItem } from "../../../Models/TextModel";
 import { useDimensions, useHash } from "../../../../../../Shared/Hooks";
-import { ArticleCard, ArticleCardView, Icon, ProgressBar, RenderList } from "../../../../../../Shared/Components";
+import {
+    ArticleCard,
+    ArticleCardView,
+    Icon,
+    ProgressBar,
+    RenderHtml,
+    RenderList,
+} from "../../../../../../Shared/Components";
 import { TComponent } from "../../../../../../Shared/types";
-import { v4 as uuidv4 } from "uuid";
+import { TagType } from "../../../../../../Shared/Components/RenderHtml/types";
+import DOMPurify from "dompurify";
 import Validate from "validate.js";
 import "./utilities.css";
 
@@ -26,7 +34,9 @@ interface LinkProps {
 }
 
 interface ProcessParagraphsProps {
+    tag: TagType;
     html: string | undefined;
+    className?: string;
 }
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
@@ -191,30 +201,36 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
 /* HEADER COMPONENT */
 
 export const RenderTitle = (props: DataProps): React.ReactElement => {
-    return <h1 className="bulma-title has-text-grey-dark m-0 pb-2">{props.value ?? NO_CONTENT}</h1>;
+    return (
+        <RenderHtml value={props.value ?? NO_CONTENT} tag="h1" className="bulma-title has-text-grey-dark m-0 pb-2" />
+    );
 };
 
 export const RenderSubtitle = (props: DataProps): React.ReactElement => {
     return (
-        <h2 className="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4">
-            {props.value ?? NO_CONTENT}
-        </h2>
+        <RenderHtml
+            value={props.value ?? NO_CONTENT}
+            tag="h2"
+            className="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4"
+        />
     );
 };
 
 export const RenderHeader1 = (props: DataProps): React.ReactElement => {
-    return <h1 className="bulma-title has-text-grey-dark">{props.value ?? NO_CONTENT}</h1>;
+    return <RenderHtml value={props.value ?? NO_CONTENT} tag="h1" className="bulma-title has-text-grey-dark" />;
 };
 
 export const RenderHeader2 = (props: DataProps): React.ReactElement => {
-    return <h2 className="bulma-subtitle has-text-grey-dark">{props.value ?? NO_CONTENT}</h2>;
+    return <RenderHtml value={props.value ?? NO_CONTENT} tag="h2" className="bulma-subtitle has-text-grey-dark" />;
 };
 
 export const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
     return (
-        <h3 className="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap">
-            {props.value ?? NO_CONTENT}
-        </h3>
+        <RenderHtml
+            value={props.value ?? NO_CONTENT}
+            tag="h3"
+            className="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap"
+        />
     );
 };
 
@@ -229,69 +245,53 @@ export const RenderParagraph = (props: TextItem): React.ReactElement => {
 
     switch (prop) {
         case "blockquote":
-            return (
-                <blockquote className={classStyle}>
-                    <ProcessParagraphs html={html as string} />
-                </blockquote>
-            );
+            return <ProcessParagraphs tag="blockquote" html={html as string} className={classStyle} />;
         case "span":
-            return <span className={classStyle}>{html ?? NO_CONTENT}</span>;
+            return <RenderHtml value={html as string} tag="span" className={classStyle} />;
         case "ul":
             return <RenderList list={html as string[]} type="ul" className={classStyle} />;
         case "ol":
             return <RenderList list={html as string[]} type="ol" className={classStyle} />;
         case "div":
-            return (
-                <div className={classStyle}>
-                    <ProcessParagraphs html={html as string} />
-                </div>
-            );
+            return <ProcessParagraphs tag="div" html={html as string} className={classStyle} />;
         case "br":
             return <div className="my-4">&nbsp;</div>;
         default:
-            return (
-                <p className={classStyle}>
-                    <ProcessParagraphs html={html as string} />
-                </p>
-            );
+            return <ProcessParagraphs tag="p" html={html as string} className={classStyle} />;
     }
 };
 
 export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactElement => {
-    const result: React.ReactElement[] = [];
-
     if (!props.html || (props.html && props.html === "")) {
         return <>{NO_CONTENT}</>;
     }
 
     if (!props.html.includes("__{") && !props.html.includes("}__")) {
-        return <>{props.html}</>;
+        return <RenderHtml value={props.html} tag={props.tag} className={props.className} />;
     }
 
+    let result = "";
     const array = props.html.split("__");
     if (array.length > 0) {
         array.forEach(item => {
+            const sanitized = DOMPurify.sanitize(item, { ALLOWED_TAGS: ["a", "b", "i", "u"] });
             if (item.includes("{") && item.includes("}")) {
                 try {
-                    const data = JSON.parse(item) as LinkProps;
-                    result.push(
-                        <a key={uuidv4()} href={data.href} target={data.target} rel={data.rel}>
-                            {data.text}
-                        </a>
-                    );
+                    const data = JSON.parse(sanitized) as LinkProps;
+                    result += `<a href='${data.href}' target='${data.target}' rel='${data.rel}'>${data.text}</a>`;
                 } catch {
-                    console.error(item);
+                    console.error(sanitized);
                     throw new Error("Parsing error.");
                 }
             } else {
-                if (!Validate.isEmpty(item)) {
-                    result.push(<React.Fragment key={uuidv4()}>{item}</React.Fragment>);
+                if (!Validate.isEmpty(sanitized)) {
+                    result += sanitized;
                 }
             }
         });
     } else {
-        return <>{props.html}</>;
+        return <RenderHtml value={props.html} tag={props.tag} className={props.className} />;
     }
 
-    return <>{result}</>;
+    return <RenderHtml value={result} tag={props.tag} className={props.className} />;
 };

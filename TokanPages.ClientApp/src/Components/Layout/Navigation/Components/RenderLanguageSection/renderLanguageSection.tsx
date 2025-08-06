@@ -32,7 +32,7 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
                         className="bulma-image bulma-is-16x16 mr-4"
                     />
                     <div>{item.name}</div>
-                    <RenderSelectionIcon selection={item.id} languageId={props.languageId} />
+                    <RenderSelectionIcon selection={item.id} languageId={props.languageId} size={1.3} />
                 </a>
             ))}
         </div>

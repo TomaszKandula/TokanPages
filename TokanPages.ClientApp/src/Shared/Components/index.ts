@@ -31,3 +31,4 @@ export { Backdrop } from "./Backdrop";
 export { ApplicationToaster } from "./CustomToast";
 export { Notification } from "./Notification";
 export { Media } from "./Media";
+export { RenderHtml } from "./RenderHtml";

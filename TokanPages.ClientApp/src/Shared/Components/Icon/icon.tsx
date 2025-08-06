@@ -22,16 +22,16 @@ export const Icon = (props: IconProps): React.ReactElement => {
 
     switch (props.name.toLocaleLowerCase()) {
         case "linkedin":
-            return <LinkedinIcon size={props.size} onClick={props.onClick} />;
+            return <LinkedinIcon size={props.size} onClick={props.onClick} className={className} />;
         case "github":
-            return <GithubIcon size={props.size} onClick={props.onClick} />;
+            return <GithubIcon size={props.size} onClick={props.onClick} className={className} />;
         case "instagram":
-            return <InstgramIcon size={props.size} onClick={props.onClick} />;
+            return <InstgramIcon size={props.size} onClick={props.onClick} className={className} />;
 
         default:
             return (
                 <div onClick={props.onClick}>
-                    <MdiIcon path={getIconSvgPath(props.name)} size={props.size} className={className} />
+                    <MdiIcon path={getIconSvgPath(props.name)} size={`${props.size}rem`} className={className} />
                 </div>
             );
     }

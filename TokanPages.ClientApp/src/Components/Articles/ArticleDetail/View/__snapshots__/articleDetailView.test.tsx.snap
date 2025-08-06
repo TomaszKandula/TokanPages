@@ -13,7 +13,7 @@ Object {
             class="py-4"
           >
             <div
-              class="pb-5"
+              class="mb-5"
               data-aos="fade-down"
               data-aos-delay="0"
             >
@@ -38,7 +38,7 @@ Object {
                 </div>
               </div>
               <div
-                class="py-4"
+                class="my-4"
               >
                 <div
                   class="bulma-grid is-flex m-0"
@@ -116,13 +116,8 @@ Object {
                 </div>
               </div>
             </div>
-            <div
-              data-aos="fade-up"
-              data-aos-delay="0"
-            >
-              <div>
-                articleContent
-              </div>
+            <div>
+              articleContent
             </div>
             <div
               class="mt-6"
@@ -137,7 +132,7 @@ Object {
                     <svg
                       class="is-flex is-align-self-center article-details-thumbup"
                       role="presentation"
-                      style="width: 1.7999999999999998rem; height: 1.7999999999999998rem;"
+                      style="width: 1.2rem; height: 1.2rem;"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -212,7 +207,7 @@ Object {
           class="py-4"
         >
           <div
-            class="pb-5"
+            class="mb-5"
             data-aos="fade-down"
             data-aos-delay="0"
           >
@@ -237,7 +232,7 @@ Object {
               </div>
             </div>
             <div
-              class="py-4"
+              class="my-4"
             >
               <div
                 class="bulma-grid is-flex m-0"
@@ -315,13 +310,8 @@ Object {
               </div>
             </div>
           </div>
-          <div
-            data-aos="fade-up"
-            data-aos-delay="0"
-          >
-            <div>
-              articleContent
-            </div>
+          <div>
+            articleContent
           </div>
           <div
             class="mt-6"
@@ -336,7 +326,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center article-details-thumbup"
                     role="presentation"
-                    style="width: 1.7999999999999998rem; height: 1.7999999999999998rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path

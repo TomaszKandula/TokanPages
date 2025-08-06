@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { GET_ARTICLE_IMAGE_URL } from "../../../../Api";
 import { ArticleFeaturesContentDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { Animated, CustomImage, Skeleton } from "../../../../Shared/Components";
+import { Animated, CustomImage, RenderHtml, Skeleton } from "../../../../Shared/Components";
 import { useDimensions } from "../../../../Shared/Hooks";
 import Validate from "validate.js";
 import "./articleFeatureView.css";
@@ -121,15 +121,25 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                 className={`bulma-column is-align-self-center py-3 pr-0 ${media.isDesktop ? "pl-6" : tabletPadding}`}
                             >
                                 <Skeleton isLoading={isLoading} mode="Text">
-                                    <h2 className="is-size-3 py-5 has-text-black">{features?.title}</h2>
+                                    <RenderHtml
+                                        value={features?.title}
+                                        tag="h2"
+                                        className="is-size-3 py-5 has-text-black"
+                                    />
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Text">
-                                    <p className="is-size-5 py-3 has-text-grey line-height-18">
-                                        {features?.description}
-                                    </p>
+                                    <RenderHtml
+                                        value={features?.description}
+                                        tag="p"
+                                        className="is-size-5 py-3 has-text-grey line-height-18"
+                                    />
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Text">
-                                    <p className="is-size-5 py-3 has-text-grey line-height-18">{features?.text}</p>
+                                    <RenderHtml
+                                        value={features?.text}
+                                        tag="p"
+                                        className="is-size-5 py-3 has-text-grey line-height-18"
+                                    />
                                 </Skeleton>
                                 <div className="has-text-left py-5">
                                     <Skeleton isLoading={isLoading} mode="Rect">

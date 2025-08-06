@@ -67,6 +67,13 @@ body {
 
 /* SHARED STYLES BY COMPONENTS */
 
+.line-separator {
+    margin: 0;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(216, 216, 216);
+}
+
 .lazyloaded {
     opacity: 1;
     transition-property: opacity;

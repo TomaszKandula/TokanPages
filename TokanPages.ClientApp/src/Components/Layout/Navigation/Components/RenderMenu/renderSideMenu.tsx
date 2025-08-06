@@ -3,7 +3,6 @@ import { ItemDto } from "../../../../../Api/Models";
 import { ProgressBar } from "../../../../../Shared/Components";
 import { RenderSidemenuItem } from "./Renderers";
 import { v4 as uuidv4 } from "uuid";
-import "./renderSideMenu.css";
 
 interface RenderSideMenuBaseProps {
     isAnonymous: boolean;
@@ -19,12 +18,15 @@ interface CanContinueProps extends RenderSideMenuBaseProps {
 }
 
 const CanContinue = (props: CanContinueProps): boolean => {
-    const accountPath = `/${props.languageId}/account`;
-    const signinPath = `/${props.languageId}/account/signin`;
-    const signupPath = `/${props.languageId}/account/signup`;
+    const accountPath = "account";
+    const signinPath = "signin";
+    const signupPath = "signup";
 
-    const isAnonymous = props.isAnonymous && props.item.link === accountPath;
-    const isNotAnonymous = !props.isAnonymous && (props.item.link === signinPath || props.item.link === signupPath);
+    const hasAccountGroup = props.item.link?.includes(accountPath);
+    const hasNoSigningLinks = !props.item.link?.includes(signinPath) && !props.item.link?.includes(signupPath);
+    const hasSigningLinks = props.item.link?.includes(signinPath) || props.item.link?.includes(signupPath);
+    const isAnonymous = props.isAnonymous && hasAccountGroup && hasNoSigningLinks;
+    const isNotAnonymous = !props.isAnonymous && hasSigningLinks;
     const hasSideMenu = props.item.sideMenu?.enabled ?? false;
 
     if (isAnonymous) return false;
@@ -90,9 +92,12 @@ export const RenderSideMenu = (props: RenderSideMenuProps): React.ReactElement =
 
             case "group": {
                 renderBuffer.push(
-                    <p key={uuidv4()} className="bulma-menu-label">
-                        {item.value}
-                    </p>
+                    <>
+                        <p key={uuidv4()} className="bulma-menu-label">
+                            {item.value}
+                        </p>
+                        <hr className="m-0 mb-2" />
+                    </>
                 );
                 break;
             }
@@ -104,7 +109,7 @@ export const RenderSideMenu = (props: RenderSideMenuProps): React.ReactElement =
     });
 
     return (
-        <aside className="bulma-menu p-3 sidemenu-background">
+        <aside className="bulma-menu p-3 has-background-white">
             <ul className="bulma-menu-list">{renderBuffer}</ul>
         </aside>
     );

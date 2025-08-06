@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { GET_SHOWCASE_IMAGE_URL } from "../../../Api";
 import { FeatureShowcaseContentDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated, CustomImage, Skeleton } from "../../../Shared/Components";
+import { Animated, CustomImage, RenderHtml, Skeleton } from "../../../Shared/Components";
 import { useDimensions } from "../../../Shared/Hooks";
 import Validate from "validate.js";
 import "./showcaseView.css";
@@ -53,11 +53,11 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                                     <h2 className="is-size-3 py-5 has-text-black">{showcase?.heading}</h2>
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Text">
-                                    <p
+                                    <RenderHtml
+                                        value={showcase?.text}
+                                        tag="p"
                                         className={`is-size-5 py-3 ${media.isDesktop ? "pr-6" : "pr-4"} has-text-grey line-height-18`}
-                                    >
-                                        {showcase?.text}
-                                    </p>
+                                    />
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Rect">
                                     <div className="has-text-left py-5">
