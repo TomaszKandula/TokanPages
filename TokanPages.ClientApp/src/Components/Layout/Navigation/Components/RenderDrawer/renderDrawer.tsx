@@ -17,7 +17,7 @@ interface RenderDrawerProps {
 const getWidthRatio = (media: UseDimensionsResult): number => {
     if (media.isMobile) {
         if (media.hasLandscape) {
-            return 0.50;
+            return 0.5;
         } else {
             return 0.75;
         }
@@ -25,10 +25,10 @@ const getWidthRatio = (media: UseDimensionsResult): number => {
         if (media.hasLandscape) {
             return 0.33;
         } else {
-            return 0.50;
+            return 0.5;
         }
     }
-}
+};
 
 export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
     const media = useDimensions();

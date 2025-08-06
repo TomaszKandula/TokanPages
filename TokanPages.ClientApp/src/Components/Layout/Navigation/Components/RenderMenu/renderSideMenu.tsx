@@ -93,9 +93,7 @@ export const RenderSideMenu = (props: RenderSideMenuProps): React.ReactElement =
             case "group": {
                 renderBuffer.push(
                     <React.Fragment key={uuidv4()}>
-                        <p className="bulma-menu-label">
-                            {item.value}
-                        </p>
+                        <p className="bulma-menu-label">{item.value}</p>
                         <hr className="m-0 mb-2" />
                     </React.Fragment>
                 );
