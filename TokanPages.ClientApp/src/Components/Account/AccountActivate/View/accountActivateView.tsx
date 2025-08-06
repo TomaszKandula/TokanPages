@@ -18,10 +18,10 @@ interface AccountActivateViewProps extends ViewProperties, ExtendedViewProps {
     hasSuccess: boolean;
 }
 
-const ProblemIcon = <Icon name="Alert" size={3} />;
-const AlertIcon = <Icon name="AlertCircle" size={3} />;
-const CheckIcon = <Icon name="Check" size={3} />;
-const InfoIcon = <Icon name="Information" size={3} />;
+const ProblemIcon = <Icon name="Alert" size={4.5} />;
+const AlertIcon = <Icon name="AlertCircle" size={4.5} />;
+const CheckIcon = <Icon name="Check" size={4.5} />;
+const InfoIcon = <Icon name="Information" size={4.5} />;
 
 export const AccountActivateView = (props: AccountActivateViewProps): React.ReactElement => {
     let icon;
