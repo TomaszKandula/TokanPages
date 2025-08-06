@@ -71,7 +71,7 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
                 <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 mt-2">
                     <h2 className="is-size-4 has-text-weight-semibold">{props.navigation?.languageMenu.caption}</h2>
                     <IconButton onClick={menuHandler} hasNoHoverEffect className="no-select">
-                        <Icon name="WindowClose" size={1.5} className="has-text-grey-dark" />
+                        <Icon name="WindowClose" size={2.0} className="has-text-grey-dark" />
                     </IconButton>
                 </div>
                 {props.children}
