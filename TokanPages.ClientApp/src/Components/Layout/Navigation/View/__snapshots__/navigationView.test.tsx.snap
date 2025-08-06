@@ -31,7 +31,7 @@ Object {
           class="is-flex is-align-self-center"
         >
           <div
-            class="render-menu-list"
+            class="is-flex is-flex-wrap-nowrap is-justify-content-space-between is-align-items-center"
           />
         </div>
         <div
@@ -74,7 +74,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center has-text-link"
                     role="presentation"
-                    style="width: 1.125rem; height: 1.125rem;"
+                    style="width: 1.3rem; height: 1.3rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -145,7 +145,7 @@ Object {
         class="is-flex is-align-self-center"
       >
         <div
-          class="render-menu-list"
+          class="is-flex is-flex-wrap-nowrap is-justify-content-space-between is-align-items-center"
         />
       </div>
       <div
@@ -188,7 +188,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center has-text-link"
                   role="presentation"
-                  style="width: 1.125rem; height: 1.125rem;"
+                  style="width: 1.3rem; height: 1.3rem;"
                   viewBox="0 0 24 24"
                 >
                   <path

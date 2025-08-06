@@ -129,7 +129,7 @@ Object {
                         <svg
                           class="is-flex is-align-self-center has-text-grey is-clickable"
                           role="presentation"
-                          style="width: 2.25rem; height: 2.25rem;"
+                          style="width: 1.5rem; height: 1.5rem;"
                           viewBox="0 0 24 24"
                         >
                           <path
@@ -403,7 +403,7 @@ Object {
                       <svg
                         class="is-flex is-align-self-center has-text-grey is-clickable"
                         role="presentation"
-                        style="width: 2.25rem; height: 2.25rem;"
+                        style="width: 1.5rem; height: 1.5rem;"
                         viewBox="0 0 24 24"
                       >
                         <path

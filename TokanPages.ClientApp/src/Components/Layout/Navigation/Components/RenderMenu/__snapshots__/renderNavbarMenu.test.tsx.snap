@@ -168,7 +168,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="render-menu-list"
+        class="is-flex is-flex-wrap-nowrap is-justify-content-space-between is-align-items-center"
       >
         <a
           class="render-navbar-list-item"
@@ -212,7 +212,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -232,7 +232,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -252,7 +252,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -272,7 +272,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -292,7 +292,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -352,7 +352,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="render-menu-list"
+      class="is-flex is-flex-wrap-nowrap is-justify-content-space-between is-align-items-center"
     >
       <a
         class="render-navbar-list-item"
@@ -396,7 +396,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -416,7 +416,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -436,7 +436,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -456,7 +456,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -476,7 +476,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -593,7 +593,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="render-menu-list"
+        class="is-flex is-flex-wrap-nowrap is-justify-content-space-between is-align-items-center"
       >
         <a
           class="render-navbar-list-item"
@@ -637,7 +637,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -657,7 +657,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -677,7 +677,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -697,7 +697,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -717,7 +717,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -766,14 +766,14 @@ Object {
             <div
               class="bulma-navbar-dropdown bulma-is-boxed bulma-is-right"
             >
-              <div
+              <a
                 class="bulma-navbar-item link-disabled"
               >
                 <div>
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -784,15 +784,15 @@ Object {
                 <span>
                   User articles
                 </span>
-              </div>
-              <div
+              </a>
+              <a
                 class="bulma-navbar-item link-disabled"
               >
                 <div>
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -803,15 +803,15 @@ Object {
                 <span>
                   User notes
                 </span>
-              </div>
-              <div
+              </a>
+              <a
                 class="bulma-navbar-item link-disabled"
               >
                 <div>
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -822,7 +822,7 @@ Object {
                 <span>
                   User files
                 </span>
-              </div>
+              </a>
               <a
                 class="bulma-navbar-item"
                 href="/en/account"
@@ -831,7 +831,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -851,7 +851,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center "
                     role="presentation"
-                    style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
@@ -872,7 +872,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="render-menu-list"
+      class="is-flex is-flex-wrap-nowrap is-justify-content-space-between is-align-items-center"
     >
       <a
         class="render-navbar-list-item"
@@ -916,7 +916,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -936,7 +936,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -956,7 +956,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -976,7 +976,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -996,7 +996,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -1045,14 +1045,14 @@ Object {
           <div
             class="bulma-navbar-dropdown bulma-is-boxed bulma-is-right"
           >
-            <div
+            <a
               class="bulma-navbar-item link-disabled"
             >
               <div>
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -1063,15 +1063,15 @@ Object {
               <span>
                 User articles
               </span>
-            </div>
-            <div
+            </a>
+            <a
               class="bulma-navbar-item link-disabled"
             >
               <div>
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -1082,15 +1082,15 @@ Object {
               <span>
                 User notes
               </span>
-            </div>
-            <div
+            </a>
+            <a
               class="bulma-navbar-item link-disabled"
             >
               <div>
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -1101,7 +1101,7 @@ Object {
               <span>
                 User files
               </span>
-            </div>
+            </a>
             <a
               class="bulma-navbar-item"
               href="/en/account"
@@ -1110,7 +1110,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -1130,7 +1130,7 @@ Object {
                 <svg
                   class="is-flex is-align-self-center "
                   role="presentation"
-                  style="width: 1.2000000000000002rem; height: 1.2000000000000002rem;"
+                  style="width: 1.2rem; height: 1.2rem;"
                   viewBox="0 0 24 24"
                 >
                   <path

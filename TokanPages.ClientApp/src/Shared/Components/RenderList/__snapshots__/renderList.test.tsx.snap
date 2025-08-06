@@ -5,9 +5,7 @@ exports[`test render function 'RenderList' should return no list when empty list
   class="list-box"
   data-testid="test-list"
 >
-  <li>
-    EMPTY_CONTENT_PROVIDED
-  </li>
+  EMPTY_CONTENT_PROVIDED
 </ul>
 `;
 
@@ -38,7 +36,6 @@ exports[`test render function 'RenderList' should return rendered list for provi
     <a
       href="https://test.com"
       rel="noopener"
-      target="_blank"
     >
       Test
     </a>
@@ -73,7 +70,6 @@ exports[`test render function 'RenderList' should return rendered list for provi
     <a
       href="https://test.com"
       rel="noopener"
-      target="_blank"
     >
       Test
     </a>

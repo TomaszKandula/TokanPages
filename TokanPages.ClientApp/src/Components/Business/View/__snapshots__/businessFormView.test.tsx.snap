@@ -35,7 +35,7 @@ Object {
                       <svg
                         class="is-flex is-align-self-center card-icon-colour"
                         role="presentation"
-                        style="width: 3.75rem; height: 3.75rem;"
+                        style="width: 2.5rem; height: 2.5rem;"
                         viewBox="0 0 24 24"
                       >
                         <path
@@ -216,7 +216,7 @@ Object {
                         <svg
                           class="is-flex is-align-self-center has-text-link"
                           role="presentation"
-                          style="width: 1.5rem; height: 1.5rem;"
+                          style="width: 1rem; height: 1rem;"
                           viewBox="0 0 24 24"
                         >
                           <path
@@ -320,7 +320,7 @@ Object {
                     <svg
                       class="is-flex is-align-self-center card-icon-colour"
                       role="presentation"
-                      style="width: 3.75rem; height: 3.75rem;"
+                      style="width: 2.5rem; height: 2.5rem;"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -501,7 +501,7 @@ Object {
                       <svg
                         class="is-flex is-align-self-center has-text-link"
                         role="presentation"
-                        style="width: 1.5rem; height: 1.5rem;"
+                        style="width: 1rem; height: 1rem;"
                         viewBox="0 0 24 24"
                       >
                         <path

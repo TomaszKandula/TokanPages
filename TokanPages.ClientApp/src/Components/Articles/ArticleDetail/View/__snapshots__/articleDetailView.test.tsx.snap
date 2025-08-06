@@ -132,7 +132,7 @@ Object {
                     <svg
                       class="is-flex is-align-self-center article-details-thumbup"
                       role="presentation"
-                      style="width: 1.7999999999999998rem; height: 1.7999999999999998rem;"
+                      style="width: 1.2rem; height: 1.2rem;"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -326,7 +326,7 @@ Object {
                   <svg
                     class="is-flex is-align-self-center article-details-thumbup"
                     role="presentation"
-                    style="width: 1.7999999999999998rem; height: 1.7999999999999998rem;"
+                    style="width: 1.2rem; height: 1.2rem;"
                     viewBox="0 0 24 24"
                   >
                     <path
