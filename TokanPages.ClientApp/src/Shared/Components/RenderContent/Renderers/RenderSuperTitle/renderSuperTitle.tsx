@@ -15,8 +15,16 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
     return (
         <div className="bulma-content is-flex is-justify-content-space-between">
             <div className="is-flex is-flex-direction-column">
-                <RenderHtml value={props.propTitle ?? NO_CONTENT} tag="p" className="bulma-title bulma-is-3 has-text-grey-darker" />
-                <RenderHtml value={props.propSubtitle ?? NO_CONTENT} tag="p" className="bulma-subtitle bulma-is-5 has-text-grey-darker" />
+                <RenderHtml
+                    value={props.propTitle ?? NO_CONTENT}
+                    tag="p"
+                    className="bulma-title bulma-is-3 has-text-grey-darker"
+                />
+                <RenderHtml
+                    value={props.propSubtitle ?? NO_CONTENT}
+                    tag="p"
+                    className="bulma-subtitle bulma-is-5 has-text-grey-darker"
+                />
             </div>
             <figure className="is-flex is-align-items-center">
                 <CustomImage
