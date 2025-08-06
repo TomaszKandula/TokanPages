@@ -2,7 +2,7 @@ import * as React from "react";
 import { GET_ICONS_URL } from "../../../../../Api";
 import { NavigationContentDto } from "../../../../../Api/Models";
 import { CustomImage, Icon, IconButton } from "../../../../../Shared/Components";
-import { useDimensions } from "../../../../../Shared/Hooks";
+import { useDimensions, UseDimensionsResult } from "../../../../../Shared/Hooks";
 import { RenderSideMenu } from "../RenderMenu";
 import "./renderDrawer.css";
 
@@ -14,8 +14,25 @@ interface RenderDrawerProps {
     languageId: string;
 }
 
+const getWidthRatio = (media: UseDimensionsResult): number => {
+    if (media.isMobile) {
+        if (media.hasLandscape) {
+            return 0.50;
+        } else {
+            return 0.75;
+        }
+    } else {
+        if (media.hasLandscape) {
+            return 0.33;
+        } else {
+            return 0.50;
+        }
+    }
+}
+
 export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
-    const dimensions = useDimensions();
+    const media = useDimensions();
+    let widthRatio = getWidthRatio(media);
 
     const [canOpenMenu, setCanOpenMenu] = React.useState(false);
     const [canCloseMenu, setCanCloseMenu] = React.useState(false);
@@ -52,8 +69,8 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
             <div
                 className="navigation-nav-drawer-root"
                 style={{
-                    width: dimensions.width,
-                    left: canOpenMenu ? 0 : -dimensions.width,
+                    width: media.width,
+                    left: canOpenMenu ? 0 : -media.width,
                 }}
                 onMouseLeave={menuHandler}
             >
@@ -62,7 +79,7 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
                     style={{ opacity: canShowBackdrop ? 1 : 0 }}
                     onClick={menuHandler}
                 ></div>
-                <div className="navigation-nav-drawer-container" style={{ width: dimensions.width * 0.75 }}>
+                <div className="navigation-nav-drawer-container" style={{ width: media.width * widthRatio }}>
                     <div className="is-flex is-justify-content-space-between">
                         <CustomImage
                             base={GET_ICONS_URL}
