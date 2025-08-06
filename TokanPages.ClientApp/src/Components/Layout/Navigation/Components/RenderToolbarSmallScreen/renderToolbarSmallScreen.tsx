@@ -4,7 +4,7 @@ import { NavigationViewProps, RenderLanguageListProps } from "../../Abstractions
 import { RenderMenuIcon } from "../RenderMenuIcon";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
-import { CustomImage, Icon, Link, Media } from "../../../../../Shared/Components";
+import { CustomImage, Icon, Link, Media, Skeleton } from "../../../../../Shared/Components";
 import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP_TOP } from "../../../../../Shared/constants";
 import { RenderBottomSheet } from "../RenderBottomSheet";
 import { RenderSelectionIcon } from "..";
@@ -35,32 +35,40 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => (
                 <div className="has-text-black ml-2">{props.languageId?.toUpperCase()}</div>
                 <Icon name="ChevronDown" size={1.4} className="ml-1" />
             </a>
-            <Link to={props.navigation?.signup?.link} className="bulma-navbar-end is-flex is-align-items-center mr-4">
-                <Icon name="PlusCircleOutline" size={1} className="mr-1" />
-                <p className="is-size-7 has-text-black">{props.navigation?.signup?.caption}</p>
-            </Link>
+            <Skeleton isLoading={props.isLoading} mode="Rect" height={24} width={175} className="mr-3">
+                <Link to={props.navigation?.signup?.link} className="bulma-navbar-end is-flex is-align-items-center mr-4">
+                    <Icon name="PlusCircleOutline" size={1} className="mr-1" />
+                    <p className="is-size-7 has-text-black">{props.navigation?.signup?.caption}</p>
+                </Link>
+            </Skeleton>
         </div>
         <hr className="line-separator" />
         <div
             className="is-flex is-justify-content-space-between is-align-items-center"
             style={{ height: APP_BAR_HEIGHT_DESKTOP }}
         >
-            <div className="bulma-navbar-start">{props.isLoading ? null : <RenderMenuIcon {...props} />}</div>
+            <div className="bulma-navbar-start">
+                <Skeleton isLoading={props.isLoading} mode="Rect" height={24} width={24} className="ml-3">
+                    <RenderMenuIcon {...props} />
+                </Skeleton>
+            </div>
             <div className="bulma-navbar-end mr-2">
-                <RouterLink
-                    to={`/${props.languageId}`}
-                    rel="noopener nofollow"
-                    className="is-flex is-align-self-center"
-                >
-                    <CustomImage
-                        base={GET_ICONS_URL}
-                        source={props.navigation?.logo}
-                        title="TomKandula logo"
-                        alt="An application logo"
-                        width={180}
-                        height={30}
-                    />
+                <Skeleton isLoading={props.isLoading} mode="Rect" height={30} width={180} className="mr-3">
+                    <RouterLink
+                        to={`/${props.languageId}`}
+                        rel="noopener nofollow"
+                        className="is-flex is-align-self-center"
+                    >
+                        <CustomImage
+                            base={GET_ICONS_URL}
+                            source={props.navigation?.logo}
+                            title="TomKandula logo"
+                            alt="An application logo"
+                            width={180}
+                            height={30}
+                        />
                 </RouterLink>
+                </Skeleton>
             </div>
         </div>
     </div>
