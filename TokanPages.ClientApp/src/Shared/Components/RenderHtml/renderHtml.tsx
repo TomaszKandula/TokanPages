@@ -9,47 +9,47 @@ const RenderOutput = (props: RenderOutputProps): React.ReactElement => {
     const attributes = {
         className: props.className,
         style: props.style,
-        dangerouslySetInnerHTML: html
-    }
+        dangerouslySetInnerHTML: html,
+    };
 
-    switch(props.tag) {
+    switch (props.tag) {
         case "p":
-            return <p data-testid={props.testId} { ...attributes }></p>;
+            return <p data-testid={props.testId} {...attributes}></p>;
         case "span":
-            return <span data-testid={props.testId} { ...attributes }></span>;
+            return <span data-testid={props.testId} {...attributes}></span>;
         case "h1":
-            return <h1 data-testid={props.testId} { ...attributes }></h1>;
+            return <h1 data-testid={props.testId} {...attributes}></h1>;
         case "h2":
-            return <h2 data-testid={props.testId} { ...attributes }></h2>;
+            return <h2 data-testid={props.testId} {...attributes}></h2>;
         case "h3":
-            return <h3 data-testid={props.testId} { ...attributes }></h3>;
+            return <h3 data-testid={props.testId} {...attributes}></h3>;
         case "h4":
-            return <h4 data-testid={props.testId} { ...attributes }></h4>;
+            return <h4 data-testid={props.testId} {...attributes}></h4>;
         case "h5":
-            return <h5 data-testid={props.testId} { ...attributes }></h5>;
+            return <h5 data-testid={props.testId} {...attributes}></h5>;
         case "h6":
-            return <h6 data-testid={props.testId} { ...attributes }></h6>;
+            return <h6 data-testid={props.testId} {...attributes}></h6>;
         case "blockquote":
-            return <blockquote data-testid={props.testId} { ...attributes }></blockquote>;
+            return <blockquote data-testid={props.testId} {...attributes}></blockquote>;
         case "li":
-            return <li data-testid={props.testId} { ...attributes }></li>;
+            return <li data-testid={props.testId} {...attributes}></li>;
         default:
-            return <div data-testid={props.testId} { ...attributes }></div>
+            return <div data-testid={props.testId} {...attributes}></div>;
     }
-}
+};
 
 export const RenderHtml = (props: ProcessTextProps): React.ReactElement => {
     if (props.value === "") {
-        return  <RenderOutput {...props} text={props.value} />;
+        return <RenderOutput {...props} text={props.value} />;
     }
 
     const data = props.value.split(BREAKING_WHITESPACE);
     if (data.length < 2) {
-        return  <RenderOutput {...props} text={props.value} />;
+        return <RenderOutput {...props} text={props.value} />;
     }
 
     let text = "";
-    for(let index = 0; index < data.length; index++) {
+    for (let index = 0; index < data.length; index++) {
         const word = data[index];
         if (data.length === index + 1) {
             text += word;
@@ -63,5 +63,5 @@ export const RenderHtml = (props: ProcessTextProps): React.ReactElement => {
     }
 
     const sanitized = DOMPurify.sanitize(text, configuration);
-    return  <RenderOutput {...props} text={sanitized} />;
-}
+    return <RenderOutput {...props} text={sanitized} />;
+};
