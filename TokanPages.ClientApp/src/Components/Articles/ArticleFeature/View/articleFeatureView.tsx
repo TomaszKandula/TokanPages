@@ -121,13 +121,25 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                 className={`bulma-column is-align-self-center py-3 pr-0 ${media.isDesktop ? "pl-6" : tabletPadding}`}
                             >
                                 <Skeleton isLoading={isLoading} mode="Text">
-                                    <RenderHtml value={features?.title} tag="h2" className="is-size-3 py-5 has-text-black" />
+                                    <RenderHtml
+                                        value={features?.title}
+                                        tag="h2"
+                                        className="is-size-3 py-5 has-text-black"
+                                    />
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Text">
-                                    <RenderHtml value={features?.description} tag="p" className="is-size-5 py-3 has-text-grey line-height-18" />
+                                    <RenderHtml
+                                        value={features?.description}
+                                        tag="p"
+                                        className="is-size-5 py-3 has-text-grey line-height-18"
+                                    />
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Text">
-                                    <RenderHtml value={features?.text} tag="p" className="is-size-5 py-3 has-text-grey line-height-18" />
+                                    <RenderHtml
+                                        value={features?.text}
+                                        tag="p"
+                                        className="is-size-5 py-3 has-text-grey line-height-18"
+                                    />
                                 </Skeleton>
                                 <div className="has-text-left py-5">
                                     <Skeleton isLoading={isLoading} mode="Rect">
