@@ -48,41 +48,43 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
     }
 
     return (
-        <nav
-            className="navigation-nav-drawer-root"
-            style={{
-                width: dimensions.width,
-                left: canOpenMenu ? 0 : -dimensions.width,
-            }}
-            onMouseLeave={menuHandler}
-        >
+        <div role="presentation" className="navigation-nav-root">
             <div
-                className="navigation-nav-drawer-backdrop"
-                style={{ opacity: canShowBackdrop ? 1 : 0 }}
-                onClick={menuHandler}
-            ></div>
-            <div className="navigation-nav-drawer-container">
-                <div className="is-flex is-justify-content-space-between">
-                    <CustomImage
-                        base={GET_ICONS_URL}
-                        source={props.navigation?.menu?.image}
-                        title="Logo"
-                        alt="An application logo"
-                        className="ml-4"
-                        width={40}
-                        height={40}
+                className="navigation-nav-drawer-root"
+                style={{
+                    width: dimensions.width,
+                    left: canOpenMenu ? 0 : -dimensions.width,
+                }}
+                onMouseLeave={menuHandler}
+            >
+                <div
+                    className="navigation-nav-drawer-backdrop"
+                    style={{ opacity: canShowBackdrop ? 1 : 0 }}
+                    onClick={menuHandler}
+                ></div>
+                <div className="navigation-nav-drawer-container" style={{ width: dimensions.width * 0.75 }}>
+                    <div className="is-flex is-justify-content-space-between">
+                        <CustomImage
+                            base={GET_ICONS_URL}
+                            source={props.navigation?.menu?.image}
+                            title="Logo"
+                            alt="An application logo"
+                            className="ml-4"
+                            width={40}
+                            height={40}
+                        />
+                        <IconButton hasNoHoverEffect className="no-select mr-2">
+                            <Icon name="WindowClose" size={1.5} onClick={menuHandler} />
+                        </IconButton>
+                    </div>
+                    <hr className="line-separator" />
+                    <RenderSideMenu
+                        isAnonymous={props.isAnonymous}
+                        languageId={props.languageId}
+                        items={props.navigation.menu?.items}
                     />
-                    <IconButton hasNoHoverEffect className="no-select mr-2">
-                        <Icon name="WindowClose" size={1.5} onClick={menuHandler} />
-                    </IconButton>
                 </div>
-                <hr className="line-separator" />
-                <RenderSideMenu
-                    isAnonymous={props.isAnonymous}
-                    languageId={props.languageId}
-                    items={props.navigation.menu?.items}
-                />
             </div>
-        </nav>
+        </div>
     );
 };
