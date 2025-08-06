@@ -73,7 +73,7 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
                         height={40}
                     />
                     <IconButton hasNoHoverEffect className="no-select mr-2">
-                        <Icon name="WindowClose" size={1} onClick={menuHandler} />
+                        <Icon name="WindowClose" size={1.5} onClick={menuHandler} />
                     </IconButton>
                 </div>
                 <hr className="line-separator" />
