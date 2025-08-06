@@ -42,7 +42,11 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 </Animated>
                                 <Animated dataAos="fade-up">
                                     <Skeleton isLoading={isLoading} mode="Text" height={100}>
-                                        <RenderHtml value={technology?.text1} tag="h4" className="is-size-5 py-2 has-text-grey line-height-18" />
+                                        <RenderHtml
+                                            value={technology?.text1}
+                                            tag="h4"
+                                            className="is-size-5 py-2 has-text-grey line-height-18"
+                                        />
                                     </Skeleton>
                                 </Animated>
                             </div>
@@ -61,7 +65,11 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 </Animated>
                                 <Animated dataAos="fade-up">
                                     <Skeleton isLoading={isLoading} mode="Text" height={100}>
-                                        <RenderHtml value={technology?.text2} tag="h4" className="is-size-5 py-2 has-text-grey line-height-18" />
+                                        <RenderHtml
+                                            value={technology?.text2}
+                                            tag="h4"
+                                            className="is-size-5 py-2 has-text-grey line-height-18"
+                                        />
                                     </Skeleton>
                                 </Animated>
                             </div>
@@ -82,7 +90,11 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 </Animated>
                                 <Animated dataAos="fade-up">
                                     <Skeleton isLoading={isLoading} mode="Text" height={100}>
-                                        <RenderHtml value={technology?.text3} tag="h4" className="is-size-5 py-2 has-text-grey line-height-18" />
+                                        <RenderHtml
+                                            value={technology?.text3}
+                                            tag="h4"
+                                            className="is-size-5 py-2 has-text-grey line-height-18"
+                                        />
                                     </Skeleton>
                                 </Animated>
                             </div>
@@ -101,7 +113,11 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                 </Animated>
                                 <Animated dataAos="fade-up">
                                     <Skeleton isLoading={isLoading} mode="Text" height={100}>
-                                        <RenderHtml value={technology?.text4} tag="h4" className="is-size-5 py-2 has-text-grey line-height-18" />
+                                        <RenderHtml
+                                            value={technology?.text4}
+                                            tag="h4"
+                                            className="is-size-5 py-2 has-text-grey line-height-18"
+                                        />
                                     </Skeleton>
                                 </Animated>
                             </div>
