@@ -120,13 +120,25 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                                 <h1 className="is-size-1 has-text-grey-dark">{header?.caption}</h1>
                             </Skeleton>
                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                                <RenderHtml value={header?.subtitle} tag="h2" className="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4" />
+                                <RenderHtml
+                                    value={header?.subtitle}
+                                    tag="h2"
+                                    className="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4"
+                                />
                             </Skeleton>
                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                                <RenderHtml value={header?.description} tag="h3" className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4" />
+                                <RenderHtml
+                                    value={header?.description}
+                                    tag="h3"
+                                    className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4"
+                                />
                             </Skeleton>
                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
-                                <RenderHtml value={header?.hint} tag="h3" className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4" />
+                                <RenderHtml
+                                    value={header?.hint}
+                                    tag="h3"
+                                    className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4"
+                                />
                             </Skeleton>
                             <div className={`pt-4 ${isLoading ? "is-flex is-gap-1.5" : ""}`}>
                                 <Skeleton isLoading={isLoading} mode="Rect" width={100}>
