@@ -43,15 +43,15 @@ export const RenderHtml = (props: ProcessTextProps): React.ReactElement => {
         return <RenderOutput {...props} text={props.value} />;
     }
 
-    const data = props.value.split(BREAKING_WHITESPACE);
-    if (data.length < 2) {
+    const data = props.value?.split(BREAKING_WHITESPACE);
+    if (data?.length < 2) {
         return <RenderOutput {...props} text={props.value} />;
     }
 
     let text = "";
-    for (let index = 0; index < data.length; index++) {
+    for (let index = 0; index < data?.length; index++) {
         const word = data[index];
-        if (data.length === index + 1) {
+        if (data?.length === index + 1) {
             text += word;
         } else {
             if (word.length === 1) {
