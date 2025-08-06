@@ -36,7 +36,10 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => (
                 <Icon name="ChevronDown" size={1.4} className="ml-1" />
             </a>
             <Skeleton isLoading={props.isLoading} mode="Rect" height={24} width={175} className="mr-3">
-                <Link to={props.navigation?.signup?.link} className="bulma-navbar-end is-flex is-align-items-center mr-4">
+                <Link
+                    to={props.navigation?.signup?.link}
+                    className="bulma-navbar-end is-flex is-align-items-center mr-4"
+                >
                     <Icon name="PlusCircleOutline" size={1} className="mr-1" />
                     <p className="is-size-7 has-text-black">{props.navigation?.signup?.caption}</p>
                 </Link>
@@ -67,7 +70,7 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => (
                             width={180}
                             height={30}
                         />
-                </RouterLink>
+                    </RouterLink>
                 </Skeleton>
             </div>
         </div>
