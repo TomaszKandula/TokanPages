@@ -33,10 +33,10 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => (
                     className="bulma-image bulma-is-16x16"
                 />
                 <div className="has-text-black ml-2">{props.languageId?.toUpperCase()}</div>
-                <Icon name="ChevronDown" size={0.75} className="ml-1" />
+                <Icon name="ChevronDown" size={1.4} className="ml-1" />
             </a>
-            <Link to={props.navigation?.signup?.link} className="bulma-navbar-end is-flex mr-4">
-                <Icon name="PlusCircleOutline" size={0.75} className="mr-1" />
+            <Link to={props.navigation?.signup?.link} className="bulma-navbar-end is-flex is-align-items-center mr-4">
+                <Icon name="PlusCircleOutline" size={1} className="mr-1" />
                 <p className="is-size-7 has-text-black">{props.navigation?.signup?.caption}</p>
             </Link>
         </div>
@@ -87,7 +87,7 @@ const RenderLanguageList = (props: RenderLanguageListProps): React.ReactElement 
                             />
                             <h4 className="is-size-6 has-text-black has-text-weight-semibold m-2 ml-4">{item.name}</h4>
                             <div className="ml-4">
-                                <RenderSelectionIcon selection={item.id} languageId={props.languageId} size={1} />
+                                <RenderSelectionIcon selection={item.id} languageId={props.languageId} size={1.5} />
                             </div>
                         </a>
                     </div>
