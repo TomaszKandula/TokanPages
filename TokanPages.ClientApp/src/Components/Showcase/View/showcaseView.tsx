@@ -53,7 +53,11 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                                     <h2 className="is-size-3 py-5 has-text-black">{showcase?.heading}</h2>
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Text">
-                                    <RenderHtml value={showcase?.text} tag="p" className={`is-size-5 py-3 ${media.isDesktop ? "pr-6" : "pr-4"} has-text-grey line-height-18`} />
+                                    <RenderHtml
+                                        value={showcase?.text}
+                                        tag="p"
+                                        className={`is-size-5 py-3 ${media.isDesktop ? "pr-6" : "pr-4"} has-text-grey line-height-18`}
+                                    />
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Rect">
                                     <div className="has-text-left py-5">
