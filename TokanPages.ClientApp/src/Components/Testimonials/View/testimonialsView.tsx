@@ -74,7 +74,11 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         </Skeleton>
                                         <Skeleton isLoading={props.isLoading} height={100}>
                                             <Collapsible minHeight={120}>
-                                                <RenderHtml value={props.text1} tag="h4" className="is-size-6 has-text-centered has-text-grey p-2 line-height-18" />
+                                                <RenderHtml
+                                                    value={props.text1}
+                                                    tag="h4"
+                                                    className="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
+                                                />
                                             </Collapsible>
                                         </Skeleton>
                                     </div>
@@ -111,7 +115,11 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         </Skeleton>
                                         <Skeleton isLoading={props.isLoading} height={100}>
                                             <Collapsible minHeight={120}>
-                                                <RenderHtml value={props.text2} tag="h4" className="is-size-6 has-text-centered has-text-grey p-2 line-height-18" />
+                                                <RenderHtml
+                                                    value={props.text2}
+                                                    tag="h4"
+                                                    className="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
+                                                />
                                             </Collapsible>
                                         </Skeleton>
                                     </div>
@@ -148,7 +156,11 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         </Skeleton>
                                         <Skeleton isLoading={props.isLoading} height={100}>
                                             <Collapsible minHeight={120}>
-                                                <RenderHtml value={props.text3} tag="h4" className="is-size-6 has-text-centered has-text-grey p-2 line-height-18" />
+                                                <RenderHtml
+                                                    value={props.text3}
+                                                    tag="h4"
+                                                    className="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
+                                                />
                                             </Collapsible>
                                         </Skeleton>
                                     </div>
