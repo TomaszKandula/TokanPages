@@ -52,30 +52,32 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
     }
 
     return (
-        <nav
-            className="bottomsheet-nav-drawer-root"
-            style={{
-                width: media.width,
-                height: media.height,
-                bottom: canOpenBottomSheet ? -media.height + bottomSheetHeight : -media.height,
-            }}
-            onMouseLeave={menuHandler}
-        >
+        <div role="presentation" className="navigation-nav-root">
             <div
-                className="bottomsheet-nav-drawer-backdrop"
-                style={{ opacity: canShowBackdrop ? 1 : 0 }}
-                onClick={menuHandler}
-            ></div>
-            <div ref={ref} className="bottomsheet-nav-drawer-container">
-                <div className="navbar-top-line"></div>
-                <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 mt-2">
-                    <h2 className="is-size-4 has-text-weight-semibold">{props.navigation?.languageMenu.caption}</h2>
-                    <IconButton onClick={menuHandler} hasNoHoverEffect className="no-select">
-                        <Icon name="WindowClose" size={2.0} className="has-text-grey-dark" />
-                    </IconButton>
+                className="bottomsheet-nav-drawer-root"
+                style={{
+                    width: media.width,
+                    height: media.height,
+                    bottom: canOpenBottomSheet ? -media.height + bottomSheetHeight : -media.height,
+                }}
+                onMouseLeave={menuHandler}
+            >
+                <div
+                    className="bottomsheet-nav-drawer-backdrop"
+                    style={{ opacity: canShowBackdrop ? 1 : 0 }}
+                    onClick={menuHandler}
+                ></div>
+                <div ref={ref} className="bottomsheet-nav-drawer-container">
+                    <div className="navbar-top-line"></div>
+                    <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 mt-2">
+                        <h2 className="is-size-4 has-text-weight-semibold">{props.navigation?.languageMenu.caption}</h2>
+                        <IconButton onClick={menuHandler} hasNoHoverEffect className="no-select">
+                            <Icon name="WindowClose" size={2.0} className="has-text-grey-dark" />
+                        </IconButton>
+                    </div>
+                    {props.children}
                 </div>
-                {props.children}
             </div>
-        </nav>
+        </div>
     );
 };
