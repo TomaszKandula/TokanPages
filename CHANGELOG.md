@@ -1,3 +1,11 @@
+## [0.159.1](https://github.com/TomaszKandula/TokanPages/compare/v0.159.0...v0.159.1) (2025-08-06)
+
+
+### Bug Fixes
+
+* add missing key prop ([8c2fd07](https://github.com/TomaszKandula/TokanPages/commit/8c2fd07f98187776d3cb2f7398037565057c3d70))
+* drawer width depends on device and screen ([713e561](https://github.com/TomaszKandula/TokanPages/commit/713e561fff33b2fc7c907e3fc097bc4a0d627c98))
+
 # [0.159.0](https://github.com/TomaszKandula/TokanPages/compare/v0.158.0...v0.159.0) (2025-08-06)
 
 
