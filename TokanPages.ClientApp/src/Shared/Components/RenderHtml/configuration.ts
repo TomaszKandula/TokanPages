@@ -7,5 +7,5 @@ export const configuration = {
     FORBID_TAGS: ["style"],
     FORBID_ATTR: ["style"],
     ALLOW_ARIA_ATTR: false,
-    ALLOW_DATA_ATTR: false
-}
+    ALLOW_DATA_ATTR: false,
+};
