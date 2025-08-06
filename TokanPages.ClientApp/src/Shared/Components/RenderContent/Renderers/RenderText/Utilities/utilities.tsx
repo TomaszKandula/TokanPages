@@ -10,7 +10,7 @@ import { useDimensions, useHash } from "../../../../../../Shared/Hooks";
 import { ArticleCard, ArticleCardView, Icon, ProgressBar, RenderHtml, RenderList } from "../../../../../../Shared/Components";
 import { TComponent } from "../../../../../../Shared/types";
 import { TagType } from "../../../../../../Shared/Components/RenderHtml/types";
-import { v4 as uuidv4 } from "uuid";
+import DOMPurify from "dompurify";
 import Validate from "validate.js";
 import "./utilities.css";
 
@@ -251,45 +251,36 @@ export const RenderParagraph = (props: TextItem): React.ReactElement => {
 };
 
 export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactElement => {
-    const result: React.ReactElement[] = [];
-
-    /* WE DO NOT PROCESS EMPTY INPUT */
     if (!props.html || (props.html && props.html === "")) {
         return <>{NO_CONTENT}</>;
     }
 
-    /* CHECK IF WE HAVE ENCODED LINK */
     if (!props.html.includes("__{") && !props.html.includes("}__")) {
         return <RenderHtml value={props.html} tag={props.tag} className={props.className} />;
     }
 
-    /* PROCESS LINK ENCODED AS JSON */
+    let result = "";
     const array = props.html.split("__");
     if (array.length > 0) {
         array.forEach(item => {
+            const sanitized = DOMPurify.sanitize(item, { ALLOWED_TAGS: ["a", "b", "i", "u"] });
             if (item.includes("{") && item.includes("}")) {
                 try {
-                    const data = JSON.parse(item) as LinkProps;
-                    result.push(
-                        <a key={uuidv4()} href={data.href} target={data.target} rel={data.rel}>
-                            {data.text}
-                        </a>
-                    );
+                    const data = JSON.parse(sanitized) as LinkProps;
+                    result += `<a href='${data.href}' target='${data.target}' rel='${data.rel}'>${data.text}</a>`;
                 } catch {
-                    console.error(item);
+                    console.error(sanitized);
                     throw new Error("Parsing error.");
                 }
             } else {
-                if (!Validate.isEmpty(item)) {
-                    result.push(<React.Fragment key={uuidv4()}>{item}</React.Fragment>);
+                if (!Validate.isEmpty(sanitized)) {
+                    result += sanitized;
                 }
             }
         });
     } else {
-        /* RETURN "AS IS" */
         return <RenderHtml value={props.html} tag={props.tag} className={props.className} />;
     }
 
-    /* RETURN PROCESSED TEXT WITH LINK */
-    return <div className="bulma-content">{result}</div>;
+    return <RenderHtml value={result} tag={props.tag} className={props.className} />;
 };
