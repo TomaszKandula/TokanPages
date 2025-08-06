@@ -41,10 +41,10 @@ const SetPolicyLink = (props: Properties): React.ReactElement => (
 const Loader = (props: LoaderProps): React.ReactElement =>
     props.isLoading ? <ProgressBar size={32} /> : <>{props.children}</>;
 
-export const FooterView = (props: Properties): React.ReactElement => {
-    return (
+export const FooterView = (props: Properties): React.ReactElement => (
+    <>
+        <hr className="line-separator" />
         <footer className="bulma-footer has-background-white">
-            <hr />
             <Loader isLoading={props.isLoading}>
                 <div className="bulma-content has-text-centered pt-6">
                     <p className="is-size-5">
@@ -71,5 +71,5 @@ export const FooterView = (props: Properties): React.ReactElement => {
                 </div>
             </Loader>
         </footer>
-    );
-};
+    </>
+);

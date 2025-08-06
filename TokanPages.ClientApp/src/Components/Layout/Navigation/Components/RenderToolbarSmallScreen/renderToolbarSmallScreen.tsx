@@ -1,53 +1,62 @@
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { ListSeparatorProps, NavigationViewProps } from "../../Abstractions";
+import { NavigationViewProps, RenderLanguageListProps } from "../../Abstractions";
 import { RenderMenuIcon } from "../RenderMenuIcon";
 import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
-import { CustomImage, Icon, Link, Media } from "../../../../../Shared/Components";
+import { CustomImage, Icon, Link, Media, Skeleton } from "../../../../../Shared/Components";
 import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP_TOP } from "../../../../../Shared/constants";
 import { RenderBottomSheet } from "../RenderBottomSheet";
 import { RenderSelectionIcon } from "..";
 import "./renderToolbarSmallScreen.css";
 import { v4 as uuidv4 } from "uuid";
 
-const ListSeparator = (props: ListSeparatorProps): React.ReactElement | null => {
-    return props.length === props.index + 1 ? null : <hr className="mx-0 my-1" />;
+const listSeparator = (length: number, index: number): string => {
+    return length === index + 1 ? "" : "line-separator";
 };
 
-const RenderDoubleToolbar = (props: NavigationViewProps) => {
-    return (
-        <div className="is-flex is-flex-direction-column is-flex-grow-1">
-            <div
-                className="is-flex is-justify-content-space-between is-align-items-center"
-                style={{ height: APP_BAR_HEIGHT_NON_DESKTOP_TOP }}
+const RenderDoubleToolbar = (props: NavigationViewProps) => (
+    <div className="is-flex is-flex-direction-column is-flex-grow-1">
+        <div
+            className="is-flex is-justify-content-space-between is-align-items-center"
+            style={{ height: APP_BAR_HEIGHT_NON_DESKTOP_TOP }}
+        >
+            <a
+                className="bulma-navbar-start is-flex is-align-items-center ml-4 no-select"
+                onClick={props.triggerBottomSheet}
             >
-                <a
-                    className="bulma-navbar-start is-flex is-align-items-center ml-4 no-select"
-                    onClick={props.triggerBottomSheet}
+                <CustomImage
+                    base={GET_FLAG_URL}
+                    source={`${props.languageId}.png`}
+                    title="Language flag"
+                    alt={`A flag (${props.languageId}) for current language selection`}
+                    className="bulma-image bulma-is-16x16"
+                />
+                <div className="has-text-black ml-2">{props.languageId?.toUpperCase()}</div>
+                <Icon name="ChevronDown" size={1.4} className="ml-1" />
+            </a>
+            <Skeleton isLoading={props.isLoading} mode="Rect" height={24} width={175} className="mr-3">
+                <Link
+                    to={props.navigation?.signup?.link}
+                    className="bulma-navbar-end is-flex is-align-items-center mr-4"
                 >
-                    <CustomImage
-                        base={GET_FLAG_URL}
-                        source={`${props.languageId}.png`}
-                        title="Language flag"
-                        alt={`A flag (${props.languageId}) for current language selection`}
-                        className="bulma-image bulma-is-16x16"
-                    />
-                    <div className="has-text-black ml-2">{props.languageId?.toUpperCase()}</div>
-                    <Icon name="ChevronDown" size={0.75} className="ml-1" />
-                </a>
-                <Link to={props.navigation?.signup?.link} className="bulma-navbar-end is-flex mr-4">
-                    <Icon name="PlusCircleOutline" size={0.75} className="mr-1" />
+                    <Icon name="PlusCircleOutline" size={1} className="mr-1" />
                     <p className="is-size-7 has-text-black">{props.navigation?.signup?.caption}</p>
                 </Link>
+            </Skeleton>
+        </div>
+        <hr className="line-separator" />
+        <div
+            className="is-flex is-justify-content-space-between is-align-items-center"
+            style={{ height: APP_BAR_HEIGHT_DESKTOP }}
+        >
+            <div className="bulma-navbar-start">
+                <Skeleton isLoading={props.isLoading} mode="Rect" height={24} width={24} className="ml-3">
+                    <RenderMenuIcon {...props} />
+                </Skeleton>
             </div>
-            <hr className="navbar-top-section" />
-            <div
-                className="is-flex is-justify-content-space-between is-align-items-center"
-                style={{ height: APP_BAR_HEIGHT_DESKTOP }}
-            >
-                <div className="bulma-navbar-start">{props.isLoading ? null : <RenderMenuIcon {...props} />}</div>
-                <div className="bulma-navbar-end mr-2">
+            <div className="bulma-navbar-end mr-2">
+                <Skeleton isLoading={props.isLoading} mode="Rect" height={30} width={180} className="mr-3">
                     <RouterLink
                         to={`/${props.languageId}`}
                         rel="noopener nofollow"
@@ -62,46 +71,65 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => {
                             height={30}
                         />
                     </RouterLink>
-                </div>
+                </Skeleton>
             </div>
         </div>
+    </div>
+);
+
+const RenderLanguageList = (props: RenderLanguageListProps): React.ReactElement => {
+    const baseClass = "navbar-list-item is-align-content-center";
+    const length = props.languages?.languages.length;
+
+    return (
+        <>
+            {props.languages?.languages.map((item: LanguageItemDto, index: number) => (
+                <React.Fragment key={uuidv4()}>
+                    <div
+                        className={`${props.hasBulmaCells ? "bulma-cell line-separator" : ""} ${baseClass} ${!props.hasBulmaCells ? listSeparator(length, index) : ""}`}
+                    >
+                        <a className="is-flex is-align-items-center" onClick={() => props.languagePickHandler(item.id)}>
+                            <CustomImage
+                                base={GET_FLAG_URL}
+                                source={`${item.id}.png`}
+                                title="Language flag"
+                                alt={`A flag (${item.name}) symbolizing available language`}
+                                className="bulma-image bulma-is-24x24 my-2 mx-0"
+                            />
+                            <h4 className="is-size-6 has-text-black has-text-weight-semibold m-2 ml-4">{item.name}</h4>
+                            <div className="ml-4">
+                                <RenderSelectionIcon selection={item.id} languageId={props.languageId} size={1.5} />
+                            </div>
+                        </a>
+                    </div>
+                </React.Fragment>
+            ))}
+        </>
     );
 };
 
-const RenderLanguages = (props: NavigationViewProps): React.ReactElement => (
-    <div className="is-flex is-flex-direction-column m-4">
-        {props.languages?.languages.map((item: LanguageItemDto, index: number) => (
-            <React.Fragment key={uuidv4()}>
-                <a className="is-flex is-align-items-center" onClick={() => props.languagePickHandler(item.id)}>
-                    <CustomImage
-                        base={GET_FLAG_URL}
-                        source={`${item.id}.png`}
-                        title="Language flag"
-                        alt={`A flag (${item.name}) symbolizing available language`}
-                        className="bulma-image bulma-is-24x24 my-2 ml-0 mr-2"
-                    />
-                    <h4 className="is-size-6 has-text-black m-2">{item.name}</h4>
-                    <div className="ml-4">
-                        <RenderSelectionIcon selection={item.id} languageId={props.languageId} />
-                    </div>
-                </a>
-                <ListSeparator length={props.languages?.languages.length} index={index} />
-            </React.Fragment>
-        ))}
-    </div>
-);
+const RenderLanguages = (props: NavigationViewProps): React.ReactElement =>
+    props.media.hasLandscape && props.media.isMobile ? (
+        <div className="bulma-grid bulma-is-col-min-10 m-4">
+            <RenderLanguageList {...props} hasBulmaCells />
+        </div>
+    ) : (
+        <div className="is-flex is-flex-direction-column m-4">
+            <RenderLanguageList {...props} />
+        </div>
+    );
 
 export const RenderToolbarSmallScreen = (props: NavigationViewProps): React.ReactElement => (
     <>
         <Media.TabletOnly>
             <RenderDoubleToolbar {...props} />
-            <RenderBottomSheet {...props} bottomSheetHeight={420}>
+            <RenderBottomSheet {...props}>
                 <RenderLanguages {...props} />
             </RenderBottomSheet>
         </Media.TabletOnly>
         <Media.MobileOnly>
             <RenderDoubleToolbar {...props} />
-            <RenderBottomSheet {...props} bottomSheetHeight={420}>
+            <RenderBottomSheet {...props}>
                 <RenderLanguages {...props} />
             </RenderBottomSheet>
         </Media.MobileOnly>

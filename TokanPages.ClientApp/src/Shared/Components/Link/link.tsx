@@ -16,7 +16,7 @@ interface LinkProps {
 export const Link = (props: LinkProps): React.ReactElement => {
     if (props.isDisabled === true) {
         const className = `${props.className} link-disabled`;
-        return <div className={className}>{props.children}</div>;
+        return <a className={className}>{props.children}</a>;
     }
 
     const link: string = props.to;

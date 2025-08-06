@@ -1,3 +1,9 @@
+.navigation-nav-root {
+    position: fixed;
+    z-index: 1300;
+    inset: 0px;
+}
+
 .bottomsheet-nav-drawer-root {
     z-index: 1200;
     position: fixed;
@@ -23,11 +29,14 @@
     background-color: rgba(0, 0, 0, 0.5);
     -webkit-tap-highlight-color: transparent;
     transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    touch-action: none;
 }
 
 .bottomsheet-nav-drawer-container {
-    z-index: 1100;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1100;
     width: 100%;
     background-color: white;
+    touch-action: manipulation;
 }

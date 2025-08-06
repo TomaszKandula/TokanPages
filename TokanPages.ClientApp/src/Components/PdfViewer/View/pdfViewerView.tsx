@@ -32,9 +32,9 @@ interface RenderIconOrErrorProps {
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
     return props.hasPdfWorkerError ? (
-        <Icon name="AlertOctagon" size={3} />
+        <Icon name="AlertOctagon" size={2} />
     ) : (
-        <DownloadAsset url={props.pdfUrl ?? ""} className="has-text-black" />
+        <DownloadAsset url={props.pdfUrl ?? ""} size={1.5} className="has-text-black" />
     );
 };
 
@@ -48,7 +48,7 @@ const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => (
             <div className="py-6">
                 <div className="bulma-card m-4">
                     <div className="bulma-card-content p-0">
-                        <div className="is-flex is-justify-content-space-around">
+                        <div className="is-flex is-justify-content-space-around is-align-items-center">
                             <RenderIconOrLoading
                                 isDocLoading={props.isDocLoading}
                                 hasPdfWorkerError={props.hasPdfWorkerError}
@@ -59,10 +59,10 @@ const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => (
                             </p>
                             <div className="is-flex">
                                 <IconButton onClick={props.onPreviousPage}>
-                                    <Icon name="ChevronLeft" size={1.1} />
+                                    <Icon name="ChevronLeft" size={1.5} />
                                 </IconButton>
                                 <IconButton onClick={props.onNextPage}>
-                                    <Icon name="ChevronRight" size={1.1} />
+                                    <Icon name="ChevronRight" size={1.5} />
                                 </IconButton>
                             </div>
                         </div>
@@ -87,7 +87,7 @@ const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement =
                     isLoading={props?.content?.isLoading}
                     caption={props?.content?.caption}
                     text={[props?.content?.warning]}
-                    icon={<Icon name="FileDocument" size={3} />}
+                    icon={<Icon name="FileDocument" size={4.5} />}
                     colour="has-text-info"
                 />
             </div>
@@ -103,7 +103,7 @@ const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => 
                     isLoading={props?.content?.isLoading}
                     caption={props?.content?.caption}
                     text={[props?.content?.error]}
-                    icon={<Icon name="AlertCircle" size={3} />}
+                    icon={<Icon name="AlertCircle" size={4.5} />}
                     colour="has-text-danger"
                 />
             </div>

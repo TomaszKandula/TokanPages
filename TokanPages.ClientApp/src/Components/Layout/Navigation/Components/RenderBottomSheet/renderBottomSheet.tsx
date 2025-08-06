@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import { NavigationContentDto } from "../../../../../Api/Models";
 import { useDimensions } from "../../../../../Shared/Hooks";
 import { Icon, IconButton } from "../../../../../Shared/Components";
 import "./renderBottomSheet.css";
 
 interface RenderBottomSheetProps {
-    bottomSheetHeight: number;
     isBottomSheetOpen: boolean;
     navigation: NavigationContentDto;
     triggerBottomSheet: () => void;
@@ -13,15 +12,22 @@ interface RenderBottomSheetProps {
 }
 
 export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactElement => {
-    const dimensions = useDimensions();
+    const media = useDimensions();
+    const ref = useRef<HTMLDivElement | null>(null);
 
     const [canOpenBottomSheet, setCanOpenBottomSheet] = React.useState(false);
     const [canCloseBottomSheet, setCanCloseBottomSheet] = React.useState(false);
     const [canShowBackdrop, setCanShowBackdrop] = React.useState(false);
+    const [bottomSheetHeight, setBottomSheetHeight] = React.useState<number>(0);
 
     const menuHandler = React.useCallback(() => {
         setCanCloseBottomSheet(true);
     }, []);
+
+    React.useEffect(() => {
+        const currentHeight = ref.current?.getBoundingClientRect().height ?? 0;
+        setBottomSheetHeight(currentHeight);
+    }, [ref.current]);
 
     React.useEffect(() => {
         if (props.isBottomSheetOpen && !canCloseBottomSheet) {
@@ -46,29 +52,32 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
     }
 
     return (
-        <nav
-            className="bottomsheet-nav-drawer-root"
-            style={{
-                width: dimensions.width,
-                bottom: canOpenBottomSheet ? -dimensions.height + props.bottomSheetHeight : -dimensions.height,
-            }}
-            onMouseLeave={menuHandler}
-        >
+        <div role="presentation" className="navigation-nav-root">
             <div
-                className="bottomsheet-nav-drawer-backdrop"
-                style={{ opacity: canShowBackdrop ? 1 : 0 }}
-                onClick={menuHandler}
-            ></div>
-            <div className="bottomsheet-nav-drawer-container" style={{ height: props.bottomSheetHeight }}>
-                <div className="navbar-top-line"></div>
-                <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 my-5">
-                    <h2 className="is-size-5 has-text-weight-semibold">{props.navigation?.languageMenu.caption}</h2>
-                    <IconButton onClick={menuHandler} hasNoHoverEffect className="no-select">
-                        <Icon name="CloseBoxOutline" size={1.2} className="has-text-link" />
-                    </IconButton>
+                className="bottomsheet-nav-drawer-root"
+                style={{
+                    width: media.width,
+                    height: media.height,
+                    bottom: canOpenBottomSheet ? -media.height + bottomSheetHeight : -media.height,
+                }}
+                onMouseLeave={menuHandler}
+            >
+                <div
+                    className="bottomsheet-nav-drawer-backdrop"
+                    style={{ opacity: canShowBackdrop ? 1 : 0 }}
+                    onClick={menuHandler}
+                ></div>
+                <div ref={ref} className="bottomsheet-nav-drawer-container">
+                    <div className="navbar-top-line"></div>
+                    <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 mt-2">
+                        <h2 className="is-size-4 has-text-weight-semibold">{props.navigation?.languageMenu.caption}</h2>
+                        <IconButton onClick={menuHandler} hasNoHoverEffect className="no-select">
+                            <Icon name="WindowClose" size={2.0} className="has-text-grey-dark" />
+                        </IconButton>
+                    </div>
+                    {props.children}
                 </div>
-                {props.children}
             </div>
-        </nav>
+        </div>
     );
 };

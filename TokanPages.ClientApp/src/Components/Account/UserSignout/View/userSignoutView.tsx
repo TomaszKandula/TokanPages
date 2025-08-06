@@ -19,7 +19,7 @@ export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement
                     isLoading={props.isLoading}
                     caption={props.caption}
                     text={props.status}
-                    icon={<Icon name="Check" size={3} />}
+                    icon={<Icon name="Check" size={4.5} />}
                     colour="has-text-success"
                 />
             </div>

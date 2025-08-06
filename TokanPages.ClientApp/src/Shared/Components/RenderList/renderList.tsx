@@ -14,9 +14,7 @@ interface RenderListProps {
 
 const GetListItem = (props: RenderListProps): React.ReactElement => {
     const list = props.list.map((value: string, _index: number) => (
-        <li key={uuidv4()}>
-            <ProcessParagraphs html={value} />
-        </li>
+        <ProcessParagraphs key={uuidv4()} tag="li" html={value} />
     ));
 
     return <>{list}</>;

@@ -10,13 +10,15 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="bulma-content "
+            class="bulma-content m-0 p-0 "
             data-testid="render-content"
           >
             <p
               class="is-size-5 has-text-grey-dark line-height-22"
             >
-              &lt;p&gt;Policy text&lt;/p&gt;
+              <p>
+                Policy text
+              </p>
             </p>
           </div>
         </article>
@@ -29,13 +31,15 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="bulma-content "
+          class="bulma-content m-0 p-0 "
           data-testid="render-content"
         >
           <p
             class="is-size-5 has-text-grey-dark line-height-22"
           >
-            &lt;p&gt;Policy text&lt;/p&gt;
+            <p>
+              Policy text
+            </p>
           </p>
         </div>
       </article>
@@ -105,13 +109,15 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="bulma-content "
+            class="bulma-content m-0 p-0 "
             data-testid="render-content"
           >
             <p
               class="is-size-5 has-text-grey-dark line-height-22"
             >
-              &lt;p&gt;Showcase text&lt;/p&gt;
+              <p>
+                Showcase text
+              </p>
             </p>
           </div>
         </article>
@@ -124,13 +130,15 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="bulma-content "
+          class="bulma-content m-0 p-0 "
           data-testid="render-content"
         >
           <p
             class="is-size-5 has-text-grey-dark line-height-22"
           >
-            &lt;p&gt;Showcase text&lt;/p&gt;
+            <p>
+              Showcase text
+            </p>
           </p>
         </div>
       </article>
@@ -200,13 +208,15 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="bulma-content "
+            class="bulma-content m-0 p-0 "
             data-testid="render-content"
           >
             <p
               class="is-size-5 has-text-grey-dark line-height-22"
             >
-              &lt;p&gt;Story text&lt;/p&gt;
+              <p>
+                Story text
+              </p>
             </p>
           </div>
         </article>
@@ -219,13 +229,15 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="bulma-content "
+          class="bulma-content m-0 p-0 "
           data-testid="render-content"
         >
           <p
             class="is-size-5 has-text-grey-dark line-height-22"
           >
-            &lt;p&gt;Story text&lt;/p&gt;
+            <p>
+              Story text
+            </p>
           </p>
         </div>
       </article>
@@ -295,13 +307,15 @@ Object {
           class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="bulma-content "
+            class="bulma-content m-0 p-0 "
             data-testid="render-content"
           >
             <p
               class="is-size-5 has-text-grey-dark line-height-22"
             >
-              &lt;p&gt;Terms text&lt;/p&gt;
+              <p>
+                Terms text
+              </p>
             </p>
           </div>
         </article>
@@ -314,13 +328,15 @@ Object {
         class="bulma-container bulma-is-max-tablet"
       >
         <div
-          class="bulma-content "
+          class="bulma-content m-0 p-0 "
           data-testid="render-content"
         >
           <p
             class="is-size-5 has-text-grey-dark line-height-22"
           >
-            &lt;p&gt;Terms text&lt;/p&gt;
+            <p>
+              Terms text
+            </p>
           </p>
         </div>
       </article>

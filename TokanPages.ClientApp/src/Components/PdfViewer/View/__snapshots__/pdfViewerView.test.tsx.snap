@@ -21,7 +21,7 @@ Object {
                 class="bulma-card-content p-0"
               >
                 <div
-                  class="is-flex is-justify-content-space-around"
+                  class="is-flex is-justify-content-space-around is-align-items-center"
                 >
                   <button
                     class="icon-button  is-flex is-align-self-center"
@@ -34,7 +34,7 @@ Object {
                         <svg
                           class="is-flex is-align-self-center has-text-black"
                           role="presentation"
-                          style="width: 1.6500000000000001rem; height: 1.6500000000000001rem;"
+                          style="width: 1.5rem; height: 1.5rem;"
                           viewBox="0 0 24 24"
                         >
                           <path
@@ -63,7 +63,7 @@ Object {
                         <svg
                           class="is-flex is-align-self-center "
                           role="presentation"
-                          style="width: 1.6500000000000001rem; height: 1.6500000000000001rem;"
+                          style="width: 1.5rem; height: 1.5rem;"
                           viewBox="0 0 24 24"
                         >
                           <path
@@ -81,7 +81,7 @@ Object {
                         <svg
                           class="is-flex is-align-self-center "
                           role="presentation"
-                          style="width: 1.6500000000000001rem; height: 1.6500000000000001rem;"
+                          style="width: 1.5rem; height: 1.5rem;"
                           viewBox="0 0 24 24"
                         >
                           <path
@@ -120,7 +120,7 @@ Object {
               class="bulma-card-content p-0"
             >
               <div
-                class="is-flex is-justify-content-space-around"
+                class="is-flex is-justify-content-space-around is-align-items-center"
               >
                 <button
                   class="icon-button  is-flex is-align-self-center"
@@ -133,7 +133,7 @@ Object {
                       <svg
                         class="is-flex is-align-self-center has-text-black"
                         role="presentation"
-                        style="width: 1.6500000000000001rem; height: 1.6500000000000001rem;"
+                        style="width: 1.5rem; height: 1.5rem;"
                         viewBox="0 0 24 24"
                       >
                         <path
@@ -162,7 +162,7 @@ Object {
                       <svg
                         class="is-flex is-align-self-center "
                         role="presentation"
-                        style="width: 1.6500000000000001rem; height: 1.6500000000000001rem;"
+                        style="width: 1.5rem; height: 1.5rem;"
                         viewBox="0 0 24 24"
                       >
                         <path
@@ -180,7 +180,7 @@ Object {
                       <svg
                         class="is-flex is-align-self-center "
                         role="presentation"
-                        style="width: 1.6500000000000001rem; height: 1.6500000000000001rem;"
+                        style="width: 1.5rem; height: 1.5rem;"
                         viewBox="0 0 24 24"
                       >
                         <path

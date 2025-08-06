@@ -87,18 +87,22 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="bulma-content "
+        class="bulma-content m-0 p-0 "
         data-testid="render-content"
       >
         <h1
           class="bulma-title has-text-grey-dark m-0 pb-2"
         >
-          &lt;p&gt;Test line&lt;/p&gt;
+          <p>
+            Test line
+          </p>
         </h1>
         <h2
           class="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4"
         >
-          &lt;p&gt;Test line&lt;/p&gt;
+          <p>
+            Test line
+          </p>
         </h2>
         <div
           class="bulma-card my-4"
@@ -121,12 +125,16 @@ Object {
         <h3
           class="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap"
         >
-          &lt;p&gt;Test line&lt;/p&gt;
+          <p>
+            Test line
+          </p>
         </h3>
         <p
           class="is-size-5 has-text-grey-dark line-height-22"
         >
-          &lt;p&gt;Test line&lt;/p&gt;
+          <p>
+            Test line
+          </p>
         </p>
         <div
           class="render-separator"
@@ -268,18 +276,22 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="bulma-content "
+      class="bulma-content m-0 p-0 "
       data-testid="render-content"
     >
       <h1
         class="bulma-title has-text-grey-dark m-0 pb-2"
       >
-        &lt;p&gt;Test line&lt;/p&gt;
+        <p>
+          Test line
+        </p>
       </h1>
       <h2
         class="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4"
       >
-        &lt;p&gt;Test line&lt;/p&gt;
+        <p>
+          Test line
+        </p>
       </h2>
       <div
         class="bulma-card my-4"
@@ -302,12 +314,16 @@ Object {
       <h3
         class="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap"
       >
-        &lt;p&gt;Test line&lt;/p&gt;
+        <p>
+          Test line
+        </p>
       </h3>
       <p
         class="is-size-5 has-text-grey-dark line-height-22"
       >
-        &lt;p&gt;Test line&lt;/p&gt;
+        <p>
+          Test line
+        </p>
       </p>
       <div
         class="render-separator"

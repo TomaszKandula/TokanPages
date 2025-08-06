@@ -54,8 +54,8 @@ describe("test account group component: userSignin", () => {
             </BrowserRouter>
         );
 
-        expect(useSelectorMock).toBeCalledTimes(10);
-        expect(useDispatchMock).toBeCalledTimes(2);
+        expect(useSelectorMock).toBeCalledTimes(14);
+        expect(useDispatchMock).toBeCalledTimes(3);
         expect(html).toMatchSnapshot();
     });
 });

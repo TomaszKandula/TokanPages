@@ -35,7 +35,7 @@ const RenderReadCount = (props: RenderReadCountProps): React.ReactElement => {
         <></>
     ) : (
         <>
-            <Icon name="Eye" size={1} className="mr-2" />
+            <Icon name="Eye" size={1.5} className="mr-2" />
             <p className="m-0">{props.readCount}</p>
         </>
     );
@@ -46,7 +46,7 @@ const RenderTotalLikes = (props: RenderTotalLikesProps): React.ReactElement => {
         <></>
     ) : (
         <>
-            <Icon name="ThumbUp" size={1} className="mx-2" />
+            <Icon name="ThumbUp" size={1.5} className="mx-2" />
             <p className="m-0">{props.totalLikes}</p>
         </>
     );
@@ -55,7 +55,7 @@ const RenderTotalLikes = (props: RenderTotalLikesProps): React.ReactElement => {
 const RenderFlag = (props: RenderFlagProps): React.ReactElement => {
     return !Validate.isEmpty(props.flagImage) ? (
         <>
-            <Icon name="Translate" size={1} className="mx-2" />
+            <Icon name="Translate" size={1.5} className="mx-2" />
             <CustomImage
                 base={GET_FLAG_URL}
                 source={props.flagImage}

@@ -29,13 +29,12 @@ export interface NavigationViewProps extends BaseProperties {
     height?: number;
 }
 
+export interface RenderLanguageListProps extends NavigationViewProps {
+    hasBulmaCells?: boolean;
+}
+
 export interface LanguageSelectionProps {
     selection: string;
     languageId: string;
     size?: number;
-}
-
-export interface ListSeparatorProps {
-    length: number;
-    index: number;
 }

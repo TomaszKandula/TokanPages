@@ -27,6 +27,8 @@ describe("test component: testimonialsView", () => {
             <TestimonialsView
                 isLoading={false}
                 media={{
+                    hasPortrait: true,
+                    hasLandscape: false,
                     isDesktop: true,
                     isMobile: false,
                     isTablet: false,
