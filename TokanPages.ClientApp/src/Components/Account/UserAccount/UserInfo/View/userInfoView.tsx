@@ -93,7 +93,13 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                             <hr />
                             <div className="bulma-columns m-0 py-2">
                                 <div className="bulma-column bulma-is-one-fifth p-0">
-                                    <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150} disableMarginY>
+                                    <Skeleton
+                                        isLoading={props.isLoading}
+                                        mode="Text"
+                                        height={24}
+                                        width={150}
+                                        disableMarginY
+                                    >
                                         <p className="is-size-6 has-text-grey-darker">
                                             {props.sectionAccountInformation?.labelUserId}
                                         </p>
@@ -107,7 +113,13 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                             </div>
                             <div className="bulma-columns m-0 py-2">
                                 <div className="bulma-column bulma-is-one-fifth p-0">
-                                    <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150} disableMarginY>
+                                    <Skeleton
+                                        isLoading={props.isLoading}
+                                        mode="Text"
+                                        height={24}
+                                        width={150}
+                                        disableMarginY
+                                    >
                                         <p className="is-size-6 has-text-grey-darker">
                                             {props.sectionAccountInformation?.labelEmailStatus?.label}
                                         </p>
@@ -124,7 +136,13 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                             </div>
                             <div className="bulma-columns m-0 py-2">
                                 <div className="bulma-column bulma-is-one-fifth p-0">
-                                    <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150} disableMarginY>
+                                    <Skeleton
+                                        isLoading={props.isLoading}
+                                        mode="Text"
+                                        height={24}
+                                        width={150}
+                                        disableMarginY
+                                    >
                                         <p className="is-size-6 has-text-grey-darker">
                                             {props.sectionAccountInformation?.labelUserAlias}
                                         </p>
@@ -139,7 +157,13 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                             <hr />
                             <div className="bulma-block m-0 py-2">
                                 <div className="is-flex is-align-items-center p-0">
-                                    <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150} disableMarginY>
+                                    <Skeleton
+                                        isLoading={props.isLoading}
+                                        mode="Text"
+                                        height={24}
+                                        width={150}
+                                        disableMarginY
+                                    >
                                         <p className="is-size-6 has-text-grey-darker mr-4">
                                             {props.sectionAccountInformation?.labelUserAvatar}
                                         </p>
@@ -164,7 +188,13 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                             <hr />
                             <div className="bulma-columns m-0 py-2">
                                 <div className="bulma-column bulma-is-one-fifth is-align-self-center p-0">
-                                    <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150} disableMarginY>
+                                    <Skeleton
+                                        isLoading={props.isLoading}
+                                        mode="Text"
+                                        height={24}
+                                        width={150}
+                                        disableMarginY
+                                    >
                                         <p className="is-size-6 has-text-grey-darker">
                                             {props.sectionAccountInformation?.labelFirstName}
                                         </p>
@@ -184,7 +214,13 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                             </div>
                             <div className="bulma-columns m-0 py-2">
                                 <div className="bulma-column bulma-is-one-fifth is-align-self-center p-0">
-                                    <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150} disableMarginY>
+                                    <Skeleton
+                                        isLoading={props.isLoading}
+                                        mode="Text"
+                                        height={24}
+                                        width={150}
+                                        disableMarginY
+                                    >
                                         <p className="is-size-6 has-text-grey-darker">
                                             {props.sectionAccountInformation?.labelLastName}
                                         </p>
@@ -204,7 +240,13 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                             </div>
                             <div className="bulma-columns m-0 py-2">
                                 <div className="bulma-column bulma-is-one-fifth is-align-self-center p-0">
-                                    <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150} disableMarginY>
+                                    <Skeleton
+                                        isLoading={props.isLoading}
+                                        mode="Text"
+                                        height={24}
+                                        width={150}
+                                        disableMarginY
+                                    >
                                         <p className="is-size-6 has-text-grey-darker">
                                             {props.sectionAccountInformation?.labelEmail}
                                         </p>
@@ -224,7 +266,13 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                             </div>
                             <div className="bulma-columns m-0 py-2">
                                 <div className="bulma-column bulma-is-one-fifth is-align-self-center p-0">
-                                    <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150} disableMarginY>
+                                    <Skeleton
+                                        isLoading={props.isLoading}
+                                        mode="Text"
+                                        height={24}
+                                        width={150}
+                                        disableMarginY
+                                    >
                                         <p className="is-size-6 has-text-grey-darker">
                                             {props.sectionAccountInformation?.labelDescription}
                                         </p>
