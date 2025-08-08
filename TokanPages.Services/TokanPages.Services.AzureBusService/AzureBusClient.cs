@@ -23,7 +23,7 @@ public class AzureBusClient : IAzureBusClient
     /// </summary>
     /// <remarks>
     /// To make sure that the message will be picked up and processed,
-    /// try to send it more then once. The hosted service worker should
+    /// try to send it more than once. The hosted service worker should
     /// discard any doubled message.
     /// </remarks>
     /// <param name="queueName">Registered queue name with the Azure Bus Service.</param>
