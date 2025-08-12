@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { NavigationContentDto } from "../../../../../Api/Models";
 import { useDimensions } from "../../../../../Shared/Hooks";
-import { Icon, IconButton } from "../../../../../Shared/Components";
+import { Icon } from "../../../../../Shared/Components";
 import "./renderBottomSheet.css";
 
 interface RenderBottomSheetProps {
@@ -68,14 +68,14 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
                     onClick={menuHandler}
                 ></div>
                 <div ref={ref} className="bottomsheet-nav-drawer-container">
-                    <div className="navbar-top-line"></div>
-                    <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 mt-2">
-                        <h2 className="is-size-4 has-text-weight-semibold">{props.navigation?.languageMenu.caption}</h2>
-                        <IconButton onClick={menuHandler} hasNoHoverEffect className="no-select">
-                            <Icon name="WindowClose" size={2.0} className="has-text-grey-dark" />
-                        </IconButton>
+                    <div className="pb-6">
+                        <div className="navbar-top-line"></div>
+                        <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 mt-5">
+                            <h2 className="is-size-4 has-text-weight-normal">{props.navigation?.languageMenu.caption}</h2>
+                            <Icon name="WindowClose" size={2.0} className="has-text-grey-dark no-select" onClick={menuHandler} />
+                        </div>
+                        {props.children}
                     </div>
-                    {props.children}
                 </div>
             </div>
         </div>

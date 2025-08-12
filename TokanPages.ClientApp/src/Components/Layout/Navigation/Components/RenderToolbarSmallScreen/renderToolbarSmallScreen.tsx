@@ -40,7 +40,7 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => (
                     to={props.navigation?.signup?.link}
                     className="bulma-navbar-end is-flex is-align-items-center mr-4"
                 >
-                    <Icon name="PlusCircleOutline" size={1} className="mr-1" />
+                    <Icon name="PlusCircleOutline" size={1.2} className="mr-1" />
                     <p className="is-size-7 has-text-black">{props.navigation?.signup?.caption}</p>
                 </Link>
             </Skeleton>
@@ -88,18 +88,18 @@ const RenderLanguageList = (props: RenderLanguageListProps): React.ReactElement 
                     <div
                         className={`${props.hasBulmaCells ? "bulma-cell line-separator" : ""} ${baseClass} ${!props.hasBulmaCells ? listSeparator(length, index) : ""}`}
                     >
-                        <a className="is-flex is-align-items-center" onClick={() => props.languagePickHandler(item.id)}>
-                            <CustomImage
-                                base={GET_FLAG_URL}
-                                source={`${item.id}.png`}
-                                title="Language flag"
-                                alt={`A flag (${item.name}) symbolizing available language`}
-                                className="bulma-image bulma-is-24x24 my-2 mx-0"
-                            />
-                            <h4 className="is-size-6 has-text-black has-text-weight-semibold m-2 ml-4">{item.name}</h4>
-                            <div className="ml-4">
-                                <RenderSelectionIcon selection={item.id} languageId={props.languageId} size={1.5} />
+                        <a className="is-flex is-align-items-center is-justify-content-space-between" onClick={() => props.languagePickHandler(item.id)}>
+                            <div className="is-flex is-align-items-center">
+                                <CustomImage
+                                    base={GET_FLAG_URL}
+                                    source={`${item.id}.png`}
+                                    title="Language flag"
+                                    alt={`A flag (${item.name}) symbolizing available language`}
+                                    className="bulma-image bulma-is-24x24 my-2 mx-0"
+                                />
+                                <h4 className="is-size-6 has-text-black has-text-weight-normal m-2 ml-4">{item.name}</h4>
                             </div>
+                            <RenderSelectionIcon selection={item.id} languageId={props.languageId} size={1.5} className="mr-1" />
                         </a>
                     </div>
                 </React.Fragment>
