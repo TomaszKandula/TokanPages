@@ -12,54 +12,10 @@ Object {
         class="bulma-footer has-background-white"
       >
         <div
-          class="bulma-content has-text-centered pt-6"
+          class="bulma-content has-text-centered"
         >
-          <p
-            class="is-size-5"
-          >
-            <span
-              class="ml-2 mr-2"
-            >
-              © Tomasz Kandula
-            </span>
-            <span>
-              |
-            </span>
-            <span
-              class="ml-2 mr-2"
-            >
-              All rights reserved
-            </span>
-            <span>
-              |
-            </span>
-            <a
-              class="footer-links ml-2 mr-2"
-              href="/terms"
-            >
-              <span>
-                Terms of use
-              </span>
-            </a>
-            <span>
-              |
-            </span>
-            <a
-              class="footer-links ml-2 mr-2"
-              href="/policy"
-            >
-              <span>
-                Privacy policy
-              </span>
-            </a>
-          </p>
-          <p
-            class="is-size-6"
-          >
-            1.0
-          </p>
           <div
-            class="is-flex is-justify-content-center"
+            class="is-flex is-justify-content-center mb-4"
           >
             <a
               class="href undefined"
@@ -90,6 +46,41 @@ Object {
               </button>
             </a>
           </div>
+          <p
+            class="is-size-6 is-flex is-flex-direction-column"
+          >
+            <span
+              class="has-text-grey-dark my-2"
+            >
+              © Tomasz Kandula
+            </span>
+            <span
+              class="has-text-grey-dark my-1"
+            >
+              All rights reserved
+            </span>
+            <a
+              class="has-text-grey-dark is-underlined my-1"
+              href="/terms"
+            >
+              <span>
+                Terms of use
+              </span>
+            </a>
+            <a
+              class="has-text-grey-dark is-underlined my-1"
+              href="/policy"
+            >
+              <span>
+                Privacy policy
+              </span>
+            </a>
+          </p>
+          <p
+            class="is-size-7 has-text-grey py-2"
+          >
+            1.0
+          </p>
         </div>
       </footer>
     </div>
@@ -102,54 +93,10 @@ Object {
       class="bulma-footer has-background-white"
     >
       <div
-        class="bulma-content has-text-centered pt-6"
+        class="bulma-content has-text-centered"
       >
-        <p
-          class="is-size-5"
-        >
-          <span
-            class="ml-2 mr-2"
-          >
-            © Tomasz Kandula
-          </span>
-          <span>
-            |
-          </span>
-          <span
-            class="ml-2 mr-2"
-          >
-            All rights reserved
-          </span>
-          <span>
-            |
-          </span>
-          <a
-            class="footer-links ml-2 mr-2"
-            href="/terms"
-          >
-            <span>
-              Terms of use
-            </span>
-          </a>
-          <span>
-            |
-          </span>
-          <a
-            class="footer-links ml-2 mr-2"
-            href="/policy"
-          >
-            <span>
-              Privacy policy
-            </span>
-          </a>
-        </p>
-        <p
-          class="is-size-6"
-        >
-          1.0
-        </p>
         <div
-          class="is-flex is-justify-content-center"
+          class="is-flex is-justify-content-center mb-4"
         >
           <a
             class="href undefined"
@@ -180,6 +127,41 @@ Object {
             </button>
           </a>
         </div>
+        <p
+          class="is-size-6 is-flex is-flex-direction-column"
+        >
+          <span
+            class="has-text-grey-dark my-2"
+          >
+            © Tomasz Kandula
+          </span>
+          <span
+            class="has-text-grey-dark my-1"
+          >
+            All rights reserved
+          </span>
+          <a
+            class="has-text-grey-dark is-underlined my-1"
+            href="/terms"
+          >
+            <span>
+              Terms of use
+            </span>
+          </a>
+          <a
+            class="has-text-grey-dark is-underlined my-1"
+            href="/policy"
+          >
+            <span>
+              Privacy policy
+            </span>
+          </a>
+        </p>
+        <p
+          class="is-size-7 has-text-grey py-2"
+        >
+          1.0
+        </p>
       </div>
     </footer>
   </div>,

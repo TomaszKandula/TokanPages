@@ -37,4 +37,5 @@ export interface LanguageSelectionProps {
     selection: string;
     languageId: string;
     size?: number;
+    className?: string;
 }
