@@ -88,7 +88,10 @@ const RenderLanguageList = (props: RenderLanguageListProps): React.ReactElement 
                     <div
                         className={`${props.hasBulmaCells ? "bulma-cell line-separator" : ""} ${baseClass} ${!props.hasBulmaCells ? listSeparator(length, index) : ""}`}
                     >
-                        <a className="is-flex is-align-items-center is-justify-content-space-between" onClick={() => props.languagePickHandler(item.id)}>
+                        <a
+                            className="is-flex is-align-items-center is-justify-content-space-between"
+                            onClick={() => props.languagePickHandler(item.id)}
+                        >
                             <div className="is-flex is-align-items-center">
                                 <CustomImage
                                     base={GET_FLAG_URL}
@@ -97,9 +100,16 @@ const RenderLanguageList = (props: RenderLanguageListProps): React.ReactElement 
                                     alt={`A flag (${item.name}) symbolizing available language`}
                                     className="bulma-image bulma-is-24x24 my-2 mx-0"
                                 />
-                                <h4 className="is-size-6 has-text-black has-text-weight-normal m-2 ml-4">{item.name}</h4>
+                                <h4 className="is-size-6 has-text-black has-text-weight-normal m-2 ml-4">
+                                    {item.name}
+                                </h4>
                             </div>
-                            <RenderSelectionIcon selection={item.id} languageId={props.languageId} size={1.5} className="mr-1" />
+                            <RenderSelectionIcon
+                                selection={item.id}
+                                languageId={props.languageId}
+                                size={1.5}
+                                className="mr-1"
+                            />
                         </a>
                     </div>
                 </React.Fragment>
