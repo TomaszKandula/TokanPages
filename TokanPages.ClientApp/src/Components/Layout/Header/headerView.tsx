@@ -96,7 +96,6 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const header = data?.components?.layoutHeader;
     const isLoading = data?.isLoading;
-    const baseClass = "bulma-content header-content-box";
 
     let size;
     if (media.isMobile) {
@@ -115,7 +114,7 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                         </Skeleton>
                     </div>
                     <div className="bulma-cell is-flex is-flex-direction-column">
-                        <div className={`${baseClass} ${media.isMobile ? "p-4" : ""} ${media.isTablet ? "p-6" : ""}`}>
+                        <div className="bulma-content header-content-box">
                             <Skeleton isLoading={isLoading} mode="Text" height={40}>
                                 <h1 className="is-size-1 has-text-grey-dark">{header?.caption}</h1>
                             </Skeleton>

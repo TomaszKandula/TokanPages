@@ -11,10 +11,17 @@
     }
 }
 
+@media (max-width: 768px) {
+    .header-content-box {
+        padding: 1rem;
+    }
+}
+
 @media (min-width: 1024px) {
     .header-content-box {
         max-width: 900px;
         margin-left: -33%;
+        padding: 3rem;
     }
 }
 

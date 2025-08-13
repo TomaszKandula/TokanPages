@@ -48,12 +48,16 @@ export const FooterView = (props: Properties): React.ReactElement => (
                     <p className="is-size-6 is-flex is-flex-direction-column">
                         <span className="has-text-grey-dark my-2">{props?.legalInfo.copyright}</span>
                         <span className="has-text-grey-dark my-1">{props?.legalInfo.reserved}</span>
-                        <Link to={props?.terms?.href ?? ""} className="has-text-grey-dark is-underlined my-1">
-                            <span>{props?.terms?.text}</span>
-                        </Link>
-                        <Link to={props?.policy?.href ?? ""} className="has-text-grey-dark is-underlined my-1">
-                            <span>{props?.policy?.text}</span>
-                        </Link>
+                        <div className="my-1">
+                            <Link to={props?.terms?.href ?? ""}>
+                                <span className="has-text-grey-dark is-underlined">{props?.terms?.text}</span>
+                            </Link>
+                        </div>
+                        <div className="my-1">
+                            <Link to={props?.policy?.href ?? ""}>
+                                <span className="has-text-grey-dark is-underlined">{props?.policy?.text}</span>
+                            </Link>
+                        </div>
                     </p>
                     <p className="is-size-7 has-text-grey py-2">{props?.versionInfo}</p>
                 </div>
