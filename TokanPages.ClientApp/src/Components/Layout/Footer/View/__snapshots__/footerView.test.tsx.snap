@@ -59,22 +59,32 @@ Object {
             >
               All rights reserved
             </span>
-            <a
-              class="has-text-grey-dark is-underlined my-1"
-              href="/terms"
+            <div
+              class="my-1"
             >
-              <span>
-                Terms of use
-              </span>
-            </a>
-            <a
-              class="has-text-grey-dark is-underlined my-1"
-              href="/policy"
+              <a
+                href="/terms"
+              >
+                <span
+                  class="has-text-grey-dark is-underlined"
+                >
+                  Terms of use
+                </span>
+              </a>
+            </div>
+            <div
+              class="my-1"
             >
-              <span>
-                Privacy policy
-              </span>
-            </a>
+              <a
+                href="/policy"
+              >
+                <span
+                  class="has-text-grey-dark is-underlined"
+                >
+                  Privacy policy
+                </span>
+              </a>
+            </div>
           </p>
           <p
             class="is-size-7 has-text-grey py-2"
@@ -140,22 +150,32 @@ Object {
           >
             All rights reserved
           </span>
-          <a
-            class="has-text-grey-dark is-underlined my-1"
-            href="/terms"
+          <div
+            class="my-1"
           >
-            <span>
-              Terms of use
-            </span>
-          </a>
-          <a
-            class="has-text-grey-dark is-underlined my-1"
-            href="/policy"
+            <a
+              href="/terms"
+            >
+              <span
+                class="has-text-grey-dark is-underlined"
+              >
+                Terms of use
+              </span>
+            </a>
+          </div>
+          <div
+            class="my-1"
           >
-            <span>
-              Privacy policy
-            </span>
-          </a>
+            <a
+              href="/policy"
+            >
+              <span
+                class="has-text-grey-dark is-underlined"
+              >
+                Privacy policy
+              </span>
+            </a>
+          </div>
         </p>
         <p
           class="is-size-7 has-text-grey py-2"
