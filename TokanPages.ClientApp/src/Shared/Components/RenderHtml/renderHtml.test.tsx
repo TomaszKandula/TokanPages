@@ -84,12 +84,28 @@ describe("Verify 'RenderHtml' component", () => {
         expect(rendered).toContainHTML('<h6 data-testid="render-html">short test text</h6>');
     });
 
-    it("should return sanitized HTML value wrapped with <div>", () => {
-        render(<RenderHtml value="<p>short test HTML text</p>" tag="div" testId="render-html" />);
+    it("should return sanitized HTML value wrapped with <blockquote>", () => {
+        render(<RenderHtml value="short test text" tag="blockquote" testId="render-html" />);
 
         const rendered = screen.getByTestId("render-html");
 
-        expect(rendered).toContainHTML('<div data-testid="render-html"><p>short test HTML text</p></div>');
+        expect(rendered).toContainHTML('<blockquote data-testid="render-html">short test text</blockquote>');
+    });
+
+    it("should return sanitized HTML value wrapped with <blockquote>", () => {
+        render(<RenderHtml value="short test text" tag="blockquote" testId="render-html" />);
+
+        const rendered = screen.getByTestId("render-html");
+
+        expect(rendered).toContainHTML('<blockquote data-testid="render-html">short test text</blockquote>');
+    });
+
+    it("should return sanitized HTML value wrapped with <li>", () => {
+        render(<RenderHtml value="<p>short test HTML text</p>" tag="li" testId="render-html" />);
+
+        const rendered = screen.getByTestId("render-html");
+
+        expect(rendered).toContainHTML('<li data-testid="render-html"><p>short test HTML text</p></li>');
     });
 
     it("should return sanitized HTML value with non-breaking space", () => {
