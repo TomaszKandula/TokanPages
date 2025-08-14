@@ -91,21 +91,21 @@ Object {
         data-testid="render-content"
       >
         <h1
-          class="bulma-title has-text-grey-dark m-0 pb-2"
+          class="bulma-title has-text-grey-dark pt-2 pb-2"
         >
           <p>
             Test line
           </p>
         </h1>
         <h2
-          class="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4"
+          class="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 p-0"
         >
           <p>
             Test line
           </p>
         </h2>
         <div
-          class="bulma-card my-4"
+          class="bulma-card my-6"
         >
           <div
             class="bulma-card-image"
@@ -241,7 +241,7 @@ Object {
           </tbody>
         </table>
         <div
-          class="bulma-card my-4"
+          class="bulma-card my-6"
         >
           <div
             class="bulma-card-image"
@@ -280,21 +280,21 @@ Object {
       data-testid="render-content"
     >
       <h1
-        class="bulma-title has-text-grey-dark m-0 pb-2"
+        class="bulma-title has-text-grey-dark pt-2 pb-2"
       >
         <p>
           Test line
         </p>
       </h1>
       <h2
-        class="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4"
+        class="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 p-0"
       >
         <p>
           Test line
         </p>
       </h2>
       <div
-        class="bulma-card my-4"
+        class="bulma-card my-6"
       >
         <div
           class="bulma-card-image"
@@ -430,7 +430,7 @@ Object {
         </tbody>
       </table>
       <div
-        class="bulma-card my-4"
+        class="bulma-card my-6"
       >
         <div
           class="bulma-card-image"
