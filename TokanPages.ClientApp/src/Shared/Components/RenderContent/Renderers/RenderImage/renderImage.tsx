@@ -34,7 +34,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
     }, [valueUrl]);
 
     return (
-        <div className="bulma-card my-4">
+        <div className="bulma-card my-6">
             {hasPropAndValue ? (
                 <div className="bulma-card-image">
                     <figure className="bulma-image">
