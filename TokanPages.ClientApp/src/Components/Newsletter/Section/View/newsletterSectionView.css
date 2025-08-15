@@ -1,0 +1,9 @@
+.newsletter-margins {
+    margin: 3rem;
+}
+
+@media (max-width: 768px) {
+    .newsletter-margins {
+        margin: 1.5rem;
+    }
+}
