@@ -13,3 +13,39 @@
 .article-feature-image-small {
     min-height: 256px;
 }
+
+.article-feature-column {
+    padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .article-feature-column {
+        padding: 0;
+    }
+}
+
+.article-feature-columns {
+    margin: 3rem;
+}
+
+@media (max-width: 768px) {
+    .article-feature-columns {
+        margin: 1rem;
+    }
+}
+
+.article-feature-padding-left {
+    padding-left: 0;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .article-feature-padding-left {
+        padding-left: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .article-feature-padding-left {
+        padding-left: 3rem;
+    }
+}
