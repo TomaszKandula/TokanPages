@@ -40,131 +40,129 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => (
 );
 
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => (
-        <section className={props.className}>
-            <div className="bulma-container bulma-is-max-desktop">
-                <div className="contact-padding">
-                    {props.hasCaption ? (
-                        <Animated dataAos="fade-down">
-                            <Skeleton isLoading={props.isLoading} mode="Text" height={40}>
-                                <p className="is-size-3	has-text-centered has-text-link">
-                                    {props.caption?.toUpperCase()}
-                                </p>
-                            </Skeleton>
-                        </Animated>
-                    ) : null}
-                    <div className={`contact-card-padding ${props.hasIcon ? "" : "pt-4"}`}>
-                        <div className={`bulma-card ${!props.hasShadow ? "contact-card-no-shadow" : ""}`}>
-                            <div className="bulma-card-content background-colour-inherited">
-                                {props.hasIcon ? (
-                                    <div className="is-flex is-flex-direction-column is-align-items-center">
-                                        <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                                            <Icon name="CardAccountMail" size={2.5} className="card-icon-colour" />
-                                        </Skeleton>
-                                        <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
-                                            <p className="is-size-3 has-text-black">{props.caption}</p>
-                                        </Skeleton>
-                                    </div>
-                                ) : null}
-                                <div className={props.hasIcon ? "pt-5" : ""}>
-                                    <div className="bulma-columns">
-                                        <div className="bulma-column">
-                                            <Animated dataAos="zoom-in">
-                                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                                    <TextField
-                                                        required
-                                                        uuid="firstName"
-                                                        autoComplete="fname"
-                                                        onKeyUp={props.keyHandler}
-                                                        onChange={props.formHandler}
-                                                        value={props.firstName}
-                                                        placeholder={props.labelFirstName}
-                                                    />
-                                                </Skeleton>
-                                            </Animated>
-                                        </div>
-                                        <div className="bulma-column">
-                                            <Animated dataAos="zoom-in">
-                                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                                    <TextField
-                                                        required
-                                                        uuid="lastName"
-                                                        autoComplete="lname"
-                                                        onKeyUp={props.keyHandler}
-                                                        onChange={props.formHandler}
-                                                        value={props.lastName}
-                                                        placeholder={props.labelLastName}
-                                                    />
-                                                </Skeleton>
-                                            </Animated>
-                                        </div>
-                                    </div>
-                                    <div className="bulma-columns">
-                                        <div className="bulma-column">
-                                            <Animated dataAos="zoom-in">
-                                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                                    <TextField
-                                                        required
-                                                        uuid="email"
-                                                        autoComplete="email"
-                                                        onKeyUp={props.keyHandler}
-                                                        onChange={props.formHandler}
-                                                        value={props.email}
-                                                        placeholder={props.labelEmail}
-                                                    />
-                                                </Skeleton>
-                                            </Animated>
-                                        </div>
-                                    </div>
-                                    <div className="bulma-columns">
-                                        <div className="bulma-column">
-                                            <Animated dataAos="zoom-in">
-                                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                                    <TextField
-                                                        required
-                                                        uuid="subject"
-                                                        autoComplete="subject"
-                                                        onKeyUp={props.keyHandler}
-                                                        onChange={props.formHandler}
-                                                        value={props.subject}
-                                                        placeholder={props.labelSubject}
-                                                    />
-                                                </Skeleton>
-                                            </Animated>
-                                        </div>
-                                    </div>
-                                    <div className="bulma-columns">
-                                        <div className="bulma-column">
-                                            <Animated dataAos="zoom-in">
-                                                <Skeleton isLoading={props.isLoading} mode="Rect" height={200}>
-                                                    <TextArea
-                                                        isFixedSize
-                                                        required
-                                                        rows={props.minRows}
-                                                        uuid="message"
-                                                        autoComplete="message"
-                                                        onChange={props.messageHandler}
-                                                        value={props.message}
-                                                        placeholder={props.labelMessage}
-                                                    />
-                                                </Skeleton>
-                                            </Animated>
-                                        </div>
-                                    </div>
-                                    <div className="bulma-content">
-                                        <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
-                                            <Notification text={props.consent} />
-                                        </Skeleton>
-                                        <Animated dataAos="fade-up">
+    <section className={props.className}>
+        <div className="bulma-container bulma-is-max-desktop">
+            <div className="contact-padding">
+                {props.hasCaption ? (
+                    <Animated dataAos="fade-down">
+                        <Skeleton isLoading={props.isLoading} mode="Text" height={40}>
+                            <p className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</p>
+                        </Skeleton>
+                    </Animated>
+                ) : null}
+                <div className={`contact-card-padding ${props.hasIcon ? "" : "pt-4"}`}>
+                    <div className={`bulma-card ${!props.hasShadow ? "contact-card-no-shadow" : ""}`}>
+                        <div className="bulma-card-content background-colour-inherited">
+                            {props.hasIcon ? (
+                                <div className="is-flex is-flex-direction-column is-align-items-center">
+                                    <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                                        <Icon name="CardAccountMail" size={2.5} className="card-icon-colour" />
+                                    </Skeleton>
+                                    <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
+                                        <p className="is-size-3 has-text-black">{props.caption}</p>
+                                    </Skeleton>
+                                </div>
+                            ) : null}
+                            <div className={props.hasIcon ? "pt-5" : ""}>
+                                <div className="bulma-columns">
+                                    <div className="bulma-column">
+                                        <Animated dataAos="zoom-in">
                                             <Skeleton isLoading={props.isLoading} mode="Rect">
-                                                <ActiveButton {...props} />
+                                                <TextField
+                                                    required
+                                                    uuid="firstName"
+                                                    autoComplete="fname"
+                                                    onKeyUp={props.keyHandler}
+                                                    onChange={props.formHandler}
+                                                    value={props.firstName}
+                                                    placeholder={props.labelFirstName}
+                                                />
                                             </Skeleton>
                                         </Animated>
                                     </div>
+                                    <div className="bulma-column">
+                                        <Animated dataAos="zoom-in">
+                                            <Skeleton isLoading={props.isLoading} mode="Rect">
+                                                <TextField
+                                                    required
+                                                    uuid="lastName"
+                                                    autoComplete="lname"
+                                                    onKeyUp={props.keyHandler}
+                                                    onChange={props.formHandler}
+                                                    value={props.lastName}
+                                                    placeholder={props.labelLastName}
+                                                />
+                                            </Skeleton>
+                                        </Animated>
+                                    </div>
+                                </div>
+                                <div className="bulma-columns">
+                                    <div className="bulma-column">
+                                        <Animated dataAos="zoom-in">
+                                            <Skeleton isLoading={props.isLoading} mode="Rect">
+                                                <TextField
+                                                    required
+                                                    uuid="email"
+                                                    autoComplete="email"
+                                                    onKeyUp={props.keyHandler}
+                                                    onChange={props.formHandler}
+                                                    value={props.email}
+                                                    placeholder={props.labelEmail}
+                                                />
+                                            </Skeleton>
+                                        </Animated>
+                                    </div>
+                                </div>
+                                <div className="bulma-columns">
+                                    <div className="bulma-column">
+                                        <Animated dataAos="zoom-in">
+                                            <Skeleton isLoading={props.isLoading} mode="Rect">
+                                                <TextField
+                                                    required
+                                                    uuid="subject"
+                                                    autoComplete="subject"
+                                                    onKeyUp={props.keyHandler}
+                                                    onChange={props.formHandler}
+                                                    value={props.subject}
+                                                    placeholder={props.labelSubject}
+                                                />
+                                            </Skeleton>
+                                        </Animated>
+                                    </div>
+                                </div>
+                                <div className="bulma-columns">
+                                    <div className="bulma-column">
+                                        <Animated dataAos="zoom-in">
+                                            <Skeleton isLoading={props.isLoading} mode="Rect" height={200}>
+                                                <TextArea
+                                                    isFixedSize
+                                                    required
+                                                    rows={props.minRows}
+                                                    uuid="message"
+                                                    autoComplete="message"
+                                                    onChange={props.messageHandler}
+                                                    value={props.message}
+                                                    placeholder={props.labelMessage}
+                                                />
+                                            </Skeleton>
+                                        </Animated>
+                                    </div>
+                                </div>
+                                <div className="bulma-content">
+                                    <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
+                                        <Notification text={props.consent} />
+                                    </Skeleton>
+                                    <Animated dataAos="fade-up">
+                                        <Skeleton isLoading={props.isLoading} mode="Rect">
+                                            <ActiveButton {...props} />
+                                        </Skeleton>
+                                    </Animated>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    );
+        </div>
+    </section>
+);

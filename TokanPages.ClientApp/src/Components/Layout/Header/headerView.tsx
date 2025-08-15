@@ -22,33 +22,45 @@ interface ButtonProps extends HeaderContentDto {
 }
 
 const TertiaryButton = (props: ButtonProps): React.ReactElement => (
-        <Link to={props?.tertiaryButton?.href ?? ""} className="link">
-            <button className="bulma-button bulma-is-light mr-2 is-hidden-touch">{props?.tertiaryButton?.text}</button>
-            <button className="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop">{props?.tertiaryButton?.text}</button>
-        </Link>
-    );
+    <Link to={props?.tertiaryButton?.href ?? ""} className="link">
+        <button className="bulma-button bulma-is-light mr-2 is-hidden-touch">{props?.tertiaryButton?.text}</button>
+        <button className="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop">
+            {props?.tertiaryButton?.text}
+        </button>
+    </Link>
+);
 
 const SecondaryButton = (props: ButtonProps): React.ReactElement => (
-        <Link to={props?.secondaryButton?.href ?? ""} className="link">
-            <button className="bulma-button bulma-is-light mr-2 is-hidden-touch">{props?.secondaryButton?.text}</button>
-            <button className="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop">{props?.secondaryButton?.text}</button>
-        </Link>
-    );
+    <Link to={props?.secondaryButton?.href ?? ""} className="link">
+        <button className="bulma-button bulma-is-light mr-2 is-hidden-touch">{props?.secondaryButton?.text}</button>
+        <button className="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop">
+            {props?.secondaryButton?.text}
+        </button>
+    </Link>
+);
 
 const PrimaryButton = (props: ButtonProps): React.ReactElement => {
     if (Validate.isEmpty(props?.primaryButton?.href)) {
         return (
             <>
-                <button className="bulma-button bulma-is-link bulma-is-light mr-2 is-hidden-touch">{props?.primaryButton?.text}</button>
-                <button className="bulma-button bulma-is-link bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop">{props?.primaryButton?.text}</button>
+                <button className="bulma-button bulma-is-link bulma-is-light mr-2 is-hidden-touch">
+                    {props?.primaryButton?.text}
+                </button>
+                <button className="bulma-button bulma-is-link bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop">
+                    {props?.primaryButton?.text}
+                </button>
             </>
         );
     }
 
     return (
         <Link to={props?.primaryButton?.href ?? ""} className="link">
-            <button className="bulma-button bulma-is-link bulma-is-light mr-2 is-hidden-touch">{props?.primaryButton?.text}</button>
-            <button className="bulma-button bulma-is-link bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop">{props?.primaryButton?.text}</button>
+            <button className="bulma-button bulma-is-link bulma-is-light mr-2 is-hidden-touch">
+                {props?.primaryButton?.text}
+            </button>
+            <button className="bulma-button bulma-is-link bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop">
+                {props?.primaryButton?.text}
+            </button>
         </Link>
     );
 };

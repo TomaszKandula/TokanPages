@@ -41,14 +41,10 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                         </Skeleton>
                     </Animated>
                     <Animated dataAos="fade-up">
-                        <div
-                            className="bulma-columns bulma-is-3 is-flex-direction-row article-feature-columns"
-                        >
+                        <div className="bulma-columns bulma-is-3 is-flex-direction-row article-feature-columns">
                             <Skeleton isLoading={isLoading} mode="Rect" width={200} height={200}>
                                 <div className="bulma-column article-feature-column">
-                                    <div
-                                        className="bulma-columns bulma-is-3 is-hidden-mobile"
-                                    >
+                                    <div className="bulma-columns bulma-is-3 is-hidden-mobile">
                                         <div className="bulma-column bulma-is-three-quarters">
                                             <div className="bulma-card article-feature-card-shadow">
                                                 <div className="bulma-card-image">
@@ -82,9 +78,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     </div>
                                     <div className="bulma-columns bulma-is-3">
                                         <div className="bulma-column is-flex is-align-self-flex-start">
-                                            <div
-                                                className="bulma-card article-feature-card-shadow is-hidden-mobile"
-                                            >
+                                            <div className="bulma-card article-feature-card-shadow is-hidden-mobile">
                                                 <div className="bulma-card-image">
                                                     <figure className="bulma-image">
                                                         <CustomImage
@@ -114,9 +108,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     </div>
                                 </div>
                             </Skeleton>
-                            <div
-                                className="bulma-column is-align-self-center py-3 pr-0 article-feature-padding-left"
-                            >
+                            <div className="bulma-column is-align-self-center py-3 pr-0 article-feature-padding-left">
                                 <Skeleton isLoading={isLoading} mode="Text">
                                     <RenderHtml
                                         value={features?.title}
