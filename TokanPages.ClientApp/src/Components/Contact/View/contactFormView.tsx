@@ -6,7 +6,6 @@ import { ContactFormProps } from "../contactForm";
 import "./contactFormView.css";
 
 interface ContactFormViewProps extends ViewProperties, ContactFormProps {
-    isMobile: boolean;
     caption: string;
     text: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
@@ -40,16 +39,10 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => (
     </button>
 );
 
-export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => {
-    const captionPadding = props.hasIcon ? "px-6" : "px-6 pt-6";
-    const boxPadding = props.isMobile ? "py-6" : "p-6";
-    const cardPadding = props.isMobile ? "" : captionPadding;
-    const colPadding = props.hasIcon ? "pt-5" : "";
-
-    return (
+export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => (
         <section className={props.className}>
             <div className="bulma-container bulma-is-max-desktop">
-                <div className={boxPadding}>
+                <div className="contact-padding">
                     {props.hasCaption ? (
                         <Animated dataAos="fade-down">
                             <Skeleton isLoading={props.isLoading} mode="Text" height={40}>
@@ -59,7 +52,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                             </Skeleton>
                         </Animated>
                     ) : null}
-                    <div className={cardPadding}>
+                    <div className={`contact-card-padding ${props.hasIcon ? "" : "pt-4"}`}>
                         <div className={`bulma-card ${!props.hasShadow ? "contact-card-no-shadow" : ""}`}>
                             <div className="bulma-card-content background-colour-inherited">
                                 {props.hasIcon ? (
@@ -72,7 +65,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                                         </Skeleton>
                                     </div>
                                 ) : null}
-                                <div className={colPadding}>
+                                <div className={props.hasIcon ? "pt-5" : ""}>
                                     <div className="bulma-columns">
                                         <div className="bulma-column">
                                             <Animated dataAos="zoom-in">
@@ -175,4 +168,3 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
             </div>
         </section>
     );
-};
