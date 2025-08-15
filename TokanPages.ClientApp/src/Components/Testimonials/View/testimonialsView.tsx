@@ -2,11 +2,9 @@ import * as React from "react";
 import { GET_TESTIMONIALS_URL } from "../../../Api";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { Animated, CustomImage, Collapsible, Skeleton, RenderHtml } from "../../../Shared/Components";
-import { UseDimensionsResult } from "../../../Shared/Hooks/useDimensions";
 import "./testimonialsView.css";
 
 interface TestimonialsViewProps extends ViewProperties {
-    media: UseDimensionsResult;
     caption: string;
     subtitle: string;
     photo1: string;
@@ -24,17 +22,7 @@ interface TestimonialsViewProps extends ViewProperties {
     className?: string;
 }
 
-export const TestimonialsView = (props: TestimonialsViewProps): React.ReactElement => {
-    let paddings;
-    if (props.media.isDesktop || props.media.isMobile) {
-        paddings = "p-4";
-    }
-
-    if (props.media.isTablet) {
-        paddings = "py-4 px-0";
-    }
-
-    return (
+export const TestimonialsView = (props: TestimonialsViewProps): React.ReactElement => (
         <section className={props.className}>
             <div className="bulma-container">
                 <div className="py-6">
@@ -43,8 +31,8 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             <p className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</p>
                         </Skeleton>
                     </Animated>
-                    <div className={`bulma-columns ${props.media.isMobile ? "m-2" : "m-6"}`}>
-                        <div className={`bulma-column ${props.media.isMobile ? "mt-6" : ""}`}>
+                    <div className="bulma-columns testimonials-card-columns">
+                        <div className="bulma-column testimonials-card-column">
                             <Animated dataAos="fade-up" dataAosDelay={350}>
                                 <div className="bulma-card">
                                     <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
@@ -56,7 +44,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                             alt={`Picture of ${props.name1}`}
                                         />
                                     </Skeleton>
-                                    <div className={`bulma-card-content mt-6 ${paddings}`}>
+                                    <div className="bulma-card-content mt-6 testimonials-card-content">
                                         <Skeleton
                                             isLoading={props.isLoading}
                                             mode="Text"
@@ -85,7 +73,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                 </div>
                             </Animated>
                         </div>
-                        <div className={`bulma-column ${props.media.isMobile ? "mt-6" : ""}`}>
+                        <div className="bulma-column testimonials-card-column">
                             <Animated dataAos="fade-up" dataAosDelay={150}>
                                 <div className="bulma-card">
                                     <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
@@ -97,7 +85,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                             alt={`Picture of ${props.name2}`}
                                         />
                                     </Skeleton>
-                                    <div className={`bulma-card-content mt-6 ${paddings}`}>
+                                    <div className="bulma-card-content mt-6 testimonials-card-content">
                                         <Skeleton
                                             isLoading={props.isLoading}
                                             mode="Text"
@@ -126,7 +114,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                 </div>
                             </Animated>
                         </div>
-                        <div className={`bulma-column ${props.media.isMobile ? "mt-6" : ""}`}>
+                        <div className="bulma-column testimonials-card-column">
                             <Animated dataAos="fade-up" dataAosDelay={250}>
                                 <div className="bulma-card">
                                     <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
@@ -138,7 +126,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                             alt={`Picture of ${props.name3}`}
                                         />
                                     </Skeleton>
-                                    <div className={`bulma-card-content mt-6 ${paddings}`}>
+                                    <div className="bulma-card-content mt-6 testimonials-card-content">
                                         <Skeleton
                                             isLoading={props.isLoading}
                                             mode="Text"
@@ -172,4 +160,3 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
             </div>
         </section>
     );
-};
