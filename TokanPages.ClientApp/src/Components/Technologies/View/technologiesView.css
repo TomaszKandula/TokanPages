@@ -1,0 +1,9 @@
+.technologies-view-margins {
+    margin: 3rem;
+}
+
+@media (max-width: 768px) {
+    .technologies-view-margins {
+        margin: 1rem;
+    }
+}
