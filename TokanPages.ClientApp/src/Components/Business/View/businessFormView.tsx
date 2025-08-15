@@ -238,7 +238,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                         </div>
                     </div>
                 </div>
-                <div className={`bulma-column ${props.isMobile ? "p-0 mt-6" : "ml-6"}`}>
+                <div className="bulma-column business-margins">
                     <div className="is-flex my-5">
                         <Skeleton isLoading={props.isLoading} mode="Circle" width={128} height={128}>
                             <figure className="bulma-image bulma-is-128x128">
