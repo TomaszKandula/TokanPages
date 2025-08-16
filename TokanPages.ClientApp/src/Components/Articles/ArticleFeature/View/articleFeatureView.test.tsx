@@ -46,7 +46,7 @@ describe("test articles group component: ArticleFeatureView", () => {
             </Router>
         );
 
-        expect(useSelectorMock).toBeCalledTimes(3);
+        expect(useSelectorMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
 });

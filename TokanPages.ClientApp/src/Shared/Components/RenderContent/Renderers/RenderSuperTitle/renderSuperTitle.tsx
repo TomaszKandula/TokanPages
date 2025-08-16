@@ -13,7 +13,7 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
     }
 
     return (
-        <div className="bulma-content is-flex is-justify-content-space-between">
+        <div className="bulma-content is-flex is-justify-content-space-between my-6">
             <div className="is-flex is-flex-direction-column">
                 <RenderHtml
                     value={props.propTitle ?? NO_CONTENT}

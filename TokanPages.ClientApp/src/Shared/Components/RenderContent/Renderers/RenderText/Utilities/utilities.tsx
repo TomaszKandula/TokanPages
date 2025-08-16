@@ -202,7 +202,7 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
 
 export const RenderTitle = (props: DataProps): React.ReactElement => {
     return (
-        <RenderHtml value={props.value ?? NO_CONTENT} tag="h1" className="bulma-title has-text-grey-dark m-0 pb-2" />
+        <RenderHtml value={props.value ?? NO_CONTENT} tag="h1" className="bulma-title has-text-grey-dark pt-2 pb-2" />
     );
 };
 
@@ -211,7 +211,7 @@ export const RenderSubtitle = (props: DataProps): React.ReactElement => {
         <RenderHtml
             value={props.value ?? NO_CONTENT}
             tag="h2"
-            className="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 pb-4"
+            className="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 p-0"
         />
     );
 };

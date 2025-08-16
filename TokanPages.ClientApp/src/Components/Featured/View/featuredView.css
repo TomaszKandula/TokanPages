@@ -6,3 +6,23 @@
 .featured-card-height {
     min-height: 150px;
 }
+
+.featured-card-columns {
+    margin: 3rem !important;
+}
+
+@media (max-width: 768px) {
+    .featured-card-columns {
+        margin: 0.5rem !important;
+    }
+}
+
+.featured-card-column {
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    .featured-card-column {
+        margin-top: 3rem;
+    }
+}

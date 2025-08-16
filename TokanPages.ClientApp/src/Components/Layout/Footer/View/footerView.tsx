@@ -2,7 +2,6 @@ import * as React from "react";
 import { IconDto, LinkDto } from "../../../../Api/Models";
 import { Icon, IconButton, Link, ProgressBar } from "../../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
-import "./footerView.css";
 
 interface LegalInfoProps {
     copyright: string;
@@ -26,18 +25,6 @@ interface LoaderProps {
     children: React.ReactElement;
 }
 
-const SetTermsLink = (props: Properties): React.ReactElement => (
-    <Link to={props?.terms?.href ?? ""} className="footer-links ml-2 mr-2">
-        <span>{props?.terms?.text}</span>
-    </Link>
-);
-
-const SetPolicyLink = (props: Properties): React.ReactElement => (
-    <Link to={props?.policy?.href ?? ""} className="footer-links ml-2 mr-2">
-        <span>{props?.policy?.text}</span>
-    </Link>
-);
-
 const Loader = (props: LoaderProps): React.ReactElement =>
     props.isLoading ? <ProgressBar size={32} /> : <>{props.children}</>;
 
@@ -46,18 +33,8 @@ export const FooterView = (props: Properties): React.ReactElement => (
         <hr className="line-separator" />
         <footer className="bulma-footer has-background-white">
             <Loader isLoading={props.isLoading}>
-                <div className="bulma-content has-text-centered pt-6">
-                    <p className="is-size-5">
-                        <span className="ml-2 mr-2">{props?.legalInfo.copyright}</span>
-                        <span>|</span>
-                        <span className="ml-2 mr-2">{props?.legalInfo.reserved}</span>
-                        <span>|</span>
-                        <SetTermsLink {...props} />
-                        <span>|</span>
-                        <SetPolicyLink {...props} />
-                    </p>
-                    <p className="is-size-6">{props?.versionInfo}</p>
-                    <div className="is-flex is-justify-content-center">
+                <div className="bulma-content has-text-centered">
+                    <div className="is-flex is-justify-content-center mb-4">
                         {props?.icons?.map((item: IconDto, _index: number) => (
                             <Link to={item.href} key={uuidv4()} aria-label={item.name}>
                                 <IconButton>
@@ -68,6 +45,21 @@ export const FooterView = (props: Properties): React.ReactElement => (
                             </Link>
                         ))}
                     </div>
+                    <p className="is-size-6 is-flex is-flex-direction-column">
+                        <span className="has-text-grey-dark my-2">{props?.legalInfo.copyright}</span>
+                        <span className="has-text-grey-dark my-1">{props?.legalInfo.reserved}</span>
+                        <div className="my-1">
+                            <Link to={props?.terms?.href ?? ""}>
+                                <span className="has-text-grey-dark is-underlined">{props?.terms?.text}</span>
+                            </Link>
+                        </div>
+                        <div className="my-1">
+                            <Link to={props?.policy?.href ?? ""}>
+                                <span className="has-text-grey-dark is-underlined">{props?.policy?.text}</span>
+                            </Link>
+                        </div>
+                    </p>
+                    <p className="is-size-7 has-text-grey py-2">{props?.versionInfo}</p>
                 </div>
             </Loader>
         </footer>

@@ -2,14 +2,13 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, Icon, RenderHtml, Skeleton } from "../../../Shared/Components";
-import { useDimensions } from "../../../Shared/Hooks";
+import "./technologiesView.css";
 
 interface TechnologiesViewProps {
     className?: string;
 }
 
 export const TechnologiesView = (props: TechnologiesViewProps): React.ReactElement => {
-    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isLoading = data?.isLoading;
     const technology = data?.components?.sectionTechnologies;
@@ -25,7 +24,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                             </p>
                         </Skeleton>
                     </Animated>
-                    <div className={media.isMobile ? "m-4" : "m-6"}>
+                    <div className="technologies-view-margins">
                         <div className="bulma-columns">
                             <div className="bulma-column">
                                 <Animated dataAos="fade-up" className="is-flex is-align-items-center py-2">

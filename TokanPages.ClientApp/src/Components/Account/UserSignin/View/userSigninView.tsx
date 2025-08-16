@@ -11,9 +11,9 @@ import {
     TextFieldWithPassword,
 } from "../../../../Shared/Components";
 import { UserSigninProps } from "../userSignin";
+import "./userSigninView.css";
 
 interface UserSigninViewProps extends ViewProperties, UserSigninProps {
-    isMobile: boolean;
     caption: string;
     button: string;
     link1: LinkDto;
@@ -43,7 +43,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet">
             <div className="py-6">
-                <div className={`bulma-card ${props.isMobile ? "m-4" : ""}`}>
+                <div className="bulma-card user-signin-view-margins">
                     <div className="bulma-card-content">
                         <div className="is-flex is-flex-direction-column is-align-items-center">
                             <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>

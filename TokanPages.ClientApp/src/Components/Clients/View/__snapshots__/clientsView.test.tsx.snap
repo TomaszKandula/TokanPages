@@ -12,7 +12,7 @@ Object {
           class="bulma-container"
         >
           <div
-            class="py-6"
+            class="client-margins"
           >
             <div
               class="is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-center"
@@ -30,7 +30,7 @@ Object {
         class="bulma-container"
       >
         <div
-          class="py-6"
+          class="client-margins"
         >
           <div
             class="is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-center"

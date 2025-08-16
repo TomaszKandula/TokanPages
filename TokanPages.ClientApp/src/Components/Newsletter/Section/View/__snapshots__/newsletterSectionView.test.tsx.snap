@@ -13,7 +13,7 @@ Object {
             class="py-6"
           >
             <div
-              class="m-6"
+              class="newsletter-margins"
             >
               <div
                 class="bulma-columns bulma-is-vcentered"
@@ -96,7 +96,7 @@ Object {
           class="py-6"
         >
           <div
-            class="m-6"
+            class="newsletter-margins"
           >
             <div
               class="bulma-columns bulma-is-vcentered"

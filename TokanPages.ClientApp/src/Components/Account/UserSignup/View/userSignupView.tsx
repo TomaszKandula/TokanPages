@@ -14,9 +14,9 @@ import {
     Notification,
 } from "../../../../Shared/Components";
 import { UserSignupProps } from "../userSignup";
+import "./userSignupView.css";
 
 interface UserSignupViewProps extends ViewProperties, UserSignupProps {
-    isMobile: boolean;
     caption: string;
     warning: WarningPasswordDto;
     consent: string;
@@ -145,7 +145,7 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                         </div>
                     </div>
                 </div>
-                <div className={`bulma-column ${props.isMobile ? "p-0 mt-6" : "ml-6"} is-flex is-align-self-center`}>
+                <div className="bulma-column is-flex is-align-self-center user-signup-view-margins">
                     <Skeleton isLoading={props.isLoading} mode="Rect" height={300}>
                         <article className="bulma-message bulma-is-info">
                             <div className="bulma-message-header">

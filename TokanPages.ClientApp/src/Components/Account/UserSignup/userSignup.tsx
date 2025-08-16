@@ -6,7 +6,6 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ApplicationDialogAction, UserSignupAction } from "../../../Store/Actions";
 import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
-import { useDimensions } from "../../../Shared/Hooks";
 import { UserSignupView } from "./View/userSignupView";
 import Validate from "validate.js";
 
@@ -34,7 +33,6 @@ export interface UserSignupProps {
 }
 
 export const UserSignup = (props: UserSignupProps): React.ReactElement => {
-    const media = useDimensions();
     const dispatch = useDispatch();
 
     const signup = useSelector((state: ApplicationState) => state.userSignup);
@@ -150,7 +148,6 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
     return (
         <UserSignupView
             isLoading={data?.isLoading}
-            isMobile={media.isMobile}
             caption={content?.caption}
             warning={content?.warning}
             consent={content?.consent}

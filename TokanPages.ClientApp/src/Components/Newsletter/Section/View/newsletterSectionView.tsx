@@ -2,9 +2,9 @@ import * as React from "react";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { Animated, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
+import "./newsletterSectionView.css";
 
 interface NewsletterViewProps extends ViewProperties {
-    isMobile: boolean;
     caption: string;
     text: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
@@ -32,7 +32,7 @@ export const NewsletterSectionView = (props: NewsletterViewProps): React.ReactEl
     <section className={props.className}>
         <div className="bulma-container">
             <div className="py-6">
-                <div className={props.isMobile ? "m-5" : "m-6"}>
+                <div className="newsletter-margins">
                     <div className="bulma-columns bulma-is-vcentered">
                         <div className="bulma-column">
                             <Animated dataAos="fade-down" dataAosDelay={150}>

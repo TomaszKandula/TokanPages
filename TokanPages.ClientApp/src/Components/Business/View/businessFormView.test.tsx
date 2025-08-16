@@ -10,7 +10,6 @@ describe("test component: businessFormView", () => {
             <BrowserRouter>
                 <BusinessFormView
                     isLoading={false}
-                    isMobile={false}
                     caption="Business Inquiry"
                     progress={false}
                     buttonText="Submit"

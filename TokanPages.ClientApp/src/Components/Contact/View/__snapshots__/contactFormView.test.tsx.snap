@@ -10,7 +10,7 @@ Object {
           class="bulma-container bulma-is-max-desktop"
         >
           <div
-            class="p-6"
+            class="contact-padding"
           >
             <div
               data-aos="fade-down"
@@ -23,7 +23,7 @@ Object {
               </p>
             </div>
             <div
-              class="px-6"
+              class="contact-card-padding "
             >
               <div
                 class="bulma-card "
@@ -242,7 +242,7 @@ Object {
         class="bulma-container bulma-is-max-desktop"
       >
         <div
-          class="p-6"
+          class="contact-padding"
         >
           <div
             data-aos="fade-down"
@@ -255,7 +255,7 @@ Object {
             </p>
           </div>
           <div
-            class="px-6"
+            class="contact-card-padding "
           >
             <div
               class="bulma-card "

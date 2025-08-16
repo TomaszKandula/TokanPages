@@ -1,0 +1,9 @@
+.user-signin-view-margins {
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+    .user-signin-view-margins {
+        margin: 1rem;
+    }
+}

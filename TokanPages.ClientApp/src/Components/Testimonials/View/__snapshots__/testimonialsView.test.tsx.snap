@@ -23,10 +23,10 @@ Object {
               </p>
             </div>
             <div
-              class="bulma-columns m-6"
+              class="bulma-columns testimonials-card-columns"
             >
               <div
-                class="bulma-column "
+                class="bulma-column testimonials-card-column"
               >
                 <div
                   data-aos="fade-up"
@@ -43,7 +43,7 @@ Object {
                       title="Testimonials"
                     />
                     <div
-                      class="bulma-card-content mt-6 p-4"
+                      class="bulma-card-content mt-6 testimonials-card-content"
                     >
                       <p
                         class="is-size-5 has-text-centered has-text-weight-semibold mt-6 p-4"
@@ -100,7 +100,7 @@ Object {
                 </div>
               </div>
               <div
-                class="bulma-column "
+                class="bulma-column testimonials-card-column"
               >
                 <div
                   data-aos="fade-up"
@@ -117,7 +117,7 @@ Object {
                       title="Testimonials"
                     />
                     <div
-                      class="bulma-card-content mt-6 p-4"
+                      class="bulma-card-content mt-6 testimonials-card-content"
                     >
                       <p
                         class="is-size-5 has-text-centered has-text-weight-semibold mt-6 p-4"
@@ -172,7 +172,7 @@ Object {
                 </div>
               </div>
               <div
-                class="bulma-column "
+                class="bulma-column testimonials-card-column"
               >
                 <div
                   data-aos="fade-up"
@@ -189,7 +189,7 @@ Object {
                       title="Testimonials"
                     />
                     <div
-                      class="bulma-card-content mt-6 p-4"
+                      class="bulma-card-content mt-6 testimonials-card-content"
                     >
                       <p
                         class="is-size-5 has-text-centered has-text-weight-semibold mt-6 p-4"
@@ -268,10 +268,10 @@ Object {
             </p>
           </div>
           <div
-            class="bulma-columns m-6"
+            class="bulma-columns testimonials-card-columns"
           >
             <div
-              class="bulma-column "
+              class="bulma-column testimonials-card-column"
             >
               <div
                 data-aos="fade-up"
@@ -288,7 +288,7 @@ Object {
                     title="Testimonials"
                   />
                   <div
-                    class="bulma-card-content mt-6 p-4"
+                    class="bulma-card-content mt-6 testimonials-card-content"
                   >
                     <p
                       class="is-size-5 has-text-centered has-text-weight-semibold mt-6 p-4"
@@ -345,7 +345,7 @@ Object {
               </div>
             </div>
             <div
-              class="bulma-column "
+              class="bulma-column testimonials-card-column"
             >
               <div
                 data-aos="fade-up"
@@ -362,7 +362,7 @@ Object {
                     title="Testimonials"
                   />
                   <div
-                    class="bulma-card-content mt-6 p-4"
+                    class="bulma-card-content mt-6 testimonials-card-content"
                   >
                     <p
                       class="is-size-5 has-text-centered has-text-weight-semibold mt-6 p-4"
@@ -417,7 +417,7 @@ Object {
               </div>
             </div>
             <div
-              class="bulma-column "
+              class="bulma-column testimonials-card-column"
             >
               <div
                 data-aos="fade-up"
@@ -434,7 +434,7 @@ Object {
                     title="Testimonials"
                   />
                   <div
-                    class="bulma-card-content mt-6 p-4"
+                    class="bulma-card-content mt-6 testimonials-card-content"
                   >
                     <p
                       class="is-size-5 has-text-centered has-text-weight-semibold mt-6 p-4"
