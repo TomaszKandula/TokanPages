@@ -11,6 +11,7 @@ export type TInputColours =
     | "bulma-is-warning"
     | "bulma-is-danger";
 export type TInputSizes = "bulma-is-small" | "bulma-is-normal" | "bulma-is-medium" | "bulma-is-large";
+export type TLoading = "lazy" | "eager";
 
 export type ReactSyntheticEvent = React.SyntheticEvent;
 
