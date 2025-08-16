@@ -1,3 +1,5 @@
+import { TLoading } from "../../../../../Shared/types";
+
 export interface TextObject {
     items: TextItem[];
 }
@@ -16,6 +18,7 @@ export interface TextItem {
     propTitle?: string;
     propSubtitle?: string;
     propImg?: string;
+    loading?: TLoading;
     constraint?: ConstraintProps;
 }
 

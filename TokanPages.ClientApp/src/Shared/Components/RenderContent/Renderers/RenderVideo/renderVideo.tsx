@@ -39,6 +39,7 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
                             alt="Video related to the presented article text"
                             width={props.constraint?.width}
                             height={props.constraint?.height}
+                            loading={props.loading ?? "lazy"}
                         />
                     ) : (
                         <video

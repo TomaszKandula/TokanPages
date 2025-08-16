@@ -1,4 +1,5 @@
 import * as React from "react";
+import { TLoading } from "Shared/types";
 import validate from "validate.js";
 
 interface RenderImageProps {
@@ -9,6 +10,7 @@ interface RenderImageProps {
     height?: number;
     alt?: string;
     title?: string;
+    loading?: TLoading;
     onClick?: () => void;
 }
 
@@ -30,7 +32,7 @@ export const CustomImage = (props: RenderImageProps): React.ReactElement | null 
     return (
         <img
             src={src}
-            loading="lazy"
+            loading={props.loading}
             width={props.width}
             height={props.height}
             className={className}

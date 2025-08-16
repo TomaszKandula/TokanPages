@@ -45,6 +45,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                             onClick={onClickEvent}
                             width={props.constraint?.width}
                             height={props.constraint?.height}
+                            loading={props.loading ?? "lazy"}
                         />
                     </figure>
                 </div>
@@ -59,6 +60,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                             onClick={onClickEvent}
                             width={props.constraint?.width}
                             height={props.constraint?.height}
+                            loading={props.loading ?? "lazy"}
                         />
                     </figure>
                 </div>
