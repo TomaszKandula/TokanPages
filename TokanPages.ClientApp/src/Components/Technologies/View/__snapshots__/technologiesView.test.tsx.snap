@@ -23,7 +23,7 @@ Object {
               </p>
             </div>
             <div
-              class="m-6"
+              class="technologies-view-margins"
             >
               <div
                 class="bulma-columns"
@@ -210,7 +210,7 @@ Object {
             </p>
           </div>
           <div
-            class="m-6"
+            class="technologies-view-margins"
           >
             <div
               class="bulma-columns"

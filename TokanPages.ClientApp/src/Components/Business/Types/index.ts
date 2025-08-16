@@ -38,7 +38,6 @@ export interface BusinessFormProps {
 }
 
 export interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
-    isMobile: boolean;
     caption: string;
     progress: boolean;
     buttonText: string;

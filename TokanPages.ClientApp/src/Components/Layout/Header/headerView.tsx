@@ -19,42 +19,48 @@ interface RenderPictureProps {
 
 interface ButtonProps extends HeaderContentDto {
     isLoading: boolean;
-    isMobile: boolean;
 }
 
-const TertiaryButton = (props: ButtonProps): React.ReactElement => {
-    const baseClass = "bulma-button bulma-is-light mr-2";
-    const size = props.isMobile ? "bulma-is-fullwidth mb-2" : "";
+const TertiaryButton = (props: ButtonProps): React.ReactElement => (
+    <Link to={props?.tertiaryButton?.href ?? ""} className="link">
+        <button className="bulma-button bulma-is-light mr-2 is-hidden-touch">{props?.tertiaryButton?.text}</button>
+        <button className="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop">
+            {props?.tertiaryButton?.text}
+        </button>
+    </Link>
+);
 
-    return (
-        <Link to={props?.tertiaryButton?.href ?? ""} className="link">
-            <button className={`${baseClass} ${size}`}>{props?.tertiaryButton?.text}</button>
-        </Link>
-    );
-};
-
-const SecondaryButton = (props: ButtonProps): React.ReactElement => {
-    const baseClass = "bulma-button bulma-is-light mr-2";
-    const size = props.isMobile ? "bulma-is-fullwidth mb-2" : "";
-
-    return (
-        <Link to={props?.secondaryButton?.href ?? ""} className="link">
-            <button className={`${baseClass} ${size}`}>{props?.secondaryButton?.text}</button>
-        </Link>
-    );
-};
+const SecondaryButton = (props: ButtonProps): React.ReactElement => (
+    <Link to={props?.secondaryButton?.href ?? ""} className="link">
+        <button className="bulma-button bulma-is-light mr-2 is-hidden-touch">{props?.secondaryButton?.text}</button>
+        <button className="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop">
+            {props?.secondaryButton?.text}
+        </button>
+    </Link>
+);
 
 const PrimaryButton = (props: ButtonProps): React.ReactElement => {
-    const baseClass = "bulma-button bulma-is-link bulma-is-light mr-2";
-    const size = props.isMobile ? "bulma-is-fullwidth mb-2" : "";
-
     if (Validate.isEmpty(props?.primaryButton?.href)) {
-        return <button className={`${baseClass} ${size}`}>{props?.primaryButton?.text}</button>;
+        return (
+            <>
+                <button className="bulma-button bulma-is-link bulma-is-light mr-2 is-hidden-touch">
+                    {props?.primaryButton?.text}
+                </button>
+                <button className="bulma-button bulma-is-link bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop">
+                    {props?.primaryButton?.text}
+                </button>
+            </>
+        );
     }
 
     return (
         <Link to={props?.primaryButton?.href ?? ""} className="link">
-            <button className={`${baseClass} ${size}`}>{props?.primaryButton?.text}</button>
+            <button className="bulma-button bulma-is-link bulma-is-light mr-2 is-hidden-touch">
+                {props?.primaryButton?.text}
+            </button>
+            <button className="bulma-button bulma-is-link bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop">
+                {props?.primaryButton?.text}
+            </button>
         </Link>
     );
 };
@@ -141,13 +147,13 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                             </Skeleton>
                             <div className={`pt-4 ${isLoading ? "is-flex is-gap-1.5" : ""}`}>
                                 <Skeleton isLoading={isLoading} mode="Rect" width={100}>
-                                    <PrimaryButton {...header} isLoading={isLoading} isMobile={media.isMobile} />
+                                    <PrimaryButton {...header} isLoading={isLoading} />
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Rect" width={100}>
-                                    <SecondaryButton {...header} isLoading={isLoading} isMobile={media.isMobile} />
+                                    <SecondaryButton {...header} isLoading={isLoading} />
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Rect" width={100}>
-                                    <TertiaryButton {...header} isLoading={isLoading} isMobile={media.isMobile} />
+                                    <TertiaryButton {...header} isLoading={isLoading} />
                                 </Skeleton>
                             </div>
                         </div>

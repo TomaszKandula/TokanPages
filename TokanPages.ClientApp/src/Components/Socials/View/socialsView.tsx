@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { GET_SOCIALS_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, Icon, Link, CustomImage, Skeleton } from "../../../Shared/Components";
-import { useDimensions } from "../../../Shared/Hooks";
 import "./socialsView.css";
 
 interface SocialsViewProps {
@@ -11,19 +10,9 @@ interface SocialsViewProps {
 }
 
 export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
-    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isLoading = data?.isLoading;
     const socials = data?.components?.sectionSocials;
-
-    let paddings;
-    if (media.isDesktop || media.isMobile) {
-        paddings = "pt-4 pb-6";
-    }
-
-    if (media.isTablet) {
-        paddings = "pt-4 pb-4 px-2";
-    }
 
     return (
         <section className={props.className}>
@@ -36,8 +25,8 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                             </p>
                         </Skeleton>
                     </Animated>
-                    <div className={`bulma-columns ${media.isMobile ? "m-4" : "m-6"}`}>
-                        <div className={`bulma-column is-clickable ${media.isMobile ? "mt-6" : ""}`}>
+                    <div className="bulma-columns socials-card-columns">
+                        <div className="bulma-column is-clickable socials-card-column">
                             <Animated dataAos="fade-up" dataAosDelay={350}>
                                 <div className="bulma-card">
                                     <Link to={socials?.social1?.action?.href}>
@@ -65,7 +54,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 />
                                             </Skeleton>
                                         </div>
-                                        <div className={`bulma-card-content ${paddings}`}>
+                                        <div className="bulma-card-content socials-card-content">
                                             <div className="is-flex is-justify-content-center pt-6">
                                                 <Skeleton isLoading={isLoading} mode="Rect" height={24}>
                                                     <figure className="bulma-image bulma-is-32x32">
@@ -95,7 +84,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                 </div>
                             </Animated>
                         </div>
-                        <div className={`bulma-column is-clickable ${media.isMobile ? "mt-6" : ""}`}>
+                        <div className="bulma-column is-clickable socials-card-column">
                             <Animated dataAos="fade-up" dataAosDelay={150}>
                                 <div className="bulma-card">
                                     <Link to={socials?.social2?.action?.href}>
@@ -123,7 +112,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 />
                                             </Skeleton>
                                         </div>
-                                        <div className={`bulma-card-content ${paddings}`}>
+                                        <div className="bulma-card-content socials-card-content">
                                             <div className="is-flex is-justify-content-center pt-6">
                                                 <Skeleton isLoading={isLoading} mode="Rect" height={24}>
                                                     <figure className="bulma-image bulma-is-32x32">
@@ -153,7 +142,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                 </div>
                             </Animated>
                         </div>
-                        <div className={`bulma-column is-clickable ${media.isMobile ? "mt-6" : ""}`}>
+                        <div className="bulma-column is-clickable socials-card-column">
                             <Animated dataAos="fade-up" dataAosDelay={250}>
                                 <div className="bulma-card">
                                     <Link to={socials?.social3?.action?.href}>
@@ -181,7 +170,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 />
                                             </Skeleton>
                                         </div>
-                                        <div className={`bulma-card-content ${paddings}`}>
+                                        <div className="bulma-card-content socials-card-content">
                                             <div className="is-flex is-justify-content-center pt-6">
                                                 <Skeleton isLoading={isLoading} mode="Rect" height={24}>
                                                     <figure className="bulma-image bulma-is-32x32">

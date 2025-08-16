@@ -1,3 +1,15 @@
+.business-margins {
+    margin-left: 3rem;
+}
+
+@media (max-width: 768px) {
+    .business-margins {
+        margin-left: 0;
+        margin-top: 3rem;
+        padding: 0;
+    }
+}
+
 .business-unselected {
     border: 1px solid #efefef;
     border-radius: 10px !important;

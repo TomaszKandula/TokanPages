@@ -197,7 +197,7 @@ Object {
               </div>
             </div>
             <div
-              class="bulma-column ml-6 is-flex is-align-self-center"
+              class="bulma-column is-flex is-align-self-center user-signup-view-margins"
             >
               <article
                 class="bulma-message bulma-is-info"
@@ -446,7 +446,7 @@ Object {
             </div>
           </div>
           <div
-            class="bulma-column ml-6 is-flex is-align-self-center"
+            class="bulma-column is-flex is-align-self-center user-signup-view-margins"
           >
             <article
               class="bulma-message bulma-is-info"

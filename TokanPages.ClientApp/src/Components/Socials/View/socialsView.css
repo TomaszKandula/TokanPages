@@ -26,3 +26,36 @@
 .socials-text {
     height: 85px;
 }
+
+.socials-card-columns {
+    margin: 3rem !important;
+}
+
+@media (max-width: 768px) {
+    .socials-card-columns {
+        margin: 0.5rem !important;
+    }
+}
+
+.socials-card-column {
+    margin-top: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .socials-card-column {
+        margin-top: 3rem !important;
+    }
+}
+
+.socials-card-content {
+    padding: 1rem;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .socials-card-content {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        padding-right: 0rem;
+        padding-left: 0rem;
+    }
+}

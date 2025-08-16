@@ -11,3 +11,36 @@
     overflow: hidden;
     position: absolute;
 }
+
+.testimonials-card-columns {
+    margin: 3rem !important;
+}
+
+@media (max-width: 768px) {
+    .testimonials-card-columns {
+        margin: 0.5rem !important;
+    }
+}
+
+.testimonials-card-column {
+    margin-top: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .testimonials-card-column {
+        margin-top: 3rem !important;
+    }
+}
+
+.testimonials-card-content {
+    padding: 1rem;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .testimonials-card-content {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}

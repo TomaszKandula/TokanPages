@@ -26,15 +26,6 @@ describe("test component: testimonialsView", () => {
         const html = render(
             <TestimonialsView
                 isLoading={false}
-                media={{
-                    hasPortrait: true,
-                    hasLandscape: false,
-                    isDesktop: true,
-                    isMobile: false,
-                    isTablet: false,
-                    width: 1440,
-                    height: 720,
-                }}
                 caption={testContent.caption}
                 subtitle={testContent.subtitle}
                 photo1={testContent.photo1}

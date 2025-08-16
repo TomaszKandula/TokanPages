@@ -7,7 +7,6 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Actions";
 import { SigninFormInput, ValidateSigninForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
-import { useDimensions } from "../../../Shared/Hooks";
 import { UserSigninView } from "./View/userSigninView";
 import Validate from "validate.js";
 
@@ -25,7 +24,6 @@ export interface UserSigninProps {
 }
 
 export const UserSignin = (props: UserSigninProps): React.ReactElement => {
-    const media = useDimensions();
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -116,7 +114,6 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
     return (
         <UserSigninView
             isLoading={data?.isLoading}
-            isMobile={media.isMobile}
             caption={content?.caption}
             button={content?.button}
             link1={content?.link1}

@@ -5,7 +5,6 @@ import { GET_SHOWCASE_IMAGE_URL } from "../../../Api";
 import { FeatureShowcaseContentDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, CustomImage, RenderHtml, Skeleton } from "../../../Shared/Components";
-import { useDimensions } from "../../../Shared/Hooks";
 import Validate from "validate.js";
 import "./showcaseView.css";
 
@@ -30,7 +29,6 @@ const ActiveButton = (props: ActiveButtonProps): React.ReactElement => {
 };
 
 export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
-    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isLoading = data?.isLoading;
     const showcase = data?.components?.sectionShowcase;
@@ -47,7 +45,7 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                         </Skeleton>
                     </Animated>
                     <Animated dataAos="fade-up">
-                        <div className={`bulma-columns ${media.isMobile ? "m-4" : "m-6"}`}>
+                        <div className="bulma-columns showcase-feature-columns">
                             <div className="bulma-column p-0 is-flex is-flex-direction-column is-align-self-center">
                                 <Skeleton isLoading={isLoading} mode="Text">
                                     <h2 className="is-size-3 py-5 has-text-black">{showcase?.heading}</h2>
@@ -56,7 +54,7 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                                     <RenderHtml
                                         value={showcase?.text}
                                         tag="p"
-                                        className={`is-size-5 py-3 ${media.isDesktop ? "pr-6" : "pr-4"} has-text-grey line-height-18`}
+                                        className="is-size-5 py-3 has-text-grey line-height-18 showcase-feature-text"
                                     />
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Rect">

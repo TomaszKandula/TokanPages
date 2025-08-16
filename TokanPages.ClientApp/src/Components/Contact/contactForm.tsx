@@ -2,7 +2,6 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
-import { useDimensions } from "../../Shared/Hooks";
 import { ContactFormInput, ValidateContactForm } from "../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { IconType, OperationStatus } from "../../Shared/enums";
@@ -27,7 +26,6 @@ export interface ContactFormProps {
 }
 
 export const ContactForm = (props: ContactFormProps): React.ReactElement => {
-    const media = useDimensions();
     const dispatch = useDispatch();
 
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
@@ -139,7 +137,6 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
     return (
         <ContactFormView
             isLoading={data?.isLoading}
-            isMobile={media.isMobile}
             caption={contactForm?.caption}
             text={contactForm?.text}
             keyHandler={keyHandler}

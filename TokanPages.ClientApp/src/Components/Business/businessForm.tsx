@@ -5,7 +5,6 @@ import { OfferItemDto } from "../../Api/Models";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
 import { IconType, OperationStatus } from "../../Shared/enums";
-import { useDimensions } from "../../Shared/Hooks";
 import { INTERNAL_MESSAGE_TEXT, INTERNAL_SUBJECT_TEXT, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { formatPhoneNumber } from "../../Shared/Services/Converters";
 import { ValidateBusinessForm } from "../../Shared/Services/FormValidation";
@@ -26,7 +25,6 @@ const formDefault: MessageFormProps = {
 };
 
 export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
-    const media = useDimensions();
     const dispatch = useDispatch();
 
     const email = useSelector((state: ApplicationState) => state.applicationEmail);
@@ -212,7 +210,6 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     return (
         <BusinessFormView
             isLoading={data.isLoading}
-            isMobile={media.isMobile}
             caption={businessForm.caption}
             progress={hasProgress}
             buttonText={businessForm.buttonText}

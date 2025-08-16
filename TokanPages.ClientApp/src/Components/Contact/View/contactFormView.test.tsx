@@ -10,7 +10,6 @@ describe("test component: contactFormView", () => {
             <BrowserRouter>
                 <ContactFormView
                     isLoading={false}
-                    isMobile={false}
                     caption="Contact me"
                     text="If you have any questions..."
                     hasCaption={true}

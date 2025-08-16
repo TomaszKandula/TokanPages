@@ -8,7 +8,6 @@ describe("test component: newsletterView", () => {
         const html = render(
             <NewsletterSectionView
                 isLoading={false}
-                isMobile={false}
                 caption={"Join the newsletter!"}
                 text={"We will never share your email address."}
                 keyHandler={jest.fn()}

@@ -1,0 +1,24 @@
+.client-margins {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+@media (max-width: 768px) {
+    .client-margins {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+}
+
+.client-item-margins {
+    margin: 3rem;
+}
+
+@media (min-width: 1024px) {
+    .client-item-margins {
+        margin-right: 3rem;
+        margin-left: 3rem;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}

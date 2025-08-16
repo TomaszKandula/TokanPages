@@ -20,3 +20,14 @@
     background-size: 40px 40px;
     background-position: -5px -5px;
 }
+
+.custom-card-margins {
+    margin: auto;
+}
+
+@media (max-width: 768px) {
+    .custom-card-margins {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}

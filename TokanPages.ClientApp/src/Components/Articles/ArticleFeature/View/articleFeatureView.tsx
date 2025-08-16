@@ -5,7 +5,6 @@ import { GET_ARTICLE_IMAGE_URL } from "../../../../Api";
 import { ArticleFeaturesContentDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { Animated, CustomImage, RenderHtml, Skeleton } from "../../../../Shared/Components";
-import { useDimensions } from "../../../../Shared/Hooks";
 import Validate from "validate.js";
 import "./articleFeatureView.css";
 
@@ -26,11 +25,9 @@ const ActiveButton = (props: ArticleFeaturesContentDto): React.ReactElement => {
 };
 
 export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactElement => {
-    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isLoading = data?.isLoading;
     const features = data?.components?.sectionArticle;
-    const tabletPadding = media.isTablet ? "pl-4" : "pl-0";
 
     return (
         <section className={props.className}>
@@ -44,14 +41,10 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                         </Skeleton>
                     </Animated>
                     <Animated dataAos="fade-up">
-                        <div
-                            className={`bulma-columns bulma-is-3 is-flex-direction-row ${media.isMobile ? "m-4" : "m-6"}`}
-                        >
+                        <div className="bulma-columns bulma-is-3 is-flex-direction-row article-feature-columns">
                             <Skeleton isLoading={isLoading} mode="Rect" width={200} height={200}>
-                                <div className={`bulma-column ${media.isMobile ? "p-0" : "p-2"}`}>
-                                    <div
-                                        className={`bulma-columns bulma-is-3 ${media.isMobile ? "do-not-display" : ""}`}
-                                    >
+                                <div className="bulma-column article-feature-column">
+                                    <div className="bulma-columns bulma-is-3 is-hidden-mobile">
                                         <div className="bulma-column bulma-is-three-quarters">
                                             <div className="bulma-card article-feature-card-shadow">
                                                 <div className="bulma-card-image">
@@ -85,9 +78,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     </div>
                                     <div className="bulma-columns bulma-is-3">
                                         <div className="bulma-column is-flex is-align-self-flex-start">
-                                            <div
-                                                className={`bulma-card article-feature-card-shadow ${media.isMobile ? "do-not-display" : ""}`}
-                                            >
+                                            <div className="bulma-card article-feature-card-shadow is-hidden-mobile">
                                                 <div className="bulma-card-image">
                                                     <figure className="bulma-image">
                                                         <CustomImage
@@ -117,9 +108,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                     </div>
                                 </div>
                             </Skeleton>
-                            <div
-                                className={`bulma-column is-align-self-center py-3 pr-0 ${media.isDesktop ? "pl-6" : tabletPadding}`}
-                            >
+                            <div className="bulma-column is-align-self-center py-3 pr-0 article-feature-padding-left">
                                 <Skeleton isLoading={isLoading} mode="Text">
                                     <RenderHtml
                                         value={features?.title}

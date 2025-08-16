@@ -27,7 +27,7 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
     const onClickEvent = React.useCallback(() => setHasImage(false), []);
 
     return (
-        <div className="bulma-card my-4">
+        <div className="bulma-card my-6">
             <div className="bulma-card-image">
                 <figure className="bulma-image">
                     {hasImage ? (

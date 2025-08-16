@@ -2,3 +2,23 @@
     height: 512px !important;
     object-fit: cover;
 }
+
+.showcase-feature-columns {
+    margin: 3rem !important;
+}
+
+@media (max-width: 768px) {
+    .showcase-feature-columns {
+        margin: 1rem !important;
+    }
+}
+
+.showcase-feature-text {
+    padding-right: 1rem;
+}
+
+@media (min-width: 1024px) {
+    .showcase-feature-text {
+        padding-right: 3rem;
+    }
+}

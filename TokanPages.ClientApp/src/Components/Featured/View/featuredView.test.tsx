@@ -42,7 +42,7 @@ describe("test component: featuredView", () => {
 
     it("should render correctly '<FeaturedView />' when content is loaded.", () => {
         const html = render(<FeaturedView />);
-        expect(useSelectorMock).toBeCalledTimes(3);
+        expect(useSelectorMock).toBeCalledTimes(1);
         expect(html).toMatchSnapshot();
     });
 });
