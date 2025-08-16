@@ -251,7 +251,6 @@ Object {
             >
               <img
                 alt="Video related to the presented article text"
-                class="lazyloaded"
                 loading="lazy"
                 src="http://localhost:5000/api/v1cheers-commercial.png"
                 title="Video"
@@ -440,7 +439,6 @@ Object {
           >
             <img
               alt="Video related to the presented article text"
-              class="lazyloaded"
               loading="lazy"
               src="http://localhost:5000/api/v1cheers-commercial.png"
               title="Video"

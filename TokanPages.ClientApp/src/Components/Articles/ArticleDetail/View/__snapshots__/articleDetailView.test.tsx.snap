@@ -50,7 +50,7 @@ Object {
                   </p>
                   <img
                     alt="An article language flag"
-                    class="article-details-flag is-flex is-align-self-center lazyloaded"
+                    class="article-details-flag is-flex is-align-self-center"
                     loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                     title="Articles"
@@ -244,7 +244,7 @@ Object {
                 </p>
                 <img
                   alt="An article language flag"
-                  class="article-details-flag is-flex is-align-self-center lazyloaded"
+                  class="article-details-flag is-flex is-align-self-center"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
                   title="Articles"

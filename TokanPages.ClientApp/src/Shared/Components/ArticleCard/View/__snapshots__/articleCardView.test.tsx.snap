@@ -14,7 +14,7 @@ Object {
           >
             <img
               alt="An article card for given article"
-              class="article-box-image article-box-image-desktop lazyloaded"
+              class="article-box-image article-box-image-desktop"
               loading="lazy"
               src="/images/card.jpg"
               title="Article illustration"
@@ -94,7 +94,7 @@ Object {
                 </div>
                 <img
                   alt="An article language flag"
-                  class="article-flag-image lazyloaded"
+                  class="article-flag-image"
                   height="24"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
@@ -123,7 +123,7 @@ Object {
         >
           <img
             alt="An article card for given article"
-            class="article-box-image article-box-image-desktop lazyloaded"
+            class="article-box-image article-box-image-desktop"
             loading="lazy"
             src="/images/card.jpg"
             title="Article illustration"
@@ -203,7 +203,7 @@ Object {
               </div>
               <img
                 alt="An article language flag"
-                class="article-flag-image lazyloaded"
+                class="article-flag-image"
                 height="24"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"

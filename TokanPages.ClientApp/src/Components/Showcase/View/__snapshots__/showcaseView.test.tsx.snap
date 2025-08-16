@@ -72,7 +72,7 @@ Object {
                       >
                         <img
                           alt="An image illustrating showcase section"
-                          class="showcase-feature-image lazyloaded"
+                          class="showcase-feature-image"
                           loading="lazy"
                           src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/showcase/image.webp"
                           title="Illustration"
@@ -156,7 +156,7 @@ Object {
                     >
                       <img
                         alt="An image illustrating showcase section"
-                        class="showcase-feature-image lazyloaded"
+                        class="showcase-feature-image"
                         loading="lazy"
                         src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/showcase/image.webp"
                         title="Illustration"

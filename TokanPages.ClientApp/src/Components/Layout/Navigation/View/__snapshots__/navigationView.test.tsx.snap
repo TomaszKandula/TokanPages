@@ -18,7 +18,7 @@ Object {
           >
             <img
               alt="An application logo"
-              class="ml-4 lazyloaded"
+              class="ml-4"
               height="30"
               loading="lazy"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.webp"
@@ -45,7 +45,7 @@ Object {
             >
               <img
                 alt="A flag (en) for current language selection"
-                class="bulma-image bulma-is-16x16 lazyloaded"
+                class="bulma-image bulma-is-16x16"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                 title="Language flag"
@@ -62,7 +62,7 @@ Object {
               >
                 <img
                   alt="A flag (English) symbolizing available language"
-                  class="bulma-image bulma-is-16x16 mr-4 lazyloaded"
+                  class="bulma-image bulma-is-16x16 mr-4"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                   title="Language flag"
@@ -89,7 +89,7 @@ Object {
               >
                 <img
                   alt="A flag (Polski) symbolizing available language"
-                  class="bulma-image bulma-is-16x16 mr-4 lazyloaded"
+                  class="bulma-image bulma-is-16x16 mr-4"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
                   title="Language flag"
@@ -132,7 +132,7 @@ Object {
         >
           <img
             alt="An application logo"
-            class="ml-4 lazyloaded"
+            class="ml-4"
             height="30"
             loading="lazy"
             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.webp"
@@ -159,7 +159,7 @@ Object {
           >
             <img
               alt="A flag (en) for current language selection"
-              class="bulma-image bulma-is-16x16 lazyloaded"
+              class="bulma-image bulma-is-16x16"
               loading="lazy"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
               title="Language flag"
@@ -176,7 +176,7 @@ Object {
             >
               <img
                 alt="A flag (English) symbolizing available language"
-                class="bulma-image bulma-is-16x16 mr-4 lazyloaded"
+                class="bulma-image bulma-is-16x16 mr-4"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                 title="Language flag"
@@ -203,7 +203,7 @@ Object {
             >
               <img
                 alt="A flag (Polski) symbolizing available language"
-                class="bulma-image bulma-is-16x16 mr-4 lazyloaded"
+                class="bulma-image bulma-is-16x16 mr-4"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
                 title="Language flag"
