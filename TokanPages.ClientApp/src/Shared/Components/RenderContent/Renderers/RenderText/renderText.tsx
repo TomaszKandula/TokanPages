@@ -26,7 +26,7 @@ export const RenderText = (props: TextItem): React.ReactElement => {
         case "external-link":
             return <RenderExternalLink {...props} />;
         case "article-link":
-            return <RenderArticleLink value={value} text={props.text} />;
+            return <RenderArticleLink value={value} text={props.text} loading={props.loading} />;
         case "title":
             return <RenderTitle value={value} />;
         case "subtitle":

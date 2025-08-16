@@ -2,6 +2,7 @@ import * as React from "react";
 import { GET_FLAG_URL } from "../../../../Api";
 import { Animated, CustomImage, Icon } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/Abstractions";
+import { TLoading } from "../../../../Shared/types";
 import Validate from "validate.js";
 import "./articleCardView.css";
 
@@ -16,6 +17,7 @@ interface ArticleCardViewProps extends ViewProperties {
     canAnimate: boolean;
     readCount?: string;
     totalLikes?: string;
+    loading?: TLoading;
 }
 
 interface RenderReadCountProps {
@@ -84,6 +86,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                         className={`article-box-image ${styleImage}`}
                         title="Article illustration"
                         alt="An article card for given article"
+                        loading={props.loading}
                     />
                 </figure>
                 <div className="article-box-content">

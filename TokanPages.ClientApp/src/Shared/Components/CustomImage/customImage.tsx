@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TLoading } from "Shared/types";
+import { TLoading } from "../../../Shared/types";
 import validate from "validate.js";
 
 interface RenderImageProps {

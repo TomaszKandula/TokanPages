@@ -15,7 +15,7 @@ import {
     RenderHtml,
     RenderList,
 } from "../../../../../../Shared/Components";
-import { TComponent } from "../../../../../../Shared/types";
+import { TComponent, TLoading } from "../../../../../../Shared/types";
 import { TagType } from "../../../../../../Shared/Components/RenderHtml/types";
 import DOMPurify from "dompurify";
 import Validate from "validate.js";
@@ -24,6 +24,7 @@ import "./utilities.css";
 interface DataProps {
     value?: string;
     text?: string;
+    loading?: TLoading;
 }
 
 interface LinkProps {
@@ -128,6 +129,7 @@ export const RenderExternalLink = (props: TextItem): React.ReactElement => {
             buttonText={props.text}
             flagImage={""}
             canAnimate={false}
+            loading={props.loading}
         />
     );
 };
@@ -157,6 +159,7 @@ export const RenderInternalLink = (props: TextItem): React.ReactElement => {
             buttonText={props.text}
             flagImage={""}
             canAnimate={false}
+            loading={props.loading}
         />
     );
 };
@@ -194,6 +197,7 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
             canAnimate={false}
             readCount={info?.readCount}
             totalLikes={info?.totalLikes}
+            loading={props.loading}
         />
     );
 };
