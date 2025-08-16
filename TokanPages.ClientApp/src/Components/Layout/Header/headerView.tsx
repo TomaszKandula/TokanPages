@@ -92,7 +92,7 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement | null => 
             loading="lazy"
             title="Tom Kandula"
             alt="Your Software Developer"
-            className={`header-image header-figure lazyloaded ${props.className}`}
+            className={`header-image header-figure ${props.className}`}
         />
     );
 };

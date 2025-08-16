@@ -43,7 +43,6 @@ const RenderImages = (props: ClientsViewExtendedProps): React.ReactElement => {
                             title="Clients"
                             height={item.heigh}
                             width={item.width}
-                            className="lazyloaded"
                         />
                     </Skeleton>
                 </div>

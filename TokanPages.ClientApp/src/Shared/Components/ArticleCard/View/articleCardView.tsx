@@ -81,7 +81,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                 <figure className="bulma-image">
                     <CustomImage
                         source={props.imageUrl}
-                        className={`article-box-image ${styleImage} lazyloaded`}
+                        className={`article-box-image ${styleImage}`}
                         title="Article illustration"
                         alt="An article card for given article"
                     />
