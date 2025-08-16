@@ -278,11 +278,11 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
     const array = props.html.split("__");
     if (array.length > 0) {
         array.forEach(item => {
-            const sanitized = DOMPurify.sanitize(item, { ALLOWED_TAGS: ["a", "b", "i", "u"] });
+            const sanitized = DOMPurify.sanitize(item, { ALLOWED_TAGS: ["a", "b", "i", "u"], ADD_ATTR: ["target"] });
             if (item.includes("{") && item.includes("}")) {
                 try {
                     const data = JSON.parse(sanitized) as LinkProps;
-                    result += `<a href='${data.href}' target='${data.target}' rel='${data.rel}'>${data.text}</a>`;
+                    result += processLink({...data});
                 } catch {
                     console.error(sanitized);
                     throw new Error("Parsing error.");
@@ -299,3 +299,14 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
 
     return <RenderHtml value={result} tag={props.tag} className={props.className} />;
 };
+
+const processLink = (props: LinkProps): string => {
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+    const isHref: boolean = props.href?.includes("http://") || props.href?.includes("https://");
+
+    if (isHref) {
+        return `<a href='${props.href}' target='${props.target}' rel='${props.rel}'>${props.text}</a>`;
+    } else {
+        return `<a href='/${language.id}/${props.href}'>${props.text}</a>`;
+    }
+}

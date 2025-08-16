@@ -4,6 +4,7 @@ const ALLOWED_TAGS = Array.prototype.concat(BLOCK_TAG, TEXT_TAGS, QUOTE_TAGS, LI
 
 export const configuration = {
     ALLOWED_TAGS: ALLOWED_TAGS,
+    ADD_ATTR: ["target"],
     FORBID_TAGS: ["style"],
     FORBID_ATTR: ["style"],
     ALLOW_ARIA_ATTR: false,
