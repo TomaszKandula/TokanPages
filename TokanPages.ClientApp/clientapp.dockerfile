@@ -39,6 +39,7 @@ RUN rm -rf ./*
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get -y install bash
+RUN apt-get -y install adduser
 RUN apt-get -y install nginx
 RUN apt-get -y install nginx-full
 RUN apt-get -y install nginx-extras
