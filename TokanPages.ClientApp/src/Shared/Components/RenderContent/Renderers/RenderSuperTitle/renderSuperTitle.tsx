@@ -33,6 +33,7 @@ export const RenderSuperTitle = (props: TextItem): React.ReactElement => {
                     alt="An illustration of a presented article text title"
                     width={props.constraint?.width}
                     height={props.constraint?.height}
+                    loading={props.loading}
                 />
             </figure>
         </div>
