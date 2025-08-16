@@ -60,7 +60,12 @@ Object {
                     href="/en/action-link"
                   >
                     <button
-                      class="bulma-button bulma-is-link bulma-is-light mr-2 "
+                      class="bulma-button bulma-is-link bulma-is-light mr-2 is-hidden-touch"
+                    >
+                      Read the story
+                    </button>
+                    <button
+                      class="bulma-button bulma-is-link bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop"
                     >
                       Read the story
                     </button>
@@ -70,7 +75,12 @@ Object {
                     href="/en/download-link"
                   >
                     <button
-                      class="bulma-button bulma-is-light mr-2 "
+                      class="bulma-button bulma-is-light mr-2 is-hidden-touch"
+                    >
+                      Get the CV
+                    </button>
+                    <button
+                      class="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop"
                     >
                       Get the CV
                     </button>
@@ -80,7 +90,12 @@ Object {
                     href="/en/showcase"
                   >
                     <button
-                      class="bulma-button bulma-is-light mr-2 "
+                      class="bulma-button bulma-is-light mr-2 is-hidden-touch"
+                    >
+                      Showcase
+                    </button>
+                    <button
+                      class="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop"
                     >
                       Showcase
                     </button>
@@ -149,7 +164,12 @@ Object {
                   href="/en/action-link"
                 >
                   <button
-                    class="bulma-button bulma-is-link bulma-is-light mr-2 "
+                    class="bulma-button bulma-is-link bulma-is-light mr-2 is-hidden-touch"
+                  >
+                    Read the story
+                  </button>
+                  <button
+                    class="bulma-button bulma-is-link bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop"
                   >
                     Read the story
                   </button>
@@ -159,7 +179,12 @@ Object {
                   href="/en/download-link"
                 >
                   <button
-                    class="bulma-button bulma-is-light mr-2 "
+                    class="bulma-button bulma-is-light mr-2 is-hidden-touch"
+                  >
+                    Get the CV
+                  </button>
+                  <button
+                    class="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop"
                   >
                     Get the CV
                   </button>
@@ -169,7 +194,12 @@ Object {
                   href="/en/showcase"
                 >
                   <button
-                    class="bulma-button bulma-is-light mr-2 "
+                    class="bulma-button bulma-is-light mr-2 is-hidden-touch"
+                  >
+                    Showcase
+                  </button>
+                  <button
+                    class="bulma-button bulma-is-light mr-2 bulma-is-fullwidth mb-2 is-hidden-desktop"
                   >
                     Showcase
                   </button>

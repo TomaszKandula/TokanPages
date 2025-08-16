@@ -240,7 +240,7 @@ Object {
               </div>
             </div>
             <div
-              class="bulma-column ml-6"
+              class="bulma-column business-margins"
             >
               <div
                 class="is-flex my-5"
@@ -525,7 +525,7 @@ Object {
             </div>
           </div>
           <div
-            class="bulma-column ml-6"
+            class="bulma-column business-margins"
           >
             <div
               class="is-flex my-5"
