@@ -74,13 +74,6 @@ body {
     border-bottom-color: rgb(216, 216, 216);
 }
 
-.lazyloaded {
-    opacity: 1;
-    transition-property: opacity;
-    transition-duration: 1s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
 .no-select {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
@@ -93,10 +86,6 @@ body {
 
 .no-select:focus {
     outline: none !important;
-}
-
-.do-not-display {
-    display: none !important;
 }
 
 .card-icon-colour {
