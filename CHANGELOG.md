@@ -1,3 +1,34 @@
+# [0.160.0](https://github.com/TomaszKandula/TokanPages/compare/v0.159.1...v0.160.0) (2025-08-16)
+
+
+### Bug Fixes
+
+* typo ([ac9a5f3](https://github.com/TomaszKandula/TokanPages/commit/ac9a5f37a9466d691e32161470e4b957f3c71e5c))
+* use css instead of media query ([f93e0b0](https://github.com/TomaszKandula/TokanPages/commit/f93e0b005e5616d2d8ecec52118ff6c6f327d679))
+* wrap links ([ec292ac](https://github.com/TomaszKandula/TokanPages/commit/ec292acb9656d18505ae35b54ac39d178439551a))
+
+
+### Features
+
+* add margin ([fd80000](https://github.com/TomaszKandula/TokanPages/commit/fd800000383a93d27797156d306418a1fbc43ee1))
+* change margin ([65f736e](https://github.com/TomaszKandula/TokanPages/commit/65f736e85e8a7795a73baba975bac5fd9d320a8f))
+* change margin ([9af084f](https://github.com/TomaszKandula/TokanPages/commit/9af084f4fc02e1233a0eeb5a3add43e85b58b13d))
+* change paddings ([1f3a154](https://github.com/TomaszKandula/TokanPages/commit/1f3a1544d98f693895d9e3430199ac9d2b4e9368))
+* do not use media query for cachable views ([6cd3696](https://github.com/TomaszKandula/TokanPages/commit/6cd369666b0a082d49d2c60fffcf92d0fde2d62f))
+* do not use media query for cachable views, prefer css ([43dbca7](https://github.com/TomaszKandula/TokanPages/commit/43dbca781e41d42abb37e7e8d496a4e18e909d9f))
+* do not use media query for cacheable views ([62d9c43](https://github.com/TomaszKandula/TokanPages/commit/62d9c43205f9c4cd3a1c73371724d5a226d78f36))
+* do not use media query for cacheable views ([a29a52b](https://github.com/TomaszKandula/TokanPages/commit/a29a52b1087eeb05445c5fe05eecca33d88cd1c8))
+* do not use media query for cacheable views ([9c8dd05](https://github.com/TomaszKandula/TokanPages/commit/9c8dd05f28c26969971223827b8019c853dacddd))
+* do not use media query for cacheable views ([5556415](https://github.com/TomaszKandula/TokanPages/commit/55564151bfa3e9e1c8a254480338eb3d295d22ce))
+* do not use media query for cacheable views ([e6fd0b4](https://github.com/TomaszKandula/TokanPages/commit/e6fd0b45242af3e7eb9d08ec0a9a280611d99501))
+* do not use media query for cacheable views ([4ac2975](https://github.com/TomaszKandula/TokanPages/commit/4ac29753149bb31165a9c33c1d19b5342c287c5d))
+* do not use media query for cacheable views ([bacc23f](https://github.com/TomaszKandula/TokanPages/commit/bacc23f38641ab4eecc566cd1643df87439a0bd0))
+* do not use media query for cacheable views ([2ca2b87](https://github.com/TomaszKandula/TokanPages/commit/2ca2b87a5f721e758de88eddf40c31dbbe95a645))
+* do not use media query for cacheable views ([8186593](https://github.com/TomaszKandula/TokanPages/commit/8186593277f379149f492c00b0709b3a3ac8475d))
+* improve bottom menu behaviour ([6458b8b](https://github.com/TomaszKandula/TokanPages/commit/6458b8bb3225692cf31092240483589b6abd1fee))
+* redesign footer ([8b14ae9](https://github.com/TomaszKandula/TokanPages/commit/8b14ae9375d9b0cd1f3ab6b5f83ca727ed12fd58))
+* restyle bottom menu and toolbar ([3c577cb](https://github.com/TomaszKandula/TokanPages/commit/3c577cb01e9bedb52ac867ad746cb0c958351f16))
+
 ## [0.159.1](https://github.com/TomaszKandula/TokanPages/compare/v0.159.0...v0.159.1) (2025-08-06)
 
 
