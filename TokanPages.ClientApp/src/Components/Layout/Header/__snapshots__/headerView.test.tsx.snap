@@ -19,7 +19,7 @@ Object {
             >
               <img
                 alt="Your Software Developer"
-                class="header-image header-figure lazyloaded undefined"
+                class="header-image header-figure"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp"
                 srcset="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp 360w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-720w.webp 720w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-1440w.webp 1440w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-2880w.webp 2880w"
@@ -123,7 +123,7 @@ Object {
           >
             <img
               alt="Your Software Developer"
-              class="header-image header-figure lazyloaded undefined"
+              class="header-image header-figure"
               loading="lazy"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp"
               srcset="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-360w.webp 360w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-720w.webp 720w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-1440w.webp 1440w, http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1-2880w.webp 2880w"
