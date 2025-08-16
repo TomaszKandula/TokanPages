@@ -282,7 +282,7 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
             if (item.includes("{") && item.includes("}")) {
                 try {
                     const data = JSON.parse(sanitized) as LinkProps;
-                    result += processLink({...data});
+                    result += processLink({ ...data });
                 } catch {
                     console.error(sanitized);
                     throw new Error("Parsing error.");
@@ -309,4 +309,4 @@ const processLink = (props: LinkProps): string => {
     } else {
         return `<a href='/${language.id}/${props.href}'>${props.text}</a>`;
     }
-}
+};
