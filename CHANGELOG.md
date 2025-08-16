@@ -1,3 +1,10 @@
+## [0.160.1](https://github.com/TomaszKandula/TokanPages/compare/v0.160.0...v0.160.1) (2025-08-16)
+
+
+### Bug Fixes
+
+* install 'adduser' ([db9b041](https://github.com/TomaszKandula/TokanPages/commit/db9b0413722f1efe0ddabe5ee1e265aa54e2e37a))
+
 # [0.160.0](https://github.com/TomaszKandula/TokanPages/compare/v0.159.1...v0.160.0) (2025-08-16)
 
 
