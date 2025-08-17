@@ -1,3 +1,26 @@
+# [0.161.0](https://github.com/TomaszKandula/TokanPages/compare/v0.160.1...v0.161.0) (2025-08-17)
+
+
+### Bug Fixes
+
+* add fallback to empty string ([a582ae7](https://github.com/TomaszKandula/TokanPages/commit/a582ae7a04f658f081dd39048a5a1de136b2dcc5))
+* resolve undefined ([a4bb049](https://github.com/TomaszKandula/TokanPages/commit/a4bb049b2a52462a28fa58caa4380984b006805b))
+
+
+### Features
+
+* add helper function ([94c757d](https://github.com/TomaszKandula/TokanPages/commit/94c757d29faba7d338b02d65320fce1cf40122bb))
+* add new type ([f6658df](https://github.com/TomaszKandula/TokanPages/commit/f6658dfae7bdce4faa511908741978d32aee0946))
+* allow to pass loading prop (lazy/eager) ([b0e0937](https://github.com/TomaszKandula/TokanPages/commit/b0e093766a872747901959bfc9427f827d5c39d3))
+* improve rendering text w/links ([fa2983e](https://github.com/TomaszKandula/TokanPages/commit/fa2983e165d0d605e95a7003e693bf10be26839d))
+* pass props ([2a72221](https://github.com/TomaszKandula/TokanPages/commit/2a72221b8d253e6a1abcbd92a800c45505c08c2d))
+* process links ([c9d2e41](https://github.com/TomaszKandula/TokanPages/commit/c9d2e41a4d2ec550882c3bd354ef7ba4d9c19191))
+* remove class name ([4b564fa](https://github.com/TomaszKandula/TokanPages/commit/4b564fa1f6c3362af28f65f03bf53c2a1cf185a9))
+* remove lazyloaded class ([9f86a5a](https://github.com/TomaszKandula/TokanPages/commit/9f86a5a40db85fa32456ddd3b88a674d1a34450d))
+* remove unused styles ([80d0edc](https://github.com/TomaszKandula/TokanPages/commit/80d0edca805dfcb24e616993b991f31b8956e9c6))
+* remove user alias from article details ([d7a1c70](https://github.com/TomaszKandula/TokanPages/commit/d7a1c70b4c7d655a5d104b233c29aff8b0c6864e))
+* simplify contact form styling ([0c4ca09](https://github.com/TomaszKandula/TokanPages/commit/0c4ca097dad608f6d99644e48aca76a009352b2a))
+
 ## [0.160.1](https://github.com/TomaszKandula/TokanPages/compare/v0.160.0...v0.160.1) (2025-08-16)
 
 
