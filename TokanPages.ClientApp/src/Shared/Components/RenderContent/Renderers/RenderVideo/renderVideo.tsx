@@ -34,11 +34,11 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
                         <CustomImage
                             source={propUrl}
                             onClick={onClickEvent}
-                            className="lazyloaded"
                             title="Video"
                             alt="Video related to the presented article text"
                             width={props.constraint?.width}
                             height={props.constraint?.height}
+                            loading={props.loading}
                         />
                     ) : (
                         <video

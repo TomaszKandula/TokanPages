@@ -1,4 +1,5 @@
 import * as React from "react";
+import { TLoading } from "../../../Shared/types";
 import validate from "validate.js";
 
 interface RenderImageProps {
@@ -9,15 +10,11 @@ interface RenderImageProps {
     height?: number;
     alt?: string;
     title?: string;
+    loading?: TLoading;
     onClick?: () => void;
 }
 
 export const CustomImage = (props: RenderImageProps): React.ReactElement | null => {
-    let className = props.className;
-    if (props.className && props.className !== "" && !props.className.includes("lazyloaded")) {
-        className = `${className} lazyloaded`;
-    }
-
     let src = props.source;
     if (!validate.isEmpty(props.base) && !validate.isEmpty(props.source)) {
         src = `${props.base}/${props.source}`;
@@ -30,10 +27,10 @@ export const CustomImage = (props: RenderImageProps): React.ReactElement | null 
     return (
         <img
             src={src}
-            loading="lazy"
+            loading={props.loading ?? "lazy"}
             width={props.width}
             height={props.height}
-            className={className}
+            className={props.className}
             alt={props.alt}
             title={props.title}
             onClick={props.onClick}

@@ -9,7 +9,6 @@ import { UserAvatar } from "../../../Shared/Components/UserAvatar";
 import { MapLanguage } from "../../../Shared/Services/Utilities";
 import { useDimensions } from "../../../Shared/Hooks";
 import { ArticleContent } from "./Helpers/articleContent";
-import { AuthorName } from "./Helpers/authorName";
 import { LikesLeft } from "./Helpers/likesLeft";
 import { ReadTime } from "./Helpers/readTime";
 import { ArticleDetailView } from "./View/articleDetailView";
@@ -128,7 +127,6 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
                     userLetter={userLetter}
                 />
             }
-            authorAliasName={selection.article.author.aliasName}
             authorFirstName={selection.article.author.firstName}
             authorLastName={selection.article.author.lastName}
             authorRegistered={GetDateTime({ value: selection.article.author.registered, hasTimeVisible: false })}
@@ -139,11 +137,6 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             renderLikesLeft={LikesLeft(isAnonymous, likesLeft, template)}
             thumbsHandler={thumbsHandler}
             totalLikes={totalLikes.toLocaleString(undefined, { minimumFractionDigits: 0 })}
-            renderAuthorName={AuthorName(
-                selection.article.author.firstName,
-                selection.article.author.lastName,
-                selection.article.author.aliasName
-            )}
             authorShortBio={selection.article.author.shortBio}
             flagImage={flagImage}
             content={content}

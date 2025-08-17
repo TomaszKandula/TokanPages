@@ -36,6 +36,7 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
                         value={item.value}
                         prop={item.prop}
                         text={item.text}
+                        loading={item.loading}
                         propTitle={item.propTitle}
                         propSubtitle={item.propSubtitle}
                         propImg={item.propImg}
@@ -52,6 +53,7 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
                         value={item.value}
                         prop={item.prop}
                         text={item.text}
+                        loading={item.loading}
                         propTitle={item.propTitle}
                         propSubtitle={item.propSubtitle}
                         propImg={item.propImg}
@@ -69,6 +71,7 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
                         value={item.value}
                         prop={item.prop}
                         text={item.text}
+                        loading={item.loading}
                         constraint={item.constraint}
                     />
                 );
@@ -83,6 +86,7 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
                         value={item.value}
                         prop={item.prop}
                         text={item.text}
+                        loading={item.loading}
                         constraint={item.constraint}
                     />
                 );

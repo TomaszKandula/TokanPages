@@ -7,258 +7,23 @@ Object {
     <div>
       <section>
         <div
-          class="bulma-container bulma-is-max-desktop"
+          class="bulma-container bulma-is-max-tablet"
         >
           <div
-            class="contact-padding"
+            class="py-6"
           >
             <div
               data-aos="fade-down"
               data-aos-delay="0"
             >
               <p
-                class="is-size-3	has-text-centered has-text-link"
+                class="is-size-3	has-text-centered has-text-link pb-5"
               >
                 CONTACT ME
               </p>
             </div>
             <div
-              class="contact-card-padding "
-            >
-              <div
-                class="bulma-card "
-              >
-                <div
-                  class="bulma-card-content background-colour-inherited"
-                >
-                  <div
-                    class="is-flex is-flex-direction-column is-align-items-center"
-                  >
-                    <div>
-                      <svg
-                        class="is-flex is-align-self-center card-icon-colour"
-                        role="presentation"
-                        style="width: 2.5rem; height: 2.5rem;"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M21,8V7L18,9L15,7V8L18,10M22,3H2A2,2 0 0,0 0,5V19A2,2 0 0,0 2,21H22A2,2 0 0,0 24,19V5A2,2 0 0,0 22,3M8,6A3,3 0 0,1 11,9A3,3 0 0,1 8,12A3,3 0 0,1 5,9A3,3 0 0,1 8,6M14,18H2V17C2,15 6,13.9 8,13.9C10,13.9 14,15 14,17M22,12H14V6H22"
-                          style="fill: currentColor;"
-                        />
-                      </svg>
-                    </div>
-                    <p
-                      class="is-size-3 has-text-black"
-                    >
-                      Contact me
-                    </p>
-                  </div>
-                  <div
-                    class="pt-5"
-                  >
-                    <div
-                      class="bulma-columns"
-                    >
-                      <div
-                        class="bulma-column"
-                      >
-                        <div
-                          data-aos="zoom-in"
-                          data-aos-delay="0"
-                        >
-                          <div
-                            class="bulma-control  "
-                          >
-                            <input
-                              autocomplete="fname"
-                              class="bulma-input   "
-                              id="firstName"
-                              name="firstName"
-                              placeholder="First name"
-                              required=""
-                              type="text"
-                              value="Ester"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                      <div
-                        class="bulma-column"
-                      >
-                        <div
-                          data-aos="zoom-in"
-                          data-aos-delay="0"
-                        >
-                          <div
-                            class="bulma-control  "
-                          >
-                            <input
-                              autocomplete="lname"
-                              class="bulma-input   "
-                              id="lastName"
-                              name="lastName"
-                              placeholder="Last name"
-                              required=""
-                              type="text"
-                              value="Exposito"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="bulma-columns"
-                    >
-                      <div
-                        class="bulma-column"
-                      >
-                        <div
-                          data-aos="zoom-in"
-                          data-aos-delay="0"
-                        >
-                          <div
-                            class="bulma-control  "
-                          >
-                            <input
-                              autocomplete="email"
-                              class="bulma-input   "
-                              id="email"
-                              name="email"
-                              placeholder="Email address"
-                              required=""
-                              type="text"
-                              value="ester.exposito@gmail.com"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="bulma-columns"
-                    >
-                      <div
-                        class="bulma-column"
-                      >
-                        <div
-                          data-aos="zoom-in"
-                          data-aos-delay="0"
-                        >
-                          <div
-                            class="bulma-control  "
-                          >
-                            <input
-                              autocomplete="subject"
-                              class="bulma-input   "
-                              id="subject"
-                              name="subject"
-                              placeholder="Subject"
-                              required=""
-                              type="text"
-                              value="Test subject"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="bulma-columns"
-                    >
-                      <div
-                        class="bulma-column"
-                      >
-                        <div
-                          data-aos="zoom-in"
-                          data-aos-delay="0"
-                        >
-                          <div
-                            class="bulma-field"
-                          >
-                            <div
-                              class="bulma-control  "
-                            >
-                              <textarea
-                                class="bulma-textarea   bulma-has-fixed-size"
-                                id="message"
-                                name="message"
-                                placeholder="Message"
-                                required=""
-                              >
-                                Test message...
-                              </textarea>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div
-                      class="bulma-content"
-                    >
-                      <div
-                        class="bulma-notification is-flex is-align-items-center"
-                      >
-                        <div>
-                          <svg
-                            class="is-flex is-align-self-center has-text-link"
-                            role="presentation"
-                            style="width: 1rem; height: 1rem;"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
-                              style="fill: currentColor;"
-                            />
-                          </svg>
-                        </div>
-                        <span
-                          class="is-size-6 ml-4"
-                        >
-                          I agree!
-                        </span>
-                      </div>
-                      <div
-                        data-aos="fade-up"
-                        data-aos-delay="0"
-                      >
-                        <button
-                          class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
-                          type="submit"
-                        >
-                          Submit
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </body>,
-  "container": <div>
-    <section>
-      <div
-        class="bulma-container bulma-is-max-desktop"
-      >
-        <div
-          class="contact-padding"
-        >
-          <div
-            data-aos="fade-down"
-            data-aos-delay="0"
-          >
-            <p
-              class="is-size-3	has-text-centered has-text-link"
-            >
-              CONTACT ME
-            </p>
-          </div>
-          <div
-            class="contact-card-padding "
-          >
-            <div
-              class="bulma-card "
+              class="bulma-card  "
             >
               <div
                 class="bulma-card-content background-colour-inherited"
@@ -458,6 +223,233 @@ Object {
                         Submit
                       </button>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section>
+      <div
+        class="bulma-container bulma-is-max-tablet"
+      >
+        <div
+          class="py-6"
+        >
+          <div
+            data-aos="fade-down"
+            data-aos-delay="0"
+          >
+            <p
+              class="is-size-3	has-text-centered has-text-link pb-5"
+            >
+              CONTACT ME
+            </p>
+          </div>
+          <div
+            class="bulma-card  "
+          >
+            <div
+              class="bulma-card-content background-colour-inherited"
+            >
+              <div
+                class="is-flex is-flex-direction-column is-align-items-center"
+              >
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center card-icon-colour"
+                    role="presentation"
+                    style="width: 2.5rem; height: 2.5rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21,8V7L18,9L15,7V8L18,10M22,3H2A2,2 0 0,0 0,5V19A2,2 0 0,0 2,21H22A2,2 0 0,0 24,19V5A2,2 0 0,0 22,3M8,6A3,3 0 0,1 11,9A3,3 0 0,1 8,12A3,3 0 0,1 5,9A3,3 0 0,1 8,6M14,18H2V17C2,15 6,13.9 8,13.9C10,13.9 14,15 14,17M22,12H14V6H22"
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="is-size-3 has-text-black"
+                >
+                  Contact me
+                </p>
+              </div>
+              <div
+                class="pt-5"
+              >
+                <div
+                  class="bulma-columns"
+                >
+                  <div
+                    class="bulma-column"
+                  >
+                    <div
+                      data-aos="zoom-in"
+                      data-aos-delay="0"
+                    >
+                      <div
+                        class="bulma-control  "
+                      >
+                        <input
+                          autocomplete="fname"
+                          class="bulma-input   "
+                          id="firstName"
+                          name="firstName"
+                          placeholder="First name"
+                          required=""
+                          type="text"
+                          value="Ester"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="bulma-column"
+                  >
+                    <div
+                      data-aos="zoom-in"
+                      data-aos-delay="0"
+                    >
+                      <div
+                        class="bulma-control  "
+                      >
+                        <input
+                          autocomplete="lname"
+                          class="bulma-input   "
+                          id="lastName"
+                          name="lastName"
+                          placeholder="Last name"
+                          required=""
+                          type="text"
+                          value="Exposito"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="bulma-columns"
+                >
+                  <div
+                    class="bulma-column"
+                  >
+                    <div
+                      data-aos="zoom-in"
+                      data-aos-delay="0"
+                    >
+                      <div
+                        class="bulma-control  "
+                      >
+                        <input
+                          autocomplete="email"
+                          class="bulma-input   "
+                          id="email"
+                          name="email"
+                          placeholder="Email address"
+                          required=""
+                          type="text"
+                          value="ester.exposito@gmail.com"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="bulma-columns"
+                >
+                  <div
+                    class="bulma-column"
+                  >
+                    <div
+                      data-aos="zoom-in"
+                      data-aos-delay="0"
+                    >
+                      <div
+                        class="bulma-control  "
+                      >
+                        <input
+                          autocomplete="subject"
+                          class="bulma-input   "
+                          id="subject"
+                          name="subject"
+                          placeholder="Subject"
+                          required=""
+                          type="text"
+                          value="Test subject"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="bulma-columns"
+                >
+                  <div
+                    class="bulma-column"
+                  >
+                    <div
+                      data-aos="zoom-in"
+                      data-aos-delay="0"
+                    >
+                      <div
+                        class="bulma-field"
+                      >
+                        <div
+                          class="bulma-control  "
+                        >
+                          <textarea
+                            class="bulma-textarea   bulma-has-fixed-size"
+                            id="message"
+                            name="message"
+                            placeholder="Message"
+                            required=""
+                          >
+                            Test message...
+                          </textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="bulma-content"
+                >
+                  <div
+                    class="bulma-notification is-flex is-align-items-center"
+                  >
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-link"
+                        role="presentation"
+                        style="width: 1rem; height: 1rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                    <span
+                      class="is-size-6 ml-4"
+                    >
+                      I agree!
+                    </span>
+                  </div>
+                  <div
+                    data-aos="fade-up"
+                    data-aos-delay="0"
+                  >
+                    <button
+                      class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
+                      type="submit"
+                    >
+                      Submit
+                    </button>
                   </div>
                 </div>
               </div>

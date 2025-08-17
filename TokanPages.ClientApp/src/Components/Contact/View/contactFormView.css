@@ -2,27 +2,12 @@
     box-shadow: none;
 }
 
-.contact-padding {
-    padding: 3rem;
+.contact-form-view-margins {
+    margin: auto;
 }
 
 @media (max-width: 768px) {
-    .contact-padding {
-        padding-top: 3rem;
-        padding-bottom: 3rem;
-        padding-left: 0;
-        padding-right: 0;
-    }
-}
-
-.contact-card-padding {
-    padding-left: 3rem;
-    padding-right: 3rem;
-}
-
-@media (max-width: 768px) {
-    .contact-card-padding {
-        padding-left: 1rem;
-        padding-right: 1rem;
+    .contact-form-view-margins {
+        margin: 1rem;
     }
 }

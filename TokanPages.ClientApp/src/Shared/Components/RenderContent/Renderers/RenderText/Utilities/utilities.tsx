@@ -11,12 +11,14 @@ import {
     ArticleCard,
     ArticleCardView,
     Icon,
+    Link,
     ProgressBar,
     RenderHtml,
     RenderList,
 } from "../../../../../../Shared/Components";
-import { TComponent } from "../../../../../../Shared/types";
+import { TComponent, TLoading } from "../../../../../../Shared/types";
 import { TagType } from "../../../../../../Shared/Components/RenderHtml/types";
+import { TryParse } from "../../../../../../Shared/Services/Utilities";
 import DOMPurify from "dompurify";
 import Validate from "validate.js";
 import "./utilities.css";
@@ -24,6 +26,7 @@ import "./utilities.css";
 interface DataProps {
     value?: string;
     text?: string;
+    loading?: TLoading;
 }
 
 interface LinkProps {
@@ -37,6 +40,13 @@ interface ProcessParagraphsProps {
     tag: TagType;
     html: string | undefined;
     className?: string;
+}
+
+interface RenderTagProps {
+    tag: TagType;
+    children: React.ReactElement | React.ReactElement[];
+    className?: string;
+    style?: React.CSSProperties;
 }
 
 const NO_CONTENT = "EMPTY_CONTENT_PROVIDED";
@@ -72,6 +82,38 @@ const GetFontStyle = (value: string): string => {
         /* FALLBACK */
         default:
             return "";
+    }
+};
+
+const RenderTag = (props: RenderTagProps) => {
+    const attributes = {
+        className: props.className,
+        style: props.style,
+    };
+
+    switch (props.tag) {
+        case "p":
+            return <p {...attributes}>{props.children}</p>;
+        case "span":
+            return <span {...attributes}>{props.children}</span>;
+        case "h1":
+            return <h1 {...attributes}>{props.children}</h1>;
+        case "h2":
+            return <h2 {...attributes}>{props.children}</h2>;
+        case "h3":
+            return <h3 {...attributes}>{props.children}</h3>;
+        case "h4":
+            return <h4 {...attributes}>{props.children}</h4>;
+        case "h5":
+            return <h5 {...attributes}>{props.children}</h5>;
+        case "h6":
+            return <h6 {...attributes}>{props.children}</h6>;
+        case "blockquote":
+            return <blockquote {...attributes}>{props.children}</blockquote>;
+        case "li":
+            return <li {...attributes}>{props.children}</li>;
+        default:
+            return <div {...attributes}>{props.children}</div>;
     }
 };
 
@@ -128,6 +170,7 @@ export const RenderExternalLink = (props: TextItem): React.ReactElement => {
             buttonText={props.text}
             flagImage={""}
             canAnimate={false}
+            loading={props.loading}
         />
     );
 };
@@ -157,6 +200,7 @@ export const RenderInternalLink = (props: TextItem): React.ReactElement => {
             buttonText={props.text}
             flagImage={""}
             canAnimate={false}
+            loading={props.loading}
         />
     );
 };
@@ -194,6 +238,7 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
             canAnimate={false}
             readCount={info?.readCount}
             totalLikes={info?.totalLikes}
+            loading={props.loading}
         />
     );
 };
@@ -270,28 +315,33 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
         return <RenderHtml value={props.html} tag={props.tag} className={props.className} />;
     }
 
-    let result = "";
+    let result: React.ReactElement[] = [];
+
     const array = props.html.split("__");
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
+
     if (array.length > 0) {
         array.forEach(item => {
-            const sanitized = DOMPurify.sanitize(item, { ALLOWED_TAGS: ["a", "b", "i", "u"] });
+            const sanitized = DOMPurify.sanitize(item, { ALLOWED_TAGS: ["a", "b", "i", "u"], ADD_ATTR: ["target"] });
+
             if (item.includes("{") && item.includes("}")) {
-                try {
-                    const data = JSON.parse(sanitized) as LinkProps;
-                    result += `<a href='${data.href}' target='${data.target}' rel='${data.rel}'>${data.text}</a>`;
-                } catch {
-                    console.error(sanitized);
-                    throw new Error("Parsing error.");
-                }
+                const data = TryParse<LinkProps>(sanitized);
+                result.push(
+                    <Link to={`/${language?.id ?? ""}/${data.href}`}>
+                        <>{data.text}</>
+                    </Link>
+                );
             } else {
                 if (!Validate.isEmpty(sanitized)) {
-                    result += sanitized;
+                    result.push(<RenderHtml value={sanitized} tag="span" className={props.className} />);
                 }
             }
         });
-    } else {
-        return <RenderHtml value={props.html} tag={props.tag} className={props.className} />;
     }
 
-    return <RenderHtml value={result} tag={props.tag} className={props.className} />;
+    return (
+        <RenderTag tag={props.tag} className={props.className}>
+            {result}
+        </RenderTag>
+    );
 };

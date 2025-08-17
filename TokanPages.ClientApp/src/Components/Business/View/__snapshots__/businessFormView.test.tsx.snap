@@ -258,6 +258,7 @@ Object {
                     class="is-size-5 has-text-weight-semibold has-text-link"
                   />
                   <a
+                    class=""
                     href="/"
                   >
                     <figure
@@ -543,6 +544,7 @@ Object {
                   class="is-size-5 has-text-weight-semibold has-text-link"
                 />
                 <a
+                  class=""
                   href="/"
                 >
                   <figure

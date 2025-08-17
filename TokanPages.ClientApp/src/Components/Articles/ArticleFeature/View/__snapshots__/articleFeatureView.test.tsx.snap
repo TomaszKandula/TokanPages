@@ -49,7 +49,7 @@ Object {
                           >
                             <img
                               alt="An image illustrating listed features"
-                              class="article-feature-image article-feature-image-large lazyloaded"
+                              class="article-feature-image article-feature-image-large"
                               loading="lazy"
                               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
                               title="Illustration"
@@ -72,7 +72,7 @@ Object {
                           >
                             <img
                               alt="An image illustrating listed features"
-                              class="article-feature-image article-feature-image-small lazyloaded"
+                              class="article-feature-image article-feature-image-small"
                               loading="lazy"
                               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg"
                               title="Illustration"
@@ -98,7 +98,7 @@ Object {
                             class="bulma-image"
                           >
                             <img
-                              class="article-feature-image article-feature-image-small lazyloaded"
+                              class="article-feature-image article-feature-image-small"
                               loading="lazy"
                               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg"
                             />
@@ -120,7 +120,7 @@ Object {
                           >
                             <img
                               alt="An image illustrating listed features"
-                              class="article-feature-image article-feature-image-large lazyloaded"
+                              class="article-feature-image article-feature-image-large"
                               loading="lazy"
                               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
                               title="Illustration"
@@ -217,7 +217,7 @@ Object {
                         >
                           <img
                             alt="An image illustrating listed features"
-                            class="article-feature-image article-feature-image-large lazyloaded"
+                            class="article-feature-image article-feature-image-large"
                             loading="lazy"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image1.jpg"
                             title="Illustration"
@@ -240,7 +240,7 @@ Object {
                         >
                           <img
                             alt="An image illustrating listed features"
-                            class="article-feature-image article-feature-image-small lazyloaded"
+                            class="article-feature-image article-feature-image-small"
                             loading="lazy"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image2.jpg"
                             title="Illustration"
@@ -266,7 +266,7 @@ Object {
                           class="bulma-image"
                         >
                           <img
-                            class="article-feature-image article-feature-image-small lazyloaded"
+                            class="article-feature-image article-feature-image-small"
                             loading="lazy"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg"
                           />
@@ -288,7 +288,7 @@ Object {
                         >
                           <img
                             alt="An image illustrating listed features"
-                            class="article-feature-image article-feature-image-large lazyloaded"
+                            class="article-feature-image article-feature-image-large"
                             loading="lazy"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image4.jpg"
                             title="Illustration"

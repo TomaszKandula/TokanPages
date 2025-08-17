@@ -5,6 +5,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction } from "../../../Store/Actions";
 import { GetShortText, MapLanguage } from "../../../Shared/Services/Utilities";
 import { useDimensions } from "../../../Shared/Hooks";
+import { TLoading } from "../../../Shared/types";
 import { ARTICLE_PATH, GET_ARTICLE_MAIN_IMAGE_URL } from "../../../Api";
 import { ArticleCardView } from "./View/articleCardView";
 
@@ -16,6 +17,7 @@ interface ArticleCardProps {
     canAnimate: boolean;
     readCount?: number;
     totalLikes?: number;
+    loading?: TLoading;
 }
 
 export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
@@ -63,6 +65,7 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
             canAnimate={props.canAnimate}
             readCount={readCount}
             totalLikes={totalLikes}
+            loading={props.loading}
         />
     );
 };

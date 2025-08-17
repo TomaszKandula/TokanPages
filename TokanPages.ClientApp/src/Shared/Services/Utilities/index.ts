@@ -5,3 +5,4 @@ export { GetShortText } from "./GetShortText/getShortText";
 export { GetTextError } from "./GetTextError/getTextError";
 export { GetImageUrl } from "./GetImageUrl/getImageUrl";
 export { MapLanguage } from "./MapLanguage";
+export { TryParse } from "./TryParse";
