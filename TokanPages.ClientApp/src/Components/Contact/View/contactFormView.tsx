@@ -41,17 +41,16 @@ const ActiveButton = (props: ContactFormViewProps): React.ReactElement => (
 
 export const ContactFormView = (props: ContactFormViewProps): React.ReactElement => (
     <section className={props.className}>
-        <div className="bulma-container bulma-is-max-desktop">
-            <div className="contact-padding">
+        <div className="bulma-container bulma-is-max-tablet">
+            <div className="py-6">
                 {props.hasCaption ? (
                     <Animated dataAos="fade-down">
                         <Skeleton isLoading={props.isLoading} mode="Text" height={40}>
-                            <p className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</p>
+                            <p className="is-size-3	has-text-centered has-text-link pb-5">{props.caption?.toUpperCase()}</p>
                         </Skeleton>
                     </Animated>
                 ) : null}
-                <div className={`contact-card-padding ${props.hasIcon ? "" : "pt-4"}`}>
-                    <div className={`bulma-card ${!props.hasShadow ? "contact-card-no-shadow" : ""}`}>
+                    <div className={`bulma-card ${props.hasCaption ? "" : "contact-form-view-margins"} ${!props.hasShadow ? "contact-card-no-shadow" : ""}`}>
                         <div className="bulma-card-content background-colour-inherited">
                             {props.hasIcon ? (
                                 <div className="is-flex is-flex-direction-column is-align-items-center">
@@ -161,7 +160,8 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                             </div>
                         </div>
                     </div>
-                </div>
+
+
             </div>
         </div>
     </section>
