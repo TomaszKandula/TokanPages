@@ -36,7 +36,7 @@ Object {
                     class="bulma-card"
                   >
                     <a
-                      class="href undefined"
+                      class="href "
                       href="https://google.com"
                       rel="noopener nofollow"
                       target="_blank"
@@ -125,7 +125,7 @@ Object {
                     class="bulma-card"
                   >
                     <a
-                      class="href undefined"
+                      class="href "
                       href="https://google.com"
                       rel="noopener nofollow"
                       target="_blank"
@@ -220,7 +220,7 @@ Object {
                     class="bulma-card"
                   >
                     <a
-                      class="href undefined"
+                      class="href "
                       href="https://google.com"
                       rel="noopener nofollow"
                       target="_blank"
@@ -338,7 +338,7 @@ Object {
                   class="bulma-card"
                 >
                   <a
-                    class="href undefined"
+                    class="href "
                     href="https://google.com"
                     rel="noopener nofollow"
                     target="_blank"
@@ -427,7 +427,7 @@ Object {
                   class="bulma-card"
                 >
                   <a
-                    class="href undefined"
+                    class="href "
                     href="https://google.com"
                     rel="noopener nofollow"
                     target="_blank"
@@ -522,7 +522,7 @@ Object {
                   class="bulma-card"
                 >
                   <a
-                    class="href undefined"
+                    class="href "
                     href="https://google.com"
                     rel="noopener nofollow"
                     target="_blank"

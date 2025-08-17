@@ -33,7 +33,7 @@ Object {
                   data-aos-delay="350"
                 >
                   <a
-                    class="href undefined"
+                    class="href "
                     href="https://.../net-memory-management-64389b01f642"
                     rel="noopener nofollow"
                     target="_blank"
@@ -82,7 +82,7 @@ Object {
                   data-aos-delay="150"
                 >
                   <a
-                    class="href undefined"
+                    class="href "
                     href="https://.../i-said-goodbye-to-stored-procedures-539d56350486"
                     rel="noopener nofollow"
                     target="_blank"
@@ -131,7 +131,7 @@ Object {
                   data-aos-delay="550"
                 >
                   <a
-                    class="href undefined"
+                    class="href "
                     href="https://.../sql-injection-1bde8bb76ebc"
                     rel="noopener nofollow"
                     target="_blank"
@@ -207,7 +207,7 @@ Object {
                 data-aos-delay="350"
               >
                 <a
-                  class="href undefined"
+                  class="href "
                   href="https://.../net-memory-management-64389b01f642"
                   rel="noopener nofollow"
                   target="_blank"
@@ -256,7 +256,7 @@ Object {
                 data-aos-delay="150"
               >
                 <a
-                  class="href undefined"
+                  class="href "
                   href="https://.../i-said-goodbye-to-stored-procedures-539d56350486"
                   rel="noopener nofollow"
                   target="_blank"
@@ -305,7 +305,7 @@ Object {
                 data-aos-delay="550"
               >
                 <a
-                  class="href undefined"
+                  class="href "
                   href="https://.../sql-injection-1bde8bb76ebc"
                   rel="noopener nofollow"
                   target="_blank"

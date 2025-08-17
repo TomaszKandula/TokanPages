@@ -18,7 +18,7 @@ Object {
             class="is-flex is-justify-content-center mb-4"
           >
             <a
-              class="href undefined"
+              class="href "
               href="https://www.linkedin.com/"
               rel="noopener nofollow"
               target="_blank"
@@ -63,6 +63,7 @@ Object {
               class="my-1"
             >
               <a
+                class=""
                 href="/terms"
               >
                 <span
@@ -76,6 +77,7 @@ Object {
               class="my-1"
             >
               <a
+                class=""
                 href="/policy"
               >
                 <span
@@ -109,7 +111,7 @@ Object {
           class="is-flex is-justify-content-center mb-4"
         >
           <a
-            class="href undefined"
+            class="href "
             href="https://www.linkedin.com/"
             rel="noopener nofollow"
             target="_blank"
@@ -154,6 +156,7 @@ Object {
             class="my-1"
           >
             <a
+              class=""
               href="/terms"
             >
               <span
@@ -167,6 +170,7 @@ Object {
             class="my-1"
           >
             <a
+              class=""
               href="/policy"
             >
               <span
