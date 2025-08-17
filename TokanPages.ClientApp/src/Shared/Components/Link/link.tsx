@@ -15,7 +15,7 @@ interface LinkProps {
 
 export const Link = (props: LinkProps): React.ReactElement => {
     if (props.isDisabled === true) {
-        const className = `${props.className} link-disabled`;
+        const className = `${props.className ?? ""} link-disabled`;
         return <a className={className}>{props.children}</a>;
     }
 
@@ -26,7 +26,7 @@ export const Link = (props: LinkProps): React.ReactElement => {
         return (
             <a
                 href={link}
-                className={`href ${props.className}`}
+                className={`href ${props.className ?? ""}`}
                 target="_blank"
                 rel={props.rel ?? "noopener nofollow"}
                 onMouseEnter={props.onMouseEnter}
@@ -40,7 +40,7 @@ export const Link = (props: LinkProps): React.ReactElement => {
     return (
         <RouterLink
             to={props.to}
-            className={props.className}
+            className={props.className ?? ""}
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}
         >
