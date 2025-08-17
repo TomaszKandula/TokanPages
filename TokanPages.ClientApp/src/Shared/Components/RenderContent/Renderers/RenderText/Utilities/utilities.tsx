@@ -115,7 +115,7 @@ const RenderTag = (props: RenderTagProps) => {
         default:
             return <div {...attributes}>{props.children}</div>;
     }
-}
+};
 
 /* LINK COMPONENTS */
 
@@ -322,20 +322,26 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
 
     if (array.length > 0) {
         array.forEach(item => {
-
             const sanitized = DOMPurify.sanitize(item, { ALLOWED_TAGS: ["a", "b", "i", "u"], ADD_ATTR: ["target"] });
 
             if (item.includes("{") && item.includes("}")) {
                 const data = TryParse<LinkProps>(sanitized);
-                result.push(<Link to={`/${language?.id ?? ""}/${data.href}`}><>{data.text}</></Link>);
+                result.push(
+                    <Link to={`/${language?.id ?? ""}/${data.href}`}>
+                        <>{data.text}</>
+                    </Link>
+                );
             } else {
                 if (!Validate.isEmpty(sanitized)) {
                     result.push(<RenderHtml value={sanitized} tag="span" className={props.className} />);
                 }
             }
         });
-
     }
 
-    return <RenderTag tag={props.tag} className={props.className}>{result}</RenderTag>;
+    return (
+        <RenderTag tag={props.tag} className={props.className}>
+            {result}
+        </RenderTag>
+    );
 };
