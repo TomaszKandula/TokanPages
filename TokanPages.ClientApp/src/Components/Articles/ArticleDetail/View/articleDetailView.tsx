@@ -41,7 +41,9 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                         </div>
                         <div className="bulma-cell is-align-content-center">
                             <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={24} disableMarginY>
-                                <p className="is-size-5">{props.authorFirstName} {props.authorLastName}</p>
+                                <p className="is-size-5">
+                                    {props.authorFirstName} {props.authorLastName}
+                                </p>
                             </Skeleton>
                         </div>
                     </div>
@@ -135,7 +137,9 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                             <p className="is-size-6 has-text-weight-bold">{props.content.textWritten}</p>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                            <p className="is-size-6">{props.authorFirstName} {props.authorLastName}</p>
+                            <p className="is-size-6">
+                                {props.authorFirstName} {props.authorLastName}
+                            </p>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
                             <p className="is-size-6">

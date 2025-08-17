@@ -4,4 +4,4 @@ export const TryParse = <T>(value: string): T => {
     } catch {
         throw new Error("Parsing error.");
     }
-}
+};
