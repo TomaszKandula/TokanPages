@@ -13,7 +13,6 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
     articleReadCount: string;
     renderSmallAvatar: React.ReactElement;
     renderLargeAvatar: React.ReactElement;
-    authorAliasName: string;
     authorFirstName: string;
     authorLastName: string;
     authorRegistered: string;
@@ -24,7 +23,6 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
     renderLikesLeft: string;
     thumbsHandler: () => void;
     totalLikes: string;
-    renderAuthorName: string;
     authorShortBio: string;
     flagImage: string;
     content: ArticleContentDto;
@@ -43,7 +41,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                         </div>
                         <div className="bulma-cell is-align-content-center">
                             <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={24} disableMarginY>
-                                <p className="is-size-5">{props.authorAliasName}</p>
+                                <p className="is-size-5">{props.authorFirstName} {props.authorLastName}</p>
                             </Skeleton>
                         </div>
                     </div>
@@ -137,7 +135,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                             <p className="is-size-6 has-text-weight-bold">{props.content.textWritten}</p>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                            <p className="is-size-6">{props.renderAuthorName}</p>
+                            <p className="is-size-6">{props.authorFirstName} {props.authorLastName}</p>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
                             <p className="is-size-6">

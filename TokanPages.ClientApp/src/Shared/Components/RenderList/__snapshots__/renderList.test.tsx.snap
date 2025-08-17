@@ -32,10 +32,13 @@ exports[`test render function 'RenderList' should return rendered list for provi
   data-testid="test-list"
 >
   <li>
-    item1 
+    <span>
+      item1 
+    </span>
     <a
-      href="https://test.com"
-      rel="noopener"
+      class="href "
+      href="//https://test.com"
+      rel="noopener nofollow"
       target="_blank"
     >
       Test
@@ -67,10 +70,13 @@ exports[`test render function 'RenderList' should return rendered list for provi
   data-testid="test-list"
 >
   <li>
-    item1 
+    <span>
+      item1 
+    </span>
     <a
-      href="https://test.com"
-      rel="noopener"
+      class="href "
+      href="//https://test.com"
+      rel="noopener nofollow"
       target="_blank"
     >
       Test

@@ -327,7 +327,7 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
 
             if (item.includes("{") && item.includes("}")) {
                 const data = TryParse<LinkProps>(sanitized);
-                result.push(<Link to={`/${language.id}/${data.href}`}><>{data.text}</></Link>);
+                result.push(<Link to={`/${language?.id ?? ""}/${data.href}`}><>{data.text}</></Link>);
             } else {
                 if (!Validate.isEmpty(sanitized)) {
                     result.push(<RenderHtml value={sanitized} tag="span" className={props.className} />);

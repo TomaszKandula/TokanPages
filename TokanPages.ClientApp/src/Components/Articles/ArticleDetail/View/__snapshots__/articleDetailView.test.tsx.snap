@@ -34,6 +34,8 @@ Object {
                     class="is-size-5"
                   >
                     Ester
+                     
+                    Exposito
                   </p>
                 </div>
               </div>
@@ -175,7 +177,9 @@ Object {
                 <p
                   class="is-size-6"
                 >
-                  Ester Exposito
+                  Ester
+                   
+                  Exposito
                 </p>
                 <p
                   class="is-size-6"
@@ -228,6 +232,8 @@ Object {
                   class="is-size-5"
                 >
                   Ester
+                   
+                  Exposito
                 </p>
               </div>
             </div>
@@ -369,7 +375,9 @@ Object {
               <p
                 class="is-size-6"
               >
-                Ester Exposito
+                Ester
+                 
+                Exposito
               </p>
               <p
                 class="is-size-6"
