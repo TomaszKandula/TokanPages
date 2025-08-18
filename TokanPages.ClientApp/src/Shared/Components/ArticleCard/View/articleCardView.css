@@ -10,6 +10,7 @@
 
 .article-box-image {
     height: 200px !important;
+    width: auto !important;
     min-height: 180px;
     object-fit: cover;
 }
