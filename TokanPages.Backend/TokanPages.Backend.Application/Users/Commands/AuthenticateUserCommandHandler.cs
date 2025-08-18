@@ -7,6 +7,7 @@ using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.CipheringService.Abstractions;
+using TokanPages.Services.CookieAccessorService;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService.Abstractions;
@@ -22,18 +23,21 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
     private readonly IDateTimeService _dateTimeService;
 
     private readonly IUserService _userService;
+    
+    private readonly ICookieAccessor _cookieAccessor;
 
     private readonly IConfiguration _configuration;
         
     public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
         ICipheringService cipheringService, IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, 
-        IUserService userService, IConfiguration configuration) : base(databaseContext, loggerService)
+        IUserService userService, IConfiguration configuration, ICookieAccessor cookieAccessor) : base(databaseContext, loggerService)
     {
         _cipheringService = cipheringService;
         _webTokenUtility = webTokenUtility;
         _dateTimeService = dateTimeService;
         _userService = userService;
         _configuration = configuration;
+        _cookieAccessor = cookieAccessor;
     }
 
     public override async Task<AuthenticateUserCommandResult> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
@@ -96,8 +100,10 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
         var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRolesOutput>();
         var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionsOutput>();
-
         var userInfo = await TryGetUserInfo(user.Id, cancellationToken);
+
+        _cookieAccessor.Set("X-CSRF-Token", refreshToken.Token, maxAge: TimeSpan.FromMinutes(expiresIn));
+
         return new AuthenticateUserCommandResult
         {
             UserId = user.Id,
@@ -114,7 +120,6 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             ShortBio = userInfo.UserAboutText,
             Registered = user.CreatedAt,
             UserToken = userToken,
-            RefreshToken = refreshToken.Token,
             Roles = roles,
             Permissions = permissions
         };
