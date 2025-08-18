@@ -22,6 +22,7 @@ RUN apk add icu-data-full --no-cache
 COPY --from=projects "/app/TokanPages.Backend/TokanPages.Backend.Configuration/bin/Release/net6.0" .
 COPY --from=projects "/app/TokanPages.Persistence/TokanPages.Persistence.Caching/bin/Release/net6.0" .
 COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.BehaviourService/bin/Release/net6.0" .
+COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.CookieAccessorService/bin/Release/net6.0" .
 COPY --from=projects "/app/TokanPages.WebApi/TokanPages.Users/bin/Release/net6.0" .
 COPY --from=projects "/app/TokanPages.WebApi/TokanPages.Users.Dto/bin/Release/net6.0" .
 

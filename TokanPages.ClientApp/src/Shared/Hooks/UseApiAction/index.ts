@@ -27,6 +27,7 @@ const ExecuteStoreAction = async (props: ExecuteStoreActionProps): Promise<void>
         const hasFormData = body instanceof FormData;
         const headers = GetProcessedHeaders(hasFormData, props.configuration.headers);
         const response = await fetch(props.url, {
+            credentials: "include",
             method: props.configuration.method,
             headers: headers,
             body: body,
@@ -70,6 +71,7 @@ const ExecuteApiAction = async (props: ExecuteApiActionProps): Promise<ExecuteAp
         const hasFormData = body instanceof FormData;
         const headers = GetProcessedHeaders(hasFormData, props.configuration.headers);
         const response = await fetch(props.url, {
+            credentials: "include",
             method: props.configuration.method,
             headers: headers,
             body: body,

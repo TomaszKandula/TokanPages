@@ -48,7 +48,6 @@ export const UserDataStore: Reducer<UserDataStoreState> = (
                     shortBio: action.payload.shortBio,
                     registered: action.payload.registered,
                     userToken: action.payload.userToken,
-                    refreshToken: action.payload.refreshToken,
                     roles: action.payload.roles,
                     permissions: action.payload.permissions,
                 },

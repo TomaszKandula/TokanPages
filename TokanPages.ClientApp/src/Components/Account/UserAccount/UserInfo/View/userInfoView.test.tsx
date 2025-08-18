@@ -22,7 +22,6 @@ describe("test account group component: userInfoView", () => {
                         shortBio: "Spanish Developer",
                         registered: "2020-01-01",
                         userToken: "123654789",
-                        refreshToken: "951753789654123",
                         roles: [
                             {
                                 id: "357159",

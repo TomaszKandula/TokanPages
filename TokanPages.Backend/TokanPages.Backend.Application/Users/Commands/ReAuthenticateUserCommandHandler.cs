@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Services.CookieAccessorService;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 
@@ -17,32 +18,39 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
     private readonly IUserService _userService;
 
+    private readonly ICookieAccessor _cookieAccessor;
+
     private readonly IConfiguration _configuration;
 
     public ReAuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
-        IUserService userService, IConfiguration configuration) : base(databaseContext, loggerService)
+        IUserService userService, IConfiguration configuration, ICookieAccessor cookieAccessor) : base(databaseContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _userService = userService;
         _configuration = configuration;
+        _cookieAccessor = cookieAccessor;
     }
 
     public override async Task<ReAuthenticateUserCommandResult> Handle(ReAuthenticateUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(request.UserId, false, cancellationToken);
+        var csrfToken = _cookieAccessor.Get("X-CSRF-Token");
+        if (csrfToken is null)
+            throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
+
         var userRefreshTokens = await DatabaseContext.UserRefreshTokens
             .AsNoTracking()
-            .Where(tokens => tokens.Token == request.RefreshToken)
+            .Where(tokens => tokens.Token == csrfToken)
             .ToListAsync(cancellationToken);
 
-        var savedRefreshToken = userRefreshTokens.SingleOrDefault(tokens => tokens.Token == request.RefreshToken);
+        var savedRefreshToken = userRefreshTokens.SingleOrDefault(tokens => tokens.Token == csrfToken);
         if (savedRefreshToken == null) 
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
         var requesterIpAddress = _userService.GetRequestIpAddress();
         if (_userService.IsRefreshTokenRevoked(savedRefreshToken))
         {
-            var reason = $"Attempted reuse of revoked ancestor token: {request.RefreshToken}";
+            var reason = $"Attempted reuse of revoked ancestor token: {csrfToken}";
             var tokensInput = new RevokeRefreshTokensInput
             {
                 UserRefreshTokens = userRefreshTokens, 
@@ -94,6 +102,10 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
         var userInfo = await TryGetUserInfo(user.Id, cancellationToken);
+        var expiresIn = _configuration.GetValue<int>("Ids_RefreshToken_Maturity");
+
+        _cookieAccessor.Set("X-CSRF-Token", newRefreshToken.Token, maxAge: TimeSpan.FromMinutes(expiresIn));
+
         return new ReAuthenticateUserCommandResult
         {
             UserId = user.Id,
@@ -110,7 +122,6 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             ShortBio = userInfo.UserAboutText,
             Registered = user.CreatedAt,
             UserToken = userToken,
-            RefreshToken = newRefreshToken.Token,
             Roles = roles,
             Permissions = permissions
         };

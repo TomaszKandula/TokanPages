@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Services.CookieAccessorService;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using Xunit;
@@ -45,6 +46,9 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
 
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedCookieAccessor = new Mock<ICookieAccessor>();
+        mockedCookieAccessor.Setup(accessor => accessor.Get(It.IsAny<string>()))
+            .Returns(token);
 
         var randomIpAddress = DataUtilityService.GetRandomIpAddress().ToString(); 
         mockedUserService
@@ -64,11 +68,12 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
                     It.IsAny<RevokeRefreshTokenInput>(),
                     It.IsAny<CancellationToken>()));
             
-        var command = new RevokeUserRefreshTokenCommand { RefreshToken = token };
+        var command = new RevokeUserRefreshTokenCommand();
         var handler = new RevokeUserRefreshTokenCommandHandler(
             databaseContext,
             mockedLogger.Object,
-            mockedUserService.Object
+            mockedUserService.Object, 
+            mockedCookieAccessor.Object
         );
 
         // Act
@@ -99,6 +104,9 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
 
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedCookieAccessor = new Mock<ICookieAccessor>();
+        mockedCookieAccessor.Setup(accessor => accessor.Get(It.IsAny<string>()))
+            .Returns(token);
 
         mockedUserService
             .Setup(service => service.GetActiveUser(
@@ -113,11 +121,12 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
                     It.IsAny<RevokeRefreshTokenInput>(),
                     It.IsAny<CancellationToken>()));
 
-        var command = new RevokeUserRefreshTokenCommand { RefreshToken = token };
+        var command = new RevokeUserRefreshTokenCommand();
         var handler = new RevokeUserRefreshTokenCommandHandler(
             databaseContext,
             mockedLogger.Object,
-            mockedUserService.Object
+            mockedUserService.Object, 
+            mockedCookieAccessor.Object
         );
 
         // Act
