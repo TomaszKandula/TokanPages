@@ -7,6 +7,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Services.CookieAccessorService;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using Xunit;
@@ -27,7 +28,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var created = DateTimeService.Now.AddDays(-5);
         var refreshToken = DataUtilityService.GetRandomString(255);
 
-        var command = new ReAuthenticateUserCommand { RefreshToken = refreshToken };
+        var command = new ReAuthenticateUserCommand();
         var user = new Backend.Domain.Entities.User.Users
         {
             Id = userId,
@@ -129,13 +130,17 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .ReturnsAsync(newUserToken);
 
         var mockedConfig = SetConfiguration();
+        var mockedCookieAccessor = new Mock<ICookieAccessor>();
+        mockedCookieAccessor.Setup(accessor => accessor.Get(It.IsAny<string>()))
+            .Returns(userRefreshToken.Token);
 
         var handler = new ReAuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTimeService.Object, 
             mockedUserService.Object, 
-            mockedConfig.Object);
+            mockedConfig.Object, 
+            mockedCookieAccessor.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -188,7 +193,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var expires = DateTimeService.Now.AddMinutes(300);
         var created = DateTimeService.Now.AddDays(-5);
             
-        var command = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
+        var command = new ReAuthenticateUserCommand();
         var user = new Backend.Domain.Entities.User.Users
         {
             Id = userId,
@@ -240,13 +245,15 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Returns(false);
 
         var mockedConfig = SetConfiguration();
+        var mockedCookieAccessor = new Mock<ICookieAccessor>();
 
         var handler = new ReAuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedDateTimeService.Object, 
             mockedUserService.Object, 
-            mockedConfig.Object);
+            mockedConfig.Object, 
+            mockedCookieAccessor.Object);
 
         // Act
         // Assert
@@ -258,7 +265,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
     public async Task GivenMissingRefreshToken_WhenReAuthenticateUser_ShouldThrowError()
     {
         // Arrange
-        var command = new ReAuthenticateUserCommand { RefreshToken = DataUtilityService.GetRandomString() };
+        var command = new ReAuthenticateUserCommand();
         var user = new Backend.Domain.Entities.User.Users
         {
             Id = Guid.NewGuid(),
@@ -297,13 +304,15 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Returns(false);
 
         var mockedConfig = SetConfiguration();
+        var mockedCookieAccessor = new Mock<ICookieAccessor>();
 
         var handler = new ReAuthenticateUserCommandHandler(
             databaseContext,
             mockedLogger.Object,
             mockedDateTimeService.Object, 
             mockedUserService.Object, 
-            mockedConfig.Object);
+            mockedConfig.Object, 
+            mockedCookieAccessor.Object);
 
         // Act
         // Assert

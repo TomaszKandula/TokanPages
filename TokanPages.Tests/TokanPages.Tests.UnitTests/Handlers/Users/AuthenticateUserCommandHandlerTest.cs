@@ -9,6 +9,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.CipheringService.Abstractions;
+using TokanPages.Services.CookieAccessorService;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService.Abstractions;
 using TokanPages.Services.WebTokenService.Models;
@@ -64,6 +65,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedCipheringService = new Mock<ICipheringService>();
+        var mockedCookieAccessor = new Mock<ICookieAccessor>();
 
         mockedCipheringService
             .Setup(service => service
@@ -122,8 +124,9 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedJwtUtilityService.Object, 
             mockedDateTimeService.Object, 
             mockedUserServiceProvider.Object, 
-            mockedConfig.Object);
-            
+            mockedConfig.Object, 
+            mockedCookieAccessor.Object);
+
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
 
@@ -198,6 +201,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedConfig = new Mock<IConfiguration>();
+        var mockedCookieAccessor = new Mock<ICookieAccessor>();
         var handler = new AuthenticateUserCommandHandler(
             databaseContext,
             mockedLogger.Object,
@@ -205,7 +209,8 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedJwtUtilityService.Object,
             mockedDateTimeService.Object,
             mockedUserServiceProvider.Object,
-            mockedConfig.Object);
+            mockedConfig.Object, 
+            mockedCookieAccessor.Object);
 
         // Act
         // Assert
@@ -251,6 +256,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserServiceProvider = new Mock<IUserService>();
         var mockedConfig = new Mock<IConfiguration>();
+        var mockedCookieAccessor = new Mock<ICookieAccessor>();
         var handler = new AuthenticateUserCommandHandler(
             databaseContext,
             mockedLogger.Object,
@@ -258,7 +264,8 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedJwtUtilityService.Object,
             mockedDateTimeService.Object,
             mockedUserServiceProvider.Object,
-            mockedConfig.Object);
+            mockedConfig.Object, 
+            mockedCookieAccessor.Object);
 
         // Act
         // Assert
@@ -348,6 +355,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
                     It.IsAny<CancellationToken>()));
 
         var mockedConfig = SetConfiguration();
+        var mockedCookieAccessor = new Mock<ICookieAccessor>();
         var handler = new AuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
@@ -355,7 +363,8 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             mockedJwtUtilityService.Object, 
             mockedDateTimeService.Object, 
             mockedUserServiceProvider.Object, 
-            mockedConfig.Object);
+            mockedConfig.Object, 
+            mockedCookieAccessor.Object);
 
         // Act
         // Assert
