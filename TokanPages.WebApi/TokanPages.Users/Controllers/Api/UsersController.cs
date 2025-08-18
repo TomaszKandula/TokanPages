@@ -70,13 +70,13 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Revokes existing user refresh token.
     /// </summary>
-    /// <param name="payload">Refresh Token.</param>
+    /// <param name="payload">Optional payload.</param>
     /// <returns>Object.</returns>
     [HttpPost]
     [Route("[action]")]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RevokeUserRefreshToken([FromBody] RevokeUserRefreshTokenDto payload)
-        => await Mediator.Send(UsersMapper.MapToRevokeUserRefreshTokenCommand(payload));
+        => await Mediator.Send(new RevokeUserRefreshTokenCommand());
 
     /// <summary>
     /// Activates existing user account.
