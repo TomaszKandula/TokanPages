@@ -24,8 +24,6 @@ public class AuthenticateUserCommandResult
 
     public string UserToken { get; set; } = "";
 
-    public string RefreshToken { get; set; } = "";
-
     public List<GetUserRolesOutput> Roles { get; set; } = new();
 
     public List<GetUserPermissionsOutput> Permissions { get; set; } = new();
