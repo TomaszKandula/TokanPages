@@ -1,3 +1,28 @@
+# [0.162.0](https://github.com/TomaszKandula/TokanPages/compare/v0.161.0...v0.162.0) (2025-08-18)
+
+
+### Bug Fixes
+
+* resolve issue on Safari browser ([26fb3f5](https://github.com/TomaszKandula/TokanPages/commit/26fb3f5f02136c2ea1113e89e92fcbf18b216885))
+
+
+### Features
+
+* add cookie accessor service ([e049df8](https://github.com/TomaszKandula/TokanPages/commit/e049df811422470c2efd09b3e8bac29631948d18))
+* add project reference ([df1c637](https://github.com/TomaszKandula/TokanPages/commit/df1c63760970af7e6d4397c9d9e8d5d7be464516))
+* allow credentials ([42ef667](https://github.com/TomaszKandula/TokanPages/commit/42ef6673e0ad1a75f0fa7095c3d9caa52b607827))
+* animate only once ([1e85d04](https://github.com/TomaszKandula/TokanPages/commit/1e85d04f173b1d1474f93d6c94a2224878940bef))
+* display full navbar ([64bef6e](https://github.com/TomaszKandula/TokanPages/commit/64bef6ef87a27b0a5b3c29a2f729bccbdf929409))
+* get token from cookie ([c3503ea](https://github.com/TomaszKandula/TokanPages/commit/c3503ea67f400be9b0bb32f936100a93453456c3))
+* get/set cookie refresh token ([e87faf4](https://github.com/TomaszKandula/TokanPages/commit/e87faf4b1354b36e1bb56496ef4e649dfb3bf1b3))
+* remove refresh token ([e8d0e33](https://github.com/TomaszKandula/TokanPages/commit/e8d0e33a1f4812f8bb732baba7c0dad7893ddcd7))
+* remove refresh token ([7cd2acf](https://github.com/TomaszKandula/TokanPages/commit/7cd2acfefedb6e9ecc8cf0ea6770ad06c7c2ef11))
+* remove refresh token from command ([c05e610](https://github.com/TomaszKandula/TokanPages/commit/c05e610061c52fad357a62fe28691ab0a4fbdc0e))
+* remove refresh token from mapper ([29507b3](https://github.com/TomaszKandula/TokanPages/commit/29507b37237e25ccee7f1e66db1b3af33dcc4f88))
+* remove refresh token from models ([2946961](https://github.com/TomaszKandula/TokanPages/commit/2946961faf28f216b2954bad0bb143e4d46904a6))
+* remove unused code ([e596d22](https://github.com/TomaszKandula/TokanPages/commit/e596d22411df2ce334141947b681b109030553cc))
+* remove unused code ([695ba98](https://github.com/TomaszKandula/TokanPages/commit/695ba984ac224208b504adf99d63ad0034ea570d))
+
 # [0.161.0](https://github.com/TomaszKandula/TokanPages/compare/v0.160.1...v0.161.0) (2025-08-17)
 
 
