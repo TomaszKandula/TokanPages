@@ -28,18 +28,7 @@ public static class UsersMapper
     /// <returns>Command object.</returns>
     public static ReAuthenticateUserCommand MapToReAuthenticateUserCommand(ReAuthenticateUserDto model) => new()
     {
-        UserId = model.UserId,
-        RefreshToken = model.RefreshToken
-    };
-
-    /// <summary>
-    /// Maps request DTO to given command.
-    /// </summary>
-    /// <param name="model">Payload object.</param>
-    /// <returns>Command object.</returns>
-    public static RevokeUserRefreshTokenCommand MapToRevokeUserRefreshTokenCommand(RevokeUserRefreshTokenDto model) => new()
-    {
-        RefreshToken = model.RefreshToken
+        UserId = model.UserId
     };
 
     /// <summary>

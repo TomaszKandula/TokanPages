@@ -12,9 +12,4 @@ public class ReAuthenticateUserDto
     /// User ID.
     /// </summary>
     public Guid UserId { get; set; }
-
-    /// <summary>
-    /// Refresh token value.
-    /// </summary>
-    public string? RefreshToken { get; set; }
 }

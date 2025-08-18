@@ -65,9 +65,7 @@ export const UserSignoutAction = {
         actions.storeAction(input);
     },
     revokeRefreshToken: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
-        const payload: RevokeUserRefreshTokenDto = {
-            refreshToken: getState().userDataStore.userData.refreshToken,
-        };
+        const payload: RevokeUserRefreshTokenDto = {};
         dispatch({ type: REVOKE_REFRESH_TOKEN });
         const actions = useApiAction();
         const input: ExecuteStoreActionProps = {

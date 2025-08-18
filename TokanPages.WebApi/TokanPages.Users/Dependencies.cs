@@ -21,6 +21,7 @@ using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.CipheringService.Abstractions;
+using TokanPages.Services.CookieAccessorService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
@@ -84,6 +85,7 @@ public static class Dependencies
 	{
 		services.AddHttpContextAccessor();
 		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
+		services.AddScoped<ICookieAccessor, CookieAccessor>();
 		services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
 		services.AddScoped<ICipheringService, CipheringService>();

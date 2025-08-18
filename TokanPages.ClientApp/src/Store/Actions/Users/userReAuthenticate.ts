@@ -24,12 +24,11 @@ export const UserReAuthenticateAction = {
         dispatch({ type: CLEAR });
     },
     reAuthenticate:
-        (refreshToken: string, userId: string): ApplicationAction<TKnownActions> =>
+        (userId: string): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: REAUTHENTICATE });
             const payload: ReAuthenticateUserDto = {
                 userId: userId,
-                refreshToken: refreshToken,
             };
 
             const actions = useApiAction();
