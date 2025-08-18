@@ -1,1 +1,1 @@
-export interface RevokeUserRefreshTokenDto { }
+export interface RevokeUserRefreshTokenDto {}
