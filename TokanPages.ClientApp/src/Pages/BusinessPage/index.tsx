@@ -13,7 +13,7 @@ export const BusinessPage = () => {
 
     return (
         <>
-            <Navigation backNavigationOnly />
+            <Navigation />
             <main>
                 <BusinessForm hasIcon hasShadow />
             </main>
