@@ -21,11 +21,10 @@ export const ApplicationSession = (props: Properties): React.ReactElement => {
 
         const currentDateTime = new Date().getTime() / 1000;
         if (currentDateTime >= expiration) {
-            const refreshToken = store?.userData?.refreshToken;
             const userId = store?.userData?.userId;
 
             dispatch(UserDataStoreAction.clear());
-            dispatch(UserReAuthenticateAction.reAuthenticate(refreshToken, userId));
+            dispatch(UserReAuthenticateAction.reAuthenticate(userId));
 
             setExpiration(undefined);
         }

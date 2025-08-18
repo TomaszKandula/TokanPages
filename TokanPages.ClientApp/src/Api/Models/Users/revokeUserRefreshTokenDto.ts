@@ -1,3 +1,1 @@
-export interface RevokeUserRefreshTokenDto {
-    refreshToken?: string;
-}
+export interface RevokeUserRefreshTokenDto { }
