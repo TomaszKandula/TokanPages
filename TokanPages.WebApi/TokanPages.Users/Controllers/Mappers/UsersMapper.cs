@@ -28,8 +28,7 @@ public static class UsersMapper
     /// <returns>Command object.</returns>
     public static ReAuthenticateUserCommand MapToReAuthenticateUserCommand(ReAuthenticateUserDto model) => new()
     {
-        UserId = model.UserId,
-        RefreshToken = model.RefreshToken
+        UserId = model.UserId
     };
 
     /// <summary>
