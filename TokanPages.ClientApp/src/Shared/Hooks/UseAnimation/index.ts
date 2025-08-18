@@ -3,7 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 const InitializeAnimations = (): NodeJS.Timer => {
-    AOS.init({ once: false, disable: false });
+    AOS.init({ once: true, disable: false });
     return setInterval(() => AOS.refresh(), 900);
 };
 
