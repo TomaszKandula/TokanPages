@@ -1,14 +1,44 @@
 .user-signin-view-margins {
-    margin: auto;
+    margin-left: 3rem;
 }
 
 @media (max-width: 768px) {
     .user-signin-view-margins {
-        margin: 1rem;
+        margin-left: 0;
+        margin-top: 3rem;
+        padding: 0;
     }
 }
 
 .user-signin-view-card-image {
     height: 150px !important;
     object-fit: cover;
+}
+
+.user-signin-view-card-news {
+    width: 584px;
+}
+
+@media (max-width: 1408px) {
+    .user-signin-view-card-news {
+        width: 488px;
+    }
+}
+
+@media (max-width: 1216px) {
+    .user-signin-view-card-news {
+        width: 392px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .user-signin-view-card-news {
+        width: 40vw;
+    }
+}
+
+@media (max-width: 768px) {
+    .user-signin-view-card-news {
+        width: 100vw;
+    }
 }

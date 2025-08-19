@@ -106,9 +106,8 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                         </div>
                     </div>
                 </div>
-                <div className="bulma-column is-flex is-align-self-center p-0">
-                    <div className="user-signin-view-margins">
-                        <div className="bulma-card" style={{ maxWidth: 450 }}>
+                <div className="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins">
+                        <div className="bulma-card user-signin-view-card-news">
                             <Skeleton isLoading={props.isLoading} mode="Rect" width={350} height={300}>
                                 <Slider
                                     dots={false}
@@ -149,7 +148,6 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                 </Slider>
                             </Skeleton>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
