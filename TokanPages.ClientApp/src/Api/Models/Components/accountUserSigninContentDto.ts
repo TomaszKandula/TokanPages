@@ -1,4 +1,4 @@
-import { LinkDto } from "./Common";
+import { LinkDto, NewsItemDto } from "./Common";
 
 export interface AccountUserSigninContentDto {
     language: string;
@@ -8,4 +8,5 @@ export interface AccountUserSigninContentDto {
     link2: LinkDto;
     labelEmail: string;
     labelPassword: string;
+    securityNews: NewsItemDto[];
 }
