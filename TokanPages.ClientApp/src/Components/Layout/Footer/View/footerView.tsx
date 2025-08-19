@@ -45,7 +45,7 @@ export const FooterView = (props: Properties): React.ReactElement => (
                             </Link>
                         ))}
                     </div>
-                    <p className="is-size-6 is-flex is-flex-direction-column">
+                    <div className="is-size-6 is-flex is-flex-direction-column">
                         <span className="has-text-grey-dark my-2">{props?.legalInfo.copyright}</span>
                         <span className="has-text-grey-dark my-1">{props?.legalInfo.reserved}</span>
                         <div className="my-1">
@@ -58,8 +58,8 @@ export const FooterView = (props: Properties): React.ReactElement => (
                                 <span className="has-text-grey-dark is-underlined">{props?.policy?.text}</span>
                             </Link>
                         </div>
-                    </p>
-                    <p className="is-size-7 has-text-grey py-2">{props?.versionInfo}</p>
+                    </div>
+                    <p className="is-size-7 has-text-grey mt-2 py-2">{props?.versionInfo}</p>
                 </div>
             </Loader>
         </footer>
