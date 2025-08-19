@@ -7,3 +7,8 @@
         margin: 1rem;
     }
 }
+
+.user-signin-view-card-image {
+    height: 150px !important;
+    object-fit: cover;
+}
