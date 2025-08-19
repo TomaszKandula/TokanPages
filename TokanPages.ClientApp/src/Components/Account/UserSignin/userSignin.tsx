@@ -118,6 +118,7 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
             button={content?.button}
             link1={content?.link1}
             link2={content?.link2}
+            security={content?.securityNews}
             buttonHandler={buttonHandler}
             progress={hasProgress}
             keyHandler={keyHandler}

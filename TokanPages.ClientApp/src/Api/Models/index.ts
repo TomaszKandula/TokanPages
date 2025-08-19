@@ -135,6 +135,7 @@ export type {
 export type {
     IconDto,
     LinkDto,
+    NewsItemDto,
     ImagesDto,
     RowItemDto,
     TextItemDto,
