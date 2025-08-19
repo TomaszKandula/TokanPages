@@ -1,8 +1,10 @@
 import * as React from "react";
-import { LinkDto } from "../../../../Api/Models";
+import Slider from "react-slick";
+import { LinkDto, NewsItemDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import {
+    CustomImage,
     Icon,
     ProgressBar,
     RedirectTo,
@@ -11,13 +13,17 @@ import {
     TextFieldWithPassword,
 } from "../../../../Shared/Components";
 import { UserSigninProps } from "../userSignin";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "./userSigninView.css";
+import { GET_NEWS_URL } from "Api/Paths";
 
 interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     caption: string;
     button: string;
     link1: LinkDto;
     link2: LinkDto;
+    security: NewsItemDto[];
     buttonHandler: () => void;
     progress: boolean;
     keyHandler: (event: ReactKeyboardEvent) => void;
@@ -41,59 +47,102 @@ const ActiveButton = (props: UserSigninViewProps): React.ReactElement => (
 
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => (
     <section className={props.className}>
-        <div className="bulma-container bulma-is-max-tablet">
-            <div className="py-6">
-                <div className="bulma-card user-signin-view-margins">
-                    <div className="bulma-card-content">
-                        <div className="is-flex is-flex-direction-column is-align-items-center">
-                            <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                                <Icon name="AccountCircle" size={3.75} className="card-icon-colour" />
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Text">
-                                <p className="is-size-3 has-text-black">{props.caption}</p>
-                            </Skeleton>
-                        </div>
-                        <div className="my-5">
-                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                <TextField
-                                    required
-                                    uuid="email"
-                                    autoComplete="email"
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    value={props.email}
-                                    placeholder={props.labelEmail}
-                                    isDisabled={props.progress}
-                                    className="mb-5"
-                                />
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                <TextFieldWithPassword
-                                    uuid="password"
-                                    value={props.password}
-                                    placeholder={props.labelPassword}
-                                    onKeyUp={props.keyHandler}
-                                    onChange={props.formHandler}
-                                    isDisabled={props.progress}
-                                />
-                            </Skeleton>
-                        </div>
-                        <div className="mb-5">
-                            <Skeleton isLoading={props.isLoading} mode="Rect">
-                                <ActiveButton {...props} />
-                            </Skeleton>
-                        </div>
-                        <div className="is-flex is-flex-direction-row is-justify-content-space-between">
-                            <div className="my-2">
-                                <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                                    <RedirectTo path={props.link1?.href} name={props.link1?.text} />
+        <div className="bulma-container">
+            <div className="bulma-columns mx-4 my-6">
+                <div className="bulma-column bulma-is-half p-0">
+                    <div className="bulma-card user-signin-view-margins">
+                        <div className="bulma-card-content">
+                            <div className="is-flex is-flex-direction-column is-align-items-center">
+                                <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                                    <Icon name="AccountCircle" size={3.75} className="card-icon-colour" />
+                                </Skeleton>
+                                <Skeleton isLoading={props.isLoading} mode="Text">
+                                    <p className="is-size-3 has-text-black">{props.caption}</p>
                                 </Skeleton>
                             </div>
-                            <div className="my-2">
-                                <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                                    <RedirectTo path={props.link2?.href} name={props.link2?.text} />
+                            <div className="my-5">
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                                    <TextField
+                                        required
+                                        uuid="email"
+                                        autoComplete="email"
+                                        onKeyUp={props.keyHandler}
+                                        onChange={props.formHandler}
+                                        value={props.email}
+                                        placeholder={props.labelEmail}
+                                        isDisabled={props.progress}
+                                        className="mb-5"
+                                    />
+                                </Skeleton>
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                                    <TextFieldWithPassword
+                                        uuid="password"
+                                        value={props.password}
+                                        placeholder={props.labelPassword}
+                                        onKeyUp={props.keyHandler}
+                                        onChange={props.formHandler}
+                                        isDisabled={props.progress}
+                                    />
                                 </Skeleton>
                             </div>
+                            <div className="mb-5">
+                                <Skeleton isLoading={props.isLoading} mode="Rect">
+                                    <ActiveButton {...props} />
+                                </Skeleton>
+                            </div>
+                            <div className="is-flex is-flex-direction-row is-justify-content-space-between">
+                                <div className="my-2">
+                                    <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
+                                        <RedirectTo path={props.link1?.href} name={props.link1?.text} />
+                                    </Skeleton>
+                                </div>
+                                <div className="my-2">
+                                    <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
+                                        <RedirectTo path={props.link2?.href} name={props.link2?.text} />
+                                    </Skeleton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="bulma-column is-flex is-align-self-center p-0">
+                    <div className="user-signin-view-margins">
+                        <div className="bulma-card" style={{ maxWidth: 450 }}>
+                            <Skeleton isLoading={props.isLoading} mode="Rect" width={350} height={300}>
+                                <Slider
+                                    dots={false}
+                                    arrows={false}
+                                    infinite={true}
+                                    slidesToShow={1}
+                                    slidesToScroll={1}
+                                    autoplay={true}
+                                    autoplaySpeed={5500}
+                                >
+                                    {props.security.map((value: NewsItemDto, index: number) => (
+                                        <React.Fragment key={index}>
+                                            <div className="bulma-card-image">
+                                                <figure className="bulma-image">
+                                                    <CustomImage
+                                                        base={GET_NEWS_URL}
+                                                        source={value.image}
+                                                        className="user-signin-view-card-image"
+                                                        title=""
+                                                        alt=""
+                                                    />
+                                                </figure>
+                                            </div>
+                                            <div className="bulma-card-content">
+                                                <div className="is-size-6 has-text-weight-semibold py-2">
+                                                    {value.title}
+                                                </div>
+                                                <div className="is-size-6 py-2">
+                                                    {value.lead}
+                                                </div>
+                                            </div>
+                                        </React.Fragment>
+                                    ))}
+                                </Slider>
+                            </Skeleton>
                         </div>
                     </div>
                 </div>
