@@ -1,5 +1,6 @@
 import * as React from "react";
 import Slider from "react-slick";
+import { GET_NEWS_URL } from "../../../../Api/Paths";
 import { LinkDto, NewsItemDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
@@ -8,6 +9,7 @@ import {
     Icon,
     ProgressBar,
     RedirectTo,
+    RenderHtml,
     Skeleton,
     TextField,
     TextFieldWithPassword,
@@ -16,7 +18,6 @@ import { UserSigninProps } from "../userSignin";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./userSigninView.css";
-import { GET_NEWS_URL } from "Api/Paths";
 
 interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     caption: string;
@@ -112,11 +113,14 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                 <Slider
                                     dots={false}
                                     arrows={false}
+                                    fade={true}
                                     infinite={true}
                                     slidesToShow={1}
                                     slidesToScroll={1}
                                     autoplay={true}
                                     autoplaySpeed={5500}
+                                    pauseOnHover={true}
+                                    waitForAnimate={false}
                                 >
                                     {props.security.map((value: NewsItemDto, index: number) => (
                                         <React.Fragment key={index}>
@@ -126,18 +130,19 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                                         base={GET_NEWS_URL}
                                                         source={value.image}
                                                         className="user-signin-view-card-image"
-                                                        title=""
-                                                        alt=""
+                                                        title="Security news image"
+                                                        alt="Illustration for security news"
                                                     />
                                                 </figure>
                                             </div>
-                                            <div className="bulma-card-content">
-                                                <div className="is-size-6 has-text-weight-semibold py-2">
-                                                    {value.title}
+                                            <div className="bulma-card-content p-0 pt-3 pb-4">
+                                                <div className="px-5 pb-3">
+                                                    {value.tags.map((value: string, index: number) => (
+                                                        <span className="bulma-tag bulma-is-info bulma-is-light mr-2" key={index}>{value}</span>
+                                                    ))}
                                                 </div>
-                                                <div className="is-size-6 py-2">
-                                                    {value.lead}
-                                                </div>
+                                                <RenderHtml value={value.title} tag="div" className="is-size-6 has-text-weight-semibold px-5 py-2" />
+                                                <RenderHtml value={value.lead} tag="div" className="is-size-6 px-5 py-2" />
                                             </div>
                                         </React.Fragment>
                                     ))}
