@@ -34,17 +34,19 @@ describe("test account group component: userSignin", () => {
         },
         labelEmail: "Email address",
         labelPassword: "Password",
-        securityNews: [{
-            image: "news_01.webp",
-            tags: ["important"],
-            date: "20205-08-08",
-            title: "Be careful...",
-            lead: "Do not...",
-            link: {
-                text: "Read more",
-                href: "/security-news"
-            }
-        }]
+        securityNews: [
+            {
+                image: "news_01.webp",
+                tags: ["important"],
+                date: "20205-08-08",
+                title: "Be careful...",
+                lead: "Do not...",
+                link: {
+                    text: "Read more",
+                    href: "/security-news",
+                },
+            },
+        ],
     };
 
     let state: ApplicationState = ApplicationDefault;

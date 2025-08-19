@@ -107,47 +107,56 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                     </div>
                 </div>
                 <div className="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins">
-                        <div className="bulma-card user-signin-view-card-news">
-                            <Skeleton isLoading={props.isLoading} mode="Rect" width={350} height={300}>
-                                <Slider
-                                    dots={false}
-                                    arrows={false}
-                                    fade={true}
-                                    infinite={true}
-                                    slidesToShow={1}
-                                    slidesToScroll={1}
-                                    autoplay={true}
-                                    autoplaySpeed={5500}
-                                    pauseOnHover={true}
-                                    waitForAnimate={false}
-                                >
-                                    {props.security.map((value: NewsItemDto, index: number) => (
-                                        <React.Fragment key={index}>
-                                            <div className="bulma-card-image">
-                                                <figure className="bulma-image">
-                                                    <CustomImage
-                                                        base={GET_NEWS_URL}
-                                                        source={value.image}
-                                                        className="user-signin-view-card-image"
-                                                        title="Security news image"
-                                                        alt="Illustration for security news"
-                                                    />
-                                                </figure>
+                    <div className="bulma-card user-signin-view-card-news">
+                        <Skeleton isLoading={props.isLoading} mode="Rect" width={350} height={300}>
+                            <Slider
+                                dots={false}
+                                arrows={false}
+                                fade={true}
+                                infinite={true}
+                                slidesToShow={1}
+                                slidesToScroll={1}
+                                autoplay={true}
+                                autoplaySpeed={5500}
+                                pauseOnHover={true}
+                                waitForAnimate={false}
+                            >
+                                {props.security.map((value: NewsItemDto, index: number) => (
+                                    <React.Fragment key={index}>
+                                        <div className="bulma-card-image">
+                                            <figure className="bulma-image">
+                                                <CustomImage
+                                                    base={GET_NEWS_URL}
+                                                    source={value.image}
+                                                    className="user-signin-view-card-image"
+                                                    title="Security news image"
+                                                    alt="Illustration for security news"
+                                                />
+                                            </figure>
+                                        </div>
+                                        <div className="bulma-card-content p-0 pt-3 pb-4">
+                                            <div className="px-5 pb-3">
+                                                {value.tags.map((value: string, index: number) => (
+                                                    <span
+                                                        className="bulma-tag bulma-is-info bulma-is-light mr-2"
+                                                        key={index}
+                                                    >
+                                                        {value}
+                                                    </span>
+                                                ))}
                                             </div>
-                                            <div className="bulma-card-content p-0 pt-3 pb-4">
-                                                <div className="px-5 pb-3">
-                                                    {value.tags.map((value: string, index: number) => (
-                                                        <span className="bulma-tag bulma-is-info bulma-is-light mr-2" key={index}>{value}</span>
-                                                    ))}
-                                                </div>
-                                                <RenderHtml value={value.title} tag="div" className="is-size-6 has-text-weight-semibold px-5 py-2" />
-                                                <RenderHtml value={value.lead} tag="div" className="is-size-6 px-5 py-2" />
-                                            </div>
-                                        </React.Fragment>
-                                    ))}
-                                </Slider>
-                            </Skeleton>
-                        </div>
+                                            <RenderHtml
+                                                value={value.title}
+                                                tag="div"
+                                                className="is-size-6 has-text-weight-semibold px-5 py-2"
+                                            />
+                                            <RenderHtml value={value.lead} tag="div" className="is-size-6 px-5 py-2" />
+                                        </div>
+                                    </React.Fragment>
+                                ))}
+                            </Slider>
+                        </Skeleton>
+                    </div>
                 </div>
             </div>
         </div>
