@@ -21,6 +21,7 @@ import { TagType } from "../../../../../../Shared/Components/RenderHtml/types";
 import { TryParse } from "../../../../../../Shared/Services/Utilities";
 import DOMPurify from "dompurify";
 import Validate from "validate.js";
+import { v4 as uuidv4 } from "uuid";
 import "./utilities.css";
 
 interface DataProps {
@@ -327,13 +328,13 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
             if (item.includes("{") && item.includes("}")) {
                 const data = TryParse<LinkProps>(sanitized);
                 result.push(
-                    <Link to={`/${language?.id ?? ""}/${data.href}`}>
+                    <Link to={`/${language?.id ?? ""}/${data.href}`} key={uuidv4()}>
                         <>{data.text}</>
                     </Link>
                 );
             } else {
                 if (!Validate.isEmpty(sanitized)) {
-                    result.push(<RenderHtml value={sanitized} tag="span" className={props.className} />);
+                    result.push(<RenderHtml value={sanitized} tag="span" className={props.className} key={uuidv4()} />);
                 }
             }
         });
