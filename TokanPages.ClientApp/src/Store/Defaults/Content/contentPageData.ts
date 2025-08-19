@@ -516,6 +516,7 @@ export const ContentPageData: ContentPageDataState = {
             },
             labelEmail: "",
             labelPassword: "",
+            securityNews: []
         },
         accountUserSignout: {
             language: "",
