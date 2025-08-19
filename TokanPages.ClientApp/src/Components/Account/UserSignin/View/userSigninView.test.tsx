@@ -20,6 +20,7 @@ describe("test account group component: userSigninView", () => {
                         text: "Forgot password?",
                         href: "/reset",
                     }}
+                    security={[]}
                     buttonHandler={jest.fn()}
                     progress={false}
                     keyHandler={jest.fn()}
