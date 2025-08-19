@@ -1,3 +1,11 @@
+## [0.163.1](https://github.com/TomaszKandula/TokanPages/compare/v0.163.0...v0.163.1) (2025-08-19)
+
+
+### Bug Fixes
+
+* <div> cannot be descendant of <p> ([c5c70cb](https://github.com/TomaszKandula/TokanPages/commit/c5c70cbf2fde7837b175896fd2168c47779d4cf2))
+* add missing keys ([eca6b8c](https://github.com/TomaszKandula/TokanPages/commit/eca6b8c2df25a8bbf1f865a2066fb2b5f13c6755))
+
 # [0.163.0](https://github.com/TomaszKandula/TokanPages/compare/v0.162.0...v0.163.0) (2025-08-19)
 
 
