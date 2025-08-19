@@ -1,3 +1,18 @@
+# [0.163.0](https://github.com/TomaszKandula/TokanPages/compare/v0.162.0...v0.163.0) (2025-08-19)
+
+
+### Features
+
+* add new css class ([7594ee0](https://github.com/TomaszKandula/TokanPages/commit/7594ee0cb21b7ff2e34b50e7465f4f93448c44c0))
+* add new model ([c1b205d](https://github.com/TomaszKandula/TokanPages/commit/c1b205d1ded1544cf9c7bc806f941b14d3811ab2))
+* add new path ([195e7ca](https://github.com/TomaszKandula/TokanPages/commit/195e7ca6faa88254c8474e1f5a4e7c4a87d04ba3))
+* add prop to default values ([aa2309b](https://github.com/TomaszKandula/TokanPages/commit/aa2309b66b543bd79affab0e8c2a325f2dbb6b8c))
+* add to export ([06a28fa](https://github.com/TomaszKandula/TokanPages/commit/06a28fa98e784593d13f81c02376621638b8a32e))
+* change card width dynamically ([5e1d29a](https://github.com/TomaszKandula/TokanPages/commit/5e1d29ab79834f780338750f5fc4403cd0e6d432))
+* implement security news slider ([d25e7da](https://github.com/TomaszKandula/TokanPages/commit/d25e7da600f9158c999346c666f84d0b27ac46ab))
+* pass security object ([669a9ef](https://github.com/TomaszKandula/TokanPages/commit/669a9efcc8365d98a9a8fc87e4e95770edf6df9f))
+* upgrade slider ([629ef60](https://github.com/TomaszKandula/TokanPages/commit/629ef604f0281e829c58df0e8ff8df8fc22883c3))
+
 # [0.162.0](https://github.com/TomaszKandula/TokanPages/compare/v0.161.0...v0.162.0) (2025-08-18)
 
 
