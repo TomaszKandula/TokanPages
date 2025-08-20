@@ -82,7 +82,7 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
                 </Skeleton>
             </figure>
         </div>
-        <div className="bulma-card-content p-0 pt-3 pb-4">
+        <div className="bulma-card-content p-0 pt-3">
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={100} className="mx-5">
                 <RenderTags {...props} />
             </Skeleton>
@@ -163,9 +163,9 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                     </div>
                 </div>
                 <div className="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins">
-                    <div className="bulma-card user-signin-view-card-news">
+                    <div className="bulma-card pb-4 user-signin-view-card-news">
                         <Slider
-                            dots={false}
+                            dots={true}
                             arrows={false}
                             fade={true}
                             infinite={true}
