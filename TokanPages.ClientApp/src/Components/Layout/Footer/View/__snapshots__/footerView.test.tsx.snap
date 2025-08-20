@@ -46,7 +46,7 @@ Object {
               </button>
             </a>
           </div>
-          <p
+          <div
             class="is-size-6 is-flex is-flex-direction-column"
           >
             <span
@@ -87,9 +87,9 @@ Object {
                 </span>
               </a>
             </div>
-          </p>
+          </div>
           <p
-            class="is-size-7 has-text-grey py-2"
+            class="is-size-7 has-text-grey mt-2 py-2"
           >
             1.0
           </p>
@@ -139,7 +139,7 @@ Object {
             </button>
           </a>
         </div>
-        <p
+        <div
           class="is-size-6 is-flex is-flex-direction-column"
         >
           <span
@@ -180,9 +180,9 @@ Object {
               </span>
             </a>
           </div>
-        </p>
+        </div>
         <p
-          class="is-size-7 has-text-grey py-2"
+          class="is-size-7 has-text-grey mt-2 py-2"
         >
           1.0
         </p>

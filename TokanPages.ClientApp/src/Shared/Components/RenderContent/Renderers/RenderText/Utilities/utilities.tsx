@@ -135,7 +135,7 @@ export const RenderAnchorLink = (props: DataProps): React.ReactElement => {
 
     return (
         <span className="is-flex py-2 is-align-items-center" onClick={onClickHandler}>
-            <Icon name="MenuRight" size={1} />
+            <Icon name="MenuRight" size={1.5} />
             <span className="is-size-5 has-text-grey-dark is-clickable">{props.text ?? NO_CONTENT}</span>
         </span>
     );
