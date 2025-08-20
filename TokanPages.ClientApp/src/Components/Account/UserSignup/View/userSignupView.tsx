@@ -146,20 +146,26 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                     </div>
                 </div>
                 <div className="bulma-column is-flex is-align-self-center user-signup-view-margins">
-                    <Skeleton isLoading={props.isLoading} mode="Rect" height={300}>
                         <article className="bulma-message bulma-is-info">
                             <div className="bulma-message-header">
-                                <p>{props.warning?.textPre}</p>
+                                <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150}>
+                                    <p>{props.warning?.textPre}</p>
+                                </Skeleton>
                             </div>
                             <div className="bulma-message-body bulma-content">
-                                <RenderList list={props.warning?.textList} className="" />
-                                <RenderParagraphs text={props.warning?.textPost} className="" />
-                                <a href={props.warning?.textNist?.href} target="_blank" rel="noopener nofollow">
-                                    {props.warning?.textNist?.text}
-                                </a>
+                                <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={250} className="my-3">
+                                    <RenderList list={props.warning?.textList} />
+                                </Skeleton>
+                                <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={300} className="my-3">
+                                    <RenderParagraphs text={props.warning?.textPost} />
+                                </Skeleton>
+                                <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={350} className="my-3">
+                                    <a href={props.warning?.textNist?.href} target="_blank" rel="noopener nofollow">
+                                        {props.warning?.textNist?.text}
+                                    </a>
+                                </Skeleton>
                             </div>
                         </article>
-                    </Skeleton>
                 </div>
             </div>
         </div>
