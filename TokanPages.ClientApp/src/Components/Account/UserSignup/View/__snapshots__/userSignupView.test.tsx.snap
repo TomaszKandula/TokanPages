@@ -228,14 +228,10 @@ Object {
                       minimum one number
                     </li>
                   </ul>
-                  <p
-                    class=""
-                  >
+                  <p>
                     We recommend to use password generator...
                   </p>
-                  <p
-                    class=""
-                  >
+                  <p>
                     Read...
                   </p>
                   <a
@@ -477,14 +473,10 @@ Object {
                     minimum one number
                   </li>
                 </ul>
-                <p
-                  class=""
-                >
+                <p>
                   We recommend to use password generator...
                 </p>
-                <p
-                  class=""
-                >
+                <p>
                   Read...
                 </p>
                 <a
