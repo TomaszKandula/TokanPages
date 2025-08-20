@@ -228,14 +228,10 @@ Object {
                       minimum one number
                     </li>
                   </ul>
-                  <p
-                    class=""
-                  >
+                  <p>
                     We recommend to use password generator to generate very strong and long password; to be used within browser password manager (1Password, Bitwarden, KeePass).
                   </p>
-                  <p
-                    class=""
-                  >
+                  <p>
                     Recommendation based on the following reading:
                   </p>
                   <a
@@ -477,14 +473,10 @@ Object {
                     minimum one number
                   </li>
                 </ul>
-                <p
-                  class=""
-                >
+                <p>
                   We recommend to use password generator to generate very strong and long password; to be used within browser password manager (1Password, Bitwarden, KeePass).
                 </p>
-                <p
-                  class=""
-                >
+                <p>
                   Recommendation based on the following reading:
                 </p>
                 <a
