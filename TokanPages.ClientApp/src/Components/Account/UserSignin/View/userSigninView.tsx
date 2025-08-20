@@ -86,10 +86,10 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
                 <RenderTags {...props} />
             </Skeleton>
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={250} className="mx-5">
-                <RenderHtml value={props.title} tag="div" className="is-size-6 has-text-weight-semibold px-5 py-2" />
+                <RenderHtml value={props.title} tag="h2" className="is-size-6 has-text-weight-semibold px-5 py-2" />
             </Skeleton>
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={350} className="mx-5">
-                <RenderHtml value={props.lead} tag="div" className="is-size-6 px-5 py-2" />
+                <RenderHtml value={props.lead} tag="p" className="is-size-6 px-5 py-2" />
             </Skeleton>
         </div>
     </>
