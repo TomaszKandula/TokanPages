@@ -42,6 +42,7 @@ interface RenderSlideProps {
     tags: string[];
     title: string;
     lead: string;
+    isLoading?: boolean;
 }
 
 const ActiveButton = (props: UserSigninViewProps): React.ReactElement => (
@@ -70,19 +71,27 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
     <React.Fragment key={props.index}>
         <div className="bulma-card-image">
             <figure className="bulma-image">
-                <CustomImage
-                    base={GET_NEWS_URL}
-                    source={props.image}
-                    className="user-signin-view-card-image"
-                    title="Security news image"
-                    alt="Illustration for security news"
-                />
+                <Skeleton isLoading={props.isLoading ?? false} mode="Rect" height={150} disableMarginY>
+                    <CustomImage
+                        base={GET_NEWS_URL}
+                        source={props.image}
+                        className="user-signin-view-card-image"
+                        title="Security news image"
+                        alt="Illustration for security news"
+                    />
+                </Skeleton>
             </figure>
         </div>
         <div className="bulma-card-content p-0 pt-3 pb-4">
-            <RenderTags {...props} />
-            <RenderHtml value={props.title} tag="div" className="is-size-6 has-text-weight-semibold px-5 py-2" />
-            <RenderHtml value={props.lead} tag="div" className="is-size-6 px-5 py-2" />
+            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={100} className="mx-5">
+                <RenderTags {...props} />
+            </Skeleton>
+            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={250} className="mx-5">
+                <RenderHtml value={props.title} tag="div" className="is-size-6 has-text-weight-semibold px-5 py-2" />
+            </Skeleton>
+            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={350} className="mx-5">
+                <RenderHtml value={props.lead} tag="div" className="is-size-6 px-5 py-2" />
+            </Skeleton>
         </div>
     </React.Fragment>
 );
@@ -162,7 +171,14 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                             waitForAnimate={false}
                         >
                             {props.isLoading ? (
-                                <RenderSlide index={""} image="" tags={[""]} title="" lead="" />
+                                <RenderSlide
+                                    isLoading={props.isLoading}
+                                    index={""}
+                                    image=""
+                                    tags={[]}
+                                    title=""
+                                    lead=""
+                                />
                             ) : (
                                 props.security.map((value: NewsItemDto, _index: number) => (
                                     <RenderSlide
