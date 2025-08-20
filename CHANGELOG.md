@@ -1,3 +1,21 @@
+# [0.165.0](https://github.com/TomaszKandula/TokanPages/compare/v0.164.0...v0.165.0) (2025-08-20)
+
+
+### Bug Fixes
+
+* relocate selector, replace 'let' w/const ([c4338d9](https://github.com/TomaszKandula/TokanPages/commit/c4338d9d94ab6502ff04dc8ddd32832528141b10))
+* remove unnecessary assignment ([fb896fb](https://github.com/TomaszKandula/TokanPages/commit/fb896fbaabc7e0b7520d23e2493a20635fc9003e))
+* resolve issue with key ([6602b6d](https://github.com/TomaszKandula/TokanPages/commit/6602b6d7d4099a27a4d0ce4740f0e501532aa0c6))
+
+
+### Features
+
+* add skeletons ([8f40113](https://github.com/TomaszKandula/TokanPages/commit/8f40113ad2420472dcb24aaf5064686fda94d51b))
+* change tag type ([ebed6cc](https://github.com/TomaszKandula/TokanPages/commit/ebed6cc00fc384bd076bdbb59f25cba0aba90cb8))
+* enable dots, correct paddings ([0f70539](https://github.com/TomaszKandula/TokanPages/commit/0f7053928effa9cd63e97990c410e51743a39708))
+* overwrite dots style ([3fb7bc8](https://github.com/TomaszKandula/TokanPages/commit/3fb7bc8835eb84fd687097a5412b8e1a54875d07))
+* restyle, display date ([3453ab2](https://github.com/TomaszKandula/TokanPages/commit/3453ab258d3089bd71f90ab5575cbe9daf6bde6a))
+
 # [0.164.0](https://github.com/TomaszKandula/TokanPages/compare/v0.163.1...v0.164.0) (2025-08-20)
 
 
