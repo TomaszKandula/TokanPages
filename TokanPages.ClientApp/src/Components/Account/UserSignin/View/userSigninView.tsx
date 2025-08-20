@@ -15,6 +15,7 @@ import {
     TextFieldWithPassword,
 } from "../../../../Shared/Components";
 import { UserSigninProps } from "../userSignin";
+import { v4 as uuidv4 } from "uuid";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./userSigninView.css";
@@ -35,6 +36,15 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     labelPassword: string;
 }
 
+interface RenderSlideProps {
+    index: string;
+    image: string;
+    tags: string[];
+    title: string;
+    lead: string;
+    isLoading?: boolean;
+}
+
 const ActiveButton = (props: UserSigninViewProps): React.ReactElement => (
     <button
         type="submit"
@@ -44,6 +54,46 @@ const ActiveButton = (props: UserSigninViewProps): React.ReactElement => (
     >
         {!props.progress ? props.button : <ProgressBar size={20} />}
     </button>
+);
+
+const RenderTags = (props: RenderSlideProps): React.ReactElement | null =>
+    props.tags.length < 1 ? null : (
+        <div className="bulma-tags m-0 px-5 pb-3">
+            {props.tags.map((value: string, _index: number) => (
+                <span className="bulma-tag bulma-is-warning bulma-is-light" key={uuidv4()}>
+                    {value}
+                </span>
+            ))}
+        </div>
+    );
+
+const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
+    <React.Fragment key={props.index}>
+        <div className="bulma-card-image">
+            <figure className="bulma-image">
+                <Skeleton isLoading={props.isLoading ?? false} mode="Rect" height={150} disableMarginY>
+                    <CustomImage
+                        base={GET_NEWS_URL}
+                        source={props.image}
+                        className="user-signin-view-card-image"
+                        title="Security news image"
+                        alt="Illustration for security news"
+                    />
+                </Skeleton>
+            </figure>
+        </div>
+        <div className="bulma-card-content p-0 pt-3 pb-4">
+            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={100} className="mx-5">
+                <RenderTags {...props} />
+            </Skeleton>
+            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={250} className="mx-5">
+                <RenderHtml value={props.title} tag="div" className="is-size-6 has-text-weight-semibold px-5 py-2" />
+            </Skeleton>
+            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={350} className="mx-5">
+                <RenderHtml value={props.lead} tag="div" className="is-size-6 px-5 py-2" />
+            </Skeleton>
+        </div>
+    </React.Fragment>
 );
 
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => (
@@ -108,54 +158,39 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                 </div>
                 <div className="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins">
                     <div className="bulma-card user-signin-view-card-news">
-                        <Skeleton isLoading={props.isLoading} mode="Rect" width={350} height={300}>
-                            <Slider
-                                dots={false}
-                                arrows={false}
-                                fade={true}
-                                infinite={true}
-                                slidesToShow={1}
-                                slidesToScroll={1}
-                                autoplay={true}
-                                autoplaySpeed={5500}
-                                pauseOnHover={true}
-                                waitForAnimate={false}
-                            >
-                                {props.security.map((value: NewsItemDto, index: number) => (
-                                    <React.Fragment key={index}>
-                                        <div className="bulma-card-image">
-                                            <figure className="bulma-image">
-                                                <CustomImage
-                                                    base={GET_NEWS_URL}
-                                                    source={value.image}
-                                                    className="user-signin-view-card-image"
-                                                    title="Security news image"
-                                                    alt="Illustration for security news"
-                                                />
-                                            </figure>
-                                        </div>
-                                        <div className="bulma-card-content p-0 pt-3 pb-4">
-                                            <div className="px-5 pb-3">
-                                                {value.tags.map((value: string, index: number) => (
-                                                    <span
-                                                        className="bulma-tag bulma-is-info bulma-is-light mr-2"
-                                                        key={index}
-                                                    >
-                                                        {value}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                            <RenderHtml
-                                                value={value.title}
-                                                tag="div"
-                                                className="is-size-6 has-text-weight-semibold px-5 py-2"
-                                            />
-                                            <RenderHtml value={value.lead} tag="div" className="is-size-6 px-5 py-2" />
-                                        </div>
-                                    </React.Fragment>
-                                ))}
-                            </Slider>
-                        </Skeleton>
+                        <Slider
+                            dots={false}
+                            arrows={false}
+                            fade={true}
+                            infinite={true}
+                            slidesToShow={1}
+                            slidesToScroll={1}
+                            autoplay={true}
+                            autoplaySpeed={5500}
+                            pauseOnHover={true}
+                            waitForAnimate={false}
+                        >
+                            {props.isLoading ? (
+                                <RenderSlide
+                                    isLoading={props.isLoading}
+                                    index={""}
+                                    image=""
+                                    tags={[]}
+                                    title=""
+                                    lead=""
+                                />
+                            ) : (
+                                props.security.map((value: NewsItemDto, _index: number) => (
+                                    <RenderSlide
+                                        index={uuidv4()}
+                                        image={value.image}
+                                        tags={value.tags}
+                                        title={value.title}
+                                        lead={value.lead}
+                                    />
+                                ))
+                            )}
+                        </Slider>
                     </div>
                 </div>
             </div>
