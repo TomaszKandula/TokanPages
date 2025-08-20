@@ -146,26 +146,26 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
                     </div>
                 </div>
                 <div className="bulma-column is-flex is-align-self-center user-signup-view-margins">
-                        <article className="bulma-message bulma-is-info">
-                            <div className="bulma-message-header">
-                                <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150}>
-                                    <p>{props.warning?.textPre}</p>
-                                </Skeleton>
-                            </div>
-                            <div className="bulma-message-body bulma-content">
-                                <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={250} className="my-3">
-                                    <RenderList list={props.warning?.textList} />
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={300} className="my-3">
-                                    <RenderParagraphs text={props.warning?.textPost} />
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={350} className="my-3">
-                                    <a href={props.warning?.textNist?.href} target="_blank" rel="noopener nofollow">
-                                        {props.warning?.textNist?.text}
-                                    </a>
-                                </Skeleton>
-                            </div>
-                        </article>
+                    <article className="bulma-message bulma-is-info">
+                        <div className="bulma-message-header">
+                            <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150}>
+                                <p>{props.warning?.textPre}</p>
+                            </Skeleton>
+                        </div>
+                        <div className="bulma-message-body bulma-content">
+                            <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={250} className="my-3">
+                                <RenderList list={props.warning?.textList} />
+                            </Skeleton>
+                            <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={300} className="my-3">
+                                <RenderParagraphs text={props.warning?.textPost} />
+                            </Skeleton>
+                            <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={350} className="my-3">
+                                <a href={props.warning?.textNist?.href} target="_blank" rel="noopener nofollow">
+                                    {props.warning?.textNist?.text}
+                                </a>
+                            </Skeleton>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>

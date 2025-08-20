@@ -170,13 +170,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                             waitForAnimate={false}
                         >
                             {props.isLoading ? (
-                                <RenderSlide
-                                    isLoading={props.isLoading}
-                                    image=""
-                                    tags={[]}
-                                    title=""
-                                    lead=""
-                                />
+                                <RenderSlide isLoading={props.isLoading} image="" tags={[]} title="" lead="" />
                             ) : (
                                 props.security.map((value: NewsItemDto, _index: number) => (
                                     <RenderSlide
