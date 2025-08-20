@@ -55,6 +55,17 @@ const ActiveButton = (props: UserSigninViewProps): React.ReactElement => (
     </button>
 );
 
+const RenderTags = (props: RenderSlideProps): React.ReactElement | null =>
+    props.tags.length < 1 ? null : (
+        <div className="bulma-tags m-0 px-5 pb-3">
+            {props.tags.map((value: string, _index: number) => (
+                <span className="bulma-tag bulma-is-warning bulma-is-light" key={uuidv4()}>
+                    {value}
+                </span>
+            ))}
+        </div>
+    );
+
 const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
     <React.Fragment key={props.index}>
         <div className="bulma-card-image">
@@ -69,13 +80,7 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
             </figure>
         </div>
         <div className="bulma-card-content p-0 pt-3 pb-4">
-            <div className="bulma-tags m-0 px-5 pb-3">
-                {props.tags.map((value: string, _index: number) => (
-                    <span className="bulma-tag bulma-is-warning bulma-is-light" key={uuidv4()}>
-                        {value}
-                    </span>
-                ))}
-            </div>
+            <RenderTags {...props} />
             <RenderHtml value={props.title} tag="div" className="is-size-6 has-text-weight-semibold px-5 py-2" />
             <RenderHtml value={props.lead} tag="div" className="is-size-6 px-5 py-2" />
         </div>
