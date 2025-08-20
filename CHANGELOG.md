@@ -1,3 +1,15 @@
+# [0.164.0](https://github.com/TomaszKandula/TokanPages/compare/v0.163.1...v0.164.0) (2025-08-20)
+
+
+### Features
+
+* add skeletons ([9796bb6](https://github.com/TomaszKandula/TokanPages/commit/9796bb6f7959ee5bf217133bc98a6df8bd8498fb))
+* add tag container, change tag colour ([4fc89c7](https://github.com/TomaszKandula/TokanPages/commit/4fc89c72ef2aa2632874e31096783ecc731ed002))
+* change anchor component icon size ([6fbbd2a](https://github.com/TomaszKandula/TokanPages/commit/6fbbd2a35ae150acb283b716081fac898572d41c))
+* move tags to a separate component ([976f49a](https://github.com/TomaszKandula/TokanPages/commit/976f49aad00b7fe866f2083a86f09fb11cd01b3a))
+* relocate to sub-component ([013abe4](https://github.com/TomaszKandula/TokanPages/commit/013abe42125f6cc36ce54410618347c55f7b2b0a))
+* use uuid v4 instead of index ([bb58f2d](https://github.com/TomaszKandula/TokanPages/commit/bb58f2d78a376bbfc008859f20deeafd980ebd2a))
+
 ## [0.163.1](https://github.com/TomaszKandula/TokanPages/compare/v0.163.0...v0.163.1) (2025-08-19)
 
 
