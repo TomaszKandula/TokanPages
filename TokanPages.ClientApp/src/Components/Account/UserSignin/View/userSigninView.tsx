@@ -135,10 +135,10 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                             </figure>
                                         </div>
                                         <div className="bulma-card-content p-0 pt-3 pb-4">
-                                            <div className="px-5 pb-3">
+                                            <div className="bulma-tags m-0 px-5 pb-3">
                                                 {value.tags.map((value: string, index: number) => (
                                                     <span
-                                                        className="bulma-tag bulma-is-info bulma-is-light mr-2"
+                                                        className="bulma-tag bulma-is-warning bulma-is-light"
                                                         key={index}
                                                     >
                                                         {value}
