@@ -39,6 +39,7 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
 interface RenderSlideProps {
     image: string;
     tags: string[];
+    date: string;
     title: string;
     lead: string;
     isLoading?: boolean;
@@ -59,7 +60,7 @@ const RenderTags = (props: RenderSlideProps): React.ReactElement | null =>
     props.tags.length < 1 ? null : (
         <div className="bulma-tags m-0 px-5 pb-3">
             {props.tags.map((value: string, _index: number) => (
-                <span className="bulma-tag bulma-is-warning bulma-is-light" key={uuidv4()}>
+                <span className="bulma-tag bulma-is-warning" key={uuidv4()}>
                     {value}
                 </span>
             ))}
@@ -81,15 +82,19 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
                 </Skeleton>
             </figure>
         </div>
-        <div className="bulma-card-content p-0 pt-3 pb-4">
+        <div className="bulma-card-content p-0 pt-3">
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={100} className="mx-5">
                 <RenderTags {...props} />
             </Skeleton>
+            <hr className="m-0" />
+            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={75} className="mx-5 my-4">
+                <p className="is-size-7 px-5 py-3">{props.date}</p>
+            </Skeleton>
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={250} className="mx-5">
-                <RenderHtml value={props.title} tag="div" className="is-size-6 has-text-weight-semibold px-5 py-2" />
+                <RenderHtml value={props.title} tag="h2" className="is-size-6 has-text-weight-semibold px-5 pb-2" />
             </Skeleton>
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={350} className="mx-5">
-                <RenderHtml value={props.lead} tag="div" className="is-size-6 px-5 py-2" />
+                <RenderHtml value={props.lead} tag="p" className="is-size-6 px-5 pb-1" />
             </Skeleton>
         </div>
     </>
@@ -156,9 +161,9 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                     </div>
                 </div>
                 <div className="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins">
-                    <div className="bulma-card user-signin-view-card-news">
+                    <div className="bulma-card pb-4 user-signin-view-card-news">
                         <Slider
-                            dots={false}
+                            dots={true}
                             arrows={false}
                             fade={true}
                             infinite={true}
@@ -170,13 +175,14 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                             waitForAnimate={false}
                         >
                             {props.isLoading ? (
-                                <RenderSlide isLoading={props.isLoading} image="" tags={[]} title="" lead="" />
+                                <RenderSlide isLoading={props.isLoading} image="" tags={[]} date="" title="" lead="" />
                             ) : (
                                 props.security.map((value: NewsItemDto, _index: number) => (
                                     <RenderSlide
                                         key={uuidv4()}
                                         image={value.image}
                                         tags={value.tags}
+                                        date={value.date}
                                         title={value.title}
                                         lead={value.lead}
                                     />

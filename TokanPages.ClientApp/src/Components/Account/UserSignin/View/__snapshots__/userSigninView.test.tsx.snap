@@ -136,7 +136,7 @@ Object {
               class="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins"
             >
               <div
-                class="bulma-card user-signin-view-card-news"
+                class="bulma-card pb-4 user-signin-view-card-news"
               >
                 <div
                   class="slick-slider slick-initialized"
@@ -292,7 +292,7 @@ Object {
             class="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins"
           >
             <div
-              class="bulma-card user-signin-view-card-news"
+              class="bulma-card pb-4 user-signin-view-card-news"
             >
               <div
                 class="slick-slider slick-initialized"

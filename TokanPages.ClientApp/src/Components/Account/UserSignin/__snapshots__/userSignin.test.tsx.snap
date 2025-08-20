@@ -136,7 +136,7 @@ Object {
               class="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins"
             >
               <div
-                class="bulma-card user-signin-view-card-news"
+                class="bulma-card pb-4 user-signin-view-card-news"
               >
                 <div
                   class="slick-slider slick-initialized"
@@ -173,27 +173,35 @@ Object {
                             </figure>
                           </div>
                           <div
-                            class="bulma-card-content p-0 pt-3 pb-4"
+                            class="bulma-card-content p-0 pt-3"
                           >
                             <div
                               class="bulma-tags m-0 px-5 pb-3"
                             >
                               <span
-                                class="bulma-tag bulma-is-warning bulma-is-light"
+                                class="bulma-tag bulma-is-warning"
                               >
                                 important
                               </span>
                             </div>
-                            <div
-                              class="is-size-6 has-text-weight-semibold px-5 py-2"
+                            <hr
+                              class="m-0"
+                            />
+                            <p
+                              class="is-size-7 px-5 py-3"
+                            >
+                              20205-08-08
+                            </p>
+                            <h2
+                              class="is-size-6 has-text-weight-semibold px-5 pb-2"
                             >
                               Be careful...
-                            </div>
-                            <div
-                              class="is-size-6 px-5 py-2"
+                            </h2>
+                            <p
+                              class="is-size-6 px-5 pb-1"
                             >
                               Do not...
-                            </div>
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -341,7 +349,7 @@ Object {
             class="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins"
           >
             <div
-              class="bulma-card user-signin-view-card-news"
+              class="bulma-card pb-4 user-signin-view-card-news"
             >
               <div
                 class="slick-slider slick-initialized"
@@ -378,27 +386,35 @@ Object {
                           </figure>
                         </div>
                         <div
-                          class="bulma-card-content p-0 pt-3 pb-4"
+                          class="bulma-card-content p-0 pt-3"
                         >
                           <div
                             class="bulma-tags m-0 px-5 pb-3"
                           >
                             <span
-                              class="bulma-tag bulma-is-warning bulma-is-light"
+                              class="bulma-tag bulma-is-warning"
                             >
                               important
                             </span>
                           </div>
-                          <div
-                            class="is-size-6 has-text-weight-semibold px-5 py-2"
+                          <hr
+                            class="m-0"
+                          />
+                          <p
+                            class="is-size-7 px-5 py-3"
+                          >
+                            20205-08-08
+                          </p>
+                          <h2
+                            class="is-size-6 has-text-weight-semibold px-5 pb-2"
                           >
                             Be careful...
-                          </div>
-                          <div
-                            class="is-size-6 px-5 py-2"
+                          </h2>
+                          <p
+                            class="is-size-6 px-5 pb-1"
                           >
                             Do not...
-                          </div>
+                          </p>
                         </div>
                       </div>
                     </div>
