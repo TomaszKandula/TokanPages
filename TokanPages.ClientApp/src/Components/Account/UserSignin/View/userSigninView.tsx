@@ -37,7 +37,6 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
 }
 
 interface RenderSlideProps {
-    index: string;
     image: string;
     tags: string[];
     title: string;
@@ -68,7 +67,7 @@ const RenderTags = (props: RenderSlideProps): React.ReactElement | null =>
     );
 
 const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
-    <React.Fragment key={props.index}>
+    <>
         <div className="bulma-card-image">
             <figure className="bulma-image">
                 <Skeleton isLoading={props.isLoading ?? false} mode="Rect" height={150} disableMarginY>
@@ -93,7 +92,7 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
                 <RenderHtml value={props.lead} tag="div" className="is-size-6 px-5 py-2" />
             </Skeleton>
         </div>
-    </React.Fragment>
+    </>
 );
 
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => (
@@ -173,7 +172,6 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                             {props.isLoading ? (
                                 <RenderSlide
                                     isLoading={props.isLoading}
-                                    index={""}
                                     image=""
                                     tags={[]}
                                     title=""
@@ -182,7 +180,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                             ) : (
                                 props.security.map((value: NewsItemDto, _index: number) => (
                                     <RenderSlide
-                                        index={uuidv4()}
+                                        key={uuidv4()}
                                         image={value.image}
                                         tags={value.tags}
                                         title={value.title}
