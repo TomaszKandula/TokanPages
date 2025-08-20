@@ -88,9 +88,7 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
             </Skeleton>
             <hr className="m-0" />
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={75} className="mx-5 my-4">
-                <p className="is-size-7 px-5 py-3">
-                    {props.date}
-                </p>
+                <p className="is-size-7 px-5 py-3">{props.date}</p>
             </Skeleton>
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={250} className="mx-5">
                 <RenderHtml value={props.title} tag="h2" className="is-size-6 has-text-weight-semibold px-5 pb-2" />
