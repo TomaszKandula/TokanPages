@@ -15,6 +15,7 @@ import {
     TextFieldWithPassword,
 } from "../../../../Shared/Components";
 import { UserSigninProps } from "../userSignin";
+import { v4 as uuidv4 } from "uuid";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./userSigninView.css";
@@ -35,6 +36,14 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     labelPassword: string;
 }
 
+interface RenderSlideProps {
+    index: string;
+    image: string;
+    tags: string[];
+    title: string;
+    lead: string;
+}
+
 const ActiveButton = (props: UserSigninViewProps): React.ReactElement => (
     <button
         type="submit"
@@ -45,14 +54,6 @@ const ActiveButton = (props: UserSigninViewProps): React.ReactElement => (
         {!props.progress ? props.button : <ProgressBar size={20} />}
     </button>
 );
-
-interface RenderSlideProps {
-    index: number;
-    image: string;
-    tags: string[];
-    title: string;
-    lead: string;
-}
 
 const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
     <React.Fragment key={props.index}>
@@ -69,8 +70,8 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
         </div>
         <div className="bulma-card-content p-0 pt-3 pb-4">
             <div className="bulma-tags m-0 px-5 pb-3">
-                {props.tags.map((value: string, index: number) => (
-                    <span className="bulma-tag bulma-is-warning bulma-is-light" key={index}>
+                {props.tags.map((value: string, _index: number) => (
+                    <span className="bulma-tag bulma-is-warning bulma-is-light" key={uuidv4()}>
                         {value}
                     </span>
                 ))}
@@ -156,11 +157,11 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                             waitForAnimate={false}
                         >
                             {props.isLoading ? (
-                                <RenderSlide index={0} image="" tags={[""]} title="" lead="" />
+                                <RenderSlide index={""} image="" tags={[""]} title="" lead="" />
                             ) : (
-                                props.security.map((value: NewsItemDto, index: number) => (
+                                props.security.map((value: NewsItemDto, _index: number) => (
                                     <RenderSlide
-                                        index={index}
+                                        index={uuidv4()}
                                         image={value.image}
                                         tags={value.tags}
                                         title={value.title}
