@@ -10,7 +10,6 @@
 
 .article-box-image {
     height: 200px !important;
-    width: auto !important;
     min-height: 180px;
     object-fit: cover;
 }
@@ -18,6 +17,7 @@
 .article-box-image-desktop {
     border-top-left-radius: 0.75rem;
     border-bottom-left-radius: 0.75rem;
+    width: auto !important;
 }
 
 .article-box-image-mobile {
