@@ -7,14 +7,14 @@ Object {
     <div>
       <div>
         <div
-          class="bulma-box is-flex p-0 mb-6 is-flex-direction-row"
+          class="bulma-box is-flex p-0 mb-6 article-box-card"
         >
           <figure
             class="bulma-image"
           >
             <img
               alt="An article card for given article"
-              class="article-box-image article-box-image-desktop"
+              class="article-box-image"
               loading="lazy"
               src="/images/card.jpg"
               title="Article illustration"
@@ -116,14 +116,14 @@ Object {
   "container": <div>
     <div>
       <div
-        class="bulma-box is-flex p-0 mb-6 is-flex-direction-row"
+        class="bulma-box is-flex p-0 mb-6 article-box-card"
       >
         <figure
           class="bulma-image"
         >
           <img
             alt="An article card for given article"
-            class="article-box-image article-box-image-desktop"
+            class="article-box-image"
             loading="lazy"
             src="/images/card.jpg"
             title="Article illustration"

@@ -7,7 +7,6 @@ import Validate from "validate.js";
 import "./articleCardView.css";
 
 interface ArticleCardViewProps extends ViewProperties {
-    isMobile: boolean;
     imageUrl: string;
     title: string;
     description: string;
@@ -73,39 +72,34 @@ const RenderFlag = (props: RenderFlagProps): React.ReactElement => {
     );
 };
 
-export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => {
-    const styleBox = props.isMobile ? "is-flex-direction-column" : "is-flex-direction-row";
-    const styleImage = props.isMobile ? "article-box-image-mobile" : "article-box-image-desktop";
-
-    return (
-        <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
-            <div className={`bulma-box is-flex p-0 mb-6 ${styleBox}`}>
-                <figure className="bulma-image">
-                    <CustomImage
-                        source={props.imageUrl}
-                        className={`article-box-image ${styleImage}`}
-                        title="Article illustration"
-                        alt="An article card for given article"
-                        loading={props.loading}
-                    />
-                </figure>
-                <div className="article-box-content">
-                    <div className="article-box-content-text">
-                        <h2 className="is-size-4 has-text-black-ter">{props.title}</h2>
-                        <h3 className="is-size-6 has-text-grey has-text-weight-normal m-0">{props.description}</h3>
+export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => (
+    <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
+        <div className="bulma-box is-flex p-0 mb-6 article-box-card">
+            <figure className="bulma-image">
+                <CustomImage
+                    source={props.imageUrl}
+                    className="article-box-image"
+                    title="Article illustration"
+                    alt="An article card for given article"
+                    loading={props.loading}
+                />
+            </figure>
+            <div className="article-box-content">
+                <div className="article-box-content-text">
+                    <h2 className="is-size-4 has-text-black-ter">{props.title}</h2>
+                    <h3 className="is-size-6 has-text-grey has-text-weight-normal m-0">{props.description}</h3>
+                </div>
+                <div className="is-flex is-justify-content-space-between">
+                    <div className="is-flex is-align-items-center">
+                        <RenderReadCount {...props} />
+                        <RenderTotalLikes {...props} />
+                        <RenderFlag {...props} />
                     </div>
-                    <div className="is-flex is-justify-content-space-between">
-                        <div className="is-flex is-align-items-center">
-                            <RenderReadCount {...props} />
-                            <RenderTotalLikes {...props} />
-                            <RenderFlag {...props} />
-                        </div>
-                        <button onClick={props.onClickEvent} className="bulma-button bulma-is-link bulma-is-light">
-                            {props.buttonText}
-                        </button>
-                    </div>
+                    <button onClick={props.onClickEvent} className="bulma-button bulma-is-link bulma-is-light">
+                        {props.buttonText}
+                    </button>
                 </div>
             </div>
-        </Animated>
-    );
-};
+        </div>
+    </Animated>
+);

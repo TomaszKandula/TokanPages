@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction } from "../../../Store/Actions";
 import { GetShortText, MapLanguage } from "../../../Shared/Services/Utilities";
-import { useDimensions } from "../../../Shared/Hooks";
 import { TLoading } from "../../../Shared/types";
 import { ARTICLE_PATH, GET_ARTICLE_MAIN_IMAGE_URL } from "../../../Api";
 import { ArticleCardView } from "./View/articleCardView";
@@ -23,7 +22,6 @@ interface ArticleCardProps {
 export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const media = useDimensions();
 
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
@@ -55,7 +53,6 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
     return (
         <ArticleCardView
             isLoading={isLoading}
-            isMobile={media.isMobile}
             imageUrl={imageUrl}
             title={GetShortText({ value: props.title, limit: 6 })}
             description={GetShortText({ value: props.description, limit: 12 })}
