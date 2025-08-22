@@ -7,7 +7,6 @@ import Validate from "validate.js";
 import "./articleCardView.css";
 
 interface ArticleCardViewProps extends ViewProperties {
-    isMobile: boolean;
     imageUrl: string;
     title: string;
     description: string;
@@ -73,17 +72,13 @@ const RenderFlag = (props: RenderFlagProps): React.ReactElement => {
     );
 };
 
-export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => {
-    const styleBox = props.isMobile ? "is-flex-direction-column" : "is-flex-direction-row";
-    const styleImage = props.isMobile ? "article-box-image-mobile" : "article-box-image-desktop";
-
-    return (
+export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement => (
         <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
-            <div className={`bulma-box is-flex p-0 mb-6 ${styleBox}`}>
+            <div className="bulma-box is-flex p-0 mb-6 article-box-card">
                 <figure className="bulma-image">
                     <CustomImage
                         source={props.imageUrl}
-                        className={`article-box-image ${styleImage}`}
+                        className="article-box-image"
                         title="Article illustration"
                         alt="An article card for given article"
                         loading={props.loading}
@@ -108,4 +103,3 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
             </div>
         </Animated>
     );
-};

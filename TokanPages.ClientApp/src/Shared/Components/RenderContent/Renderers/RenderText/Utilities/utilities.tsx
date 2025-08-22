@@ -6,7 +6,7 @@ import { ArticleInfoAction } from "../../../../../../Store/Actions";
 import { ApplicationState } from "../../../../../../Store/Configuration";
 import { ArticleItemBase } from "../../../Models";
 import { TextItem } from "../../../Models/TextModel";
-import { useDimensions, useHash } from "../../../../../../Shared/Hooks";
+import { useHash } from "../../../../../../Shared/Hooks";
 import {
     ArticleCard,
     ArticleCardView,
@@ -146,7 +146,6 @@ export const RenderTargetLink = (props: DataProps): React.ReactElement => {
 };
 
 export const RenderExternalLink = (props: TextItem): React.ReactElement => {
-    const media = useDimensions();
     const data = useSelector((state: ApplicationState) => state.contentPageData);
 
     const hasImage = !Validate.isEmpty(props.propImg);
@@ -163,7 +162,6 @@ export const RenderExternalLink = (props: TextItem): React.ReactElement => {
     return (
         <ArticleCardView
             isLoading={data.isLoading}
-            isMobile={media.isMobile}
             imageUrl={imageUrl}
             title={props.propTitle ?? ""}
             description={props.propSubtitle ?? ""}
@@ -178,7 +176,6 @@ export const RenderExternalLink = (props: TextItem): React.ReactElement => {
 
 export const RenderInternalLink = (props: TextItem): React.ReactElement => {
     const history = useHistory();
-    const media = useDimensions();
 
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
@@ -193,7 +190,6 @@ export const RenderInternalLink = (props: TextItem): React.ReactElement => {
     return (
         <ArticleCardView
             isLoading={data.isLoading}
-            isMobile={media.isMobile}
             imageUrl={imageUrl}
             title={props.propTitle ?? ""}
             description={props.propSubtitle ?? ""}
