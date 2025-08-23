@@ -37,7 +37,7 @@ exports[`test render function 'RenderList' should return rendered list for provi
     </span>
     <a
       class="href "
-      href="//https://test.com"
+      href="https://test.com"
       rel="noopener nofollow"
       target="_blank"
     >
@@ -75,7 +75,7 @@ exports[`test render function 'RenderList' should return rendered list for provi
     </span>
     <a
       class="href "
-      href="//https://test.com"
+      href="https://test.com"
       rel="noopener nofollow"
       target="_blank"
     >

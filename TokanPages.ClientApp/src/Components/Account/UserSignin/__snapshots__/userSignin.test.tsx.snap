@@ -13,10 +13,10 @@ Object {
             class="bulma-columns mx-4 my-6"
           >
             <div
-              class="bulma-column bulma-is-half p-0"
+              class="bulma-column is-flex is-justify-content-center p-0"
             >
               <div
-                class="bulma-card user-signin-view-margins"
+                class="bulma-card is-flex is-flex-direction-column user-signin-view-card-signin"
               >
                 <div
                   class="bulma-card-content"
@@ -105,38 +105,38 @@ Object {
                       Sign in
                     </button>
                   </div>
+                </div>
+                <div
+                  class="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container mx-5 mb-4"
+                >
                   <div
-                    class="is-flex is-flex-direction-row is-justify-content-space-between"
+                    class=""
                   >
-                    <div
-                      class="my-2"
+                    <a
+                      href="/https://localhost/signup"
+                      rel="noopener nofollow"
                     >
-                      <a
-                        href="/https://localhost/signup"
-                        rel="noopener nofollow"
-                      >
-                        Don't have an account?
-                      </a>
-                    </div>
-                    <div
-                      class="my-2"
+                      Don't have an account?
+                    </a>
+                  </div>
+                  <div
+                    class=""
+                  >
+                    <a
+                      href="/https://localhost/reset-password"
+                      rel="noopener nofollow"
                     >
-                      <a
-                        href="/https://localhost/reset-password"
-                        rel="noopener nofollow"
-                      >
-                        Forgot password?
-                      </a>
-                    </div>
+                      Forgot password?
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
             <div
-              class="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins"
+              class="bulma-column is-flex is-justify-content-center p-0"
             >
               <div
-                class="bulma-card pb-4 user-signin-view-card-news"
+                class="bulma-card is-flex is-flex-direction-column user-signin-view-card-news"
               >
                 <div
                   class="slick-slider slick-initialized"
@@ -188,17 +188,17 @@ Object {
                               class="m-0"
                             />
                             <p
-                              class="is-size-7 px-5 py-3"
+                              class="is-size-7 px-5 pt-3"
                             >
                               20205-08-08
                             </p>
                             <h2
-                              class="is-size-6 has-text-weight-semibold px-5 pb-2"
+                              class="is-size-6 has-text-weight-semibold px-5 py-3"
                             >
                               Be careful...
                             </h2>
                             <p
-                              class="is-size-6 px-5 pb-1"
+                              class="is-size-6 px-5"
                             >
                               Do not...
                             </p>
@@ -209,6 +209,23 @@ Object {
                   </div>
                   
                   
+                </div>
+                <div
+                  class="is-flex is-justify-content-center is-gap-1.5 user-signin-view-bottom-container mb-5"
+                >
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 0.6rem; height: 0.6rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
@@ -226,10 +243,10 @@ Object {
           class="bulma-columns mx-4 my-6"
         >
           <div
-            class="bulma-column bulma-is-half p-0"
+            class="bulma-column is-flex is-justify-content-center p-0"
           >
             <div
-              class="bulma-card user-signin-view-margins"
+              class="bulma-card is-flex is-flex-direction-column user-signin-view-card-signin"
             >
               <div
                 class="bulma-card-content"
@@ -318,38 +335,38 @@ Object {
                     Sign in
                   </button>
                 </div>
+              </div>
+              <div
+                class="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container mx-5 mb-4"
+              >
                 <div
-                  class="is-flex is-flex-direction-row is-justify-content-space-between"
+                  class=""
                 >
-                  <div
-                    class="my-2"
+                  <a
+                    href="/https://localhost/signup"
+                    rel="noopener nofollow"
                   >
-                    <a
-                      href="/https://localhost/signup"
-                      rel="noopener nofollow"
-                    >
-                      Don't have an account?
-                    </a>
-                  </div>
-                  <div
-                    class="my-2"
+                    Don't have an account?
+                  </a>
+                </div>
+                <div
+                  class=""
+                >
+                  <a
+                    href="/https://localhost/reset-password"
+                    rel="noopener nofollow"
                   >
-                    <a
-                      href="/https://localhost/reset-password"
-                      rel="noopener nofollow"
-                    >
-                      Forgot password?
-                    </a>
-                  </div>
+                    Forgot password?
+                  </a>
                 </div>
               </div>
             </div>
           </div>
           <div
-            class="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins"
+            class="bulma-column is-flex is-justify-content-center p-0"
           >
             <div
-              class="bulma-card pb-4 user-signin-view-card-news"
+              class="bulma-card is-flex is-flex-direction-column user-signin-view-card-news"
             >
               <div
                 class="slick-slider slick-initialized"
@@ -401,17 +418,17 @@ Object {
                             class="m-0"
                           />
                           <p
-                            class="is-size-7 px-5 py-3"
+                            class="is-size-7 px-5 pt-3"
                           >
                             20205-08-08
                           </p>
                           <h2
-                            class="is-size-6 has-text-weight-semibold px-5 pb-2"
+                            class="is-size-6 has-text-weight-semibold px-5 py-3"
                           >
                             Be careful...
                           </h2>
                           <p
-                            class="is-size-6 px-5 pb-1"
+                            class="is-size-6 px-5"
                           >
                             Do not...
                           </p>
@@ -422,6 +439,23 @@ Object {
                 </div>
                 
                 
+              </div>
+              <div
+                class="is-flex is-justify-content-center is-gap-1.5 user-signin-view-bottom-container mb-5"
+              >
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center has-text-grey-dark"
+                    role="presentation"
+                    style="width: 0.6rem; height: 0.6rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
