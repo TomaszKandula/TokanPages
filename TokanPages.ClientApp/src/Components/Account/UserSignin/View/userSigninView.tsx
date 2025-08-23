@@ -36,6 +36,10 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     labelPassword: string;
 }
 
+interface RenderSigninCardProps extends UserSigninViewProps {
+    className: string;
+}
+
 interface RenderSliderProps extends UserSigninViewProps {
     className: string;
 }
@@ -49,7 +53,7 @@ interface RenderSlideProps {
     isLoading?: boolean;
 }
 
-const ActiveButton = (props: UserSigninViewProps): React.ReactElement => (
+const ButtonSignin = (props: UserSigninViewProps): React.ReactElement => (
     <button
         type="submit"
         onClick={props.buttonHandler}
@@ -139,7 +143,7 @@ const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
                     ))
                 )}
             </Slider>
-            <div className="is-flex is-justify-content-center is-gap-1.5 mb-5" style={{ marginTop: "auto" }}>
+            <div className="is-flex is-justify-content-center is-gap-1.5 user-signin-view-bottom-container mb-5">
                 {props.security.map((_value: NewsItemDto, index: number) => (
                     <Icon
                         name="Circle"
@@ -152,68 +156,78 @@ const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
     );
 };
 
+const RenderSigninCard = (props: RenderSigninCardProps) => (
+    <div className={props.className}>
+        <div className="bulma-card-content">
+            <div className="is-flex is-flex-direction-column is-align-items-center">
+                <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                    <Icon name="AccountCircle" size={3.75} className="card-icon-colour" />
+                </Skeleton>
+                <Skeleton isLoading={props.isLoading} mode="Text">
+                    <p className="is-size-3 has-text-black">{props.caption}</p>
+                </Skeleton>
+            </div>
+            <div className="my-5">
+                <Skeleton isLoading={props.isLoading} mode="Rect">
+                    <TextField
+                        required
+                        uuid="email"
+                        autoComplete="email"
+                        onKeyUp={props.keyHandler}
+                        onChange={props.formHandler}
+                        value={props.email}
+                        placeholder={props.labelEmail}
+                        isDisabled={props.progress}
+                        className="mb-5"
+                    />
+                </Skeleton>
+                <Skeleton isLoading={props.isLoading} mode="Rect">
+                    <TextFieldWithPassword
+                        uuid="password"
+                        value={props.password}
+                        placeholder={props.labelPassword}
+                        onKeyUp={props.keyHandler}
+                        onChange={props.formHandler}
+                        isDisabled={props.progress}
+                    />
+                </Skeleton>
+            </div>
+            <div className="mb-5">
+                <Skeleton isLoading={props.isLoading} mode="Rect">
+                    <ButtonSignin {...props} />
+                </Skeleton>
+            </div>
+        </div>
+        <div className="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container mx-5 mb-4">
+            <div className="">
+                <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
+                    <RedirectTo path={props.link1?.href} name={props.link1?.text} />
+                </Skeleton>
+            </div>
+            <div className="">
+                <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
+                    <RedirectTo path={props.link2?.href} name={props.link2?.text} />
+                </Skeleton>
+            </div>
+        </div>
+    </div>
+);
+
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container">
             <div className="bulma-columns mx-4 my-6">
-                <div className="bulma-column bulma-is-half is-justify-content-center p-0">
-                    <div className="bulma-card user-signin-view-card">
-                        <div className="bulma-card-content">
-                            <div className="is-flex is-flex-direction-column is-align-items-center">
-                                <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                                    <Icon name="AccountCircle" size={3.75} className="card-icon-colour" />
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading} mode="Text">
-                                    <p className="is-size-3 has-text-black">{props.caption}</p>
-                                </Skeleton>
-                            </div>
-                            <div className="my-5">
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                    <TextField
-                                        required
-                                        uuid="email"
-                                        autoComplete="email"
-                                        onKeyUp={props.keyHandler}
-                                        onChange={props.formHandler}
-                                        value={props.email}
-                                        placeholder={props.labelEmail}
-                                        isDisabled={props.progress}
-                                        className="mb-5"
-                                    />
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                    <TextFieldWithPassword
-                                        uuid="password"
-                                        value={props.password}
-                                        placeholder={props.labelPassword}
-                                        onKeyUp={props.keyHandler}
-                                        onChange={props.formHandler}
-                                        isDisabled={props.progress}
-                                    />
-                                </Skeleton>
-                            </div>
-                            <div className="mb-5">
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                    <ActiveButton {...props} />
-                                </Skeleton>
-                            </div>
-                            <div className="is-flex is-flex-direction-row is-justify-content-space-between">
-                                <div className="my-2">
-                                    <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                                        <RedirectTo path={props.link1?.href} name={props.link1?.text} />
-                                    </Skeleton>
-                                </div>
-                                <div className="my-2">
-                                    <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                                        <RedirectTo path={props.link2?.href} name={props.link2?.text} />
-                                    </Skeleton>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div className="bulma-column is-flex is-justify-content-center p-0">
+                    <RenderSigninCard
+                        {...props}
+                        className="bulma-card is-flex is-flex-direction-column user-signin-view-card-signin"
+                    />
                 </div>
-                <div className="bulma-column is-flex is-justify-content-center p-0 user-signin-view-card">
-                    <RenderSlider {...props} className="bulma-card user-signin-view-card-news is-flex is-flex-direction-column" />
+                <div className="bulma-column is-flex is-justify-content-center p-0">
+                    <RenderSlider
+                        {...props}
+                        className="bulma-card is-flex is-flex-direction-column user-signin-view-card-news"
+                    />
                 </div>
             </div>
         </div>
