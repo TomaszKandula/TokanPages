@@ -36,6 +36,10 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     labelPassword: string;
 }
 
+interface RenderSliderProps extends UserSigninViewProps {
+    className: string;
+}
+
 interface RenderSlideProps {
     image: string;
     tags: string[];
@@ -100,6 +104,54 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
     </>
 );
 
+const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
+    const [selection, setSelection] = React.useState(0);
+
+    return (
+        <div className={props.className}>
+            <Slider
+                dots={false}
+                arrows={false}
+                fade={true}
+                infinite={true}
+                slidesToShow={1}
+                slidesToScroll={1}
+                autoplay={true}
+                autoplaySpeed={5500}
+                pauseOnHover={true}
+                waitForAnimate={false}
+                beforeChange={(_current: number, next: number) => {
+                    setSelection(next);
+                }}
+            >
+                {props.isLoading ? (
+                    <RenderSlide isLoading={props.isLoading} image="" tags={[]} date="" title="" lead="" />
+                ) : (
+                    props.security.map((value: NewsItemDto, _index: number) => (
+                        <RenderSlide
+                            key={uuidv4()}
+                            image={value.image}
+                            tags={value.tags}
+                            date={value.date}
+                            title={value.title}
+                            lead={value.lead}
+                        />
+                    ))
+                )}
+            </Slider>
+            <div className="is-flex is-justify-content-center">
+                {props.security.map((_value: NewsItemDto, index: number) => (
+                    <Icon
+                        name="CircleMedium"
+                        size={1.5}
+                        className={selection === index ? "has-text-grey-dark" : "has-text-grey-light"}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
+
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container">
@@ -161,35 +213,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                     </div>
                 </div>
                 <div className="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins">
-                    <div className="bulma-card pb-4 user-signin-view-card-news">
-                        <Slider
-                            dots={true}
-                            arrows={false}
-                            fade={true}
-                            infinite={true}
-                            slidesToShow={1}
-                            slidesToScroll={1}
-                            autoplay={true}
-                            autoplaySpeed={5500}
-                            pauseOnHover={true}
-                            waitForAnimate={false}
-                        >
-                            {props.isLoading ? (
-                                <RenderSlide isLoading={props.isLoading} image="" tags={[]} date="" title="" lead="" />
-                            ) : (
-                                props.security.map((value: NewsItemDto, _index: number) => (
-                                    <RenderSlide
-                                        key={uuidv4()}
-                                        image={value.image}
-                                        tags={value.tags}
-                                        date={value.date}
-                                        title={value.title}
-                                        lead={value.lead}
-                                    />
-                                ))
-                            )}
-                        </Slider>
-                    </div>
+                    <RenderSlider {...props} className="bulma-card pb-4 user-signin-view-card-news" />
                 </div>
             </div>
         </div>
