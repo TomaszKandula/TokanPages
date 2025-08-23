@@ -1,11 +1,11 @@
-.user-signup-view-margins {
-    margin-left: 3rem;
+@media (max-width: 768px) {
+    .user-signup-view-column {
+        margin-bottom: 3rem;
+    }
 }
 
 @media (max-width: 768px) {
-    .user-signup-view-margins {
-        margin-left: 0;
-        margin-top: 3rem;
-        padding: 0;
+    .user-signup-view-card {
+        width: 100vw;
     }
 }
