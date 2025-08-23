@@ -1,3 +1,7 @@
+.user-signup-view-skeleton {
+    width: 33vw;
+}
+
 @media (max-width: 768px) {
     .user-signup-view-column {
         margin-bottom: 3rem;

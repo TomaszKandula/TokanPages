@@ -56,14 +56,14 @@ const ActiveButton = (props: UserSignupViewProps): React.ReactElement => (
     </button>
 );
 
-const RenderSignupCard = (props: RenderSignupCardProps) => (
-    <div className="bulma-card user-signup-view-card">
+const RenderSignupCard = (props: RenderSignupCardProps): React.ReactElement => (
+    <div className={props.className}>
         <div className="bulma-card-content">
             <div className="is-flex is-flex-direction-column is-align-items-center">
                 <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
                     <Icon name="AccountCircle" size={3.75} className="card-icon-colour" />
                 </Skeleton>
-                <Skeleton isLoading={props.isLoading} mode="Text">
+                <Skeleton isLoading={props.isLoading} mode="Text" className="user-signup-view-skeleton">
                     <p className="is-size-3 has-text-black">{props.caption}</p>
                 </Skeleton>
             </div>
@@ -150,27 +150,31 @@ const RenderSignupCard = (props: RenderSignupCardProps) => (
     </div>
 );
 
-const RenderNotification = (props: RenderNotificationProps) => (
-    <article className="bulma-message bulma-is-info">
-        <div className="bulma-message-header">
-            <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150}>
-                <p>{props.warning?.textPre}</p>
-            </Skeleton>
+const RenderNotification = (props: RenderNotificationProps): React.ReactElement => (
+    <div className={props.className}>
+        <div className="bulma-card-content p-0">
+            <article className="bulma-message bulma-is-info">
+                <div className="bulma-message-header">
+                    <Skeleton isLoading={props.isLoading} mode="Text" height={24} className="user-signup-view-skeleton">
+                        <p>{props.warning?.textPre}</p>
+                    </Skeleton>
+                </div>
+                <div className="bulma-message-body bulma-content">
+                    <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={150} className="my-3">
+                        <RenderList list={props.warning?.textList} />
+                    </Skeleton>
+                    <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={250} className="my-3">
+                        <RenderParagraphs text={props.warning?.textPost} />
+                    </Skeleton>
+                    <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={250} className="my-3">
+                        <a href={props.warning?.textNist?.href} target="_blank" rel="noopener nofollow">
+                            {props.warning?.textNist?.text}
+                        </a>
+                    </Skeleton>
+                </div>
+            </article>
         </div>
-        <div className="bulma-message-body bulma-content">
-            <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={250} className="my-3">
-                <RenderList list={props.warning?.textList} />
-            </Skeleton>
-            <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={300} className="my-3">
-                <RenderParagraphs text={props.warning?.textPost} />
-            </Skeleton>
-            <Skeleton isLoading={props.isLoading} mode="Text" height={24} width={350} className="my-3">
-                <a href={props.warning?.textNist?.href} target="_blank" rel="noopener nofollow">
-                    {props.warning?.textNist?.text}
-                </a>
-            </Skeleton>
-        </div>
-    </article>
+    </div>
 );
 
 export const UserSignupView = (props: UserSignupViewProps): React.ReactElement => (
@@ -178,10 +182,16 @@ export const UserSignupView = (props: UserSignupViewProps): React.ReactElement =
         <div className="bulma-container">
             <div className="bulma-columns mx-4 my-6 is-gap-4.5">
                 <div className="bulma-column is-flex is-justify-content-center user-signup-view-column py-0 px-2">
-                    <RenderSignupCard {...props} className="bulma-card is-flex is-flex-direction-column" />
+                    <RenderSignupCard
+                        {...props}
+                        className="bulma-card is-flex is-flex-direction-column user-signup-view-card"
+                    />
                 </div>
                 <div className="bulma-column is-flex is-justify-content-center is-align-items-center py-0 px-2">
-                    <RenderNotification {...props} className="bulma-card is-flex is-flex-direction-column" />
+                    <RenderNotification
+                        {...props}
+                        className="bulma-card is-flex is-flex-direction-column user-signup-view-card"
+                    />
                 </div>
             </div>
         </div>
