@@ -10,13 +10,13 @@ Object {
           class="bulma-container"
         >
           <div
-            class="bulma-columns mx-4 my-6"
+            class="bulma-columns mx-4 my-6 is-gap-4.5"
           >
             <div
-              class="bulma-column bulma-is-half p-0"
+              class="bulma-column is-flex is-justify-content-center user-signup-view-column py-0 px-2"
             >
               <div
-                class="bulma-card"
+                class="bulma-card is-flex is-flex-direction-column user-signup-view-card"
               >
                 <div
                   class="bulma-card-content"
@@ -197,52 +197,60 @@ Object {
               </div>
             </div>
             <div
-              class="bulma-column is-flex is-align-self-center user-signup-view-margins"
+              class="bulma-column is-flex is-justify-content-center is-align-items-center py-0 px-2"
             >
-              <article
-                class="bulma-message bulma-is-info"
+              <div
+                class="bulma-card is-flex is-flex-direction-column user-signup-view-card"
               >
                 <div
-                  class="bulma-message-header"
+                  class="bulma-card-content p-0"
                 >
-                  <p>
-                    Password requirements:
-                  </p>
-                </div>
-                <div
-                  class="bulma-message-body bulma-content"
-                >
-                  <ul
-                    class="list-box"
+                  <article
+                    class="bulma-message bulma-is-info"
                   >
-                    <li>
-                      between 15..50 characters
-                    </li>
-                    <li>
-                      minimum one large letter
-                    </li>
-                    <li>
-                      minimum one small letter
-                    </li>
-                    <li>
-                      minimum one number
-                    </li>
-                  </ul>
-                  <p>
-                    We recommend to use password generator to generate very strong and long password; to be used within browser password manager (1Password, Bitwarden, KeePass).
-                  </p>
-                  <p>
-                    Recommendation based on the following reading:
-                  </p>
-                  <a
-                    href="https://www.fbi.gov/contact-us/field-offices/elpaso/news/fbi-tech-tuesday-strong-passphrases-and-account-protection"
-                    rel="noopener nofollow"
-                    target="_blank"
-                  >
-                    Strong Passphrases and Account Protection
-                  </a>
+                    <div
+                      class="bulma-message-header"
+                    >
+                      <p>
+                        Password requirements:
+                      </p>
+                    </div>
+                    <div
+                      class="bulma-message-body bulma-content"
+                    >
+                      <ul
+                        class="list-box"
+                      >
+                        <li>
+                          between 15..50 characters
+                        </li>
+                        <li>
+                          minimum one large letter
+                        </li>
+                        <li>
+                          minimum one small letter
+                        </li>
+                        <li>
+                          minimum one number
+                        </li>
+                      </ul>
+                      <p>
+                        We recommend to use password generator to generate very strong and long password; to be used within browser password manager (1Password, Bitwarden, KeePass).
+                      </p>
+                      <p>
+                        Recommendation based on the following reading:
+                      </p>
+                      <a
+                        href="https://www.fbi.gov/contact-us/field-offices/elpaso/news/fbi-tech-tuesday-strong-passphrases-and-account-protection"
+                        rel="noopener nofollow"
+                        target="_blank"
+                      >
+                        Strong Passphrases and Account Protection
+                      </a>
+                    </div>
+                  </article>
                 </div>
-              </article>
+              </div>
             </div>
           </div>
         </div>
@@ -255,13 +263,13 @@ Object {
         class="bulma-container"
       >
         <div
-          class="bulma-columns mx-4 my-6"
+          class="bulma-columns mx-4 my-6 is-gap-4.5"
         >
           <div
-            class="bulma-column bulma-is-half p-0"
+            class="bulma-column is-flex is-justify-content-center user-signup-view-column py-0 px-2"
           >
             <div
-              class="bulma-card"
+              class="bulma-card is-flex is-flex-direction-column user-signup-view-card"
             >
               <div
                 class="bulma-card-content"
@@ -442,52 +450,60 @@ Object {
             </div>
           </div>
           <div
-            class="bulma-column is-flex is-align-self-center user-signup-view-margins"
+            class="bulma-column is-flex is-justify-content-center is-align-items-center py-0 px-2"
           >
-            <article
-              class="bulma-message bulma-is-info"
+            <div
+              class="bulma-card is-flex is-flex-direction-column user-signup-view-card"
             >
               <div
-                class="bulma-message-header"
+                class="bulma-card-content p-0"
               >
-                <p>
-                  Password requirements:
-                </p>
-              </div>
-              <div
-                class="bulma-message-body bulma-content"
-              >
-                <ul
-                  class="list-box"
+                <article
+                  class="bulma-message bulma-is-info"
                 >
-                  <li>
-                    between 15..50 characters
-                  </li>
-                  <li>
-                    minimum one large letter
-                  </li>
-                  <li>
-                    minimum one small letter
-                  </li>
-                  <li>
-                    minimum one number
-                  </li>
-                </ul>
-                <p>
-                  We recommend to use password generator to generate very strong and long password; to be used within browser password manager (1Password, Bitwarden, KeePass).
-                </p>
-                <p>
-                  Recommendation based on the following reading:
-                </p>
-                <a
-                  href="https://www.fbi.gov/contact-us/field-offices/elpaso/news/fbi-tech-tuesday-strong-passphrases-and-account-protection"
-                  rel="noopener nofollow"
-                  target="_blank"
-                >
-                  Strong Passphrases and Account Protection
-                </a>
+                  <div
+                    class="bulma-message-header"
+                  >
+                    <p>
+                      Password requirements:
+                    </p>
+                  </div>
+                  <div
+                    class="bulma-message-body bulma-content"
+                  >
+                    <ul
+                      class="list-box"
+                    >
+                      <li>
+                        between 15..50 characters
+                      </li>
+                      <li>
+                        minimum one large letter
+                      </li>
+                      <li>
+                        minimum one small letter
+                      </li>
+                      <li>
+                        minimum one number
+                      </li>
+                    </ul>
+                    <p>
+                      We recommend to use password generator to generate very strong and long password; to be used within browser password manager (1Password, Bitwarden, KeePass).
+                    </p>
+                    <p>
+                      Recommendation based on the following reading:
+                    </p>
+                    <a
+                      href="https://www.fbi.gov/contact-us/field-offices/elpaso/news/fbi-tech-tuesday-strong-passphrases-and-account-protection"
+                      rel="noopener nofollow"
+                      target="_blank"
+                    >
+                      Strong Passphrases and Account Protection
+                    </a>
+                  </div>
+                </article>
               </div>
-            </article>
+            </div>
           </div>
         </div>
       </div>
