@@ -92,13 +92,13 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
             </Skeleton>
             <hr className="m-0" />
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={75} className="mx-5 my-4">
-                <p className="is-size-7 px-5 py-3">{props.date}</p>
+                <p className="is-size-7 px-5 pt-3">{props.date}</p>
             </Skeleton>
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={250} className="mx-5">
-                <RenderHtml value={props.title} tag="h2" className="is-size-6 has-text-weight-semibold px-5 pb-2" />
+                <RenderHtml value={props.title} tag="h2" className="is-size-6 has-text-weight-semibold px-5 py-3" />
             </Skeleton>
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={350} className="mx-5">
-                <RenderHtml value={props.lead} tag="p" className="is-size-6 px-5 pb-1" />
+                <RenderHtml value={props.lead} tag="p" className="is-size-6 px-5" />
             </Skeleton>
         </div>
     </>
@@ -139,11 +139,11 @@ const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
                     ))
                 )}
             </Slider>
-            <div className="is-flex is-justify-content-center">
+            <div className="is-flex is-justify-content-center is-gap-1.5 mb-5" style={{ marginTop: "auto" }}>
                 {props.security.map((_value: NewsItemDto, index: number) => (
                     <Icon
-                        name="CircleMedium"
-                        size={1.5}
+                        name="Circle"
+                        size={0.6}
                         className={selection === index ? "has-text-grey-dark" : "has-text-grey-light"}
                     />
                 ))}
@@ -156,8 +156,8 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
     <section className={props.className}>
         <div className="bulma-container">
             <div className="bulma-columns mx-4 my-6">
-                <div className="bulma-column bulma-is-half p-0">
-                    <div className="bulma-card user-signin-view-margins">
+                <div className="bulma-column bulma-is-half is-justify-content-center p-0">
+                    <div className="bulma-card user-signin-view-card">
                         <div className="bulma-card-content">
                             <div className="is-flex is-flex-direction-column is-align-items-center">
                                 <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
@@ -212,8 +212,8 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                         </div>
                     </div>
                 </div>
-                <div className="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins">
-                    <RenderSlider {...props} className="bulma-card pb-4 user-signin-view-card-news" />
+                <div className="bulma-column is-flex is-justify-content-center p-0 user-signin-view-card">
+                    <RenderSlider {...props} className="bulma-card user-signin-view-card-news is-flex is-flex-direction-column" />
                 </div>
             </div>
         </div>
