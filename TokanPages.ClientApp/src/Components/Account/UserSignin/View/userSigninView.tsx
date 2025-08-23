@@ -36,6 +36,14 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     labelPassword: string;
 }
 
+interface RenderSigninCardProps extends UserSigninViewProps {
+    className: string;
+}
+
+interface RenderSliderProps extends UserSigninViewProps {
+    className: string;
+}
+
 interface RenderSlideProps {
     image: string;
     tags: string[];
@@ -45,7 +53,7 @@ interface RenderSlideProps {
     isLoading?: boolean;
 }
 
-const ActiveButton = (props: UserSigninViewProps): React.ReactElement => (
+const ButtonSignin = (props: UserSigninViewProps): React.ReactElement => (
     <button
         type="submit"
         onClick={props.buttonHandler}
@@ -88,108 +96,138 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
             </Skeleton>
             <hr className="m-0" />
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={75} className="mx-5 my-4">
-                <p className="is-size-7 px-5 py-3">{props.date}</p>
+                <p className="is-size-7 px-5 pt-3">{props.date}</p>
             </Skeleton>
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={250} className="mx-5">
-                <RenderHtml value={props.title} tag="h2" className="is-size-6 has-text-weight-semibold px-5 pb-2" />
+                <RenderHtml value={props.title} tag="h2" className="is-size-6 has-text-weight-semibold px-5 py-3" />
             </Skeleton>
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={350} className="mx-5">
-                <RenderHtml value={props.lead} tag="p" className="is-size-6 px-5 pb-1" />
+                <RenderHtml value={props.lead} tag="p" className="is-size-6 px-5" />
             </Skeleton>
         </div>
     </>
+);
+
+const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
+    const [selection, setSelection] = React.useState(0);
+
+    return (
+        <div className={props.className}>
+            <Slider
+                dots={false}
+                arrows={false}
+                fade={true}
+                infinite={true}
+                slidesToShow={1}
+                slidesToScroll={1}
+                autoplay={true}
+                autoplaySpeed={5500}
+                pauseOnHover={true}
+                waitForAnimate={false}
+                beforeChange={(_current: number, next: number) => {
+                    setSelection(next);
+                }}
+            >
+                {props.isLoading ? (
+                    <RenderSlide isLoading={props.isLoading} image="" tags={[]} date="" title="" lead="" />
+                ) : (
+                    props.security.map((value: NewsItemDto, _index: number) => (
+                        <RenderSlide
+                            key={uuidv4()}
+                            image={value.image}
+                            tags={value.tags}
+                            date={value.date}
+                            title={value.title}
+                            lead={value.lead}
+                        />
+                    ))
+                )}
+            </Slider>
+            <div className="is-flex is-justify-content-center is-gap-1.5 user-signin-view-bottom-container mb-5">
+                {props.security.map((_value: NewsItemDto, index: number) => (
+                    <Icon
+                        name="Circle"
+                        size={0.6}
+                        className={selection === index ? "has-text-grey-dark" : "has-text-grey-light"}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+};
+
+const RenderSigninCard = (props: RenderSigninCardProps) => (
+    <div className={props.className}>
+        <div className="bulma-card-content">
+            <div className="is-flex is-flex-direction-column is-align-items-center">
+                <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                    <Icon name="AccountCircle" size={3.75} className="card-icon-colour" />
+                </Skeleton>
+                <Skeleton isLoading={props.isLoading} mode="Text">
+                    <p className="is-size-3 has-text-black">{props.caption}</p>
+                </Skeleton>
+            </div>
+            <div className="my-5">
+                <Skeleton isLoading={props.isLoading} mode="Rect">
+                    <TextField
+                        required
+                        uuid="email"
+                        autoComplete="email"
+                        onKeyUp={props.keyHandler}
+                        onChange={props.formHandler}
+                        value={props.email}
+                        placeholder={props.labelEmail}
+                        isDisabled={props.progress}
+                        className="mb-5"
+                    />
+                </Skeleton>
+                <Skeleton isLoading={props.isLoading} mode="Rect">
+                    <TextFieldWithPassword
+                        uuid="password"
+                        value={props.password}
+                        placeholder={props.labelPassword}
+                        onKeyUp={props.keyHandler}
+                        onChange={props.formHandler}
+                        isDisabled={props.progress}
+                    />
+                </Skeleton>
+            </div>
+            <div className="mb-5">
+                <Skeleton isLoading={props.isLoading} mode="Rect">
+                    <ButtonSignin {...props} />
+                </Skeleton>
+            </div>
+        </div>
+        <div className="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container mx-5 mb-4">
+            <div className="">
+                <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
+                    <RedirectTo path={props.link1?.href} name={props.link1?.text} />
+                </Skeleton>
+            </div>
+            <div className="">
+                <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
+                    <RedirectTo path={props.link2?.href} name={props.link2?.text} />
+                </Skeleton>
+            </div>
+        </div>
+    </div>
 );
 
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container">
             <div className="bulma-columns mx-4 my-6">
-                <div className="bulma-column bulma-is-half p-0">
-                    <div className="bulma-card user-signin-view-margins">
-                        <div className="bulma-card-content">
-                            <div className="is-flex is-flex-direction-column is-align-items-center">
-                                <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                                    <Icon name="AccountCircle" size={3.75} className="card-icon-colour" />
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading} mode="Text">
-                                    <p className="is-size-3 has-text-black">{props.caption}</p>
-                                </Skeleton>
-                            </div>
-                            <div className="my-5">
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                    <TextField
-                                        required
-                                        uuid="email"
-                                        autoComplete="email"
-                                        onKeyUp={props.keyHandler}
-                                        onChange={props.formHandler}
-                                        value={props.email}
-                                        placeholder={props.labelEmail}
-                                        isDisabled={props.progress}
-                                        className="mb-5"
-                                    />
-                                </Skeleton>
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                    <TextFieldWithPassword
-                                        uuid="password"
-                                        value={props.password}
-                                        placeholder={props.labelPassword}
-                                        onKeyUp={props.keyHandler}
-                                        onChange={props.formHandler}
-                                        isDisabled={props.progress}
-                                    />
-                                </Skeleton>
-                            </div>
-                            <div className="mb-5">
-                                <Skeleton isLoading={props.isLoading} mode="Rect">
-                                    <ActiveButton {...props} />
-                                </Skeleton>
-                            </div>
-                            <div className="is-flex is-flex-direction-row is-justify-content-space-between">
-                                <div className="my-2">
-                                    <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                                        <RedirectTo path={props.link1?.href} name={props.link1?.text} />
-                                    </Skeleton>
-                                </div>
-                                <div className="my-2">
-                                    <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                                        <RedirectTo path={props.link2?.href} name={props.link2?.text} />
-                                    </Skeleton>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div className="bulma-column is-flex is-justify-content-center p-0">
+                    <RenderSigninCard
+                        {...props}
+                        className="bulma-card is-flex is-flex-direction-column user-signin-view-card-signin"
+                    />
                 </div>
-                <div className="bulma-column is-flex is-align-self-center is-justify-content-center user-signin-view-margins">
-                    <div className="bulma-card pb-4 user-signin-view-card-news">
-                        <Slider
-                            dots={true}
-                            arrows={false}
-                            fade={true}
-                            infinite={true}
-                            slidesToShow={1}
-                            slidesToScroll={1}
-                            autoplay={true}
-                            autoplaySpeed={5500}
-                            pauseOnHover={true}
-                            waitForAnimate={false}
-                        >
-                            {props.isLoading ? (
-                                <RenderSlide isLoading={props.isLoading} image="" tags={[]} date="" title="" lead="" />
-                            ) : (
-                                props.security.map((value: NewsItemDto, _index: number) => (
-                                    <RenderSlide
-                                        key={uuidv4()}
-                                        image={value.image}
-                                        tags={value.tags}
-                                        date={value.date}
-                                        title={value.title}
-                                        lead={value.lead}
-                                    />
-                                ))
-                            )}
-                        </Slider>
-                    </div>
+                <div className="bulma-column is-flex is-justify-content-center p-0">
+                    <RenderSlider
+                        {...props}
+                        className="bulma-card is-flex is-flex-direction-column user-signin-view-card-news"
+                    />
                 </div>
             </div>
         </div>
