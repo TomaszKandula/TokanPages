@@ -1,3 +1,10 @@
+## [0.166.1](https://github.com/TomaszKandula/TokanPages/compare/v0.166.0...v0.166.1) (2025-08-23)
+
+
+### Bug Fixes
+
+* add missing key ([7534362](https://github.com/TomaszKandula/TokanPages/commit/753436220b0fbae1e29bccbfe09239c1e2f5b007))
+
 # [0.166.0](https://github.com/TomaszKandula/TokanPages/compare/v0.165.0...v0.166.0) (2025-08-23)
 
 
