@@ -146,6 +146,7 @@ const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
             <div className="is-flex is-justify-content-center is-gap-1.5 user-signin-view-bottom-container mb-5">
                 {props.security.map((_value: NewsItemDto, index: number) => (
                     <Icon
+                        key={uuidv4()}
                         name="Circle"
                         size={0.6}
                         className={selection === index ? "has-text-grey-dark" : "has-text-grey-light"}
