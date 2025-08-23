@@ -1,3 +1,12 @@
+# [0.167.0](https://github.com/TomaszKandula/TokanPages/compare/v0.166.1...v0.167.0) (2025-08-23)
+
+
+### Features
+
+* restyle ([e3ab994](https://github.com/TomaszKandula/TokanPages/commit/e3ab99449ea588daa753d68af4b3f07d6fc975bb))
+* update snapshots ([9406944](https://github.com/TomaszKandula/TokanPages/commit/9406944676140413e26b90b0720f409660ecd9d3))
+* update styling ([7bb037d](https://github.com/TomaszKandula/TokanPages/commit/7bb037d818aacfb6301cf4bc35b16a5e27ce4168))
+
 ## [0.166.1](https://github.com/TomaszKandula/TokanPages/compare/v0.166.0...v0.166.1) (2025-08-23)
 
 
