@@ -304,8 +304,6 @@ export const RenderParagraph = (props: TextItem): React.ReactElement => {
 };
 
 export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactElement => {
-    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
-
     if (!props.html || (props.html && props.html === "")) {
         return <>{NO_CONTENT}</>;
     }
@@ -324,7 +322,7 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
             if (item.includes("{") && item.includes("}")) {
                 const data = TryParse<LinkProps>(sanitized);
                 result.push(
-                    <Link to={`/${language?.id ?? ""}/${data.href}`} key={uuidv4()}>
+                    <Link to={data.href} key={uuidv4()}>
                         <>{data.text}</>
                     </Link>
                 );
