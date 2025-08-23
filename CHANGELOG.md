@@ -1,3 +1,19 @@
+# [0.166.0](https://github.com/TomaszKandula/TokanPages/compare/v0.165.0...v0.166.0) (2025-08-23)
+
+
+### Bug Fixes
+
+* remove unnecessary language ID ([b476ba1](https://github.com/TomaszKandula/TokanPages/commit/b476ba14d863778a6d8dc9cba6487302f1bfdf0f))
+* resolve found issue w/card image ([5ccd6f1](https://github.com/TomaszKandula/TokanPages/commit/5ccd6f1ad1df119ed3751694f94c04e07006aac1))
+
+
+### Features
+
+* custom carousel dots ([519174e](https://github.com/TomaszKandula/TokanPages/commit/519174e0082ea1ac2ac48588cbe789267d7c0257))
+* do not use media query for cacheable views ([2345441](https://github.com/TomaszKandula/TokanPages/commit/234544157d5e5d51005284c653118594081155e4))
+* restyle ([9a2cdd2](https://github.com/TomaszKandula/TokanPages/commit/9a2cdd24466afea0a61e06c5068c4adfe42f171b))
+* restyle ([b8606ae](https://github.com/TomaszKandula/TokanPages/commit/b8606ae9fb78a133d33641f6aa962de6b7bd4886))
+
 # [0.165.0](https://github.com/TomaszKandula/TokanPages/compare/v0.164.0...v0.165.0) (2025-08-20)
 
 
