@@ -3,7 +3,6 @@ import { LinkDto, WarningPasswordDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import {
-    RedirectTo,
     RenderParagraphs,
     RenderList,
     TextField,
@@ -12,6 +11,7 @@ import {
     ProgressBar,
     Skeleton,
     Notification,
+    Link,
 } from "../../../../Shared/Components";
 import { UserSignupProps } from "../userSignup";
 import "./userSignupView.css";
@@ -143,7 +143,7 @@ const RenderSignupCard = (props: RenderSignupCardProps): React.ReactElement => (
             </div>
             <div className="has-text-right">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                    <RedirectTo path={props.link?.href} name={props.link?.text} />
+                    <Link to={props.link?.href}><>{props.link?.text}</></Link>
                 </Skeleton>
             </div>
         </div>

@@ -7,9 +7,9 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import {
     CustomImage,
     Icon,
+    Link,
     Notification,
     ProgressBar,
-    RedirectTo,
     RenderHtml,
     Skeleton,
     TextField,
@@ -209,10 +209,10 @@ const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
             </Skeleton>
             <div className="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                    <RedirectTo path={props.link1?.href} name={props.link1?.text} />
+                    <Link to={props.link1?.href}><>{props.link1?.text}</></Link>
                 </Skeleton>
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                    <RedirectTo path={props.link2?.href} name={props.link2?.text} />
+                    <Link to={props.link2?.href}><>{props.link2?.text}</></Link>
                 </Skeleton>
             </div>
         </div>
