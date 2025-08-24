@@ -1,3 +1,30 @@
+# [0.168.0](https://github.com/TomaszKandula/TokanPages/compare/v0.167.0...v0.168.0) (2025-08-24)
+
+
+### Bug Fixes
+
+* do not use arrow function directly ([7c1363a](https://github.com/TomaszKandula/TokanPages/commit/7c1363a631b9cc272263acd60b62799788a4beed))
+
+
+### Features
+
+* add consent prop to the model ([19115ff](https://github.com/TomaszKandula/TokanPages/commit/19115fff699bb4ca47f83e6743757489fd77d123))
+* add use query hook ([71ab592](https://github.com/TomaszKandula/TokanPages/commit/71ab59230e8f041d05f751fd590cf793e0b5641e))
+* allow to add optional class name to a notification component ([36bd3b4](https://github.com/TomaszKandula/TokanPages/commit/36bd3b4c87a9a638538378efb134acf273c3ce4d))
+* change behaviour, do not use 'home' ([118bfea](https://github.com/TomaszKandula/TokanPages/commit/118bfea13006856148ebbe652985250d11bcb374))
+* change icon size for collapsible component ([19a5172](https://github.com/TomaszKandula/TokanPages/commit/19a5172e6ef4bbc9ddb2b388ed19f8a0ee17758a))
+* change icon size for notification component ([99d61fd](https://github.com/TomaszKandula/TokanPages/commit/99d61fd794bb61a6f79fbcee24f5c4846c9cc445))
+* extend sign in view, add notification ([5846d75](https://github.com/TomaszKandula/TokanPages/commit/5846d7581a9816fe9a083784e126b088271ce0e2))
+* forbid script tag/attribute ([f11d960](https://github.com/TomaszKandula/TokanPages/commit/f11d960c1e89fda9b8526de4f78426c9fef62fbd))
+* relocate margin container ([36d1cbd](https://github.com/TomaszKandula/TokanPages/commit/36d1cbd280765d04b09c7cda8400ae0e89413a30))
+* remove unused component ([c7597e5](https://github.com/TomaszKandula/TokanPages/commit/c7597e576972319ed128bd6fbfc7cbdb5338a33c))
+* replace component back path w/optional query param ([f40f250](https://github.com/TomaszKandula/TokanPages/commit/f40f25079568567bba9ca9d4db46866456fa49ef))
+* replace RedirectTo w/link component ([6a53ce1](https://github.com/TomaszKandula/TokanPages/commit/6a53ce11e419d469df62eed7a20f6a9b5ac1ea5b))
+* update styling ([014a6a8](https://github.com/TomaszKandula/TokanPages/commit/014a6a85fb7acf9af665a9ab256219478a2686ad))
+* use html renderer to handle links ([aa59c48](https://github.com/TomaszKandula/TokanPages/commit/aa59c48590bd53af38379603dae07420a6ce2e84))
+* use shared query hook ([a330d42](https://github.com/TomaszKandula/TokanPages/commit/a330d4232c506d85ecc0969b3125c5d98f1c44b3))
+* use text processor ([d1a05ab](https://github.com/TomaszKandula/TokanPages/commit/d1a05abce4af9c4a2e1926bd0c335c81d3232f04))
+
 # [0.167.0](https://github.com/TomaszKandula/TokanPages/compare/v0.166.1...v0.167.0) (2025-08-23)
 
 
