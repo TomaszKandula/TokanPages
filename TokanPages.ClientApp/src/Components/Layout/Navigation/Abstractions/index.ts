@@ -16,7 +16,6 @@ export interface BaseProperties extends ViewProperties {
     avatarSource: string;
     navigation: NavigationContentDto;
     backNavigationOnly?: boolean;
-    backPathFragment?: string;
     backPathHandler: () => void;
     languages: ApplicationLanguageState;
     languageId: string;

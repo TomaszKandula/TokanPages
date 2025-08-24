@@ -137,14 +137,18 @@ Object {
                     class="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container"
                   >
                     <a
-                      href="/https://localhost/signup"
+                      class="href "
+                      href="https://localhost/signup"
                       rel="noopener nofollow"
+                      target="_blank"
                     >
                       Don't have an account?
                     </a>
                     <a
-                      href="/https://localhost/reset-password"
+                      class="href "
+                      href="https://localhost/reset-password"
                       rel="noopener nofollow"
+                      target="_blank"
                     >
                       Forgot password?
                     </a>
@@ -387,14 +391,18 @@ Object {
                   class="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container"
                 >
                   <a
-                    href="/https://localhost/signup"
+                    class="href "
+                    href="https://localhost/signup"
                     rel="noopener nofollow"
+                    target="_blank"
                   >
                     Don't have an account?
                   </a>
                   <a
-                    href="/https://localhost/reset-password"
+                    class="href "
+                    href="https://localhost/reset-password"
                     rel="noopener nofollow"
+                    target="_blank"
                   >
                     Forgot password?
                   </a>
