@@ -191,8 +191,8 @@ Object {
                     class="has-text-right"
                   >
                     <a
-                      href="//account/signin"
-                      rel="noopener nofollow"
+                      class=""
+                      href="/account/signin"
                     >
                       Already have an account? Sign in
                     </a>
@@ -448,8 +448,8 @@ Object {
                   class="has-text-right"
                 >
                   <a
-                    href="//account/signin"
-                    rel="noopener nofollow"
+                    class=""
+                    href="/account/signin"
                   >
                     Already have an account? Sign in
                   </a>
