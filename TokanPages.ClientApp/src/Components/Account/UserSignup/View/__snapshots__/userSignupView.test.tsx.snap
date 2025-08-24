@@ -167,11 +167,15 @@ Object {
                         />
                       </svg>
                     </div>
-                    <span
-                      class="is-size-6 ml-4"
+                    <div
+                      class="ml-4"
                     >
-                      I agree to the terms of use and privacy policy.
-                    </span>
+                      <span
+                        class="is-size-6"
+                      >
+                        I agree to the terms of use and privacy policy.
+                      </span>
+                    </div>
                   </div>
                   <div
                     class="mb-5"
@@ -420,11 +424,15 @@ Object {
                       />
                     </svg>
                   </div>
-                  <span
-                    class="is-size-6 ml-4"
+                  <div
+                    class="ml-4"
                   >
-                    I agree to the terms of use and privacy policy.
-                  </span>
+                    <span
+                      class="is-size-6"
+                    >
+                      I agree to the terms of use and privacy policy.
+                    </span>
+                  </div>
                 </div>
                 <div
                   class="mb-5"

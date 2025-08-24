@@ -225,9 +225,11 @@ Object {
                           />
                         </svg>
                       </div>
-                      <span
-                        class="is-size-6 ml-4"
-                      />
+                      <div
+                        class="ml-4"
+                      >
+                        EMPTY_CONTENT_PROVIDED
+                      </div>
                     </div>
                     <button
                       class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
@@ -511,9 +513,11 @@ Object {
                         />
                       </svg>
                     </div>
-                    <span
-                      class="is-size-6 ml-4"
-                    />
+                    <div
+                      class="ml-4"
+                    >
+                      EMPTY_CONTENT_PROVIDED
+                    </div>
                   </div>
                   <button
                     class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"

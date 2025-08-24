@@ -206,11 +206,15 @@ Object {
                           />
                         </svg>
                       </div>
-                      <span
-                        class="is-size-6 ml-4"
+                      <div
+                        class="ml-4"
                       >
-                        I agree!
-                      </span>
+                        <span
+                          class="is-size-6"
+                        >
+                          I agree!
+                        </span>
+                      </div>
                     </div>
                     <div
                       data-aos="fade-up"
@@ -434,11 +438,15 @@ Object {
                         />
                       </svg>
                     </div>
-                    <span
-                      class="is-size-6 ml-4"
+                    <div
+                      class="ml-4"
                     >
-                      I agree!
-                    </span>
+                      <span
+                        class="is-size-6"
+                      >
+                        I agree!
+                      </span>
+                    </div>
                   </div>
                   <div
                     data-aos="fade-up"
