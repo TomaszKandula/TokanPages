@@ -7,8 +7,9 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import {
     CustomImage,
     Icon,
+    Link,
+    Notification,
     ProgressBar,
-    RedirectTo,
     RenderHtml,
     Skeleton,
     TextField,
@@ -25,6 +26,7 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     button: string;
     link1: LinkDto;
     link2: LinkDto;
+    consent: string;
     security: NewsItemDto[];
     buttonHandler: () => void;
     progress: boolean;
@@ -37,11 +39,11 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
 }
 
 interface RenderSigninCardProps extends UserSigninViewProps {
-    className: string;
+    className?: string;
 }
 
 interface RenderSliderProps extends UserSigninViewProps {
-    className: string;
+    className?: string;
 }
 
 interface RenderSlideProps {
@@ -111,8 +113,12 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
 const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
     const [selection, setSelection] = React.useState(0);
 
+    const handleChange = React.useCallback((_current: number, next: number) => {
+        setSelection(next);
+    }, []);
+
     return (
-        <div className={props.className}>
+        <div className={`bulma-card ${props.className ?? ""}`}>
             <Slider
                 dots={false}
                 arrows={false}
@@ -124,9 +130,7 @@ const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
                 autoplaySpeed={5500}
                 pauseOnHover={true}
                 waitForAnimate={false}
-                beforeChange={(_current: number, next: number) => {
-                    setSelection(next);
-                }}
+                beforeChange={handleChange}
             >
                 {props.isLoading ? (
                     <RenderSlide isLoading={props.isLoading} image="" tags={[]} date="" title="" lead="" />
@@ -143,7 +147,7 @@ const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
                     ))
                 )}
             </Slider>
-            <div className="is-flex is-justify-content-center is-gap-1.5 user-signin-view-bottom-container mb-5">
+            <div className="is-flex is-justify-content-center is-gap-1.5 p-5 user-signin-view-bottom-container">
                 {props.security.map((_value: NewsItemDto, index: number) => (
                     <Icon
                         key={uuidv4()}
@@ -157,57 +161,62 @@ const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
     );
 };
 
-const RenderSigninCard = (props: RenderSigninCardProps) => (
-    <div className={props.className}>
+const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
+    <div className={`bulma-card ${props.className ?? ""}`}>
         <div className="bulma-card-content">
-            <div className="is-flex is-flex-direction-column is-align-items-center">
-                <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
-                    <Icon name="AccountCircle" size={3.75} className="card-icon-colour" />
-                </Skeleton>
-                <Skeleton isLoading={props.isLoading} mode="Text">
-                    <p className="is-size-3 has-text-black">{props.caption}</p>
-                </Skeleton>
+            <div>
+                <div className="is-flex is-flex-direction-column is-align-items-center">
+                    <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                        <Icon name="AccountCircle" size={3.75} className="card-icon-colour" />
+                    </Skeleton>
+                    <Skeleton isLoading={props.isLoading} mode="Text">
+                        <p className="is-size-3 has-text-black">{props.caption}</p>
+                    </Skeleton>
+                </div>
+                <div className="my-5">
+                    <Skeleton isLoading={props.isLoading} mode="Rect">
+                        <TextField
+                            required
+                            uuid="email"
+                            autoComplete="email"
+                            onKeyUp={props.keyHandler}
+                            onChange={props.formHandler}
+                            value={props.email}
+                            placeholder={props.labelEmail}
+                            isDisabled={props.progress}
+                            className="mb-5"
+                        />
+                    </Skeleton>
+                    <Skeleton isLoading={props.isLoading} mode="Rect">
+                        <TextFieldWithPassword
+                            uuid="password"
+                            value={props.password}
+                            placeholder={props.labelPassword}
+                            onKeyUp={props.keyHandler}
+                            onChange={props.formHandler}
+                            isDisabled={props.progress}
+                        />
+                    </Skeleton>
+                </div>
+                <div className="mb-5">
+                    <Skeleton isLoading={props.isLoading} mode="Rect">
+                        <ButtonSignin {...props} />
+                    </Skeleton>
+                </div>
             </div>
-            <div className="my-5">
-                <Skeleton isLoading={props.isLoading} mode="Rect">
-                    <TextField
-                        required
-                        uuid="email"
-                        autoComplete="email"
-                        onKeyUp={props.keyHandler}
-                        onChange={props.formHandler}
-                        value={props.email}
-                        placeholder={props.labelEmail}
-                        isDisabled={props.progress}
-                        className="mb-5"
-                    />
-                </Skeleton>
-                <Skeleton isLoading={props.isLoading} mode="Rect">
-                    <TextFieldWithPassword
-                        uuid="password"
-                        value={props.password}
-                        placeholder={props.labelPassword}
-                        onKeyUp={props.keyHandler}
-                        onChange={props.formHandler}
-                        isDisabled={props.progress}
-                    />
-                </Skeleton>
-            </div>
-            <div className="mb-5">
-                <Skeleton isLoading={props.isLoading} mode="Rect">
-                    <ButtonSignin {...props} />
-                </Skeleton>
-            </div>
-        </div>
-        <div className="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container mx-5 mb-4">
-            <div className="">
+            <Skeleton isLoading={props.isLoading} mode="Rect" height={90}>
+                <Notification text={props.consent} />
+            </Skeleton>
+            <div className="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                    <RedirectTo path={props.link1?.href} name={props.link1?.text} />
+                    <Link to={props.link1?.href}>
+                        <>{props.link1?.text}</>
+                    </Link>
                 </Skeleton>
-            </div>
-            <div className="">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                    <RedirectTo path={props.link2?.href} name={props.link2?.text} />
+                    <Link to={props.link2?.href}>
+                        <>{props.link2?.text}</>
+                    </Link>
                 </Skeleton>
             </div>
         </div>
@@ -219,16 +228,10 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
         <div className="bulma-container">
             <div className="bulma-columns mx-4 my-6">
                 <div className="bulma-column is-flex is-justify-content-center p-0">
-                    <RenderSigninCard
-                        {...props}
-                        className="bulma-card is-flex is-flex-direction-column user-signin-view-card-signin"
-                    />
+                    <RenderSigninCard {...props} className="user-signin-view-card-signin" />
                 </div>
                 <div className="bulma-column is-flex is-justify-content-center p-0">
-                    <RenderSlider
-                        {...props}
-                        className="bulma-card is-flex is-flex-direction-column user-signin-view-card-news"
-                    />
+                    <RenderSlider {...props} className="user-signin-view-card-news is-flex is-flex-direction-column" />
                 </div>
             </div>
         </div>

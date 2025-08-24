@@ -1,12 +1,7 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
-import { usePageContent, useUnhead } from "../../Shared/Hooks";
+import { usePageContent, useQuery, useUnhead } from "../../Shared/Hooks";
 import { PdfViewer } from "../../Components/PdfViewer";
 import { Footer, Navigation } from "../../Components/Layout";
-
-const useQuery = () => {
-    return new URLSearchParams(useLocation().search);
-};
 
 export const PdfViewerPage = () => {
     useUnhead("PdfViewerPage");

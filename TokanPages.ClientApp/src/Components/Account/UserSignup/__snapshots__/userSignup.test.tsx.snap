@@ -152,13 +152,13 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="bulma-notification is-flex is-align-items-center"
+                    class="bulma-notification is-flex is-align-items-center "
                   >
                     <div>
                       <svg
                         class="is-flex is-align-self-center has-text-link"
                         role="presentation"
-                        style="width: 1rem; height: 1rem;"
+                        style="width: 1.5rem; height: 1.5rem;"
                         viewBox="0 0 24 24"
                       >
                         <path
@@ -167,11 +167,15 @@ Object {
                         />
                       </svg>
                     </div>
-                    <span
-                      class="is-size-6 ml-4"
+                    <div
+                      class="ml-4"
                     >
-                      I agree to the terms of use and privacy policy.
-                    </span>
+                      <span
+                        class="is-size-6"
+                      >
+                        I agree to the terms of use and privacy policy.
+                      </span>
+                    </div>
                   </div>
                   <div
                     class="mb-5"
@@ -187,8 +191,8 @@ Object {
                     class="has-text-right"
                   >
                     <a
-                      href="//account/signin"
-                      rel="noopener nofollow"
+                      class=""
+                      href="/account/signin"
                     >
                       Already have an account? Sign in
                     </a>
@@ -405,13 +409,13 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="bulma-notification is-flex is-align-items-center"
+                  class="bulma-notification is-flex is-align-items-center "
                 >
                   <div>
                     <svg
                       class="is-flex is-align-self-center has-text-link"
                       role="presentation"
-                      style="width: 1rem; height: 1rem;"
+                      style="width: 1.5rem; height: 1.5rem;"
                       viewBox="0 0 24 24"
                     >
                       <path
@@ -420,11 +424,15 @@ Object {
                       />
                     </svg>
                   </div>
-                  <span
-                    class="is-size-6 ml-4"
+                  <div
+                    class="ml-4"
                   >
-                    I agree to the terms of use and privacy policy.
-                  </span>
+                    <span
+                      class="is-size-6"
+                    >
+                      I agree to the terms of use and privacy policy.
+                    </span>
+                  </div>
                 </div>
                 <div
                   class="mb-5"
@@ -440,8 +448,8 @@ Object {
                   class="has-text-right"
                 >
                   <a
-                    href="//account/signin"
-                    rel="noopener nofollow"
+                    class=""
+                    href="/account/signin"
                   >
                     Already have an account? Sign in
                   </a>

@@ -1,9 +1,9 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { PRERENDER_PATH_PREFIX } from "../../../Shared/constants";
-import { useDimensions } from "../../../Shared/Hooks";
+import { useDimensions, useQuery } from "../../../Shared/Hooks";
 import { Icon } from "../Icon";
 import { CustomBreadcrumbProps, NavigationProps } from "./Types";
 import { getHomeText, pathToRootText, pathToSubitemText, toUpperCase } from "./Utilities";
@@ -11,10 +11,6 @@ import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 import "./customBreadcrumbView.css";
 import { Skeleton } from "../Skeleton";
-
-const useQuery = (): URLSearchParams => {
-    return new URLSearchParams(useLocation().search);
-};
 
 const makeStyledBreadcrumb = (
     pathname: string,
