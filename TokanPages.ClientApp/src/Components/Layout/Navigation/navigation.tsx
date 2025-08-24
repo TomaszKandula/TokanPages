@@ -4,17 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { GET_USER_IMAGE } from "../../../Api";
 import { UserDataStoreAction, ApplicationLanguageAction } from "../../../Store/Actions";
 import { ApplicationState } from "../../../Store/Configuration";
-import { useDimensions } from "../../../Shared/Hooks";
+import { useDimensions, useQuery } from "../../../Shared/Hooks";
 import { NavigationView } from "./View/navigationView";
 import Validate from "validate.js";
 
 interface NavigationProps {
     backNavigationOnly?: boolean;
-    backPathFragment?: string;
 }
 
 export const Navigation = (props: NavigationProps): React.ReactElement => {
     const media = useDimensions();
+    const query = useQuery();
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -73,12 +73,20 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
     }, [isAnonymous]);
 
     const backButtonHandler = React.useCallback(() => {
-        const mainPath = `/${language?.id}`;
-        const backPath = `${mainPath}${props.backPathFragment}`;
-        const navigationPath = props.backPathFragment === undefined ? mainPath : backPath;
+        const redirect = query.get("redirect") ?? "";
+        const backPath = `/${language?.id}/${redirect}`;
 
-        history.push(navigationPath);
-    }, [language?.id, props.backPathFragment]);
+        if (Validate.isEmpty(redirect)) {
+            history.goBack();
+        } else {
+            if (redirect === "home") {
+                history.push(`/${language?.id}`);
+                return;
+            }
+
+            history.push(backPath);
+        }
+    }, [language?.id]);
 
     return (
         <NavigationView
@@ -95,7 +103,6 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
             avatarSource={avatarSource}
             navigation={navigation}
             backNavigationOnly={props.backNavigationOnly}
-            backPathFragment={props.backPathFragment}
             backPathHandler={backButtonHandler}
             languages={language}
             languageId={language?.id}
