@@ -1,15 +1,10 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../Store/Configuration";
 import { CustomBreadcrumb, ProgressOnScroll } from "../../Shared/Components";
-import { usePageContent, useSnapshot, useUnhead } from "../../Shared/Hooks";
+import { usePageContent, useQuery, useSnapshot, useUnhead } from "../../Shared/Hooks";
 import { Navigation, Footer } from "../../Components/Layout";
 import { ArticleList, ArticleDetail } from "../../Components/Articles";
-
-const useQuery = () => {
-    return new URLSearchParams(useLocation().search);
-};
 
 export const ArticlesPage = (): React.ReactElement => {
     useUnhead("ArticlesPage");

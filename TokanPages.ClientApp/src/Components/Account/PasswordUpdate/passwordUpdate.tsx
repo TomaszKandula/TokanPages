@@ -1,19 +1,14 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { IconType, OperationStatus } from "../../../Shared/enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../Store/Actions";
 import { UpdateFormInput, ValidateUpdateForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
-import { useDimensions } from "../../../Shared/Hooks";
+import { useDimensions, useQuery } from "../../../Shared/Hooks";
 import { PasswordUpdateView } from "./View/passwordUpdateView";
 import Validate from "validate.js";
-
-const useQuery = () => {
-    return new URLSearchParams(useLocation().search);
-};
 
 const formDefaultValues: UpdateFormInput = {
     newPassword: "",
