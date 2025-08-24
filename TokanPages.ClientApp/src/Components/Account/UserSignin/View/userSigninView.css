@@ -3,12 +3,12 @@
 }
 
 .user-signin-view-card-image {
-    height: 180px !important;
+    height: 256px !important;
     object-fit: cover;
 }
 
 .user-signin-view-card-signin {
-    height: 450px;
+    height: auto;
     width: 33vw;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .user-signin-view-card-news {
-    height: 450px;
+    height: auto;
     width: 33vw;
 }
 

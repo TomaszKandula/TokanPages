@@ -210,7 +210,7 @@ Object {
                       </div>
                     </div>
                     <div
-                      class="bulma-notification is-flex is-align-items-center"
+                      class="bulma-notification is-flex is-align-items-center "
                     >
                       <div>
                         <svg
@@ -498,7 +498,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="bulma-notification is-flex is-align-items-center"
+                    class="bulma-notification is-flex is-align-items-center "
                   >
                     <div>
                       <svg

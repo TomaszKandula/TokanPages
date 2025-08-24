@@ -16,11 +16,191 @@ Object {
               class="bulma-column is-flex is-justify-content-center p-0"
             >
               <div
-                class="bulma-card is-flex is-flex-direction-column user-signin-view-card-signin"
+                class="bulma-card user-signin-view-card-signin"
               >
                 <div
                   class="bulma-card-content"
                 >
+                  <div>
+                    <div
+                      class="is-flex is-flex-direction-column is-align-items-center"
+                    >
+                      <div>
+                        <svg
+                          class="is-flex is-align-self-center card-icon-colour"
+                          role="presentation"
+                          style="width: 3.75rem; height: 3.75rem;"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"
+                            style="fill: currentColor;"
+                          />
+                        </svg>
+                      </div>
+                      <p
+                        class="is-size-3 has-text-black"
+                      >
+                        Sign in
+                      </p>
+                    </div>
+                    <div
+                      class="my-5"
+                    >
+                      <div
+                        class="bulma-control  mb-5"
+                      >
+                        <input
+                          autocomplete="email"
+                          class="bulma-input   "
+                          id="email"
+                          name="email"
+                          placeholder="Email address"
+                          required=""
+                          type="text"
+                          value="ester.exposito@gmail.com"
+                        />
+                      </div>
+                      <div
+                        class="bulma-control bulma-has-icons-right "
+                      >
+                        <input
+                          class="bulma-input   "
+                          id="password"
+                          name="password"
+                          placeholder="Password"
+                          type="password"
+                          value="madrilena123"
+                        />
+                        <span
+                          class="bulma-icon bulma-is-right text-field-with-password"
+                        >
+                          <button
+                            class="icon-button-no-hover  is-flex is-align-self-center"
+                            style="height: 48px; width: 48px;"
+                          >
+                            <div>
+                              <svg
+                                class="is-flex is-align-self-center "
+                                role="presentation"
+                                style="width: 1rem; height: 1rem;"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"
+                                  style="fill: currentColor;"
+                                />
+                              </svg>
+                            </div>
+                          </button>
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      class="mb-5"
+                    >
+                      <button
+                        class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
+                        type="submit"
+                      >
+                        Sign in
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    class="bulma-notification is-flex is-align-items-center "
+                  >
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-link"
+                        role="presentation"
+                        style="width: 1.5rem; height: 1.5rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="ml-4"
+                    >
+                      <span
+                        class="is-size-6"
+                      >
+                        By signing in to an account...
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    class="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container"
+                  >
+                    <a
+                      href="/undefined/signup"
+                      rel="noopener nofollow"
+                    >
+                      Don't have an account?
+                    </a>
+                    <a
+                      href="/undefined/reset"
+                      rel="noopener nofollow"
+                    >
+                      Forgot password?
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="bulma-column is-flex is-justify-content-center p-0"
+            >
+              <div
+                class="bulma-card user-signin-view-card-news is-flex is-flex-direction-column"
+              >
+                <div
+                  class="slick-slider slick-initialized"
+                >
+                  
+                  <div
+                    class="slick-list"
+                  >
+                    <div
+                      class="slick-track"
+                      style="opacity: 1;"
+                    />
+                  </div>
+                  
+                  
+                </div>
+                <div
+                  class="is-flex is-justify-content-center is-gap-1.5 p-5 user-signin-view-bottom-container"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section>
+      <div
+        class="bulma-container"
+      >
+        <div
+          class="bulma-columns mx-4 my-6"
+        >
+          <div
+            class="bulma-column is-flex is-justify-content-center p-0"
+          >
+            <div
+              class="bulma-card user-signin-view-card-signin"
+            >
+              <div
+                class="bulma-card-content"
+              >
+                <div>
                   <div
                     class="is-flex is-flex-direction-column is-align-items-center"
                   >
@@ -107,169 +287,33 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container mx-5 mb-4"
-                >
-                  <div
-                    class=""
-                  >
-                    <a
-                      href="/undefined/signup"
-                      rel="noopener nofollow"
-                    >
-                      Don't have an account?
-                    </a>
-                  </div>
-                  <div
-                    class=""
-                  >
-                    <a
-                      href="/undefined/reset"
-                      rel="noopener nofollow"
-                    >
-                      Forgot password?
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="bulma-column is-flex is-justify-content-center p-0"
-            >
-              <div
-                class="bulma-card is-flex is-flex-direction-column user-signin-view-card-news"
-              >
-                <div
-                  class="slick-slider slick-initialized"
-                >
-                  
-                  <div
-                    class="slick-list"
-                  >
-                    <div
-                      class="slick-track"
-                      style="opacity: 1;"
-                    />
-                  </div>
-                  
-                  
-                </div>
-                <div
-                  class="is-flex is-justify-content-center is-gap-1.5 user-signin-view-bottom-container mb-5"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </body>,
-  "container": <div>
-    <section>
-      <div
-        class="bulma-container"
-      >
-        <div
-          class="bulma-columns mx-4 my-6"
-        >
-          <div
-            class="bulma-column is-flex is-justify-content-center p-0"
-          >
-            <div
-              class="bulma-card is-flex is-flex-direction-column user-signin-view-card-signin"
-            >
-              <div
-                class="bulma-card-content"
-              >
-                <div
-                  class="is-flex is-flex-direction-column is-align-items-center"
+                  class="bulma-notification is-flex is-align-items-center "
                 >
                   <div>
                     <svg
-                      class="is-flex is-align-self-center card-icon-colour"
+                      class="is-flex is-align-self-center has-text-link"
                       role="presentation"
-                      style="width: 3.75rem; height: 3.75rem;"
+                      style="width: 1.5rem; height: 1.5rem;"
                       viewBox="0 0 24 24"
                     >
                       <path
-                        d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"
+                        d="M13,9H11V7H13M13,17H11V11H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
                         style="fill: currentColor;"
                       />
                     </svg>
                   </div>
-                  <p
-                    class="is-size-3 has-text-black"
-                  >
-                    Sign in
-                  </p>
-                </div>
-                <div
-                  class="my-5"
-                >
                   <div
-                    class="bulma-control  mb-5"
+                    class="ml-4"
                   >
-                    <input
-                      autocomplete="email"
-                      class="bulma-input   "
-                      id="email"
-                      name="email"
-                      placeholder="Email address"
-                      required=""
-                      type="text"
-                      value="ester.exposito@gmail.com"
-                    />
-                  </div>
-                  <div
-                    class="bulma-control bulma-has-icons-right "
-                  >
-                    <input
-                      class="bulma-input   "
-                      id="password"
-                      name="password"
-                      placeholder="Password"
-                      type="password"
-                      value="madrilena123"
-                    />
                     <span
-                      class="bulma-icon bulma-is-right text-field-with-password"
+                      class="is-size-6"
                     >
-                      <button
-                        class="icon-button-no-hover  is-flex is-align-self-center"
-                        style="height: 48px; width: 48px;"
-                      >
-                        <div>
-                          <svg
-                            class="is-flex is-align-self-center "
-                            role="presentation"
-                            style="width: 1rem; height: 1rem;"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M11.83,9L15,12.16C15,12.11 15,12.05 15,12A3,3 0 0,0 12,9C11.94,9 11.89,9 11.83,9M7.53,9.8L9.08,11.35C9.03,11.56 9,11.77 9,12A3,3 0 0,0 12,15C12.22,15 12.44,14.97 12.65,14.92L14.2,16.47C13.53,16.8 12.79,17 12,17A5,5 0 0,1 7,12C7,11.21 7.2,10.47 7.53,9.8M2,4.27L4.28,6.55L4.73,7C3.08,8.3 1.78,10 1,12C2.73,16.39 7,19.5 12,19.5C13.55,19.5 15.03,19.2 16.38,18.66L16.81,19.08L19.73,22L21,20.73L3.27,3M12,7A5,5 0 0,1 17,12C17,12.64 16.87,13.26 16.64,13.82L19.57,16.75C21.07,15.5 22.27,13.86 23,12C21.27,7.61 17,4.5 12,4.5C10.6,4.5 9.26,4.75 8,5.2L10.17,7.35C10.74,7.13 11.35,7 12,7Z"
-                              style="fill: currentColor;"
-                            />
-                          </svg>
-                        </div>
-                      </button>
+                      By signing in to an account...
                     </span>
                   </div>
                 </div>
                 <div
-                  class="mb-5"
-                >
-                  <button
-                    class="bulma-button bulma-is-link bulma-is-light bulma-is-fullwidth"
-                    type="submit"
-                  >
-                    Sign in
-                  </button>
-                </div>
-              </div>
-              <div
-                class="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container mx-5 mb-4"
-              >
-                <div
-                  class=""
+                  class="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container"
                 >
                   <a
                     href="/undefined/signup"
@@ -277,10 +321,6 @@ Object {
                   >
                     Don't have an account?
                   </a>
-                </div>
-                <div
-                  class=""
-                >
                   <a
                     href="/undefined/reset"
                     rel="noopener nofollow"
@@ -295,7 +335,7 @@ Object {
             class="bulma-column is-flex is-justify-content-center p-0"
           >
             <div
-              class="bulma-card is-flex is-flex-direction-column user-signin-view-card-news"
+              class="bulma-card user-signin-view-card-news is-flex is-flex-direction-column"
             >
               <div
                 class="slick-slider slick-initialized"
@@ -313,7 +353,7 @@ Object {
                 
               </div>
               <div
-                class="is-flex is-justify-content-center is-gap-1.5 user-signin-view-bottom-container mb-5"
+                class="is-flex is-justify-content-center is-gap-1.5 p-5 user-signin-view-bottom-container"
               />
             </div>
           </div>
