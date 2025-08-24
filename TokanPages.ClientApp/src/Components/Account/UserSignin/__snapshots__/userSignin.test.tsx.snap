@@ -16,7 +16,7 @@ Object {
               class="bulma-column is-flex is-justify-content-center p-0"
             >
               <div
-                class="bulma-card is-flex is-flex-direction-column user-signin-view-card-signin"
+                class="bulma-card user-signin-view-card-signin"
               >
                 <div
                   class="bulma-card-content"
@@ -134,7 +134,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container mb-4"
+                    class="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container"
                   >
                     <a
                       href="/https://localhost/signup"
@@ -156,7 +156,7 @@ Object {
               class="bulma-column is-flex is-justify-content-center p-0"
             >
               <div
-                class="bulma-card is-flex is-flex-direction-column user-signin-view-card-news"
+                class="bulma-card user-signin-view-card-news is-flex is-flex-direction-column"
               >
                 <div
                   class="slick-slider slick-initialized"
@@ -231,7 +231,7 @@ Object {
                   
                 </div>
                 <div
-                  class="is-flex is-justify-content-center is-gap-1.5 user-signin-view-bottom-container mb-5"
+                  class="is-flex is-justify-content-center is-gap-1.5 p-5 user-signin-view-bottom-container"
                 >
                   <div>
                     <svg
@@ -266,7 +266,7 @@ Object {
             class="bulma-column is-flex is-justify-content-center p-0"
           >
             <div
-              class="bulma-card is-flex is-flex-direction-column user-signin-view-card-signin"
+              class="bulma-card user-signin-view-card-signin"
             >
               <div
                 class="bulma-card-content"
@@ -384,7 +384,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container mb-4"
+                  class="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container"
                 >
                   <a
                     href="/https://localhost/signup"
@@ -406,7 +406,7 @@ Object {
             class="bulma-column is-flex is-justify-content-center p-0"
           >
             <div
-              class="bulma-card is-flex is-flex-direction-column user-signin-view-card-news"
+              class="bulma-card user-signin-view-card-news is-flex is-flex-direction-column"
             >
               <div
                 class="slick-slider slick-initialized"
@@ -481,7 +481,7 @@ Object {
                 
               </div>
               <div
-                class="is-flex is-justify-content-center is-gap-1.5 user-signin-view-bottom-container mb-5"
+                class="is-flex is-justify-content-center is-gap-1.5 p-5 user-signin-view-bottom-container"
               >
                 <div>
                   <svg
