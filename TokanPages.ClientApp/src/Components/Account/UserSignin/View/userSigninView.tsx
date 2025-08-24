@@ -209,10 +209,14 @@ const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
             </Skeleton>
             <div className="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                    <Link to={props.link1?.href}><>{props.link1?.text}</></Link>
+                    <Link to={props.link1?.href}>
+                        <>{props.link1?.text}</>
+                    </Link>
                 </Skeleton>
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                    <Link to={props.link2?.href}><>{props.link2?.text}</></Link>
+                    <Link to={props.link2?.href}>
+                        <>{props.link2?.text}</>
+                    </Link>
                 </Skeleton>
             </div>
         </div>

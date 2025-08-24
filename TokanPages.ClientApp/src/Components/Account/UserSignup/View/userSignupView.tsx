@@ -143,7 +143,9 @@ const RenderSignupCard = (props: RenderSignupCardProps): React.ReactElement => (
             </div>
             <div className="has-text-right">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
-                    <Link to={props.link?.href}><>{props.link?.text}</></Link>
+                    <Link to={props.link?.href}>
+                        <>{props.link?.text}</>
+                    </Link>
                 </Skeleton>
             </div>
         </div>
