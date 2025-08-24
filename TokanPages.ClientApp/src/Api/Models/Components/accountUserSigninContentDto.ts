@@ -8,5 +8,6 @@ export interface AccountUserSigninContentDto {
     link2: LinkDto;
     labelEmail: string;
     labelPassword: string;
+    consent: string;
     securityNews: NewsItemDto[];
 }
