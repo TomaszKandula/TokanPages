@@ -13,7 +13,6 @@ export { RenderContent } from "./RenderContent/renderContent";
 export { CustomImage } from "./CustomImage/customImage";
 export { RenderList } from "./RenderList/renderList";
 export { RenderParagraphs } from "./RenderParagraphs/renderParagraphs";
-export { RedirectTo } from "./RedirectWrapper";
 export { ProgressBarView as ProgressBar } from "./ProgressBar";
 export { PdfCanvas } from "./PdfCanvas";
 export { ScrollToTop, ProgressOnScroll, ClearPageStart } from "./Scroll";
