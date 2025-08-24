@@ -216,7 +216,7 @@ Object {
                         <svg
                           class="is-flex is-align-self-center has-text-link"
                           role="presentation"
-                          style="width: 1rem; height: 1rem;"
+                          style="width: 1.5rem; height: 1.5rem;"
                           viewBox="0 0 24 24"
                         >
                           <path
@@ -502,7 +502,7 @@ Object {
                       <svg
                         class="is-flex is-align-self-center has-text-link"
                         role="presentation"
-                        style="width: 1rem; height: 1rem;"
+                        style="width: 1.5rem; height: 1.5rem;"
                         viewBox="0 0 24 24"
                       >
                         <path
