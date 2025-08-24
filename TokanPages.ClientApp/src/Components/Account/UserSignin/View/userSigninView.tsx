@@ -39,11 +39,11 @@ interface UserSigninViewProps extends ViewProperties, UserSigninProps {
 }
 
 interface RenderSigninCardProps extends UserSigninViewProps {
-    className: string;
+    className?: string;
 }
 
 interface RenderSliderProps extends UserSigninViewProps {
-    className: string;
+    className?: string;
 }
 
 interface RenderSlideProps {
@@ -118,7 +118,7 @@ const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
     }, []);
 
     return (
-        <div className={props.className}>
+        <div className={`bulma-card ${props.className ?? ""}`}>
             <Slider
                 dots={false}
                 arrows={false}
@@ -147,7 +147,7 @@ const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
                     ))
                 )}
             </Slider>
-            <div className="is-flex is-justify-content-center is-gap-1.5 user-signin-view-bottom-container mb-5">
+            <div className="is-flex is-justify-content-center is-gap-1.5 p-5 user-signin-view-bottom-container">
                 {props.security.map((_value: NewsItemDto, index: number) => (
                     <Icon
                         key={uuidv4()}
@@ -162,7 +162,7 @@ const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
 };
 
 const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
-    <div className={props.className}>
+    <div className={`bulma-card ${props.className ?? ""}`}>
         <div className="bulma-card-content">
             <div>
                 <div className="is-flex is-flex-direction-column is-align-items-center">
@@ -207,7 +207,7 @@ const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
             <Skeleton isLoading={props.isLoading} mode="Rect" height={90}>
                 <Notification text={props.consent} />
             </Skeleton>
-            <div className="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container mb-4">
+            <div className="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
                     <RedirectTo path={props.link1?.href} name={props.link1?.text} />
                 </Skeleton>
@@ -224,16 +224,10 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
         <div className="bulma-container">
             <div className="bulma-columns mx-4 my-6">
                 <div className="bulma-column is-flex is-justify-content-center p-0">
-                    <RenderSigninCard
-                        {...props}
-                        className="bulma-card is-flex is-flex-direction-column user-signin-view-card-signin"
-                    />
+                    <RenderSigninCard {...props} className="user-signin-view-card-signin" />
                 </div>
                 <div className="bulma-column is-flex is-justify-content-center p-0">
-                    <RenderSlider
-                        {...props}
-                        className="bulma-card is-flex is-flex-direction-column user-signin-view-card-news"
-                    />
+                    <RenderSlider {...props} className="user-signin-view-card-news is-flex is-flex-direction-column" />
                 </div>
             </div>
         </div>

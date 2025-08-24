@@ -8,7 +8,7 @@
 }
 
 .user-signin-view-card-signin {
-    height: 500px;
+    height: auto;
     width: 33vw;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .user-signin-view-card-news {
-    height: 500px;
+    height: auto;
     width: 33vw;
 }
 
