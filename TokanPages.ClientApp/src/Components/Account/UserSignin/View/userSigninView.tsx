@@ -111,6 +111,10 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
 const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
     const [selection, setSelection] = React.useState(0);
 
+    const handleChange = React.useCallback((_current: number, next: number) => {
+        setSelection(next);
+    }, []);
+
     return (
         <div className={props.className}>
             <Slider
@@ -124,9 +128,7 @@ const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
                 autoplaySpeed={5500}
                 pauseOnHover={true}
                 waitForAnimate={false}
-                beforeChange={(_current: number, next: number) => {
-                    setSelection(next);
-                }}
+                beforeChange={handleChange}
             >
                 {props.isLoading ? (
                     <RenderSlide isLoading={props.isLoading} image="" tags={[]} date="" title="" lead="" />
