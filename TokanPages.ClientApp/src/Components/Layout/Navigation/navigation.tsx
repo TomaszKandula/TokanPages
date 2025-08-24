@@ -77,13 +77,8 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
         const backPath = `/${language?.id}/${redirect}`;
 
         if (Validate.isEmpty(redirect)) {
-            history.goBack();
+            history.push(`/${language?.id}`);
         } else {
-            if (redirect === "home") {
-                history.push(`/${language?.id}`);
-                return;
-            }
-
             history.push(backPath);
         }
     }, [language?.id]);
