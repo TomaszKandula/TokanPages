@@ -105,7 +105,7 @@ const RenderHeader = (props: BusinessFormViewProps): React.ReactElement =>
                 <Icon name="Briefcase" size={2.5} className="card-icon-colour" />
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
-                <p className="is-size-3 has-text-black">{props.caption}</p>
+                <h1 className="is-size-3 has-text-black">{props.caption}</h1>
             </Skeleton>
         </div>
     ) : (
