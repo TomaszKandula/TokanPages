@@ -4,13 +4,37 @@ import { CustomImage } from "../../../../../Shared/Components/CustomImage/custom
 import { TextItem } from "../../Models/TextModel";
 import Validate from "validate.js";
 
+interface RenderPictureProps extends TextItem {
+    url: string;
+    onClick: () => void;
+}
+
 const RenderDescription = (props: { text: string }): React.ReactElement => {
     return (
-        <div className="bulma-card-content">
-            <span className="is-size-6">{props.text}</span>
-        </div>
+        <>
+            <hr className="m-0" />
+            <div className="bulma-card-content">
+                <span className="is-size-6">{props.text}</span>
+            </div>
+        </>
     );
 };
+
+const RenderPicture = (props: RenderPictureProps) => (
+    <div className="bulma-card-image">
+        <figure className="bulma-image">
+            <CustomImage
+                source={props.url}
+                title="Illustration"
+                alt="An image of presented article text"
+                onClick={props.onClick}
+                width={props.constraint?.width}
+                height={props.constraint?.height}
+                loading={props.loading}
+            />
+        </figure>
+    </div>
+);
 
 export const RenderImage = (props: TextItem): React.ReactElement => {
     const hasProp = !Validate.isEmpty(props.prop);
@@ -35,36 +59,8 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
 
     return (
         <div className="bulma-card my-6">
-            {hasPropAndValue ? (
-                <div className="bulma-card-image">
-                    <figure className="bulma-image">
-                        <CustomImage
-                            source={propUrl}
-                            title="Illustration"
-                            alt="An image of presented article text"
-                            onClick={onClickEvent}
-                            width={props.constraint?.width}
-                            height={props.constraint?.height}
-                            loading={props.loading}
-                        />
-                    </figure>
-                </div>
-            ) : null}
-            {hasValueOnly ? (
-                <div className="bulma-card-image">
-                    <figure className="bulma-image">
-                        <CustomImage
-                            source={valueUrl}
-                            title="Illustration"
-                            alt="An image of presented article text"
-                            onClick={onClickEvent}
-                            width={props.constraint?.width}
-                            height={props.constraint?.height}
-                            loading={props.loading}
-                        />
-                    </figure>
-                </div>
-            ) : null}
+            {hasPropAndValue ? <RenderPicture {...props} url={propUrl} onClick={onClickEvent} /> : null}
+            {hasValueOnly ? <RenderPicture {...props} url={valueUrl} onClick={onClickEvent} /> : null}
             {hasText ? <RenderDescription text={props.text} /> : null}
         </div>
     );
