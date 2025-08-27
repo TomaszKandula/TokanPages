@@ -249,14 +249,19 @@ Object {
             <figure
               class="bulma-image"
             >
-              <img
-                alt="Video related to the presented article text"
-                loading="lazy"
-                src="http://localhost:5000/api/v1cheers-commercial.png"
-                title="Video"
+              <video
+                controls=""
+                poster="http://localhost:5000/api/v1cheers-commercial.png"
+                src="http://localhost:5000/api/v1cheers-commercial.mp4"
+                style="border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem;"
+                title="Video related to the presented article text"
+                width="100%"
               />
             </figure>
           </div>
+          <hr
+            class="m-0"
+          />
           <div
             class="bulma-card-content"
           >
@@ -437,14 +442,19 @@ Object {
           <figure
             class="bulma-image"
           >
-            <img
-              alt="Video related to the presented article text"
-              loading="lazy"
-              src="http://localhost:5000/api/v1cheers-commercial.png"
-              title="Video"
+            <video
+              controls=""
+              poster="http://localhost:5000/api/v1cheers-commercial.png"
+              src="http://localhost:5000/api/v1cheers-commercial.mp4"
+              style="border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem;"
+              title="Video related to the presented article text"
+              width="100%"
             />
           </figure>
         </div>
+        <hr
+          class="m-0"
+        />
         <div
           class="bulma-card-content"
         >

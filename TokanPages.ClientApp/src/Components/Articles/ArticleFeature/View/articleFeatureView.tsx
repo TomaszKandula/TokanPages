@@ -85,6 +85,8 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                                             base={GET_ARTICLE_IMAGE_URL}
                                                             source={features?.image3}
                                                             className="article-feature-image article-feature-image-small"
+                                                            title="Illustration"
+                                                            alt="An image illustrating listed features"
                                                         />
                                                     </figure>
                                                 </div>

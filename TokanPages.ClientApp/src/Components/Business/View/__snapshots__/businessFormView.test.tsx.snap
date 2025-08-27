@@ -44,11 +44,11 @@ Object {
                         />
                       </svg>
                     </div>
-                    <p
+                    <h1
                       class="is-size-3 has-text-black"
                     >
                       Business Inquiry
-                    </p>
+                    </h1>
                   </div>
                   <div
                     class="mt-5"
@@ -332,11 +332,11 @@ Object {
                       />
                     </svg>
                   </div>
-                  <p
+                  <h1
                     class="is-size-3 has-text-black"
                   >
                     Business Inquiry
-                  </p>
+                  </h1>
                 </div>
                 <div
                   class="mt-5"
