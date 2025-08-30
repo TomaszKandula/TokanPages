@@ -63,7 +63,6 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                 ))}
                 <hr />
                 <div className="is-flex is-align-items-center is-gap-1.5">
-                    <Icon name="Magnify" size={1.5} className="has-text-link" />
                     <TextField 
                         uuid="search-input" 
                         value="" 
@@ -71,6 +70,7 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                         isLoading={false}
                         isDisabled={props.isLoading}
                         className="is-flex is-flex-grow-1"
+                        startIcon={<Icon name="Magnify" size={1.5} className="has-text-link" />}
                     />
                     <button onClick={() => {}} className="bulma-button bulma-is-link bulma-is-light">
                         {props.buttonSearch}
