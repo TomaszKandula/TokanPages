@@ -229,7 +229,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                     handler={props.serviceHandler}
                                 />
                                 <Skeleton isLoading={props.isLoading} mode="Rect" height={80}>
-                                    <Notification text={props.pricing.disclaimer} />
+                                    <Notification text={props.pricing.disclaimer} hasIcon />
                                 </Skeleton>
                                 <Skeleton isLoading={props.isLoading} mode="Rect" height={40}>
                                     <ActiveButton {...props} />

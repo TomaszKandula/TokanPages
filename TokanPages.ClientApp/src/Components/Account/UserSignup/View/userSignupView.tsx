@@ -134,7 +134,7 @@ const RenderSignupCard = (props: RenderSignupCardProps): React.ReactElement => (
                 </div>
             </div>
             <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
-                <Notification text={props.consent} />
+                <Notification text={props.consent} hasIcon />
             </Skeleton>
             <div className="mb-5">
                 <Skeleton isLoading={props.isLoading} mode="Rect">

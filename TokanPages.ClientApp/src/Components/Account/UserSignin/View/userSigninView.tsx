@@ -205,7 +205,7 @@ const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
                 </div>
             </div>
             <Skeleton isLoading={props.isLoading} mode="Rect" height={90}>
-                <Notification text={props.consent} />
+                <Notification text={props.consent} hasIcon />
             </Skeleton>
             <div className="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
