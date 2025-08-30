@@ -44,7 +44,7 @@ describe("test articles group component: ArticleListView", () => {
 
         const html = render(
             <Router>
-                <ArticleListView isLoading={false} isMobile={false} articles={[articles]} />
+                <ArticleListView isLoading={false} isMobile={false} articles={[articles]} title="" content={[""]} />
             </Router>
         );
 
