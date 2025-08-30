@@ -4,6 +4,7 @@ import { ArticleCard, Icon, ProgressBar, Skeleton, TextField } from "../../../..
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ArticleListProps } from "../articleList";
 import { v4 as uuidv4 } from "uuid";
+import "./articleListView.css";
 
 interface ArticleListViewProps extends ViewProperties, ArticleListProps {
     isMobile: boolean;
@@ -56,28 +57,34 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                 <hr />
                 {props.text.map((value: string, index: number) => (
                     <Skeleton isLoading={props.isLoading} mode="Text" key={uuidv4()}>
-                        {index === 0 
-                        ? <h2 className="is-size-6 has-text-grey has-text-weight-medium line-height-18">{value}</h2> 
-                        : <p className="is-size-6 has-text-grey line-height-18">{value}</p>}
+                        {index === 0 ? (
+                            <h2 className="is-size-6 has-text-grey has-text-weight-medium line-height-18">{value}</h2>
+                        ) : (
+                            <p className="is-size-6 has-text-grey line-height-18">{value}</p>
+                        )}
                     </Skeleton>
                 ))}
                 <hr />
-                <div className="is-flex is-align-items-center is-gap-1.5">
-                    <TextField 
-                        uuid="search-input" 
-                        value="" 
-                        placeholder={props.placeholder}
-                        isLoading={false}
-                        isDisabled={props.isLoading}
-                        className="is-flex is-flex-grow-1"
-                        startIcon={<Icon name="Magnify" size={1.5} className="has-text-link" />}
-                    />
-                    <button onClick={() => {}} className="bulma-button bulma-is-link bulma-is-light">
-                        {props.buttonSearch}
-                    </button>
-                    <button onClick={() => {}} className="bulma-button bulma-is-danger bulma-is-light">
-                        {props.buttonClear}
-                    </button>
+                <div className="bulma-columns">
+                    <div className="bulma-column article-list-view-search-bar">
+                        <TextField
+                            uuid="search-input"
+                            value=""
+                            placeholder={props.placeholder}
+                            isLoading={false}
+                            isDisabled={props.isLoading}
+                            className="is-flex is-flex-grow-1"
+                            startIcon={<Icon name="Magnify" size={1.5} className="has-text-link" />}
+                        />
+                    </div>
+                    <div className="bulma-column article-list-view-search-buttons">
+                        <button onClick={() => {}} className="bulma-button bulma-is-link bulma-is-light">
+                            {props.buttonSearch}
+                        </button>
+                        <button onClick={() => {}} className="bulma-button bulma-is-danger bulma-is-light">
+                            {props.buttonClear}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,7 +95,7 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet pb-6">
             <div className={props.isMobile ? "p-4" : "py-4"}>
-                <RenderStaticText 
+                <RenderStaticText
                     isLoading={props.isLoading}
                     title={props.title}
                     text={props.content}
