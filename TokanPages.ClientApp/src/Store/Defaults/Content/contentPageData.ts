@@ -136,6 +136,7 @@ export const ContentPageData: ContentPageDataState = {
         pageArticles: {
             language: "",
             caption: "",
+            placeholder: "",
             content: [""],
         },
         sectionArticle: {
