@@ -1,6 +1,8 @@
+import { SearchLabelsDto } from "./Common";
+
 export interface ArticlesContentDto {
     language: string;
     caption: string;
-    placeholder: string;
+    labels: SearchLabelsDto;
     content: string[];
 }
