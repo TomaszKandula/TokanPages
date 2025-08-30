@@ -158,7 +158,7 @@ Object {
                     class="bulma-column p-0"
                   >
                     <div
-                      class="bulma-control  "
+                      class="bulma-control   "
                     >
                       <input
                         class="bulma-input   "
@@ -187,7 +187,7 @@ Object {
                     class="bulma-column p-0"
                   >
                     <div
-                      class="bulma-control  "
+                      class="bulma-control   "
                     >
                       <input
                         class="bulma-input   "
@@ -216,7 +216,7 @@ Object {
                     class="bulma-column p-0"
                   >
                     <div
-                      class="bulma-control  "
+                      class="bulma-control   "
                     >
                       <input
                         class="bulma-input   "
@@ -432,7 +432,7 @@ Object {
                   class="bulma-column p-0"
                 >
                   <div
-                    class="bulma-control  "
+                    class="bulma-control   "
                   >
                     <input
                       class="bulma-input   "
@@ -461,7 +461,7 @@ Object {
                   class="bulma-column p-0"
                 >
                   <div
-                    class="bulma-control  "
+                    class="bulma-control   "
                   >
                     <input
                       class="bulma-input   "
@@ -490,7 +490,7 @@ Object {
                   class="bulma-column p-0"
                 >
                   <div
-                    class="bulma-control  "
+                    class="bulma-control   "
                   >
                     <input
                       class="bulma-input   "

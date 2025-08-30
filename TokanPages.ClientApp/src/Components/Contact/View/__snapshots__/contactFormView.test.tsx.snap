@@ -64,7 +64,7 @@ Object {
                         data-aos-delay="0"
                       >
                         <div
-                          class="bulma-control  "
+                          class="bulma-control   "
                         >
                           <input
                             autocomplete="fname"
@@ -87,7 +87,7 @@ Object {
                         data-aos-delay="0"
                       >
                         <div
-                          class="bulma-control  "
+                          class="bulma-control   "
                         >
                           <input
                             autocomplete="lname"
@@ -114,7 +114,7 @@ Object {
                         data-aos-delay="0"
                       >
                         <div
-                          class="bulma-control  "
+                          class="bulma-control   "
                         >
                           <input
                             autocomplete="email"
@@ -141,7 +141,7 @@ Object {
                         data-aos-delay="0"
                       >
                         <div
-                          class="bulma-control  "
+                          class="bulma-control   "
                         >
                           <input
                             autocomplete="subject"
@@ -191,7 +191,7 @@ Object {
                     class="bulma-content"
                   >
                     <div
-                      class="bulma-notification is-flex is-align-items-center "
+                      class="bulma-notification   is-flex is-align-items-center "
                     >
                       <div>
                         <svg
@@ -296,7 +296,7 @@ Object {
                       data-aos-delay="0"
                     >
                       <div
-                        class="bulma-control  "
+                        class="bulma-control   "
                       >
                         <input
                           autocomplete="fname"
@@ -319,7 +319,7 @@ Object {
                       data-aos-delay="0"
                     >
                       <div
-                        class="bulma-control  "
+                        class="bulma-control   "
                       >
                         <input
                           autocomplete="lname"
@@ -346,7 +346,7 @@ Object {
                       data-aos-delay="0"
                     >
                       <div
-                        class="bulma-control  "
+                        class="bulma-control   "
                       >
                         <input
                           autocomplete="email"
@@ -373,7 +373,7 @@ Object {
                       data-aos-delay="0"
                     >
                       <div
-                        class="bulma-control  "
+                        class="bulma-control   "
                       >
                         <input
                           autocomplete="subject"
@@ -423,7 +423,7 @@ Object {
                   class="bulma-content"
                 >
                   <div
-                    class="bulma-notification is-flex is-align-items-center "
+                    class="bulma-notification   is-flex is-align-items-center "
                   >
                     <div>
                       <svg

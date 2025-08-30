@@ -153,7 +153,7 @@ export const ContactFormView = (props: ContactFormViewProps): React.ReactElement
                             </div>
                             <div className="bulma-content">
                                 <Skeleton isLoading={props.isLoading} mode="Text" height={30}>
-                                    <Notification text={props.consent} />
+                                    <Notification text={props.consent} hasIcon />
                                 </Skeleton>
                                 <Animated dataAos="fade-up">
                                     <Skeleton isLoading={props.isLoading} mode="Rect">

@@ -48,7 +48,7 @@ Object {
                       class="my-5"
                     >
                       <div
-                        class="bulma-control  mb-5"
+                        class="bulma-control   mb-5"
                       >
                         <input
                           autocomplete="email"
@@ -108,7 +108,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="bulma-notification is-flex is-align-items-center "
+                    class="bulma-notification   is-flex is-align-items-center "
                   >
                     <div>
                       <svg
@@ -227,7 +227,7 @@ Object {
                     class="my-5"
                   >
                     <div
-                      class="bulma-control  mb-5"
+                      class="bulma-control   mb-5"
                     >
                       <input
                         autocomplete="email"
@@ -287,7 +287,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="bulma-notification is-flex is-align-items-center "
+                  class="bulma-notification   is-flex is-align-items-center "
                 >
                   <div>
                     <svg

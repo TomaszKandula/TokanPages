@@ -49,7 +49,7 @@ Object {
                     class="bulma-column"
                   >
                     <div
-                      class="bulma-control  "
+                      class="bulma-control   "
                     >
                       <input
                         autocomplete="email"
@@ -126,7 +126,7 @@ Object {
                   class="bulma-column"
                 >
                   <div
-                    class="bulma-control  "
+                    class="bulma-control   "
                   >
                     <input
                       autocomplete="email"

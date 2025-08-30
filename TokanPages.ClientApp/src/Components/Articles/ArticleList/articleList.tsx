@@ -4,15 +4,13 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
 import { useDimensions } from "../../../Shared/Hooks";
 import { ArticleListView } from "./View/articleListView";
-
-export interface ArticleListProps {
-    className?: string;
-}
+import { ArticleListProps } from "./Types";
 
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const media = useDimensions();
     const dispatch = useDispatch();
     const article = useSelector((state: ApplicationState) => state.articleListing);
+    const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageArticles);
 
     React.useEffect(() => {
         if (article.isLoading) {
@@ -30,6 +28,11 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             isMobile={media.isMobile}
             articles={article.articles}
             className={props.className}
+            title={content?.caption}
+            placeholder={content?.labels?.placeholder}
+            buttonSearch={content?.labels?.buttonSearch}
+            buttonClear={content?.labels?.buttonClear}
+            content={content?.content}
         />
     );
 };

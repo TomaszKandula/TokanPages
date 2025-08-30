@@ -6,11 +6,12 @@ export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
     const loading = props.isLoading ? "bulma-is-loading" : "";
     const colour = props.colour ?? "";
     const size = props.size ?? "";
+    const icon = props.startIcon ? "bulma-has-icons-left" : "";
 
     const className = `bulma-input ${rounded} ${colour} ${size}`;
 
     return (
-        <div className={`bulma-control ${loading} ${props.className ?? ""}`}>
+        <div className={`bulma-control ${icon} ${loading} ${props.className ?? ""}`}>
             <input
                 id={props.uuid}
                 name={props.uuid}
@@ -27,6 +28,7 @@ export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
                 className={className}
                 readOnly={props.isReadonly}
             />
+            {props.startIcon ? <span className="bulma-icon bulma-is-left">{props.startIcon}</span> : null}
         </div>
     );
 };

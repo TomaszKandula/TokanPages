@@ -86,6 +86,7 @@ export type { AccountUserSignoutContentDto } from "./Components/accountUserSigno
 export type { AccountUserSignupContentDto } from "./Components/accountUserSignupContentDto";
 export type { FeatureShowcaseContentDto } from "./Components/featureShowcaseContentDto";
 export type { ArticleContentDto } from "./Components/articleContentDto";
+export type { ArticlesContentDto } from "./Components/articlesContentDto";
 export type { ArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
 export type { DocumentContentDto } from "./Components/documentContentDto";
 export type {

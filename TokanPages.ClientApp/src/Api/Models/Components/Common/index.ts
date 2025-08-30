@@ -15,3 +15,4 @@ export type { OfferItemDto } from "./offerItemDto";
 export type { ImageDto } from "./imageDto";
 export type { PresentationDto } from "./presentationDto";
 export type { NewsItemDto } from "./newsItemDto";
+export type { SearchLabelsDto } from "./searchLabelsDto";

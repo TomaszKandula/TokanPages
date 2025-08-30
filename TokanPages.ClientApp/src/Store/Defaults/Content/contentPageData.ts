@@ -133,6 +133,16 @@ export const ContentPageData: ContentPageDataState = {
             textWritten: "",
             textAbout: "",
         },
+        pageArticles: {
+            language: "",
+            caption: "",
+            labels: {
+                placeholder: "",
+                buttonSearch: "",
+                buttonClear: "",
+            },
+            content: [""],
+        },
         sectionArticle: {
             language: "",
             caption: "",

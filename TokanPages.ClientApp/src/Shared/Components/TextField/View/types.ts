@@ -26,6 +26,7 @@ interface BaseProps {
 }
 
 export interface TextFieldProps extends BaseProps {
+    startIcon?: React.ReactElement;
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
 }

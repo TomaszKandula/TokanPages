@@ -53,7 +53,7 @@ Object {
                         class="bulma-column pb-0"
                       >
                         <div
-                          class="bulma-control  mb-3"
+                          class="bulma-control   mb-3"
                         >
                           <input
                             autocomplete="one-time-code"
@@ -71,7 +71,7 @@ Object {
                         class="bulma-column pb-0"
                       >
                         <div
-                          class="bulma-control  mb-3"
+                          class="bulma-control   mb-3"
                         >
                           <input
                             autocomplete="one-time-code"
@@ -93,7 +93,7 @@ Object {
                         class="bulma-column pb-0"
                       >
                         <div
-                          class="bulma-control  mb-3"
+                          class="bulma-control   mb-3"
                         >
                           <input
                             autocomplete="one-time-code"
@@ -152,7 +152,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="bulma-notification is-flex is-align-items-center "
+                    class="bulma-notification   is-flex is-align-items-center "
                   >
                     <div>
                       <svg
@@ -310,7 +310,7 @@ Object {
                       class="bulma-column pb-0"
                     >
                       <div
-                        class="bulma-control  mb-3"
+                        class="bulma-control   mb-3"
                       >
                         <input
                           autocomplete="one-time-code"
@@ -328,7 +328,7 @@ Object {
                       class="bulma-column pb-0"
                     >
                       <div
-                        class="bulma-control  mb-3"
+                        class="bulma-control   mb-3"
                       >
                         <input
                           autocomplete="one-time-code"
@@ -350,7 +350,7 @@ Object {
                       class="bulma-column pb-0"
                     >
                       <div
-                        class="bulma-control  mb-3"
+                        class="bulma-control   mb-3"
                       >
                         <input
                           autocomplete="one-time-code"
@@ -409,7 +409,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="bulma-notification is-flex is-align-items-center "
+                  class="bulma-notification   is-flex is-align-items-center "
                 >
                   <div>
                     <svg

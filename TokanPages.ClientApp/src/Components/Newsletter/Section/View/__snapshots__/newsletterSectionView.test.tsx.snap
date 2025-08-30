@@ -50,7 +50,7 @@ Object {
                     data-aos-delay="300"
                   >
                     <div
-                      class="bulma-control  "
+                      class="bulma-control   "
                     >
                       <input
                         autocomplete="email"
@@ -133,7 +133,7 @@ Object {
                   data-aos-delay="300"
                 >
                   <div
-                    class="bulma-control  "
+                    class="bulma-control   "
                   >
                     <input
                       autocomplete="email"
