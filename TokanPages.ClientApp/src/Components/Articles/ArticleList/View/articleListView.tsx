@@ -78,12 +78,16 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                         />
                     </div>
                     <div className="bulma-column article-list-view-search-buttons">
-                        <button onClick={() => {}} className="bulma-button bulma-is-link bulma-is-light">
-                            {props.buttonSearch}
-                        </button>
-                        <button onClick={() => {}} className="bulma-button bulma-is-danger bulma-is-light">
-                            {props.buttonClear}
-                        </button>
+                        <Skeleton isLoading={props.isLoading} mode="Rect" height={40} disableMarginY>
+                            <button onClick={() => {}} className="bulma-button bulma-is-link bulma-is-light">
+                                {props.buttonSearch}
+                            </button>
+                        </Skeleton>
+                        <Skeleton isLoading={props.isLoading} mode="Rect" height={40} disableMarginY className="ml-3">
+                            <button onClick={() => {}} className="bulma-button bulma-is-danger bulma-is-light">
+                                {props.buttonClear}
+                            </button>
+                        </Skeleton>
                     </div>
                 </div>
             </div>
