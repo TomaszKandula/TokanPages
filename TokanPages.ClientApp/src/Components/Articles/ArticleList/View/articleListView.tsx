@@ -10,6 +10,8 @@ interface ArticleListViewProps extends ViewProperties, ArticleListProps {
     articles: ArticleItem[];
     title: string;
     placeholder: string;
+    buttonSearch: string;
+    buttonClear: string;
     content: string[];
 }
 
@@ -20,8 +22,10 @@ interface RenderContentProps {
 interface RenderStaticTextProps {
     isLoading: boolean;
     title: string;
-    placeholder: string;
     text: string[];
+    placeholder: string;
+    buttonSearch: string;
+    buttonClear: string;
 }
 
 const RenderContent = (props: RenderContentProps): React.ReactElement => (
@@ -69,7 +73,10 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                         className="is-flex is-flex-grow-1"
                     />
                     <button onClick={() => {}} className="bulma-button bulma-is-link bulma-is-light">
-                        {props.placeholder}
+                        {props.buttonSearch}
+                    </button>
+                    <button onClick={() => {}} className="bulma-button bulma-is-danger bulma-is-light">
+                        {props.buttonClear}
                     </button>
                 </div>
             </div>
@@ -81,7 +88,14 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet pb-6">
             <div className={props.isMobile ? "p-4" : "py-4"}>
-                <RenderStaticText isLoading={props.isLoading} title={props.title} text={props.content} placeholder={props.placeholder} />
+                <RenderStaticText 
+                    isLoading={props.isLoading}
+                    title={props.title}
+                    text={props.content}
+                    placeholder={props.placeholder}
+                    buttonSearch={props.buttonSearch}
+                    buttonClear={props.buttonClear}
+                />
                 {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
             </div>
         </div>

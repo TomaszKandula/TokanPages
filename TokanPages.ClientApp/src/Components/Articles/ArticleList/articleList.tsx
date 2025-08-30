@@ -31,9 +31,11 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             isMobile={media.isMobile}
             articles={article.articles}
             className={props.className}
-            title={content.caption}
-            placeholder={content.placeholder}
-            content={content.content}
+            title={content?.caption}
+            placeholder={content?.labels?.placeholder}
+            buttonSearch={content?.labels?.buttonSearch}
+            buttonClear={content?.labels?.buttonClear}
+            content={content?.content}
         />
     );
 };
