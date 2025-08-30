@@ -5,6 +5,7 @@ import {
     AccountUserSignoutContentDto,
     AccountUserSignupContentDto,
     ArticleContentDto,
+    ArticlesContentDto,
     ArticleFeaturesContentDto,
     BusinessFormContentDto,
     ClientsContentDto,
@@ -48,6 +49,7 @@ export interface ComponentsDto {
     leisurePhotography: DocumentContentDto;
     pageAbout: DocumentContentDto;
     pageArticle: ArticleContentDto;
+    pageArticles: ArticlesContentDto;
     pageShowcase: DocumentContentDto;
     pageStory: DocumentContentDto;
     pageBusinessForm: BusinessFormContentDto;

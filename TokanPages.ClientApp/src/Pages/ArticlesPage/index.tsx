@@ -10,7 +10,7 @@ export const ArticlesPage = (): React.ReactElement => {
     useUnhead("ArticlesPage");
     useSnapshot();
     usePageContent(
-        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageArticle"],
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageArticle", "pageArticles"],
         "ArticlesPage"
     );
 
