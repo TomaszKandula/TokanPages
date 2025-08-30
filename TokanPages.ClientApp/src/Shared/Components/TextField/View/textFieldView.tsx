@@ -28,10 +28,7 @@ export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
                 className={className}
                 readOnly={props.isReadonly}
             />
-            {props.startIcon ? 
-            <span className="bulma-icon bulma-is-left">
-                {props.startIcon}
-            </span> : null}
+            {props.startIcon ? <span className="bulma-icon bulma-is-left">{props.startIcon}</span> : null}
         </div>
     );
 };

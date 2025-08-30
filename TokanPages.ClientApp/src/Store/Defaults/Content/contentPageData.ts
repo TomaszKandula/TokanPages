@@ -139,7 +139,7 @@ export const ContentPageData: ContentPageDataState = {
             labels: {
                 placeholder: "",
                 buttonSearch: "",
-                buttonClear: ""
+                buttonClear: "",
             },
             content: [""],
         },
