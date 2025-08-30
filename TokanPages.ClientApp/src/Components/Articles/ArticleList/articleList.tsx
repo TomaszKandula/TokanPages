@@ -4,10 +4,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
 import { useDimensions } from "../../../Shared/Hooks";
 import { ArticleListView } from "./View/articleListView";
-
-export interface ArticleListProps {
-    className?: string;
-}
+import { ArticleListProps } from "./Types";
 
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const media = useDimensions();

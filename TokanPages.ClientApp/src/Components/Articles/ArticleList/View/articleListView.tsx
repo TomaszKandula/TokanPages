@@ -1,33 +1,9 @@
 import * as React from "react";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 import { ArticleCard, Icon, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
-import { ViewProperties } from "../../../../Shared/Abstractions";
-import { ArticleListProps } from "../articleList";
+import { ArticleListViewProps, RenderContentProps, RenderStaticTextProps } from "../Types";
 import { v4 as uuidv4 } from "uuid";
 import "./articleListView.css";
-
-interface ArticleListViewProps extends ViewProperties, ArticleListProps {
-    isMobile: boolean;
-    articles: ArticleItem[];
-    title: string;
-    placeholder: string;
-    buttonSearch: string;
-    buttonClear: string;
-    content: string[];
-}
-
-interface RenderContentProps {
-    articles: ArticleItem[];
-}
-
-interface RenderStaticTextProps {
-    isLoading: boolean;
-    title: string;
-    text: string[];
-    placeholder: string;
-    buttonSearch: string;
-    buttonClear: string;
-}
 
 const RenderContent = (props: RenderContentProps): React.ReactElement => (
     <>
