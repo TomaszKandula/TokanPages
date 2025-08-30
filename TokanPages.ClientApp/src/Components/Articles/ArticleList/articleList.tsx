@@ -32,6 +32,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             articles={article.articles}
             className={props.className}
             title={content.caption}
+            placeholder={content.placeholder}
             content={content.content}
         />
     );
