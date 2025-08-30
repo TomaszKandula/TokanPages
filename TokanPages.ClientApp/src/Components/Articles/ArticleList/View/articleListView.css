@@ -15,7 +15,7 @@
         width: 100%;
     }
 
-.article-list-view-search-buttons {
+    .article-list-view-search-buttons {
         gap: 12px;
         flex-direction: column;
     }
