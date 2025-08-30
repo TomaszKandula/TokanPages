@@ -41,6 +41,7 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => (
     </>
 );
 
+// TODO: add logic to handle interactions
 const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
     <div className="bulma-card mb-6">
         <div className="bulma-card-content">
@@ -67,7 +68,9 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                         isDisabled={props.isLoading}
                         className="is-flex is-flex-grow-1"
                     />
-                    
+                    <button onClick={() => {}} className="bulma-button bulma-is-link bulma-is-light">
+                        {props.placeholder}
+                    </button>
                 </div>
             </div>
         </div>
