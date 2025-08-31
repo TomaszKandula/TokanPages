@@ -1,6 +1,13 @@
-import { ReactChangeEvent, ReactKeyboardEvent } from "Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
+
+export interface PageDataProps {
+    totalSize: number;
+    pageNumber: number;
+    pageSize: number;
+    onClick: () => void;
+}
 
 export interface SearchInputProps { 
     searchInput: string 
@@ -32,6 +39,7 @@ export interface ArticleListProps {
 
 export interface ArticleListViewProps extends ViewProperties, ArticlesProps, ArticleListProps, TextProps, ButtonsProps {
     isMobile: boolean;
+    pageData: PageDataProps;
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
     value: SearchInputProps;   
