@@ -10,6 +10,7 @@ describe("test component: contactFormView", () => {
             <BrowserRouter>
                 <ContactFormView
                     isLoading={false}
+                    mode="section"
                     caption="Contact me"
                     hasCaption={true}
                     hasShadow={true}
@@ -26,6 +27,26 @@ describe("test component: contactFormView", () => {
                     progress={false}
                     buttonText="Submit"
                     consent="I agree!"
+                    presentation={{
+                        image: {
+                            link: "",
+                            title: "",
+                            alt: "",
+                            width: 0,
+                            heigh: 0,
+                        },
+                        title: "",
+                        subtitle: "",
+                        icon: {
+                            name: "",
+                            href: "",
+                        },
+                        description: "",
+                        logos: {
+                            title: "",
+                            images: [],
+                        },
+                    }}
                     labelFirstName="First name"
                     labelLastName="Last name"
                     labelEmail="Email address"
