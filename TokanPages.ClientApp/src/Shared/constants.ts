@@ -12,6 +12,7 @@ export const SET_INTERVAL_DELAY = IsRunningOnIOS() ? DELAY_3_SECONDS : DELAY_30_
 export const LIKES_LIMIT_FOR_ANONYM = 25;
 export const LIKES_LIMIT_FOR_USER = 50;
 export const WORDS_PER_MINUTE = 265;
+export const ARTICLES_PAGE_SIZE = 4;
 
 export const INTERNAL_SUBJECT_TEXT = "Incoming Business Inquiry";
 export const INTERNAL_MESSAGE_TEXT = "Please check the internal payload for more details.";
