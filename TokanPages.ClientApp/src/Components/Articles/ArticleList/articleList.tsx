@@ -7,6 +7,7 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ARTICLES_PAGE_SIZE } from "../../../Shared/constants";
 import { ArticleListProps, SearchInputProps } from "./Types";
 import { ArticleListView } from "./View/articleListView";
+import Validate from "validate.js";
 
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const media = useDimensions();
@@ -14,7 +15,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const article = useSelector((state: ApplicationState) => state.articleListing);
     const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageArticles);
 
-    const [searchInput, setSearchInput] = React.useState<SearchInputProps>({ searchInput: "" });
+    const [form, setForm] = React.useState<SearchInputProps>({ searchInput: "" });
 
     const onClickChangePage = React.useCallback(() => {
         const totalSize = article.payload.totalSize;
@@ -37,23 +38,29 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 onClickSearch();
             }
         },
-        [searchInput]
+        [form]
     );
 
     const onInputHandler = React.useCallback(
         (event: ReactChangeEvent) => {
-            setSearchInput({ ...searchInput, [event.currentTarget.name]: event.currentTarget.value });
+            setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
         },
-        [searchInput]
+        [form]
     );
 
     const onClickSearch = React.useCallback(() => {
-        console.log("search");
-    }, []);
+        const pagingInfo = article.payload.pagingInfo;
+        dispatch(ArticleListingAction.get(pagingInfo.pageNumber, ARTICLES_PAGE_SIZE, form.searchInput));
+    }, [article.payload, form.searchInput]);
 
     const onClickClear = React.useCallback(() => {
-        console.log("clear");       
-    }, []);
+        if (Validate.isEmpty(form.searchInput)) {
+            return;
+        }
+        
+        setForm({ searchInput: "" });       
+        dispatch(ArticleListingAction.get(1, ARTICLES_PAGE_SIZE));
+    }, [form.searchInput]);
 
     React.useEffect(() => {
         if (article.isLoading) {
@@ -82,7 +89,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             text={content?.content}
             onKeyUp={onKeyHandler}
             onChange={onInputHandler}
-            value={searchInput}
+            value={form}
             buttonSearch={{
                 label: content?.labels?.buttonSearch,
                 onClick: onClickSearch,
