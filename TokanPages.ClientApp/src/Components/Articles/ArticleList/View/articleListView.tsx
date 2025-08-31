@@ -80,7 +80,7 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
 
 const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
     if (props.pageData.totalSize <= props.pageData.pageSize) {
-        return <></>;
+        return <div className="mb-4">&nbsp;</div>;
     }
 
     const pageNumber = props.pageData.pageNumber;
