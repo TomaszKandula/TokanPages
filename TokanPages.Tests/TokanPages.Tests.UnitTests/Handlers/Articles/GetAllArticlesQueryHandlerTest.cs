@@ -54,16 +54,24 @@ public class GetAllArticlesQueryHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
 
-        var query = new GetArticlesQuery { IsPublished = false };
+        var query = new GetArticlesQuery
+        {
+            IsPublished = false,
+            PageNumber = 1,
+            PageSize = 10,
+        };
+
         var handler = new GetArticlesQueryHandler(databaseContext, mockedLogger.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);
 
         // Assert
-        result.ToList().Should().NotBeNull();
-        result.ToList().Should().HaveCount(2);
-        result.ToList()[0].Id.Should().Be(articles[0].Id);
-        result.ToList()[1].Id.Should().Be(articles[1].Id);
+        result.Should().NotBeNull();
+        result.Results.Should().NotBeNull();
+        result.Results?.Count.Should().Be(2);
+        result.PagingInfo.Should().NotBeNull();
+        result.PagingInfo?.PageNumber.Should().Be(1);
+        result.PagingInfo?.PageSize.Should().Be(10);
     }
 }
