@@ -63,7 +63,13 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                                 {props.buttonSearch.label}
                             </button>
                         </Skeleton>
-                        <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY className="ml-3">
+                        <Skeleton
+                            isLoading={props.isContentLoading}
+                            mode="Rect"
+                            height={40}
+                            disableMarginY
+                            className="ml-3"
+                        >
                             <button
                                 onClick={props.buttonClear.onClick}
                                 className="bulma-button bulma-is-danger bulma-is-light"
