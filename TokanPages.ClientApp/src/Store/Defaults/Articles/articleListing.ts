@@ -2,5 +2,15 @@ import { ArticleListingState } from "../../States";
 
 export const ArticleListing: ArticleListingState = {
     isLoading: false,
-    articles: [],
+    payload: {
+        pagingInfo: {
+            isPublished: false,
+            pageNumber: 0,
+            pageSize: 0,
+            orderByColumn: "",
+            orderByAscending: false
+        },
+        totalSize: 0,
+        results: []
+    }
 };

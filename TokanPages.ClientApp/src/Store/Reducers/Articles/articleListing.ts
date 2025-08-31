@@ -15,13 +15,13 @@ export const ArticleListing: Reducer<ArticleListingState> = (
         case REQUEST:
             return {
                 isLoading: true,
-                articles: state.articles,
+                payload: state.payload,
             };
 
         case RECEIVE:
             return {
                 isLoading: false,
-                articles: action.payload,
+                payload: action.payload,
             };
 
         default:

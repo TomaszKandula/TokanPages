@@ -1,7 +1,7 @@
 import { ApplicationAction } from "../../Configuration";
-import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import { ExecuteStoreActionProps, GET_ARTICLES } from "../../../Api";
 import { useApiAction } from "../../../Shared/Hooks";
+import { GetArticlesDto } from "../../../Api/Models";
 
 export const REQUEST = "REQUEST_ARTICLES";
 export const RECEIVE = "RECEIVE_ARTICLES";
@@ -10,7 +10,7 @@ interface Request {
 }
 interface Receive {
     type: typeof RECEIVE;
-    payload: ArticleItem[];
+    payload: GetArticlesDto;
 }
 export type TKnownActions = Request | Receive;
 
@@ -20,7 +20,7 @@ export const ArticleListingAction = {
 
         const actions = useApiAction();
         const input: ExecuteStoreActionProps = {
-            url: GET_ARTICLES,
+            url: GET_ARTICLES + "?pageNumber=1&pageSize=4&orderByColumn=createdAt&orderByAscending=false&isPublished=true&noCache=false",
             dispatch: dispatch,
             state: getState,
             responseType: RECEIVE,
