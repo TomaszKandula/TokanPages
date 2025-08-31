@@ -17,16 +17,16 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             return;
         }
 
-        if (article.articles.length === 0) {
+        if (article.payload.results.length === 0) {
             dispatch(ArticleListingAction.get());
         }
-    }, [article.isLoading, article.articles]);
+    }, [article.isLoading, article.payload.results]);
 
     return (
         <ArticleListView
             isLoading={article.isLoading}
             isMobile={media.isMobile}
-            articles={article.articles}
+            articles={article.payload.results}
             className={props.className}
             title={content?.caption}
             placeholder={content?.labels?.placeholder}
