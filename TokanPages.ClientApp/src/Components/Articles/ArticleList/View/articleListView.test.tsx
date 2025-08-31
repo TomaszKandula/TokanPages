@@ -47,6 +47,7 @@ describe("test articles group component: ArticleListView", () => {
                 <ArticleListView
                     isLoading={false}
                     isMobile={false}
+                    isContentLoading={false}
                     pageData={{
                         pageNumber: 1,
                         pageSize: 5,
