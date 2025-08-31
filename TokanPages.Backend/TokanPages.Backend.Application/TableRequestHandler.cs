@@ -20,6 +20,6 @@ public abstract class TableRequestHandler<TEntity, TRequest, TResult> : IRequest
     }
 
     public abstract Task<TResult> Handle(TRequest request, CancellationToken cancellationToken);
-        
+
     public abstract IDictionary<string, Expression<Func<TEntity, object>>> GetOrderingExpressions();
 }
