@@ -44,8 +44,10 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                 <div className="bulma-columns">
                     <div className="bulma-column article-list-view-search-bar">
                         <TextField
-                            uuid="search-input"
-                            value=""
+                            uuid="searchInput"
+                            value={props.value.searchInput}
+                            onKeyUp={props.onKeyUp}
+                            onChange={props.onChange}
                             placeholder={props.placeholder}
                             isLoading={false}
                             isDisabled={props.isLoading}
@@ -55,13 +57,13 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                     </div>
                     <div className="bulma-column article-list-view-search-buttons">
                         <Skeleton isLoading={props.isLoading} mode="Rect" height={40} disableMarginY>
-                            <button onClick={() => {}} className="bulma-button bulma-is-link bulma-is-light">
-                                {props.buttonSearch}
+                            <button onClick={props.buttonSearch.onClick} className="bulma-button bulma-is-link bulma-is-light">
+                                {props.buttonSearch.label}
                             </button>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Rect" height={40} disableMarginY className="ml-3">
-                            <button onClick={() => {}} className="bulma-button bulma-is-danger bulma-is-light">
-                                {props.buttonClear}
+                            <button onClick={props.buttonClear.onClick} className="bulma-button bulma-is-danger bulma-is-light">
+                                {props.buttonClear.label}
                             </button>
                         </Skeleton>
                     </div>
@@ -78,10 +80,13 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
                 <RenderStaticText
                     isLoading={props.isLoading}
                     title={props.title}
-                    text={props.content}
+                    text={props.text}
                     placeholder={props.placeholder}
                     buttonSearch={props.buttonSearch}
                     buttonClear={props.buttonClear}
+                    onChange={props.onChange} 
+                    onKeyUp={props.onKeyUp} 
+                    value={props.value}
                 />
                 {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
             </div>
