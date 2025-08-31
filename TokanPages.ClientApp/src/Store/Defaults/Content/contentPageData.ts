@@ -209,7 +209,6 @@ export const ContentPageData: ContentPageDataState = {
         sectionContactForm: {
             language: "",
             caption: "",
-            text: "",
             button: "",
             consent: "",
             labelFirstName: "",

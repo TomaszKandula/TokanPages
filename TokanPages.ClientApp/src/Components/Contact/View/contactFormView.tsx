@@ -7,7 +7,6 @@ import "./contactFormView.css";
 
 interface ContactFormViewProps extends ViewProperties, ContactFormProps {
     caption: string;
-    text: string;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
     messageHandler: (event: ReactChangeTextEvent) => void;

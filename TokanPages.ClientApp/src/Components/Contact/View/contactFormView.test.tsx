@@ -11,7 +11,6 @@ describe("test component: contactFormView", () => {
                 <ContactFormView
                     isLoading={false}
                     caption="Contact me"
-                    text="If you have any questions..."
                     hasCaption={true}
                     hasShadow={true}
                     hasIcon={true}

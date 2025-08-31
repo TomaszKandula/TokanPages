@@ -138,7 +138,6 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
         <ContactFormView
             isLoading={data?.isLoading}
             caption={contactForm?.caption}
-            text={contactForm?.text}
             keyHandler={keyHandler}
             formHandler={formHandler}
             messageHandler={messageHandler}
