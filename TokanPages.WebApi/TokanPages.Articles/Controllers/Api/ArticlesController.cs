@@ -32,13 +32,30 @@ public class ArticlesController : ApiBaseController
     /// Returns all written articles.
     /// </summary>
     /// <param name="isPublished">Use true to get only published articles.</param>
+    /// <param name="pageNumber">Mandatory page number to return.</param>
+    /// <param name="pageSize">Mandatory number of pages.</param>
+    /// <param name="orderByColumn">Optional column to be used for sorting (Title, Duration).</param>
+    /// <param name="orderByAscending">Optional sorting (A-Z or Z-A).</param>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Object list.</returns>
     [HttpGet]
     [Route("[action]")]
-    [ProducesResponseType(typeof(IEnumerable<GetArticlesQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetArticlesQueryResult>> GetArticles([FromQuery] bool isPublished = true, bool noCache = false)
-        => await _articlesCache.GetArticles(isPublished, noCache);
+    [ProducesResponseType(typeof(GetAllArticlesQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetAllArticlesQueryResult> GetArticles(
+        [FromQuery] int pageNumber,
+        [FromQuery] int pageSize,
+        [FromQuery] string? orderByColumn = "title",
+        [FromQuery] bool orderByAscending = false,
+        [FromQuery] bool isPublished = true, 
+        [FromQuery] bool noCache = false)
+        => await _articlesCache.GetArticles(new GetArticlesQuery
+        {
+            IsPublished = isPublished,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            OrderByColumn = orderByColumn!,
+            OrderByAscending = orderByAscending
+        }, noCache);
 
     /// <summary>
     /// Returns information for given article ID.
