@@ -49,10 +49,19 @@ describe("test articles group component: ArticleListView", () => {
                     isMobile={false}
                     articles={[articles]}
                     title=""
-                    content={[""]}
+                    text={[""]}
                     placeholder=""
-                    buttonSearch=""
-                    buttonClear=""
+                    value={{ searchInput: "" }}
+                    onChange={jest.fn()}
+                    onKeyUp={jest.fn()}
+                    buttonSearch={{
+                        label: "",
+                        onClick: jest.fn()
+                    }}
+                    buttonClear={{
+                        label: "",
+                        onClick: jest.fn()
+                    }}
                 />
             </Router>
         );
