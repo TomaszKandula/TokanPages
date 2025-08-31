@@ -23,6 +23,7 @@ export interface ContactFormProps {
     hasIcon?: boolean;
     hasShadow?: boolean;
     className?: string;
+    mode: "section" | "page";
 }
 
 export const ContactForm = (props: ContactFormProps): React.ReactElement => {
@@ -136,6 +137,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
 
     return (
         <ContactFormView
+            mode={props.mode}
             isLoading={data?.isLoading}
             caption={contactForm?.caption}
             keyHandler={keyHandler}
@@ -150,6 +152,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
             progress={hasProgress}
             buttonText={contactForm?.button}
             consent={contactForm?.consent}
+            presentation={contactForm.presentation}
             labelFirstName={contactForm?.labelFirstName}
             labelLastName={contactForm?.labelLastName}
             labelEmail={contactForm?.labelEmail}

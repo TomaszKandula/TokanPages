@@ -47,7 +47,7 @@ export const MainPage = (): React.ReactElement => {
                 <Testimonials />
                 <Socials className="has-background-white-bis" />
                 <NewsletterSection className="has-background-info-95" />
-                <ContactForm hasCaption={true} />
+                <ContactForm hasCaption={true} mode="section" />
             </main>
             <Footer />
         </>
