@@ -4,6 +4,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
 import { useDimensions } from "../../../Shared/Hooks";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ARTICLES_PAGE_SIZE } from "../../../Shared/constants";
 import { ArticleListProps, SearchInputProps } from "./Types";
 import { ArticleListView } from "./View/articleListView";
 
@@ -14,6 +15,21 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageArticles);
 
     const [searchInput, setSearchInput] = React.useState<SearchInputProps>({ searchInput: "" });
+
+    const onClickChangePage = React.useCallback(() => {
+        const totalSize = article.payload.totalSize;
+        const pagingInfo = article.payload.pagingInfo;
+
+        const nextPage = pagingInfo.pageNumber + 1;
+        const prevPage = pagingInfo.pageNumber - 1;
+        const pages = Math.round(totalSize / pagingInfo.pageSize);
+
+        if (nextPage <= pages) {
+            dispatch(ArticleListingAction.get(nextPage, ARTICLES_PAGE_SIZE));
+        } else if (prevPage > 0) {
+            dispatch(ArticleListingAction.get(prevPage, ARTICLES_PAGE_SIZE));
+        }
+    }, [article.payload]);
 
     const onKeyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -45,7 +61,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
 
         if (article.payload.results.length === 0) {
-            dispatch(ArticleListingAction.get(1, 4));
+            dispatch(ArticleListingAction.get(1, ARTICLES_PAGE_SIZE));
         }
     }, [article.isLoading, article.payload.results]);
 
@@ -53,6 +69,12 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         <ArticleListView
             isLoading={article.isLoading}
             isMobile={media.isMobile}
+            pageData={{
+                totalSize: article.payload.totalSize,
+                pageNumber: article.payload.pagingInfo.pageNumber,
+                pageSize: article.payload.pagingInfo.pageSize,
+                onClick: onClickChangePage,
+            }}
             articles={article.payload.results}
             className={props.className}
             title={content?.caption}

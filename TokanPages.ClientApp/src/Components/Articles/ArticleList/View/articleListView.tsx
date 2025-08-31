@@ -22,9 +22,8 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => (
     </>
 );
 
-// TODO: add logic to handle interactions
 const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
-    <div className="bulma-card mb-6">
+    <div className="bulma-card">
         <div className="bulma-card-content">
             <div className="bulma-content">
                 <Skeleton isLoading={props.isLoading} mode="Text" height={32}>
@@ -73,6 +72,40 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
     </div>
 );
 
+const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
+    if (props.pageData.totalSize <= props.pageData.pageSize) {
+        return <></>;
+    }
+
+    const pageNumber = props.pageData.pageNumber
+    const pages = Math.round(props.pageData.totalSize / props.pageData.pageSize);
+    const paginationItem = [];
+
+    for (let index = 1; index <= pages; index++) {
+        if (pageNumber === index) {
+            paginationItem.push(
+                <li key={index}>
+                    <a onClick={props.pageData.onClick} className="bulma-pagination-link bulma-is-current" aria-label={`Page-${index}`} aria-current="page">{index}</a>
+                </li>
+            );
+        } else {
+            paginationItem.push(
+                <li key={index}>
+                    <a onClick={props.pageData.onClick} className="bulma-pagination-link" aria-label={`Page-${index}`} aria-current="page">{index}</a>
+                </li>
+            );
+        }
+    }
+
+    return (
+        <nav className="bulma-pagination bulma-is-small bulma-is-centered my-6" role="navigation" aria-label="pagination">
+            <ul className="bulma-pagination-list">
+                {paginationItem}
+            </ul>            
+        </nav>
+    );
+}
+
 export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet pb-6">
@@ -88,7 +121,9 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
                     onKeyUp={props.onKeyUp} 
                     value={props.value}
                 />
+                {props.isLoading ? null : <RenderPagination {...props} />}
                 {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
+                {props.isLoading ? null : <RenderPagination {...props} />}
             </div>
         </div>
     </section>
