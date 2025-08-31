@@ -47,6 +47,12 @@ describe("test articles group component: ArticleListView", () => {
                 <ArticleListView
                     isLoading={false}
                     isMobile={false}
+                    pageData={{
+                        pageNumber: 1,
+                        pageSize: 5,
+                        totalSize: 10,
+                        onClick: jest.fn(),
+                    }}
                     articles={[articles]}
                     title=""
                     text={[""]}
