@@ -18,7 +18,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
 
         if (article.payload.results.length === 0) {
-            dispatch(ArticleListingAction.get());
+            dispatch(ArticleListingAction.get(1, 4));
         }
     }, [article.isLoading, article.payload.results]);
 

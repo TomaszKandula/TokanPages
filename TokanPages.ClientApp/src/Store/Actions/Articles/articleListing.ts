@@ -15,12 +15,13 @@ interface Receive {
 export type TKnownActions = Request | Receive;
 
 export const ArticleListingAction = {
-    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
+    get: (pageNumber: number, pageSize: number): ApplicationAction<TKnownActions> => (dispatch, getState) => {
         dispatch({ type: REQUEST });
 
         const actions = useApiAction();
+        const baseParams = "orderByColumn=createdAt&orderByAscending=false&isPublished=true&noCache=false";
         const input: ExecuteStoreActionProps = {
-            url: GET_ARTICLES + "?pageNumber=1&pageSize=4&orderByColumn=createdAt&orderByAscending=false&isPublished=true&noCache=false",
+            url: `${GET_ARTICLES}?pageNumber=${pageNumber}&pageSize=${pageSize}&${baseParams}`,
             dispatch: dispatch,
             state: getState,
             responseType: RECEIVE,
