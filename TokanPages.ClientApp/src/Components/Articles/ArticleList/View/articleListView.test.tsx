@@ -47,12 +47,28 @@ describe("test articles group component: ArticleListView", () => {
                 <ArticleListView
                     isLoading={false}
                     isMobile={false}
+                    isContentLoading={false}
+                    pageData={{
+                        pageNumber: 1,
+                        pageSize: 5,
+                        totalSize: 10,
+                        onClick: jest.fn(),
+                    }}
                     articles={[articles]}
                     title=""
-                    content={[""]}
+                    text={[""]}
                     placeholder=""
-                    buttonSearch=""
-                    buttonClear=""
+                    value={{ searchInput: "" }}
+                    onChange={jest.fn()}
+                    onKeyUp={jest.fn()}
+                    buttonSearch={{
+                        label: "",
+                        onClick: jest.fn(),
+                    }}
+                    buttonClear={{
+                        label: "",
+                        onClick: jest.fn(),
+                    }}
                 />
             </Router>
         );

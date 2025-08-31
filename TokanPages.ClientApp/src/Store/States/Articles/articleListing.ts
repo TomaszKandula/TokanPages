@@ -1,6 +1,6 @@
-import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
+import { GetArticlesDto } from "../../../Api/Models";
 
 export interface ArticleListingState {
     isLoading: boolean;
-    articles: ArticleItem[];
+    payload: GetArticlesDto;
 }

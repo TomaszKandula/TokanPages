@@ -10,10 +10,10 @@ public interface IArticlesCache
     /// <summary>
     /// Returns articles
     /// </summary>
-    /// <param name="isPublished">If true, returns only published</param>
+    /// <param name="query">Options</param>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object</returns>
-    Task<List<GetArticlesQueryResult>> GetArticles(bool isPublished = true, bool noCache = false);
+    Task<GetAllArticlesQueryResult> GetArticles(GetArticlesQuery query, bool noCache = false);
 
     /// <summary>
     /// Returns information for given article ID.

@@ -3,36 +3,104 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
 import { useDimensions } from "../../../Shared/Hooks";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ARTICLES_PAGE_SIZE } from "../../../Shared/constants";
+import { ArticleListProps, SearchInputProps } from "./Types";
 import { ArticleListView } from "./View/articleListView";
-import { ArticleListProps } from "./Types";
+import Validate from "validate.js";
 
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const media = useDimensions();
     const dispatch = useDispatch();
     const article = useSelector((state: ApplicationState) => state.articleListing);
     const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageArticles);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const isContentLoading = data.isLoading;
+
+    const [form, setForm] = React.useState<SearchInputProps>({ searchInput: "" });
+
+    const onClickChangePage = React.useCallback(() => {
+        const totalSize = article.payload.totalSize;
+        const pagingInfo = article.payload.pagingInfo;
+
+        const nextPage = pagingInfo.pageNumber + 1;
+        const prevPage = pagingInfo.pageNumber - 1;
+        const pages = Math.round(totalSize / pagingInfo.pageSize);
+
+        if (nextPage <= pages) {
+            dispatch(ArticleListingAction.get(nextPage, ARTICLES_PAGE_SIZE));
+        } else if (prevPage > 0) {
+            dispatch(ArticleListingAction.get(prevPage, ARTICLES_PAGE_SIZE));
+        }
+    }, [article.payload]);
+
+    const onKeyHandler = React.useCallback(
+        (event: ReactKeyboardEvent) => {
+            if (event.code === "Enter") {
+                onClickSearch();
+            }
+        },
+        [form]
+    );
+
+    const onInputHandler = React.useCallback(
+        (event: ReactChangeEvent) => {
+            setForm({ ...form, [event.currentTarget.name]: event.currentTarget.value });
+        },
+        [form]
+    );
+
+    const onClickSearch = React.useCallback(() => {
+        const pagingInfo = article.payload.pagingInfo;
+        dispatch(ArticleListingAction.get(pagingInfo.pageNumber, ARTICLES_PAGE_SIZE, form.searchInput));
+    }, [article.payload, form.searchInput]);
+
+    const onClickClear = React.useCallback(() => {
+        if (Validate.isEmpty(form.searchInput)) {
+            return;
+        }
+
+        setForm({ searchInput: "" });
+        dispatch(ArticleListingAction.get(1, ARTICLES_PAGE_SIZE));
+    }, [form.searchInput]);
 
     React.useEffect(() => {
         if (article.isLoading) {
             return;
         }
 
-        if (article.articles.length === 0) {
-            dispatch(ArticleListingAction.get());
+        if (article.payload.results.length === 0) {
+            dispatch(ArticleListingAction.get(1, ARTICLES_PAGE_SIZE));
         }
-    }, [article.isLoading, article.articles]);
+    }, [article.isLoading, article.payload.results]);
 
     return (
         <ArticleListView
             isLoading={article.isLoading}
+            isContentLoading={isContentLoading}
             isMobile={media.isMobile}
-            articles={article.articles}
+            pageData={{
+                totalSize: article.payload.totalSize,
+                pageNumber: article.payload.pagingInfo.pageNumber,
+                pageSize: article.payload.pagingInfo.pageSize,
+                onClick: onClickChangePage,
+            }}
+            articles={article.payload.results}
             className={props.className}
             title={content?.caption}
             placeholder={content?.labels?.placeholder}
-            buttonSearch={content?.labels?.buttonSearch}
-            buttonClear={content?.labels?.buttonClear}
-            content={content?.content}
+            text={content?.content}
+            onKeyUp={onKeyHandler}
+            onChange={onInputHandler}
+            value={form}
+            buttonSearch={{
+                label: content?.labels?.buttonSearch,
+                onClick: onClickSearch,
+            }}
+            buttonClear={{
+                label: content?.labels?.buttonClear,
+                onClick: onClickClear,
+            }}
         />
     );
 };
