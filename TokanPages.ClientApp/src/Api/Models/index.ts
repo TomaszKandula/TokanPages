@@ -28,6 +28,7 @@ export type { UserActivationData } from "./NotificationsWeb/Data/userActivationD
 
 /* ARTICLES */
 export type { AddArticleDto } from "./Articles/addArticleDto";
+export type { GetArticlesDto, PageInfoDto } from "./Articles/getArticlesDto";
 export type { UpdateArticleContentDto } from "./Articles/updateArticleContentDto";
 export type { UpdateArticleCountDto } from "./Articles/updateArticleCountDto";
 export type { UpdateArticleLikesDto } from "./Articles/updateArticleLikesDto";
