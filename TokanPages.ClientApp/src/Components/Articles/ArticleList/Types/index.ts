@@ -39,6 +39,7 @@ export interface ArticleListProps {
 
 export interface ArticleListViewProps extends ViewProperties, ArticlesProps, ArticleListProps, TextProps, ButtonsProps {
     isMobile: boolean;
+    isContentLoading: boolean;
     pageData: PageDataProps;
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
@@ -48,7 +49,7 @@ export interface ArticleListViewProps extends ViewProperties, ArticlesProps, Art
 export interface RenderContentProps extends ArticlesProps {}
 
 export interface RenderStaticTextProps extends TextProps, ButtonsProps {
-    isLoading: boolean;
+    isContentLoading: boolean;
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
     value: SearchInputProps;

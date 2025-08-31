@@ -26,12 +26,12 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
     <div className="bulma-card">
         <div className="bulma-card-content">
             <div className="bulma-content">
-                <Skeleton isLoading={props.isLoading} mode="Text" height={32}>
+                <Skeleton isLoading={props.isContentLoading} mode="Text" height={32}>
                     <h1 className="is-size-4 has-text-weight-normal">{props.title}</h1>
                 </Skeleton>
                 <hr />
                 {props.text.map((value: string, index: number) => (
-                    <Skeleton isLoading={props.isLoading} mode="Text" key={uuidv4()}>
+                    <Skeleton isLoading={props.isContentLoading} mode="Text" key={uuidv4()}>
                         {index === 0 ? (
                             <h2 className="is-size-6 has-text-grey has-text-weight-medium line-height-18">{value}</h2>
                         ) : (
@@ -49,13 +49,13 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                             onChange={props.onChange}
                             placeholder={props.placeholder}
                             isLoading={false}
-                            isDisabled={props.isLoading}
+                            isDisabled={props.isContentLoading}
                             className="is-flex is-flex-grow-1"
                             startIcon={<Icon name="Magnify" size={1.5} className="has-text-link" />}
                         />
                     </div>
                     <div className="bulma-column article-list-view-search-buttons">
-                        <Skeleton isLoading={props.isLoading} mode="Rect" height={40} disableMarginY>
+                        <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY>
                             <button
                                 onClick={props.buttonSearch.onClick}
                                 className="bulma-button bulma-is-link bulma-is-light"
@@ -63,7 +63,7 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                                 {props.buttonSearch.label}
                             </button>
                         </Skeleton>
-                        <Skeleton isLoading={props.isLoading} mode="Rect" height={40} disableMarginY className="ml-3">
+                        <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY className="ml-3">
                             <button
                                 onClick={props.buttonClear.onClick}
                                 className="bulma-button bulma-is-danger bulma-is-light"
@@ -133,7 +133,7 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
         <div className="bulma-container bulma-is-max-tablet pb-6">
             <div className={props.isMobile ? "p-4" : "py-4"}>
                 <RenderStaticText
-                    isLoading={props.isLoading}
+                    isContentLoading={props.isContentLoading}
                     title={props.title}
                     text={props.text}
                     placeholder={props.placeholder}
@@ -143,9 +143,9 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
                     onKeyUp={props.onKeyUp}
                     value={props.value}
                 />
-                {props.isLoading ? null : <RenderPagination {...props} />}
+                <RenderPagination {...props} />
                 {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
-                {props.isLoading ? null : <RenderPagination {...props} />}
+                <RenderPagination {...props} />
             </div>
         </div>
     </section>

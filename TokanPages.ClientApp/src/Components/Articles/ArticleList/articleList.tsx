@@ -14,6 +14,8 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const dispatch = useDispatch();
     const article = useSelector((state: ApplicationState) => state.articleListing);
     const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageArticles);
+    const data = useSelector((state: ApplicationState) => state.contentPageData);
+    const isContentLoading = data.isLoading;
 
     const [form, setForm] = React.useState<SearchInputProps>({ searchInput: "" });
 
@@ -75,6 +77,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     return (
         <ArticleListView
             isLoading={article.isLoading}
+            isContentLoading={isContentLoading}
             isMobile={media.isMobile}
             pageData={{
                 totalSize: article.payload.totalSize,
