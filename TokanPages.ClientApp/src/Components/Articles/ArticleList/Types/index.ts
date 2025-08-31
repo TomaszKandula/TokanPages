@@ -9,8 +9,8 @@ export interface PageDataProps {
     onClick: () => void;
 }
 
-export interface SearchInputProps { 
-    searchInput: string 
+export interface SearchInputProps {
+    searchInput: string;
 }
 
 export interface ArticlesProps {
@@ -42,15 +42,14 @@ export interface ArticleListViewProps extends ViewProperties, ArticlesProps, Art
     pageData: PageDataProps;
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
-    value: SearchInputProps;   
+    value: SearchInputProps;
 }
 
-export interface RenderContentProps extends ArticlesProps {
-}
+export interface RenderContentProps extends ArticlesProps {}
 
 export interface RenderStaticTextProps extends TextProps, ButtonsProps {
     isLoading: boolean;
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
-    value: SearchInputProps;   
+    value: SearchInputProps;
 }

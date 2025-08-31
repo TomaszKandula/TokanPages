@@ -62,11 +62,11 @@ describe("test articles group component: ArticleListView", () => {
                     onKeyUp={jest.fn()}
                     buttonSearch={{
                         label: "",
-                        onClick: jest.fn()
+                        onClick: jest.fn(),
                     }}
                     buttonClear={{
                         label: "",
-                        onClick: jest.fn()
+                        onClick: jest.fn(),
                     }}
                 />
             </Router>

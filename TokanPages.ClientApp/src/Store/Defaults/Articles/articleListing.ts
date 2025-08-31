@@ -8,9 +8,9 @@ export const ArticleListing: ArticleListingState = {
             pageNumber: 0,
             pageSize: 0,
             orderByColumn: "",
-            orderByAscending: false
+            orderByAscending: false,
         },
         totalSize: 0,
-        results: []
-    }
+        results: [],
+    },
 };

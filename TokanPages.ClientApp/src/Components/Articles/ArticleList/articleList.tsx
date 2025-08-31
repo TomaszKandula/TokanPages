@@ -57,8 +57,8 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         if (Validate.isEmpty(form.searchInput)) {
             return;
         }
-        
-        setForm({ searchInput: "" });       
+
+        setForm({ searchInput: "" });
         dispatch(ArticleListingAction.get(1, ARTICLES_PAGE_SIZE));
     }, [form.searchInput]);
 

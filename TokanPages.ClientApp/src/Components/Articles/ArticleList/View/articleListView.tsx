@@ -56,12 +56,18 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                     </div>
                     <div className="bulma-column article-list-view-search-buttons">
                         <Skeleton isLoading={props.isLoading} mode="Rect" height={40} disableMarginY>
-                            <button onClick={props.buttonSearch.onClick} className="bulma-button bulma-is-link bulma-is-light">
+                            <button
+                                onClick={props.buttonSearch.onClick}
+                                className="bulma-button bulma-is-link bulma-is-light"
+                            >
                                 {props.buttonSearch.label}
                             </button>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Rect" height={40} disableMarginY className="ml-3">
-                            <button onClick={props.buttonClear.onClick} className="bulma-button bulma-is-danger bulma-is-light">
+                            <button
+                                onClick={props.buttonClear.onClick}
+                                className="bulma-button bulma-is-danger bulma-is-light"
+                            >
                                 {props.buttonClear.label}
                             </button>
                         </Skeleton>
@@ -77,7 +83,7 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
         return <></>;
     }
 
-    const pageNumber = props.pageData.pageNumber
+    const pageNumber = props.pageData.pageNumber;
     const pages = Math.round(props.pageData.totalSize / props.pageData.pageSize);
     const paginationItem = [];
 
@@ -85,26 +91,42 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
         if (pageNumber === index) {
             paginationItem.push(
                 <li key={index}>
-                    <a onClick={props.pageData.onClick} className="bulma-pagination-link bulma-is-current" aria-label={`Page-${index}`} aria-current="page">{index}</a>
+                    <a
+                        onClick={props.pageData.onClick}
+                        className="bulma-pagination-link bulma-is-current"
+                        aria-label={`Page-${index}`}
+                        aria-current="page"
+                    >
+                        {index}
+                    </a>
                 </li>
             );
         } else {
             paginationItem.push(
                 <li key={index}>
-                    <a onClick={props.pageData.onClick} className="bulma-pagination-link" aria-label={`Page-${index}`} aria-current="page">{index}</a>
+                    <a
+                        onClick={props.pageData.onClick}
+                        className="bulma-pagination-link"
+                        aria-label={`Page-${index}`}
+                        aria-current="page"
+                    >
+                        {index}
+                    </a>
                 </li>
             );
         }
     }
 
     return (
-        <nav className="bulma-pagination bulma-is-small bulma-is-centered my-6" role="navigation" aria-label="pagination">
-            <ul className="bulma-pagination-list">
-                {paginationItem}
-            </ul>            
+        <nav
+            className="bulma-pagination bulma-is-small bulma-is-centered my-6"
+            role="navigation"
+            aria-label="pagination"
+        >
+            <ul className="bulma-pagination-list">{paginationItem}</ul>
         </nav>
     );
-}
+};
 
 export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => (
     <section className={props.className}>
@@ -117,8 +139,8 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
                     placeholder={props.placeholder}
                     buttonSearch={props.buttonSearch}
                     buttonClear={props.buttonClear}
-                    onChange={props.onChange} 
-                    onKeyUp={props.onKeyUp} 
+                    onChange={props.onChange}
+                    onKeyUp={props.onKeyUp}
                     value={props.value}
                 />
                 {props.isLoading ? null : <RenderPagination {...props} />}
