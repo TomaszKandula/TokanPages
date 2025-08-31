@@ -34,6 +34,7 @@ public class ArticlesController : ApiBaseController
     /// <param name="isPublished">Use true to get only published articles.</param>
     /// <param name="pageNumber">Mandatory page number to return.</param>
     /// <param name="pageSize">Mandatory number of pages.</param>
+    /// <param name="phrase">Optional search phrase.</param>
     /// <param name="orderByColumn">Optional column to be used for sorting (Title, Duration).</param>
     /// <param name="orderByAscending">Optional sorting (A-Z or Z-A).</param>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
@@ -44,6 +45,7 @@ public class ArticlesController : ApiBaseController
     public async Task<GetAllArticlesQueryResult> GetArticles(
         [FromQuery] int pageNumber,
         [FromQuery] int pageSize,
+        [FromQuery] string? phrase = null,
         [FromQuery] string? orderByColumn = "title",
         [FromQuery] bool orderByAscending = false,
         [FromQuery] bool isPublished = true, 
@@ -51,6 +53,7 @@ public class ArticlesController : ApiBaseController
         => await _articlesCache.GetArticles(new GetArticlesQuery
         {
             IsPublished = isPublished,
+            SearchTerm = phrase,
             PageNumber = pageNumber,
             PageSize = pageSize,
             OrderByColumn = orderByColumn!,

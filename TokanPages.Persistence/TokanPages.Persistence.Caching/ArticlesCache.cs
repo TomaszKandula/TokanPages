@@ -38,7 +38,7 @@ public class ArticlesCache : IArticlesCache
         if (noCache)
             return await _mediator.Send(query);
 
-        var uniqueKey = $"{query.IsPublished}:{query.PageNumber}:{query.PageSize}:{query.OrderByAscending}:{query.OrderByColumn}";
+        var uniqueKey = $"{query.IsPublished}:{query.SearchTerm}:{query.PageNumber}:{query.PageSize}:{query.OrderByAscending}:{query.OrderByColumn}";
         var key = $"{_environment.EnvironmentName}:articles:{uniqueKey}";
         var value = await _redisDistributedCache.GetObjectAsync<GetAllArticlesQueryResult>(key);
         if (value is not null) return value;

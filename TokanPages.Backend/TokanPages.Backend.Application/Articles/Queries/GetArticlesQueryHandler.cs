@@ -17,6 +17,7 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
         var query = DatabaseContext.Articles
             .AsNoTracking()
             .Where(articles => articles.IsPublished == request.IsPublished)
+            .WhereIf(!string.IsNullOrWhiteSpace(request.SearchTerm), articles => articles.Title.Contains(request.SearchTerm!))
             .Select(articles => new GetArticlesQueryResult 
             { 
                 Id = articles.Id,
