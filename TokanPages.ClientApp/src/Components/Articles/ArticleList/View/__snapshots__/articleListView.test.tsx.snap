@@ -13,7 +13,7 @@ Object {
             class="py-4"
           >
             <div
-              class="bulma-card mb-6"
+              class="bulma-card"
             >
               <div
                 class="bulma-card-content"
@@ -40,8 +40,8 @@ Object {
                       >
                         <input
                           class="bulma-input   "
-                          id="search-input"
-                          name="search-input"
+                          id="searchInput"
+                          name="searchInput"
                           placeholder=""
                           type="text"
                           value=""
@@ -79,6 +79,34 @@ Object {
                 </div>
               </div>
             </div>
+            <nav
+              aria-label="pagination"
+              class="bulma-pagination bulma-is-small bulma-is-centered my-6"
+              role="navigation"
+            >
+              <ul
+                class="bulma-pagination-list"
+              >
+                <li>
+                  <a
+                    aria-current="page"
+                    aria-label="Page-1"
+                    class="bulma-pagination-link bulma-is-current"
+                  >
+                    1
+                  </a>
+                </li>
+                <li>
+                  <a
+                    aria-current="page"
+                    aria-label="Page-2"
+                    class="bulma-pagination-link"
+                  >
+                    2
+                  </a>
+                </li>
+              </ul>
+            </nav>
             <div
               data-aos="fade-up"
               data-aos-delay="0"
@@ -186,6 +214,34 @@ Object {
                 </div>
               </div>
             </div>
+            <nav
+              aria-label="pagination"
+              class="bulma-pagination bulma-is-small bulma-is-centered my-6"
+              role="navigation"
+            >
+              <ul
+                class="bulma-pagination-list"
+              >
+                <li>
+                  <a
+                    aria-current="page"
+                    aria-label="Page-1"
+                    class="bulma-pagination-link bulma-is-current"
+                  >
+                    1
+                  </a>
+                </li>
+                <li>
+                  <a
+                    aria-current="page"
+                    aria-label="Page-2"
+                    class="bulma-pagination-link"
+                  >
+                    2
+                  </a>
+                </li>
+              </ul>
+            </nav>
           </div>
         </div>
       </section>
@@ -200,7 +256,7 @@ Object {
           class="py-4"
         >
           <div
-            class="bulma-card mb-6"
+            class="bulma-card"
           >
             <div
               class="bulma-card-content"
@@ -227,8 +283,8 @@ Object {
                     >
                       <input
                         class="bulma-input   "
-                        id="search-input"
-                        name="search-input"
+                        id="searchInput"
+                        name="searchInput"
                         placeholder=""
                         type="text"
                         value=""
@@ -266,6 +322,34 @@ Object {
               </div>
             </div>
           </div>
+          <nav
+            aria-label="pagination"
+            class="bulma-pagination bulma-is-small bulma-is-centered my-6"
+            role="navigation"
+          >
+            <ul
+              class="bulma-pagination-list"
+            >
+              <li>
+                <a
+                  aria-current="page"
+                  aria-label="Page-1"
+                  class="bulma-pagination-link bulma-is-current"
+                >
+                  1
+                </a>
+              </li>
+              <li>
+                <a
+                  aria-current="page"
+                  aria-label="Page-2"
+                  class="bulma-pagination-link"
+                >
+                  2
+                </a>
+              </li>
+            </ul>
+          </nav>
           <div
             data-aos="fade-up"
             data-aos-delay="0"
@@ -373,6 +457,34 @@ Object {
               </div>
             </div>
           </div>
+          <nav
+            aria-label="pagination"
+            class="bulma-pagination bulma-is-small bulma-is-centered my-6"
+            role="navigation"
+          >
+            <ul
+              class="bulma-pagination-list"
+            >
+              <li>
+                <a
+                  aria-current="page"
+                  aria-label="Page-1"
+                  class="bulma-pagination-link bulma-is-current"
+                >
+                  1
+                </a>
+              </li>
+              <li>
+                <a
+                  aria-current="page"
+                  aria-label="Page-2"
+                  class="bulma-pagination-link"
+                >
+                  2
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </section>
