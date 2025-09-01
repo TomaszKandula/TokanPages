@@ -90,20 +90,20 @@ Object {
         class="bulma-content m-0 p-0 "
         data-testid="render-content"
       >
-        <h1
+        <h2
           class="bulma-title has-text-grey-dark pt-2 pb-2"
         >
           <p>
             Test line
           </p>
-        </h1>
-        <h2
+        </h2>
+        <h3
           class="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 p-0"
         >
           <p>
             Test line
           </p>
-        </h2>
+        </h3>
         <div
           class="bulma-card my-6"
         >
@@ -122,13 +122,13 @@ Object {
             </figure>
           </div>
         </div>
-        <h3
+        <h4
           class="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap"
         >
           <p>
             Test line
           </p>
-        </h3>
+        </h4>
         <p
           class="is-size-5 has-text-grey-dark line-height-22"
         >
@@ -283,20 +283,20 @@ Object {
       class="bulma-content m-0 p-0 "
       data-testid="render-content"
     >
-      <h1
+      <h2
         class="bulma-title has-text-grey-dark pt-2 pb-2"
       >
         <p>
           Test line
         </p>
-      </h1>
-      <h2
+      </h2>
+      <h3
         class="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 p-0"
       >
         <p>
           Test line
         </p>
-      </h2>
+      </h3>
       <div
         class="bulma-card my-6"
       >
@@ -315,13 +315,13 @@ Object {
           </figure>
         </div>
       </div>
-      <h3
+      <h4
         class="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap"
       >
         <p>
           Test line
         </p>
-      </h3>
+      </h4>
       <p
         class="is-size-5 has-text-grey-dark line-height-22"
       >
