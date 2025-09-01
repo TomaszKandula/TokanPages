@@ -21,11 +21,11 @@ Object {
                 <div
                   class="bulma-content"
                 >
-                  <h1
+                  <h2
                     class="is-size-4 has-text-weight-normal"
                   />
                   <hr />
-                  <h2
+                  <h3
                     class="is-size-6 has-text-grey has-text-weight-medium line-height-18"
                   />
                   <hr />
@@ -264,11 +264,11 @@ Object {
               <div
                 class="bulma-content"
               >
-                <h1
+                <h2
                   class="is-size-4 has-text-weight-normal"
                 />
                 <hr />
-                <h2
+                <h3
                   class="is-size-6 has-text-grey has-text-weight-medium line-height-18"
                 />
                 <hr />

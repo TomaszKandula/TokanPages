@@ -32,11 +32,11 @@ Object {
               <div
                 class="bulma-content header-content-box"
               >
-                <h1
-                  class="is-size-1 has-text-grey-dark"
+                <p
+                  class="is-size-1 has-text-weight-bold has-text-grey-dark m-0"
                 >
                   Welcome to my web page
-                </h1>
+                </p>
                 <h2
                   class="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4"
                 >
@@ -47,11 +47,11 @@ Object {
                 >
                   I do programming for a living...
                 </h3>
-                <h3
+                <p
                   class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4"
                 >
                   Let me know...
-                </h3>
+                </p>
                 <div
                   class="pt-4 "
                 >
@@ -136,11 +136,11 @@ Object {
             <div
               class="bulma-content header-content-box"
             >
-              <h1
-                class="is-size-1 has-text-grey-dark"
+              <p
+                class="is-size-1 has-text-weight-bold has-text-grey-dark m-0"
               >
                 Welcome to my web page
-              </h1>
+              </p>
               <h2
                 class="has-text-weight-medium is-size-5 has-text-grey-dark line-height-15 my-4"
               >
@@ -151,11 +151,11 @@ Object {
               >
                 I do programming for a living...
               </h3>
-              <h3
+              <p
                 class="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4"
               >
                 Let me know...
-              </h3>
+              </p>
               <div
                 class="pt-4 "
               >
