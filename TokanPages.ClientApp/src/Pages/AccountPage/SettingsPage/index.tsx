@@ -7,7 +7,7 @@ import { AccessDenied, UserDeactivation, UserInfo, UserPassword, UserRemoval } f
 import Validate from "validate.js";
 
 export const SettingsPage = (): React.ReactElement => {
-    useUnhead("SettingsPage");
+    const heading = useUnhead("SettingsPage");
     usePageContent(
         ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountSettings"],
         "SettingsPage"
@@ -20,6 +20,7 @@ export const SettingsPage = (): React.ReactElement => {
         <>
             <Navigation backNavigationOnly={isAnonymous} />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 {isAnonymous ? (
                     <AccessDenied />
                 ) : (

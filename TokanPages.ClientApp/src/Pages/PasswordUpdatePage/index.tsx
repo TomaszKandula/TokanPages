@@ -4,7 +4,7 @@ import { PasswordUpdate } from "../../Components/Account";
 import { Footer, Navigation } from "../../Components/Layout";
 
 export const PasswordUpdatePage = (): React.ReactElement => {
-    useUnhead("PasswordUpdatePage");
+    const heading =useUnhead("PasswordUpdatePage");
     usePageContent(
         ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pagePasswordUpdate"],
         "PasswordUpdatePage"
@@ -14,6 +14,7 @@ export const PasswordUpdatePage = (): React.ReactElement => {
         <>
             <Navigation backNavigationOnly />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 <PasswordUpdate />
             </main>
             <Footer />

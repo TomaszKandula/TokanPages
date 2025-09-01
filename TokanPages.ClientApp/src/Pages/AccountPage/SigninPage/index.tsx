@@ -4,7 +4,7 @@ import { Footer, Navigation } from "../../../Components/Layout";
 import { usePageContent, useSnapshot, useUnhead } from "../../../Shared/Hooks";
 
 export const SigninPage = (): React.ReactElement => {
-    useUnhead("SigninPage");
+    const heading = useUnhead("SigninPage");
     useSnapshot();
     usePageContent(
         ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountUserSignin"],
@@ -15,6 +15,7 @@ export const SigninPage = (): React.ReactElement => {
         <>
             <Navigation />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 <UserSignin />
             </main>
             <Footer />

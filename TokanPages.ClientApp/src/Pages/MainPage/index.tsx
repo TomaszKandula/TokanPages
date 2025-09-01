@@ -12,7 +12,7 @@ import { Navigation, Header, Footer } from "../../Components/Layout";
 import { Showcase } from "../../Components/Showcase";
 
 export const MainPage = (): React.ReactElement => {
-    const title = useUnhead("MainPage");
+    const heading = useUnhead("MainPage");
     useSnapshot();
     usePageContent(
         [
@@ -38,7 +38,7 @@ export const MainPage = (): React.ReactElement => {
         <>
             <Navigation />
             <main>
-                <h1 className="seo-only">{title}</h1>
+                <h1 className="seo-only">{heading}</h1>
                 <Header />
                 <Clients className="has-background-white-ter" />
                 <Technologies />

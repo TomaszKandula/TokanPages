@@ -6,7 +6,7 @@ import { usePageContent, useSnapshot, useUnhead } from "../../../../Shared/Hooks
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const GuitarPage = (): React.ReactElement => {
-    useUnhead("GuitarPage");
+    const heading =useUnhead("GuitarPage");
     useSnapshot();
     usePageContent(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureGuitar"], "GuitarPage");
 
@@ -19,6 +19,7 @@ export const GuitarPage = (): React.ReactElement => {
         <>
             <Navigation />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 <CustomBreadcrumb isLoading={isLoading} />
                 <DocumentContentWrapper isLoading={isLoading} items={items} />
             </main>

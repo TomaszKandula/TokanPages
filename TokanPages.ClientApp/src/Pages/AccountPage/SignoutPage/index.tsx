@@ -4,7 +4,7 @@ import { UserSignout } from "../../../Components/Account";
 import { Footer, Navigation } from "../../../Components/Layout";
 
 export const SignoutPage = (): React.ReactElement => {
-    useUnhead("SignoutPage");
+    const heading = useUnhead("SignoutPage");
     usePageContent(
         ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountUserSignout"],
         "SignoutPage"
@@ -14,6 +14,7 @@ export const SignoutPage = (): React.ReactElement => {
         <>
             <Navigation />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 <UserSignout />
             </main>
             <Footer />

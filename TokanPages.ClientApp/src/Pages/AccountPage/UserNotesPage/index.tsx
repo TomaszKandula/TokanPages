@@ -7,7 +7,7 @@ import { AccessDenied, UserNotes } from "../../../Components/Account";
 import Validate from "validate.js";
 
 export const UserNotesPage = (): React.ReactElement => {
-    useUnhead("UserNotesPage");
+    const heading = useUnhead("UserNotesPage");
     usePageContent(
         [
             "layoutNavigation",
@@ -26,7 +26,7 @@ export const UserNotesPage = (): React.ReactElement => {
     return (
         <>
             <Navigation />
-            <main>{isAnonymous ? <AccessDenied /> : <UserNotes />}</main>
+            <main><h1 className="seo-only">{heading}</h1>{isAnonymous ? <AccessDenied /> : <UserNotes />}</main>
             <Footer />
         </>
     );
