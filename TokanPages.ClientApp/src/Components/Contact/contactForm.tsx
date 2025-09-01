@@ -152,7 +152,7 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
             progress={hasProgress}
             buttonText={contactForm?.button}
             consent={contactForm?.consent}
-            presentation={contactForm.presentation}
+            presentation={contactForm?.presentation}
             labelFirstName={contactForm?.labelFirstName}
             labelLastName={contactForm?.labelLastName}
             labelEmail={contactForm?.labelEmail}
