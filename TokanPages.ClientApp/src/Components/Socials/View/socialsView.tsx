@@ -68,17 +68,17 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 </Skeleton>
                                             </div>
                                             <div className="is-align-content-center socials-text">
-                                                <h3 className="is-size-6 has-text-grey has-text-centered py-2">
+                                                <p className="is-size-6 has-text-grey has-text-centered py-2">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
                                                         {socials?.social1?.textSubtitle}
                                                     </Skeleton>
-                                                </h3>
+                                                </p>
                                             </div>
-                                            <h4 className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
+                                            <p className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
                                                 <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
                                                     {socials?.social1?.textComment}
                                                 </Skeleton>
-                                            </h4>
+                                            </p>
                                         </div>
                                     </Link>
                                 </div>
@@ -126,17 +126,17 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 </Skeleton>
                                             </div>
                                             <div className="is-align-content-center socials-text">
-                                                <h3 className="is-size-6 has-text-grey has-text-centered py-2">
+                                                <p className="is-size-6 has-text-grey has-text-centered py-2">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
                                                         {socials?.social2?.textSubtitle}
                                                     </Skeleton>
-                                                </h3>
+                                                </p>
                                             </div>
-                                            <h4 className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
+                                            <p className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
                                                 <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
                                                     {socials?.social2?.textComment}
                                                 </Skeleton>
-                                            </h4>
+                                            </p>
                                         </div>
                                     </Link>
                                 </div>
@@ -184,17 +184,17 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 </Skeleton>
                                             </div>
                                             <div className="is-align-content-center socials-text">
-                                                <h3 className="is-size-6 has-text-grey has-text-centered py-2">
+                                                <p className="is-size-6 has-text-grey has-text-centered py-2">
                                                     <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
                                                         {socials?.social3?.textSubtitle}
                                                     </Skeleton>
-                                                </h3>
+                                                </p>
                                             </div>
-                                            <h4 className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
+                                            <p className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
                                                 <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
                                                     {socials?.social3?.textComment}
                                                 </Skeleton>
-                                            </h4>
+                                            </p>
                                         </div>
                                     </Link>
                                 </div>
