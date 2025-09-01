@@ -6,7 +6,7 @@ import { usePageContent, useSnapshot, useUnhead } from "../../../../Shared/Hooks
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const GuitarPage = (): React.ReactElement => {
-    const heading =useUnhead("GuitarPage");
+    const heading = useUnhead("GuitarPage");
     useSnapshot();
     usePageContent(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureGuitar"], "GuitarPage");
 

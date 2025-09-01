@@ -4,7 +4,7 @@ import { PasswordUpdate } from "../../Components/Account";
 import { Footer, Navigation } from "../../Components/Layout";
 
 export const PasswordUpdatePage = (): React.ReactElement => {
-    const heading =useUnhead("PasswordUpdatePage");
+    const heading = useUnhead("PasswordUpdatePage");
     usePageContent(
         ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pagePasswordUpdate"],
         "PasswordUpdatePage"

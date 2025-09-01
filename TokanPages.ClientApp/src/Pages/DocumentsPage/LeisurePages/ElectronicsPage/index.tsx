@@ -6,7 +6,7 @@ import { usePageContent, useSnapshot, useUnhead } from "../../../../Shared/Hooks
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const ElectronicsPage = (): React.ReactElement => {
-    const heading =useUnhead("ElectronicsPage");
+    const heading = useUnhead("ElectronicsPage");
     useSnapshot();
     usePageContent(
         ["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureElectronics"],

@@ -121,7 +121,9 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                     <div className="bulma-cell is-flex is-flex-direction-column">
                         <div className="bulma-content header-content-box">
                             <Skeleton isLoading={isLoading} mode="Text" height={40}>
-                                <p className="is-size-1 has-text-weight-bold has-text-grey-dark m-0">{header?.caption}</p>
+                                <p className="is-size-1 has-text-weight-bold has-text-grey-dark m-0">
+                                    {header?.caption}
+                                </p>
                             </Skeleton>
                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
                                 <RenderHtml

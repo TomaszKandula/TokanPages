@@ -4,7 +4,7 @@ import { PasswordReset } from "../../Components/Account";
 import { Footer, Navigation } from "../../Components/Layout";
 
 export const PasswordResetPage = (): React.ReactElement => {
-    const heading =useUnhead("PasswordResetPage");
+    const heading = useUnhead("PasswordResetPage");
     usePageContent(
         ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pagePasswordReset"],
         "PasswordResetPage"
