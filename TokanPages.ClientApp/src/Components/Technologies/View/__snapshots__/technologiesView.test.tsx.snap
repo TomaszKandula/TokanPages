@@ -59,11 +59,11 @@ Object {
                     data-aos="fade-up"
                     data-aos-delay="0"
                   >
-                    <h4
+                    <p
                       class="is-size-5 py-2 has-text-grey line-height-18"
                     >
                       Today in my daily job, I use...
-                    </h4>
+                    </p>
                   </div>
                 </div>
                 <div
@@ -97,11 +97,11 @@ Object {
                     data-aos="fade-up"
                     data-aos-delay="0"
                   >
-                    <h4
+                    <p
                       class="is-size-5 py-2 has-text-grey line-height-18"
                     >
                       Back-End: NET Framework 4.5 (for one project)...
-                    </h4>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -139,11 +139,11 @@ Object {
                     data-aos="fade-up"
                     data-aos-delay="0"
                   >
-                    <h4
+                    <p
                       class="is-size-5 py-2 has-text-grey line-height-18"
                     >
                       I have started with Entity Framework...
-                    </h4>
+                    </p>
                   </div>
                 </div>
                 <div
@@ -177,11 +177,11 @@ Object {
                     data-aos="fade-up"
                     data-aos-delay="0"
                   >
-                    <h4
+                    <p
                       class="is-size-5 py-2 has-text-grey line-height-18"
                     >
                       I have experience with...
-                    </h4>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -246,11 +246,11 @@ Object {
                   data-aos="fade-up"
                   data-aos-delay="0"
                 >
-                  <h4
+                  <p
                     class="is-size-5 py-2 has-text-grey line-height-18"
                   >
                     Today in my daily job, I use...
-                  </h4>
+                  </p>
                 </div>
               </div>
               <div
@@ -284,11 +284,11 @@ Object {
                   data-aos="fade-up"
                   data-aos-delay="0"
                 >
-                  <h4
+                  <p
                     class="is-size-5 py-2 has-text-grey line-height-18"
                   >
                     Back-End: NET Framework 4.5 (for one project)...
-                  </h4>
+                  </p>
                 </div>
               </div>
             </div>
@@ -326,11 +326,11 @@ Object {
                   data-aos="fade-up"
                   data-aos-delay="0"
                 >
-                  <h4
+                  <p
                     class="is-size-5 py-2 has-text-grey line-height-18"
                   >
                     I have started with Entity Framework...
-                  </h4>
+                  </p>
                 </div>
               </div>
               <div
@@ -364,11 +364,11 @@ Object {
                   data-aos="fade-up"
                   data-aos-delay="0"
                 >
-                  <h4
+                  <p
                     class="is-size-5 py-2 has-text-grey line-height-18"
                   >
                     I have experience with...
-                  </h4>
+                  </p>
                 </div>
               </div>
             </div>

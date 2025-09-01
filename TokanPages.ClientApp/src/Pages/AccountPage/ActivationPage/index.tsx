@@ -4,7 +4,7 @@ import { AccountActivate } from "../../../Components/Account";
 import { Footer, Navigation } from "../../../Components/Layout";
 
 export const ActivationPage = (): React.ReactElement => {
-    useUnhead("ActivationPage");
+    const heading = useUnhead("ActivationPage");
     usePageContent(
         ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "accountSettings", "accountActivate"],
         "ActivationPage"
@@ -18,6 +18,7 @@ export const ActivationPage = (): React.ReactElement => {
         <>
             <Navigation backNavigationOnly />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 <AccountActivate id={id} type={type} />
             </main>
             <Footer />

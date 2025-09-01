@@ -92,7 +92,7 @@ const ServiceItems = (props: ServiceItemsProps): React.ReactElement => (
 const RenderCaption = (props: BusinessFormViewProps): React.ReactElement =>
     props.hasCaption ? (
         <Skeleton isLoading={props.isLoading} mode="Text" height={40}>
-            <p className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</p>
+            <h2 className="is-size-3	has-text-centered has-text-link">{props.caption?.toUpperCase()}</h2>
         </Skeleton>
     ) : (
         <></>
@@ -105,7 +105,7 @@ const RenderHeader = (props: BusinessFormViewProps): React.ReactElement =>
                 <Icon name="Briefcase" size={2.5} className="card-icon-colour" />
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
-                <h1 className="is-size-3 has-text-black">{props.caption}</h1>
+                <h2 className="is-size-3 has-text-black">{props.caption}</h2>
             </Skeleton>
         </div>
     ) : (
@@ -278,7 +278,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                             <p className="is-size-6">{props.presentation.description}</p>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Text" width={250} height={40} className="my-6">
-                            <h2 className="is-size-3 my-6">{props.presentation.logos.title}</h2>
+                            <h3 className="is-size-3 my-6">{props.presentation.logos.title}</h3>
                         </Skeleton>
                         <div className="bulma-fixed-grid">
                             <div className="bulma-grid is-gap-7">

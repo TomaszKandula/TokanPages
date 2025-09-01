@@ -43,7 +43,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                     <Skeleton isLoading={isLoading} mode="Text" height={100}>
                                         <RenderHtml
                                             value={technology?.text1}
-                                            tag="h4"
+                                            tag="p"
                                             className="is-size-5 py-2 has-text-grey line-height-18"
                                         />
                                     </Skeleton>
@@ -66,7 +66,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                     <Skeleton isLoading={isLoading} mode="Text" height={100}>
                                         <RenderHtml
                                             value={technology?.text2}
-                                            tag="h4"
+                                            tag="p"
                                             className="is-size-5 py-2 has-text-grey line-height-18"
                                         />
                                     </Skeleton>
@@ -91,7 +91,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                     <Skeleton isLoading={isLoading} mode="Text" height={100}>
                                         <RenderHtml
                                             value={technology?.text3}
-                                            tag="h4"
+                                            tag="p"
                                             className="is-size-5 py-2 has-text-grey line-height-18"
                                         />
                                     </Skeleton>
@@ -114,7 +114,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                     <Skeleton isLoading={isLoading} mode="Text" height={100}>
                                         <RenderHtml
                                             value={technology?.text4}
-                                            tag="h4"
+                                            tag="p"
                                             className="is-size-5 py-2 has-text-grey line-height-18"
                                         />
                                     </Skeleton>

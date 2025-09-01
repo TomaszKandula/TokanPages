@@ -6,7 +6,7 @@ import { usePageContent, useSnapshot, useUnhead } from "../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../Components/Layout";
 
 export const ShowcasePage = (): React.ReactElement => {
-    useUnhead("ShowcasePage");
+    const heading = useUnhead("ShowcasePage");
     useSnapshot();
     usePageContent(["layoutNavigation", "layoutFooter", "pageShowcase", "sectionCookiesPrompt"], "ShowcasePage");
 
@@ -19,6 +19,7 @@ export const ShowcasePage = (): React.ReactElement => {
         <>
             <Navigation />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 <CustomBreadcrumb isLoading={isLoading} />
                 <DocumentContentWrapper isLoading={isLoading} items={items} />
             </main>

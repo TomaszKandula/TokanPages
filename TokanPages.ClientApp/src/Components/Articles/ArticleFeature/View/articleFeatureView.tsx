@@ -114,7 +114,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                 <Skeleton isLoading={isLoading} mode="Text">
                                     <RenderHtml
                                         value={features?.title}
-                                        tag="h2"
+                                        tag="h3"
                                         className="is-size-3 py-5 has-text-black"
                                     />
                                 </Skeleton>

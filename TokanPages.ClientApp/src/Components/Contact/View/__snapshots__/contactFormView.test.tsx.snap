@@ -16,11 +16,11 @@ Object {
               data-aos="fade-down"
               data-aos-delay="0"
             >
-              <p
-                class="is-size-3	has-text-centered has-text-link pb-5"
+              <h2
+                class="is-size-3 has-text-centered has-text-link pb-5"
               >
                 CONTACT ME
-              </p>
+              </h2>
             </div>
             <div
               class="bulma-card  "
@@ -44,11 +44,11 @@ Object {
                       />
                     </svg>
                   </div>
-                  <p
+                  <h2
                     class="is-size-3 has-text-black"
                   >
                     Contact me
-                  </p>
+                  </h2>
                 </div>
                 <div
                   class="pt-5"
@@ -248,11 +248,11 @@ Object {
             data-aos="fade-down"
             data-aos-delay="0"
           >
-            <p
-              class="is-size-3	has-text-centered has-text-link pb-5"
+            <h2
+              class="is-size-3 has-text-centered has-text-link pb-5"
             >
               CONTACT ME
-            </p>
+            </h2>
           </div>
           <div
             class="bulma-card  "
@@ -276,11 +276,11 @@ Object {
                     />
                   </svg>
                 </div>
-                <p
+                <h2
                   class="is-size-3 has-text-black"
                 >
                   Contact me
-                </p>
+                </h2>
               </div>
               <div
                 class="pt-5"

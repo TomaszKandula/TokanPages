@@ -38,11 +38,11 @@ Object {
                           />
                         </svg>
                       </div>
-                      <h1
+                      <h2
                         class="is-size-3 has-text-black"
                       >
                         Sign in
-                      </h1>
+                      </h2>
                     </div>
                     <div
                       class="my-5"
@@ -217,11 +217,11 @@ Object {
                         />
                       </svg>
                     </div>
-                    <h1
+                    <h2
                       class="is-size-3 has-text-black"
                     >
                       Sign in
-                    </h1>
+                    </h2>
                   </div>
                   <div
                     class="my-5"

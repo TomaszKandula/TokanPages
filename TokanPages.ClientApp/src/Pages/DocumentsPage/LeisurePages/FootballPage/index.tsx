@@ -6,7 +6,7 @@ import { usePageContent, useSnapshot, useUnhead } from "../../../../Shared/Hooks
 import { Navigation, Footer } from "../../../../Components/Layout";
 
 export const FootballPage = (): React.ReactElement => {
-    useUnhead("FootballPage");
+    const heading = useUnhead("FootballPage");
     useSnapshot();
     usePageContent(["layoutNavigation", "layoutFooter", "sectionCookiesPrompt", "leisureFootball"], "FootballPage");
 
@@ -19,6 +19,7 @@ export const FootballPage = (): React.ReactElement => {
         <>
             <Navigation />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 <CustomBreadcrumb isLoading={isLoading} />
                 <DocumentContentWrapper isLoading={isLoading} items={items} />
             </main>

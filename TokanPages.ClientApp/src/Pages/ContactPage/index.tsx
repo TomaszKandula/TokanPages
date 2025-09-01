@@ -4,7 +4,7 @@ import { ContactForm } from "../../Components/Contact";
 import { Footer, Navigation } from "../../Components/Layout";
 
 export const ContactPage = () => {
-    useUnhead("ContactPage");
+    const heading = useUnhead("ContactPage");
     useSnapshot();
     usePageContent(
         ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "sectionContactForm"],
@@ -15,6 +15,7 @@ export const ContactPage = () => {
         <>
             <Navigation />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 <ContactForm hasIcon hasShadow mode="page" />
             </main>
             <Footer />

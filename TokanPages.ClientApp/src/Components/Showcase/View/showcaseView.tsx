@@ -48,7 +48,7 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                         <div className="bulma-columns showcase-feature-columns">
                             <div className="bulma-column p-0 is-flex is-flex-direction-column is-align-self-center">
                                 <Skeleton isLoading={isLoading} mode="Text">
-                                    <h2 className="is-size-3 py-5 has-text-black">{showcase?.heading}</h2>
+                                    <h3 className="is-size-3 py-5 has-text-black">{showcase?.heading}</h3>
                                 </Skeleton>
                                 <Skeleton isLoading={isLoading} mode="Text">
                                     <RenderHtml

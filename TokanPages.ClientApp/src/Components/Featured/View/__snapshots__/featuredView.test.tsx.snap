@@ -59,11 +59,11 @@ Object {
                       <div
                         class="bulma-card-content featured-card-height is-align-content-center"
                       >
-                        <h2
+                        <h3
                           class="is-size-5 has-text-weight-semibold has-text-centered"
                         >
                           Memory Management
-                        </h2>
+                        </h3>
                         <p
                           class="is-size-6 has-text-grey-light has-text-centered"
                         >
@@ -108,11 +108,11 @@ Object {
                       <div
                         class="bulma-card-content featured-card-height is-align-content-center"
                       >
-                        <h2
+                        <h3
                           class="is-size-5 has-text-weight-semibold has-text-centered"
                         >
                           Stored Procedures
-                        </h2>
+                        </h3>
                         <p
                           class="is-size-6 has-text-grey-light has-text-centered"
                         >
@@ -157,11 +157,11 @@ Object {
                       <div
                         class="bulma-card-content featured-card-height is-align-content-center"
                       >
-                        <h2
+                        <h3
                           class="is-size-5 has-text-weight-semibold has-text-centered"
                         >
                           SQL Injection
-                        </h2>
+                        </h3>
                         <p
                           class="is-size-6 has-text-grey-light has-text-centered"
                         >
@@ -233,11 +233,11 @@ Object {
                     <div
                       class="bulma-card-content featured-card-height is-align-content-center"
                     >
-                      <h2
+                      <h3
                         class="is-size-5 has-text-weight-semibold has-text-centered"
                       >
                         Memory Management
-                      </h2>
+                      </h3>
                       <p
                         class="is-size-6 has-text-grey-light has-text-centered"
                       >
@@ -282,11 +282,11 @@ Object {
                     <div
                       class="bulma-card-content featured-card-height is-align-content-center"
                     >
-                      <h2
+                      <h3
                         class="is-size-5 has-text-weight-semibold has-text-centered"
                       >
                         Stored Procedures
-                      </h2>
+                      </h3>
                       <p
                         class="is-size-6 has-text-grey-light has-text-centered"
                       >
@@ -331,11 +331,11 @@ Object {
                     <div
                       class="bulma-card-content featured-card-height is-align-content-center"
                     >
-                      <h2
+                      <h3
                         class="is-size-5 has-text-weight-semibold has-text-centered"
                       >
                         SQL Injection
-                      </h2>
+                      </h3>
                       <p
                         class="is-size-6 has-text-grey-light has-text-centered"
                       >

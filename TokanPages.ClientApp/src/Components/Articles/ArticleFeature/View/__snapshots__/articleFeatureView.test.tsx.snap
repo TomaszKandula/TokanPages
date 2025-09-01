@@ -136,11 +136,11 @@ Object {
                 <div
                   class="bulma-column is-align-self-center py-3 pr-0 article-feature-padding-left"
                 >
-                  <h2
+                  <h3
                     class="is-size-3 py-5 has-text-black"
                   >
                     .NET Core, Azure, databases and others.
-                  </h2>
+                  </h3>
                   <p
                     class="is-size-5 py-3 has-text-grey line-height-18"
                   >
@@ -306,11 +306,11 @@ Object {
               <div
                 class="bulma-column is-align-self-center py-3 pr-0 article-feature-padding-left"
               >
-                <h2
+                <h3
                   class="is-size-3 py-5 has-text-black"
                 >
                   .NET Core, Azure, databases and others.
-                </h2>
+                </h3>
                 <p
                   class="is-size-5 py-3 has-text-grey line-height-18"
                 >

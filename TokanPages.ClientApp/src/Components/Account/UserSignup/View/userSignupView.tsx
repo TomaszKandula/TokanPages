@@ -64,7 +64,7 @@ const RenderSignupCard = (props: RenderSignupCardProps): React.ReactElement => (
                     <Icon name="AccountCircle" size={3.75} className="card-icon-colour" />
                 </Skeleton>
                 <Skeleton isLoading={props.isLoading} mode="Text" className="user-signup-view-skeleton">
-                    <h1 className="is-size-3 has-text-black">{props.caption}</h1>
+                    <h2 className="is-size-3 has-text-black">{props.caption}</h2>
                 </Skeleton>
             </div>
             <div className="my-5">
