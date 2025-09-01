@@ -62,10 +62,12 @@ describe("test articles group component: ArticleListView", () => {
                     onChange={jest.fn()}
                     onKeyUp={jest.fn()}
                     buttonSearch={{
+                        isSearchDisabled: false,
                         label: "",
                         onClick: jest.fn(),
                     }}
                     buttonClear={{
+                        isClearDisabled: false,
                         label: "",
                         onClick: jest.fn(),
                     }}

@@ -59,6 +59,7 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                             <button
                                 onClick={props.buttonSearch.onClick}
                                 className="bulma-button bulma-is-link bulma-is-light"
+                                disabled={props.buttonSearch.isSearchDisabled}
                             >
                                 {props.buttonSearch.label}
                             </button>
@@ -73,6 +74,7 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                             <button
                                 onClick={props.buttonClear.onClick}
                                 className="bulma-button bulma-is-danger bulma-is-light"
+                                disabled={props.buttonClear.isClearDisabled}
                             >
                                 {props.buttonClear.label}
                             </button>
@@ -96,7 +98,7 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
     for (let index = 1; index <= pages; index++) {
         if (pageNumber === index) {
             paginationItem.push(
-                <li key={index}>
+                <li key={uuidv4()}>
                     <a
                         onClick={props.pageData.onClick}
                         className="bulma-pagination-link bulma-is-current"
@@ -109,7 +111,7 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
             );
         } else {
             paginationItem.push(
-                <li key={index}>
+                <li key={uuidv4()}>
                     <a
                         onClick={props.pageData.onClick}
                         className="bulma-pagination-link"
@@ -138,17 +140,7 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet pb-6">
             <div className={props.isMobile ? "p-4" : "py-4"}>
-                <RenderStaticText
-                    isContentLoading={props.isContentLoading}
-                    title={props.title}
-                    text={props.text}
-                    placeholder={props.placeholder}
-                    buttonSearch={props.buttonSearch}
-                    buttonClear={props.buttonClear}
-                    onChange={props.onChange}
-                    onKeyUp={props.onKeyUp}
-                    value={props.value}
-                />
+                <RenderStaticText {...props} />
                 <RenderPagination {...props} />
                 {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
                 <RenderPagination {...props} />
