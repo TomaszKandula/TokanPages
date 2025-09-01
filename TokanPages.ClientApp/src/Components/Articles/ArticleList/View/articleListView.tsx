@@ -27,13 +27,13 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
         <div className="bulma-card-content">
             <div className="bulma-content">
                 <Skeleton isLoading={props.isContentLoading} mode="Text" height={32}>
-                    <h1 className="is-size-4 has-text-weight-normal">{props.title}</h1>
+                    <h2 className="is-size-4 has-text-weight-normal">{props.title}</h2>
                 </Skeleton>
                 <hr />
                 {props.text.map((value: string, index: number) => (
                     <Skeleton isLoading={props.isContentLoading} mode="Text" key={uuidv4()}>
                         {index === 0 ? (
-                            <h2 className="is-size-6 has-text-grey has-text-weight-medium line-height-18">{value}</h2>
+                            <h3 className="is-size-6 has-text-grey has-text-weight-medium line-height-18">{value}</h3>
                         ) : (
                             <p className="is-size-6 has-text-grey line-height-18">{value}</p>
                         )}

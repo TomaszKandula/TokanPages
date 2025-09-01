@@ -56,7 +56,7 @@ const RenderCaption = (props: ContactFormViewProps): React.ReactElement | null =
     props.hasCaption ? (
         <Animated dataAos="fade-down">
             <Skeleton isLoading={props.isLoading} mode="Text" height={40}>
-                <p className="is-size-3	has-text-centered has-text-link pb-5">{props.caption?.toUpperCase()}</p>
+                <h2 className="is-size-3 has-text-centered has-text-link pb-5">{props.caption?.toUpperCase()}</h2>
             </Skeleton>
         </Animated>
     ) : null;
@@ -68,7 +68,7 @@ const RenderHeader = (props: ContactFormViewProps): React.ReactElement | null =>
                 <Icon name="CardAccountMail" size={2.5} className="card-icon-colour" />
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" height={24}>
-                <p className="is-size-3 has-text-black">{props.caption}</p>
+                <h2 className="is-size-3 has-text-black">{props.caption}</h2>
             </Skeleton>
         </div>
     ) : null;
@@ -221,7 +221,7 @@ export const PageContactFormView = (props: ContactFormViewProps): React.ReactEle
                             <p className="is-size-6">{props.presentation.description}</p>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} mode="Text" width={250} height={40} className="my-6">
-                            <h2 className="is-size-3 my-6">{props.presentation.logos.title}</h2>
+                            <h3 className="is-size-3 my-6">{props.presentation.logos.title}</h3>
                         </Skeleton>
                         <div className="bulma-fixed-grid">
                             <div className="bulma-grid is-gap-7">
