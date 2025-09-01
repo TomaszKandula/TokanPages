@@ -209,7 +209,6 @@ export const ContentPageData: ContentPageDataState = {
         sectionContactForm: {
             language: "",
             caption: "",
-            text: "",
             button: "",
             consent: "",
             labelFirstName: "",
@@ -217,6 +216,26 @@ export const ContentPageData: ContentPageDataState = {
             labelEmail: "",
             labelSubject: "",
             labelMessage: "",
+            presentation: {
+                image: {
+                    link: "",
+                    title: "",
+                    alt: "",
+                    width: 0,
+                    heigh: 0,
+                },
+                title: "",
+                subtitle: "",
+                icon: {
+                    name: "",
+                    href: "",
+                },
+                description: "",
+                logos: {
+                    title: "",
+                    images: [],
+                },
+            },
         },
         sectionCookiesPrompt: {
             language: "",

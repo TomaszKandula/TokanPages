@@ -15,7 +15,7 @@ export const ContactPage = () => {
         <>
             <Navigation />
             <main>
-                <ContactForm hasIcon hasShadow />
+                <ContactForm hasIcon hasShadow mode="page" />
             </main>
             <Footer />
         </>
