@@ -18,6 +18,8 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const isContentLoading = data.isLoading;
 
     const [form, setForm] = React.useState<SearchInputProps>({ searchInput: "" });
+    const [isSearchDisabled, setIsSearchDisabled] = React.useState(true);
+    const [isClearDisabled, setIsClearDisabled] = React.useState(true);
 
     const onClickChangePage = React.useCallback(() => {
         const totalSize = article.payload.totalSize;
@@ -53,6 +55,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const onClickSearch = React.useCallback(() => {
         const pagingInfo = article.payload.pagingInfo;
         dispatch(ArticleListingAction.get(pagingInfo.pageNumber, ARTICLES_PAGE_SIZE, form.searchInput));
+        setIsClearDisabled(false);
     }, [article.payload, form.searchInput]);
 
     const onClickClear = React.useCallback(() => {
@@ -74,6 +77,15 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
     }, [article.isLoading, article.payload.results]);
 
+    React.useEffect(() => {
+        if (Validate.isEmpty(form.searchInput)) {
+            setIsSearchDisabled(true);
+            setIsClearDisabled(true);
+        } else {
+            setIsSearchDisabled(false);
+        }
+    }, [form.searchInput]);
+
     return (
         <ArticleListView
             isLoading={article.isLoading}
@@ -94,10 +106,12 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             onChange={onInputHandler}
             value={form}
             buttonSearch={{
+                isSearchDisabled: isSearchDisabled,
                 label: content?.labels?.buttonSearch,
                 onClick: onClickSearch,
             }}
             buttonClear={{
+                isClearDisabled: isClearDisabled,
                 label: content?.labels?.buttonClear,
                 onClick: onClickClear,
             }}
