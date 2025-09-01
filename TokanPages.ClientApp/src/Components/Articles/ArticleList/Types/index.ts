@@ -17,14 +17,22 @@ export interface ArticlesProps {
     articles: ArticleItem[];
 }
 
+export interface SearchButtonProps extends ActionButtonProps {
+    isSearchDisabled: boolean;
+}
+
+export interface ClearButtonProps extends ActionButtonProps {
+    isClearDisabled: boolean;
+}
+
 export interface ActionButtonProps {
     label: string;
     onClick: () => void;
 }
 
 export interface ButtonsProps {
-    buttonSearch: ActionButtonProps;
-    buttonClear: ActionButtonProps;
+    buttonSearch: SearchButtonProps;
+    buttonClear: ClearButtonProps;
 }
 
 export interface TextProps {
