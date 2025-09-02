@@ -65,8 +65,8 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
         var message = new SendMessageConfiguration
         {
             MessageId = messageId,
-            From = contactAddress,
-            To = new List<string> { contactAddress },
+            From = contactAddress ?? "",
+            To = new List<string> { contactAddress ?? "" },
             Subject = $"New user message from {request.FirstName}"
         };
 

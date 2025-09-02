@@ -69,7 +69,7 @@ public class Startup
         services.SetupDockerInternalNetwork();
         services
             .AddHealthChecks()
-            .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext"), name: "SQLServer");
+            .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext") ?? "", name: "SQLServer");
     }
 
     /// <summary>

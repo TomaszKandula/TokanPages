@@ -107,7 +107,7 @@ public class EmailSenderService : IEmailSenderService
         var sendFrom = _configuration.GetValue<string>("Email_Address_Contact");
         var payload = new SendMessageConfiguration
         {
-            From = sendFrom,
+            From = sendFrom ?? "",
             To = new List<string> { emailAddress },
             Subject = subject,
             Body = template.MakeBody(templateValues)
@@ -120,13 +120,13 @@ public class EmailSenderService : IEmailSenderService
     {
         var headers = new Dictionary<string, string>
         {
-            ["X-Private-Key"] = _configuration.GetValue<string>("Email_PrivateKey")
+            ["X-Private-Key"] = _configuration.GetValue<string>("Email_PrivateKey") ?? ""
         };
 
         var payload = new ContentString { Payload = content };
         var configuration = new Configuration 
         { 
-            Url = _configuration.GetValue<string>("Email_BaseUrl"), 
+            Url = _configuration.GetValue<string>("Email_BaseUrl") ?? "", 
             Method = "POST", 
             Headers = headers,
             PayloadContent = payload
