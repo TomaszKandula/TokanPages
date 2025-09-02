@@ -68,17 +68,17 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 </Skeleton>
                                             </div>
                                             <div className="is-align-content-center socials-text">
-                                                <p className="is-size-6 has-text-grey has-text-centered py-2">
-                                                    <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                        {socials?.social1?.textSubtitle}
-                                                    </Skeleton>
-                                                </p>
-                                            </div>
-                                            <p className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
                                                 <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                    {socials?.social1?.textComment}
+                                                    <p className="is-size-6 has-text-grey has-text-centered py-2">
+                                                        {socials?.social1?.textSubtitle}
+                                                    </p>
                                                 </Skeleton>
-                                            </p>
+                                            </div>
+                                            <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
+                                                <p className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
+                                                    {socials?.social1?.textComment}
+                                                </p>
+                                            </Skeleton>
                                         </div>
                                     </Link>
                                 </div>
@@ -126,17 +126,17 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 </Skeleton>
                                             </div>
                                             <div className="is-align-content-center socials-text">
-                                                <p className="is-size-6 has-text-grey has-text-centered py-2">
-                                                    <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                        {socials?.social2?.textSubtitle}
-                                                    </Skeleton>
-                                                </p>
-                                            </div>
-                                            <p className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
                                                 <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                    {socials?.social2?.textComment}
+                                                    <p className="is-size-6 has-text-grey has-text-centered py-2">
+                                                        {socials?.social2?.textSubtitle}
+                                                    </p>
                                                 </Skeleton>
-                                            </p>
+                                            </div>
+                                            <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
+                                                <p className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
+                                                    {socials?.social2?.textComment}
+                                                </p>
+                                            </Skeleton>
                                         </div>
                                     </Link>
                                 </div>
@@ -184,17 +184,17 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                                 </Skeleton>
                                             </div>
                                             <div className="is-align-content-center socials-text">
-                                                <p className="is-size-6 has-text-grey has-text-centered py-2">
-                                                    <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                        {socials?.social3?.textSubtitle}
-                                                    </Skeleton>
-                                                </p>
-                                            </div>
-                                            <p className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
                                                 <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
-                                                    {socials?.social3?.textComment}
+                                                    <p className="is-size-6 has-text-grey has-text-centered py-2">
+                                                        {socials?.social3?.textSubtitle}
+                                                    </p>
                                                 </Skeleton>
-                                            </p>
+                                            </div>
+                                            <Skeleton isLoading={isLoading} mode="Text" disableMarginY>
+                                                <p className="is-size-6 has-text-dark has-text-weight-semibold has-text-centered py-2">
+                                                    {socials?.social3?.textComment}
+                                                </p>
+                                            </Skeleton>
                                         </div>
                                     </Link>
                                 </div>
