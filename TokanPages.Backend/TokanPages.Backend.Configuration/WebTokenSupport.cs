@@ -19,7 +19,7 @@ public static class WebTokenSupport
 	{ 
 		var issuer = configuration.GetValue<string>("Ids_Issuer");
 		var audience = configuration.GetValue<string>("Ids_Audience");
-		var webSecret = configuration.GetValue<string>("Ids_WebSecret");
+		var webSecret = configuration.GetValue<string>("Ids_WebSecret") ?? "";
 		var requireHttps = configuration.GetValue<bool>("Ids_RequireHttps");
 
 		services.AddAuthentication(options =>
