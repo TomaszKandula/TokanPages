@@ -32,10 +32,10 @@ public class WebTokenValidation : IWebTokenValidation
             return string.Empty;
 
         var token = _httpContextAccessor.HttpContext?.Request.Headers[Authorization].ToArray();
-        if (token == null) 
+        var bearer = token?[0]?.Split(' ');
+        if (bearer is null) 
             return string.Empty;
 
-        var bearer = token[0].Split(' ');
         return bearer.Length > 0 && string.IsNullOrEmpty(bearer[1]) 
             ? string.Empty 
             : bearer[1];
