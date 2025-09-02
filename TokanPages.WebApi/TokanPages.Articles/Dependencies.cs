@@ -69,7 +69,7 @@ public static class Dependencies
 
 		services.AddDbContext<DatabaseContext>(options =>
 		{
-			options.UseSqlServer(configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}"), addOptions 
+			options.UseSqlServer(configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}") ?? "", addOptions 
 				=> addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
 		});
 	}
@@ -91,8 +91,8 @@ public static class Dependencies
 
 		services.AddSingleton<IAzureBlobStorageFactory>(_ =>
 		{
-			var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName");
-			var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString");
+			var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName") ?? "";
+			var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "";
 			return new AzureBlobStorageFactory(connectionString, containerName);
 		});
 	}

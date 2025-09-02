@@ -61,7 +61,7 @@ public static class Dependencies
 
         services.AddDbContext<DatabaseContext>(options =>
         {
-            options.UseSqlServer(configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}"), addOptions 
+            options.UseSqlServer(configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}") ?? "", addOptions 
                 => addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
         });
     }

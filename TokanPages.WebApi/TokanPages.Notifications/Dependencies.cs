@@ -67,7 +67,7 @@ public static class Dependencies
 
 		services.AddDbContext<DatabaseContext>(options =>
 		{
-			options.UseSqlServer(configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}"), addOptions 
+			options.UseSqlServer(configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}") ?? "", addOptions 
 				=> addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
 		});
 	}
@@ -88,8 +88,8 @@ public static class Dependencies
 		services.AddScoped<IAzureNotificationHubUtility, AzureNotificationHubUtility>();
 		services.AddSingleton<IAzureNotificationHubFactory>(_ =>
 		{
-			var containerName = configuration.GetValue<string>("AZ_Hub_HubName");
-			var connectionString = configuration.GetValue<string>("AZ_Hub_ConnectionString");
+			var containerName = configuration.GetValue<string>("AZ_Hub_HubName") ?? "";
+			var connectionString = configuration.GetValue<string>("AZ_Hub_ConnectionString") ?? "";
 			return new AzureNotificationHubFactory(containerName, connectionString);
 		});
 	}

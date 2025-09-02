@@ -11,14 +11,13 @@ public static class PollySupport
 {
     public static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
     {
-        var developmentOrigin = configuration.GetValue<string>("Paths_DevelopmentOrigin");
-        var deploymentOrigin = configuration.GetValue<string>("Paths_DeploymentOrigin");
+        var developmentOrigin = configuration.GetValue<string>("Paths_DevelopmentOrigin") ?? "";
+        var deploymentOrigin = configuration.GetValue<string>("Paths_DeploymentOrigin") ?? "";
+        var url = environment.IsDevelopment() ? developmentOrigin : deploymentOrigin;
 
         services.AddHttpClient("RetryHttpClient", options =>
         {
-            options.BaseAddress = new Uri(environment.IsDevelopment() 
-                ? developmentOrigin 
-                : deploymentOrigin);
+            options.BaseAddress = new Uri(url);
             options.DefaultRequestHeaders.Add("Accept", ContentTypes.Json);
             options.Timeout = TimeSpan.FromMinutes(5);
             options.DefaultRequestHeaders.ConnectionClose = true;

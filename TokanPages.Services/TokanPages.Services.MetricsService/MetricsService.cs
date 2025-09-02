@@ -54,7 +54,7 @@ public class MetricsService : IMetricsService
 
         var authentication = new BasicAuthentication
         {
-            Login = token,
+            Login = token ?? "",
             Password = string.Empty
         };
 

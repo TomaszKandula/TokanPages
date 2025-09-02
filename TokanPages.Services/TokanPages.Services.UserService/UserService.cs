@@ -236,11 +236,11 @@ public sealed class UserService : IUserService
         var claimsIdentity = await MakeClaimsIdentity(users, cancellationToken);
 
         return _webTokenUtility.GenerateJwt(
-            tokenExpires, 
-            claimsIdentity, 
-            _configuration.GetValue<string>("Ids_WebSecret"), 
-            _configuration.GetValue<string>("Ids_Issuer"), 
-            _configuration.GetValue<string>("Ids_Audience"));
+            tokenExpires,
+            claimsIdentity,
+            _configuration.GetValue<string>("Ids_WebSecret") ?? "",
+            _configuration.GetValue<string>("Ids_Issuer") ?? "",
+            _configuration.GetValue<string>("Ids_Audience") ?? "");
     }
 
     public async Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default)

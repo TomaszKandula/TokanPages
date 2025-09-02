@@ -209,7 +209,7 @@ public class HttpClientService : IHttpClientService
         };
 
         if (configuration.Range is not null && configuration.Range.Value.Count != 0)
-            request.Headers.Range = RangeHeaderValue.Parse(configuration.Range);
+            request.Headers.Range = RangeHeaderValue.Parse(configuration.Range!);
 
         if (configuration.Authentication != null)
             ApplyAuthentication(request, configuration.Authentication);

@@ -75,7 +75,7 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
             var payload = new SendMessageConfiguration
             {
                 MessageId = messageId,
-                From = _configuration.GetValue<string>("Email_Address_Contact"),
+                From = _configuration.GetValue<string>("Email_Address_Contact") ?? "",
                 To = new List<string> { subscriber.Email },
                 Subject = request.Subject,
                 Body = template.MakeBody(newValues)

@@ -38,8 +38,8 @@ public class PayUService : IPayUService
         var payload = new Dictionary<string, string>
         {
             { "grant_type", "client_credentials" },
-            { "client_id", clientId },
-            { "client_secret", clientSecret }
+            { "client_id", clientId ?? "" },
+            { "client_secret", clientSecret ?? "" }
         };
 
         var content = new ContentDictionary { Payload = payload };

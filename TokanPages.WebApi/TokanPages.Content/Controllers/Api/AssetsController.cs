@@ -83,7 +83,7 @@ public class AssetsController : ApiBaseController
         if (canDownload is null or false)
             return result.FileContent;
 
-        HttpContext.Response.Headers.Add("Content-disposition", $"attachment; filename={result.FileName}");
+        HttpContext.Response.Headers.Append("Content-disposition", $"attachment; filename={result.FileName}");
         return result.FileContent;
     }
 
