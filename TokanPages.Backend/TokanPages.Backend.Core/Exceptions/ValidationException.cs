@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Core.Exceptions;
 [ExcludeFromCodeCoverage]
 public class ValidationException : BusinessException
 {
-    public ValidationResult ValidationResult { get; } = new();
+    public ValidationResult ValidationResult { get; }
 
     public ValidationException(ValidationResult validationResult, string errorMessage = "") : base(errorMessage)
         => ValidationResult = validationResult;
