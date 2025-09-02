@@ -1,7 +1,7 @@
 # ======================================================================================================================
 # 1 - BUILD PROJECTS AND RUN TESTS
 # ======================================================================================================================
-FROM mcr.microsoft.com/dotnet/sdk:6.0.416-alpine3.18 AS projects
+FROM mcr.microsoft.com/dotnet/sdk:8.0.413-alpine3.21 AS projects
 
 WORKDIR /app
 COPY . ./
@@ -12,18 +12,18 @@ RUN dotnet build -c Release
 # ======================================================================================================================
 # 2 - BUILD DOCKER IMAGE
 # ======================================================================================================================
-FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine3.18
+FROM mcr.microsoft.com/dotnet/aspnet:8.0.19-alpine3.22
 WORKDIR /app
 
 # INSTALL ICU FULL SUPPORT
 RUN apk add icu-libs --no-cache
 RUN apk add icu-data-full --no-cache
 
-COPY --from=projects "/app/TokanPages.Backend/TokanPages.Backend.Configuration/bin/Release/net6.0" .
-COPY --from=projects "/app/TokanPages.Persistence/TokanPages.Persistence.Caching/bin/Release/net6.0" .
-COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.BehaviourService/bin/Release/net6.0" .
-COPY --from=projects "/app/TokanPages.WebApi/TokanPages.Notifications/bin/Release/net6.0" .
-COPY --from=projects "/app/TokanPages.WebApi/TokanPages.Notifications.Dto/bin/Release/net6.0" .
+COPY --from=projects "/app/TokanPages.Backend/TokanPages.Backend.Configuration/bin/Release/net8.0" .
+COPY --from=projects "/app/TokanPages.Persistence/TokanPages.Persistence.Caching/bin/Release/net8.0" .
+COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.BehaviourService/bin/Release/net8.0" .
+COPY --from=projects "/app/TokanPages.WebApi/TokanPages.Notifications/bin/Release/net8.0" .
+COPY --from=projects "/app/TokanPages.WebApi/TokanPages.Notifications.Dto/bin/Release/net8.0" .
 
 ARG ENV_VALUE
 ENV ASPNETCORE_ENVIRONMENT=${ENV_VALUE}
