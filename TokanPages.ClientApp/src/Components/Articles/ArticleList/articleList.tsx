@@ -72,10 +72,14 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             return;
         }
 
+        if (!Validate.isEmpty(form.searchInput)) {
+            return;
+        }
+
         if (article.payload.results.length === 0) {
             dispatch(ArticleListingAction.get(1, ARTICLES_PAGE_SIZE));
         }
-    }, [article.isLoading, article.payload.results]);
+    }, [article.isLoading, article.payload.results, form.searchInput]);
 
     React.useEffect(() => {
         if (Validate.isEmpty(form.searchInput)) {
