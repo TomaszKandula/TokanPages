@@ -47,7 +47,7 @@ public sealed class CipheringService : ICipheringService
         if (salt[offset + 2] > '$') 
             throw new ArgumentException("Missing salt rounds");
 
-        var rounds = int.Parse(salt.Substring(offset, 2), NumberFormatInfo.InvariantInfo);
+        var rounds = int.Parse(salt.AsSpan(offset, 2), NumberFormatInfo.InvariantInfo);
 
         var passwordBytes = Encoding.UTF8.GetBytes(password + (minor >= 'a' ? "\0" : string.Empty));
         var saltBytes = Methods.DecodeBase64(salt.Substring(offset + 3, 22), Constants.CryptSaltLength);
