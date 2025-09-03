@@ -22,11 +22,8 @@ public sealed class CipheringService : ICipheringService
     /// </returns>
     public string GetHashedPassword(string password, string salt) 
     {
-        if (password == null) 
-            throw new ArgumentNullException(nameof(password));
-        
-        if (salt == null) 
-            throw new ArgumentNullException(nameof(salt));
+        ArgumentNullException.ThrowIfNull(password);
+        ArgumentNullException.ThrowIfNull(salt);
 
         if (salt[0] != '$' || salt[1] != '2') 
             throw new ArgumentException("Invalid salt version");
