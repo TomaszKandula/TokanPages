@@ -8,17 +8,15 @@ namespace TokanPages.Backend.Core.Extensions;
 [ExcludeFromCodeCoverage]
 public static class QueryableSortingExtensions
 {
-    public static IQueryable<T> ApplyOrdering<T>(this IQueryable<T> databaseQuery, PagingInfo pagingInfo, IDictionary<string, Expression<Func<T, object>>> orderByExpressions)
+    public static IQueryable<T> ApplyOrdering<T>(this IQueryable<T> databaseQuery, PagingInfo pagingInfo, IDictionary<string, Expression<Func<T, object>>?> orderByExpressions)
     {
-        if (string.IsNullOrEmpty(pagingInfo.OrderByColumn) || pagingInfo.OrderByAscending == null)
+        if (string.IsNullOrEmpty(pagingInfo.OrderByColumn) || pagingInfo.OrderByAscending == null || !orderByExpressions.TryGetValue(pagingInfo.OrderByColumn, out var value))
             return databaseQuery;
 
-        if (orderByExpressions.ContainsKey(pagingInfo.OrderByColumn))
-        {
+        if (value != null)
             return pagingInfo.OrderByAscending ?? true
-                ? databaseQuery.OrderBy(orderByExpressions[pagingInfo.OrderByColumn])
-                : databaseQuery.OrderByDescending(orderByExpressions[pagingInfo.OrderByColumn]);
-        }
+                ? databaseQuery.OrderBy(value)
+                : databaseQuery.OrderByDescending(value);
 
         return databaseQuery;
     }
