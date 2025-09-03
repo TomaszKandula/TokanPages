@@ -1257,7 +1257,7 @@ public class UserServiceTest : TestBase
         getRefreshTokens[0].ReplacedByToken.Should().BeNull();
     }
 
-    private IEnumerable<Users> GetUser(Guid userId)
+    private List<Users> GetUser(Guid userId)
     {
         return new List<Users>
         {
@@ -1272,7 +1272,7 @@ public class UserServiceTest : TestBase
         };
     }
 
-    private IEnumerable<UserInfo> GetUserInfo(Guid userId)
+    private List<UserInfo> GetUserInfo(Guid userId)
     {
         return new List<UserInfo>
         {
@@ -1287,7 +1287,7 @@ public class UserServiceTest : TestBase
         };
     }
 
-    private static IEnumerable<Backend.Domain.Entities.User.Roles> GetRole()
+    private static List<Backend.Domain.Entities.User.Roles> GetRole()
     {
         return new List<Backend.Domain.Entities.User.Roles> 
         {
@@ -1300,7 +1300,7 @@ public class UserServiceTest : TestBase
         };
     }
 
-    private static IEnumerable<Backend.Domain.Entities.User.Permissions> GetPermissions()
+    private static List<Backend.Domain.Entities.User.Permissions> GetPermissions()
     {
         return new List<Backend.Domain.Entities.User.Permissions>
         {
