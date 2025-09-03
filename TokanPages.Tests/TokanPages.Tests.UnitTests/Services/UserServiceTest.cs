@@ -49,13 +49,13 @@ public class UserServiceTest : TestBase
 
         // Assert
         result.Should().NotBeNull();
-        result?.UserId.Should().Be(users[0].Id);
-        result?.AliasName.Should().Be(users[0].UserAlias);
-        result?.AvatarName.Should().Be(userInfo[0].UserImageName);
-        result?.FirstName.Should().Be(userInfo[0].FirstName);
-        result?.LastName.Should().Be(userInfo[0].LastName);
-        result?.ShortBio.Should().Be(userInfo[0].UserAboutText);
-        result?.Registered.Should().Be(users[0].CreatedAt);
+        result.UserId.Should().Be(users[0].Id);
+        result.AliasName.Should().Be(users[0].UserAlias);
+        result.AvatarName.Should().Be(userInfo[0].UserImageName);
+        result.FirstName.Should().Be(userInfo[0].FirstName);
+        result.LastName.Should().Be(userInfo[0].LastName);
+        result.ShortBio.Should().Be(userInfo[0].UserAboutText);
+        result.Registered.Should().Be(users[0].CreatedAt);
     }
         
     [Fact]
@@ -148,8 +148,8 @@ public class UserServiceTest : TestBase
         // Assert
         result.Should().NotBeNull();
         result.Should().HaveCount(1);
-        result?[0].Name.Should().Be(roles[0].Name);
-        result?[0].Description.Should().Be(roles[0].Description);
+        result[0].Name.Should().Be(roles[0].Name);
+        result[0].Description.Should().Be(roles[0].Description);
     }
 
     [Fact]
@@ -266,8 +266,8 @@ public class UserServiceTest : TestBase
         // Assert
         result.Should().NotBeNull();
         result.Should().HaveCount(2);
-        var hasName1 = result?.Select(output => output.Name).Contains(permissions[0].Name);
-        var hasName2 = result?.Select(output => output.Name).Contains(permissions[1].Name);
+        var hasName1 = result.Select(output => output.Name).Contains(permissions[0].Name);
+        var hasName2 = result.Select(output => output.Name).Contains(permissions[1].Name);
         hasName1.Should().BeTrue();
         hasName2.Should().BeTrue();
     }
@@ -1257,7 +1257,7 @@ public class UserServiceTest : TestBase
         getRefreshTokens[0].ReplacedByToken.Should().BeNull();
     }
 
-    private IEnumerable<Users> GetUser(Guid userId)
+    private List<Users> GetUser(Guid userId)
     {
         return new List<Users>
         {
@@ -1272,7 +1272,7 @@ public class UserServiceTest : TestBase
         };
     }
 
-    private IEnumerable<UserInfo> GetUserInfo(Guid userId)
+    private List<UserInfo> GetUserInfo(Guid userId)
     {
         return new List<UserInfo>
         {
@@ -1287,7 +1287,7 @@ public class UserServiceTest : TestBase
         };
     }
 
-    private static IEnumerable<Backend.Domain.Entities.User.Roles> GetRole()
+    private static List<Backend.Domain.Entities.User.Roles> GetRole()
     {
         return new List<Backend.Domain.Entities.User.Roles> 
         {
@@ -1300,7 +1300,7 @@ public class UserServiceTest : TestBase
         };
     }
 
-    private static IEnumerable<Backend.Domain.Entities.User.Permissions> GetPermissions()
+    private static List<Backend.Domain.Entities.User.Permissions> GetPermissions()
     {
         return new List<Backend.Domain.Entities.User.Permissions>
         {

@@ -21,7 +21,7 @@ public class GetPaymentStatusQueryHandler : RequestHandler<GetPaymentStatusQuery
             })
             .WhereIf(
                 !string.IsNullOrWhiteSpace(request.FilterBy), 
-                response => response.PaymentStatus == request.FilterBy.ToUpper())
+                response => response.PaymentStatus.Equals(request.FilterBy, StringComparison.InvariantCultureIgnoreCase))
             .ToList();
 
         LoggerService.LogInformation($"Returned {result.Count} payment status(es)");

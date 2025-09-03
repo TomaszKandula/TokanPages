@@ -26,7 +26,7 @@ public class DeleteInstallationCommandHandler : RequestHandler<DeleteInstallatio
             .Where(tags => tags.PushNotificationId == request.Id)
             .ToListAsync(cancellationToken);
 
-        if (notificationTags.Any())
+        if (notificationTags.Count > 0)
         {
             DatabaseContext.RemoveRange(notificationTags);
             LoggerService.LogInformation("Related push notification tags have been removed.");

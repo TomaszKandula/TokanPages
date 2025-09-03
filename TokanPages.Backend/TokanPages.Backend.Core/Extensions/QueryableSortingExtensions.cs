@@ -13,11 +13,11 @@ public static class QueryableSortingExtensions
         if (string.IsNullOrEmpty(pagingInfo.OrderByColumn) || pagingInfo.OrderByAscending == null)
             return databaseQuery;
 
-        if (orderByExpressions.ContainsKey(pagingInfo.OrderByColumn))
+        if (orderByExpressions.TryGetValue(pagingInfo.OrderByColumn, out var value))
         {
             return pagingInfo.OrderByAscending ?? true
-                ? databaseQuery.OrderBy(orderByExpressions[pagingInfo.OrderByColumn])
-                : databaseQuery.OrderByDescending(orderByExpressions[pagingInfo.OrderByColumn]);
+                ? databaseQuery.OrderBy(value)
+                : databaseQuery.OrderByDescending(value);
         }
 
         return databaseQuery;

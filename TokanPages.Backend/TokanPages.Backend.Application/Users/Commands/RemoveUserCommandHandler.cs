@@ -48,7 +48,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
             .Where(albums => albums.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (albums.Any())
+        if (albums.Count > 0)
         {
             foreach (var item in albums) { item.UserId = null; item.UserPhotoId = null; }
             LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(Albums)}");
@@ -58,7 +58,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
             .Where(articles => articles.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (articles.Any())
+        if (articles.Count > 0)
         {
             foreach (var item in articles) { item.UserId = null; }
             LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(Articles)}");
@@ -68,7 +68,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
             .Where(articleLikes => articleLikes.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (articleLikes.Any())
+        if (articleLikes.Count > 0)
         {
             foreach (var item in articleLikes) { item.UserId = null; }
             LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(ArticleLikes)}");
@@ -78,7 +78,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
             .Where(articleCounts => articleCounts.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (articleCounts.Any())
+        if (articleCounts.Count > 0)
         {
             foreach (var item in articleCounts) { item.UserId = null; }
             LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(ArticleCounts)}");
@@ -91,7 +91,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
             .Where(userNotes => userNotes.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (userNotes.Any())
+        if (userNotes.Count > 0)
         {
             DatabaseContext.RemoveRange(userNotes);
             LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(userNotes)}");
@@ -101,7 +101,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
             .Where(userPhotos => userPhotos.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (userPhotos.Any())
+        if (userPhotos.Count > 0)
         {
             DatabaseContext.RemoveRange(userPhotos);
             LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserPhotos)}");
@@ -111,7 +111,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
             .Where(userInfo => userInfo.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (userInfo.Any())
+        if (userInfo.Count > 0)
         {
             DatabaseContext.RemoveRange(userInfo);
             LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserInfo)}");
@@ -121,7 +121,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
             .Where(userTokens => userTokens.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (userTokens.Any())
+        if (userTokens.Count > 0)
         {
             DatabaseContext.RemoveRange(userTokens);
             LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserTokens)}");
@@ -131,7 +131,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
             .Where(userRefreshTokens => userRefreshTokens.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (userRefreshTokens.Any())
+        if (userRefreshTokens.Count > 0)
         {
             DatabaseContext.RemoveRange(userRefreshTokens);
             LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserRefreshTokens)}");
@@ -141,7 +141,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
             .Where(userRoles => userRoles.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (userRoles.Any())
+        if (userRoles.Count > 0)
         {
             DatabaseContext.RemoveRange(userRoles);
             LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserRoles)}");
@@ -151,7 +151,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
             .Where(userPermissions => userPermissions.UserId == userId)
             .ToListAsync(cancellationToken);
 
-        if (userPermissions.Any())
+        if (userPermissions.Count > 0)
         {
             DatabaseContext.RemoveRange(userPermissions);
             LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserPermissions)}");

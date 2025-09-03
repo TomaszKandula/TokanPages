@@ -38,7 +38,7 @@ public static class StringExtensions
             throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL));
 
         var templateItemModels = items.ToList();
-        if (!templateItemModels.Any()) 
+        if (templateItemModels.Count == 0) 
             throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL));
 
         return templateItemModels.Aggregate(template, (current, item) 

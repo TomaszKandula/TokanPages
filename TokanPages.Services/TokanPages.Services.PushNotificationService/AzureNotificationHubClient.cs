@@ -83,7 +83,7 @@ public class AzureNotificationHubClient : IAzureNotificationHubClient
     public async Task<NotificationOutcome> SendPushNotification(PlatformType targetPlatform, string payload, IEnumerable<string> tags, CancellationToken cancellationToken = default)
     {
         var enumerable = tags as string[] ?? tags.ToArray();
-        if (!enumerable.Any())
+        if (enumerable.Length == 0)
             throw new BusinessException(nameof(ErrorCodes.MISSING_TAGS), ErrorCodes.MISSING_TAGS);
 
         return targetPlatform switch

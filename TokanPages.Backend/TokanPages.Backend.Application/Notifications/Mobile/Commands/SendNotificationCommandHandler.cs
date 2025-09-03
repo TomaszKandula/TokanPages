@@ -37,7 +37,7 @@ public class SendNotificationCommandHandler : RequestHandler<SendNotificationCom
 
         if (result.Results is not null)
         {
-            if (!result.Results.Any())
+            if (result.Results.Count == 0)
                 return new SendNotificationCommandResult
                 {
                     Succeeded = result.Success,
@@ -66,7 +66,7 @@ public class SendNotificationCommandHandler : RequestHandler<SendNotificationCom
                 });                
             }
 
-            if (!logs.Any())
+            if (logs.Count == 0)
                 return new SendNotificationCommandResult
                 {
                     Succeeded = result.Success,

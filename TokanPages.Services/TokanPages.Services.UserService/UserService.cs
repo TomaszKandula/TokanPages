@@ -160,7 +160,7 @@ public sealed class UserService : IUserService
             .Where(roles => roles.UserId == userId && roles.Roles.Name == userRoleName)
             .ToListAsync(cancellationToken);
 
-        return givenRoles.Any();
+        return givenRoles.Count != 0;
     }
 
     public async Task<bool> HasRoleAssigned(Guid roleId, Guid? userId = default, CancellationToken cancellationToken = default)
@@ -173,7 +173,7 @@ public sealed class UserService : IUserService
             .Where(userRoles => userRoles.UserId == userId && userRoles.Roles.Id == roleId)
             .ToListAsync(cancellationToken);
 
-        return givenRoles.Any();
+        return givenRoles.Count != 0;
     }
 
     public async Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = default, CancellationToken cancellationToken = default)
@@ -186,7 +186,7 @@ public sealed class UserService : IUserService
             .Where(permissions => permissions.UserId == userId && permissions.Permissions.Name == userPermissionName)
             .ToListAsync(cancellationToken);
 
-        return givenPermissions.Any();
+        return givenPermissions.Count != 0;
     }
 
     public async Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId = default, CancellationToken cancellationToken = default)
@@ -199,7 +199,7 @@ public sealed class UserService : IUserService
             .Where(userPermissions => userPermissions.UserId == userId && userPermissions.Permissions.Id == permissionId)
             .ToListAsync(cancellationToken);
 
-        return givenPermissions.Any();
+        return givenPermissions.Count != 0;
     }
 
     public async Task<ClaimsIdentity> MakeClaimsIdentity(Users users, CancellationToken cancellationToken = default)
@@ -253,10 +253,10 @@ public sealed class UserService : IUserService
                              && tokens.Revoked == null)
             .ToListAsync(cancellationToken);
 
-        if (refreshTokens.Any())
+        if (refreshTokens.Count != 0)
             _databaseContext.UserRefreshTokens.RemoveRange(refreshTokens);
             
-        if (saveImmediately && refreshTokens.Any())
+        if (saveImmediately && refreshTokens.Count != 0)
             await _databaseContext.SaveChangesAsync(cancellationToken);
     }
 
@@ -362,14 +362,14 @@ public sealed class UserService : IUserService
         var userClaims = _httpContextAccessor.HttpContext?.User.Claims ?? Array.Empty<Claim>();
             
         var claimsArray = userClaims as Claim[] ?? userClaims.ToArray();
-        if (!claimsArray.Any())
+        if (claimsArray.Length == 0)
             return null;
             
         var userIds = claimsArray
             .Where(claim => claim.Type.Contains(ClaimTypes.NameIdentifier))
             .ToList();
             
-        if (!userIds.Any())
+        if (userIds.Count == 0)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
             
         return Guid.Parse(userIds.First().Value);
@@ -387,7 +387,7 @@ public sealed class UserService : IUserService
             .Where(roles => roles.UserId == getUserId)
             .ToListAsync(cancellationToken);
 
-        if (!userRoles.Any())
+        if (userRoles.Count == 0)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
         _userRoles = new List<GetUserRolesOutput>();
@@ -413,7 +413,7 @@ public sealed class UserService : IUserService
             .Where(permissions => permissions.UserId == getUserId)
             .ToListAsync(cancellationToken);
 
-        if (!userPermissions.Any())
+        if (userPermissions.Count == 0)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
         _userPermissions = new List<GetUserPermissionsOutput>();

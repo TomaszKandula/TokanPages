@@ -45,7 +45,7 @@ public static class Dependencies
     public static void CommonServices(this IServiceCollection services, IConfiguration configuration)
     {
         SetupLogger(services);
-        SetupServices(services, configuration);
+        SetupServices(services);
         SetupValidators(services);
         SetupMediatR(services);
         WebTokenSupport.SetupWebToken(services, configuration);
@@ -66,7 +66,7 @@ public static class Dependencies
         });
     }
 
-    private static void SetupServices(IServiceCollection services, IConfiguration configuration) 
+    private static void SetupServices(IServiceCollection services) 
     {
         services.AddHttpContextAccessor();
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
