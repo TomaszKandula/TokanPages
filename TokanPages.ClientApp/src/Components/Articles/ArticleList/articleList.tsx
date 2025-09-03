@@ -109,8 +109,8 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             onKeyUp={onKeyHandler}
             onChange={onInputHandler}
             value={form}
-            searchEmptyText1={content?.search?.emptyText1}
-            searchEmptyText2={content?.search?.emptyText2}
+            searchEmptyText1={content?.labels?.textEmptySearch1}
+            searchEmptyText2={content?.labels?.textEmptySearch2}
             buttonSearch={{
                 isSearchDisabled: isSearchDisabled,
                 label: content?.labels?.buttonSearch,

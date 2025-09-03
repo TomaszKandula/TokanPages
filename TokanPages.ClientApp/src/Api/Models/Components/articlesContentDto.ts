@@ -1,9 +1,8 @@
-import { SearchLabelsDto, SearchNotFoundDto } from "./Common";
+import { SearchLabelsDto } from "./Common";
 
 export interface ArticlesContentDto {
     language: string;
     caption: string;
     labels: SearchLabelsDto;
-    search: SearchNotFoundDto;
     content: string[];
 }
