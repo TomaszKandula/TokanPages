@@ -141,6 +141,10 @@ export const ContentPageData: ContentPageDataState = {
                 buttonSearch: "",
                 buttonClear: "",
             },
+            search: {
+                emptyText1: "",
+                emptyText2: "",
+            },
             content: [""],
         },
         sectionArticle: {
