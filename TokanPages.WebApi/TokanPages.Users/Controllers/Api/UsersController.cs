@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
 using MediatR;
+using Microsoft.AspNetCore.RateLimiting;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Persistence.Caching.Abstractions;
@@ -42,6 +43,7 @@ public class UsersController : ApiBaseController
     /// <returns>Object.</returns>
     [HttpPost]
     [Route("[action]")]
+    [EnableRateLimiting("SigninRateLimiter")]
     [ProducesResponseType(typeof(AuthenticateUserCommandResult), StatusCodes.Status200OK)]
     public async Task<AuthenticateUserCommandResult> AuthenticateUser([FromBody] AuthenticateUserDto payload)
         => await Mediator.Send(UsersMapper.MapToAuthenticateUserCommand(payload));
@@ -53,6 +55,7 @@ public class UsersController : ApiBaseController
     /// <returns>Object.</returns>
     [HttpPost]
     [Route("[action]")]
+    [EnableRateLimiting("SigninRateLimiter")]
     [ProducesResponseType(typeof(ReAuthenticateUserCommandResult), StatusCodes.Status200OK)]
     public async Task<ReAuthenticateUserCommandResult> ReAuthenticateUser([FromBody] ReAuthenticateUserDto payload)
         => await Mediator.Send(UsersMapper.MapToReAuthenticateUserCommand(payload));
