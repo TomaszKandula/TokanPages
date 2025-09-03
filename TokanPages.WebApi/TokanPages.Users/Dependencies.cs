@@ -84,6 +84,7 @@ public static class Dependencies
 	private static void SetupServices(IServiceCollection services, IConfiguration configuration) 
 	{
 		services.AddHttpContextAccessor();
+		services.AddLimiter(configuration);
 		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
 		services.AddScoped<ICookieAccessor, CookieAccessor>();
 		services.AddScoped<IWebTokenUtility, WebTokenUtility>();

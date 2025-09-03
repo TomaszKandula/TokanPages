@@ -100,6 +100,7 @@ public class Startup
         builder.UseAuthentication();
         builder.UseAuthorization();
         builder.SetupSwaggerUi(_configuration, _environment, ApiName, DocVersion);
+        builder.UseRateLimiter();
         builder.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();
