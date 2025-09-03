@@ -40,7 +40,7 @@ public class NewslettersCache : INewslettersCache
 
         var key = $"{_environment.EnvironmentName}:newsletters";
         var value = await _redisDistributedCache.GetObjectAsync<List<GetNewslettersQueryResult>>(key);
-        if (value is not null && value.Any()) return value;
+        if (value is not null && value.Count > 0) return value;
 
         value = await _mediator.Send(new GetNewslettersQuery());
         await _redisDistributedCache.SetObjectAsync(key, value);

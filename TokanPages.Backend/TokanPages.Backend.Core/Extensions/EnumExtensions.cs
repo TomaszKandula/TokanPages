@@ -11,7 +11,7 @@ public static class EnumExtensions
         var field = value.GetType().GetField(value.ToString());
 
         if (field?.GetCustomAttributes(typeof(DescriptionAttribute), false) 
-                is DescriptionAttribute[] attributes && attributes.Any())
+                is DescriptionAttribute[] attributes && attributes.Length != 0)
             return attributes.First().Description;
 
         return value.ToString();

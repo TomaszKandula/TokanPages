@@ -29,7 +29,7 @@ public class RemoveChatCacheCommandHandler : RequestHandler<RemoveChatCacheComma
                 .Where(cache => cache.ChatKey == request.ChatKey)
                 .ToListAsync(cancellationToken);
 
-            if (!cache.Any())
+            if (cache.Count == 0)
                 return Unit.Value;
 
             DatabaseContext.RemoveRange(cache);

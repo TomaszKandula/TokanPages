@@ -47,7 +47,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
             .Where(users => users.EmailAddress == request.EmailAddress)
             .ToListAsync(cancellationToken);
 
-        if (emails.Any())
+        if (emails.Count > 0)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
         user.IsActivated = request.IsActivated ?? user.IsActivated;
