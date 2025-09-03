@@ -11,10 +11,10 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => {
             <div className="is-flex is-flex-direction-column is-align-items-center is-align-content-center is-gap-1.5">
                 <Icon name="FolderSearch" size={8} className="has-text-grey-light" />
                 <p className="is-size-3 has-text-weight-medium has-text-grey-dark">
-                    No results found
+                    {props.searchEmptyText1}
                 </p>
                 <p className="is-size-6 has-text-weight-light has-text-grey-dark">
-                    Try adjusting your search or filter to find what you are looking for.
+                    {props.searchEmptyText2}
                 </p>
             </div>
         );
@@ -158,7 +158,7 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
             <div className={props.isMobile ? "p-4" : "py-4"}>
                 <RenderStaticText {...props} />
                 <RenderPagination {...props} />
-                {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
+                {props.isLoading ? <ProgressBar /> : <RenderContent {...props} />}
                 <RenderPagination {...props} />
             </div>
         </div>
