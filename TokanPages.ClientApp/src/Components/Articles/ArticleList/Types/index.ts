@@ -15,6 +15,8 @@ export interface SearchInputProps {
 
 export interface ArticlesProps {
     articles: ArticleItem[];
+    searchEmptyText1: string;
+    searchEmptyText2: string;
 }
 
 export interface SearchButtonProps extends ActionButtonProps {

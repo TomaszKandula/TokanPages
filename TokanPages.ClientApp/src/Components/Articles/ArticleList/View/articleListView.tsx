@@ -5,22 +5,34 @@ import { ArticleListViewProps, RenderContentProps, RenderStaticTextProps } from 
 import { v4 as uuidv4 } from "uuid";
 import "./articleListView.css";
 
-const RenderContent = (props: RenderContentProps): React.ReactElement => (
-    <>
-        {props.articles.map((item: ArticleItem) => (
-            <ArticleCard
-                title={item.title}
-                description={item.description}
-                id={item.id}
-                key={item.id}
-                languageIso={item.languageIso}
-                canAnimate={true}
-                readCount={item.readCount}
-                totalLikes={item.totalLikes}
-            />
-        ))}
-    </>
-);
+const RenderContent = (props: RenderContentProps): React.ReactElement => {
+    if (props.articles.length === 0) {
+        return (
+            <div className="is-flex is-flex-direction-column is-align-items-center is-align-content-center is-gap-1.5">
+                <Icon name="FolderSearch" size={8} className="has-text-grey-light" />
+                <p className="is-size-3 has-text-weight-medium has-text-grey-dark">{props.searchEmptyText1}</p>
+                <p className="is-size-6 has-text-weight-light has-text-grey-dark">{props.searchEmptyText2}</p>
+            </div>
+        );
+    }
+
+    return (
+        <>
+            {props.articles.map((item: ArticleItem) => (
+                <ArticleCard
+                    title={item.title}
+                    description={item.description}
+                    id={item.id}
+                    key={item.id}
+                    languageIso={item.languageIso}
+                    canAnimate={false}
+                    readCount={item.readCount}
+                    totalLikes={item.totalLikes}
+                />
+            ))}
+        </>
+    );
+};
 
 const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
     <div className="bulma-card">
@@ -142,7 +154,7 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
             <div className={props.isMobile ? "p-4" : "py-4"}>
                 <RenderStaticText {...props} />
                 <RenderPagination {...props} />
-                {props.isLoading ? <ProgressBar /> : <RenderContent articles={props.articles} />}
+                {props.isLoading ? <ProgressBar /> : <RenderContent {...props} />}
                 <RenderPagination {...props} />
             </div>
         </div>

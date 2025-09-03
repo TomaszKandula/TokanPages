@@ -107,10 +107,7 @@ Object {
                 </li>
               </ul>
             </nav>
-            <div
-              data-aos="fade-up"
-              data-aos-delay="0"
-            >
+            <div>
               <div
                 class="bulma-box is-flex p-0 mb-6 article-box-card"
               >
@@ -350,10 +347,7 @@ Object {
               </li>
             </ul>
           </nav>
-          <div
-            data-aos="fade-up"
-            data-aos-delay="0"
-          >
+          <div>
             <div
               class="bulma-box is-flex p-0 mb-6 article-box-card"
             >

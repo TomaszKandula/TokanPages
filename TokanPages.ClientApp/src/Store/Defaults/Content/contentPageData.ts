@@ -140,6 +140,8 @@ export const ContentPageData: ContentPageDataState = {
                 placeholder: "",
                 buttonSearch: "",
                 buttonClear: "",
+                textEmptySearch1: "",
+                textEmptySearch2: "",
             },
             content: [""],
         },
