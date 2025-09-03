@@ -21,7 +21,7 @@ public class GetPaymentTypeQueryHandler : RequestHandler<GetPaymentTypeQuery, IL
             })
             .WhereIf(
                 !string.IsNullOrWhiteSpace(request.FilterBy), 
-                response => response.PaymentType == request.FilterBy.ToUpper())
+                response => response.PaymentType.Equals(request.FilterBy, StringComparison.InvariantCultureIgnoreCase))
             .ToList();
 
         LoggerService.LogInformation($"Returned {result.Count} payment type(s)");
