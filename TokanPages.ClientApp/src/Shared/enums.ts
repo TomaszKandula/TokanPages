@@ -26,3 +26,12 @@ export enum UserNoteActionResult {
     noteAdded,
     noteRejected,
 }
+
+export enum FigoureSize {
+    xs,
+    s,
+    m,
+    l,
+    xl,
+    xxl,
+}
