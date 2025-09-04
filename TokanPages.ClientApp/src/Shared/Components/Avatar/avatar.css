@@ -1,11 +1,41 @@
-.default-avatar-small {
-    height: 48px;
-    width: 48px;
+.avatar-is-16x16 {
+    height: 16px !important;
+    width: 16px !important;
+    object-fit: cover;
     border-radius: 50%;
 }
 
-.default-avatar-large {
-    height: 96px;
-    width: 96px;
+.avatar-is-24x24 {
+    height: 24px !important;
+    width: 24px !important;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatar-is-32x32 {
+    height: 32px !important;
+    width: 32px !important;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatar-is-48x48 {
+    height: 48px !important;
+    width: 48px !important;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatar-is-96x96 {
+    height: 96px !important;
+    width: 96px !important;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.avatar-is-128x128 {
+    height: 128px !important;
+    width: 128px !important;
+    object-fit: cover;
     border-radius: 50%;
 }
