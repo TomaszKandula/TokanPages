@@ -17,7 +17,7 @@ interface NavbarItemWithSubitemsProps extends ItemDto {
 
 const NavbarItemWithSubitems = (props: NavbarItemWithSubitemsProps): React.ReactElement => (
     <div className="bulma-navbar-item bulma-has-dropdown bulma-is-hoverable">
-        <a className={`bulma-navbar-link ${props.selectionStyle}`}>{props.value}</a>
+        <a className={`bulma-navbar-link is-transparent ${props.selectionStyle}`}>{props.value}</a>
         <div className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right">
             {props.subitems?.map((item: SubitemDto, _index: number) => (
                 <Link className="bulma-navbar-item" key={item.id} to={item.link as string} isDisabled={!item.enabled}>
@@ -44,7 +44,7 @@ const NavbarItemWithoutSubitems = (props: NavbarItemWithoutSubitemsProps): React
 );
 
 const selectionClass = "render-navbar-list-item-text render-navbar-list-item-text-selected";
-const selectionBase = "render-navbar-list-item-text";
+const selectionBase = "render-navbar-list-item-text ";
 
 export const RenderNavbarItem = (props: ItemDto): React.ReactElement => {
     const dispatch = useDispatch();

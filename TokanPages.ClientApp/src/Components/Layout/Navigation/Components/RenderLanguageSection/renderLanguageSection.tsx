@@ -11,7 +11,7 @@ const baseStyle = "bulma-navbar-item bulma-has-dropdown mr-4";
 
 const RenderSelection = (props: BaseProperties): React.ReactElement => (
     <div className={`${baseStyle} ${props.isLanguageMenuOpen ? "bulma-is-active" : ""}`}>
-        <a className="bulma-navbar-link" onClick={props.languageMenuHandler}>
+        <a className="bulma-navbar-link is-transparent" onClick={props.languageMenuHandler}>
             <CustomImage
                 base={GET_FLAG_URL}
                 source={`${props.languageId}.png`}
