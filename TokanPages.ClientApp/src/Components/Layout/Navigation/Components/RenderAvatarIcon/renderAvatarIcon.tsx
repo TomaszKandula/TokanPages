@@ -9,7 +9,7 @@ const ANONYMOUS_LETTER = "A";
 const RenderAvatar = (props: BaseProperties): React.ReactElement => {
     if (props.isAnonymous) {
         return (
-            <Avatar alt="User avatar" title="Avatar" size={FigoureSize.m}>
+            <Avatar alt="User avatar" title="Avatar" size={FigoureSize.medium}>
                 {ANONYMOUS_LETTER}
             </Avatar>
         );
@@ -17,12 +17,12 @@ const RenderAvatar = (props: BaseProperties): React.ReactElement => {
 
     if (Validate.isEmpty(props.avatarName)) {
         return (
-            <Avatar alt="User avatar" title="Avatar" size={FigoureSize.m}>
+            <Avatar alt="User avatar" title="Avatar" size={FigoureSize.medium}>
                 {props.aliasName?.charAt(0).toUpperCase()}
             </Avatar>
         );
     } else {
-        return <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} size={FigoureSize.m} />;
+        return <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} size={FigoureSize.medium} />;
     }
 };
 

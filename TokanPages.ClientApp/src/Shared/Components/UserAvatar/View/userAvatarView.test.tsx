@@ -6,13 +6,13 @@ import { UserAvatarView } from "./userAvatarView";
 
 describe("test user avatar component", () => {
     it("should correctly render large user avatar as user letter.", () => {
-        const html = render(<UserAvatarView size={FigoureSize.l} userLetter={"T"} avatarSource={""} />);
+        const html = render(<UserAvatarView size={FigoureSize.large} userLetter={"T"} avatarSource={""} />);
 
         expect(html).toMatchSnapshot();
     });
 
     it("should correctly render small user avatar as user letter.", () => {
-        const html = render(<UserAvatarView size={FigoureSize.s} userLetter={"T"} avatarSource={""} />);
+        const html = render(<UserAvatarView size={FigoureSize.small} userLetter={"T"} avatarSource={""} />);
 
         expect(html).toMatchSnapshot();
     });
@@ -20,7 +20,7 @@ describe("test user avatar component", () => {
     it("should correctly render large user avatar image.", () => {
         const html = render(
             <UserAvatarView
-                size={FigoureSize.l}
+                size={FigoureSize.large}
                 userLetter={"T"}
                 avatarSource={"http://localhost/api/v1/assets/avatars/example_avatar.jpg"}
             />
@@ -32,7 +32,7 @@ describe("test user avatar component", () => {
     it("should correctly render small user avatar image.", () => {
         const html = render(
             <UserAvatarView
-                size={FigoureSize.s}
+                size={FigoureSize.small}
                 userLetter={"T"}
                 avatarSource={"http://localhost/api/v1/assets/avatars/example_avatar.jpg"}
             />

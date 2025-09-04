@@ -115,7 +115,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             renderSmallAvatar={
                 <UserAvatar
                     userId={selection.article.author.userId}
-                    size={FigoureSize.l}
+                    size={FigoureSize.large}
                     avatarName={selection.article.author.avatarName}
                     userLetter={userLetter}
                 />
@@ -123,7 +123,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             renderLargeAvatar={
                 <UserAvatar
                     userId={selection.article.author.userId}
-                    size={FigoureSize.xl}
+                    size={FigoureSize.extralarge}
                     avatarName={selection.article.author.avatarName}
                     userLetter={userLetter}
                 />

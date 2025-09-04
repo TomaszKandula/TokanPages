@@ -28,10 +28,10 @@ export enum UserNoteActionResult {
 }
 
 export enum FigoureSize {
-    xs,
-    s,
-    m,
-    l,
-    xl,
-    xxl,
+    extrasmall,
+    small,
+    medium,
+    large,
+    extralarge,
+    superlarge,
 }

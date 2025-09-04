@@ -13,17 +13,17 @@ interface AvatarProps {
 
 const ConvertSize = (size: FigoureSize, prefix: string = "bulma"): string => {
     switch (size) {
-        case FigoureSize.xs:
+        case FigoureSize.extrasmall:
             return `${prefix}-is-16x16`;
-        case FigoureSize.s:
+        case FigoureSize.small:
             return `${prefix}-is-24x24`;
-        case FigoureSize.m:
+        case FigoureSize.medium:
             return `${prefix}-is-32x32`;
-        case FigoureSize.l:
+        case FigoureSize.large:
             return `${prefix}-is-48x48`;
-        case FigoureSize.xl:
+        case FigoureSize.extralarge:
             return `${prefix}-is-96x96`;
-        case FigoureSize.xxl:
+        case FigoureSize.superlarge:
             return `${prefix}-is-128x128`;
     }
 }

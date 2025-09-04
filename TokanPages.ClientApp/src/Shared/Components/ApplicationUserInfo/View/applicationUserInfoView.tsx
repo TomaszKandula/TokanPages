@@ -43,7 +43,7 @@ export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): Re
                 <header className="bulma-modal-card-head">
                     <UserAvatar
                         userId={props.data?.userId}
-                        size={FigoureSize.l}
+                        size={FigoureSize.large}
                         avatarName={props.data?.avatarName}
                         userLetter={props.data?.aliasName?.charAt(0).toUpperCase()}
                     />
