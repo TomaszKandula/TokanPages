@@ -1,7 +1,8 @@
 import { ApplicationAction } from "../../Configuration";
-import { ArticleItem } from "../../../Shared/Components/RenderContent/Models";
 import { ExecuteStoreActionProps, GET_ARTICLES } from "../../../Api";
 import { useApiAction } from "../../../Shared/Hooks";
+import { GetArticlesDto } from "../../../Api/Models";
+import Validate from "validate.js";
 
 export const REQUEST = "REQUEST_ARTICLES";
 export const RECEIVE = "RECEIVE_ARTICLES";
@@ -10,26 +11,34 @@ interface Request {
 }
 interface Receive {
     type: typeof RECEIVE;
-    payload: ArticleItem[];
+    payload: GetArticlesDto;
 }
 export type TKnownActions = Request | Receive;
 
 export const ArticleListingAction = {
-    get: (): ApplicationAction<TKnownActions> => (dispatch, getState) => {
-        dispatch({ type: REQUEST });
+    get:
+        (pageNumber: number, pageSize: number, phrase?: string): ApplicationAction<TKnownActions> =>
+        (dispatch, getState) => {
+            dispatch({ type: REQUEST });
 
-        const actions = useApiAction();
-        const input: ExecuteStoreActionProps = {
-            url: GET_ARTICLES,
-            dispatch: dispatch,
-            state: getState,
-            responseType: RECEIVE,
-            configuration: {
-                method: "GET",
-                hasJsonResponse: true,
-            },
-        };
+            const actions = useApiAction();
+            const baseParams = "orderByColumn=createdAt&orderByAscending=false&isPublished=true&noCache=false";
+            let url = `${GET_ARTICLES}?pageNumber=${pageNumber}&pageSize=${pageSize}&${baseParams}`;
+            if (!Validate.isEmpty(phrase)) {
+                url = `${GET_ARTICLES}?pageNumber=${pageNumber}&pageSize=${pageSize}&${baseParams}&phrase=${phrase}`;
+            }
 
-        actions.storeAction(input);
-    },
+            const input: ExecuteStoreActionProps = {
+                url: url,
+                dispatch: dispatch,
+                state: getState,
+                responseType: RECEIVE,
+                configuration: {
+                    method: "GET",
+                    hasJsonResponse: true,
+                },
+            };
+
+            actions.storeAction(input);
+        },
 };

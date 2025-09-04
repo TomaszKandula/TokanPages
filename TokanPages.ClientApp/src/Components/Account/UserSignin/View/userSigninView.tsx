@@ -170,7 +170,7 @@ const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
                         <Icon name="AccountCircle" size={3.75} className="card-icon-colour" />
                     </Skeleton>
                     <Skeleton isLoading={props.isLoading} mode="Text">
-                        <p className="is-size-3 has-text-black">{props.caption}</p>
+                        <h2 className="is-size-3 has-text-black">{props.caption}</h2>
                     </Skeleton>
                 </div>
                 <div className="my-5">
@@ -205,7 +205,7 @@ const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
                 </div>
             </div>
             <Skeleton isLoading={props.isLoading} mode="Rect" height={90}>
-                <Notification text={props.consent} />
+                <Notification text={props.consent} hasIcon />
             </Skeleton>
             <div className="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ReactChangeEvent } from "../../../../Shared/types";
 import { Icon, UserAvatar } from "../../../../Shared/Components";
+import { FigoureSize } from "../../../../Shared/enums";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
@@ -28,7 +29,7 @@ export const UploadUserMediaView = (props: Properties): React.ReactElement => {
                 onChange={props.inputHandler}
             />
             {hasPreviewImage ? (
-                <UserAvatar altSource={props.previewImage} isLarge={false} className="is-clickable" />
+                <UserAvatar altSource={props.previewImage} size={FigoureSize.large} className="is-clickable" />
             ) : (
                 <Icon name="CloudUpload" size={1.5} className="has-text-grey is-clickable" />
             )}

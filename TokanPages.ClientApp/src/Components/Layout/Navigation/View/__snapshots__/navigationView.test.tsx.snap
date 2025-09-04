@@ -10,9 +10,10 @@ Object {
         style="top: 0px; min-height: 64px;"
       >
         <div
-          class="bulma-navbar-start is-flex is-align-self-center"
+          class="bulma-navbar-start render-toolbar-constraints-start"
         >
           <a
+            class="is-flex is-align-self-center"
             href="/en"
             rel="noopener nofollow"
           >
@@ -28,24 +29,20 @@ Object {
           </a>
         </div>
         <div
-          class="is-flex is-align-self-center"
-        >
-          <div
-            class="is-flex is-flex-wrap-nowrap is-justify-content-space-between is-align-items-center"
-          />
-        </div>
+          class="bulma-navbar is-flex is-flex-wrap-wrap"
+        />
         <div
-          class="bulma-navbar-end"
+          class="bulma-navbar-end render-toolbar-constraints-end"
         >
           <div
             class="bulma-navbar-item bulma-has-dropdown mr-4 "
           >
             <a
-              class="bulma-navbar-link"
+              class="bulma-navbar-link is-transparent"
             >
               <img
                 alt="A flag (en) for current language selection"
-                class="bulma-image bulma-is-16x16"
+                class="bulma-image bulma-is-16x16 is-round-border"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                 title="Language flag"
@@ -62,7 +59,7 @@ Object {
               >
                 <img
                   alt="A flag (English) symbolizing available language"
-                  class="bulma-image bulma-is-16x16 mr-4"
+                  class="bulma-image bulma-is-16x16 is-round-border mr-4"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                   title="Language flag"
@@ -89,7 +86,7 @@ Object {
               >
                 <img
                   alt="A flag (Polski) symbolizing available language"
-                  class="bulma-image bulma-is-16x16 mr-4"
+                  class="bulma-image bulma-is-16x16 is-round-border mr-4"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
                   title="Language flag"
@@ -100,20 +97,6 @@ Object {
               </a>
             </div>
           </div>
-          <button
-            class="icon-button mr-4 is-flex is-align-self-center"
-            style="height: 48px; width: 48px;"
-          >
-            <figure
-              class="bulma-image "
-            >
-              <img
-                alt="User avatar"
-                class="bulma-is-rounded"
-                title="Avatar"
-              />
-            </figure>
-          </button>
         </div>
       </nav>
     </div>
@@ -124,9 +107,10 @@ Object {
       style="top: 0px; min-height: 64px;"
     >
       <div
-        class="bulma-navbar-start is-flex is-align-self-center"
+        class="bulma-navbar-start render-toolbar-constraints-start"
       >
         <a
+          class="is-flex is-align-self-center"
           href="/en"
           rel="noopener nofollow"
         >
@@ -142,24 +126,20 @@ Object {
         </a>
       </div>
       <div
-        class="is-flex is-align-self-center"
-      >
-        <div
-          class="is-flex is-flex-wrap-nowrap is-justify-content-space-between is-align-items-center"
-        />
-      </div>
+        class="bulma-navbar is-flex is-flex-wrap-wrap"
+      />
       <div
-        class="bulma-navbar-end"
+        class="bulma-navbar-end render-toolbar-constraints-end"
       >
         <div
           class="bulma-navbar-item bulma-has-dropdown mr-4 "
         >
           <a
-            class="bulma-navbar-link"
+            class="bulma-navbar-link is-transparent"
           >
             <img
               alt="A flag (en) for current language selection"
-              class="bulma-image bulma-is-16x16"
+              class="bulma-image bulma-is-16x16 is-round-border"
               loading="lazy"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
               title="Language flag"
@@ -176,7 +156,7 @@ Object {
             >
               <img
                 alt="A flag (English) symbolizing available language"
-                class="bulma-image bulma-is-16x16 mr-4"
+                class="bulma-image bulma-is-16x16 is-round-border mr-4"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
                 title="Language flag"
@@ -203,7 +183,7 @@ Object {
             >
               <img
                 alt="A flag (Polski) symbolizing available language"
-                class="bulma-image bulma-is-16x16 mr-4"
+                class="bulma-image bulma-is-16x16 is-round-border mr-4"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
                 title="Language flag"
@@ -214,20 +194,6 @@ Object {
             </a>
           </div>
         </div>
-        <button
-          class="icon-button mr-4 is-flex is-align-self-center"
-          style="height: 48px; width: 48px;"
-        >
-          <figure
-            class="bulma-image "
-          >
-            <img
-              alt="User avatar"
-              class="bulma-is-rounded"
-              title="Avatar"
-            />
-          </figure>
-        </button>
       </div>
     </nav>
   </div>,

@@ -244,7 +244,7 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
 
 export const RenderTitle = (props: DataProps): React.ReactElement => {
     return (
-        <RenderHtml value={props.value ?? NO_CONTENT} tag="h1" className="bulma-title has-text-grey-dark pt-2 pb-2" />
+        <RenderHtml value={props.value ?? NO_CONTENT} tag="h2" className="bulma-title has-text-grey-dark pt-2 pb-2" />
     );
 };
 
@@ -252,25 +252,25 @@ export const RenderSubtitle = (props: DataProps): React.ReactElement => {
     return (
         <RenderHtml
             value={props.value ?? NO_CONTENT}
-            tag="h2"
+            tag="h3"
             className="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 p-0"
         />
     );
 };
 
 export const RenderHeader1 = (props: DataProps): React.ReactElement => {
-    return <RenderHtml value={props.value ?? NO_CONTENT} tag="h1" className="bulma-title has-text-grey-dark" />;
+    return <RenderHtml value={props.value ?? NO_CONTENT} tag="h2" className="bulma-title has-text-grey-dark" />;
 };
 
 export const RenderHeader2 = (props: DataProps): React.ReactElement => {
-    return <RenderHtml value={props.value ?? NO_CONTENT} tag="h2" className="bulma-subtitle has-text-grey-dark" />;
+    return <RenderHtml value={props.value ?? NO_CONTENT} tag="h3" className="bulma-subtitle has-text-grey-dark" />;
 };
 
 export const RenderParagraphWithDropCap = (props: DataProps): React.ReactElement => {
     return (
         <RenderHtml
             value={props.value ?? NO_CONTENT}
-            tag="h3"
+            tag="h4"
             className="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap"
         />
     );

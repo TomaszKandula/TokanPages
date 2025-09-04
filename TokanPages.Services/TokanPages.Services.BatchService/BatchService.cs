@@ -121,7 +121,7 @@ public class BatchService : IBatchService
             .Select(processing => processing.Id)
             .ToListAsync(cancellationToken);
 
-        if (!processingList.Any())
+        if (processingList.Count == 0)
         {
             _loggerService.LogInformation("No new invoices to process.");
             return;
@@ -243,7 +243,7 @@ public class BatchService : IBatchService
             }
         }
 
-        if (issuedInvoices.Any())
+        if (issuedInvoices.Count != 0)
         {
             await _databaseContext.IssuedInvoices.AddRangeAsync(issuedInvoices, cancellationToken);
             await _databaseContext.SaveChangesAsync(cancellationToken);

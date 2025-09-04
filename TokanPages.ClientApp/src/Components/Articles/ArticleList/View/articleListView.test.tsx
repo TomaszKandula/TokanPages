@@ -44,7 +44,36 @@ describe("test articles group component: ArticleListView", () => {
 
         const html = render(
             <Router>
-                <ArticleListView isLoading={false} isMobile={false} articles={[articles]} />
+                <ArticleListView
+                    isLoading={false}
+                    isMobile={false}
+                    isContentLoading={false}
+                    pageData={{
+                        pageNumber: 1,
+                        pageSize: 5,
+                        totalSize: 10,
+                        onClick: jest.fn(),
+                    }}
+                    articles={[articles]}
+                    title=""
+                    text={[""]}
+                    placeholder=""
+                    value={{ searchInput: "" }}
+                    searchEmptyText1="Not Found"
+                    searchEmptyText2="Try again..."
+                    onChange={jest.fn()}
+                    onKeyUp={jest.fn()}
+                    buttonSearch={{
+                        isSearchDisabled: false,
+                        label: "",
+                        onClick: jest.fn(),
+                    }}
+                    buttonClear={{
+                        isClearDisabled: false,
+                        label: "",
+                        onClick: jest.fn(),
+                    }}
+                />
             </Router>
         );
 

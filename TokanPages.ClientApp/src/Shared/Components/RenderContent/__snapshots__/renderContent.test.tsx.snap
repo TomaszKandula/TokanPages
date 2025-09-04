@@ -90,20 +90,20 @@ Object {
         class="bulma-content m-0 p-0 "
         data-testid="render-content"
       >
-        <h1
+        <h2
           class="bulma-title has-text-grey-dark pt-2 pb-2"
         >
           <p>
             Test line
           </p>
-        </h1>
-        <h2
+        </h2>
+        <h3
           class="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 p-0"
         >
           <p>
             Test line
           </p>
-        </h2>
+        </h3>
         <div
           class="bulma-card my-6"
         >
@@ -122,13 +122,13 @@ Object {
             </figure>
           </div>
         </div>
-        <h3
+        <h4
           class="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap"
         >
           <p>
             Test line
           </p>
-        </h3>
+        </h4>
         <p
           class="is-size-5 has-text-grey-dark line-height-22"
         >
@@ -249,14 +249,19 @@ Object {
             <figure
               class="bulma-image"
             >
-              <img
-                alt="Video related to the presented article text"
-                loading="lazy"
-                src="http://localhost:5000/api/v1cheers-commercial.png"
-                title="Video"
+              <video
+                controls=""
+                poster="http://localhost:5000/api/v1cheers-commercial.png"
+                src="http://localhost:5000/api/v1cheers-commercial.mp4"
+                style="border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem;"
+                title="Video related to the presented article text"
+                width="100%"
               />
             </figure>
           </div>
+          <hr
+            class="m-0"
+          />
           <div
             class="bulma-card-content"
           >
@@ -278,20 +283,20 @@ Object {
       class="bulma-content m-0 p-0 "
       data-testid="render-content"
     >
-      <h1
+      <h2
         class="bulma-title has-text-grey-dark pt-2 pb-2"
       >
         <p>
           Test line
         </p>
-      </h1>
-      <h2
+      </h2>
+      <h3
         class="bulma-subtitle has-text-grey-dark has-text-weight-normal m-0 p-0"
       >
         <p>
           Test line
         </p>
-      </h2>
+      </h3>
       <div
         class="bulma-card my-6"
       >
@@ -310,13 +315,13 @@ Object {
           </figure>
         </div>
       </div>
-      <h3
+      <h4
         class="is-size-5 has-text-grey-dark has-text-weight-normal line-height-22 custom-drop-cap"
       >
         <p>
           Test line
         </p>
-      </h3>
+      </h4>
       <p
         class="is-size-5 has-text-grey-dark line-height-22"
       >
@@ -437,14 +442,19 @@ Object {
           <figure
             class="bulma-image"
           >
-            <img
-              alt="Video related to the presented article text"
-              loading="lazy"
-              src="http://localhost:5000/api/v1cheers-commercial.png"
-              title="Video"
+            <video
+              controls=""
+              poster="http://localhost:5000/api/v1cheers-commercial.png"
+              src="http://localhost:5000/api/v1cheers-commercial.mp4"
+              style="border-top-left-radius: 0.75rem; border-top-right-radius: 0.75rem;"
+              title="Video related to the presented article text"
+              width="100%"
             />
           </figure>
         </div>
+        <hr
+          class="m-0"
+        />
         <div
           class="bulma-card-content"
         >

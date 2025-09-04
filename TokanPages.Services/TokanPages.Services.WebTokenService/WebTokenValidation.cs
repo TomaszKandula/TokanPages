@@ -28,14 +28,14 @@ public class WebTokenValidation : IWebTokenValidation
     public string GetWebTokenFromHeader()
     {
         var authorizationHeader = _httpContextAccessor.HttpContext?.Request.Headers[Authorization];
-        if (authorizationHeader is not null && !authorizationHeader.Value.Any()) 
+        if (authorizationHeader is not null && authorizationHeader.Value.Count == 0) 
             return string.Empty;
 
         var token = _httpContextAccessor.HttpContext?.Request.Headers[Authorization].ToArray();
-        if (token == null) 
+        var bearer = token?[0]?.Split(' ');
+        if (bearer is null) 
             return string.Empty;
 
-        var bearer = token[0].Split(' ');
         return bearer.Length > 0 && string.IsNullOrEmpty(bearer[1]) 
             ? string.Empty 
             : bearer[1];

@@ -26,16 +26,16 @@ Object {
             <div
               class="article-box-content-text"
             >
-              <h2
+              <p
                 class="is-size-4 has-text-black-ter"
               >
                 Article title
-              </h2>
-              <h3
+              </p>
+              <p
                 class="is-size-6 has-text-grey has-text-weight-normal m-0"
               >
                 Article short description
-              </h3>
+              </p>
             </div>
             <div
               class="is-flex is-justify-content-space-between"
@@ -94,7 +94,7 @@ Object {
                 </div>
                 <img
                   alt="An article language flag"
-                  class="article-flag-image"
+                  class="article-flag-image is-round-border"
                   height="24"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
@@ -135,16 +135,16 @@ Object {
           <div
             class="article-box-content-text"
           >
-            <h2
+            <p
               class="is-size-4 has-text-black-ter"
             >
               Article title
-            </h2>
-            <h3
+            </p>
+            <p
               class="is-size-6 has-text-grey has-text-weight-normal m-0"
             >
               Article short description
-            </h3>
+            </p>
           </div>
           <div
             class="is-flex is-justify-content-space-between"
@@ -203,7 +203,7 @@ Object {
               </div>
               <img
                 alt="An article language flag"
-                class="article-flag-image"
+                class="article-flag-image is-round-border"
                 height="24"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"

@@ -121,7 +121,9 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                     <div className="bulma-cell is-flex is-flex-direction-column">
                         <div className="bulma-content header-content-box">
                             <Skeleton isLoading={isLoading} mode="Text" height={40}>
-                                <h1 className="is-size-1 has-text-grey-dark">{header?.caption}</h1>
+                                <p className="is-size-1 has-text-weight-bold has-text-grey-dark m-0">
+                                    {header?.caption}
+                                </p>
                             </Skeleton>
                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
                                 <RenderHtml
@@ -140,7 +142,7 @@ export const HeaderView = (props: HeaderViewProps): React.ReactElement => {
                             <Skeleton isLoading={isLoading} mode="Text" height={24}>
                                 <RenderHtml
                                     value={header?.hint}
-                                    tag="h3"
+                                    tag="p"
                                     className="has-text-weight-normal is-size-5 has-text-grey line-height-15 my-4"
                                 />
                             </Skeleton>

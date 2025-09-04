@@ -91,3 +91,26 @@ body {
 .card-icon-colour {
     color: hsla(233, 100%, 73%, 1);
 }
+
+.seo-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.is-round-border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: hsl(0, 0%, 71%);
+    border-radius: 50%;
+}
+
+.is-transparent {
+    background-color: transparent;
+}

@@ -22,7 +22,7 @@ public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQuery
             .Where(response => response.SystemCode != 0)
             .WhereIf(
                 !string.IsNullOrWhiteSpace(request.FilterBy), 
-                response => response.Currency == request.FilterBy.ToUpper())
+                response => response.Currency.Equals(request.FilterBy, StringComparison.InvariantCultureIgnoreCase))
             .ToList();
 
         LoggerService.LogInformation($"Returned {result.Count} currency code(s)");

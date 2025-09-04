@@ -1,7 +1,8 @@
+import { PresentationDto } from "./Common";
+
 export interface ContactFormContentDto {
     language: string;
     caption: string;
-    text: string;
     button: string;
     consent: string;
     labelFirstName: string;
@@ -9,4 +10,5 @@ export interface ContactFormContentDto {
     labelEmail: string;
     labelSubject: string;
     labelMessage: string;
+    presentation: PresentationDto;
 }

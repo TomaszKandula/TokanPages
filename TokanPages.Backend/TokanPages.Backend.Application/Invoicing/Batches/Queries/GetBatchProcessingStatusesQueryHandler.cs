@@ -21,7 +21,7 @@ public class GetBatchProcessingStatusesQueryHandler : RequestHandler<GetBatchPro
             })
             .WhereIf(
                 !string.IsNullOrEmpty(request.FilterBy), 
-                response => response.ProcessingStatus == request.FilterBy.ToUpper())
+                response => response.ProcessingStatus.Equals(request.FilterBy, StringComparison.InvariantCultureIgnoreCase))
             .ToList();
 
         LoggerService.LogInformation($"Returned {result.Count} batch processing status(es)");

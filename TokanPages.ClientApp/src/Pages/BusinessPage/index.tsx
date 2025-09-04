@@ -4,7 +4,7 @@ import { BusinessForm } from "../../Components/Business";
 import { Footer, Navigation } from "../../Components/Layout";
 
 export const BusinessPage = () => {
-    useUnhead("BusinessPage");
+    const heading = useUnhead("BusinessPage");
     useSnapshot();
     usePageContent(
         ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageBusinessForm"],
@@ -15,6 +15,7 @@ export const BusinessPage = () => {
         <>
             <Navigation />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 <BusinessForm hasIcon hasShadow />
             </main>
             <Footer />

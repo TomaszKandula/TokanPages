@@ -1,0 +1,7 @@
+.render-toolbar-constraints-start {
+    min-width: 220px;
+}
+
+.render-toolbar-constraints-end {
+    min-width: 100px;
+}

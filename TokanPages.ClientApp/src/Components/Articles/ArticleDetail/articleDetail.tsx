@@ -8,6 +8,7 @@ import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/co
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
 import { MapLanguage } from "../../../Shared/Services/Utilities";
 import { useDimensions } from "../../../Shared/Hooks";
+import { FigoureSize } from "../../../Shared/enums";
 import { ArticleContent } from "./Helpers/articleContent";
 import { LikesLeft } from "./Helpers/likesLeft";
 import { ReadTime } from "./Helpers/readTime";
@@ -114,7 +115,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             renderSmallAvatar={
                 <UserAvatar
                     userId={selection.article.author.userId}
-                    isLarge={false}
+                    size={FigoureSize.large}
                     avatarName={selection.article.author.avatarName}
                     userLetter={userLetter}
                 />
@@ -122,7 +123,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             renderLargeAvatar={
                 <UserAvatar
                     userId={selection.article.author.userId}
-                    isLarge={true}
+                    size={FigoureSize.extralarge}
                     avatarName={selection.article.author.avatarName}
                     userLetter={userLetter}
                 />

@@ -31,7 +31,7 @@ public static class DatabaseConnection
     {
         var databaseName = $"Db_{typeof(T).Name}_Migrator";
         ConsolePrints.PrintOnInfo($"[{Caller} | {typeof(T).Name}]: Getting connection for '{databaseName}'...");
-        return configuration.GetValue<string>($"{databaseName}");
+        return configuration.GetValue<string>($"{databaseName}") ?? "";
     }
 
     public static string GetNextDatabaseConnectionString<T>(string sourceConnection) where T : DbContext

@@ -22,7 +22,7 @@ public class GetCountryCodesQueryHandler : RequestHandler<GetCountryCodesQuery, 
             .Where(response => response.SystemCode != 0)
             .WhereIf(
                 !string.IsNullOrWhiteSpace(request.FilterBy), 
-                response => response.Country == request.FilterBy.ToUpper())
+                response => response.Country.Equals(request.FilterBy, StringComparison.InvariantCultureIgnoreCase))
             .ToList();
 
         LoggerService.LogInformation($"Returned {result.Count} country code(s)");

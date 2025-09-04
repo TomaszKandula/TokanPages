@@ -46,7 +46,7 @@ public class UsersCache : IUsersCache
 
         var key = $"{_environment.EnvironmentName}:users";
         var value = await _redisDistributedCache.GetObjectAsync<List<GetUsersQueryResult>>(key);
-        if (value is not null && value.Any()) return value;
+        if (value is not null && value.Count > 0) return value;
 
         value = await _mediator.Send(new GetUsersQuery());
         await _redisDistributedCache.SetObjectAsync(key, value);

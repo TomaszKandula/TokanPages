@@ -33,7 +33,7 @@ const getLinks = (language: ApplicationLanguageState, url: string): any[] => {
     return data;
 };
 
-export const useUnhead = (pageId: string): void => {
+export const useUnhead = (pageId: string): string => {
     const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     const [links, setLinks] = React.useState<any[]>([]);
@@ -81,4 +81,6 @@ export const useUnhead = (pageId: string): void => {
     };
 
     useHead(configuration);
+
+    return `tomkandula | ${title?.title}`;
 };

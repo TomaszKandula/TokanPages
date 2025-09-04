@@ -66,9 +66,9 @@ public class Startup
         services.SetupDockerInternalNetwork();
         services
             .AddHealthChecks()
-            .AddUrlGroup(new Uri(_configuration.GetValue<string>("Email_HealthUrl")), name: "EmailService")
-            .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext"), name: "SQLServer")
-            .AddAzureBlobStorage(_configuration.GetValue<string>("AZ_Storage_ConnectionString"), name: "AzureStorage");
+            .AddUrlGroup(new Uri(_configuration.GetValue<string>("Email_HealthUrl") ?? ""), name: "EmailService")
+            .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext") ?? "", name: "SQLServer")
+            .AddAzureBlobStorage(_configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "", name: "AzureStorage");
     }
 
     /// <summary>

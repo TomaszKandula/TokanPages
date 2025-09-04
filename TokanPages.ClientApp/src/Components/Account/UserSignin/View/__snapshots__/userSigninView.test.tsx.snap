@@ -38,17 +38,17 @@ Object {
                           />
                         </svg>
                       </div>
-                      <p
+                      <h2
                         class="is-size-3 has-text-black"
                       >
                         Sign in
-                      </p>
+                      </h2>
                     </div>
                     <div
                       class="my-5"
                     >
                       <div
-                        class="bulma-control  mb-5"
+                        class="bulma-control   mb-5"
                       >
                         <input
                           autocomplete="email"
@@ -108,7 +108,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="bulma-notification is-flex is-align-items-center "
+                    class="bulma-notification   is-flex is-align-items-center "
                   >
                     <div>
                       <svg
@@ -217,17 +217,17 @@ Object {
                         />
                       </svg>
                     </div>
-                    <p
+                    <h2
                       class="is-size-3 has-text-black"
                     >
                       Sign in
-                    </p>
+                    </h2>
                   </div>
                   <div
                     class="my-5"
                   >
                     <div
-                      class="bulma-control  mb-5"
+                      class="bulma-control   mb-5"
                     >
                       <input
                         autocomplete="email"
@@ -287,7 +287,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="bulma-notification is-flex is-align-items-center "
+                  class="bulma-notification   is-flex is-align-items-center "
                 >
                   <div>
                     <svg

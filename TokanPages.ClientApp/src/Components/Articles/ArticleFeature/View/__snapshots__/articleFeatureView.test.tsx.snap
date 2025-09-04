@@ -98,9 +98,11 @@ Object {
                             class="bulma-image"
                           >
                             <img
+                              alt="An image illustrating listed features"
                               class="article-feature-image article-feature-image-small"
                               loading="lazy"
                               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg"
+                              title="Illustration"
                             />
                           </figure>
                         </div>
@@ -134,11 +136,11 @@ Object {
                 <div
                   class="bulma-column is-align-self-center py-3 pr-0 article-feature-padding-left"
                 >
-                  <h2
+                  <h3
                     class="is-size-3 py-5 has-text-black"
                   >
                     .NET Core, Azure, databases and others.
-                  </h2>
+                  </h3>
                   <p
                     class="is-size-5 py-3 has-text-grey line-height-18"
                   >
@@ -266,9 +268,11 @@ Object {
                           class="bulma-image"
                         >
                           <img
+                            alt="An image illustrating listed features"
                             class="article-feature-image article-feature-image-small"
                             loading="lazy"
                             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/articles/image3.jpg"
+                            title="Illustration"
                           />
                         </figure>
                       </div>
@@ -302,11 +306,11 @@ Object {
               <div
                 class="bulma-column is-align-self-center py-3 pr-0 article-feature-padding-left"
               >
-                <h2
+                <h3
                   class="is-size-3 py-5 has-text-black"
                 >
                   .NET Core, Azure, databases and others.
-                </h2>
+                </h3>
                 <p
                   class="is-size-5 py-3 has-text-grey line-height-18"
                 >

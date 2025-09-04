@@ -7,10 +7,10 @@ import { Navigation, Footer } from "../../Components/Layout";
 import { ArticleList, ArticleDetail } from "../../Components/Articles";
 
 export const ArticlesPage = (): React.ReactElement => {
-    useUnhead("ArticlesPage");
+    const heading = useUnhead("ArticlesPage");
     useSnapshot();
     usePageContent(
-        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageArticle"],
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageArticle", "pageArticles"],
         "ArticlesPage"
     );
 
@@ -25,6 +25,7 @@ export const ArticlesPage = (): React.ReactElement => {
         <>
             <Navigation />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 <CustomBreadcrumb watchparam="title" isLoading={isLoading} />
                 {title ? <ProgressOnScroll height={3} bgcolor="#6367EF" duration={0.1} /> : null}
                 {title ? <ArticleDetail title={title} /> : <ArticleList />}

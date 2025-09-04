@@ -12,7 +12,7 @@ import { Navigation, Header, Footer } from "../../Components/Layout";
 import { Showcase } from "../../Components/Showcase";
 
 export const MainPage = (): React.ReactElement => {
-    useUnhead("MainPage");
+    const heading = useUnhead("MainPage");
     useSnapshot();
     usePageContent(
         [
@@ -38,6 +38,7 @@ export const MainPage = (): React.ReactElement => {
         <>
             <Navigation />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 <Header />
                 <Clients className="has-background-white-ter" />
                 <Technologies />
@@ -47,7 +48,7 @@ export const MainPage = (): React.ReactElement => {
                 <Testimonials />
                 <Socials className="has-background-white-bis" />
                 <NewsletterSection className="has-background-info-95" />
-                <ContactForm hasCaption={true} />
+                <ContactForm hasCaption={true} mode="section" />
             </main>
             <Footer />
         </>

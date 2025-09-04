@@ -11,13 +11,13 @@ const baseStyle = "bulma-navbar-item bulma-has-dropdown mr-4";
 
 const RenderSelection = (props: BaseProperties): React.ReactElement => (
     <div className={`${baseStyle} ${props.isLanguageMenuOpen ? "bulma-is-active" : ""}`}>
-        <a className="bulma-navbar-link" onClick={props.languageMenuHandler}>
+        <a className="bulma-navbar-link is-transparent" onClick={props.languageMenuHandler}>
             <CustomImage
                 base={GET_FLAG_URL}
                 source={`${props.languageId}.png`}
                 title="Language flag"
                 alt={`A flag (${props.languageId}) for current language selection`}
-                className="bulma-image bulma-is-16x16"
+                className="bulma-image bulma-is-16x16 is-round-border"
             />
             <div>{props.languageId?.toUpperCase()}</div>
         </a>
@@ -29,7 +29,7 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
                         source={`${item.id}.png`}
                         title="Language flag"
                         alt={`A flag (${item.name}) symbolizing available language`}
-                        className="bulma-image bulma-is-16x16 mr-4"
+                        className="bulma-image bulma-is-16x16 is-round-border mr-4"
                     />
                     <div>{item.name}</div>
                     <RenderSelectionIcon selection={item.id} languageId={props.languageId} size={1.3} />

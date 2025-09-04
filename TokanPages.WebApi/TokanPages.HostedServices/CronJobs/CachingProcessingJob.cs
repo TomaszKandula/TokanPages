@@ -42,8 +42,8 @@ public class CachingProcessingJob : CronJob
         _cachingService = cachingService;
         _loggerService = loggerService;
         _cronExpression = config.CronExpression;
-        _getActionUrl = config.GetActionUrl;
-        _postActionUrl = config.PostActionUrl;
+        _getActionUrl = config.GetActionUrl ?? "";
+        _postActionUrl = config.PostActionUrl ?? "";
         _filesToCache = config.FilesToCache;
         _paths = config.RoutePaths;
     }

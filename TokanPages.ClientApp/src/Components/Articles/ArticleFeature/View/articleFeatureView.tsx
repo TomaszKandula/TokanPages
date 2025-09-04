@@ -85,6 +85,8 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                                             base={GET_ARTICLE_IMAGE_URL}
                                                             source={features?.image3}
                                                             className="article-feature-image article-feature-image-small"
+                                                            title="Illustration"
+                                                            alt="An image illustrating listed features"
                                                         />
                                                     </figure>
                                                 </div>
@@ -112,7 +114,7 @@ export const ArticleFeatureView = (props: ArticleFeatureViewProps): React.ReactE
                                 <Skeleton isLoading={isLoading} mode="Text">
                                     <RenderHtml
                                         value={features?.title}
-                                        tag="h2"
+                                        tag="h3"
                                         className="is-size-3 py-5 has-text-black"
                                     />
                                 </Skeleton>

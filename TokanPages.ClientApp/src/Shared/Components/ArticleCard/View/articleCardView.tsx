@@ -62,7 +62,7 @@ const RenderFlag = (props: RenderFlagProps): React.ReactElement => {
                 source={props.flagImage}
                 title="Articles"
                 alt="An article language flag"
-                className="article-flag-image"
+                className="article-flag-image is-round-border"
                 height={24}
                 width={24}
             />
@@ -86,8 +86,8 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
             </figure>
             <div className="article-box-content">
                 <div className="article-box-content-text">
-                    <h2 className="is-size-4 has-text-black-ter">{props.title}</h2>
-                    <h3 className="is-size-6 has-text-grey has-text-weight-normal m-0">{props.description}</h3>
+                    <p className="is-size-4 has-text-black-ter">{props.title}</p>
+                    <p className="is-size-6 has-text-grey has-text-weight-normal m-0">{props.description}</p>
                 </div>
                 <div className="is-flex is-justify-content-space-between">
                     <div className="is-flex is-align-items-center">

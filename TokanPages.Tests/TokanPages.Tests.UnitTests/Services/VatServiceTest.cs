@@ -277,7 +277,7 @@ public class VatServiceTest : TestBase
 		result.Errors[0].ErrorCode.Should().Be(nameof(ErrorCodes.VAT_NUM_LENGTH_NINE));
 	}
 	    
-	private static IEnumerable<VatNumberPatterns> GetPatternList()
+	private static List<VatNumberPatterns> GetPatternList()
 	{
 		return new List<VatNumberPatterns>
 		{

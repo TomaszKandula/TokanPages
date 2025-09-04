@@ -106,7 +106,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var comparableTitle = title.Replace("-", " ").ToLower();
         return await DatabaseContext.Articles
             .AsNoTracking()
-            .Where(articles => articles.Title.ToLower() == comparableTitle)
+            .Where(articles => articles.Title.Equals(comparableTitle, StringComparison.InvariantCultureIgnoreCase))
             .Select(articles => articles.Id)
             .SingleOrDefaultAsync(cancellationToken);
     }

@@ -45,11 +45,11 @@ Object {
                     <div
                       class="bulma-card-content mt-6 testimonials-card-content"
                     >
-                      <p
+                      <h3
                         class="is-size-5 has-text-centered has-text-weight-semibold mt-6 p-4"
                       >
                         Joanna
-                      </p>
+                      </h3>
                       <p
                         class="is-size-6 has-text-centered has-text-link p-2"
                       >
@@ -69,11 +69,11 @@ Object {
                               class="collapsible-gradient"
                               style="height: 120px;"
                             />
-                            <h4
+                            <p
                               class="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
                             >
                               Joe is very motivated...
-                            </h4>
+                            </p>
                           </div>
                         </div>
                         <button
@@ -119,11 +119,11 @@ Object {
                     <div
                       class="bulma-card-content mt-6 testimonials-card-content"
                     >
-                      <p
+                      <h3
                         class="is-size-5 has-text-centered has-text-weight-semibold mt-6 p-4"
                       >
                         Adama
-                      </p>
+                      </h3>
                       <p
                         class="is-size-6 has-text-centered has-text-link p-2"
                       >
@@ -141,11 +141,11 @@ Object {
                             <div
                               class="collapsible-gradient"
                             />
-                            <h4
+                            <p
                               class="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
                             >
                               Joe have done very good work...
-                            </h4>
+                            </p>
                           </div>
                         </div>
                         <button
@@ -191,11 +191,11 @@ Object {
                     <div
                       class="bulma-card-content mt-6 testimonials-card-content"
                     >
-                      <p
+                      <h3
                         class="is-size-5 has-text-centered has-text-weight-semibold mt-6 p-4"
                       >
                         Scott
-                      </p>
+                      </h3>
                       <p
                         class="is-size-6 has-text-centered has-text-link p-2"
                       >
@@ -213,11 +213,11 @@ Object {
                             <div
                               class="collapsible-gradient"
                             />
-                            <h4
+                            <p
                               class="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
                             >
                               Joe is one of those rare talents...
-                            </h4>
+                            </p>
                           </div>
                         </div>
                         <button
@@ -290,11 +290,11 @@ Object {
                   <div
                     class="bulma-card-content mt-6 testimonials-card-content"
                   >
-                    <p
+                    <h3
                       class="is-size-5 has-text-centered has-text-weight-semibold mt-6 p-4"
                     >
                       Joanna
-                    </p>
+                    </h3>
                     <p
                       class="is-size-6 has-text-centered has-text-link p-2"
                     >
@@ -314,11 +314,11 @@ Object {
                             class="collapsible-gradient"
                             style="height: 120px;"
                           />
-                          <h4
+                          <p
                             class="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
                           >
                             Joe is very motivated...
-                          </h4>
+                          </p>
                         </div>
                       </div>
                       <button
@@ -364,11 +364,11 @@ Object {
                   <div
                     class="bulma-card-content mt-6 testimonials-card-content"
                   >
-                    <p
+                    <h3
                       class="is-size-5 has-text-centered has-text-weight-semibold mt-6 p-4"
                     >
                       Adama
-                    </p>
+                    </h3>
                     <p
                       class="is-size-6 has-text-centered has-text-link p-2"
                     >
@@ -386,11 +386,11 @@ Object {
                           <div
                             class="collapsible-gradient"
                           />
-                          <h4
+                          <p
                             class="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
                           >
                             Joe have done very good work...
-                          </h4>
+                          </p>
                         </div>
                       </div>
                       <button
@@ -436,11 +436,11 @@ Object {
                   <div
                     class="bulma-card-content mt-6 testimonials-card-content"
                   >
-                    <p
+                    <h3
                       class="is-size-5 has-text-centered has-text-weight-semibold mt-6 p-4"
                     >
                       Scott
-                    </p>
+                    </h3>
                     <p
                       class="is-size-6 has-text-centered has-text-link p-2"
                     >
@@ -458,11 +458,11 @@ Object {
                           <div
                             class="collapsible-gradient"
                           />
-                          <h4
+                          <p
                             class="is-size-6 has-text-centered has-text-grey p-2 line-height-18"
                           >
                             Joe is one of those rare talents...
-                          </h4>
+                          </p>
                         </div>
                       </div>
                       <button

@@ -59,11 +59,11 @@ public class Startup
         services.AddProxyHttpClient();
         services.AddNamedHttpClients(_configuration);
 
-        var emailHealthUrl = _configuration.GetValue<string>("Email_HealthUrl");
-        var azureRedis = _configuration.GetValue<string>("AZ_Redis_ConnectionString");
-        var sqlServer = _configuration.GetValue<string>("Db_DatabaseContext");
-        var azureStorage = _configuration.GetValue<string>("AZ_Storage_ConnectionString");
-        var azureBusService = _configuration.GetValue<string>("AZ_Bus_ConnectionString");
+        var emailHealthUrl = _configuration.GetValue<string>("Email_HealthUrl") ?? "";
+        var azureRedis = _configuration.GetValue<string>("AZ_Redis_ConnectionString") ?? "";
+        var sqlServer = _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
+        var azureStorage = _configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "";
+        var azureBusService = _configuration.GetValue<string>("AZ_Bus_ConnectionString") ?? "";
         services
             .AddHealthChecks()
             .AddUrlGroup(new Uri(emailHealthUrl), name: "EmailService")

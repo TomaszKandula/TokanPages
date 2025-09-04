@@ -4,7 +4,7 @@ import { NewsletterUpdate } from "../../Components/Newsletter";
 import { Footer, Navigation } from "../../Components/Layout";
 
 export const NewsletterUpdatePage = (): React.ReactElement => {
-    useUnhead("NewsletterUpdatePage");
+    const heading = useUnhead("NewsletterUpdatePage");
     usePageContent(
         ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageNewsletterUpdate"],
         "NewsletterUpdatePage"
@@ -17,6 +17,7 @@ export const NewsletterUpdatePage = (): React.ReactElement => {
         <>
             <Navigation backNavigationOnly />
             <main>
+                <h1 className="seo-only">{heading}</h1>
                 <NewsletterUpdate id={id} />
             </main>
             <Footer />

@@ -1,7 +1,7 @@
 # ======================================================================================================================
 # 1 - BUILD PROJECTS AND RUN TESTS
 # ======================================================================================================================
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS projects
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS projects
 
 WORKDIR /app
 COPY . ./
@@ -12,7 +12,7 @@ RUN dotnet build -c Release
 # ======================================================================================================================
 # 2 - BUILD DOCKER IMAGE
 # ======================================================================================================================
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 
 # INSTALL FFMPEG
@@ -62,14 +62,14 @@ RUN apt-get install -y wget \
     lsb-release \
     xdg-utils
 
-COPY --from=projects "/app/TokanPages.Backend/TokanPages.Backend.Configuration/bin/Release/net6.0" .
-COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.AzureBusService/bin/Release/net6.0" .
-COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.BatchService/bin/Release/net6.0" .
-COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.EmailSenderService/bin/Release/net6.0" .
-COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.HttpClientService/bin/Release/net6.0" .
-COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.VideoProcessingService/bin/Release/net6.0" .
-COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.SpaCachingService/bin/Release/net6.0" .
-COPY --from=projects "/app/TokanPages.WebApi/TokanPages.HostedServices/bin/Release/net6.0" .
+COPY --from=projects "/app/TokanPages.Backend/TokanPages.Backend.Configuration/bin/Release/net8.0" .
+COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.AzureBusService/bin/Release/net8.0" .
+COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.BatchService/bin/Release/net8.0" .
+COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.EmailSenderService/bin/Release/net8.0" .
+COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.HttpClientService/bin/Release/net8.0" .
+COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.VideoProcessingService/bin/Release/net8.0" .
+COPY --from=projects "/app/TokanPages.Services/TokanPages.Services.SpaCachingService/bin/Release/net8.0" .
+COPY --from=projects "/app/TokanPages.WebApi/TokanPages.HostedServices/bin/Release/net8.0" .
 
 ARG ENV_VALUE
 ENV ASPNETCORE_ENVIRONMENT=${ENV_VALUE}

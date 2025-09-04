@@ -30,8 +30,8 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
         var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
         var price = await DatabaseContext.SubscriptionPricing
             .Where(pricing => pricing.Term == request.SelectedTerm)
-            .Where(pricing => pricing.CurrencyIso == currency.ToUpper())
-            .Where(pricing => pricing.LanguageIso == language.ToUpper())
+            .Where(pricing => pricing.CurrencyIso.Equals(currency, StringComparison.InvariantCultureIgnoreCase))
+            .Where(pricing => pricing.LanguageIso.Equals(language, StringComparison.InvariantCultureIgnoreCase))
             .SingleOrDefaultAsync(cancellationToken);
 
         if (price is null)

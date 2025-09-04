@@ -79,9 +79,9 @@ public class Startup
         services.SetupDockerInternalNetwork();
         services
             .AddHealthChecks()
-            .AddRedis(_configuration.GetValue<string>("AZ_Redis_ConnectionString"), name: "AzureRedisCache")
-            .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext"), name: "SQLServer")
-            .AddAzureBlobStorage(_configuration.GetValue<string>("AZ_Storage_ConnectionString"), name: "AzureStorage");
+            .AddRedis(_configuration.GetValue<string>("AZ_Redis_ConnectionString") ?? "", name: "AzureRedisCache")
+            .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext") ?? "", name: "SQLServer")
+            .AddAzureBlobStorage(_configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "", name: "AzureStorage");
     }
 
     /// <summary>
@@ -100,6 +100,7 @@ public class Startup
         builder.UseAuthentication();
         builder.UseAuthorization();
         builder.SetupSwaggerUi(_configuration, _environment, ApiName, DocVersion);
+        builder.UseRateLimiter();
         builder.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();

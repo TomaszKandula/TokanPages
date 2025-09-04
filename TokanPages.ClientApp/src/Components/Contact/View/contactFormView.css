@@ -11,3 +11,15 @@
         margin: 1rem;
     }
 }
+
+.contact-form-view-column-margins {
+    margin-left: 3rem;
+}
+
+@media (max-width: 768px) {
+    .contact-form-view-column-margins {
+        margin-left: 0;
+        margin-top: 3rem;
+        padding: 0;
+    }
+}

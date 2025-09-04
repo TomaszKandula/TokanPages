@@ -1,0 +1,22 @@
+.article-list-view-search-bar {
+    flex: none;
+    width: 72%;
+}
+
+.article-list-view-search-buttons {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    .article-list-view-search-bar {
+        width: 100%;
+    }
+
+    .article-list-view-search-buttons {
+        gap: 12px;
+        flex-direction: column;
+    }
+}

@@ -16,40 +16,35 @@ interface NavbarItemWithSubitemsProps extends ItemDto {
 }
 
 const NavbarItemWithSubitems = (props: NavbarItemWithSubitemsProps): React.ReactElement => (
-    <div className="bulma-navbar">
-        <div className="bulma-navbar-item bulma-has-dropdown bulma-is-hoverable">
-            <a className={`bulma-navbar-link ${props.selectionStyle}`}>{props.value}</a>
-            <div className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right">
-                {props.subitems?.map((item: SubitemDto, _index: number) => (
-                    <Link
-                        className="bulma-navbar-item"
-                        key={item.id}
-                        to={item.link as string}
-                        isDisabled={!item.enabled}
-                    >
-                        <Icon name={item.icon as string} size={1.2} />
-                        <span>{item.value}</span>
-                    </Link>
-                ))}
-            </div>
+    <div className="bulma-navbar-item bulma-has-dropdown bulma-is-hoverable">
+        <a className={`bulma-navbar-link is-transparent ${props.selectionStyle}`}>{props.value}</a>
+        <div className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right">
+            {props.subitems?.map((item: SubitemDto, _index: number) => (
+                <Link className="bulma-navbar-item" key={item.id} to={item.link as string} isDisabled={!item.enabled}>
+                    <Icon name={item.icon as string} size={1.2} />
+                    <span>{item.value}</span>
+                </Link>
+            ))}
         </div>
     </div>
 );
 
 const NavbarItemWithoutSubitems = (props: NavbarItemWithoutSubitemsProps): React.ReactElement => (
-    <Link
-        key={props.id}
-        to={props.link as string}
-        className="render-navbar-list-item"
-        onMouseEnter={props.onMouseEnter}
-        isDisabled={!props.enabled}
-    >
-        <span className={props.selectionStyle}>{props.value}</span>
-    </Link>
+    <div className="bulma-navbar-item pr-5 pl-0 py-0">
+        <Link
+            key={props.id}
+            to={props.link as string}
+            className="render-navbar-list-item"
+            onMouseEnter={props.onMouseEnter}
+            isDisabled={!props.enabled}
+        >
+            <span className={props.selectionStyle}>{props.value}</span>
+        </Link>
+    </div>
 );
 
 const selectionClass = "render-navbar-list-item-text render-navbar-list-item-text-selected";
-const selectionBase = "render-navbar-list-item-text";
+const selectionBase = "render-navbar-list-item-text ";
 
 export const RenderNavbarItem = (props: ItemDto): React.ReactElement => {
     const dispatch = useDispatch();

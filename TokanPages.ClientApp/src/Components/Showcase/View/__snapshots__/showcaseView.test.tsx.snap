@@ -32,11 +32,11 @@ Object {
                 <div
                   class="bulma-column p-0 is-flex is-flex-direction-column is-align-self-center"
                 >
-                  <h2
+                  <h3
                     class="is-size-3 py-5 has-text-black"
                   >
                     Most notable projects
-                  </h2>
+                  </h3>
                   <p
                     class="is-size-5 py-3 has-text-grey line-height-18 showcase-feature-text"
                   >
@@ -116,11 +116,11 @@ Object {
               <div
                 class="bulma-column p-0 is-flex is-flex-direction-column is-align-self-center"
               >
-                <h2
+                <h3
                   class="is-size-3 py-5 has-text-black"
                 >
                   Most notable projects
-                </h2>
+                </h3>
                 <p
                   class="is-size-5 py-3 has-text-grey line-height-18 showcase-feature-text"
                 >

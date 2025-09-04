@@ -19,7 +19,7 @@ public static class WebTokenSupport
 	{ 
 		var issuer = configuration.GetValue<string>("Ids_Issuer");
 		var audience = configuration.GetValue<string>("Ids_Audience");
-		var webSecret = configuration.GetValue<string>("Ids_WebSecret");
+		var webSecret = configuration.GetValue<string>("Ids_WebSecret") ?? "";
 		var requireHttps = configuration.GetValue<bool>("Ids_RequireHttps");
 
 		services.AddAuthentication(options =>
@@ -63,17 +63,14 @@ public static class WebTokenSupport
 			};
 		});
 
-		services.AddAuthorization(options =>
-		{
-			options.AddPolicy("AuthPolicy", new AuthorizationPolicyBuilder()
+		services.AddAuthorizationBuilder()
+            .AddPolicy("AuthPolicy", new AuthorizationPolicyBuilder()
 				.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
 				.RequireAuthenticatedUser()
-				.Build());
-
-			options.AddPolicy(nameof(Policies.AccessToTokanPages), policy => policy
+				.Build())
+            .AddPolicy(nameof(Policies.AccessToTokanPages), policy => policy
 				.RequireRole(nameof(Roles.GodOfAsgard), nameof(Roles.EverydayUser), nameof(Roles.ArticlePublisher), 
 					nameof(Roles.PhotoPublisher), nameof(Roles.CommentPublisher)));
-		});
 	}
 
 	private static Task ValidateTokenClaims(TokenValidatedContext context)

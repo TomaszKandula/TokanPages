@@ -1,31 +1,11 @@
 .render-navbar-list-item {
-    padding: 15px;
-}
-
-.render-navbar-list-item-disabled {
-    padding: 15px;
-    cursor: not-allowed;
-    color: darkgray;
+    min-height: 24px;
+    padding-top: 2px;
 }
 
 .render-navbar-list-item-text {
+    padding: 0;
     color: black;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    background-color: transparent !important;
-}
-
-@media (min-width: 1280px) {
-    .render-navbar-list-item-text {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 1280px) {
-    .render-navbar-list-item-text {
-        font-size: 13px;
-    }
 }
 
 .render-navbar-list-item-text:hover {

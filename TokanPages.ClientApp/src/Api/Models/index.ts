@@ -28,6 +28,7 @@ export type { UserActivationData } from "./NotificationsWeb/Data/userActivationD
 
 /* ARTICLES */
 export type { AddArticleDto } from "./Articles/addArticleDto";
+export type { GetArticlesDto, PageInfoDto } from "./Articles/getArticlesDto";
 export type { UpdateArticleContentDto } from "./Articles/updateArticleContentDto";
 export type { UpdateArticleCountDto } from "./Articles/updateArticleCountDto";
 export type { UpdateArticleLikesDto } from "./Articles/updateArticleLikesDto";
@@ -86,6 +87,7 @@ export type { AccountUserSignoutContentDto } from "./Components/accountUserSigno
 export type { AccountUserSignupContentDto } from "./Components/accountUserSignupContentDto";
 export type { FeatureShowcaseContentDto } from "./Components/featureShowcaseContentDto";
 export type { ArticleContentDto } from "./Components/articleContentDto";
+export type { ArticlesContentDto } from "./Components/articlesContentDto";
 export type { ArticleFeaturesContentDto } from "./Components/articleFeaturesContentDto";
 export type { DocumentContentDto } from "./Components/documentContentDto";
 export type {

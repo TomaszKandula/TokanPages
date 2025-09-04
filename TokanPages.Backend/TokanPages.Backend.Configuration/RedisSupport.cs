@@ -27,15 +27,18 @@ public static class RedisSupport
     public static string GetHostAndPort(IConfiguration configuration)
     {
         var connectionString = configuration.GetValue<string>("AZ_Redis_ConnectionString");
-        var data = connectionString.Split(',');
+        var data = connectionString?.Split(',');
+        if (data is null)
+            return string.Empty;
+
         return data.Length == 0 ? string.Empty : data[0];
     }
 
     public static string GetPassword(IConfiguration configuration)
     {
         var connectionString = configuration.GetValue<string>("AZ_Redis_ConnectionString");
-        var data = connectionString.Split(',');
-        if (data.Length < 1)
+        var data = connectionString?.Split(',');
+        if (data is null || data.Length < 1)
             return string.Empty;
 
         var password = data[1];
@@ -45,7 +48,10 @@ public static class RedisSupport
     public static bool GetSsl(IConfiguration configuration)
     {
         var connectionString = configuration.GetValue<string>("AZ_Redis_ConnectionString");
-        var data = connectionString.Split(',');
+        var data = connectionString?.Split(',');
+        if (data is null)
+            return false;
+
         if (data.Length < 2)
             return false;
 
@@ -56,7 +62,10 @@ public static class RedisSupport
     public static bool GetAbortConnect(IConfiguration configuration)
     {
         var connectionString = configuration.GetValue<string>("AZ_Redis_ConnectionString");
-        var data = connectionString.Split(',');
+        var data = connectionString?.Split(',');
+        if (data is null)
+            return false;
+
         if (data.Length < 3)
             return false;
 

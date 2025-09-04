@@ -76,7 +76,7 @@ public static class Dependencies
 
 		services.AddDbContext<DatabaseContext>(options =>
 		{
-			options.UseSqlServer(configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}"), addOptions 
+			options.UseSqlServer(configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}") ?? "", addOptions 
 				=> addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
 		});
 	}
@@ -84,6 +84,7 @@ public static class Dependencies
 	private static void SetupServices(IServiceCollection services, IConfiguration configuration) 
 	{
 		services.AddHttpContextAccessor();
+		services.AddLimiter(configuration);
 		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
 		services.AddScoped<ICookieAccessor, CookieAccessor>();
 		services.AddScoped<IWebTokenUtility, WebTokenUtility>();
@@ -101,14 +102,14 @@ public static class Dependencies
 
 		services.AddSingleton<IAzureBusFactory>(_ =>
 		{
-			var connectionString = configuration.GetValue<string>("AZ_Bus_ConnectionString");
+			var connectionString = configuration.GetValue<string>("AZ_Bus_ConnectionString") ?? "";
 			return new AzureBusFactory(connectionString);
 		});
 
 		services.AddSingleton<IAzureBlobStorageFactory>(_ =>
 		{
-			var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName");
-			var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString");
+			var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName") ?? "";
+			var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "";
 			return new AzureBlobStorageFactory(connectionString, containerName);
 		});
 	}
