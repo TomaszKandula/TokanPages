@@ -88,9 +88,5 @@ export const RenderNavbarMenu = (props: RenderNavbarMenuProps): React.ReactEleme
         }
     });
 
-    return (
-        <div className="is-flex is-flex-wrap-nowrap is-justify-content-space-between is-align-items-center">
-            {renderBuffer}
-        </div>
-    );
+    return <div className="bulma-navbar is-flex is-flex-wrap-wrap">{renderBuffer}</div>;
 };
