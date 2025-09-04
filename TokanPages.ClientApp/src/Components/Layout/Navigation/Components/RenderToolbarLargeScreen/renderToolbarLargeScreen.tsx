@@ -5,10 +5,11 @@ import { GET_ICONS_URL } from "../../../../../Api";
 import { CustomImage, Media } from "../../../../../Shared/Components";
 import { RenderLanguageSection } from "../RenderLanguageSection";
 import { RenderNavbarMenu } from "../RenderMenu";
+import "./renderToolbarLargeScreen.css";
 
 export const RenderToolbarLargeScreen = (props: NavigationViewProps): React.ReactElement => (
     <Media.DesktopOnly>
-        <div className="bulma-navbar-start" style={{ minWidth: 220 }}>
+        <div className="bulma-navbar-start render-toolbar-constraints-start">
             <Link to={`/${props.languageId}`} rel="noopener nofollow" className="is-flex is-align-self-center">
                 <CustomImage
                     base={GET_ICONS_URL}
@@ -26,7 +27,7 @@ export const RenderToolbarLargeScreen = (props: NavigationViewProps): React.Reac
             languageId={props.languageId}
             items={props.navigation?.menu?.items}
         />
-        <div className="bulma-navbar-end" style={{ minWidth: 100 }}>
+        <div className="bulma-navbar-end render-toolbar-constraints-end">
             {props.isLoading ? null : <RenderLanguageSection {...props} />}
         </div>
     </Media.DesktopOnly>
