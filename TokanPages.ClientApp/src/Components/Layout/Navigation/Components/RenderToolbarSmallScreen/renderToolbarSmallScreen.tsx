@@ -30,7 +30,7 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => (
                     source={`${props.languageId}.png`}
                     title="Language flag"
                     alt={`A flag (${props.languageId}) for current language selection`}
-                    className="bulma-image bulma-is-16x16"
+                    className="bulma-image bulma-is-16x16 round-picture-border"
                 />
                 <div className="has-text-black ml-2">{props.languageId?.toUpperCase()}</div>
                 <Icon name="ChevronDown" size={1.4} className="ml-1" />
@@ -98,7 +98,7 @@ const RenderLanguageList = (props: RenderLanguageListProps): React.ReactElement 
                                     source={`${item.id}.png`}
                                     title="Language flag"
                                     alt={`A flag (${item.name}) symbolizing available language`}
-                                    className="bulma-image bulma-is-24x24 my-2 mx-0"
+                                    className="bulma-image bulma-is-24x24 round-picture-border my-2 mx-0"
                                 />
                                 <h4 className="is-size-6 has-text-black has-text-weight-normal m-2 ml-4">
                                     {item.name}

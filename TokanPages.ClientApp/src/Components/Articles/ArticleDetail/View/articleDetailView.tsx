@@ -61,7 +61,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                                     source={props.flagImage}
                                     title="Articles"
                                     alt="An article language flag"
-                                    className="article-details-flag is-flex is-align-self-center"
+                                    className="article-details-flag is-flex is-align-self-center round-picture-border"
                                 />
                             </Skeleton>
                         </div>

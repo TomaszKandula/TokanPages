@@ -17,7 +17,7 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
                 source={`${props.languageId}.png`}
                 title="Language flag"
                 alt={`A flag (${props.languageId}) for current language selection`}
-                className="bulma-image bulma-is-16x16"
+                className="bulma-image bulma-is-16x16 round-picture-border"
             />
             <div>{props.languageId?.toUpperCase()}</div>
         </a>
@@ -29,7 +29,7 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
                         source={`${item.id}.png`}
                         title="Language flag"
                         alt={`A flag (${item.name}) symbolizing available language`}
-                        className="bulma-image bulma-is-16x16 mr-4"
+                        className="bulma-image bulma-is-16x16 round-picture-border mr-4"
                     />
                     <div>{item.name}</div>
                     <RenderSelectionIcon selection={item.id} languageId={props.languageId} size={1.3} />

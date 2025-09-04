@@ -62,7 +62,7 @@ const RenderFlag = (props: RenderFlagProps): React.ReactElement => {
                 source={props.flagImage}
                 title="Articles"
                 alt="An article language flag"
-                className="article-flag-image"
+                className="article-flag-image round-picture-border"
                 height={24}
                 width={24}
             />
