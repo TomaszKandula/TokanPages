@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center default-avatar-large"
+        class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center bulma-is-48x48 "
       >
         <h2
           class="is-size-4 has-text-white"
@@ -18,7 +18,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center default-avatar-large"
+      class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center bulma-is-48x48 "
     >
       <h2
         class="is-size-4 has-text-white"
@@ -87,11 +87,11 @@ Object {
   "baseElement": <body>
     <div>
       <figure
-        class="bulma-image bulma-is-96x96 "
+        class="bulma-image bulma-is-48x48 "
       >
         <img
           alt="User avatar"
-          class="bulma-is-rounded"
+          class="bulma-is-rounded avatar-is-48x48"
           src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
           title="Avatar"
         />
@@ -100,11 +100,11 @@ Object {
   </body>,
   "container": <div>
     <figure
-      class="bulma-image bulma-is-96x96 "
+      class="bulma-image bulma-is-48x48 "
     >
       <img
         alt="User avatar"
-        class="bulma-is-rounded"
+        class="bulma-is-rounded avatar-is-48x48"
         src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
         title="Avatar"
       />
@@ -170,7 +170,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center default-avatar-small"
+        class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center bulma-is-24x24 "
       >
         <h2
           class="is-size-4 has-text-white"
@@ -182,7 +182,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center default-avatar-small"
+      class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center bulma-is-24x24 "
     >
       <h2
         class="is-size-4 has-text-white"
@@ -251,11 +251,11 @@ Object {
   "baseElement": <body>
     <div>
       <figure
-        class="bulma-image bulma-is-48x48 "
+        class="bulma-image bulma-is-24x24 "
       >
         <img
           alt="User avatar"
-          class="bulma-is-rounded"
+          class="bulma-is-rounded avatar-is-24x24"
           src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
           title="Avatar"
         />
@@ -264,11 +264,11 @@ Object {
   </body>,
   "container": <div>
     <figure
-      class="bulma-image bulma-is-48x48 "
+      class="bulma-image bulma-is-24x24 "
     >
       <img
         alt="User avatar"
-        class="bulma-is-rounded"
+        class="bulma-is-rounded avatar-is-24x24"
         src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
         title="Avatar"
       />
