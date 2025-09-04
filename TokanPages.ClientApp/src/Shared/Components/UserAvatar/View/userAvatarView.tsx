@@ -19,5 +19,13 @@ export const UserAvatarView = (props: Properties): React.ReactElement => {
         );
     }
 
-    return <Avatar className={props.className} size={props.size} src={props.avatarSource} alt="User avatar" title="Avatar"></Avatar>;
+    return (
+        <Avatar
+            className={props.className}
+            size={props.size}
+            src={props.avatarSource}
+            alt="User avatar"
+            title="Avatar"
+        ></Avatar>
+    );
 };

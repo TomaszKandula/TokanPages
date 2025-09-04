@@ -26,7 +26,7 @@ const ConvertSize = (size: FigoureSize, prefix: string = "bulma"): string => {
         case FigoureSize.superlarge:
             return `${prefix}-is-128x128`;
     }
-}
+};
 
 export const Avatar = (props: AvatarProps): React.ReactElement => {
     const hasSrc = props.src && props.src !== "";
@@ -42,7 +42,12 @@ export const Avatar = (props: AvatarProps): React.ReactElement => {
 
     return (
         <figure className={`bulma-image ${className}`}>
-            <img alt={props.alt} title={props.title} src={props.src} className={`bulma-is-rounded ${ConvertSize(props.size, "avatar")}`} />
+            <img
+                alt={props.alt}
+                title={props.title}
+                src={props.src}
+                className={`bulma-is-rounded ${ConvertSize(props.size, "avatar")}`}
+            />
         </figure>
     );
 };
