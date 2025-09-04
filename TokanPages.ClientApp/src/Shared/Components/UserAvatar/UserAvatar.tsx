@@ -1,10 +1,11 @@
 import * as React from "react";
 import { GET_USER_IMAGE } from "../../../Api";
+import { FigoureSize } from "../../../Shared/enums";
 import { UserAvatarView } from "./View/userAvatarView";
 import Validate from "validate.js";
 
 export interface Properties {
-    isLarge: boolean;
+    size: FigoureSize;
     userId?: string;
     userLetter?: string;
     avatarName?: string;
@@ -31,7 +32,7 @@ export const UserAvatar = (props: Properties): React.ReactElement => {
 
     return (
         <UserAvatarView
-            isLarge={props.isLarge}
+            size={props.size}
             userLetter={props.userLetter ?? "A"}
             avatarSource={source}
             className={props.className}

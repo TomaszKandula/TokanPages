@@ -1,6 +1,7 @@
 import * as React from "react";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { Icon } from "../../../../Shared/Components";
+import { FigoureSize } from "../../../../Shared/enums";
 import { AuthenticateUserResultDto, UserInfoProps, UserPermissionDto, UserRoleDto } from "../../../../Api/Models";
 import { UserAvatar } from "../../UserAvatar";
 import { v4 as uuidv4 } from "uuid";
@@ -42,7 +43,7 @@ export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): Re
                 <header className="bulma-modal-card-head">
                     <UserAvatar
                         userId={props.data?.userId}
-                        isLarge={false}
+                        size={FigoureSize.large}
                         avatarName={props.data?.avatarName}
                         userLetter={props.data?.aliasName?.charAt(0).toUpperCase()}
                     />

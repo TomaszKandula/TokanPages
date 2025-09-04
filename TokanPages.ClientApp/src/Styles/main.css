@@ -103,3 +103,14 @@ body {
     white-space: nowrap;
     border-width: 0;
 }
+
+.is-round-border {
+    border-style: solid;
+    border-width: 1px;
+    border-color: hsl(0, 0%, 71%);
+    border-radius: 50%;
+}
+
+.is-transparent {
+    background-color: transparent;
+}

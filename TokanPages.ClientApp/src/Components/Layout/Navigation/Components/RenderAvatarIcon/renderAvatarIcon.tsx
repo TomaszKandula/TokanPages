@@ -1,5 +1,6 @@
 import * as React from "react";
-import { Avatar, IconButton } from "../../../../../Shared/Components";
+import { Avatar, IconButton, Media } from "../../../../../Shared/Components";
+import { FigoureSize } from "../../../../../Shared/enums";
 import { BaseProperties } from "../../Abstractions";
 import Validate from "validate.js";
 
@@ -8,7 +9,7 @@ const ANONYMOUS_LETTER = "A";
 const RenderAvatar = (props: BaseProperties): React.ReactElement => {
     if (props.isAnonymous) {
         return (
-            <Avatar alt="User avatar" title="Avatar">
+            <Avatar alt="User avatar" title="Avatar" size={FigoureSize.medium}>
                 {ANONYMOUS_LETTER}
             </Avatar>
         );
@@ -16,20 +17,19 @@ const RenderAvatar = (props: BaseProperties): React.ReactElement => {
 
     if (Validate.isEmpty(props.avatarName)) {
         return (
-            <Avatar alt="User avatar" title="Avatar">
+            <Avatar alt="User avatar" title="Avatar" size={FigoureSize.medium}>
                 {props.aliasName?.charAt(0).toUpperCase()}
             </Avatar>
         );
     } else {
-        return <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} />;
+        return <Avatar alt="User avatar" title="Avatar" src={props.avatarSource} size={FigoureSize.medium} />;
     }
 };
 
-export const RenderAvatarIcon = (props: BaseProperties): React.ReactElement =>
-    props.media.isDesktop ? (
+export const RenderAvatarIcon = (props: BaseProperties): React.ReactElement => (
+    <Media.DesktopOnly>
         <IconButton onClick={props.infoHandler} className="mr-4">
             <RenderAvatar {...props} />
         </IconButton>
-    ) : (
-        <></>
-    );
+    </Media.DesktopOnly>
+);
