@@ -110,3 +110,7 @@ body {
     border-color: hsl(0, 0%, 71%);
     border-radius: 50%;
 }
+
+.is-transparent {
+    background-color: transparent;
+}
