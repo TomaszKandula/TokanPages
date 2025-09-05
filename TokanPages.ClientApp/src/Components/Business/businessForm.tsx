@@ -50,11 +50,12 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
         }
 
         setTechStackItems(resetSelection(techStackItems));
-        setServiceItems(undefined);
+        setServiceItems(resetSelection(serviceItems));
         setForm(formDefault);
+        setDescription({ description: "" });
         setHasProgress(false);
         dispatch(ApplicationMessageAction.clear());
-    }, [hasProgress, techStackItems]);
+    }, [hasProgress, techStackItems, serviceItems]);
 
     React.useEffect(() => {
         if (!techStackItems && businessForm.techItems.length > 0) {
