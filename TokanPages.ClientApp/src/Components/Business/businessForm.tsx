@@ -170,12 +170,12 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             setTechnologyItems(data);
         }
 
-        if (!serviceItems && businessForm.pricing.services.length > 0) {
-            const items = businessForm.pricing.services.slice() as OfferItemProps[];
+        if (!serviceItems && businessForm.pricing.items.length > 0) {
+            const items = businessForm.pricing.items.slice() as OfferItemProps[];
             const data = resetSelection(items);
             setServiceItems(data);
         }
-    }, [businessForm.techItems, businessForm.pricing.services]);
+    }, [businessForm.techItems, businessForm.pricing.items]);
 
     React.useEffect(() => {
         if (hasError) {

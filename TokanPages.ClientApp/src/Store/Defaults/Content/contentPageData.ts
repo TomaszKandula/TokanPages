@@ -180,7 +180,7 @@ export const ContentPageData: ContentPageDataState = {
             pricing: {
                 caption: "",
                 disclaimer: "",
-                services: [],
+                items: [],
             },
             presentation: {
                 image: {
