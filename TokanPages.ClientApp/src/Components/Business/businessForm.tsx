@@ -222,7 +222,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, technologyItems, serviceItems, languageId]);
 
     React.useEffect(() => {
-        return () => { 
+        return () => {
             clearAll();
         };
     }, []);
@@ -232,13 +232,10 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             isLoading={data.isLoading}
             caption={businessForm.caption}
             progress={hasProgress}
-
             buttonText={businessForm.buttonText}
-
             keyHandler={keyHandler}
             formHandler={formHandler}
             buttonHandler={buttonHandler}
-
             companyText={form.company}
             companyLabel={businessForm.companyLabel}
             firstNameText={form.firstName}
