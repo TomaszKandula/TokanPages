@@ -184,7 +184,7 @@ export const PageContactFormView = (props: ContactFormViewProps): React.ReactEle
                     </div>
                 </div>
                 <div className="bulma-column contact-form-view-column-margins">
-                    <PresentationView 
+                    <PresentationView
                         isLoading={props.isLoading}
                         title={props.presentation.title}
                         subtitle={props.presentation.subtitle}
