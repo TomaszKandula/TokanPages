@@ -265,8 +265,8 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             pricing={{
                 caption: businessForm.pricing.caption,
                 disclaimer: businessForm.pricing.disclaimer,
-                services: serviceItems ?? [],
-                serviceHandler: serviceHandler,
+                items: serviceItems ?? [],
+                handler: serviceHandler,
             }}
             presentation={businessForm.presentation}
             className={props.className}

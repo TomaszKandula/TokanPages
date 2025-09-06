@@ -53,8 +53,8 @@ describe("test component: businessFormView", () => {
                     pricing={{
                         caption: "",
                         disclaimer: "",
-                        serviceHandler: jest.fn(),
-                        services: [
+                        handler: jest.fn(),
+                        items: [
                             {
                                 key: 0,
                                 value: "Web Development (30 USD/hour)",

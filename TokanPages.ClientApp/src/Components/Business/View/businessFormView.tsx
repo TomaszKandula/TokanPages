@@ -27,13 +27,13 @@ const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => (
 );
 
 const TechStackList = (props: TechStackListProps): React.ReactElement =>
-    props.hasTechItems ? (
+    props.canDisplay ? (
         <>
             <div className="bulma-content">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24}>
-                    <p className="is-size-5">{props.techLabel}</p>
+                    <p className="is-size-5">{props.caption}</p>
                 </Skeleton>
-                {props.list.map((value: OfferItemProps, index: number) => (
+                {props.items.map((value: OfferItemProps, index: number) => (
                     <div key={value.key} className="is-flex">
                         <Skeleton isLoading={props.isLoading} mode="Text" width={150} height={24}>
                             <div className="checkbox-wrapper-1 is-flex is-align-self-center">
@@ -65,7 +65,7 @@ const ServiceItems = (props: ServiceItemsProps): React.ReactElement => (
             <Skeleton isLoading={props.isLoading} mode="Text" width={300} height={24}>
                 <p className="is-size-5">{props.caption}</p>
             </Skeleton>
-            {props.list.map((value: OfferItemProps, index: number) => (
+            {props.items.map((value: OfferItemProps, index: number) => (
                 <div key={value.key} className="is-flex">
                     <Skeleton isLoading={props.isLoading} mode="Rect" height={100}>
                         <div className="checkbox-wrapper-1 is-flex is-align-self-center">
@@ -216,17 +216,17 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                 <TechStackList
                                     isLoading={props.isLoading}
                                     isDisabled={props.progress}
-                                    hasTechItems={props.technology.canDisplay}
-                                    techLabel={props.technology.caption}
-                                    list={props.technology.items}
+                                    canDisplay={props.technology.canDisplay}
+                                    caption={props.technology.caption}
+                                    items={props.technology.items}
                                     handler={props.technology.handler}
                                 />
                                 <ServiceItems
                                     isLoading={props.isLoading}
                                     isDisabled={props.progress}
                                     caption={props.pricing.caption}
-                                    list={props.pricing.services}
-                                    handler={props.pricing.serviceHandler}
+                                    items={props.pricing.items}
+                                    handler={props.pricing.handler}
                                 />
                                 <Skeleton isLoading={props.isLoading} mode="Rect" height={80}>
                                     <Notification text={props.pricing.disclaimer} hasIcon />

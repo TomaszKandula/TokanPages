@@ -15,23 +15,6 @@ export interface MessageFormProps {
     description: string;
 }
 
-export interface TechStackListProps {
-    isLoading: boolean;
-    isDisabled: boolean;
-    hasTechItems: boolean;
-    techLabel: string;
-    list: OfferItemProps[];
-    handler: (event: ReactChangeEvent) => void;
-}
-
-export interface ServiceItemsProps {
-    isLoading: boolean;
-    isDisabled: boolean;
-    caption: string;
-    list: OfferItemProps[];
-    handler: (event: ReactChangeEvent) => void;
-}
-
 export interface BusinessFormProps {
     hasCaption?: boolean;
     hasIcon?: boolean;
@@ -39,20 +22,20 @@ export interface BusinessFormProps {
     className?: string;
 }
 
-export interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
-    caption: string;
-    progress: boolean;
-    buttonText: string;
-    keyHandler: (event: ReactKeyboardEvent) => void;
-    formHandler: (event: ReactChangeEvent) => void;
-    buttonHandler: () => void;
+export interface ServiceBaseProps {
+    items: OfferItemProps[];
+    handler: (event: ReactChangeEvent) => void;
 }
 
-export interface ServicesProps {
+export interface ServiceItemsProps extends ServiceBaseProps {
+    isLoading: boolean;
+    isDisabled: boolean;
+    caption: string;
+}
+
+export interface ServiceProps extends ServiceBaseProps {
     caption: string;
     disclaimer: string;
-    services: OfferItemProps[];
-    serviceHandler: (event: ReactChangeEvent) => void;
 }
 
 export interface TechnologyProps {
@@ -73,13 +56,27 @@ export interface FormProps {
     emailLabel: string;
     phoneText: string;
     phoneLabel: string;
-    description: ExtendedDescriptionProps;
+    description: DescriptionProps;
     technology: TechnologyProps;
-    pricing: ServicesProps;
+    pricing: ServiceProps;
     presentation: PresentationDto;
 }
 
-export interface ExtendedDescriptionProps extends DescriptionItemDto {
+export interface TechStackListProps extends TechnologyProps {
+    isLoading: boolean;
+    isDisabled: boolean;
+}
+
+export interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
+    caption: string;
+    progress: boolean;
+    buttonText: string;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
+    buttonHandler: () => void;
+}
+
+export interface DescriptionProps extends DescriptionItemDto {
     text: string;
     handler: (event: ReactChangeTextEvent) => void;
 }
