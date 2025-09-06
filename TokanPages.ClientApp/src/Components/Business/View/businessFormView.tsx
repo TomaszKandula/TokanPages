@@ -1,6 +1,6 @@
 import * as React from "react";
 import { GET_ICONS_URL, GET_IMAGES_URL } from "../../../Api";
-import { ImageDto, OfferItemDto } from "../../../Api/Models";
+import { ImageDto } from "../../../Api/Models";
 import {
     Icon,
     ProgressBar,
@@ -11,7 +11,7 @@ import {
     CustomImage,
     Link,
 } from "../../../Shared/Components";
-import { BusinessFormViewProps, ServiceItemsProps, TechStackListProps } from "../Types";
+import { BusinessFormViewProps, OfferItemProps, ServiceItemsProps, TechStackListProps } from "../Types";
 import "./businessFormView.css";
 import { v4 as uuidv4 } from "uuid";
 
@@ -33,7 +33,7 @@ const TechStackList = (props: TechStackListProps): React.ReactElement =>
                 <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24}>
                     <p className="is-size-5">{props.techLabel}</p>
                 </Skeleton>
-                {props.list.map((value: OfferItemDto, index: number) => (
+                {props.list.map((value: OfferItemProps, index: number) => (
                     <div key={value.key} className="is-flex">
                         <Skeleton isLoading={props.isLoading} mode="Text" width={150} height={24}>
                             <div className="checkbox-wrapper-1 is-flex is-align-self-center">
@@ -65,7 +65,7 @@ const ServiceItems = (props: ServiceItemsProps): React.ReactElement => (
             <Skeleton isLoading={props.isLoading} mode="Text" width={300} height={24}>
                 <p className="is-size-5">{props.caption}</p>
             </Skeleton>
-            {props.list.map((value: OfferItemDto, index: number) => (
+            {props.list.map((value: OfferItemProps, index: number) => (
                 <div key={value.key} className="is-flex">
                     <Skeleton isLoading={props.isLoading} mode="Rect" height={100}>
                         <div className="checkbox-wrapper-1 is-flex is-align-self-center">

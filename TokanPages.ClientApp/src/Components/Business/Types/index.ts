@@ -1,6 +1,10 @@
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { DescriptionItemDto, OfferItemDto, PresentationDto, PricingDto } from "../../../Api/Models";
+import { DescriptionItemDto, OfferItemDto, PresentationDto } from "../../../Api/Models";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../Shared/types";
+
+export interface OfferItemProps extends OfferItemDto {
+    isChecked: boolean;
+}
 
 export interface MessageFormProps {
     company: string;
@@ -16,7 +20,7 @@ export interface TechStackListProps {
     isDisabled: boolean;
     hasTechItems: boolean;
     techLabel: string;
-    list: OfferItemDto[];
+    list: OfferItemProps[];
     handler: (event: ReactChangeEvent) => void;
 }
 
@@ -24,7 +28,7 @@ export interface ServiceItemsProps {
     isLoading: boolean;
     isDisabled: boolean;
     caption: string;
-    list: OfferItemDto[];
+    list: OfferItemProps[];
     handler: (event: ReactChangeEvent) => void;
 }
 
@@ -44,14 +48,17 @@ export interface BusinessFormViewProps extends ViewProperties, BusinessFormProps
     buttonHandler: () => void;
 }
 
-export interface ServicesProps extends PricingDto {
+export interface ServicesProps {
+    caption: string;
+    disclaimer: string;
+    services: OfferItemProps[];
     serviceHandler: (event: ReactChangeEvent) => void;
 }
 
 export interface TechnologyProps {
     canDisplay: boolean;
     caption: string;
-    items: OfferItemDto[];
+    items: OfferItemProps[];
     handler: (event: ReactChangeEvent) => void;
 }
 

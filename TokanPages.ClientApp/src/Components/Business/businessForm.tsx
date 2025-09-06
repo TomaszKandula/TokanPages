@@ -1,7 +1,6 @@
 import * as React from "react";
 import { BusinessFormView } from "./View/businessFormView";
 import { useDispatch, useSelector } from "react-redux";
-import { OfferItemDto } from "../../Api/Models";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
 import { IconType, OperationStatus } from "../../Shared/enums";
@@ -10,7 +9,7 @@ import { formatPhoneNumber } from "../../Shared/Services/Converters";
 import { ValidateBusinessForm } from "../../Shared/Services/FormValidation";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../Shared/types";
 import { getSelection, resetSelection, valueCleanUp } from "./Utilities";
-import { BusinessFormProps, MessageFormProps } from "./Types";
+import { BusinessFormProps, MessageFormProps, OfferItemProps } from "./Types";
 import Validate from "validate.js";
 
 const formDefault: MessageFormProps = {
@@ -38,8 +37,8 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
 
     const [form, setForm] = React.useState<MessageFormProps>(formDefault);
     const [description, setDescription] = React.useState({ description: "" });
-    const [technologyItems, setTechnologyItems] = React.useState<OfferItemDto[] | undefined>(undefined);
-    const [serviceItems, setServiceItems] = React.useState<OfferItemDto[] | undefined>(undefined);
+    const [technologyItems, setTechnologyItems] = React.useState<OfferItemProps[] | undefined>(undefined);
+    const [serviceItems, setServiceItems] = React.useState<OfferItemProps[] | undefined>(undefined);
     const [hasProgress, setHasProgress] = React.useState(false);
 
     const clearAll = React.useCallback(() => {
@@ -166,11 +165,15 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
 
     React.useEffect(() => {
         if (!technologyItems && businessForm.techItems.length > 0) {
-            setTechnologyItems(businessForm.techItems);
+            const items = businessForm.techItems.slice() as OfferItemProps[];
+            const data = resetSelection(items);
+            setTechnologyItems(data);
         }
 
         if (!serviceItems && businessForm.pricing.services.length > 0) {
-            setServiceItems(businessForm.pricing.services);
+            const items = businessForm.pricing.services.slice() as OfferItemProps[];
+            const data = resetSelection(items);
+            setServiceItems(data);
         }
     }, [businessForm.techItems, businessForm.pricing.services]);
 
@@ -219,7 +222,6 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, technologyItems, serviceItems, languageId]);
 
     React.useEffect(() => {
-        clearAll();
         return () => { 
             clearAll();
         };
