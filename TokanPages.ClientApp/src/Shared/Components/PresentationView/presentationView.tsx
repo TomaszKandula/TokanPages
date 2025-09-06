@@ -1,5 +1,5 @@
 import React from "react";
-import { GET_ICONS_URL, GET_IMAGES_URL } from "Api";
+import { GET_ICONS_URL, GET_IMAGES_URL } from "../../../Api";
 import { ImageDto } from "../../../Api/Models";
 import { CustomImage } from "../CustomImage/customImage";
 import { Skeleton } from "../Skeleton";
