@@ -79,7 +79,7 @@ export const PageContactFormView = (props: ContactFormViewProps): React.ReactEle
             <div className="bulma-columns mx-4 my-6">
                 <div className="bulma-column bulma-is-half p-0">
                     <RenderCaption {...props} />
-                    <div className={`bulma-card ${!props.hasShadow ? "contact-card-no-shadow" : ""}`}>
+                    <div className={`bulma-card ${!props.hasShadow ? "contact-form-card-no-shadow" : ""}`}>
                         <div className="bulma-card-content background-colour-inherited">
                             <RenderHeader {...props} />
                             <div className={props.hasIcon ? "pt-5" : ""}>
@@ -269,7 +269,7 @@ export const SectionContactFormView = (props: ContactFormViewProps): React.React
             <div className="py-6">
                 <RenderCaption {...props} />
                 <div
-                    className={`bulma-card ${props.hasCaption ? "" : "contact-form-view-margins"} ${!props.hasShadow ? "contact-card-no-shadow" : ""}`}
+                    className={`bulma-card ${props.hasCaption ? "" : "contact-form-view-margins"} ${!props.hasShadow ? "contact-form-card-no-shadow" : ""}`}
                 >
                     <div className="bulma-card-content background-colour-inherited">
                         <RenderHeader {...props} />
