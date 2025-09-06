@@ -205,7 +205,31 @@ Object {
                         <p
                           class="is-size-6 p-1"
                         >
-                          Super service (20 USD/hour)
+                          Web Development (30 USD/hour)
+                        </p>
+                      </div>
+                      <div
+                        class="is-flex"
+                      >
+                        <div
+                          class="checkbox-wrapper-1 is-flex is-align-self-center"
+                        >
+                          <input
+                            class="substituted"
+                            id="1"
+                            name="service-1"
+                            tabindex="-1"
+                            type="checkbox"
+                          />
+                          <label
+                            class="is-clickable"
+                            for="1"
+                          />
+                        </div>
+                        <p
+                          class="is-size-6 p-1"
+                        >
+                          Mobile Development (45 USD/hour)
                         </p>
                       </div>
                     </div>
@@ -493,7 +517,31 @@ Object {
                       <p
                         class="is-size-6 p-1"
                       >
-                        Super service (20 USD/hour)
+                        Web Development (30 USD/hour)
+                      </p>
+                    </div>
+                    <div
+                      class="is-flex"
+                    >
+                      <div
+                        class="checkbox-wrapper-1 is-flex is-align-self-center"
+                      >
+                        <input
+                          class="substituted"
+                          id="1"
+                          name="service-1"
+                          tabindex="-1"
+                          type="checkbox"
+                        />
+                        <label
+                          class="is-clickable"
+                          for="1"
+                        />
+                      </div>
+                      <p
+                        class="is-size-6 p-1"
+                      >
+                        Mobile Development (45 USD/hour)
                       </p>
                     </div>
                   </div>

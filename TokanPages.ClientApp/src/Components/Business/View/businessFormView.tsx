@@ -1,6 +1,6 @@
 import * as React from "react";
 import { GET_ICONS_URL, GET_IMAGES_URL } from "../../../Api";
-import { ImageDto, OfferItemDto } from "../../../Api/Models";
+import { ImageDto } from "../../../Api/Models";
 import {
     Icon,
     ProgressBar,
@@ -11,7 +11,7 @@ import {
     CustomImage,
     Link,
 } from "../../../Shared/Components";
-import { BusinessFormViewProps, ServiceItemsProps, TechStackListProps } from "../Types";
+import { BusinessFormViewProps, OfferItemProps, ServiceItemsProps, TechStackListProps } from "../Types";
 import "./businessFormView.css";
 import { v4 as uuidv4 } from "uuid";
 
@@ -27,13 +27,13 @@ const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => (
 );
 
 const TechStackList = (props: TechStackListProps): React.ReactElement =>
-    props.hasTechItems ? (
+    props.canDisplay ? (
         <>
             <div className="bulma-content">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24}>
-                    <p className="is-size-5">{props.techLabel}</p>
+                    <p className="is-size-5">{props.caption}</p>
                 </Skeleton>
-                {props.list.map((value: OfferItemDto, index: number) => (
+                {props.items.map((value: OfferItemProps, index: number) => (
                     <div key={value.key} className="is-flex">
                         <Skeleton isLoading={props.isLoading} mode="Text" width={150} height={24}>
                             <div className="checkbox-wrapper-1 is-flex is-align-self-center">
@@ -65,7 +65,7 @@ const ServiceItems = (props: ServiceItemsProps): React.ReactElement => (
             <Skeleton isLoading={props.isLoading} mode="Text" width={300} height={24}>
                 <p className="is-size-5">{props.caption}</p>
             </Skeleton>
-            {props.list.map((value: OfferItemDto, index: number) => (
+            {props.items.map((value: OfferItemProps, index: number) => (
                 <div key={value.key} className="is-flex">
                     <Skeleton isLoading={props.isLoading} mode="Rect" height={100}>
                         <div className="checkbox-wrapper-1 is-flex is-align-self-center">
@@ -205,7 +205,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                                 required={props.description.required}
                                                 uuid="description"
                                                 isDisabled={props.progress}
-                                                onChange={props.descriptionHandler}
+                                                onChange={props.description.handler}
                                                 value={props.description.text}
                                                 placeholder={props.description.label}
                                                 rows={props.description.rows}
@@ -216,17 +216,17 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                 <TechStackList
                                     isLoading={props.isLoading}
                                     isDisabled={props.progress}
-                                    hasTechItems={props.hasTechItems}
-                                    techLabel={props.techLabel}
-                                    list={props.techItems}
-                                    handler={props.techHandler}
+                                    canDisplay={props.technology.canDisplay}
+                                    caption={props.technology.caption}
+                                    items={props.technology.items}
+                                    handler={props.technology.handler}
                                 />
                                 <ServiceItems
                                     isLoading={props.isLoading}
                                     isDisabled={props.progress}
                                     caption={props.pricing.caption}
-                                    list={props.serviceItems}
-                                    handler={props.serviceHandler}
+                                    items={props.pricing.items}
+                                    handler={props.pricing.handler}
                                 />
                                 <Skeleton isLoading={props.isLoading} mode="Rect" height={80}>
                                     <Notification text={props.pricing.disclaimer} hasIcon />

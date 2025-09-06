@@ -95,6 +95,7 @@ export const PageContactFormView = (props: ContactFormViewProps): React.ReactEle
                                                     onChange={props.formHandler}
                                                     value={props.firstName}
                                                     placeholder={props.labelFirstName}
+                                                    isDisabled={props.progress}
                                                 />
                                             </Skeleton>
                                         </Animated>
@@ -110,6 +111,7 @@ export const PageContactFormView = (props: ContactFormViewProps): React.ReactEle
                                                     onChange={props.formHandler}
                                                     value={props.lastName}
                                                     placeholder={props.labelLastName}
+                                                    isDisabled={props.progress}
                                                 />
                                             </Skeleton>
                                         </Animated>
@@ -127,6 +129,7 @@ export const PageContactFormView = (props: ContactFormViewProps): React.ReactEle
                                                     onChange={props.formHandler}
                                                     value={props.email}
                                                     placeholder={props.labelEmail}
+                                                    isDisabled={props.progress}
                                                 />
                                             </Skeleton>
                                         </Animated>
@@ -144,6 +147,7 @@ export const PageContactFormView = (props: ContactFormViewProps): React.ReactEle
                                                     onChange={props.formHandler}
                                                     value={props.subject}
                                                     placeholder={props.labelSubject}
+                                                    isDisabled={props.progress}
                                                 />
                                             </Skeleton>
                                         </Animated>
@@ -162,6 +166,7 @@ export const PageContactFormView = (props: ContactFormViewProps): React.ReactEle
                                                     onChange={props.messageHandler}
                                                     value={props.message}
                                                     placeholder={props.labelMessage}
+                                                    isDisabled={props.progress}
                                                 />
                                             </Skeleton>
                                         </Animated>
@@ -279,6 +284,7 @@ export const SectionContactFormView = (props: ContactFormViewProps): React.React
                                                 onChange={props.formHandler}
                                                 value={props.firstName}
                                                 placeholder={props.labelFirstName}
+                                                isDisabled={props.progress}
                                             />
                                         </Skeleton>
                                     </Animated>
@@ -294,6 +300,7 @@ export const SectionContactFormView = (props: ContactFormViewProps): React.React
                                                 onChange={props.formHandler}
                                                 value={props.lastName}
                                                 placeholder={props.labelLastName}
+                                                isDisabled={props.progress}
                                             />
                                         </Skeleton>
                                     </Animated>
@@ -311,6 +318,7 @@ export const SectionContactFormView = (props: ContactFormViewProps): React.React
                                                 onChange={props.formHandler}
                                                 value={props.email}
                                                 placeholder={props.labelEmail}
+                                                isDisabled={props.progress}
                                             />
                                         </Skeleton>
                                     </Animated>
@@ -328,6 +336,7 @@ export const SectionContactFormView = (props: ContactFormViewProps): React.React
                                                 onChange={props.formHandler}
                                                 value={props.subject}
                                                 placeholder={props.labelSubject}
+                                                isDisabled={props.progress}
                                             />
                                         </Skeleton>
                                     </Animated>
@@ -346,6 +355,7 @@ export const SectionContactFormView = (props: ContactFormViewProps): React.React
                                                 onChange={props.messageHandler}
                                                 value={props.message}
                                                 placeholder={props.labelMessage}
+                                                isDisabled={props.progress}
                                             />
                                         </Skeleton>
                                     </Animated>
