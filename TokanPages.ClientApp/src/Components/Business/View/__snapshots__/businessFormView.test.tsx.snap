@@ -283,14 +283,18 @@ Object {
                   <div
                     class="is-size-5 has-text-weight-semibold has-text-link"
                   />
-                  <a
-                    class=""
-                    href="/"
+                  <div
+                    class="contact-form-icon-container"
                   >
-                    <figure
-                      class="bulma-image bulma-is-24x24"
-                    />
-                  </a>
+                    <a
+                      class=""
+                      href="/"
+                    >
+                      <figure
+                        class="bulma-image bulma-is-24x24"
+                      />
+                    </a>
+                  </div>
                 </div>
               </div>
               <div
@@ -595,14 +599,18 @@ Object {
                 <div
                   class="is-size-5 has-text-weight-semibold has-text-link"
                 />
-                <a
-                  class=""
-                  href="/"
+                <div
+                  class="contact-form-icon-container"
                 >
-                  <figure
-                    class="bulma-image bulma-is-24x24"
-                  />
-                </a>
+                  <a
+                    class=""
+                    href="/"
+                  >
+                    <figure
+                      class="bulma-image bulma-is-24x24"
+                    />
+                  </a>
+                </div>
               </div>
             </div>
             <div

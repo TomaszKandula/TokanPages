@@ -1,6 +1,4 @@
 import * as React from "react";
-import { GET_ICONS_URL, GET_IMAGES_URL } from "../../../Api";
-import { ImageDto } from "../../../Api/Models";
 import {
     Icon,
     ProgressBar,
@@ -8,12 +6,10 @@ import {
     TextArea,
     TextField,
     Notification,
-    CustomImage,
-    Link,
+    PresentationView,
 } from "../../../Shared/Components";
 import { BusinessFormViewProps, OfferItemProps, ServiceItemsProps, TechStackListProps } from "../Types";
 import "./businessFormView.css";
-import { v4 as uuidv4 } from "uuid";
 
 const ActiveButton = (props: BusinessFormViewProps): React.ReactElement => (
     <button
@@ -239,74 +235,27 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                     </div>
                 </div>
                 <div className="bulma-column business-margins">
-                    <div className="is-flex my-5">
-                        <Skeleton isLoading={props.isLoading} mode="Circle" width={128} height={128}>
-                            <figure className="bulma-image bulma-is-128x128">
-                                <CustomImage
-                                    base={GET_IMAGES_URL}
-                                    source={props.presentation.image.link}
-                                    title={props.presentation.image.title}
-                                    alt={props.presentation.image.alt}
-                                    className="bulma-is-rounded"
-                                />
-                            </figure>
-                        </Skeleton>
-                        <div className="bulma-content ml-4 is-flex is-flex-direction-column is-align-self-center is-gap-0.5">
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24}>
-                                <div className="is-size-4 has-text-weight-bold">{props.presentation.title}</div>
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24}>
-                                <div className="is-size-5 has-text-weight-semibold has-text-link">
-                                    {props.presentation.subtitle}
-                                </div>
-                            </Skeleton>
-                            <Link
-                                to={props.presentation.icon.href}
-                                key={uuidv4()}
-                                aria-label={props.presentation.icon.name}
-                            >
-                                <Skeleton isLoading={props.isLoading} mode="Rect" width={24} height={24}>
-                                    <figure className="bulma-image bulma-is-24x24">
-                                        <Icon name={props.presentation.icon.name} size={1.5} />
-                                    </figure>
-                                </Skeleton>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="bulma-content">
-                        <Skeleton isLoading={props.isLoading} mode="Text" width={500} height={40}>
-                            <p className="is-size-6">{props.presentation.description}</p>
-                        </Skeleton>
-                        <Skeleton isLoading={props.isLoading} mode="Text" width={250} height={40} className="my-6">
-                            <h3 className="is-size-3 my-6">{props.presentation.logos.title}</h3>
-                        </Skeleton>
-                        <div className="bulma-fixed-grid">
-                            <div className="bulma-grid is-gap-7">
-                                {props.presentation.logos.images.map((value: ImageDto, _index: number) => (
-                                    <div
-                                        className="bulma-cell is-flex is-justify-content-center is-align-self-center"
-                                        key={uuidv4()}
-                                    >
-                                        <Skeleton
-                                            isLoading={props.isLoading}
-                                            mode="Rect"
-                                            width={value.width}
-                                            height={value.heigh}
-                                        >
-                                            <CustomImage
-                                                base={GET_ICONS_URL}
-                                                source={value.link}
-                                                title={value.title}
-                                                alt={value.alt}
-                                                width={value.width}
-                                                height={value.heigh}
-                                            />
-                                        </Skeleton>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
+                    <PresentationView
+                        isLoading={props.isLoading}
+                        title={props.presentation.title}
+                        subtitle={props.presentation.subtitle}
+                        description={props.presentation.description}
+                        image={{
+                            link: props.presentation.image.link,
+                            title: props.presentation.image.title,
+                            alt: props.presentation.image.alt,
+                            width: props.presentation.image.width,
+                            heigh: props.presentation.image.heigh,
+                        }}
+                        icon={{
+                            name: props.presentation.icon.name,
+                            href: props.presentation.icon.href,
+                        }}
+                        logos={{
+                            title: props.presentation.logos.title,
+                            images: props.presentation.logos.images,
+                        }}
+                    />
                 </div>
             </div>
         </div>
