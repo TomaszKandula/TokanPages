@@ -20,8 +20,6 @@ const formDefault: MessageFormProps = {
     email: "",
     phone: "",
     description: "",
-    techStack: [""],
-    services: [""],
 };
 
 export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
@@ -40,76 +38,34 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
 
     const [form, setForm] = React.useState<MessageFormProps>(formDefault);
     const [description, setDescription] = React.useState({ description: "" });
-    const [techStackItems, setTechStackItems] = React.useState<OfferItemDto[] | undefined>(undefined);
+    const [technologyItems, setTechnologyItems] = React.useState<OfferItemDto[] | undefined>(undefined);
     const [serviceItems, setServiceItems] = React.useState<OfferItemDto[] | undefined>(undefined);
     const [hasProgress, setHasProgress] = React.useState(false);
+
+    const clearAll = React.useCallback(() => {
+        if (serviceItems && serviceItems.length > 0) {
+            const serviceItemsUnselected = resetSelection(serviceItems);
+            setServiceItems(serviceItemsUnselected);
+        }
+
+        if (technologyItems && technologyItems.length > 0) {
+            const techStackItemsUnselected = resetSelection(technologyItems);
+            setTechnologyItems(techStackItemsUnselected);
+        }
+
+        setForm(formDefault);
+        setDescription({ description: "" });
+    }, [formDefault, technologyItems, serviceItems]);
 
     const clearForm = React.useCallback(() => {
         if (!hasProgress) {
             return;
         }
 
-        setTechStackItems(resetSelection(techStackItems));
-        setServiceItems(resetSelection(serviceItems));
-        setForm(formDefault);
-        setDescription({ description: "" });
+        clearAll();
         setHasProgress(false);
         dispatch(ApplicationMessageAction.clear());
-    }, [hasProgress, techStackItems, serviceItems]);
-
-    React.useEffect(() => {
-        if (!techStackItems && businessForm.techItems.length > 0) {
-            setTechStackItems(businessForm.techItems);
-        }
-
-        if (!serviceItems && businessForm.pricing.services.length > 0) {
-            setServiceItems(businessForm.pricing.services);
-        }
-    }, [businessForm.techItems, businessForm.pricing.services]);
-
-    React.useEffect(() => {
-        if (hasError) {
-            clearForm();
-            return;
-        }
-
-        if (hasNotStarted && hasProgress) {
-            const techStack = getSelection(techStackItems);
-            const services = getSelection(serviceItems);
-            const data = JSON.stringify({
-                ...form,
-                techStack: techStack,
-                services: services,
-            });
-
-            dispatch(
-                ApplicationMessageAction.send({
-                    languageId: languageId,
-                    firstName: form.firstName,
-                    lastName: form.lastName,
-                    userEmail: form.email,
-                    emailFrom: form.email,
-                    emailTos: [form.email],
-                    subject: INTERNAL_SUBJECT_TEXT,
-                    message: INTERNAL_MESSAGE_TEXT,
-                    businessData: data,
-                })
-            );
-
-            return;
-        }
-
-        if (hasFinished) {
-            clearForm();
-            dispatch(
-                ApplicationDialogAction.raise({
-                    title: templates.forms.textBusinessForm,
-                    message: templates.templates.messageOut.success,
-                    icon: IconType.info,
-                })
-            );
-        }
-    }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, techStackItems, serviceItems, languageId]);
+    }, [hasProgress]);
 
     const keyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -150,16 +106,16 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
 
     const techHandler = React.useCallback(
         (event: ReactChangeEvent) => {
-            if (!techStackItems) {
+            if (!technologyItems) {
                 return;
             }
 
             const index = Number(event.target.id);
-            const data = techStackItems.slice();
+            const data = technologyItems.slice();
             data[index].isChecked = event.target.checked;
-            setTechStackItems(data);
+            setTechnologyItems(data);
         },
-        [techStackItems]
+        [technologyItems]
     );
 
     const serviceHandler = React.useCallback(
@@ -177,7 +133,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     );
 
     const buttonHandler = React.useCallback(() => {
-        const techStack = getSelection(techStackItems);
+        const techStack = getSelection(technologyItems);
         const services = getSelection(serviceItems);
         const result = ValidateBusinessForm(
             {
@@ -206,21 +162,81 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
                 icon: IconType.warning,
             })
         );
-    }, [form, description, templates, serviceItems, techStackItems]);
+    }, [form, description, templates, serviceItems, technologyItems]);
+
+    React.useEffect(() => {
+        if (!technologyItems && businessForm.techItems.length > 0) {
+            setTechnologyItems(businessForm.techItems);
+        }
+
+        if (!serviceItems && businessForm.pricing.services.length > 0) {
+            setServiceItems(businessForm.pricing.services);
+        }
+    }, [businessForm.techItems, businessForm.pricing.services]);
+
+    React.useEffect(() => {
+        if (hasError) {
+            clearForm();
+            return;
+        }
+
+        if (hasNotStarted && hasProgress) {
+            const techStack = getSelection(technologyItems);
+            const services = getSelection(serviceItems);
+            const data = JSON.stringify({
+                ...form,
+                techStack: techStack,
+                services: services,
+            });
+
+            dispatch(
+                ApplicationMessageAction.send({
+                    languageId: languageId,
+                    firstName: form.firstName,
+                    lastName: form.lastName,
+                    userEmail: form.email,
+                    emailFrom: form.email,
+                    emailTos: [form.email],
+                    subject: INTERNAL_SUBJECT_TEXT,
+                    message: INTERNAL_MESSAGE_TEXT,
+                    businessData: data,
+                })
+            );
+
+            return;
+        }
+
+        if (hasFinished) {
+            clearForm();
+            dispatch(
+                ApplicationDialogAction.raise({
+                    title: templates.forms.textBusinessForm,
+                    message: templates.templates.messageOut.success,
+                    icon: IconType.info,
+                })
+            );
+        }
+    }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, technologyItems, serviceItems, languageId]);
+
+    React.useEffect(() => {
+        clearAll();
+        return () => { 
+            clearAll();
+        };
+    }, []);
 
     return (
         <BusinessFormView
             isLoading={data.isLoading}
             caption={businessForm.caption}
             progress={hasProgress}
+
             buttonText={businessForm.buttonText}
+
             keyHandler={keyHandler}
             formHandler={formHandler}
-            descriptionHandler={descriptionHandler}
             buttonHandler={buttonHandler}
-            techHandler={techHandler}
-            serviceHandler={serviceHandler}
-            serviceItems={serviceItems ?? []}
+
             companyText={form.company}
             companyLabel={businessForm.companyLabel}
             firstNameText={form.firstName}
@@ -231,19 +247,24 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             emailLabel={businessForm.emailLabel}
             phoneText={form.phone}
             phoneLabel={businessForm.phoneLabel}
-            techLabel={businessForm.techLabel}
-            hasTechItems={businessForm.hasTechItems}
-            techItems={techStackItems ?? []}
             description={{
                 text: description.description,
                 label: businessForm.description.label,
                 rows: businessForm.description.rows,
                 required: businessForm.description.required,
+                handler: descriptionHandler,
+            }}
+            technology={{
+                caption: businessForm.techLabel,
+                canDisplay: businessForm.hasTechItems,
+                items: technologyItems ?? [],
+                handler: techHandler,
             }}
             pricing={{
                 caption: businessForm.pricing.caption,
                 disclaimer: businessForm.pricing.disclaimer,
-                services: businessForm.pricing.services,
+                services: serviceItems ?? [],
+                serviceHandler: serviceHandler,
             }}
             presentation={businessForm.presentation}
             className={props.className}

@@ -205,7 +205,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                                 required={props.description.required}
                                                 uuid="description"
                                                 isDisabled={props.progress}
-                                                onChange={props.descriptionHandler}
+                                                onChange={props.description.handler}
                                                 value={props.description.text}
                                                 placeholder={props.description.label}
                                                 rows={props.description.rows}
@@ -216,17 +216,17 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                                 <TechStackList
                                     isLoading={props.isLoading}
                                     isDisabled={props.progress}
-                                    hasTechItems={props.hasTechItems}
-                                    techLabel={props.techLabel}
-                                    list={props.techItems}
-                                    handler={props.techHandler}
+                                    hasTechItems={props.technology.canDisplay}
+                                    techLabel={props.technology.caption}
+                                    list={props.technology.items}
+                                    handler={props.technology.handler}
                                 />
                                 <ServiceItems
                                     isLoading={props.isLoading}
                                     isDisabled={props.progress}
                                     caption={props.pricing.caption}
-                                    list={props.serviceItems}
-                                    handler={props.serviceHandler}
+                                    list={props.pricing.services}
+                                    handler={props.pricing.serviceHandler}
                                 />
                                 <Skeleton isLoading={props.isLoading} mode="Rect" height={80}>
                                     <Notification text={props.pricing.disclaimer} hasIcon />

@@ -9,8 +9,6 @@ export interface MessageFormProps {
     email: string;
     phone: string;
     description: string;
-    techStack: string[];
-    services: string[];
 }
 
 export interface TechStackListProps {
@@ -41,13 +39,20 @@ export interface BusinessFormViewProps extends ViewProperties, BusinessFormProps
     caption: string;
     progress: boolean;
     buttonText: string;
-    hasTechItems: boolean;
     keyHandler: (event: ReactKeyboardEvent) => void;
     formHandler: (event: ReactChangeEvent) => void;
-    descriptionHandler: (event: ReactChangeTextEvent) => void;
     buttonHandler: () => void;
-    techHandler: (event: ReactChangeEvent) => void;
+}
+
+export interface ServicesProps extends PricingDto {
     serviceHandler: (event: ReactChangeEvent) => void;
+}
+
+export interface TechnologyProps {
+    canDisplay: boolean;
+    caption: string;
+    items: OfferItemDto[];
+    handler: (event: ReactChangeEvent) => void;
 }
 
 export interface FormProps {
@@ -61,14 +66,13 @@ export interface FormProps {
     emailLabel: string;
     phoneText: string;
     phoneLabel: string;
-    techLabel: string;
-    techItems: OfferItemDto[];
-    serviceItems: OfferItemDto[];
     description: ExtendedDescriptionProps;
-    pricing: PricingDto;
+    technology: TechnologyProps;
+    pricing: ServicesProps;
     presentation: PresentationDto;
 }
 
 export interface ExtendedDescriptionProps extends DescriptionItemDto {
     text: string;
+    handler: (event: ReactChangeTextEvent) => void;
 }

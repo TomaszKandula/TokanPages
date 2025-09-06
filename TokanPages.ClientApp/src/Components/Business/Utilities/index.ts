@@ -19,11 +19,7 @@ export const getSelection = (input?: OfferItemDto[]): string[] => {
     return result;
 };
 
-export const resetSelection = (input?: OfferItemDto[]): OfferItemDto[] => {
-    if (!input) {
-        return [];
-    }
-
+export const resetSelection = (input: OfferItemDto[]): OfferItemDto[] => {
     const result: OfferItemDto[] = [];
     input.forEach(item => {
         result.push({ ...item, isChecked: false });

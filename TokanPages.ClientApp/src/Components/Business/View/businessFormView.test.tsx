@@ -16,10 +16,6 @@ describe("test component: businessFormView", () => {
                     keyHandler={jest.fn()}
                     formHandler={jest.fn()}
                     buttonHandler={jest.fn()}
-                    descriptionHandler={jest.fn()}
-                    techHandler={jest.fn()}
-                    serviceHandler={jest.fn()}
-                    serviceItems={[{ key: 1, value: "Super service (20 USD/hour)", isChecked: false }]}
                     companyText=""
                     companyLabel="Company name"
                     firstNameText=""
@@ -30,29 +26,34 @@ describe("test component: businessFormView", () => {
                     emailLabel="Email"
                     phoneText=""
                     phoneLabel="Business phone"
-                    techLabel="Which technologies are you interested in?"
-                    hasTechItems={false}
-                    techItems={[
-                        {
-                            value: "ABC",
-                            key: 1,
-                            isChecked: false,
-                        },
-                        {
-                            value: "CDE",
-                            key: 2,
-                            isChecked: false,
-                        },
-                    ]}
                     description={{
                         text: "",
                         label: "",
                         rows: 0,
                         required: true,
+                        handler: jest.fn(),
+                    }}
+                    technology={{
+                        caption: "Which technologies are you interested in?",
+                        canDisplay: false,
+                        handler: jest.fn(),
+                        items: [
+                            {
+                                value: "ABC",
+                                key: 1,
+                                isChecked: false,
+                            },
+                            {
+                                value: "CDE",
+                                key: 2,
+                                isChecked: false,
+                            },
+                        ],
                     }}
                     pricing={{
                         caption: "",
                         disclaimer: "",
+                        serviceHandler: jest.fn(),
                         services: [
                             {
                                 key: 0,
