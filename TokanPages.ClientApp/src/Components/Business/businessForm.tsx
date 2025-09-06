@@ -145,7 +145,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
                 techStack: techStack,
                 services: services,
             },
-            businessForm.hasTechItems
+            businessForm.technology.canDisplay
         );
 
         if (!Validate.isDefined(result)) {
@@ -164,8 +164,8 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
     }, [form, description, templates, serviceItems, technologyItems]);
 
     React.useEffect(() => {
-        if (!technologyItems && businessForm.techItems.length > 0) {
-            const items = businessForm.techItems.slice() as OfferItemProps[];
+        if (!technologyItems && businessForm.technology.items.length > 0) {
+            const items = businessForm.technology.items.slice() as OfferItemProps[];
             const data = resetSelection(items);
             setTechnologyItems(data);
         }
@@ -175,7 +175,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
             const data = resetSelection(items);
             setServiceItems(data);
         }
-    }, [businessForm.techItems, businessForm.pricing.items]);
+    }, [businessForm.technology.items, businessForm.pricing.items]);
 
     React.useEffect(() => {
         if (hasError) {
@@ -257,8 +257,8 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
                 handler: descriptionHandler,
             }}
             technology={{
-                caption: businessForm.techLabel,
-                canDisplay: businessForm.hasTechItems,
+                caption: businessForm.technology.caption,
+                canDisplay: businessForm.technology.canDisplay,
                 items: technologyItems ?? [],
                 handler: techHandler,
             }}

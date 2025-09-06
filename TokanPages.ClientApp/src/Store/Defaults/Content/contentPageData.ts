@@ -169,13 +169,15 @@ export const ContentPageData: ContentPageDataState = {
             lastNameLabel: "",
             emailLabel: "",
             phoneLabel: "",
-            techLabel: "",
-            hasTechItems: false,
-            techItems: [],
             description: {
                 label: "",
                 rows: 0,
                 required: false,
+            },
+            technology: {
+                caption: "",
+                canDisplay: false,
+                items: [],
             },
             pricing: {
                 caption: "",
