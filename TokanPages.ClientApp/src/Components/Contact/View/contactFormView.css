@@ -2,6 +2,10 @@
     box-shadow: none;
 }
 
+.contact-form-icon-container {
+    max-width: 24px;
+}
+
 .contact-form-view-margins {
     margin: auto;
 }
