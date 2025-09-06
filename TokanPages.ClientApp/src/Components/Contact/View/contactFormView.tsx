@@ -210,15 +210,15 @@ export const PageContactFormView = (props: ContactFormViewProps): React.ReactEle
                             </Skeleton>
                             <div className="contact-form-icon-container">
                                 <Skeleton isLoading={props.isLoading} mode="Rect" width={24} height={24}>
-                            <Link
-                                to={props.presentation.icon.href}
-                                key={uuidv4()}
-                                aria-label={props.presentation.icon.name}
-                            >
-                                    <figure className="bulma-image bulma-is-24x24">
-                                        <Icon name={props.presentation.icon.name} size={1.5} />
-                                    </figure>
-                            </Link>
+                                    <Link
+                                        to={props.presentation.icon.href}
+                                        key={uuidv4()}
+                                        aria-label={props.presentation.icon.name}
+                                    >
+                                        <figure className="bulma-image bulma-is-24x24">
+                                            <Icon name={props.presentation.icon.name} size={1.5} />
+                                        </figure>
+                                    </Link>
                                 </Skeleton>
                             </div>
                         </div>
