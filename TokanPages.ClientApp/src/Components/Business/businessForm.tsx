@@ -43,13 +43,13 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
 
     const clearAll = React.useCallback(() => {
         if (serviceItems && serviceItems.length > 0) {
-            const serviceItemsUnselected = resetSelection(serviceItems);
-            setServiceItems(serviceItemsUnselected);
+            const items = resetSelection(serviceItems);
+            setServiceItems(items);
         }
 
         if (technologyItems && technologyItems.length > 0) {
-            const techStackItemsUnselected = resetSelection(technologyItems);
-            setTechnologyItems(techStackItemsUnselected);
+            const items = resetSelection(technologyItems);
+            setTechnologyItems(items);
         }
 
         setForm(formDefault);
