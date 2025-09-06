@@ -190,6 +190,7 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
                 ...form,
                 techStack: techStack,
                 services: services,
+                description: description.description,
             });
 
             dispatch(
