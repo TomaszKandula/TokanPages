@@ -4,6 +4,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { usePageContent, useSnapshot, useUnhead } from "../../Shared/Hooks";
 import { CustomBreadcrumb } from "../../Shared/Components";
 import { Footer, Navigation } from "../../Components/Layout";
+import { Resume } from "../../Components/Resume";
 
 export const ResumePage = (): React.ReactElement => {
     const heading = useUnhead("ResumePage");
@@ -20,7 +21,7 @@ export const ResumePage = (): React.ReactElement => {
             <main>
                 <h1 className="seo-only">{heading}</h1>
                 <CustomBreadcrumb isLoading={isLoading} />
-                <div>EMPTY PAGE</div>
+                <Resume />
             </main>
             <Footer />
         </>
