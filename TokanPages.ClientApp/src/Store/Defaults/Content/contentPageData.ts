@@ -549,12 +549,12 @@ export const ContentPageData: ContentPageDataState = {
                 aboveLabel: "",
                 singular: {
                     yearLabel: "",
-                    yearsLabel: ""
+                    yearsLabel: "",
                 },
                 plural: {
                     yearLabel: "",
-                    yearsLabel: ""
-                }
+                    yearsLabel: "",
+                },
             },
             resume: {
                 header: {
@@ -563,30 +563,34 @@ export const ContentPageData: ContentPageDataState = {
                     email: "",
                     www: {
                         text: "",
-                        href: ""
-                    }
+                        href: "",
+                    },
+                    github: {
+                        text: "",
+                        href: "",
+                    },
                 },
                 summary: {
                     caption: "",
-                    text: ""
+                    text: "",
                 },
                 achievements: {
                     caption: "",
-                    list: []
+                    list: [],
                 },
                 experience: {
                     caption: "",
-                    list: []
+                    list: [],
                 },
                 education: {
                     caption: "",
-                    list: []
+                    list: [],
                 },
                 interests: {
                     caption: "",
-                    list: []
-                }
-            }
+                    list: [],
+                },
+            },
         },
         accountUserSignin: {
             language: "",
