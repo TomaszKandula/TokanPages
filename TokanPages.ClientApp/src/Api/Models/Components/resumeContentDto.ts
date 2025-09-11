@@ -1,77 +1,79 @@
 import { LinkDto } from "./Common";
 
-interface TranslationItemProps {
+export interface TranslationItemProps {
     yearLabel: string;
     yearsLabel: string;
 }
 
-interface TranslationsProps {
+export interface TranslationsProps {
     aboveLabel: string;
     singular: TranslationItemProps;
     plural: TranslationItemProps;
 }
 
-interface HeaderItem {
+export interface HeaderItem {
     fullName: string;
     mobilePhone: string;
     email: string;
     www: LinkDto;
+    github: LinkDto;
 }
 
-interface SummaryProps {
+export interface SummaryProps {
     caption: string;
     text: string;
 }
 
-interface AchievementsProps {
+export interface AchievementsProps {
     caption: string;
     list: string[];
 }
 
-interface OccupationProps {
+export interface OccupationProps {
     name: string;
     dateStart: string;
     dateEnd: string;
     details: string[];
 }
 
-interface InterestsProps {
+export interface InterestsProps {
     caption: string;
     list: string[];
 }
 
-interface ExperienceItemProps {
+export interface ExperienceItemProps {
     dateStart: string;
     dateEnd: string;
     companyName: string;
     contractType: string;
-    occupation: OccupationProps;
+    occupation: OccupationProps[];
 }
 
-interface ExperienceProps {
+export interface ExperienceProps {
     caption: string;
     list: ExperienceItemProps[];
 }
 
-interface ThesisProps {
+export interface ThesisProps {
     name: string;
     file: string;
 }
 
-interface EducationItemProps {
+export interface EducationItemProps {
     schoolName: string;
     tenureInfo: string;
     dateStart: string;
     dateEnd: string;
+    details: string;
     thesis: ThesisProps;
 }
 
-interface EducationProps {
+export interface EducationProps {
     caption: string;
     list: EducationItemProps[];
 }
 
-interface ResumeProps {
+export interface ResumeProps {
     header: HeaderItem;
     summary: SummaryProps;
     achievements: AchievementsProps;

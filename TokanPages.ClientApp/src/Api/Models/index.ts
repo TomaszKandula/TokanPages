@@ -106,7 +106,6 @@ export type { FeaturedContentDto } from "./Components/featuredContentDto";
 export type { TechnologiesContentDto } from "./Components/technologiesContentDto";
 export type { PasswordResetContentDto } from "./Components/passwordResetContentDto";
 export type { PasswordUpdateContentDto } from "./Components/passwordUpdateContentDto";
-export type { ResumeContentDto } from "./Components/resumeContentDto";
 export type { NewsletterContentDto } from "./Components/newsletterContentDto";
 export type { NewsletterRemoveContentDto } from "./Components/newsletterRemoveContentDto";
 export type { NewsletterUpdateContentDto } from "./Components/newsletterUpdateContentDto";
@@ -121,6 +120,22 @@ export type {
     SectionAccountDeactivation,
     SectionAccountRemoval,
 } from "./Components/accountSettingsContentDto";
+export type {
+    ResumeContentDto,
+    ThesisProps,
+    TranslationItemProps,
+    TranslationsProps,
+    HeaderItem,
+    SummaryProps,
+    AchievementsProps,
+    OccupationProps,
+    InterestsProps,
+    EducationItemProps,
+    EducationProps,
+    ExperienceItemProps,
+    ExperienceProps,
+    ResumeProps,
+} from "./Components/resumeContentDto";
 
 export type {
     TemplatesContent,
