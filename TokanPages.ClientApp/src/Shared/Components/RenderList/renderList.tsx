@@ -2,6 +2,7 @@ import * as React from "react";
 import { ProcessParagraphs } from "../RenderContent/Renderers";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
+import { Skeleton } from "../Skeleton";
 
 type TList = "ul" | "ol";
 
@@ -10,11 +11,14 @@ interface RenderListProps {
     type?: TList;
     className?: string;
     dataTestId?: string;
+    isLoading?: boolean;
 }
 
 const GetListItem = (props: RenderListProps): React.ReactElement => {
     const list = props.list.map((value: string, _index: number) => (
-        <ProcessParagraphs key={uuidv4()} tag="li" html={value} />
+        <Skeleton key={uuidv4()} isLoading={props.isLoading ?? false} className="my-4">
+            <ProcessParagraphs tag="li" html={value} />
+        </Skeleton>
     ));
 
     return <>{list}</>;
