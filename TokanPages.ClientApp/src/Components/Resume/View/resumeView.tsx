@@ -80,7 +80,7 @@ export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
             <p className="is-size-3 is-uppercase has-text-grey-dark has-text-centered has-text-weight-light m-6">
                 {props.content?.caption}
             </p>
-            <div className="is-flex is-gap-2.5">
+            <div className="is-flex is-gap-2.5 mb-6">
                 <div className="bulma-cell is-align-content-center">
                     <Skeleton isLoading={props.isLoading} mode="Circle" width={98} height={98} disableMarginY>
                         <figure className="bulma-image bulma-is-96x96">
@@ -96,22 +96,22 @@ export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
                 </div>
                 <div className="bulma-cell is-align-content-center">
                     <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                        <p className="is-size-6 has-text-grey-dark has-text-weight-bold">
+                        <p className="is-size-6 has-text-grey-dark has-text-weight-bold is-capitalized">
                             {props.content?.resume?.header?.fullName}
                         </p>
                     </Skeleton>
                     <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                        <p className="is-size-6 has-text-grey-dark">{props.content?.resume?.header?.email}</p>
+                        <p className="is-size-6 has-text-grey-dark is-lowercase">{props.content?.resume?.header?.mobilePhone}</p>
                     </Skeleton>
                     <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                        <p className="is-size-6 has-text-grey-dark">{props.content?.resume?.header?.mobilePhone}</p>
+                        <p className="is-size-6 has-text-grey-dark is-lowercase">{props.content?.resume?.header?.email}</p>
                     </Skeleton>
                     <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                        <p className="is-size-6 has-text-grey-dark">{props.content?.resume?.header?.github.text}</p>
+                        <p className="is-size-6 has-text-grey-dark is-lowercase">{props.content?.resume?.header?.github.text}</p>
                     </Skeleton>
-                    <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                    {/* <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
                         <p className="is-size-6 has-text-grey-dark">{props.content?.resume?.header?.www.text}</p>
-                    </Skeleton>
+                    </Skeleton> */}
                 </div>
             </div>
             <Skeleton
