@@ -9,7 +9,10 @@ import { Resume } from "../../Components/Resume";
 export const ResumePage = (): React.ReactElement => {
     const heading = useUnhead("ResumePage");
     useSnapshot();
-    usePageContent(["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageResume"], "ResumePage");
+    usePageContent(
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageResume"],
+        "ResumePage"
+    );
 
     const state = useSelector((state: ApplicationState) => state);
     const data = state.contentPageData;
@@ -26,4 +29,4 @@ export const ResumePage = (): React.ReactElement => {
             <Footer />
         </>
     );
-}
+};
