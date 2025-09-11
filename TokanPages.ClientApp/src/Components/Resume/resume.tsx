@@ -8,10 +8,5 @@ export const Resume = (): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isContentLoading = data.isLoading;
 
-    return (
-        <ResumeView 
-            isLoading={isContentLoading}
-            content={content}
-        />
-    );
+    return <ResumeView isLoading={isContentLoading} content={content} />;
 };
