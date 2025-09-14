@@ -1,7 +1,7 @@
 import React from "react";
 import { GET_IMAGES_URL } from "../../../Api";
 import { EducationItemProps, ExperienceItemProps, OccupationProps } from "../../../Api/Models";
-import { CustomImage, RenderList, Skeleton } from "../../../Shared/Components";
+import { CustomImage, Link, RenderList, Skeleton } from "../../../Shared/Components";
 import { ResumeViewProps } from "../Types";
 import { v4 as uuid } from "uuid";
 
@@ -58,7 +58,12 @@ const RenderEducationList = (props: ResumeViewProps): React.ReactElement => (
                     </div>
                 </div>
                 <p className="is-size-6 has-text-grey-dark my-1">{value.details}</p>
-                <p className="is-size-6 has-text-grey-dark my-1">{value.thesis.name}</p>
+                <div className="is-flex is-gap-1.5">
+                    <p className="is-size-6 has-text-grey-dark my-1">{value.thesis.label}:</p>
+                    <Link to={`document?name=${value.thesis.file}`} className="is-size-6 my-1 is-underlined">
+                        <>{value.thesis.name}</>
+                    </Link>
+                </div>
             </div>
         ))}
     </>
