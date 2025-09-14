@@ -9,34 +9,30 @@ const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
     <>
         {props.content?.resume?.experience?.list.map((value: ExperienceItemProps, _index: number) => (
             <div key={uuid()} className="is-flex is-flex-direction-column mb-4">
-                <div className="is-flex is-justify-content-space-between">
-                    <div className="is-flex is-gap-1.5 my-2">
+                <div className="is-flex is-justify-content-space-between is-align-items-center">
+                    <div className="is-flex is-flex-direction-column my-3">
                         <Skeleton isLoading={props.isLoading} width={50} height={24}>
                             <p className="is-size-6 has-text-weight-bold has-text-grey-dark">{value.companyName}</p>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} width={100} height={24}>
-                            <p className="is-size-6 has-text-grey-dark">({value.contractType})</p>
+                            <p className="is-size-6 has-text-grey">{value.contractType}</p>
                         </Skeleton>
                     </div>
-                    <div className="is-flex is-gap-0.5 my-2">
+                    <div className="my-2">
                         <Skeleton isLoading={props.isLoading} width={100} height={24}>
-                            <p className="is-size-6 has-text-grey-dark">{value.dateStart}</p>
-                            <p className="is-size-6 has-text-grey-dark">-</p>
-                            <p className="is-size-6 has-text-grey-dark">{value.dateEnd}</p>
+                            <p className="is-size-6 has-text-grey-dark">{value.dateStart} - {value.dateEnd}</p>
                         </Skeleton>
                     </div>
                 </div>
                 {value.occupation.map((value: OccupationProps, _index: number) => (
                     <React.Fragment key={uuid()}>
-                        <div className="is-flex is-gap-0.5">
+                        <div className="is-flex is-flex-direction-column">
                             <Skeleton isLoading={props.isLoading} width={250} height={24}>
                                 <p className="is-size-6 has-text-grey-dark py-1">{value.name}</p>
-                                <p className="is-size-6 has-text-grey-dark py-1">({value.dateStart}</p>
-                                <p className="is-size-6 has-text-grey-dark py-1">-</p>
-                                <p className="is-size-6 has-text-grey-dark py-1">{value.dateEnd})</p>
+                                <p className="is-size-6 has-text-grey py-1">{value.dateStart} - {value.dateEnd}</p>
                             </Skeleton>
                         </div>
-                        <div className="bulma-content mb-0">
+                        <div className="bulma-content mb-1">
                             <RenderList
                                 isLoading={props.isLoading}
                                 list={value.details}
