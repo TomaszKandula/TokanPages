@@ -2,7 +2,7 @@ import React from "react";
 import { GET_IMAGES_URL } from "../../../Api";
 import { EducationItemProps, ExperienceItemProps, OccupationProps } from "../../../Api/Models";
 import { CustomImage, Link, RenderList, Skeleton } from "../../../Shared/Components";
-import { ResumeViewProps } from "../Types";
+import { RenderCaptionProps, ResumeViewProps } from "../Types";
 import { v4 as uuid } from "uuid";
 
 const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
@@ -79,6 +79,12 @@ const RenderInterestsList = (props: ResumeViewProps): React.ReactElement => (
     </div>
 );
 
+const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
+    <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24} hasSkeletonCentered className="my-4">
+        <p className="is-size-4 has-text-grey-dark has-text-centered m-4">{props.text}</p>
+    </Skeleton>
+);
+
 export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet">
@@ -106,7 +112,9 @@ export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
                         </p>
                     </Skeleton>
                     <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                        <p className="is-size-6 has-text-grey-dark is-lowercase">{props.content?.resume?.header?.mobilePhone}</p>
+                        <p className="is-size-6 has-text-grey-dark is-lowercase">
+                            {props.content?.resume?.header?.mobilePhone}
+                        </p>
                     </Skeleton>
                     <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
                         <Link to={`mailto:${props.content?.resume?.header?.email}`} className="is-size-6 is-underlined">
@@ -120,28 +128,13 @@ export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
                     </Skeleton>
                 </div>
             </div>
-            <Skeleton
-                isLoading={props.isLoading}
-                mode="Text"
-                width={200}
-                height={24}
-                hasSkeletonCentered
-                className="my-4"
-            >
-                <p className="is-size-4 has-text-grey-dark has-text-centered m-4">
-                    {props.content.resume.summary.caption}
-                </p>
-            </Skeleton>
+            <RenderCaption isLoading={props.isLoading} text={props.content.resume.summary.caption} />
             <Skeleton isLoading={props.isLoading} mode="Text" height={24} className="my-4">
                 <p className="is-size-6 has-text-grey-dark has-text-justified line-height-20">
                     {props.content.resume.summary.text}
                 </p>
             </Skeleton>
-            <Skeleton isLoading={props.isLoading} mode="Text" height={24} className="my-4">
-                <p className="is-size-4 has-text-grey-dark has-text-centered m-4">
-                    {props.content.resume.achievements.caption}
-                </p>
-            </Skeleton>
+            <RenderCaption isLoading={props.isLoading} text={props.content.resume.achievements.caption} />
             <div className="bulma-content has-text-grey-dark">
                 <RenderList
                     isLoading={props.isLoading}
@@ -149,44 +142,11 @@ export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
                     className="is-size-6 has-text-justified line-height-20"
                 />
             </div>
-            <Skeleton
-                isLoading={props.isLoading}
-                mode="Text"
-                width={200}
-                height={24}
-                hasSkeletonCentered
-                className="my-4"
-            >
-                <p className="is-size-4 has-text-grey-dark has-text-centered m-4">
-                    {props.content.resume.experience.caption}
-                </p>
-            </Skeleton>
+            <RenderCaption isLoading={props.isLoading} text={props.content.resume.experience.caption} />
             <RenderExperienceList {...props} />
-            <Skeleton
-                isLoading={props.isLoading}
-                mode="Text"
-                width={200}
-                height={24}
-                hasSkeletonCentered
-                className="my-4"
-            >
-                <p className="is-size-4 has-text-grey-dark has-text-centered m-4">
-                    {props.content.resume.education.caption}
-                </p>
-            </Skeleton>
+            <RenderCaption isLoading={props.isLoading} text={props.content.resume.education.caption} />
             <RenderEducationList {...props} />
-            <Skeleton
-                isLoading={props.isLoading}
-                mode="Text"
-                width={200}
-                height={24}
-                hasSkeletonCentered
-                className="my-4"
-            >
-                <p className="is-size-4 has-text-grey-dark has-text-centered m-4">
-                    {props.content.resume.interests.caption}
-                </p>
-            </Skeleton>
+            <RenderCaption isLoading={props.isLoading} text={props.content.resume.interests.caption} />
             <RenderInterestsList {...props} />
         </div>
     </section>
