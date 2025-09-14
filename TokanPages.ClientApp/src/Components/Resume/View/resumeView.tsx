@@ -40,7 +40,7 @@ const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
                             <RenderList
                                 isLoading={props.isLoading}
                                 list={value.details}
-                                className="is-size-6 has-text-grey-dark has-text-justified"
+                                className="is-size-6 has-text-grey-dark"
                             />
                         </div>
                     </React.Fragment>
@@ -88,27 +88,27 @@ const RenderEducationList = (props: ResumeViewProps): React.ReactElement => (
 );
 
 const RenderInterestsList = (props: ResumeViewProps): React.ReactElement => (
-    <div className="is-flex my-4">
+    <div className="bulma-tags my-4">
+        <Skeleton isLoading={props.isLoading} height={24} className="m-2">
         {props.content.resume.interests.list.map((value: string, _index: number) => (
-            <Skeleton isLoading={props.isLoading} height={24} key={uuid()} className="m-2">
-                <p className="is-size-6 has-text-grey-dark">{value},&nbsp;</p>
-            </Skeleton>
+            <span key={uuid()} className="bulma-tag bulma-is-medium bulma-is-info bulma-is-light">{value}</span>
         ))}
+        </Skeleton>
     </div>
 );
 
 const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
     <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24} hasSkeletonCentered className="my-4">
-        <p className="is-size-4 has-text-grey-dark has-text-centered m-4">{props.text}</p>
+        <p className="is-size-4 has-text-grey-dark has-text-centered p-4">{props.text}</p>
     </Skeleton>
 );
 
 const RenderResume = (props: ResumeViewProps) => (
     <>
-        <p className="is-size-3 is-uppercase has-text-grey-dark has-text-centered has-text-weight-light m-6">
+        <p className="is-size-3 is-uppercase has-text-grey-dark has-text-centered has-text-weight-light m-5">
             {props.content?.caption}
         </p>
-        <div className="is-flex is-gap-2.5 mb-6">
+        <div className="is-flex is-gap-2.5 mb-4">
             <div className="bulma-cell is-align-content-center">
                 <Skeleton isLoading={props.isLoading} mode="Circle" width={98} height={98} disableMarginY>
                     <figure className="bulma-image bulma-is-96x96">
