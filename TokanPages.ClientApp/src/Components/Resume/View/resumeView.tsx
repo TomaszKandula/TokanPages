@@ -1,9 +1,9 @@
 import React from "react";
 import { GET_IMAGES_URL, GET_TESTIMONIALS_URL } from "../../../Api";
-import { EducationItemProps, ExperienceItemProps, OccupationProps } from "../../../Api/Models";
+import { EducationItemProps, OccupationProps } from "../../../Api/Models";
 import { CustomImage, Link, Media, RenderList, Skeleton } from "../../../Shared/Components";
 import { RenderTag } from "../../../Shared/Components/RenderContent/Renderers";
-import { RenderCaptionProps, ResumeViewProps } from "../Types";
+import { ProcessedExperienceItemProps, ProcessTimeSpanProps, RenderCaptionProps, ResumeViewProps } from "../Types";
 import { v4 as uuid } from "uuid";
 
 const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
@@ -14,9 +14,24 @@ const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
     </Skeleton>
 );
 
+const ProcessTimeSpan = (props: ProcessTimeSpanProps): React.ReactElement => {
+    if (!props.months) {
+        return <></>;
+    }
+
+    if (props.months > 12) {
+        const years = Math.floor(props.months / 12);
+        const month = props.months % 12;
+
+        return <>{years} {years > 1 ? props.yearsLabel : props.yearLabel} {month} {month > 1 ? props.monthsLabel : props.monthLabel}</>;
+    }
+
+    return <>{props.months > 1 ? `${props.months} ${props.monthsLabel}` : `${props.months} ${props.monthLabel}`}</>;
+}
+
 const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
     <>
-        {props.page?.resume?.experience?.list.map((value: ExperienceItemProps, _index: number) => (
+        {props.processed.map((value: ProcessedExperienceItemProps, _index: number) => (
             <div key={uuid()} className="is-flex is-flex-direction-column mb-4">
                 <div className="is-flex is-justify-content-space-between is-align-items-center">
                     <div className="is-flex is-flex-direction-column my-3">
@@ -27,11 +42,22 @@ const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
                             <p className="is-size-6 has-text-grey">{value.contractType}</p>
                         </Skeleton>
                     </div>
-                    <Skeleton isLoading={props.isLoading} width={100} height={24}>
-                        <p className="is-size-6 has-text-grey-dark is-lowercase">
-                            {value.dateStart} - {value.dateEnd}
-                        </p>
-                    </Skeleton>
+                    <div className="is-flex is-flex-direction-column my-3">
+                        <Skeleton isLoading={props.isLoading} width={100} height={24}>
+                            <p className="is-size-6 has-text-right has-text-grey-dark is-lowercase">
+                                {value.dateStart} - {value.dateEnd}
+                            </p>
+                            <p className="is-size-6 has-text-right has-text-grey is-lowercase">
+                                <ProcessTimeSpan 
+                                    months={value.timespan}
+                                    yearLabel={props.page?.translations?.singular?.yearLabel}
+                                    monthLabel={props.page?.translations?.singular?.monthLabel}
+                                    yearsLabel={props.page?.translations?.plural?.yearsLabel}
+                                    monthsLabel={props.page?.translations?.plural?.monthsLabel}
+                                />
+                            </p>
+                        </Skeleton>
+                    </div>
                 </div>
                 {value.occupation.map((value: OccupationProps, _index: number) => (
                     <React.Fragment key={uuid()}>
