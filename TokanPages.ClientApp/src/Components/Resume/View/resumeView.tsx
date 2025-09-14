@@ -109,14 +109,15 @@ export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
                         <p className="is-size-6 has-text-grey-dark is-lowercase">{props.content?.resume?.header?.mobilePhone}</p>
                     </Skeleton>
                     <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                        <p className="is-size-6 has-text-grey-dark is-lowercase">{props.content?.resume?.header?.email}</p>
+                        <Link to={`mailto:${props.content?.resume?.header?.email}`} className="is-size-6 is-underlined">
+                            <p className="is-lowercase">{props.content?.resume?.header?.email}</p>
+                        </Link>
                     </Skeleton>
                     <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                        <p className="is-size-6 has-text-grey-dark is-lowercase">{props.content?.resume?.header?.github.text}</p>
+                        <Link to={props.content?.resume?.header?.github.href} className="is-size-6 is-underlined">
+                            <p className="is-lowercase">{props.content?.resume?.header?.github.text}</p>
+                        </Link>
                     </Skeleton>
-                    {/* <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                        <p className="is-size-6 has-text-grey-dark">{props.content?.resume?.header?.www.text}</p>
-                    </Skeleton> */}
                 </div>
             </div>
             <Skeleton
