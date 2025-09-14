@@ -55,6 +55,7 @@ export interface ExperienceProps {
 }
 
 export interface ThesisProps {
+    label: string;
     name: string;
     file: string;
 }
