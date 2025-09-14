@@ -1,9 +1,15 @@
 import React from "react";
-import { GET_IMAGES_URL } from "../../../Api";
+import { GET_IMAGES_URL, GET_TESTIMONIALS_URL } from "../../../Api";
 import { EducationItemProps, ExperienceItemProps, OccupationProps } from "../../../Api/Models";
 import { CustomImage, Link, Media, RenderList, Skeleton } from "../../../Shared/Components";
 import { RenderCaptionProps, ResumeViewProps } from "../Types";
 import { v4 as uuid } from "uuid";
+
+const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
+    <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24} hasSkeletonCentered className="my-4">
+        <p className="is-size-4 has-text-grey-dark has-text-centered is-uppercase p-4">{props.text}</p>
+    </Skeleton>
+);
 
 const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
     <>
@@ -84,7 +90,7 @@ const RenderEducationList = (props: ResumeViewProps): React.ReactElement => (
 );
 
 const RenderInterestsList = (props: ResumeViewProps): React.ReactElement => (
-    <div className="bulma-tags my-4">
+    <div className="bulma-tags mt-4 mb-6">
         <Skeleton isLoading={props.isLoading} height={24} className="m-2">
             {props.page.resume.interests.list.map((value: string, _index: number) => (
                 <span key={uuid()} className="bulma-tag bulma-is-medium bulma-is-info bulma-is-light">
@@ -95,10 +101,69 @@ const RenderInterestsList = (props: ResumeViewProps): React.ReactElement => (
     </div>
 );
 
-const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
-    <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24} hasSkeletonCentered className="my-4">
-        <p className="is-size-4 has-text-grey-dark has-text-centered is-uppercase p-4">{props.text}</p>
-    </Skeleton>
+const RenderTestimonials = (props: ResumeViewProps) => (
+    <div className="bulma-content is-size-6 has-text-grey-dark">
+        <div className="mt-4">
+            <blockquote className="has-text-justified line-height-20">{props.section.text1}</blockquote>
+            <div className="is-flex is-justify-content-flex-end is-align-items-center is-gap-1.5">
+                <div className="has-text-right my-4">
+                    <Link to={props.section.linkedIn1} className="is-underlined">
+                        <>{props.section.name1}</>
+                    </Link>
+                    <p className="m-0">{props.section.occupation1}</p>
+                </div>
+                <figure className="bulma-image bulma-is-64x64">
+                    <CustomImage
+                        base={GET_TESTIMONIALS_URL}
+                        source={props.section.photo1}
+                        title={props.section.name1}
+                        alt={props.section.name1}
+                        className="bulma-is-rounded is-round-border"
+                    />
+                </figure>
+            </div>
+        </div>
+        <div className="mt-4">
+            <blockquote className="has-text-justified line-height-20">{props.section.text2}</blockquote>
+            <div className="is-flex is-justify-content-flex-end is-align-items-center is-gap-1.5">
+                <div className="has-text-right my-4">
+                    <Link to={props.section.linkedIn2} className="is-underlined">
+                        <>{props.section.name2}</>
+                    </Link>
+                    <p className="m-0">{props.section.occupation2}</p>
+                </div>
+                <figure className="bulma-image bulma-is-64x64">
+                    <CustomImage
+                        base={GET_TESTIMONIALS_URL}
+                        source={props.section.photo2}
+                        title={props.section.name2}
+                        alt={props.section.name2}
+                        className="bulma-is-rounded is-round-border"
+                    />
+                </figure>
+            </div>
+        </div>
+        <div className="mt-4">
+            <blockquote className="has-text-justified line-height-20">{props.section.text3}</blockquote>
+            <div className="is-flex is-justify-content-flex-end is-align-items-center is-gap-1.5">
+                <div className="has-text-right my-4">
+                    <Link to={props.section.linkedIn3} className="is-underlined">
+                        <>{props.section.name3}</>
+                    </Link>
+                    <p className="m-0">{props.section.occupation3}</p>
+                </div>
+                <figure className="bulma-image bulma-is-64x64">
+                    <CustomImage
+                        base={GET_TESTIMONIALS_URL}
+                        source={props.section.photo3}
+                        title={props.section.name3}
+                        alt={props.section.name3}
+                        className="bulma-is-rounded is-round-border"
+                    />
+                </figure>
+            </div>
+        </div>
+    </div>
 );
 
 const RenderResume = (props: ResumeViewProps) => (
@@ -161,9 +226,10 @@ const RenderResume = (props: ResumeViewProps) => (
         <RenderExperienceList {...props} />
         <RenderCaption isLoading={props.isLoading} text={props.page.resume.education.caption} />
         <RenderEducationList {...props} />
+        <RenderCaption isLoading={props.isLoading} text={props.section.caption} />
+        <RenderTestimonials {...props} />
         <RenderCaption isLoading={props.isLoading} text={props.page.resume.interests.caption} />
         <RenderInterestsList {...props} />
-        <RenderCaption isLoading={props.isLoading} text={props.section.caption} />
     </>
 );
 
