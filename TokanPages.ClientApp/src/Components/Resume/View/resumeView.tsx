@@ -23,11 +23,16 @@ const ProcessTimeSpan = (props: ProcessTimeSpanProps): React.ReactElement => {
         const years = Math.floor(props.months / 12);
         const month = props.months % 12;
 
-        return <>{years} {years > 1 ? props.yearsLabel : props.yearLabel} {month} {month > 1 ? props.monthsLabel : props.monthLabel}</>;
+        return (
+            <>
+                {years} {years > 1 ? props.yearsLabel : props.yearLabel} {month}{" "}
+                {month > 1 ? props.monthsLabel : props.monthLabel}
+            </>
+        );
     }
 
     return <>{props.months > 1 ? `${props.months} ${props.monthsLabel}` : `${props.months} ${props.monthLabel}`}</>;
-}
+};
 
 const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
     <>
@@ -48,7 +53,7 @@ const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
                                 {value.dateStart} - {value.dateEnd}
                             </p>
                             <p className="is-size-6 has-text-right has-text-grey is-lowercase">
-                                <ProcessTimeSpan 
+                                <ProcessTimeSpan
                                     months={value.timespan}
                                     yearLabel={props.page?.translations?.singular?.yearLabel}
                                     monthLabel={props.page?.translations?.singular?.monthLabel}

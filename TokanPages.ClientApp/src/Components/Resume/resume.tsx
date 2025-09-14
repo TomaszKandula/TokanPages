@@ -14,30 +14,30 @@ const monthDiff = (dateFrom: Date, dateTo: Date) => {
     const dateFromMonth = dateFrom.getMonth();
 
     // Set offset value to '1' because we count from the beggining of the month to the end of the month.
-    return (dateToMonth - dateFromMonth + offset) + (12 * (dateToFullYear - dateFromFullYear));
-}
+    return dateToMonth - dateFromMonth + offset + 12 * (dateToFullYear - dateFromFullYear);
+};
 
 const tryParseYear = (date: string): number => {
     //Format: mm.yyyy
-    const result =  Number(date.substring(date.length - 4, date.length));
+    const result = Number(date.substring(date.length - 4, date.length));
 
     if (Validate.isNumber(result)) {
         return result;
     }
 
     return new Date().getFullYear();
-}
+};
 
 const tryParseMonth = (date: string): number => {
     //Format: mm.yyyy
-    const result =  Number(date.substring(0, 2));
+    const result = Number(date.substring(0, 2));
 
     if (Validate.isNumber(result)) {
         return result;
     }
 
     return new Date().getMonth();
-}
+};
 
 const processTimespan = (items: ExperienceItemProps[]): ProcessedExperienceItemProps[] => {
     const result: ProcessedExperienceItemProps[] = [];
@@ -61,7 +61,7 @@ const processTimespan = (items: ExperienceItemProps[]): ProcessedExperienceItemP
     });
 
     return result;
-}
+};
 
 export const Resume = (): React.ReactElement => {
     const page = useSelector((state: ApplicationState) => state.contentPageData.components.pageResume);
@@ -78,5 +78,7 @@ export const Resume = (): React.ReactElement => {
         }
     }, [page.resume.experience.list]);
 
-    return <ResumeView isLoading={isContentLoading} page={page} section={testimonials} processed={experienceItems ?? []} />;
+    return (
+        <ResumeView isLoading={isContentLoading} page={page} section={testimonials} processed={experienceItems ?? []} />
+    );
 };
