@@ -2,12 +2,15 @@ import React from "react";
 import { GET_IMAGES_URL, GET_TESTIMONIALS_URL } from "../../../Api";
 import { EducationItemProps, ExperienceItemProps, OccupationProps } from "../../../Api/Models";
 import { CustomImage, Link, Media, RenderList, Skeleton } from "../../../Shared/Components";
+import { RenderTag } from "../../../Shared/Components/RenderContent/Renderers";
 import { RenderCaptionProps, ResumeViewProps } from "../Types";
 import { v4 as uuid } from "uuid";
 
 const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
     <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24} hasSkeletonCentered className="my-4">
-        <p className="is-size-4 has-text-grey-dark has-text-centered is-uppercase p-4">{props.text}</p>
+        <RenderTag tag={props.tag ?? "p"} className="is-size-4 has-text-grey-dark has-text-centered is-uppercase p-4">
+            <>{props.text}</>
+        </RenderTag>
     </Skeleton>
 );
 
@@ -192,9 +195,9 @@ const RenderTestimonials = (props: ResumeViewProps) => (
 
 const RenderResume = (props: ResumeViewProps) => (
     <>
-        <p className="is-size-3 is-uppercase has-text-grey-dark has-text-centered has-text-weight-light m-5">
+        <h2 className="is-size-3 is-uppercase has-text-grey-dark has-text-centered has-text-weight-light m-5">
             {props.page?.caption}
-        </p>
+        </h2>
         <div className="is-flex is-gap-2.5 mb-4">
             <div className="bulma-cell is-align-content-center">
                 <Skeleton isLoading={props.isLoading} mode="Circle" width={98} height={98} disableMarginY>
@@ -232,11 +235,11 @@ const RenderResume = (props: ResumeViewProps) => (
                 </Skeleton>
             </div>
         </div>
-        <RenderCaption isLoading={props.isLoading} text={props.page.resume.summary.caption} />
+        <RenderCaption isLoading={props.isLoading} text={props.page.resume.summary.caption} tag="h3" />
         <Skeleton isLoading={props.isLoading} mode="Text" height={24} className="my-4">
-            <p className="is-size-6 has-text-grey-dark has-text-justified line-height-20">
+            <h4 className="is-size-6 has-text-grey-dark has-text-justified line-height-20">
                 {props.page.resume.summary.text}
-            </p>
+            </h4>
         </Skeleton>
         <RenderCaption isLoading={props.isLoading} text={props.page.resume.achievements.caption} />
         <div className="bulma-content has-text-grey-dark">

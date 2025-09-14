@@ -86,7 +86,9 @@ const GetFontStyle = (value: string): string => {
     }
 };
 
-const RenderTag = (props: RenderTagProps) => {
+/* RENDER TAG HELPER */
+
+export const RenderTag = (props: RenderTagProps) => {
     const attributes = {
         className: props.className,
         style: props.style,
