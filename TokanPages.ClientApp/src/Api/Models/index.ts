@@ -123,7 +123,8 @@ export type {
 export type {
     ResumeContentDto,
     ThesisProps,
-    TranslationItemProps,
+    SingularTranslationItemProps,
+    PluralTranslationItemProps,
     TranslationsProps,
     HeaderItem,
     SummaryProps,

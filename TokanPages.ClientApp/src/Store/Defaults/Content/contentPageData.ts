@@ -549,11 +549,11 @@ export const ContentPageData: ContentPageDataState = {
                 aboveLabel: "",
                 singular: {
                     yearLabel: "",
-                    yearsLabel: "",
+                    monthLabel: "",
                 },
                 plural: {
-                    yearLabel: "",
                     yearsLabel: "",
+                    monthsLabel: "",
                 },
             },
             resume: {

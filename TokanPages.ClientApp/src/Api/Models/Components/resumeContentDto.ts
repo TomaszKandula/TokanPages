@@ -1,14 +1,19 @@
 import { LinkDto } from "./Common";
 
-export interface TranslationItemProps {
+export interface SingularTranslationItemProps {
     yearLabel: string;
+    monthLabel: string;
+}
+
+export interface PluralTranslationItemProps {
     yearsLabel: string;
+    monthsLabel: string;
 }
 
 export interface TranslationsProps {
     aboveLabel: string;
-    singular: TranslationItemProps;
-    plural: TranslationItemProps;
+    singular: SingularTranslationItemProps;
+    plural: PluralTranslationItemProps;
 }
 
 export interface HeaderItem {
