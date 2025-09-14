@@ -4,9 +4,10 @@ import { useSelector } from "react-redux";
 import { ApplicationState } from "Store/Configuration";
 
 export const Resume = (): React.ReactElement => {
-    const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageResume);
+    const page = useSelector((state: ApplicationState) => state.contentPageData.components.pageResume);
+    const testimonials = useSelector((state: ApplicationState) => state.contentPageData.components.sectionTestimonials);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isContentLoading = data.isLoading;
 
-    return <ResumeView isLoading={isContentLoading} content={content} />;
+    return <ResumeView isLoading={isContentLoading} page={page} section={testimonials} />;
 };
