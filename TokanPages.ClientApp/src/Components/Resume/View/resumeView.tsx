@@ -82,7 +82,10 @@ const RenderEducationList = (props: ResumeViewProps): React.ReactElement => (
                 <div className="is-flex is-gap-1.5">
                     <Skeleton isLoading={props.isLoading} height={24}>
                         <p className="is-size-6 has-text-grey-dark my-1">{value.thesis.label}:</p>
-                        <Link to={`document?name=${value.thesis.file}`} className="is-size-6 my-1 is-underlined">
+                        <Link
+                            to={`document?name=${value.thesis.file}&redirect=resume`}
+                            className="is-size-6 my-1 is-underlined"
+                        >
                             <>{value.thesis.name}</>
                         </Link>
                     </Skeleton>
