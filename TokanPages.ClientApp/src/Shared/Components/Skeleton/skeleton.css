@@ -3,6 +3,10 @@
     animation: skeleton-loading 1s linear infinite alternate;
 }
 
+.centered {
+    margin: 0 auto;
+}
+
 .skeleton {
     width: 100%;
     height: 24px;

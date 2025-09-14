@@ -28,6 +28,7 @@ import {
     SocialsContentDto,
     FeatureShowcaseContentDto,
     PdfViewerContentDto,
+    ResumeContentDto,
 } from "../../../Models";
 
 export interface ComponentsDto {
@@ -58,6 +59,7 @@ export interface ComponentsDto {
     pagePasswordReset: PasswordResetContentDto;
     pagePasswordUpdate: PasswordUpdateContentDto;
     pagePdfViewer: PdfViewerContentDto;
+    pageResume: ResumeContentDto;
     sectionArticle: ArticleFeaturesContentDto;
     sectionClients: ClientsContentDto;
     sectionContactForm: ContactFormContentDto;

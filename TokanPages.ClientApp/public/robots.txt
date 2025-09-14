@@ -25,6 +25,7 @@ Allow: /en
 Allow: /en/showcase
 Allow: /en/articles
 Allow: /en/business
+Allow: /en/resume
 Allow: /en/leisure/bicycle
 Allow: /en/leisure/electronics
 Allow: /en/leisure/football
@@ -53,6 +54,7 @@ Allow: /pl
 Allow: /pl/showcase
 Allow: /pl/articles
 Allow: /pl/business
+Allow: /pl/resume
 Allow: /pl/leisure/bicycle
 Allow: /pl/leisure/electronics
 Allow: /pl/leisure/football
@@ -81,6 +83,7 @@ Allow: /es
 Allow: /es/showcase
 Allow: /es/articles
 Allow: /es/business
+Allow: /es/resume
 Allow: /es/leisure/bicycle
 Allow: /es/leisure/electronics
 Allow: /es/leisure/football
@@ -109,6 +112,7 @@ Allow: /uk
 Allow: /uk/showcase
 Allow: /uk/articles
 Allow: /uk/business
+Allow: /uk/resume
 Allow: /uk/leisure/bicycle
 Allow: /uk/leisure/electronics
 Allow: /uk/leisure/football
@@ -137,6 +141,7 @@ Allow: /de
 Allow: /de/showcase
 Allow: /de/articles
 Allow: /de/business
+Allow: /de/resume
 Allow: /de/leisure/bicycle
 Allow: /de/leisure/electronics
 Allow: /de/leisure/football
@@ -165,6 +170,7 @@ Allow: /fr
 Allow: /fr/showcase
 Allow: /fr/articles
 Allow: /fr/business
+Allow: /fr/resume
 Allow: /fr/leisure/bicycle
 Allow: /fr/leisure/electronics
 Allow: /fr/leisure/football

@@ -538,6 +538,60 @@ export const ContentPageData: ContentPageDataState = {
             labelNewPassword: "",
             labelVerifyPassword: "",
         },
+        pageResume: {
+            language: "",
+            caption: "",
+            photo: {
+                href: "",
+                text: "",
+            },
+            translations: {
+                aboveLabel: "",
+                singular: {
+                    yearLabel: "",
+                    yearsLabel: "",
+                },
+                plural: {
+                    yearLabel: "",
+                    yearsLabel: "",
+                },
+            },
+            resume: {
+                header: {
+                    fullName: "",
+                    mobilePhone: "",
+                    email: "",
+                    www: {
+                        text: "",
+                        href: "",
+                    },
+                    github: {
+                        text: "",
+                        href: "",
+                    },
+                },
+                summary: {
+                    caption: "",
+                    text: "",
+                },
+                achievements: {
+                    caption: "",
+                    list: [],
+                },
+                experience: {
+                    caption: "",
+                    list: [],
+                },
+                education: {
+                    caption: "",
+                    list: [],
+                },
+                interests: {
+                    caption: "",
+                    list: [],
+                },
+            },
+        },
         accountUserSignin: {
             language: "",
             caption: "",

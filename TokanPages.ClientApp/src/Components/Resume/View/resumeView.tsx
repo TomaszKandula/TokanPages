@@ -1,0 +1,278 @@
+import React from "react";
+import { GET_IMAGES_URL, GET_TESTIMONIALS_URL } from "../../../Api";
+import { EducationItemProps, ExperienceItemProps, OccupationProps } from "../../../Api/Models";
+import { CustomImage, Link, Media, RenderList, Skeleton } from "../../../Shared/Components";
+import { RenderCaptionProps, ResumeViewProps } from "../Types";
+import { v4 as uuid } from "uuid";
+
+const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
+    <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24} hasSkeletonCentered className="my-4">
+        <p className="is-size-4 has-text-grey-dark has-text-centered is-uppercase p-4">{props.text}</p>
+    </Skeleton>
+);
+
+const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
+    <>
+        {props.page?.resume?.experience?.list.map((value: ExperienceItemProps, _index: number) => (
+            <div key={uuid()} className="is-flex is-flex-direction-column mb-4">
+                <div className="is-flex is-justify-content-space-between is-align-items-center">
+                    <div className="is-flex is-flex-direction-column my-3">
+                        <Skeleton isLoading={props.isLoading} width={50} height={24}>
+                            <p className="is-size-6 has-text-weight-bold has-text-grey-dark">{value.companyName}</p>
+                        </Skeleton>
+                        <Skeleton isLoading={props.isLoading} width={100} height={24}>
+                            <p className="is-size-6 has-text-grey">{value.contractType}</p>
+                        </Skeleton>
+                    </div>
+                    <Skeleton isLoading={props.isLoading} width={100} height={24}>
+                        <p className="is-size-6 has-text-grey-dark is-lowercase">
+                            {value.dateStart} - {value.dateEnd}
+                        </p>
+                    </Skeleton>
+                </div>
+                {value.occupation.map((value: OccupationProps, _index: number) => (
+                    <React.Fragment key={uuid()}>
+                        <div className="is-flex is-flex-direction-column my-2">
+                            <Skeleton isLoading={props.isLoading} width={250} height={24}>
+                                <p className="is-size-6 has-text-grey-dark py-0">{value.name}</p>
+                                <p className="is-size-6 has-text-grey py-0 is-lowercase">
+                                    {value.dateStart} - {value.dateEnd}
+                                </p>
+                            </Skeleton>
+                        </div>
+                        <div className="bulma-content mb-1">
+                            <RenderList
+                                isLoading={props.isLoading}
+                                list={value.details}
+                                className="is-size-6 has-text-grey-dark"
+                            />
+                        </div>
+                    </React.Fragment>
+                ))}
+            </div>
+        ))}
+    </>
+);
+
+const RenderEducationList = (props: ResumeViewProps): React.ReactElement => (
+    <>
+        {props.page.resume.education.list.map((value: EducationItemProps, _index: number) => (
+            <div key={uuid()} className="is-flex is-flex-direction-column mb-4">
+                <div className="is-flex is-justify-content-space-between is-align-items-center">
+                    <div className="is-flex is-flex-direction-column my-2">
+                        <Skeleton isLoading={props.isLoading} width={50} height={24}>
+                            <p className="is-size-6 has-text-weight-bold has-text-grey-dark">{value.schoolName}</p>
+                        </Skeleton>
+                        <Skeleton isLoading={props.isLoading} width={100} height={24}>
+                            <p className="is-size-6 has-text-grey">{value.tenureInfo}</p>
+                        </Skeleton>
+                    </div>
+                    <Skeleton isLoading={props.isLoading} width={100} height={24}>
+                        <p className="is-size-6 has-text-grey-dark">
+                            {value.dateStart} - {value.dateEnd}
+                        </p>
+                    </Skeleton>
+                </div>
+                <Skeleton isLoading={props.isLoading} width={300} height={24}>
+                    <p className="is-size-6 has-text-grey-dark my-1">{value.details}</p>
+                </Skeleton>
+                <div className="is-flex is-gap-1.5">
+                    <Skeleton isLoading={props.isLoading} height={24}>
+                        <p className="is-size-6 has-text-grey-dark my-1">{value.thesis.label}:</p>
+                        <Link to={`document?name=${value.thesis.file}`} className="is-size-6 my-1 is-underlined">
+                            <>{value.thesis.name}</>
+                        </Link>
+                    </Skeleton>
+                </div>
+            </div>
+        ))}
+    </>
+);
+
+const RenderInterestsList = (props: ResumeViewProps): React.ReactElement => (
+    <div className="bulma-tags mt-4 mb-6">
+        <Skeleton isLoading={props.isLoading} height={24} className="m-2">
+            {props.page.resume.interests.list.map((value: string, _index: number) => (
+                <span key={uuid()} className="bulma-tag bulma-is-medium bulma-is-info bulma-is-light">
+                    {value}
+                </span>
+            ))}
+        </Skeleton>
+    </div>
+);
+
+const RenderTestimonials = (props: ResumeViewProps) => (
+    <div className="bulma-content is-size-6 has-text-grey-dark">
+        <div className="mt-4">
+            <Skeleton isLoading={props.isLoading} mode="Rect" height={150}>
+                <blockquote className="has-text-justified line-height-20">{props.section.text1}</blockquote>
+            </Skeleton>
+            <div className="is-flex is-justify-content-flex-end is-align-items-center is-gap-1.5">
+                <div className="has-text-right my-4">
+                    <Skeleton isLoading={props.isLoading} width={150} height={24}>
+                        <Link to={props.section.linkedIn1} className="is-underlined">
+                            <>{props.section.name1}</>
+                        </Link>
+                    </Skeleton>
+                    <Skeleton isLoading={props.isLoading} height={24} width={150}>
+                        <p className="m-0">{props.section.occupation1}</p>
+                    </Skeleton>
+                </div>
+                <Skeleton isLoading={props.isLoading} mode="Circle" width={64} height={64}>
+                    <figure className="bulma-image bulma-is-64x64">
+                        <CustomImage
+                            base={GET_TESTIMONIALS_URL}
+                            source={props.section.photo1}
+                            title={props.section.name1}
+                            alt={props.section.name1}
+                            className="bulma-is-rounded is-round-border"
+                        />
+                    </figure>
+                </Skeleton>
+            </div>
+        </div>
+        <div className="mt-4">
+            <Skeleton isLoading={props.isLoading} mode="Rect" height={150}>
+                <blockquote className="has-text-justified line-height-20">{props.section.text2}</blockquote>
+            </Skeleton>
+            <div className="is-flex is-justify-content-flex-end is-align-items-center is-gap-1.5">
+                <div className="has-text-right my-4">
+                    <Skeleton isLoading={props.isLoading} width={150} height={24}>
+                        <Link to={props.section.linkedIn2} className="is-underlined">
+                            <>{props.section.name2}</>
+                        </Link>
+                    </Skeleton>
+                    <Skeleton isLoading={props.isLoading} width={150} height={24}>
+                        <p className="m-0">{props.section.occupation2}</p>
+                    </Skeleton>
+                </div>
+                <Skeleton isLoading={props.isLoading} mode="Circle" width={64} height={64}>
+                    <figure className="bulma-image bulma-is-64x64">
+                        <CustomImage
+                            base={GET_TESTIMONIALS_URL}
+                            source={props.section.photo2}
+                            title={props.section.name2}
+                            alt={props.section.name2}
+                            className="bulma-is-rounded is-round-border"
+                        />
+                    </figure>
+                </Skeleton>
+            </div>
+        </div>
+        <div className="mt-4">
+            <Skeleton isLoading={props.isLoading} mode="Rect" height={150}>
+                <blockquote className="has-text-justified line-height-20">{props.section.text3}</blockquote>
+            </Skeleton>
+            <div className="is-flex is-justify-content-flex-end is-align-items-center is-gap-1.5">
+                <div className="has-text-right my-4">
+                    <Skeleton isLoading={props.isLoading} width={150} height={24}>
+                        <Link to={props.section.linkedIn3} className="is-underlined">
+                            <>{props.section.name3}</>
+                        </Link>
+                    </Skeleton>
+                    <Skeleton isLoading={props.isLoading} width={150} height={24}>
+                        <p className="m-0">{props.section.occupation3}</p>
+                    </Skeleton>
+                </div>
+                <Skeleton isLoading={props.isLoading} mode="Circle" width={64} height={64}>
+                    <figure className="bulma-image bulma-is-64x64">
+                        <CustomImage
+                            base={GET_TESTIMONIALS_URL}
+                            source={props.section.photo3}
+                            title={props.section.name3}
+                            alt={props.section.name3}
+                            className="bulma-is-rounded is-round-border"
+                        />
+                    </figure>
+                </Skeleton>
+            </div>
+        </div>
+    </div>
+);
+
+const RenderResume = (props: ResumeViewProps) => (
+    <>
+        <p className="is-size-3 is-uppercase has-text-grey-dark has-text-centered has-text-weight-light m-5">
+            {props.page?.caption}
+        </p>
+        <div className="is-flex is-gap-2.5 mb-4">
+            <div className="bulma-cell is-align-content-center">
+                <Skeleton isLoading={props.isLoading} mode="Circle" width={98} height={98} disableMarginY>
+                    <figure className="bulma-image bulma-is-96x96">
+                        <CustomImage
+                            base={GET_IMAGES_URL}
+                            source={props.page?.photo?.href}
+                            title={props.page?.photo?.text}
+                            alt={props.page?.photo?.text}
+                            className="bulma-is-rounded"
+                        />
+                    </figure>
+                </Skeleton>
+            </div>
+            <div className="bulma-cell is-align-content-center">
+                <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                    <p className="is-size-6 has-text-grey-dark has-text-weight-bold is-capitalized">
+                        {props.page?.resume?.header?.fullName}
+                    </p>
+                </Skeleton>
+                <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                    <p className="is-size-6 has-text-grey-dark is-lowercase">
+                        {props.page?.resume?.header?.mobilePhone}
+                    </p>
+                </Skeleton>
+                <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                    <Link to={`mailto:${props.page?.resume?.header?.email}`} className="is-size-6 is-underlined">
+                        <p className="is-lowercase">{props.page?.resume?.header?.email}</p>
+                    </Link>
+                </Skeleton>
+                <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+                    <Link to={props.page?.resume?.header?.github.href} className="is-size-6 is-underlined">
+                        <p className="is-lowercase">{props.page?.resume?.header?.github.text}</p>
+                    </Link>
+                </Skeleton>
+            </div>
+        </div>
+        <RenderCaption isLoading={props.isLoading} text={props.page.resume.summary.caption} />
+        <Skeleton isLoading={props.isLoading} mode="Text" height={24} className="my-4">
+            <p className="is-size-6 has-text-grey-dark has-text-justified line-height-20">
+                {props.page.resume.summary.text}
+            </p>
+        </Skeleton>
+        <RenderCaption isLoading={props.isLoading} text={props.page.resume.achievements.caption} />
+        <div className="bulma-content has-text-grey-dark">
+            <RenderList
+                isLoading={props.isLoading}
+                list={props.page.resume.achievements.list}
+                className="is-size-6 has-text-justified line-height-20"
+            />
+        </div>
+        <RenderCaption isLoading={props.isLoading} text={props.page.resume.experience.caption} />
+        <RenderExperienceList {...props} />
+        <RenderCaption isLoading={props.isLoading} text={props.page.resume.education.caption} />
+        <RenderEducationList {...props} />
+        <RenderCaption isLoading={props.isLoading} text={props.section.caption} />
+        <RenderTestimonials {...props} />
+        <RenderCaption isLoading={props.isLoading} text={props.page.resume.interests.caption} />
+        <RenderInterestsList {...props} />
+    </>
+);
+
+export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
+    <section className={props.className}>
+        <div className="bulma-container bulma-is-max-tablet">
+            <Media.DesktopOnly>
+                <RenderResume {...props} />
+            </Media.DesktopOnly>
+            <Media.TabletOnly>
+                <div className="mx-4">
+                    <RenderResume {...props} />
+                </div>
+            </Media.TabletOnly>
+            <Media.MobileOnly>
+                <div className="mx-4">
+                    <RenderResume {...props} />
+                </div>
+            </Media.MobileOnly>
+        </div>
+    </section>
+);
