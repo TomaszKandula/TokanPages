@@ -7,7 +7,13 @@ import { ResumeView } from "./View/resumeView";
 import Validate from "validate.js";
 
 const monthDiff = (dateFrom: Date, dateTo: Date) => {
-    return dateTo.getMonth() - dateFrom.getMonth() + (12 * (dateTo.getFullYear() - dateFrom.getFullYear()));
+    const offset = 1; //Set offset value to '1' because we count from the beggining of the month to end of the month.
+    const dateToFullYear = dateTo.getFullYear();
+    const dateFromFullYear = dateFrom.getFullYear();
+    const dateToMonth = dateTo.getMonth();
+    const dateFromMonth = dateFrom.getMonth();
+
+    return (dateToMonth - dateFromMonth + offset) + (12 * (dateToFullYear - dateFromFullYear));
 }
 
 const tryParseYear = (date: string): number => {
