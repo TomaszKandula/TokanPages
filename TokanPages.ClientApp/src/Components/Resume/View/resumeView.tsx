@@ -18,18 +18,20 @@ const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
                             <p className="is-size-6 has-text-grey">{value.contractType}</p>
                         </Skeleton>
                     </div>
-                    <div className="my-2">
-                        <Skeleton isLoading={props.isLoading} width={100} height={24}>
-                            <p className="is-size-6 has-text-grey-dark">{value.dateStart} - {value.dateEnd}</p>
-                        </Skeleton>
-                    </div>
+                    <Skeleton isLoading={props.isLoading} width={100} height={24}>
+                        <p className="is-size-6 has-text-grey-dark is-lowercase">
+                            {value.dateStart} - {value.dateEnd}
+                        </p>
+                    </Skeleton>
                 </div>
                 {value.occupation.map((value: OccupationProps, _index: number) => (
                     <React.Fragment key={uuid()}>
-                        <div className="is-flex is-flex-direction-column">
+                        <div className="is-flex is-flex-direction-column my-2">
                             <Skeleton isLoading={props.isLoading} width={250} height={24}>
-                                <p className="is-size-6 has-text-grey-dark py-1">{value.name}</p>
-                                <p className="is-size-6 has-text-grey py-1">{value.dateStart} - {value.dateEnd}</p>
+                                <p className="is-size-6 has-text-grey-dark py-0">{value.name}</p>
+                                <p className="is-size-6 has-text-grey py-0 is-lowercase">
+                                    {value.dateStart} - {value.dateEnd}
+                                </p>
                             </Skeleton>
                         </div>
                         <div className="bulma-content mb-1">
@@ -50,22 +52,20 @@ const RenderEducationList = (props: ResumeViewProps): React.ReactElement => (
     <>
         {props.content.resume.education.list.map((value: EducationItemProps, _index: number) => (
             <div key={uuid()} className="is-flex is-flex-direction-column mb-4">
-                <div className="is-flex is-justify-content-space-between">
-                    <div className="is-flex is-gap-1.5 my-2">
+                <div className="is-flex is-justify-content-space-between is-align-items-center">
+                    <div className="is-flex is-flex-direction-column my-2">
                         <Skeleton isLoading={props.isLoading} width={50} height={24}>
                             <p className="is-size-6 has-text-weight-bold has-text-grey-dark">{value.schoolName}</p>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} width={100} height={24}>
-                            <p className="is-size-6 has-text-grey-dark">({value.tenureInfo})</p>
+                            <p className="is-size-6 has-text-grey">{value.tenureInfo}</p>
                         </Skeleton>
                     </div>
-                    <div className="is-flex is-gap-0.5 my-2">
-                        <Skeleton isLoading={props.isLoading} width={100} height={24}>
-                            <p className="is-size-6 has-text-grey-dark">{value.dateStart}</p>
-                            <p className="is-size-6 has-text-grey-dark">-</p>
-                            <p className="is-size-6 has-text-grey-dark">{value.dateEnd}</p>
-                        </Skeleton>
-                    </div>
+                    <Skeleton isLoading={props.isLoading} width={100} height={24}>
+                        <p className="is-size-6 has-text-grey-dark">
+                            {value.dateStart} - {value.dateEnd}
+                        </p>
+                    </Skeleton>
                 </div>
                 <Skeleton isLoading={props.isLoading} width={300} height={24}>
                     <p className="is-size-6 has-text-grey-dark my-1">{value.details}</p>
@@ -86,9 +86,11 @@ const RenderEducationList = (props: ResumeViewProps): React.ReactElement => (
 const RenderInterestsList = (props: ResumeViewProps): React.ReactElement => (
     <div className="bulma-tags my-4">
         <Skeleton isLoading={props.isLoading} height={24} className="m-2">
-        {props.content.resume.interests.list.map((value: string, _index: number) => (
-            <span key={uuid()} className="bulma-tag bulma-is-medium bulma-is-info bulma-is-light">{value}</span>
-        ))}
+            {props.content.resume.interests.list.map((value: string, _index: number) => (
+                <span key={uuid()} className="bulma-tag bulma-is-medium bulma-is-info bulma-is-light">
+                    {value}
+                </span>
+            ))}
         </Skeleton>
     </div>
 );
