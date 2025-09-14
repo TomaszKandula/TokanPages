@@ -128,7 +128,7 @@ export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
                 hasSkeletonCentered
                 className="my-4"
             >
-                <p className="is-size-4 has-text-grey-dark has-text-centered mx-4 mt-4 mb-2">
+                <p className="is-size-4 has-text-grey-dark has-text-centered m-4">
                     {props.content.resume.summary.caption}
                 </p>
             </Skeleton>
@@ -138,7 +138,7 @@ export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
                 </p>
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" height={24} className="my-4">
-                <p className="is-size-4 has-text-grey-dark has-text-centered mx-4 mt-4 mb-2">
+                <p className="is-size-4 has-text-grey-dark has-text-centered m-4">
                     {props.content.resume.achievements.caption}
                 </p>
             </Skeleton>
@@ -157,7 +157,7 @@ export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
                 hasSkeletonCentered
                 className="my-4"
             >
-                <p className="is-size-4 has-text-grey-dark has-text-centered mx-4 mt-4 mb-2">
+                <p className="is-size-4 has-text-grey-dark has-text-centered m-4">
                     {props.content.resume.experience.caption}
                 </p>
             </Skeleton>
@@ -170,7 +170,7 @@ export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
                 hasSkeletonCentered
                 className="my-4"
             >
-                <p className="is-size-4 has-text-grey-dark has-text-centered mx-4 mt-4 mb-2">
+                <p className="is-size-4 has-text-grey-dark has-text-centered m-4">
                     {props.content.resume.education.caption}
                 </p>
             </Skeleton>
@@ -183,7 +183,7 @@ export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
                 hasSkeletonCentered
                 className="my-4"
             >
-                <p className="is-size-4 has-text-grey-dark has-text-centered mx-4 mt-4 mb-2">
+                <p className="is-size-4 has-text-grey-dark has-text-centered m-4">
                     {props.content.resume.interests.caption}
                 </p>
             </Skeleton>
