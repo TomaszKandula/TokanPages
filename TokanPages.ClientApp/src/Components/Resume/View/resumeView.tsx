@@ -11,22 +11,30 @@ const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
             <div key={uuid()} className="is-flex is-flex-direction-column mb-4">
                 <div className="is-flex is-justify-content-space-between">
                     <div className="is-flex is-gap-1.5 my-2">
-                        <p className="is-size-6 has-text-weight-bold has-text-grey-dark">{value.companyName}</p>
-                        <p className="is-size-6 has-text-grey-dark">({value.contractType})</p>
+                        <Skeleton isLoading={props.isLoading} width={50} height={24}>
+                            <p className="is-size-6 has-text-weight-bold has-text-grey-dark">{value.companyName}</p>
+                        </Skeleton>
+                        <Skeleton isLoading={props.isLoading} width={100} height={24}>
+                            <p className="is-size-6 has-text-grey-dark">({value.contractType})</p>
+                        </Skeleton>
                     </div>
                     <div className="is-flex is-gap-0.5 my-2">
-                        <p className="is-size-6 has-text-grey-dark">{value.dateStart}</p>
-                        <p className="is-size-6 has-text-grey-dark">-</p>
-                        <p className="is-size-6 has-text-grey-dark">{value.dateEnd}</p>
+                        <Skeleton isLoading={props.isLoading} width={100} height={24}>
+                            <p className="is-size-6 has-text-grey-dark">{value.dateStart}</p>
+                            <p className="is-size-6 has-text-grey-dark">-</p>
+                            <p className="is-size-6 has-text-grey-dark">{value.dateEnd}</p>
+                        </Skeleton>
                     </div>
                 </div>
                 {value.occupation.map((value: OccupationProps, _index: number) => (
                     <React.Fragment key={uuid()}>
                         <div className="is-flex is-gap-0.5">
-                            <p className="is-size-6 has-text-grey-dark py-1">{value.name}</p>
-                            <p className="is-size-6 has-text-grey-dark py-1">({value.dateStart}</p>
-                            <p className="is-size-6 has-text-grey-dark py-1">-</p>
-                            <p className="is-size-6 has-text-grey-dark py-1">{value.dateEnd})</p>
+                            <Skeleton isLoading={props.isLoading} width={250} height={24}>
+                                <p className="is-size-6 has-text-grey-dark py-1">{value.name}</p>
+                                <p className="is-size-6 has-text-grey-dark py-1">({value.dateStart}</p>
+                                <p className="is-size-6 has-text-grey-dark py-1">-</p>
+                                <p className="is-size-6 has-text-grey-dark py-1">{value.dateEnd})</p>
+                            </Skeleton>
                         </div>
                         <div className="bulma-content mb-0">
                             <RenderList
@@ -48,21 +56,31 @@ const RenderEducationList = (props: ResumeViewProps): React.ReactElement => (
             <div key={uuid()} className="is-flex is-flex-direction-column mb-4">
                 <div className="is-flex is-justify-content-space-between">
                     <div className="is-flex is-gap-1.5 my-2">
-                        <p className="is-size-6 has-text-weight-bold has-text-grey-dark">{value.schoolName}</p>
-                        <p className="is-size-6 has-text-grey-dark">({value.tenureInfo})</p>
+                        <Skeleton isLoading={props.isLoading} width={50} height={24}>
+                            <p className="is-size-6 has-text-weight-bold has-text-grey-dark">{value.schoolName}</p>
+                        </Skeleton>
+                        <Skeleton isLoading={props.isLoading} width={100} height={24}>
+                            <p className="is-size-6 has-text-grey-dark">({value.tenureInfo})</p>
+                        </Skeleton>
                     </div>
                     <div className="is-flex is-gap-0.5 my-2">
-                        <p className="is-size-6 has-text-grey-dark">{value.dateStart}</p>
-                        <p className="is-size-6 has-text-grey-dark">-</p>
-                        <p className="is-size-6 has-text-grey-dark">{value.dateEnd}</p>
+                        <Skeleton isLoading={props.isLoading} width={100} height={24}>
+                            <p className="is-size-6 has-text-grey-dark">{value.dateStart}</p>
+                            <p className="is-size-6 has-text-grey-dark">-</p>
+                            <p className="is-size-6 has-text-grey-dark">{value.dateEnd}</p>
+                        </Skeleton>
                     </div>
                 </div>
-                <p className="is-size-6 has-text-grey-dark my-1">{value.details}</p>
+                <Skeleton isLoading={props.isLoading} width={300} height={24}>
+                    <p className="is-size-6 has-text-grey-dark my-1">{value.details}</p>
+                </Skeleton>
                 <div className="is-flex is-gap-1.5">
-                    <p className="is-size-6 has-text-grey-dark my-1">{value.thesis.label}:</p>
-                    <Link to={`document?name=${value.thesis.file}`} className="is-size-6 my-1 is-underlined">
-                        <>{value.thesis.name}</>
-                    </Link>
+                    <Skeleton isLoading={props.isLoading} height={24}>
+                        <p className="is-size-6 has-text-grey-dark my-1">{value.thesis.label}:</p>
+                        <Link to={`document?name=${value.thesis.file}`} className="is-size-6 my-1 is-underlined">
+                            <>{value.thesis.name}</>
+                        </Link>
+                    </Skeleton>
                 </div>
             </div>
         ))}
@@ -72,9 +90,11 @@ const RenderEducationList = (props: ResumeViewProps): React.ReactElement => (
 const RenderInterestsList = (props: ResumeViewProps): React.ReactElement => (
     <div className="is-flex my-4">
         {props.content.resume.interests.list.map((value: string, _index: number) => (
-            <p key={uuid()} className="is-size-6 has-text-grey-dark">
-                {value},&nbsp;
-            </p>
+            <Skeleton isLoading={props.isLoading} height={24} key={uuid()} className="m-2">
+                <p className="is-size-6 has-text-grey-dark">
+                    {value},&nbsp;
+                </p>
+            </Skeleton>
         ))}
     </div>
 );
