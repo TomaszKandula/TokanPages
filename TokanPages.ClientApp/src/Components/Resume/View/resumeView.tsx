@@ -104,63 +104,87 @@ const RenderInterestsList = (props: ResumeViewProps): React.ReactElement => (
 const RenderTestimonials = (props: ResumeViewProps) => (
     <div className="bulma-content is-size-6 has-text-grey-dark">
         <div className="mt-4">
-            <blockquote className="has-text-justified line-height-20">{props.section.text1}</blockquote>
+            <Skeleton isLoading={props.isLoading} mode="Rect" height={150}>
+                <blockquote className="has-text-justified line-height-20">{props.section.text1}</blockquote>
+            </Skeleton>
             <div className="is-flex is-justify-content-flex-end is-align-items-center is-gap-1.5">
                 <div className="has-text-right my-4">
-                    <Link to={props.section.linkedIn1} className="is-underlined">
-                        <>{props.section.name1}</>
-                    </Link>
-                    <p className="m-0">{props.section.occupation1}</p>
+                    <Skeleton isLoading={props.isLoading} width={150} height={24}>
+                        <Link to={props.section.linkedIn1} className="is-underlined">
+                            <>{props.section.name1}</>
+                        </Link>
+                    </Skeleton>
+                    <Skeleton isLoading={props.isLoading} height={24} width={150}>
+                        <p className="m-0">{props.section.occupation1}</p>
+                    </Skeleton>
                 </div>
-                <figure className="bulma-image bulma-is-64x64">
-                    <CustomImage
-                        base={GET_TESTIMONIALS_URL}
-                        source={props.section.photo1}
-                        title={props.section.name1}
-                        alt={props.section.name1}
-                        className="bulma-is-rounded is-round-border"
-                    />
-                </figure>
+                <Skeleton isLoading={props.isLoading} mode="Circle" width={64} height={64}>
+                    <figure className="bulma-image bulma-is-64x64">
+                        <CustomImage
+                            base={GET_TESTIMONIALS_URL}
+                            source={props.section.photo1}
+                            title={props.section.name1}
+                            alt={props.section.name1}
+                            className="bulma-is-rounded is-round-border"
+                        />
+                    </figure>
+                </Skeleton>
             </div>
         </div>
         <div className="mt-4">
-            <blockquote className="has-text-justified line-height-20">{props.section.text2}</blockquote>
+            <Skeleton isLoading={props.isLoading} mode="Rect" height={150}>
+                <blockquote className="has-text-justified line-height-20">{props.section.text2}</blockquote>
+            </Skeleton>
             <div className="is-flex is-justify-content-flex-end is-align-items-center is-gap-1.5">
                 <div className="has-text-right my-4">
-                    <Link to={props.section.linkedIn2} className="is-underlined">
-                        <>{props.section.name2}</>
-                    </Link>
-                    <p className="m-0">{props.section.occupation2}</p>
+                    <Skeleton isLoading={props.isLoading} width={150} height={24}>
+                        <Link to={props.section.linkedIn2} className="is-underlined">
+                            <>{props.section.name2}</>
+                        </Link>
+                    </Skeleton>
+                    <Skeleton isLoading={props.isLoading} width={150} height={24}>
+                        <p className="m-0">{props.section.occupation2}</p>
+                    </Skeleton>
                 </div>
-                <figure className="bulma-image bulma-is-64x64">
-                    <CustomImage
-                        base={GET_TESTIMONIALS_URL}
-                        source={props.section.photo2}
-                        title={props.section.name2}
-                        alt={props.section.name2}
-                        className="bulma-is-rounded is-round-border"
-                    />
-                </figure>
+                <Skeleton isLoading={props.isLoading} mode="Circle" width={64} height={64}>
+                    <figure className="bulma-image bulma-is-64x64">
+                        <CustomImage
+                            base={GET_TESTIMONIALS_URL}
+                            source={props.section.photo2}
+                            title={props.section.name2}
+                            alt={props.section.name2}
+                            className="bulma-is-rounded is-round-border"
+                        />
+                    </figure>
+                </Skeleton>
             </div>
         </div>
         <div className="mt-4">
-            <blockquote className="has-text-justified line-height-20">{props.section.text3}</blockquote>
+            <Skeleton isLoading={props.isLoading} mode="Rect" height={150}>
+                <blockquote className="has-text-justified line-height-20">{props.section.text3}</blockquote>
+            </Skeleton>
             <div className="is-flex is-justify-content-flex-end is-align-items-center is-gap-1.5">
                 <div className="has-text-right my-4">
-                    <Link to={props.section.linkedIn3} className="is-underlined">
-                        <>{props.section.name3}</>
-                    </Link>
-                    <p className="m-0">{props.section.occupation3}</p>
+                    <Skeleton isLoading={props.isLoading} width={150} height={24}>
+                        <Link to={props.section.linkedIn3} className="is-underlined">
+                            <>{props.section.name3}</>
+                        </Link>
+                    </Skeleton>
+                    <Skeleton isLoading={props.isLoading} width={150} height={24}>
+                        <p className="m-0">{props.section.occupation3}</p>
+                    </Skeleton>
                 </div>
-                <figure className="bulma-image bulma-is-64x64">
-                    <CustomImage
-                        base={GET_TESTIMONIALS_URL}
-                        source={props.section.photo3}
-                        title={props.section.name3}
-                        alt={props.section.name3}
-                        className="bulma-is-rounded is-round-border"
-                    />
-                </figure>
+                <Skeleton isLoading={props.isLoading} mode="Circle" width={64} height={64}>
+                    <figure className="bulma-image bulma-is-64x64">
+                        <CustomImage
+                            base={GET_TESTIMONIALS_URL}
+                            source={props.section.photo3}
+                            title={props.section.name3}
+                            alt={props.section.name3}
+                            className="bulma-is-rounded is-round-border"
+                        />
+                    </figure>
+                </Skeleton>
             </div>
         </div>
     </div>
