@@ -10,7 +10,7 @@ export const ResumePage = (): React.ReactElement => {
     const heading = useUnhead("ResumePage");
     useSnapshot();
     usePageContent(
-        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "pageResume"],
+        ["layoutNavigation", "layoutFooter", "templates", "sectionCookiesPrompt", "sectionTestimonials", "pageResume"],
         "ResumePage"
     );
 
