@@ -8,7 +8,7 @@ const RenderIcon = (props: NotificationProps): React.ReactElement => {
         return <></>;
     }
 
-    let iconName = "Information";
+    let iconName = "";
     switch (props.mode) {
         case "link":
         case "primary":
