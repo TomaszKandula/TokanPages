@@ -546,7 +546,6 @@ export const ContentPageData: ContentPageDataState = {
                 text: "",
             },
             translations: {
-                aboveLabel: "",
                 singular: {
                     yearLabel: "",
                     monthLabel: "",
