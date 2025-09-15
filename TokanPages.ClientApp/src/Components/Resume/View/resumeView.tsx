@@ -142,7 +142,9 @@ const RenderTestimonials = (props: ResumeViewProps) => (
     <div className="bulma-content is-size-6 has-text-grey-dark">
         <div className="mt-5 mb-6">
             <Skeleton isLoading={props.isLoading} mode="Rect" height={150}>
-                <blockquote className="is-italic has-text-justified has-background-white line-height-20 m-0">{props.section.text1}</blockquote>
+                <blockquote className="is-italic has-text-justified has-background-white line-height-20 m-0">
+                    {props.section.text1}
+                </blockquote>
             </Skeleton>
             <div className="is-flex is-justify-content-flex-end is-align-items-center is-gap-1.5">
                 <div className="has-text-right my-4">
@@ -170,7 +172,9 @@ const RenderTestimonials = (props: ResumeViewProps) => (
         </div>
         <div className="mb-6">
             <Skeleton isLoading={props.isLoading} mode="Rect" height={150}>
-                <blockquote className="is-italic has-text-justified has-background-white line-height-20 m-0">{props.section.text2}</blockquote>
+                <blockquote className="is-italic has-text-justified has-background-white line-height-20 m-0">
+                    {props.section.text2}
+                </blockquote>
             </Skeleton>
             <div className="is-flex is-justify-content-flex-end is-align-items-center is-gap-1.5">
                 <div className="has-text-right my-4">
@@ -198,7 +202,9 @@ const RenderTestimonials = (props: ResumeViewProps) => (
         </div>
         <div className="mb-6">
             <Skeleton isLoading={props.isLoading} mode="Rect" height={150}>
-                <blockquote className="is-italic has-text-justified has-background-white line-height-20 m-0">{props.section.text3}</blockquote>
+                <blockquote className="is-italic has-text-justified has-background-white line-height-20 m-0">
+                    {props.section.text3}
+                </blockquote>
             </Skeleton>
             <div className="is-flex is-justify-content-flex-end is-align-items-center is-gap-1.5">
                 <div className="has-text-right my-4">
