@@ -72,7 +72,7 @@ export const Resume = (): React.ReactElement => {
     const [experienceItems, setExperienceItems] = React.useState<ProcessedExperienceItemProps[] | undefined>(undefined);
 
     React.useEffect(() => {
-        if (page.resume.experience.list.length > 0 && !experienceItems) {
+        if (page.resume.experience.list.length > 0) {
             const processedItems = processTimespan(page.resume.experience.list);
             setExperienceItems(processedItems);
         }
