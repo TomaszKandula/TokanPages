@@ -11,7 +11,6 @@ export interface PluralTranslationItemProps {
 }
 
 export interface TranslationsProps {
-    aboveLabel: string;
     singular: SingularTranslationItemProps;
     plural: PluralTranslationItemProps;
 }
