@@ -1,6 +1,7 @@
 import React from "react";
 import { GET_ICONS_URL, GET_IMAGES_URL } from "../../../Api";
 import { ImageDto } from "../../../Api/Models";
+import { ProcessParagraphs } from "../RenderContent/Renderers";
 import { CustomImage } from "../CustomImage/customImage";
 import { Skeleton } from "../Skeleton";
 import { Link } from "../Link";
@@ -42,7 +43,7 @@ export const PresentationView = (props: PresentationViewProps) => (
         </div>
         <div className="bulma-content">
             <Skeleton isLoading={props.isLoading} mode="Text" width={500} height={40}>
-                <p className="is-size-6">{props.description}</p>
+                <ProcessParagraphs tag="p" html={props.description} className="is-size-6" />
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" width={250} height={40} className="my-6">
                 <h3 className="is-size-3 my-6">{props.logos.title}</h3>
