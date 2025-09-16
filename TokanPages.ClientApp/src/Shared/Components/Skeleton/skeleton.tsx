@@ -8,6 +8,7 @@ interface SkeletonProps {
     mode?: Mode;
     width?: number;
     height?: number;
+    hasSkeletonCentered?: boolean;
     disableMarginY?: boolean;
     className?: string;
     children: React.ReactNode | React.ReactElement | React.ReactElement[];
@@ -15,7 +16,7 @@ interface SkeletonProps {
 
 export const Skeleton = (props: SkeletonProps): React.ReactElement => {
     const marginClass = props.disableMarginY ? "" : "my-2";
-    const baseClass = "base skeleton";
+    const baseClass = `base ${props.hasSkeletonCentered ? "centered" : ""} skeleton`;
     const className = props.className ?? "";
     const styleProps: React.CSSProperties = {
         width: props.width,

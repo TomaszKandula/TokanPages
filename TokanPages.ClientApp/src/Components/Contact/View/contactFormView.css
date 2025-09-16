@@ -1,5 +1,9 @@
-.contact-card-no-shadow {
+.contact-form-card-no-shadow {
     box-shadow: none;
+}
+
+.contact-form-icon-container {
+    max-width: 24px;
 }
 
 .contact-form-view-margins {

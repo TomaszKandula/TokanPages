@@ -86,7 +86,9 @@ const GetFontStyle = (value: string): string => {
     }
 };
 
-const RenderTag = (props: RenderTagProps) => {
+/* RENDER TAG HELPER */
+
+export const RenderTag = (props: RenderTagProps) => {
     const attributes = {
         className: props.className,
         style: props.style,
@@ -322,7 +324,7 @@ export const ProcessParagraphs = (props: ProcessParagraphsProps): React.ReactEle
             if (item.includes("{") && item.includes("}")) {
                 const data = TryParse<LinkProps>(sanitized);
                 result.push(
-                    <Link to={data.href} key={uuidv4()}>
+                    <Link to={data.href} key={uuidv4()} className="is-underlined">
                         <>{data.text}</>
                     </Link>
                 );

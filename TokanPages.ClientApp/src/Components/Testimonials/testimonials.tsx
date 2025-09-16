@@ -16,18 +16,27 @@ export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
             isLoading={data?.isLoading}
             caption={testimonials?.caption}
             subtitle={testimonials?.subtitle}
-            photo1={testimonials?.photo1}
-            name1={testimonials?.name1}
-            occupation1={testimonials?.occupation1}
-            text1={testimonials?.text1}
-            photo2={testimonials?.photo2}
-            name2={testimonials?.name2}
-            occupation2={testimonials?.occupation2}
-            text2={testimonials?.text2}
-            photo3={testimonials?.photo3}
-            name3={testimonials?.name3}
-            occupation3={testimonials?.occupation3}
-            text3={testimonials?.text3}
+            Testimonial1={{
+                photo: testimonials?.photo1,
+                name: testimonials?.name1,
+                link: testimonials?.linkedIn1,
+                occupation: testimonials?.occupation1,
+                text: testimonials?.text1,
+            }}
+            Testimonial2={{
+                photo: testimonials?.photo2,
+                name: testimonials?.name2,
+                link: testimonials?.linkedIn2,
+                occupation: testimonials?.occupation2,
+                text: testimonials?.text2,
+            }}
+            Testimonial3={{
+                photo: testimonials?.photo3,
+                name: testimonials?.name3,
+                link: testimonials?.linkedIn3,
+                occupation: testimonials?.occupation3,
+                text: testimonials?.text3,
+            }}
             className={props.className}
         />
     );

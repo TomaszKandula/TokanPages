@@ -120,6 +120,23 @@ export type {
     SectionAccountDeactivation,
     SectionAccountRemoval,
 } from "./Components/accountSettingsContentDto";
+export type {
+    ResumeContentDto,
+    ThesisProps,
+    SingularTranslationItemProps,
+    PluralTranslationItemProps,
+    TranslationsProps,
+    HeaderItem,
+    SummaryProps,
+    AchievementsProps,
+    OccupationProps,
+    InterestsProps,
+    EducationItemProps,
+    EducationProps,
+    ExperienceItemProps,
+    ExperienceProps,
+    ResumeProps,
+} from "./Components/resumeContentDto";
 
 export type {
     TemplatesContent,

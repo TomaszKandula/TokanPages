@@ -169,18 +169,20 @@ export const ContentPageData: ContentPageDataState = {
             lastNameLabel: "",
             emailLabel: "",
             phoneLabel: "",
-            techLabel: "",
-            hasTechItems: false,
-            techItems: [],
             description: {
                 label: "",
                 rows: 0,
                 required: false,
             },
+            technology: {
+                caption: "",
+                canDisplay: false,
+                items: [],
+            },
             pricing: {
                 caption: "",
                 disclaimer: "",
-                services: [],
+                items: [],
             },
             presentation: {
                 image: {
@@ -469,14 +471,17 @@ export const ContentPageData: ContentPageDataState = {
             subtitle: "",
             photo1: "",
             name1: "",
+            linkedIn1: "",
             occupation1: "",
             text1: "",
             photo2: "",
             name2: "",
+            linkedIn2: "",
             occupation2: "",
             text2: "",
             photo3: "",
             name3: "",
+            linkedIn3: "",
             occupation3: "",
             text3: "",
         },
@@ -532,6 +537,59 @@ export const ContentPageData: ContentPageDataState = {
             button: "",
             labelNewPassword: "",
             labelVerifyPassword: "",
+        },
+        pageResume: {
+            language: "",
+            caption: "",
+            photo: {
+                href: "",
+                text: "",
+            },
+            translations: {
+                singular: {
+                    yearLabel: "",
+                    monthLabel: "",
+                },
+                plural: {
+                    yearsLabel: "",
+                    monthsLabel: "",
+                },
+            },
+            resume: {
+                header: {
+                    fullName: "",
+                    mobilePhone: "",
+                    email: "",
+                    www: {
+                        text: "",
+                        href: "",
+                    },
+                    github: {
+                        text: "",
+                        href: "",
+                    },
+                },
+                summary: {
+                    caption: "",
+                    text: "",
+                },
+                achievements: {
+                    caption: "",
+                    list: [],
+                },
+                experience: {
+                    caption: "",
+                    list: [],
+                },
+                education: {
+                    caption: "",
+                    list: [],
+                },
+                interests: {
+                    caption: "",
+                    list: [],
+                },
+            },
         },
         accountUserSignin: {
             language: "",

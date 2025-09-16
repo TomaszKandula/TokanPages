@@ -559,7 +559,7 @@ Object {
                 class="bulma-card-content"
               >
                 <div
-                  class="base skeleton-text my-2 "
+                  class="base  skeleton-text my-2 "
                   style="height: 14px;"
                 />
                 <hr />
@@ -567,14 +567,14 @@ Object {
                   class="py-4"
                 >
                   <div
-                    class="base skeleton-text my-2 "
+                    class="base  skeleton-text my-2 "
                     style="height: 14px;"
                   />
                   <div
                     class="bulma-cell is-flex is-flex-direction-row is-align-items-flex-start is-justify-content-left"
                   >
                     <div
-                      class="base skeleton-rect my-2 "
+                      class="base  skeleton-rect my-2 "
                       style="height: 300px;"
                     />
                   </div>
@@ -582,13 +582,13 @@ Object {
                     class="bulma-content pt-4"
                   >
                     <div
-                      class="base skeleton-rect my-2 "
+                      class="base  skeleton-rect my-2 "
                     />
                     <div
-                      class="base skeleton-rect my-2 "
+                      class="base  skeleton-rect my-2 "
                     />
                     <div
-                      class="base skeleton-rect my-2 "
+                      class="base  skeleton-rect my-2 "
                     />
                   </div>
                 </div>
@@ -614,7 +614,7 @@ Object {
               class="bulma-card-content"
             >
               <div
-                class="base skeleton-text my-2 "
+                class="base  skeleton-text my-2 "
                 style="height: 14px;"
               />
               <hr />
@@ -622,14 +622,14 @@ Object {
                 class="py-4"
               >
                 <div
-                  class="base skeleton-text my-2 "
+                  class="base  skeleton-text my-2 "
                   style="height: 14px;"
                 />
                 <div
                   class="bulma-cell is-flex is-flex-direction-row is-align-items-flex-start is-justify-content-left"
                 >
                   <div
-                    class="base skeleton-rect my-2 "
+                    class="base  skeleton-rect my-2 "
                     style="height: 300px;"
                   />
                 </div>
@@ -637,13 +637,13 @@ Object {
                   class="bulma-content pt-4"
                 >
                   <div
-                    class="base skeleton-rect my-2 "
+                    class="base  skeleton-rect my-2 "
                   />
                   <div
-                    class="base skeleton-rect my-2 "
+                    class="base  skeleton-rect my-2 "
                   />
                   <div
-                    class="base skeleton-rect my-2 "
+                    class="base  skeleton-rect my-2 "
                   />
                 </div>
               </div>
