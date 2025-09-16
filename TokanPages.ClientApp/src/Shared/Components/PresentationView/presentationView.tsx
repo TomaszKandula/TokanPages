@@ -18,7 +18,7 @@ export const PresentationView = (props: PresentationViewProps) => (
                         source={props.image.link}
                         title={props.image.title}
                         alt={props.image.alt}
-                        className="bulma-is-rounded"
+                        className="bulma-is-rounded is-round-border-light"
                     />
                 </figure>
             </Skeleton>
