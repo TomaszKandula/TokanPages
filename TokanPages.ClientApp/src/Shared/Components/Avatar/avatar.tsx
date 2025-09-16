@@ -46,7 +46,7 @@ export const Avatar = (props: AvatarProps): React.ReactElement => {
                 alt={props.alt}
                 title={props.title}
                 src={props.src}
-                className={`bulma-is-rounded ${ConvertSize(props.size, "avatar")}`}
+                className={`bulma-is-rounded is-round-border-light ${ConvertSize(props.size, "avatar")}`}
             />
         </figure>
     );

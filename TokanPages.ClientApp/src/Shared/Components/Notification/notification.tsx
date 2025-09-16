@@ -10,11 +10,6 @@ const RenderIcon = (props: NotificationProps): React.ReactElement => {
 
     let iconName = "Information";
     switch (props.mode) {
-        case "link":
-        case "primary":
-        case "info":
-            iconName = "Information";
-            break;
         case "success":
             iconName = "CheckCircle";
             break;

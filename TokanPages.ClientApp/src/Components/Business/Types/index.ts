@@ -1,6 +1,10 @@
 import { ViewProperties } from "../../../Shared/Abstractions";
-import { DescriptionItemDto, OfferItemDto, PresentationDto, PricingDto } from "../../../Api/Models";
+import { DescriptionItemDto, OfferItemDto, PresentationDto } from "../../../Api/Models";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../Shared/types";
+
+export interface OfferItemProps extends OfferItemDto {
+    isChecked: boolean;
+}
 
 export interface MessageFormProps {
     company: string;
@@ -9,25 +13,6 @@ export interface MessageFormProps {
     email: string;
     phone: string;
     description: string;
-    techStack: string[];
-    services: string[];
-}
-
-export interface TechStackListProps {
-    isLoading: boolean;
-    isDisabled: boolean;
-    hasTechItems: boolean;
-    techLabel: string;
-    list: OfferItemDto[];
-    handler: (event: ReactChangeEvent) => void;
-}
-
-export interface ServiceItemsProps {
-    isLoading: boolean;
-    isDisabled: boolean;
-    caption: string;
-    list: OfferItemDto[];
-    handler: (event: ReactChangeEvent) => void;
 }
 
 export interface BusinessFormProps {
@@ -37,17 +22,27 @@ export interface BusinessFormProps {
     className?: string;
 }
 
-export interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
+export interface ServiceBaseProps {
+    items: OfferItemProps[];
+    handler: (event: ReactChangeEvent) => void;
+}
+
+export interface ServiceItemsProps extends ServiceBaseProps {
+    isLoading: boolean;
+    isDisabled: boolean;
     caption: string;
-    progress: boolean;
-    buttonText: string;
-    hasTechItems: boolean;
-    keyHandler: (event: ReactKeyboardEvent) => void;
-    formHandler: (event: ReactChangeEvent) => void;
-    descriptionHandler: (event: ReactChangeTextEvent) => void;
-    buttonHandler: () => void;
-    techHandler: (event: ReactChangeEvent) => void;
-    serviceHandler: (event: ReactChangeEvent) => void;
+}
+
+export interface ServiceProps extends ServiceBaseProps {
+    caption: string;
+    disclaimer: string;
+}
+
+export interface TechnologyProps {
+    canDisplay: boolean;
+    caption: string;
+    items: OfferItemProps[];
+    handler: (event: ReactChangeEvent) => void;
 }
 
 export interface FormProps {
@@ -61,14 +56,27 @@ export interface FormProps {
     emailLabel: string;
     phoneText: string;
     phoneLabel: string;
-    techLabel: string;
-    techItems: OfferItemDto[];
-    serviceItems: OfferItemDto[];
-    description: ExtendedDescriptionProps;
-    pricing: PricingDto;
+    description: DescriptionProps;
+    technology: TechnologyProps;
+    pricing: ServiceProps;
     presentation: PresentationDto;
 }
 
-export interface ExtendedDescriptionProps extends DescriptionItemDto {
+export interface TechStackListProps extends TechnologyProps {
+    isLoading: boolean;
+    isDisabled: boolean;
+}
+
+export interface BusinessFormViewProps extends ViewProperties, BusinessFormProps, FormProps {
+    caption: string;
+    progress: boolean;
+    buttonText: string;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
+    buttonHandler: () => void;
+}
+
+export interface DescriptionProps extends DescriptionItemDto {
     text: string;
+    handler: (event: ReactChangeTextEvent) => void;
 }

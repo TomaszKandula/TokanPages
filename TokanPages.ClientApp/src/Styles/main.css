@@ -111,6 +111,13 @@ body {
     border-radius: 50%;
 }
 
+.is-round-border-light {
+    border-style: solid;
+    border-width: 1px;
+    border-color: hsl(0, 0%, 86%);
+    border-radius: 50%;
+}
+
 .is-transparent {
     background-color: transparent;
 }

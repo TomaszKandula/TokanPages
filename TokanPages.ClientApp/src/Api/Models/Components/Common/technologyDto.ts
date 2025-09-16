@@ -1,7 +1,7 @@
 import { OfferItemDto } from "./offerItemDto";
 
-export interface PricingDto {
+export interface TechnologyDto {
     caption: string;
-    disclaimer: string;
+    canDisplay: boolean;
     items: OfferItemDto[];
 }

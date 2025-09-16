@@ -22,7 +22,7 @@ Object {
             >
               <img
                 alt="User avatar"
-                class="bulma-is-rounded avatar-is-48x48"
+                class="bulma-is-rounded is-round-border-light avatar-is-48x48"
                 src="http://localhost:5000/api/v1/users/5f4d15e2-0d32-4e20-b5f0-5a736152e993/getUserImage?blobName=tester-avatar-icon.png"
                 title="Avatar"
               />
@@ -224,7 +224,7 @@ Object {
           >
             <img
               alt="User avatar"
-              class="bulma-is-rounded avatar-is-48x48"
+              class="bulma-is-rounded is-round-border-light avatar-is-48x48"
               src="http://localhost:5000/api/v1/users/5f4d15e2-0d32-4e20-b5f0-5a736152e993/getUserImage?blobName=tester-avatar-icon.png"
               title="Avatar"
             />

@@ -14,7 +14,7 @@ interface Properties {
 }
 
 const RenderIcon = (props: Properties): React.ReactElement | null => {
-    const iconSize = 1.5;
+    const iconSize = 2.0;
     switch (props.icon) {
         case IconType.info:
             return <Icon name="Information" size={iconSize} className="has-text-info" />;
@@ -29,8 +29,7 @@ const RenderIcon = (props: Properties): React.ReactElement | null => {
 
 const RenderValidationList = (props: Properties): React.ReactElement => {
     const validation = props.validation;
-
-    let result: string[] = [];
+    const result: string[] = [];
     if (validation) {
         Object.keys(validation).forEach((key, _) => {
             const prop = key as keyof typeof validation;

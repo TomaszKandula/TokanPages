@@ -11,4 +11,5 @@ export {
     RenderSubtitle,
     RenderTargetLink,
     RenderTitle,
+    RenderTag,
 } from "./utilities";

@@ -10,14 +10,17 @@ describe("test component: testimonialsView", () => {
         subtitle: "You can read few commendations...",
         photo1: "joanna.webp",
         name1: "Joanna",
+        link1: "https://www.linkedin.com/in/joanna",
         occupation1: "Senior Digital Tax Specialist",
         text1: "Joe is very motivated...",
         photo2: "adama.webp",
         name2: "Adama",
+        link2: "https://www.linkedin.com/in/adama",
         occupation2: "Full-stack Developer chez DFDS POLSKA",
         text2: "Joe have done very good work...",
         photo3: "scott.webp",
         name3: "Scott",
+        link3: "https://www.linkedin.com/in/scott",
         occupation3: "BPO",
         text3: "Joe is one of those rare talents...",
     };
@@ -28,18 +31,27 @@ describe("test component: testimonialsView", () => {
                 isLoading={false}
                 caption={testContent.caption}
                 subtitle={testContent.subtitle}
-                photo1={testContent.photo1}
-                name1={testContent.name1}
-                occupation1={testContent.occupation1}
-                text1={testContent.text1}
-                photo2={testContent.photo2}
-                name2={testContent.name2}
-                occupation2={testContent.occupation2}
-                text2={testContent.text2}
-                photo3={testContent.name3}
-                name3={testContent.name3}
-                occupation3={testContent.occupation3}
-                text3={testContent.text3}
+                Testimonial1={{
+                    photo: testContent?.photo1,
+                    name: testContent?.name1,
+                    link: testContent?.link1,
+                    occupation: testContent?.occupation1,
+                    text: testContent?.text1,
+                }}
+                Testimonial2={{
+                    photo: testContent?.photo2,
+                    name: testContent?.name2,
+                    link: testContent?.link2,
+                    occupation: testContent?.occupation2,
+                    text: testContent?.text2,
+                }}
+                Testimonial3={{
+                    photo: testContent?.photo3,
+                    name: testContent?.name3,
+                    link: testContent?.link3,
+                    occupation: testContent?.occupation3,
+                    text: testContent?.text3,
+                }}
             />
         );
 

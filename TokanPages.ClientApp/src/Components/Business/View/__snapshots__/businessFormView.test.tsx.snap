@@ -205,7 +205,31 @@ Object {
                         <p
                           class="is-size-6 p-1"
                         >
-                          Super service (20 USD/hour)
+                          Web Development (30 USD/hour)
+                        </p>
+                      </div>
+                      <div
+                        class="is-flex"
+                      >
+                        <div
+                          class="checkbox-wrapper-1 is-flex is-align-self-center"
+                        >
+                          <input
+                            class="substituted"
+                            id="1"
+                            name="service-1"
+                            tabindex="-1"
+                            type="checkbox"
+                          />
+                          <label
+                            class="is-clickable"
+                            for="1"
+                          />
+                        </div>
+                        <p
+                          class="is-size-6 p-1"
+                        >
+                          Mobile Development (45 USD/hour)
                         </p>
                       </div>
                     </div>
@@ -259,22 +283,24 @@ Object {
                   <div
                     class="is-size-5 has-text-weight-semibold has-text-link"
                   />
-                  <a
-                    class=""
-                    href="/"
+                  <div
+                    class="contact-form-icon-container"
                   >
-                    <figure
-                      class="bulma-image bulma-is-24x24"
-                    />
-                  </a>
+                    <a
+                      class=""
+                      href="/"
+                    >
+                      <figure
+                        class="bulma-image bulma-is-24x24"
+                      />
+                    </a>
+                  </div>
                 </div>
               </div>
               <div
                 class="bulma-content"
               >
-                <p
-                  class="is-size-6"
-                />
+                EMPTY_CONTENT_PROVIDED
                 <h3
                   class="is-size-3 my-6"
                 />
@@ -493,7 +519,31 @@ Object {
                       <p
                         class="is-size-6 p-1"
                       >
-                        Super service (20 USD/hour)
+                        Web Development (30 USD/hour)
+                      </p>
+                    </div>
+                    <div
+                      class="is-flex"
+                    >
+                      <div
+                        class="checkbox-wrapper-1 is-flex is-align-self-center"
+                      >
+                        <input
+                          class="substituted"
+                          id="1"
+                          name="service-1"
+                          tabindex="-1"
+                          type="checkbox"
+                        />
+                        <label
+                          class="is-clickable"
+                          for="1"
+                        />
+                      </div>
+                      <p
+                        class="is-size-6 p-1"
+                      >
+                        Mobile Development (45 USD/hour)
                       </p>
                     </div>
                   </div>
@@ -547,22 +597,24 @@ Object {
                 <div
                   class="is-size-5 has-text-weight-semibold has-text-link"
                 />
-                <a
-                  class=""
-                  href="/"
+                <div
+                  class="contact-form-icon-container"
                 >
-                  <figure
-                    class="bulma-image bulma-is-24x24"
-                  />
-                </a>
+                  <a
+                    class=""
+                    href="/"
+                  >
+                    <figure
+                      class="bulma-image bulma-is-24x24"
+                    />
+                  </a>
+                </div>
               </div>
             </div>
             <div
               class="bulma-content"
             >
-              <p
-                class="is-size-6"
-              />
+              EMPTY_CONTENT_PROVIDED
               <h3
                 class="is-size-3 my-6"
               />

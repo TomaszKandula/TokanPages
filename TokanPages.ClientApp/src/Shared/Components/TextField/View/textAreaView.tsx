@@ -23,6 +23,7 @@ export const TextAreaView = (props: TextAreaProps): React.ReactElement => {
                     onChange={props.onChange}
                     placeholder={props.placeholder}
                     maxLength={props.maxLength}
+                    disabled={props.isDisabled}
                 ></textarea>
             </div>
         </div>

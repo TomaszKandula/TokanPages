@@ -7,6 +7,7 @@ export { PasswordResetPage } from "./PasswordResetPage";
 export { NewsletterRemovePage } from "./NewsletterRemovePage";
 export { NewsletterUpdatePage } from "./NewsletterUpdatePage";
 export { PdfViewerPage } from "./PdfViewerPage";
+export { ResumePage } from "./ResumePage";
 
 export {
     BicyclePage,

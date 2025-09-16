@@ -1,10 +1,10 @@
-import { OfferItemDto } from "../../../Api/Models";
+import { OfferItemProps } from "../Types";
 
 export const valueCleanUp = (input: string): string => {
     return input.replaceAll(" ", "").replaceAll("(", "").replaceAll(")", "");
 };
 
-export const getSelection = (input?: OfferItemDto[]): string[] => {
+export const getSelection = (input?: OfferItemProps[]): string[] => {
     if (!input) {
         return [""];
     }
@@ -19,12 +19,8 @@ export const getSelection = (input?: OfferItemDto[]): string[] => {
     return result;
 };
 
-export const resetSelection = (input?: OfferItemDto[]): OfferItemDto[] => {
-    if (!input) {
-        return [];
-    }
-
-    const result: OfferItemDto[] = [];
+export const resetSelection = (input: OfferItemProps[]): OfferItemProps[] => {
+    const result: OfferItemProps[] = [];
     input.forEach(item => {
         result.push({ ...item, isChecked: false });
     });
