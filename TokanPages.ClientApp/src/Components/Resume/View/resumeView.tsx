@@ -164,7 +164,7 @@ const RenderTestimonials = (props: ResumeViewProps) => (
                             source={props.section.photo1}
                             title={props.section.name1}
                             alt={props.section.name1}
-                            className="bulma-is-rounded is-round-border"
+                            className="bulma-is-rounded is-round-border-light"
                         />
                     </figure>
                 </Skeleton>
@@ -194,7 +194,7 @@ const RenderTestimonials = (props: ResumeViewProps) => (
                             source={props.section.photo2}
                             title={props.section.name2}
                             alt={props.section.name2}
-                            className="bulma-is-rounded is-round-border"
+                            className="bulma-is-rounded is-round-border-light"
                         />
                     </figure>
                 </Skeleton>
@@ -224,7 +224,7 @@ const RenderTestimonials = (props: ResumeViewProps) => (
                             source={props.section.photo3}
                             title={props.section.name3}
                             alt={props.section.name3}
-                            className="bulma-is-rounded is-round-border"
+                            className="bulma-is-rounded is-round-border-light"
                         />
                     </figure>
                 </Skeleton>
@@ -247,7 +247,7 @@ const RenderResume = (props: ResumeViewProps) => (
                             source={props.page?.photo?.href}
                             title={props.page?.photo?.text}
                             alt={props.page?.photo?.text}
-                            className="bulma-is-rounded"
+                            className="bulma-is-rounded is-round-border-light"
                         />
                     </figure>
                 </Skeleton>

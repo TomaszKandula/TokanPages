@@ -91,7 +91,7 @@ Object {
       >
         <img
           alt="User avatar"
-          class="bulma-is-rounded avatar-is-48x48"
+          class="bulma-is-rounded is-round-border-light avatar-is-48x48"
           src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
           title="Avatar"
         />
@@ -104,7 +104,7 @@ Object {
     >
       <img
         alt="User avatar"
-        class="bulma-is-rounded avatar-is-48x48"
+        class="bulma-is-rounded is-round-border-light avatar-is-48x48"
         src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
         title="Avatar"
       />
@@ -255,7 +255,7 @@ Object {
       >
         <img
           alt="User avatar"
-          class="bulma-is-rounded avatar-is-24x24"
+          class="bulma-is-rounded is-round-border-light avatar-is-24x24"
           src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
           title="Avatar"
         />
@@ -268,7 +268,7 @@ Object {
     >
       <img
         alt="User avatar"
-        class="bulma-is-rounded avatar-is-24x24"
+        class="bulma-is-rounded is-round-border-light avatar-is-24x24"
         src="http://localhost/api/v1/assets/avatars/example_avatar.jpg"
         title="Avatar"
       />
