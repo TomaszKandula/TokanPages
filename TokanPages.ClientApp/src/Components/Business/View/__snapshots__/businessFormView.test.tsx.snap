@@ -300,9 +300,7 @@ Object {
               <div
                 class="bulma-content"
               >
-                <p
-                  class="is-size-6"
-                />
+                EMPTY_CONTENT_PROVIDED
                 <h3
                   class="is-size-3 my-6"
                 />
@@ -616,9 +614,7 @@ Object {
             <div
               class="bulma-content"
             >
-              <p
-                class="is-size-6"
-              />
+              EMPTY_CONTENT_PROVIDED
               <h3
                 class="is-size-3 my-6"
               />
