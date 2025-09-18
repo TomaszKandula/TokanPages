@@ -49,6 +49,7 @@ export interface ExperienceItemProps {
     dateStart: string;
     dateEnd: string;
     companyName: string;
+    companyLink: string;
     contractType: string;
     occupation: OccupationProps[];
 }

@@ -1,10 +1,20 @@
 import React from "react";
 import { GET_IMAGES_URL, GET_TESTIMONIALS_URL } from "../../../Api";
 import { EducationItemProps, OccupationProps } from "../../../Api/Models";
-import { CustomImage, Link, Media, RenderList, Skeleton } from "../../../Shared/Components";
+import { CustomImage, Icon, Link, Media, RenderList, Skeleton } from "../../../Shared/Components";
 import { RenderTag } from "../../../Shared/Components/RenderContent/Renderers";
-import { ProcessedExperienceItemProps, ProcessTimeSpanProps, RenderCaptionProps, ResumeViewProps } from "../Types";
+import { ProcessedExperienceItemProps, RenderCaptionProps, ResumeViewProps } from "../Types";
+import { ProcessTimeSpan } from "../Utilities";
 import { v4 as uuid } from "uuid";
+import Validate from "validate.js";
+
+const RenderCompanyLink = (props: ProcessedExperienceItemProps): React.ReactElement => (
+    Validate.isEmpty(props.companyLink) 
+    ? <Icon name="OpenInNew" size={1.2} className="has-text-grey" /> 
+    : <Link to={props.companyLink}>
+        <Icon name="OpenInNew" size={1.2} className="has-text-link is-clickable" />
+    </Link>
+);
 
 const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
     <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24} hasSkeletonCentered className="my-4">
@@ -14,35 +24,18 @@ const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
     </Skeleton>
 );
 
-const ProcessTimeSpan = (props: ProcessTimeSpanProps): React.ReactElement => {
-    if (!props.months) {
-        return <></>;
-    }
-
-    if (props.months > 12) {
-        const years = Math.floor(props.months / 12);
-        const month = props.months % 12;
-
-        return (
-            <>
-                {years} {years > 1 ? props.yearsLabel : props.yearLabel} {month}{" "}
-                {month > 1 ? props.monthsLabel : props.monthLabel}
-            </>
-        );
-    }
-
-    return <>{props.months > 1 ? `${props.months} ${props.monthsLabel}` : `${props.months} ${props.monthLabel}`}</>;
-};
-
 const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
     <>
         {props.processed.map((value: ProcessedExperienceItemProps, _index: number) => (
             <div key={uuid()} className="is-flex is-flex-direction-column mb-4">
                 <div className="is-flex is-justify-content-space-between is-align-items-center">
                     <div className="is-flex is-flex-direction-column my-3">
-                        <Skeleton isLoading={props.isLoading} width={50} height={24}>
-                            <p className="is-size-6 has-text-weight-bold has-text-grey-dark">{value.companyName}</p>
-                        </Skeleton>
+                        <div className="is-flex is-align-items-center is-gap-1.5">
+                            <Skeleton isLoading={props.isLoading} width={50} height={24}>
+                                <p className="is-size-6 has-text-weight-bold has-text-grey-dark">{value.companyName}</p>
+                            </Skeleton>
+                            <RenderCompanyLink {...value} />
+                        </div>
                         <Skeleton isLoading={props.isLoading} width={100} height={24}>
                             <p className="is-size-6 has-text-grey">{value.contractType}</p>
                         </Skeleton>
