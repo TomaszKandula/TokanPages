@@ -23,14 +23,14 @@ export const PresentationView = (props: PresentationViewProps) => (
                     />
                 </figure>
             </Skeleton>
-            <div className="bulma-content ml-4 is-flex is-flex-direction-column is-align-self-center is-gap-0.5">
+            <div className="bulma-content ml-5 is-flex is-flex-direction-column is-align-self-center is-gap-0.5">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24}>
                     <div className="is-size-4 has-text-weight-bold">{props.title}</div>
                 </Skeleton>
                 <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24}>
                     <div className="is-size-5 has-text-weight-semibold has-text-link">{props.subtitle}</div>
                 </Skeleton>
-                <div className="contact-form-icon-container">
+                <div className="contact-form-icon-container pt-2">
                     <Skeleton isLoading={props.isLoading} mode="Rect" width={24} height={24}>
                         <Link to={props.icon.href} key={uuidv4()} aria-label={props.icon.name}>
                             <figure className="bulma-image bulma-is-24x24">
