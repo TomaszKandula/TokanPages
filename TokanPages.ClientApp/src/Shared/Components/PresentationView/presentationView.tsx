@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export const PresentationView = (props: PresentationViewProps) => (
     <>
-        <div className="is-flex my-5">
+        <div className="is-flex mb-5">
             <Skeleton isLoading={props.isLoading} mode="Circle" width={128} height={128}>
                 <figure className="bulma-image bulma-is-128x128">
                     <CustomImage
@@ -41,12 +41,12 @@ export const PresentationView = (props: PresentationViewProps) => (
                 </div>
             </div>
         </div>
-        <div className="bulma-content">
+        <div className="bulma-content pb-6">
             <Skeleton isLoading={props.isLoading} mode="Text" width={500} height={40}>
-                <ProcessParagraphs tag="p" html={props.description} className="is-size-6" />
+                <ProcessParagraphs tag="p" html={props.description} className="is-size-6 line-height-20" />
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" width={250} height={40} className="my-6">
-                <h3 className="is-size-3 my-6">{props.logos.title}</h3>
+                <h3 className="is-size-3 mt-5 mb-6">{props.logos.title}</h3>
             </Skeleton>
             <div className="bulma-fixed-grid">
                 <div className="bulma-grid is-gap-7">
