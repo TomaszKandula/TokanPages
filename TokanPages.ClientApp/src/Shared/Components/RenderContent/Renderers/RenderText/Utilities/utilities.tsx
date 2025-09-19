@@ -246,7 +246,7 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
 
 export const RenderTitle = (props: DataProps): React.ReactElement => {
     return (
-        <RenderHtml value={props.value ?? NO_CONTENT} tag="h2" className="bulma-title has-text-grey-dark pt-2 pb-2" />
+        <RenderHtml value={props.value ?? NO_CONTENT} tag="h2" className="bulma-title has-text-grey-dark pt-2 pb-1" />
     );
 };
 
