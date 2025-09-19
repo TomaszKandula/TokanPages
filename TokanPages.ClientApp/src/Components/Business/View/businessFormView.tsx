@@ -234,7 +234,7 @@ export const BusinessFormView = (props: BusinessFormViewProps): React.ReactEleme
                         </div>
                     </div>
                 </div>
-                <div className="bulma-column business-margins">
+                <div className="bulma-column business-margins pt-0">
                     <PresentationView
                         isLoading={props.isLoading}
                         title={props.presentation.title}
