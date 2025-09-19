@@ -24,6 +24,15 @@ const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
     </Skeleton>
 );
 
+const RenderTags = (props: OccupationProps): React.ReactElement => (
+    Validate.isEmpty(props.tags) ? <></> :
+    <div className="bulma-tags pt-2 ml-3 mb-4">
+        {props.tags?.map((item: string, _index: number) => (
+            <div className="bulma-tag" key={uuid()}>{item}</div>
+        ))}
+    </div>
+);
+
 const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
     <>
         {props.processed.map((value: ProcessedExperienceItemProps, _index: number) => (
@@ -73,6 +82,7 @@ const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
                                 list={value.details}
                                 className="is-size-6 has-text-grey-dark"
                             />
+                            <RenderTags {...value} />
                         </div>
                     </React.Fragment>
                 ))}

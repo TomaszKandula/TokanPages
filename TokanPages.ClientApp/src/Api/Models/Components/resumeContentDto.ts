@@ -38,6 +38,7 @@ export interface OccupationProps {
     dateStart: string;
     dateEnd: string;
     details: string[];
+    tags: string[];
 }
 
 export interface InterestsProps {
