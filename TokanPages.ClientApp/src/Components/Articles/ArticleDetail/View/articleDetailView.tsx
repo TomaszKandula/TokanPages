@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GET_FLAG_URL } from "../../../../Api";
 import { ArticleContentDto } from "../../../../Api/Models";
-import { Animated, Icon, CustomImage, Skeleton } from "../../../../Shared/Components";
+import { Icon, CustomImage, Skeleton } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ExtendedViewProps } from "../articleDetail";
 import "./articleDetailView.css";
@@ -32,7 +32,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet">
             <article className="py-4">
-                <Animated dataAos="fade-down" className="mb-5">
+                <div className="mb-6">
                     <div className={`bulma-grid is-flex m-0 ${props.isMobile ? "mx-4" : ""}`}>
                         <div className="bulma-cell is-align-content-center">
                             <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72} disableMarginY>
@@ -41,7 +41,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                         </div>
                         <div className="bulma-cell is-align-content-center">
                             <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={24} disableMarginY>
-                                <p className="is-size-5">
+                                <p className="is-size-4">
                                     {props.authorFirstName} {props.authorLastName}
                                 </p>
                             </Skeleton>
@@ -104,7 +104,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                             </Skeleton>
                         </div>
                     </div>
-                </Animated>
+                </div>
 
                 {props.articleContent}
 
