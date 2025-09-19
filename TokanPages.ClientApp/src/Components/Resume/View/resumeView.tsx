@@ -8,13 +8,14 @@ import { ProcessTimeSpan } from "../Utilities";
 import { v4 as uuid } from "uuid";
 import Validate from "validate.js";
 
-const RenderCompanyLink = (props: ProcessedExperienceItemProps): React.ReactElement => (
-    Validate.isEmpty(props.companyLink) 
-    ? <Icon name="OpenInNew" size={1.2} className="has-text-grey" /> 
-    : <Link to={props.companyLink}>
-        <Icon name="OpenInNew" size={1.2} className="has-text-link is-clickable" />
-    </Link>
-);
+const RenderCompanyLink = (props: ProcessedExperienceItemProps): React.ReactElement =>
+    Validate.isEmpty(props.companyLink) ? (
+        <Icon name="OpenInNew" size={1.2} className="has-text-grey" />
+    ) : (
+        <Link to={props.companyLink}>
+            <Icon name="OpenInNew" size={1.2} className="has-text-link is-clickable" />
+        </Link>
+    );
 
 const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
     <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24} hasSkeletonCentered className="my-4">
@@ -24,14 +25,18 @@ const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
     </Skeleton>
 );
 
-const RenderTags = (props: OccupationProps): React.ReactElement => (
-    Validate.isEmpty(props.tags) ? <></> :
-    <div className="bulma-tags pt-2 ml-3 mb-4">
-        {props.tags?.map((item: string, _index: number) => (
-            <div className="bulma-tag" key={uuid()}>{item}</div>
-        ))}
-    </div>
-);
+const RenderTags = (props: OccupationProps): React.ReactElement =>
+    Validate.isEmpty(props.tags) ? (
+        <></>
+    ) : (
+        <div className="bulma-tags pt-2 ml-3 mb-4">
+            {props.tags?.map((item: string, _index: number) => (
+                <div className="bulma-tag" key={uuid()}>
+                    {item}
+                </div>
+            ))}
+        </div>
+    );
 
 const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
     <>

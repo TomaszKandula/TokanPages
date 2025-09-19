@@ -20,4 +20,3 @@ export const ProcessTimeSpan = (props: ProcessTimeSpanProps): React.ReactElement
 
     return <>{props.months > 1 ? `${props.months} ${props.monthsLabel}` : `${props.months} ${props.monthLabel}`}</>;
 };
-
