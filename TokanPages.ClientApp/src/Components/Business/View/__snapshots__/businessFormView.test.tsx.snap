@@ -266,10 +266,10 @@ Object {
               </div>
             </div>
             <div
-              class="bulma-column business-margins"
+              class="bulma-column business-margins pt-0"
             >
               <div
-                class="is-flex my-5"
+                class="is-flex mb-5"
               >
                 <figure
                   class="bulma-image bulma-is-128x128"
@@ -298,11 +298,11 @@ Object {
                 </div>
               </div>
               <div
-                class="bulma-content"
+                class="bulma-content pb-6"
               >
                 EMPTY_CONTENT_PROVIDED
                 <h3
-                  class="is-size-3 my-6"
+                  class="is-size-3 mt-5 mb-6"
                 />
                 <div
                   class="bulma-fixed-grid"
@@ -580,10 +580,10 @@ Object {
             </div>
           </div>
           <div
-            class="bulma-column business-margins"
+            class="bulma-column business-margins pt-0"
           >
             <div
-              class="is-flex my-5"
+              class="is-flex mb-5"
             >
               <figure
                 class="bulma-image bulma-is-128x128"
@@ -612,11 +612,11 @@ Object {
               </div>
             </div>
             <div
-              class="bulma-content"
+              class="bulma-content pb-6"
             >
               EMPTY_CONTENT_PROVIDED
               <h3
-                class="is-size-3 my-6"
+                class="is-size-3 mt-5 mb-6"
               />
               <div
                 class="bulma-fixed-grid"
