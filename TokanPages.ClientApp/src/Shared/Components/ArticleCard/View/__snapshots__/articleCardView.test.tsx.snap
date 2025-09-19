@@ -27,7 +27,7 @@ Object {
               class="article-box-content-text"
             >
               <p
-                class="is-size-4 has-text-black-ter"
+                class="is-size-4 has-text-black-ter mb-0"
               >
                 Article title
               </p>
@@ -136,7 +136,7 @@ Object {
             class="article-box-content-text"
           >
             <p
-              class="is-size-4 has-text-black-ter"
+              class="is-size-4 has-text-black-ter mb-0"
             >
               Article title
             </p>
