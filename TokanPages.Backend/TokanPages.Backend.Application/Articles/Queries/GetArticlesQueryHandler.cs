@@ -16,11 +16,14 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
     {
         var query = DatabaseContext.Articles
             .AsNoTracking()
+            .Include(articles => articles.ArticleCategory)
             .Where(articles => articles.IsPublished == request.IsPublished)
             .WhereIf(!string.IsNullOrWhiteSpace(request.SearchTerm), articles => articles.Title.Contains(request.SearchTerm!))
+            .WhereIf(!string.IsNullOrWhiteSpace(request.CategoryName), articles => articles.ArticleCategory.CategoryName.Contains(request.CategoryName!))
             .Select(articles => new GetArticlesQueryResult 
             { 
                 Id = articles.Id,
+                CategoryName = articles.ArticleCategory.CategoryName,
                 Title = articles.Title,
                 Description = articles.Description,
                 IsPublished = articles.IsPublished,
@@ -51,7 +54,8 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
         {
             {nameof(GetArticlesQueryResult.Title), articlesQueryResult => articlesQueryResult.Title},
             {nameof(GetArticlesQueryResult.Description), articlesQueryResult => articlesQueryResult.Description},
-            {nameof(GetArticlesQueryResult.CreatedAt), articlesQueryResult => articlesQueryResult.CreatedAt}
+            {nameof(GetArticlesQueryResult.CreatedAt), articlesQueryResult => articlesQueryResult.CreatedAt},
+            {nameof(GetArticlesQueryResult.CategoryName), articlesQueryResult => articlesQueryResult.CategoryName}
         };
     }
 }

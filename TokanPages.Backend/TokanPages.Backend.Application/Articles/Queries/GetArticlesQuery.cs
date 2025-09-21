@@ -8,4 +8,6 @@ public class GetArticlesQuery : PagingInfo, IRequest<GetAllArticlesQueryResult>
     public bool IsPublished { get; set; }
 
     public string? SearchTerm { get; set; }
+
+    public string? CategoryName { get; set; }
 }
