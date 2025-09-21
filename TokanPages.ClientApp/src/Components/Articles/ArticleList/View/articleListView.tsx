@@ -35,64 +35,54 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => {
 };
 
 const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
-    <div className="bulma-card">
-        <div className="bulma-card-content">
-            <div className="bulma-content">
-                <Skeleton isLoading={props.isContentLoading} mode="Text" height={32}>
-                    <h2 className="is-size-4 has-text-weight-normal">{props.title}</h2>
+    <div className="bulma-content">
+        <Skeleton isLoading={props.isContentLoading} mode="Text" height={32}>
+            <h2 className="is-size-4 has-text-weight-normal">{props.title}</h2>
+        </Skeleton>
+        <hr />
+        {props.text.map((value: string, index: number) => (
+            <Skeleton isLoading={props.isContentLoading} mode="Text" key={uuidv4()}>
+                {index === 0 ? (
+                    <h3 className="is-size-6 has-text-grey has-text-weight-medium line-height-20">{value}</h3>
+                ) : (
+                    <p className="is-size-6 has-text-grey line-height-20">{value}</p>
+                )}
+            </Skeleton>
+        ))}
+        <hr />
+        <div className="bulma-columns">
+            <div className="bulma-column article-list-view-search-bar">
+                <TextField
+                    uuid="searchInput"
+                    value={props.value.searchInput}
+                    onKeyUp={props.onKeyUp}
+                    onChange={props.onChange}
+                    placeholder={props.placeholder}
+                    isLoading={false}
+                    isDisabled={props.isContentLoading}
+                    className="is-flex is-flex-grow-1"
+                    startIcon={<Icon name="Magnify" size={1.5} className="has-text-link" />}
+                />
+            </div>
+            <div className="bulma-column article-list-view-search-buttons">
+                <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY>
+                    <button
+                        onClick={props.buttonSearch.onClick}
+                        className="bulma-button bulma-is-link bulma-is-light"
+                        disabled={props.buttonSearch.isSearchDisabled}
+                    >
+                        {props.buttonSearch.label}
+                    </button>
                 </Skeleton>
-                <hr />
-                {props.text.map((value: string, index: number) => (
-                    <Skeleton isLoading={props.isContentLoading} mode="Text" key={uuidv4()}>
-                        {index === 0 ? (
-                            <h3 className="is-size-6 has-text-grey has-text-weight-medium line-height-20">{value}</h3>
-                        ) : (
-                            <p className="is-size-6 has-text-grey line-height-20">{value}</p>
-                        )}
-                    </Skeleton>
-                ))}
-                <hr />
-                <div className="bulma-columns">
-                    <div className="bulma-column article-list-view-search-bar">
-                        <TextField
-                            uuid="searchInput"
-                            value={props.value.searchInput}
-                            onKeyUp={props.onKeyUp}
-                            onChange={props.onChange}
-                            placeholder={props.placeholder}
-                            isLoading={false}
-                            isDisabled={props.isContentLoading}
-                            className="is-flex is-flex-grow-1"
-                            startIcon={<Icon name="Magnify" size={1.5} className="has-text-link" />}
-                        />
-                    </div>
-                    <div className="bulma-column article-list-view-search-buttons">
-                        <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY>
-                            <button
-                                onClick={props.buttonSearch.onClick}
-                                className="bulma-button bulma-is-link bulma-is-light"
-                                disabled={props.buttonSearch.isSearchDisabled}
-                            >
-                                {props.buttonSearch.label}
-                            </button>
-                        </Skeleton>
-                        <Skeleton
-                            isLoading={props.isContentLoading}
-                            mode="Rect"
-                            height={40}
-                            disableMarginY
-                            className="ml-3"
-                        >
-                            <button
-                                onClick={props.buttonClear.onClick}
-                                className="bulma-button bulma-is-danger bulma-is-light"
-                                disabled={props.buttonClear.isClearDisabled}
-                            >
-                                {props.buttonClear.label}
-                            </button>
-                        </Skeleton>
-                    </div>
-                </div>
+                <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY className="ml-3">
+                    <button
+                        onClick={props.buttonClear.onClick}
+                        className="bulma-button bulma-is-danger bulma-is-light"
+                        disabled={props.buttonClear.isClearDisabled}
+                    >
+                        {props.buttonClear.label}
+                    </button>
+                </Skeleton>
             </div>
         </div>
     </div>
