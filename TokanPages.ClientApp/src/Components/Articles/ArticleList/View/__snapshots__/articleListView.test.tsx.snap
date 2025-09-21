@@ -26,7 +26,7 @@ Object {
                   />
                   <hr />
                   <h3
-                    class="is-size-6 has-text-grey has-text-weight-medium line-height-18"
+                    class="is-size-6 has-text-grey has-text-weight-medium line-height-20"
                   />
                   <hr />
                   <div
@@ -129,7 +129,7 @@ Object {
                     class="article-box-content-text"
                   >
                     <p
-                      class="is-size-4 has-text-black-ter"
+                      class="is-size-4 has-text-black-ter mb-0"
                     >
                       Test article
                     </p>
@@ -266,7 +266,7 @@ Object {
                 />
                 <hr />
                 <h3
-                  class="is-size-6 has-text-grey has-text-weight-medium line-height-18"
+                  class="is-size-6 has-text-grey has-text-weight-medium line-height-20"
                 />
                 <hr />
                 <div
@@ -369,7 +369,7 @@ Object {
                   class="article-box-content-text"
                 >
                   <p
-                    class="is-size-4 has-text-black-ter"
+                    class="is-size-4 has-text-black-ter mb-0"
                   >
                     Test article
                   </p>

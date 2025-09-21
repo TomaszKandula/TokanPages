@@ -113,8 +113,8 @@ body {
 
 .is-round-border-light {
     border-style: solid;
-    border-width: 1px;
-    border-color: hsl(0, 0%, 86%);
+    border-width: 3px;
+    border-color: hsl(0, 0%, 96%);
     border-radius: 50%;
 }
 

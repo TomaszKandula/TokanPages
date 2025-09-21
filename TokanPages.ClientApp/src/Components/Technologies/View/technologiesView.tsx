@@ -8,6 +8,8 @@ interface TechnologiesViewProps {
     className?: string;
 }
 
+const ICON_SIZE = 1.8;
+
 export const TechnologiesView = (props: TechnologiesViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isLoading = data?.isLoading;
@@ -31,7 +33,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                     <Skeleton isLoading={isLoading} mode="Circle" width={40} height={40}>
                                         <Icon
                                             name="CodeBraces"
-                                            size={1.2}
+                                            size={ICON_SIZE}
                                             className="has-text-link is-flex is-align-self-center mr-2"
                                         />
                                     </Skeleton>
@@ -54,7 +56,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                     <Skeleton isLoading={isLoading} mode="Circle" width={40} height={40}>
                                         <Icon
                                             name="Bookshelf"
-                                            size={1.2}
+                                            size={ICON_SIZE}
                                             className="has-text-link is-flex is-align-self-center mr-2"
                                         />
                                     </Skeleton>
@@ -79,7 +81,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                     <Skeleton isLoading={isLoading} mode="Circle" width={40} height={40}>
                                         <Icon
                                             name="Server"
-                                            size={1.2}
+                                            size={ICON_SIZE}
                                             className="has-text-link is-flex is-align-self-center mr-2"
                                         />
                                     </Skeleton>
@@ -102,7 +104,7 @@ export const TechnologiesView = (props: TechnologiesViewProps): React.ReactEleme
                                     <Skeleton isLoading={isLoading} mode="Circle" width={40} height={40}>
                                         <Icon
                                             name="Cloud"
-                                            size={1.2}
+                                            size={ICON_SIZE}
                                             className="has-text-link is-flex is-align-self-center mr-2"
                                         />
                                     </Skeleton>

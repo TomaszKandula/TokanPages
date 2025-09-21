@@ -183,7 +183,7 @@ export const PageContactFormView = (props: ContactFormViewProps): React.ReactEle
                         </div>
                     </div>
                 </div>
-                <div className="bulma-column contact-form-view-column-margins">
+                <div className="bulma-column contact-form-view-column-margins pt-0">
                     <PresentationView
                         isLoading={props.isLoading}
                         title={props.presentation.title}

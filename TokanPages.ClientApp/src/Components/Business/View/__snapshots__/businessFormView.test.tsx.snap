@@ -266,16 +266,16 @@ Object {
               </div>
             </div>
             <div
-              class="bulma-column business-margins"
+              class="bulma-column business-margins pt-0"
             >
               <div
-                class="is-flex my-5"
+                class="is-flex mb-5"
               >
                 <figure
                   class="bulma-image bulma-is-128x128"
                 />
                 <div
-                  class="bulma-content ml-4 is-flex is-flex-direction-column is-align-self-center is-gap-0.5"
+                  class="bulma-content ml-5 is-flex is-flex-direction-column is-align-self-center is-gap-0.5"
                 >
                   <div
                     class="is-size-4 has-text-weight-bold"
@@ -284,7 +284,7 @@ Object {
                     class="is-size-5 has-text-weight-semibold has-text-link"
                   />
                   <div
-                    class="contact-form-icon-container"
+                    class="contact-form-icon-container pt-2"
                   >
                     <a
                       class=""
@@ -298,11 +298,11 @@ Object {
                 </div>
               </div>
               <div
-                class="bulma-content"
+                class="bulma-content pb-6"
               >
                 EMPTY_CONTENT_PROVIDED
                 <h3
-                  class="is-size-3 my-6"
+                  class="is-size-3 mt-5 mb-6"
                 />
                 <div
                   class="bulma-fixed-grid"
@@ -580,16 +580,16 @@ Object {
             </div>
           </div>
           <div
-            class="bulma-column business-margins"
+            class="bulma-column business-margins pt-0"
           >
             <div
-              class="is-flex my-5"
+              class="is-flex mb-5"
             >
               <figure
                 class="bulma-image bulma-is-128x128"
               />
               <div
-                class="bulma-content ml-4 is-flex is-flex-direction-column is-align-self-center is-gap-0.5"
+                class="bulma-content ml-5 is-flex is-flex-direction-column is-align-self-center is-gap-0.5"
               >
                 <div
                   class="is-size-4 has-text-weight-bold"
@@ -598,7 +598,7 @@ Object {
                   class="is-size-5 has-text-weight-semibold has-text-link"
                 />
                 <div
-                  class="contact-form-icon-container"
+                  class="contact-form-icon-container pt-2"
                 >
                   <a
                     class=""
@@ -612,11 +612,11 @@ Object {
               </div>
             </div>
             <div
-              class="bulma-content"
+              class="bulma-content pb-6"
             >
               EMPTY_CONTENT_PROVIDED
               <h3
-                class="is-size-3 my-6"
+                class="is-size-3 mt-5 mb-6"
               />
               <div
                 class="bulma-fixed-grid"

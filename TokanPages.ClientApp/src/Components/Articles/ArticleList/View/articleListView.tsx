@@ -45,9 +45,9 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                 {props.text.map((value: string, index: number) => (
                     <Skeleton isLoading={props.isContentLoading} mode="Text" key={uuidv4()}>
                         {index === 0 ? (
-                            <h3 className="is-size-6 has-text-grey has-text-weight-medium line-height-18">{value}</h3>
+                            <h3 className="is-size-6 has-text-grey has-text-weight-medium line-height-20">{value}</h3>
                         ) : (
-                            <p className="is-size-6 has-text-grey line-height-18">{value}</p>
+                            <p className="is-size-6 has-text-grey line-height-20">{value}</p>
                         )}
                     </Skeleton>
                 ))}

@@ -91,7 +91,7 @@ Object {
         data-testid="render-content"
       >
         <h2
-          class="bulma-title has-text-grey-dark pt-2 pb-2"
+          class="bulma-title has-text-grey-dark pt-2 pb-1"
         >
           <p>
             Test line
@@ -284,7 +284,7 @@ Object {
       data-testid="render-content"
     >
       <h2
-        class="bulma-title has-text-grey-dark pt-2 pb-2"
+        class="bulma-title has-text-grey-dark pt-2 pb-1"
       >
         <p>
           Test line

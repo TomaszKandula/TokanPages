@@ -76,7 +76,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
                                     onClick={onBackToRoot}
                                     className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable"
                                 >
-                                    <Icon name="Home" size={0.75} className="mx-1" />
+                                    <Icon name="Home" size={1.0} className="mx-1" />
                                     <span className="pt-2 pr-2 pb-2">{getHomeText(navigation)}</span>
                                 </div>
                             </div>
