@@ -30,9 +30,27 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         const pages = Math.round(totalSize / pagingInfo.pageSize);
 
         if (nextPage <= pages) {
-            dispatch(ArticleListingAction.get(nextPage, ARTICLES_PAGE_SIZE));
+            dispatch(ArticleListingAction.get({ 
+                pageNumber: nextPage,
+                pageSize: ARTICLES_PAGE_SIZE,
+                //phrase: "", 
+                //category: "", 
+                orderByAscending: false,
+                orderByColumn: "title",
+                isPublished: true,
+                noCache: false
+            }));
         } else if (prevPage > 0) {
-            dispatch(ArticleListingAction.get(prevPage, ARTICLES_PAGE_SIZE));
+            dispatch(ArticleListingAction.get({
+                pageNumber: prevPage,
+                pageSize: ARTICLES_PAGE_SIZE,
+                //phrase: "", 
+                //category: "", 
+                orderByAscending: false,
+                orderByColumn: "title",
+                isPublished: true,
+                noCache: false
+            }));
         }
     }, [article.payload]);
 
@@ -54,7 +72,16 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
     const onClickSearch = React.useCallback(() => {
         const pagingInfo = article.payload.pagingInfo;
-        dispatch(ArticleListingAction.get(pagingInfo.pageNumber, ARTICLES_PAGE_SIZE, form.searchInput));
+        dispatch(ArticleListingAction.get({
+                pageNumber: pagingInfo.pageNumber,
+                pageSize: ARTICLES_PAGE_SIZE,
+                phrase: form.searchInput,
+                //category: "",
+                orderByAscending: false,
+                orderByColumn: "title",
+                isPublished: true,
+                noCache: false
+        }));
         setIsClearDisabled(false);
     }, [article.payload, form.searchInput]);
 
@@ -64,7 +91,16 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
 
         setForm({ searchInput: "" });
-        dispatch(ArticleListingAction.get(1, ARTICLES_PAGE_SIZE));
+        dispatch(ArticleListingAction.get({ 
+                pageNumber: 1,
+                pageSize: ARTICLES_PAGE_SIZE,
+                //phrase: "",
+                //category: "",
+                orderByAscending: false,
+                orderByColumn: "title",
+                isPublished: true,
+                noCache: false
+            }));
     }, [form.searchInput]);
 
     React.useEffect(() => {
@@ -77,7 +113,16 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
 
         if (article.payload.results.length === 0) {
-            dispatch(ArticleListingAction.get(1, ARTICLES_PAGE_SIZE));
+            dispatch(ArticleListingAction.get({ 
+                pageNumber: 1,
+                pageSize: ARTICLES_PAGE_SIZE,
+                //phrase: "",
+                //category: "",
+                orderByAscending: false,
+                orderByColumn: "title",
+                isPublished: true,
+                noCache: false
+            }));
         }
     }, [article.isLoading, article.payload.results, form.searchInput]);
 
