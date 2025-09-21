@@ -36,7 +36,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 //phrase: "", 
                 //category: "", 
                 orderByAscending: false,
-                orderByColumn: "title",
+                orderByColumn: "createdAt",
                 isPublished: true,
                 noCache: false
             }));
@@ -47,7 +47,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 //phrase: "", 
                 //category: "", 
                 orderByAscending: false,
-                orderByColumn: "title",
+                orderByColumn: "createdAt",
                 isPublished: true,
                 noCache: false
             }));
@@ -97,7 +97,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 //phrase: "",
                 //category: "",
                 orderByAscending: false,
-                orderByColumn: "title",
+                orderByColumn: "createdAt",
                 isPublished: true,
                 noCache: false
             }));
@@ -119,7 +119,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 //phrase: "",
                 //category: "",
                 orderByAscending: false,
-                orderByColumn: "title",
+                orderByColumn: "createdAt",
                 isPublished: true,
                 noCache: false
             }));
