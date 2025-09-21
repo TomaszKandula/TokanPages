@@ -8,6 +8,8 @@ export interface GetArticlesDto {
 
 export interface PageInfoDto {
     isPublished: boolean;
+    categoryName?: string;
+    phrase?: string;
     pageNumber: number;
     pageSize: number;
     orderByColumn: string;
