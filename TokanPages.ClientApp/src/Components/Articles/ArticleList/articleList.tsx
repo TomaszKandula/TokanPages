@@ -9,6 +9,12 @@ import { ArticleListProps, SearchInputProps } from "./Types";
 import { ArticleListView } from "./View/articleListView";
 import Validate from "validate.js";
 
+const BaseRequest = {
+    orderByColumn: "createdAt",
+    isPublished: true,
+    noCache: false
+}
+
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const media = useDimensions();
     const dispatch = useDispatch();
@@ -38,23 +44,19 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
         if (nextPage <= pages) {
             dispatch(ArticleListingAction.get({ 
+                ...BaseRequest,
                 pageNumber: nextPage,
                 pageSize: ARTICLES_PAGE_SIZE,
                 //category: "", 
                 orderByAscending: isOrderByAscending,
-                orderByColumn: "createdAt",
-                isPublished: true,
-                noCache: false
             }));
         } else if (prevPage > 0) {
             dispatch(ArticleListingAction.get({
+                ...BaseRequest,
                 pageNumber: prevPage,
                 pageSize: ARTICLES_PAGE_SIZE,
                 //category: "", 
                 orderByAscending: isOrderByAscending,
-                orderByColumn: "createdAt",
-                isPublished: true,
-                noCache: false
             }));
         }
     }, [article.payload, isOrderByAscending]);
@@ -78,14 +80,12 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const onClickSearch = React.useCallback(() => {
         const pagingInfo = article.payload.pagingInfo;
         dispatch(ArticleListingAction.get({
+                ...BaseRequest,
                 pageNumber: pagingInfo.pageNumber,
                 pageSize: ARTICLES_PAGE_SIZE,
                 phrase: form.searchInput,
                 //category: "",
                 orderByAscending: isOrderByAscending,
-                orderByColumn: "title",
-                isPublished: true,
-                noCache: false
         }));
         setIsClearDisabled(false);
     }, [article.payload, form.searchInput, isOrderByAscending]);
@@ -97,13 +97,11 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
         setForm({ searchInput: "" });
         dispatch(ArticleListingAction.get({ 
+                ...BaseRequest,
                 pageNumber: 1,
                 pageSize: ARTICLES_PAGE_SIZE,
                 //category: "",
                 orderByAscending: isOrderByAscending,
-                orderByColumn: "createdAt",
-                isPublished: true,
-                noCache: false
             }));
     }, [form.searchInput, isOrderByAscending]);
 
@@ -118,13 +116,11 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
         if (article.payload.results.length === 0) {
             dispatch(ArticleListingAction.get({ 
+                ...BaseRequest,
                 pageNumber: 1,
                 pageSize: ARTICLES_PAGE_SIZE,
                 //category: "",
                 orderByAscending: isOrderByAscending,
-                orderByColumn: "createdAt",
-                isPublished: true,
-                noCache: false
             }));
         }
     }, [article.isLoading, article.payload.results, form.searchInput, isOrderByAscending]);
@@ -134,13 +130,11 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         if (isSortingEnabled && hasPayload) {
             setIsSortingEnabled(false);
             dispatch(ArticleListingAction.get({ 
+                ...BaseRequest,
                 pageNumber: 1,
                 pageSize: ARTICLES_PAGE_SIZE,
                 //category: "",
                 orderByAscending: isOrderByAscending,
-                orderByColumn: "createdAt",
-                isPublished: true,
-                noCache: false
             }));
         }
     }, [isSortingEnabled, isOrderByAscending, article.payload.results.length]);
