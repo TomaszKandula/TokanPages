@@ -20,6 +20,13 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const [form, setForm] = React.useState<SearchInputProps>({ searchInput: "" });
     const [isSearchDisabled, setIsSearchDisabled] = React.useState(true);
     const [isClearDisabled, setIsClearDisabled] = React.useState(true);
+    const [isOrderByAscending, setIsOrderByAscending] = React.useState(false);
+    const [isSortingEnabled, setIsSortingEnabled] = React.useState(false);
+
+    const onSortClick = React.useCallback(() => {
+        setIsOrderByAscending(!isOrderByAscending);
+        setIsSortingEnabled(true);
+    }, [isOrderByAscending]);
 
     const onClickChangePage = React.useCallback(() => {
         const totalSize = article.payload.totalSize;
@@ -33,9 +40,8 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             dispatch(ArticleListingAction.get({ 
                 pageNumber: nextPage,
                 pageSize: ARTICLES_PAGE_SIZE,
-                //phrase: "", 
                 //category: "", 
-                orderByAscending: false,
+                orderByAscending: isOrderByAscending,
                 orderByColumn: "createdAt",
                 isPublished: true,
                 noCache: false
@@ -44,15 +50,14 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             dispatch(ArticleListingAction.get({
                 pageNumber: prevPage,
                 pageSize: ARTICLES_PAGE_SIZE,
-                //phrase: "", 
                 //category: "", 
-                orderByAscending: false,
+                orderByAscending: isOrderByAscending,
                 orderByColumn: "createdAt",
                 isPublished: true,
                 noCache: false
             }));
         }
-    }, [article.payload]);
+    }, [article.payload, isOrderByAscending]);
 
     const onKeyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -77,13 +82,13 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 pageSize: ARTICLES_PAGE_SIZE,
                 phrase: form.searchInput,
                 //category: "",
-                orderByAscending: false,
+                orderByAscending: isOrderByAscending,
                 orderByColumn: "title",
                 isPublished: true,
                 noCache: false
         }));
         setIsClearDisabled(false);
-    }, [article.payload, form.searchInput]);
+    }, [article.payload, form.searchInput, isOrderByAscending]);
 
     const onClickClear = React.useCallback(() => {
         if (Validate.isEmpty(form.searchInput)) {
@@ -94,14 +99,13 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         dispatch(ArticleListingAction.get({ 
                 pageNumber: 1,
                 pageSize: ARTICLES_PAGE_SIZE,
-                //phrase: "",
                 //category: "",
-                orderByAscending: false,
+                orderByAscending: isOrderByAscending,
                 orderByColumn: "createdAt",
                 isPublished: true,
                 noCache: false
             }));
-    }, [form.searchInput]);
+    }, [form.searchInput, isOrderByAscending]);
 
     React.useEffect(() => {
         if (article.isLoading) {
@@ -116,15 +120,30 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             dispatch(ArticleListingAction.get({ 
                 pageNumber: 1,
                 pageSize: ARTICLES_PAGE_SIZE,
-                //phrase: "",
                 //category: "",
-                orderByAscending: false,
+                orderByAscending: isOrderByAscending,
                 orderByColumn: "createdAt",
                 isPublished: true,
                 noCache: false
             }));
         }
-    }, [article.isLoading, article.payload.results, form.searchInput]);
+    }, [article.isLoading, article.payload.results, form.searchInput, isOrderByAscending]);
+
+    React.useEffect(() => {
+        const hasPayload = article.payload.results.length !== 0;
+        if (isSortingEnabled && hasPayload) {
+            setIsSortingEnabled(false);
+            dispatch(ArticleListingAction.get({ 
+                pageNumber: 1,
+                pageSize: ARTICLES_PAGE_SIZE,
+                //category: "",
+                orderByAscending: isOrderByAscending,
+                orderByColumn: "createdAt",
+                isPublished: true,
+                noCache: false
+            }));
+        }
+    }, [isSortingEnabled, isOrderByAscending, article.payload.results.length]);
 
     React.useEffect(() => {
         if (Validate.isEmpty(form.searchInput)) {
@@ -140,6 +159,8 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             isLoading={article.isLoading}
             isContentLoading={isContentLoading}
             isMobile={media.isMobile}
+            isOrderByAscending={isOrderByAscending}
+            onSortClick={onSortClick}
             pageData={{
                 totalSize: article.payload.totalSize,
                 pageNumber: article.payload.pagingInfo.pageNumber,

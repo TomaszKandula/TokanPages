@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
-import { ArticleCard, Icon, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
-import { ArticleListViewProps, RenderContentProps, RenderStaticTextProps } from "../Types";
+import { ArticleCard, Icon, IconButton, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
+import { ArticleListViewProps, RenderContentProps, RenderSortProps, RenderStaticTextProps } from "../Types";
 import { v4 as uuidv4 } from "uuid";
 import "./articleListView.css";
 
@@ -129,14 +129,27 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
 
     return (
         <nav
-            className="bulma-pagination bulma-is-small bulma-is-centered my-6"
+            className="bulma-pagination bulma-is-small bulma-is-right my-6"
             role="navigation"
             aria-label="pagination"
         >
+            {props.isOrderByAscending ? <RenderSortAZ onSortClick={props.onSortClick} /> : <RenderSortZA onSortClick={props.onSortClick} />}
             <ul className="bulma-pagination-list">{paginationItem}</ul>
         </nav>
     );
 };
+
+const RenderSortAZ = (props: RenderSortProps): React.ReactElement => (
+    <IconButton onClick={props.onSortClick}>
+        <Icon name="SortAlphabeticalAscending" size={2.0} />
+    </IconButton>
+);
+
+const RenderSortZA = (props: RenderSortProps): React.ReactElement => (
+    <IconButton onClick={props.onSortClick}>
+        <Icon name="SortAlphabeticalDescending" size={2.0} />
+    </IconButton>
+);
 
 export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => (
     <section className={props.className}>

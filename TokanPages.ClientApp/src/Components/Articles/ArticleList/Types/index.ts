@@ -47,9 +47,10 @@ export interface ArticleListProps {
     className?: string;
 }
 
-export interface ArticleListViewProps extends ViewProperties, ArticlesProps, ArticleListProps, TextProps, ButtonsProps {
+export interface ArticleListViewProps extends ViewProperties, ArticlesProps, ArticleListProps, TextProps, ButtonsProps, RenderSortProps {
     isMobile: boolean;
     isContentLoading: boolean;
+    isOrderByAscending: boolean;
     pageData: PageDataProps;
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
@@ -57,6 +58,10 @@ export interface ArticleListViewProps extends ViewProperties, ArticlesProps, Art
 }
 
 export interface RenderContentProps extends ArticlesProps {}
+
+export interface RenderSortProps {
+    onSortClick: () => void;
+}
 
 export interface RenderStaticTextProps extends TextProps, ButtonsProps {
     isContentLoading: boolean;
