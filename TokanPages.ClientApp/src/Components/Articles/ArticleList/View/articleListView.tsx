@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
+import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ArticleCard, Icon, IconButton, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
 import { ArticleListViewProps, RenderContentProps, RenderSortProps, RenderStaticTextProps } from "../Types";
 import { v4 as uuidv4 } from "uuid";
@@ -26,6 +27,8 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => {
                     key={item.id}
                     languageIso={item.languageIso}
                     canAnimate={false}
+                    canDisplayDate={true}
+                    published={GetDateTime({ value: item.createdAt, hasTimeVisible: false })}
                     readCount={item.readCount}
                     totalLikes={item.totalLikes}
                 />

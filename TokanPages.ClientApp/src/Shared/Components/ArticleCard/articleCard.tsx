@@ -14,6 +14,8 @@ interface ArticleCardProps {
     description: string;
     languageIso: string;
     canAnimate: boolean;
+    canDisplayDate: boolean;
+    published: string;
     readCount?: number;
     totalLikes?: number;
     loading?: TLoading;
@@ -60,6 +62,8 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
             buttonText={content?.button}
             flagImage={flagImage}
             canAnimate={props.canAnimate}
+            canDisplayDate={props.canDisplayDate}
+            published={props.published}
             readCount={readCount}
             totalLikes={totalLikes}
             loading={props.loading}
