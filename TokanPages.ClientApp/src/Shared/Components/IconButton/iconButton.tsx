@@ -43,8 +43,10 @@ export const IconButton = (props: IconButtonProps): React.ReactElement => {
 
         if (props.isDisabled) {
             classList.add("icon-button-disabled");
+            classList.remove("has-text-grey");
         } else {
             classList.remove("icon-button-disabled");
+            classList.add("has-text-grey");
         }
     }, [props.className, props.hasNoHoverEffect, props.isDisabled]);
 
