@@ -173,6 +173,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 pageSize: article.payload.pagingInfo.pageSize,
                 onClick: onClickChangePage,
             }}
+            categories={article.payload.articleCategories}
             articles={article.payload.results}
             className={props.className}
             title={content?.caption}

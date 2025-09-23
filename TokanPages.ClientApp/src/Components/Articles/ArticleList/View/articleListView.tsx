@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ArticleCategory } from "../../../../Api/Models";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ArticleCard, Icon, IconButton, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
@@ -151,11 +152,22 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
     );
 };
 
+const RenderCategories = (props: ArticleListViewProps): React.ReactElement => (
+    <div className="bulma-tags">
+        {props.categories.map((value: ArticleCategory, _index: number) => (
+            <span key={uuidv4()} className="bulma-tag bulma-is-medium bulma-is-info bulma-is-light is-clickable">
+                {value.categoryName}
+            </span>
+        ))}
+    </div>
+);
+
 export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet pb-6">
             <div className={props.isMobile ? "p-4" : "py-4"}>
                 <RenderHeader {...props} />
+                <RenderCategories {...props} />
                 <RenderFiltering {...props} />
                 {props.isLoading ? <ProgressBar /> : <RenderContent {...props} />}
                 <RenderPagination {...props} />
