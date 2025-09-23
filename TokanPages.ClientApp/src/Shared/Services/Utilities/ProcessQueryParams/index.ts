@@ -3,7 +3,7 @@ import Validate from "validate.js";
 export const ProcessQueryParams = <T>(input: T): string => {
     let params = "";
 
-    for(let property in input) {
+    for (let property in input) {
         const data = input[property];
 
         if (Validate.isEmpty(params)) {
@@ -14,4 +14,4 @@ export const ProcessQueryParams = <T>(input: T): string => {
     }
 
     return params;
-}
+};

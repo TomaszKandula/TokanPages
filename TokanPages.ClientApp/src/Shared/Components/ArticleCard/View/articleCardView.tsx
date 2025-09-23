@@ -90,12 +90,14 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
                 <div className="article-box-content-text">
                     <p className="is-size-4 has-text-black-ter mb-0">{props.title}</p>
                     <p className="is-size-6 has-text-grey has-text-weight-normal m-0">{props.description}</p>
-                    {props.canDisplayDate 
-                    ? <div className="is-flex is-align-items-center mt-2">
-                        <Icon name="CalendarMonth" size={1.5} />
-                        <p className="is-size-6 has-text-grey has-text-weight-normal m-0">{props.published}</p>
-                    </div> 
-                    : <></>}
+                    {props.canDisplayDate ? (
+                        <div className="is-flex is-align-items-center mt-2">
+                            <Icon name="CalendarMonth" size={1.5} />
+                            <p className="is-size-6 has-text-grey has-text-weight-normal m-0">{props.published}</p>
+                        </div>
+                    ) : (
+                        <></>
+                    )}
                 </div>
                 <div className="is-flex is-justify-content-space-between">
                     <div className="is-flex is-align-items-center">
