@@ -75,12 +75,12 @@ const RenderFiltering = (props: RenderFilteringProps): React.ReactElement => (
         />
         <div className="is-flex is-gap-1.5">
             <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY>
-                <IconButton size={36} onClick={props.buttonSearch.onClick} isDisabled={props.buttonSearch.isSearchDisabled} style="grey">
+                <IconButton size={36} onClick={props.buttonSearch.onClick} isDisabled={props.buttonSearch.isSearchDisabled} isGrey>
                     <Icon name="FilterOutline" size={1.5} />
                 </IconButton>
             </Skeleton>
             <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY className="ml-3">
-                <IconButton size={36} onClick={props.buttonClear.onClick} isDisabled={props.buttonClear.isClearDisabled} style="grey">
+                <IconButton size={36} onClick={props.buttonClear.onClick} isDisabled={props.buttonClear.isClearDisabled} isGrey>
                     <Icon name="FilterRemoveOutline" size={1.5} />
                 </IconButton>
             </Skeleton>
@@ -94,13 +94,13 @@ const RenderFiltering = (props: RenderFilteringProps): React.ReactElement => (
 );
 
 const RenderSortAZ = (props: RenderSortProps): React.ReactElement => (
-    <IconButton size={36} onClick={props.onSortClick} style="grey">
+    <IconButton size={36} onClick={props.onSortClick} isGrey>
         <Icon name="SortAlphabeticalAscending" size={1.5} />
     </IconButton>
 );
 
 const RenderSortZA = (props: RenderSortProps): React.ReactElement => (
-    <IconButton size={36} onClick={props.onSortClick} style="grey">
+    <IconButton size={36} onClick={props.onSortClick} isGrey>
         <Icon name="SortAlphabeticalDescending" size={1.5} />
     </IconButton>
 );

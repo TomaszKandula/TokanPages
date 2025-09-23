@@ -1,6 +1,5 @@
 .icon-button-base {
     position: relative;
-    cursor: pointer;
     flex: 0 0 auto;
     font-size: 1.5rem;
     overflow: visible;
@@ -8,10 +7,12 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    transition: background-color 330ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 }
 
+/* TRANSPARENT STYLE */
 .icon-button-hoverable {
+    cursor: pointer;
     background-color: transparent;
 }
 
@@ -30,4 +31,26 @@
 
 .icon-button-disabled:hover {
     background-color: transparent;
+}
+
+/* GREY STYLE */
+.icon-button-hoverable-grey {
+    cursor: pointer;
+    background-color: hsl(0, 0%, 96%);
+}
+
+.icon-button-hoverable-grey:hover {
+    background-color: hsl(0, 0%, 86%);
+}
+
+.icon-button-non-hoverable-grey {
+    background-color: hsl(0, 0%, 96%);
+}
+
+.icon-button-disabled-grey {
+    cursor: default;
+}
+
+.icon-button-disabled-grey:hover {
+    background-color: hsl(0, 0%, 96%);
 }

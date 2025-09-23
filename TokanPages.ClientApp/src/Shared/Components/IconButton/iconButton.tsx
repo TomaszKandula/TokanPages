@@ -8,7 +8,7 @@ interface IconButtonProps {
     hasNoHoverEffect?: boolean;
     className?: string;
     isDisabled?: boolean;
-    style?: "grey" | "transparent";
+    isGrey?: boolean;
     onClick?: (event: ReactMouseEvent) => void;
     onMouseDown?: (event: ReactMouseEvent) => void;
 }
@@ -17,6 +17,10 @@ export const IconButton = (props: IconButtonProps): React.ReactElement => {
     const size = props.size ?? 48;
     const ref = React.useRef<HTMLButtonElement>(null);
     const baseClass = "icon-button-base is-flex is-align-self-center";
+
+    const buttonHoverable = props.isGrey ? "icon-button-hoverable-grey" : "icon-button-hoverable";
+    const buttonNonHoverable = props.isGrey ? "icon-button-non-hoverable-grey" : "icon-button-non-hoverable";
+    const buttonDisabled = props.isGrey ? "icon-button-disabled-grey" : "icon-button-disabled";
 
     React.useLayoutEffect(() => {
         const classList = ref.current?.classList;
@@ -34,18 +38,18 @@ export const IconButton = (props: IconButtonProps): React.ReactElement => {
         }
 
         if (props.hasNoHoverEffect) {
-            classList.add("icon-button-non-hoverable");
-            classList.remove("icon-button-hoverable");
+            classList.add(buttonNonHoverable);
+            classList.remove(buttonHoverable);
         } else {
-            classList.remove("icon-button-non-hoverable");
-            classList.add("icon-button-hoverable");
+            classList.remove(buttonNonHoverable);
+            classList.add(buttonHoverable);
         }
 
         if (props.isDisabled) {
-            classList.add("icon-button-disabled");
+            classList.add(buttonDisabled);
             classList.remove("has-text-grey");
         } else {
-            classList.remove("icon-button-disabled");
+            classList.remove(buttonDisabled);
             classList.add("has-text-grey");
         }
     }, [props.className, props.hasNoHoverEffect, props.isDisabled]);
