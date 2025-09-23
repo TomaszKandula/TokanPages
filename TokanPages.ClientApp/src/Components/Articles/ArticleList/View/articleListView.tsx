@@ -76,12 +76,22 @@ const RenderFiltering = (props: RenderFilteringProps): React.ReactElement => (
         />
         <div className="is-flex is-gap-1.5">
             <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY>
-                <IconButton size={36} onClick={props.buttonSearch.onClick} isDisabled={props.buttonSearch.isSearchDisabled} isGrey>
+                <IconButton
+                    size={36}
+                    onClick={props.buttonSearch.onClick}
+                    isDisabled={props.buttonSearch.isSearchDisabled}
+                    isGrey
+                >
                     <Icon name="FilterOutline" size={1.5} />
                 </IconButton>
             </Skeleton>
             <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY className="ml-3">
-                <IconButton size={36} onClick={props.buttonClear.onClick} isDisabled={props.buttonClear.isClearDisabled} isGrey>
+                <IconButton
+                    size={36}
+                    onClick={props.buttonClear.onClick}
+                    isDisabled={props.buttonClear.isClearDisabled}
+                    isGrey
+                >
                     <Icon name="FilterRemoveOutline" size={1.5} />
                 </IconButton>
             </Skeleton>
@@ -146,7 +156,11 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
     }
 
     return (
-        <nav className="bulma-pagination bulma-is-rounded bulma-is-small bulma-is-centered my-6" role="navigation" aria-label="pagination">
+        <nav
+            className="bulma-pagination bulma-is-rounded bulma-is-small bulma-is-centered my-6"
+            role="navigation"
+            aria-label="pagination"
+        >
             <ul className="bulma-pagination-list">{paginationItem}</ul>
         </nav>
     );
@@ -169,8 +183,14 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
                 <RenderHeader {...props} />
                 <RenderCategories {...props} />
                 <RenderFiltering {...props} />
-                {props.isLoading ? <ProgressBar /> : <RenderContent {...props} />}
-                <RenderPagination {...props} />
+                {props.isLoading ? (
+                    <ProgressBar />
+                ) : (
+                    <>
+                        <RenderContent {...props} />
+                        <RenderPagination {...props} />
+                    </>
+                )}
             </div>
         </div>
     </section>
