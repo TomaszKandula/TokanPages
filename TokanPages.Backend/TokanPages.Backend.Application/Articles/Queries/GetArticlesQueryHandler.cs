@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Application.Articles.Models;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
@@ -12,15 +13,24 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
 
     public override IDictionary<string, Expression<Func<GetArticlesQueryResult, object>>> GetOrderingExpressions() => GetSortingConfig();
 
-    public override async Task<GetAllArticlesQueryResult> Handle(GetArticlesQuery request, CancellationToken cancellationToken) 
+    public override async Task<GetAllArticlesQueryResult> Handle(GetArticlesQuery request, CancellationToken cancellationToken)
     {
+        var categories = await DatabaseContext.ArticleCategory
+            .AsNoTracking()
+            .Select(articleCategory => new ArticleCategoryDto
+            {
+                Id = articleCategory.Id,
+                CategoryName = articleCategory.CategoryName
+            })
+            .ToListAsync(cancellationToken);
+
         var query = DatabaseContext.Articles
             .AsNoTracking()
             .Include(articles => articles.ArticleCategory)
             .Where(articles => articles.IsPublished == request.IsPublished)
             .WhereIf(!string.IsNullOrWhiteSpace(request.SearchTerm), articles => articles.Title.Contains(request.SearchTerm!))
             .WhereIf(!string.IsNullOrWhiteSpace(request.CategoryName), articles => articles.ArticleCategory.CategoryName.Contains(request.CategoryName!))
-            .Select(articles => new GetArticlesQueryResult 
+            .Select(articles => new GetArticlesQueryResult
             { 
                 Id = articles.Id,
                 CategoryName = articles.ArticleCategory.CategoryName,
@@ -44,6 +54,7 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
         {
             PagingInfo = request,
             TotalSize = totalSize,
+            ArticleCategories = categories,
             Results = result
         };
     }
