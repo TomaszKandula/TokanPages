@@ -1,3 +1,4 @@
+import { ArticleCategory } from "../../../../Api/Models";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
@@ -57,6 +58,7 @@ export interface ArticleListViewProps
     isMobile: boolean;
     isContentLoading: boolean;
     isOrderByAscending: boolean;
+    categories: ArticleCategory[];
     pageData: PageDataProps;
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
