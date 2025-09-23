@@ -12,8 +12,8 @@ import Validate from "validate.js";
 const BaseRequest = {
     orderByColumn: "createdAt",
     isPublished: true,
-    noCache: false
-}
+    noCache: false,
+};
 
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const media = useDimensions();
@@ -43,21 +43,25 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         const pages = Math.round(totalSize / pagingInfo.pageSize);
 
         if (nextPage <= pages) {
-            dispatch(ArticleListingAction.get({ 
-                ...BaseRequest,
-                pageNumber: nextPage,
-                pageSize: ARTICLES_PAGE_SIZE,
-                //category: "", 
-                orderByAscending: isOrderByAscending,
-            }));
+            dispatch(
+                ArticleListingAction.get({
+                    ...BaseRequest,
+                    pageNumber: nextPage,
+                    pageSize: ARTICLES_PAGE_SIZE,
+                    //category: "",
+                    orderByAscending: isOrderByAscending,
+                })
+            );
         } else if (prevPage > 0) {
-            dispatch(ArticleListingAction.get({
-                ...BaseRequest,
-                pageNumber: prevPage,
-                pageSize: ARTICLES_PAGE_SIZE,
-                //category: "", 
-                orderByAscending: isOrderByAscending,
-            }));
+            dispatch(
+                ArticleListingAction.get({
+                    ...BaseRequest,
+                    pageNumber: prevPage,
+                    pageSize: ARTICLES_PAGE_SIZE,
+                    //category: "",
+                    orderByAscending: isOrderByAscending,
+                })
+            );
         }
     }, [article.payload, isOrderByAscending]);
 
@@ -79,14 +83,16 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
     const onClickSearch = React.useCallback(() => {
         const pagingInfo = article.payload.pagingInfo;
-        dispatch(ArticleListingAction.get({
+        dispatch(
+            ArticleListingAction.get({
                 ...BaseRequest,
                 pageNumber: pagingInfo.pageNumber,
                 pageSize: ARTICLES_PAGE_SIZE,
                 phrase: form.searchInput,
                 //category: "",
                 orderByAscending: isOrderByAscending,
-        }));
+            })
+        );
         setIsClearDisabled(false);
     }, [article.payload, form.searchInput, isOrderByAscending]);
 
@@ -96,13 +102,15 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
 
         setForm({ searchInput: "" });
-        dispatch(ArticleListingAction.get({ 
+        dispatch(
+            ArticleListingAction.get({
                 ...BaseRequest,
                 pageNumber: 1,
                 pageSize: ARTICLES_PAGE_SIZE,
                 //category: "",
                 orderByAscending: isOrderByAscending,
-            }));
+            })
+        );
     }, [form.searchInput, isOrderByAscending]);
 
     React.useEffect(() => {
@@ -115,13 +123,15 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
 
         if (article.payload.results.length === 0) {
-            dispatch(ArticleListingAction.get({ 
-                ...BaseRequest,
-                pageNumber: 1,
-                pageSize: ARTICLES_PAGE_SIZE,
-                //category: "",
-                orderByAscending: isOrderByAscending,
-            }));
+            dispatch(
+                ArticleListingAction.get({
+                    ...BaseRequest,
+                    pageNumber: 1,
+                    pageSize: ARTICLES_PAGE_SIZE,
+                    //category: "",
+                    orderByAscending: isOrderByAscending,
+                })
+            );
         }
     }, [article.isLoading, article.payload.results, form.searchInput, isOrderByAscending]);
 
@@ -129,13 +139,15 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         const hasPayload = article.payload.results.length !== 0;
         if (isSortingEnabled && hasPayload) {
             setIsSortingEnabled(false);
-            dispatch(ArticleListingAction.get({ 
-                ...BaseRequest,
-                pageNumber: 1,
-                pageSize: ARTICLES_PAGE_SIZE,
-                //category: "",
-                orderByAscending: isOrderByAscending,
-            }));
+            dispatch(
+                ArticleListingAction.get({
+                    ...BaseRequest,
+                    pageNumber: 1,
+                    pageSize: ARTICLES_PAGE_SIZE,
+                    //category: "",
+                    orderByAscending: isOrderByAscending,
+                })
+            );
         }
     }, [isSortingEnabled, isOrderByAscending, article.payload.results.length]);
 
