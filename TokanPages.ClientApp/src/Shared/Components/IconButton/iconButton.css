@@ -49,6 +49,7 @@
 
 .icon-button-disabled-grey {
     cursor: default;
+    color: hsl(0, 0%, 86%);
 }
 
 .icon-button-disabled-grey:hover {
