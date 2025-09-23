@@ -2,9 +2,14 @@ import * as React from "react";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ArticleCard, Icon, IconButton, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
-import { ArticleListViewProps, RenderContentProps, RenderSortProps, RenderStaticTextProps } from "../Types";
+import {
+    ArticleListViewProps,
+    RenderContentProps,
+    RenderFilteringProps,
+    RenderHeaderProps,
+    RenderSortProps,
+} from "../Types";
 import { v4 as uuidv4 } from "uuid";
-import "./articleListView.css";
 
 const RenderContent = (props: RenderContentProps): React.ReactElement => {
     if (props.articles.length === 0) {
@@ -37,7 +42,7 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => {
     );
 };
 
-const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
+const RenderHeader = (props: RenderHeaderProps): React.ReactElement => (
     <div className="bulma-content">
         <Skeleton isLoading={props.isContentLoading} mode="Text" height={32}>
             <h2 className="is-size-4 has-text-weight-normal">{props.title}</h2>
@@ -52,43 +57,52 @@ const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
                 )}
             </Skeleton>
         ))}
-        <hr />
-        <div className="bulma-columns">
-            <div className="bulma-column article-list-view-search-bar">
-                <TextField
-                    uuid="searchInput"
-                    value={props.value.searchInput}
-                    onKeyUp={props.onKeyUp}
-                    onChange={props.onChange}
-                    placeholder={props.placeholder}
-                    isLoading={false}
-                    isDisabled={props.isContentLoading}
-                    className="is-flex is-flex-grow-1"
-                    startIcon={<Icon name="Magnify" size={1.5} className="has-text-link" />}
-                />
-            </div>
-            <div className="bulma-column article-list-view-search-buttons">
-                <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY>
-                    <button
-                        onClick={props.buttonSearch.onClick}
-                        className="bulma-button bulma-is-link bulma-is-light"
-                        disabled={props.buttonSearch.isSearchDisabled}
-                    >
-                        {props.buttonSearch.label}
-                    </button>
-                </Skeleton>
-                <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY className="ml-3">
-                    <button
-                        onClick={props.buttonClear.onClick}
-                        className="bulma-button bulma-is-danger bulma-is-light"
-                        disabled={props.buttonClear.isClearDisabled}
-                    >
-                        {props.buttonClear.label}
-                    </button>
-                </Skeleton>
-            </div>
+    </div>
+);
+
+const RenderFiltering = (props: RenderFilteringProps): React.ReactElement => (
+    <div className="is-flex is-align-items-center is-gap-1.5 mb-6">
+        <TextField
+            uuid="searchInput"
+            value={props.value.searchInput}
+            onKeyUp={props.onKeyUp}
+            onChange={props.onChange}
+            placeholder={props.placeholder}
+            isLoading={false}
+            isDisabled={props.isContentLoading}
+            className="is-flex is-flex-grow-1"
+            startIcon={<Icon name="Magnify" size={1.5} className="has-text-link" />}
+        />
+        <div className="is-flex is-gap-1.5">
+            <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY>
+                <IconButton size={36} onClick={props.buttonSearch.onClick} isDisabled={props.buttonSearch.isSearchDisabled} style="grey">
+                    <Icon name="FilterOutline" size={1.5} />
+                </IconButton>
+            </Skeleton>
+            <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY className="ml-3">
+                <IconButton size={36} onClick={props.buttonClear.onClick} isDisabled={props.buttonClear.isClearDisabled} style="grey">
+                    <Icon name="FilterRemoveOutline" size={1.5} />
+                </IconButton>
+            </Skeleton>
+            {props.isOrderByAscending ? (
+                <RenderSortAZ onSortClick={props.onSortClick} />
+            ) : (
+                <RenderSortZA onSortClick={props.onSortClick} />
+            )}
         </div>
     </div>
+);
+
+const RenderSortAZ = (props: RenderSortProps): React.ReactElement => (
+    <IconButton size={36} onClick={props.onSortClick} style="grey">
+        <Icon name="SortAlphabeticalAscending" size={1.5} />
+    </IconButton>
+);
+
+const RenderSortZA = (props: RenderSortProps): React.ReactElement => (
+    <IconButton size={36} onClick={props.onSortClick} style="grey">
+        <Icon name="SortAlphabeticalDescending" size={1.5} />
+    </IconButton>
 );
 
 const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
@@ -131,35 +145,18 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
     }
 
     return (
-        <nav
-            className="bulma-pagination bulma-is-small bulma-is-right my-6"
-            role="navigation"
-            aria-label="pagination"
-        >
-            {props.isOrderByAscending ? <RenderSortAZ onSortClick={props.onSortClick} /> : <RenderSortZA onSortClick={props.onSortClick} />}
+        <nav className="bulma-pagination bulma-is-rounded bulma-is-small bulma-is-centered my-6" role="navigation" aria-label="pagination">
             <ul className="bulma-pagination-list">{paginationItem}</ul>
         </nav>
     );
 };
 
-const RenderSortAZ = (props: RenderSortProps): React.ReactElement => (
-    <IconButton onClick={props.onSortClick}>
-        <Icon name="SortAlphabeticalAscending" size={2.0} />
-    </IconButton>
-);
-
-const RenderSortZA = (props: RenderSortProps): React.ReactElement => (
-    <IconButton onClick={props.onSortClick}>
-        <Icon name="SortAlphabeticalDescending" size={2.0} />
-    </IconButton>
-);
-
 export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet pb-6">
             <div className={props.isMobile ? "p-4" : "py-4"}>
-                <RenderStaticText {...props} />
-                <RenderPagination {...props} />
+                <RenderHeader {...props} />
+                <RenderFiltering {...props} />
                 {props.isLoading ? <ProgressBar /> : <RenderContent {...props} />}
                 <RenderPagination {...props} />
             </div>
