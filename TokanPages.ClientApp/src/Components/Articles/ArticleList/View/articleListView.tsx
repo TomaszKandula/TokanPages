@@ -46,15 +46,14 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => {
 const RenderHeader = (props: RenderHeaderProps): React.ReactElement => (
     <div className="bulma-content">
         <Skeleton isLoading={props.isContentLoading} mode="Text" height={32}>
-            <h2 className="is-size-4 has-text-weight-normal">{props.title}</h2>
+            <h2 className="bulma-title has-text-grey-dark">{props.title}</h2>
         </Skeleton>
-        <hr />
         {props.text.map((value: string, index: number) => (
             <Skeleton isLoading={props.isContentLoading} mode="Text" key={uuidv4()}>
                 {index === 0 ? (
-                    <h3 className="is-size-6 has-text-grey has-text-weight-medium line-height-20">{value}</h3>
+                    <h3 className="bulma-subtitle has-text-grey-dark line-height-22">{value}</h3>
                 ) : (
-                    <p className="is-size-6 has-text-grey line-height-20">{value}</p>
+                    <p className="is-size-5 has-text-grey-dark line-height-22">{value}</p>
                 )}
             </Skeleton>
         ))}
@@ -62,7 +61,7 @@ const RenderHeader = (props: RenderHeaderProps): React.ReactElement => (
 );
 
 const RenderFiltering = (props: RenderFilteringProps): React.ReactElement => (
-    <div className="is-flex is-align-items-center is-gap-1.5 mb-6">
+    <div className="is-flex is-align-items-center is-gap-1.5 my-6">
         <TextField
             uuid="searchInput"
             value={props.value.searchInput}
