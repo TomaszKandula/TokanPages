@@ -56,6 +56,7 @@ describe("test articles group component: ArticleListView", () => {
                         totalSize: 10,
                         onClick: jest.fn(),
                     }}
+                    categories={[]}
                     articles={[articles]}
                     title=""
                     text={[""]}
