@@ -139,6 +139,10 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             return;
         }
 
+        if (!Validate.isEmpty(selection)) {
+            return;
+        }
+
         if (article.payload.results.length === 0) {
             dispatch(
                 ArticleListingAction.get({
@@ -188,10 +192,11 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
     React.useEffect(() => {
         const hasNoCategories = !categories || categories.length === 0;
-        const articleCategories = article.payload.articleCategories;
         const hasLabel = !Validate.isEmpty(content.labels.textSelectAll);
+        const articleCategories = article.payload.articleCategories;
+        const hasPayload = article.payload.results.length !== 0;
 
-        if (hasLabel && hasNoCategories && articleCategories.length > 0) {
+        if (hasLabel && hasNoCategories && hasPayload && articleCategories.length > 0) {
             let data: ArticleCategory[] = [];
 
             data = articleCategories.slice();
@@ -202,7 +207,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
             setCategories(data);
         }
-    }, [categories, article.payload.articleCategories, content.labels.textSelectAll]);
+    }, [categories, article.payload.articleCategories, article.payload.results, content.labels.textSelectAll]);
 
     React.useEffect(() => {
         if (Validate.isEmpty(form.searchInput)) {
