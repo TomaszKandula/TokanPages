@@ -168,7 +168,7 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
 const RenderCategories = (props: ArticleListViewProps): React.ReactElement => (
     <div className="bulma-tags m-0 pt-4">
         <span className="bulma-tag bulma-is-medium bulma-is-info bulma-is-light is-clickable">
-            {props.selection}
+            {props.selectAllText}
         </span>
         {props.categories.map((value: ArticleCategory, _index: number) => (
             <span key={uuidv4()} className="bulma-tag bulma-is-medium bulma-is-info bulma-is-light is-clickable">

@@ -56,7 +56,7 @@ describe("test articles group component: ArticleListView", () => {
                         totalSize: 10,
                         onClick: jest.fn(),
                     }}
-                    selection=""
+                    selectAllText=""
                     categories={[]}
                     articles={[articles]}
                     title=""

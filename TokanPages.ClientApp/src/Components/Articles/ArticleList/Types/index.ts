@@ -58,7 +58,7 @@ export interface ArticleListViewProps
     isMobile: boolean;
     isContentLoading: boolean;
     isOrderByAscending: boolean;
-    selection: string;
+    selectAllText: string;
     categories: ArticleCategory[];
     pageData: PageDataProps;
     onKeyUp?: (event: ReactKeyboardEvent) => void;

@@ -173,7 +173,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 pageSize: article.payload.pagingInfo.pageSize,
                 onClick: onClickChangePage,
             }}
-            selection={content?.selection}
+            selectAllText={content?.selection}
             categories={article.payload.articleCategories}
             articles={article.payload.results}
             className={props.className}
