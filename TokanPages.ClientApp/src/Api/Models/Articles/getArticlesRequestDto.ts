@@ -2,7 +2,7 @@ export interface GetArticlesRequestDto {
     pageNumber: number;
     pageSize: number;
     phrase?: string;
-    category?: string;
+    categoryId?: string;
     orderByColumn?: string;
     orderByAscending: boolean;
     isPublished: boolean;
