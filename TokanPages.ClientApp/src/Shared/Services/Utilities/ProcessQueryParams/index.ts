@@ -8,7 +8,7 @@ export const ProcessQueryParams = <T>(input: T): string => {
 
         if (Validate.isEmpty(params)) {
             params = `${params}?${property}=${data}`;
-        } else {
+        } else if (!Validate.isEmpty(data)) {
             params = `${params}&${property}=${data}`;
         }
     }
