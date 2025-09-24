@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ArticleCategory } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
 import { useDimensions } from "../../../Shared/Hooks";
@@ -7,6 +8,7 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ARTICLES_PAGE_SIZE } from "../../../Shared/constants";
 import { ArticleListProps, SearchInputProps } from "./Types";
 import { ArticleListView } from "./View/articleListView";
+import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
 const BaseRequest = {
@@ -24,6 +26,8 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const isContentLoading = data.isLoading;
 
     const [form, setForm] = React.useState<SearchInputProps>({ searchInput: "" });
+    const [categories, setCategories] = React.useState<ArticleCategory[] | undefined>(undefined);
+
     const [isSearchDisabled, setIsSearchDisabled] = React.useState(true);
     const [isClearDisabled, setIsClearDisabled] = React.useState(true);
     const [isOrderByAscending, setIsOrderByAscending] = React.useState(false);
@@ -152,6 +156,24 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     }, [isSortingEnabled, isOrderByAscending, article.payload.results.length]);
 
     React.useEffect(() => {
+        const hasNoCategories = !categories || categories.length === 0;
+        const articleCategories = article.payload.articleCategories;
+        const hasLabel = !Validate.isEmpty(content.labels.textSelectAll);
+
+        if (hasLabel && hasNoCategories && articleCategories.length > 0) {
+            let data: ArticleCategory[] = [];
+
+            data = articleCategories.slice();
+            data.unshift({
+                id: uuidv4(),
+                categoryName: content.labels.textSelectAll,
+            });
+
+            setCategories(data);
+        }
+    }, [categories, article.payload.articleCategories, content.labels.textSelectAll]);
+
+    React.useEffect(() => {
         if (Validate.isEmpty(form.searchInput)) {
             setIsSearchDisabled(true);
             setIsClearDisabled(true);
@@ -173,8 +195,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 pageSize: article.payload.pagingInfo.pageSize,
                 onClick: onClickChangePage,
             }}
-            selectAllText={content?.selection}
-            categories={article.payload.articleCategories}
+            categories={categories ?? []}
             articles={article.payload.results}
             className={props.className}
             title={content?.caption}
