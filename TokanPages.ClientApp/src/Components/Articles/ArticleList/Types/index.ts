@@ -62,6 +62,7 @@ export interface ArticleListViewProps
     pageData: PageDataProps;
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
+    onCategoryChange: (id: string) => void;
     value: SearchInputProps;
 }
 

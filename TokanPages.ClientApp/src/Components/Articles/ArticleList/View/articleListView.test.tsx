@@ -66,6 +66,7 @@ describe("test articles group component: ArticleListView", () => {
                     searchEmptyText2="Try again..."
                     onChange={jest.fn()}
                     onKeyUp={jest.fn()}
+                    onCategoryChange={jest.fn()}
                     buttonSearch={{
                         isSearchDisabled: false,
                         label: "",

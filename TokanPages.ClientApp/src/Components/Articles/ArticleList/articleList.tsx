@@ -8,7 +8,6 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ARTICLES_PAGE_SIZE } from "../../../Shared/constants";
 import { ArticleListProps, SearchInputProps } from "./Types";
 import { ArticleListView } from "./View/articleListView";
-import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
 const BaseRequest = {
@@ -16,6 +15,8 @@ const BaseRequest = {
     isPublished: true,
     noCache: false,
 };
+
+const SELECT_ALL_ID = "b4ce2cce-28a0-486a-9c26-f6f8a559e229";
 
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const media = useDimensions();
@@ -32,6 +33,10 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const [isClearDisabled, setIsClearDisabled] = React.useState(true);
     const [isOrderByAscending, setIsOrderByAscending] = React.useState(false);
     const [isSortingEnabled, setIsSortingEnabled] = React.useState(false);
+
+    const onCategoryChangeClick = React.useCallback((id: string) => {
+        console.log(id);
+    }, []);
 
     const onSortClick = React.useCallback(() => {
         setIsOrderByAscending(!isOrderByAscending);
@@ -165,7 +170,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
             data = articleCategories.slice();
             data.unshift({
-                id: uuidv4(),
+                id: SELECT_ALL_ID,
                 categoryName: content.labels.textSelectAll,
             });
 
@@ -203,6 +208,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             text={content?.content}
             onKeyUp={onKeyHandler}
             onChange={onInputHandler}
+            onCategoryChange={onCategoryChangeClick}
             value={form}
             searchEmptyText1={content?.labels?.textEmptySearch1}
             searchEmptyText2={content?.labels?.textEmptySearch2}
