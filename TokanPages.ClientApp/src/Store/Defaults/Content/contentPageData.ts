@@ -143,6 +143,7 @@ export const ContentPageData: ContentPageDataState = {
                 textEmptySearch1: "",
                 textEmptySearch2: "",
             },
+            selection: "",
             content: [""],
         },
         sectionArticle: {
