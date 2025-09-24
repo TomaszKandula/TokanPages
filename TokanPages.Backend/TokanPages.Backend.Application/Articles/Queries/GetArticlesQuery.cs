@@ -9,5 +9,5 @@ public class GetArticlesQuery : PagingInfo, IRequest<GetAllArticlesQueryResult>
 
     public string? SearchTerm { get; set; }
 
-    public string? CategoryName { get; set; }
+    public Guid? CategoryId { get; set; }
 }

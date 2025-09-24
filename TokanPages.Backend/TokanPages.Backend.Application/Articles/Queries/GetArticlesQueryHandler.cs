@@ -15,6 +15,7 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
 
     public override async Task<GetAllArticlesQueryResult> Handle(GetArticlesQuery request, CancellationToken cancellationToken)
     {
+        var hasSearchPhrase = !string.IsNullOrWhiteSpace(request.SearchTerm);
         var categories = await DatabaseContext.ArticleCategory
             .AsNoTracking()
             .Select(articleCategory => new ArticleCategoryDto
@@ -28,8 +29,8 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
             .AsNoTracking()
             .Include(articles => articles.ArticleCategory)
             .Where(articles => articles.IsPublished == request.IsPublished)
-            .WhereIf(!string.IsNullOrWhiteSpace(request.SearchTerm), articles => articles.Title.Contains(request.SearchTerm!))
-            .WhereIf(!string.IsNullOrWhiteSpace(request.CategoryName), articles => articles.ArticleCategory.CategoryName.Contains(request.CategoryName!))
+            .WhereIf(hasSearchPhrase, articles => articles.Title.Contains(request.SearchTerm!))
+            .WhereIf(request.CategoryId is not null, articles => articles.ArticleCategory.Id == request.CategoryId)
             .Select(articles => new GetArticlesQueryResult
             { 
                 Id = articles.Id,
@@ -65,8 +66,7 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
         {
             {nameof(GetArticlesQueryResult.Title), articlesQueryResult => articlesQueryResult.Title},
             {nameof(GetArticlesQueryResult.Description), articlesQueryResult => articlesQueryResult.Description},
-            {nameof(GetArticlesQueryResult.CreatedAt), articlesQueryResult => articlesQueryResult.CreatedAt},
-            {nameof(GetArticlesQueryResult.CategoryName), articlesQueryResult => articlesQueryResult.CategoryName}
+            {nameof(GetArticlesQueryResult.CreatedAt), articlesQueryResult => articlesQueryResult.CreatedAt}
         };
     }
 }
