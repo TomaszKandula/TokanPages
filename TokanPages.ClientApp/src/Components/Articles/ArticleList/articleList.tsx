@@ -28,14 +28,22 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
     const [form, setForm] = React.useState<SearchInputProps>({ searchInput: "" });
     const [categories, setCategories] = React.useState<ArticleCategory[] | undefined>(undefined);
+    const [selection, setSelection] = React.useState<string>("");
 
     const [isSearchDisabled, setIsSearchDisabled] = React.useState(true);
     const [isClearDisabled, setIsClearDisabled] = React.useState(true);
     const [isOrderByAscending, setIsOrderByAscending] = React.useState(false);
     const [isSortingEnabled, setIsSortingEnabled] = React.useState(false);
+    const [isCategoryChanged, setIsCategoryChanged] = React.useState(false);
 
     const onCategoryChangeClick = React.useCallback((id: string) => {
-        console.log(id);
+        if (id === SELECT_ALL_ID) {
+            setSelection("");
+        } else {
+            setSelection(id);
+        }
+
+        setIsCategoryChanged(true);
     }, []);
 
     const onSortClick = React.useCallback(() => {
@@ -57,7 +65,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                     ...BaseRequest,
                     pageNumber: nextPage,
                     pageSize: ARTICLES_PAGE_SIZE,
-                    //category: "",
+                    categoryId: selection,
                     orderByAscending: isOrderByAscending,
                 })
             );
@@ -67,12 +75,12 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                     ...BaseRequest,
                     pageNumber: prevPage,
                     pageSize: ARTICLES_PAGE_SIZE,
-                    //category: "",
+                    categoryId: selection,
                     orderByAscending: isOrderByAscending,
                 })
             );
         }
-    }, [article.payload, isOrderByAscending]);
+    }, [article.payload, isOrderByAscending, selection]);
 
     const onKeyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {
@@ -98,12 +106,12 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 pageNumber: pagingInfo.pageNumber,
                 pageSize: ARTICLES_PAGE_SIZE,
                 phrase: form.searchInput,
-                //category: "",
+                categoryId: selection,
                 orderByAscending: isOrderByAscending,
             })
         );
         setIsClearDisabled(false);
-    }, [article.payload, form.searchInput, isOrderByAscending]);
+    }, [article.payload, form.searchInput, isOrderByAscending, selection]);
 
     const onClickClear = React.useCallback(() => {
         if (Validate.isEmpty(form.searchInput)) {
@@ -116,11 +124,11 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 ...BaseRequest,
                 pageNumber: 1,
                 pageSize: ARTICLES_PAGE_SIZE,
-                //category: "",
+                categoryId: selection,
                 orderByAscending: isOrderByAscending,
             })
         );
-    }, [form.searchInput, isOrderByAscending]);
+    }, [form.searchInput, isOrderByAscending, selection]);
 
     React.useEffect(() => {
         if (article.isLoading) {
@@ -137,12 +145,12 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                     ...BaseRequest,
                     pageNumber: 1,
                     pageSize: ARTICLES_PAGE_SIZE,
-                    //category: "",
+                    categoryId: selection,
                     orderByAscending: isOrderByAscending,
                 })
             );
         }
-    }, [article.isLoading, article.payload.results, form.searchInput, isOrderByAscending]);
+    }, [article.isLoading, article.payload.results, form.searchInput, isOrderByAscending, selection]);
 
     React.useEffect(() => {
         const hasPayload = article.payload.results.length !== 0;
@@ -153,12 +161,30 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                     ...BaseRequest,
                     pageNumber: 1,
                     pageSize: ARTICLES_PAGE_SIZE,
-                    //category: "",
+                    categoryId: selection,
                     orderByAscending: isOrderByAscending,
                 })
             );
         }
-    }, [isSortingEnabled, isOrderByAscending, article.payload.results.length]);
+    }, [isSortingEnabled, isOrderByAscending, article.payload.results.length, selection]);
+
+    React.useEffect(() => {
+        const hasPayload = article.payload.results.length !== 0;
+        if (isCategoryChanged && hasPayload) {
+            setIsCategoryChanged(false);
+            const pagingInfo = article.payload.pagingInfo;
+            dispatch(
+                ArticleListingAction.get({
+                    ...BaseRequest,
+                    pageNumber: pagingInfo.pageNumber,
+                    pageSize: ARTICLES_PAGE_SIZE,
+                    phrase: form.searchInput,
+                    categoryId: selection,
+                    orderByAscending: isOrderByAscending,
+                })
+            );
+        }
+    }, [isCategoryChanged, isOrderByAscending, selection, form.searchInput, article.payload.results.length]);
 
     React.useEffect(() => {
         const hasNoCategories = !categories || categories.length === 0;
