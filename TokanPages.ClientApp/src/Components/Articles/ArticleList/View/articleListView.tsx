@@ -1,9 +1,16 @@
 import * as React from "react";
+import { ArticleCategory } from "../../../../Api/Models";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
-import { ArticleCard, Icon, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
-import { ArticleListViewProps, RenderContentProps, RenderStaticTextProps } from "../Types";
+import { GetDateTime } from "../../../../Shared/Services/Formatters";
+import { ArticleCard, Icon, IconButton, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
+import {
+    ArticleListViewProps,
+    RenderContentProps,
+    RenderFilteringProps,
+    RenderHeaderProps,
+    RenderSortProps,
+} from "../Types";
 import { v4 as uuidv4 } from "uuid";
-import "./articleListView.css";
 
 const RenderContent = (props: RenderContentProps): React.ReactElement => {
     if (props.articles.length === 0) {
@@ -26,6 +33,8 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => {
                     key={item.id}
                     languageIso={item.languageIso}
                     canAnimate={false}
+                    canDisplayDate={true}
+                    published={GetDateTime({ value: item.createdAt, hasTimeVisible: false })}
                     readCount={item.readCount}
                     totalLikes={item.totalLikes}
                 />
@@ -34,68 +43,76 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => {
     );
 };
 
-const RenderStaticText = (props: RenderStaticTextProps): React.ReactElement => (
-    <div className="bulma-card">
-        <div className="bulma-card-content">
-            <div className="bulma-content">
-                <Skeleton isLoading={props.isContentLoading} mode="Text" height={32}>
-                    <h2 className="is-size-4 has-text-weight-normal">{props.title}</h2>
-                </Skeleton>
-                <hr />
-                {props.text.map((value: string, index: number) => (
-                    <Skeleton isLoading={props.isContentLoading} mode="Text" key={uuidv4()}>
-                        {index === 0 ? (
-                            <h3 className="is-size-6 has-text-grey has-text-weight-medium line-height-20">{value}</h3>
-                        ) : (
-                            <p className="is-size-6 has-text-grey line-height-20">{value}</p>
-                        )}
-                    </Skeleton>
-                ))}
-                <hr />
-                <div className="bulma-columns">
-                    <div className="bulma-column article-list-view-search-bar">
-                        <TextField
-                            uuid="searchInput"
-                            value={props.value.searchInput}
-                            onKeyUp={props.onKeyUp}
-                            onChange={props.onChange}
-                            placeholder={props.placeholder}
-                            isLoading={false}
-                            isDisabled={props.isContentLoading}
-                            className="is-flex is-flex-grow-1"
-                            startIcon={<Icon name="Magnify" size={1.5} className="has-text-link" />}
-                        />
-                    </div>
-                    <div className="bulma-column article-list-view-search-buttons">
-                        <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY>
-                            <button
-                                onClick={props.buttonSearch.onClick}
-                                className="bulma-button bulma-is-link bulma-is-light"
-                                disabled={props.buttonSearch.isSearchDisabled}
-                            >
-                                {props.buttonSearch.label}
-                            </button>
-                        </Skeleton>
-                        <Skeleton
-                            isLoading={props.isContentLoading}
-                            mode="Rect"
-                            height={40}
-                            disableMarginY
-                            className="ml-3"
-                        >
-                            <button
-                                onClick={props.buttonClear.onClick}
-                                className="bulma-button bulma-is-danger bulma-is-light"
-                                disabled={props.buttonClear.isClearDisabled}
-                            >
-                                {props.buttonClear.label}
-                            </button>
-                        </Skeleton>
-                    </div>
-                </div>
-            </div>
+const RenderHeader = (props: RenderHeaderProps): React.ReactElement => (
+    <div className="bulma-content">
+        <Skeleton isLoading={props.isContentLoading} mode="Text" height={32}>
+            <h2 className="bulma-title has-text-grey-dark">{props.title}</h2>
+        </Skeleton>
+        {props.text.map((value: string, index: number) => (
+            <Skeleton isLoading={props.isContentLoading} mode="Text" key={uuidv4()}>
+                {index === 0 ? (
+                    <h3 className="bulma-subtitle has-text-grey-dark line-height-22">{value}</h3>
+                ) : (
+                    <p className="is-size-5 has-text-grey-dark line-height-22">{value}</p>
+                )}
+            </Skeleton>
+        ))}
+    </div>
+);
+
+const RenderFiltering = (props: RenderFilteringProps): React.ReactElement => (
+    <div className="is-flex is-align-items-center is-gap-1.5 my-6">
+        <TextField
+            uuid="searchInput"
+            value={props.value.searchInput}
+            onKeyUp={props.onKeyUp}
+            onChange={props.onChange}
+            placeholder={props.placeholder}
+            isLoading={false}
+            isDisabled={props.isContentLoading}
+            className="is-flex is-flex-grow-1"
+            startIcon={<Icon name="Magnify" size={1.5} className="has-text-link" />}
+        />
+        <div className="is-flex is-gap-1.5">
+            <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY>
+                <IconButton
+                    size={36}
+                    onClick={props.buttonSearch.onClick}
+                    isDisabled={props.buttonSearch.isSearchDisabled}
+                    isGrey
+                >
+                    <Icon name="FilterOutline" size={1.5} />
+                </IconButton>
+            </Skeleton>
+            <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY className="ml-3">
+                <IconButton
+                    size={36}
+                    onClick={props.buttonClear.onClick}
+                    isDisabled={props.buttonClear.isClearDisabled}
+                    isGrey
+                >
+                    <Icon name="FilterRemoveOutline" size={1.5} />
+                </IconButton>
+            </Skeleton>
+            {props.isOrderByAscending ? (
+                <RenderSortAZ onSortClick={props.onSortClick} />
+            ) : (
+                <RenderSortZA onSortClick={props.onSortClick} />
+            )}
         </div>
     </div>
+);
+
+const RenderSortAZ = (props: RenderSortProps): React.ReactElement => (
+    <IconButton size={36} onClick={props.onSortClick} isGrey>
+        <Icon name="SortAlphabeticalAscending" size={1.5} />
+    </IconButton>
+);
+
+const RenderSortZA = (props: RenderSortProps): React.ReactElement => (
+    <IconButton size={36} onClick={props.onSortClick} isGrey>
+        <Icon name="SortAlphabeticalDescending" size={1.5} />
+    </IconButton>
 );
 
 const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
@@ -139,7 +156,7 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
 
     return (
         <nav
-            className="bulma-pagination bulma-is-small bulma-is-centered my-6"
+            className="bulma-pagination bulma-is-rounded bulma-is-small bulma-is-centered my-6"
             role="navigation"
             aria-label="pagination"
         >
@@ -148,14 +165,35 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
     );
 };
 
+const RenderCategories = (props: ArticleListViewProps): React.ReactElement => (
+    <div className="bulma-tags m-0 pt-4">
+        {props.categories.map((value: ArticleCategory, _index: number) => (
+            <span
+                key={value.id}
+                className={`bulma-tag bulma-is-medium bulma-is-light bulma-is-info is-clickable ${props.selectedCategory === value.id ? "bulma-is-success" : ""}`}
+                onClick={() => props.onCategoryChange(value.id)}
+            >
+                {value.categoryName}
+            </span>
+        ))}
+    </div>
+);
+
 export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet pb-6">
             <div className={props.isMobile ? "p-4" : "py-4"}>
-                <RenderStaticText {...props} />
-                <RenderPagination {...props} />
-                {props.isLoading ? <ProgressBar /> : <RenderContent {...props} />}
-                <RenderPagination {...props} />
+                <RenderHeader {...props} />
+                <RenderCategories {...props} />
+                <RenderFiltering {...props} />
+                {props.isLoading ? (
+                    <ProgressBar />
+                ) : (
+                    <>
+                        <RenderContent {...props} />
+                        <RenderPagination {...props} />
+                    </>
+                )}
             </div>
         </div>
     </section>

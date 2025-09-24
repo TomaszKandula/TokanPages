@@ -23,12 +23,14 @@ public class Articles : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
     public Guid? UserId { get; set; }
+    public Guid? CategoryId {get; set; }
     [Required]
     [MaxLength(3)]
     public string LanguageIso { get; set; }
 
     /* Navigation properties */
     public Users Users { get; set; }
+    public ArticleCategory ArticleCategory { get; set; }
     public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();
     public ICollection<ArticleCounts> ArticleCounts { get; set; } = new HashSet<ArticleCounts>();
 }

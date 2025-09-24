@@ -1,8 +1,8 @@
 import { ApplicationAction } from "../../Configuration";
 import { ExecuteStoreActionProps, GET_ARTICLES } from "../../../Api";
 import { useApiAction } from "../../../Shared/Hooks";
-import { GetArticlesDto } from "../../../Api/Models";
-import Validate from "validate.js";
+import { GetArticlesDto, GetArticlesRequestDto } from "../../../Api/Models";
+import { ProcessQueryParams } from "../../../Shared/Services/Utilities";
 
 export const REQUEST = "REQUEST_ARTICLES";
 export const RECEIVE = "RECEIVE_ARTICLES";
@@ -17,16 +17,12 @@ export type TKnownActions = Request | Receive;
 
 export const ArticleListingAction = {
     get:
-        (pageNumber: number, pageSize: number, phrase?: string): ApplicationAction<TKnownActions> =>
+        (request: GetArticlesRequestDto): ApplicationAction<TKnownActions> =>
         (dispatch, getState) => {
             dispatch({ type: REQUEST });
 
             const actions = useApiAction();
-            const baseParams = "orderByColumn=createdAt&orderByAscending=false&isPublished=true&noCache=false";
-            let url = `${GET_ARTICLES}?pageNumber=${pageNumber}&pageSize=${pageSize}&${baseParams}`;
-            if (!Validate.isEmpty(phrase)) {
-                url = `${GET_ARTICLES}?pageNumber=${pageNumber}&pageSize=${pageSize}&${baseParams}&phrase=${phrase}`;
-            }
+            const url = GET_ARTICLES + ProcessQueryParams(request);
 
             const input: ExecuteStoreActionProps = {
                 url: url,

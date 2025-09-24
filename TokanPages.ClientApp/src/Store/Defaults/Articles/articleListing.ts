@@ -10,6 +10,7 @@ export const ArticleListing: ArticleListingState = {
             orderByColumn: "",
             orderByAscending: false,
         },
+        articleCategories: [],
         totalSize: 0,
         results: [],
     },

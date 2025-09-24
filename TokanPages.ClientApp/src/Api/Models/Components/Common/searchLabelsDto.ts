@@ -4,4 +4,5 @@ export interface SearchLabelsDto {
     buttonClear: string;
     textEmptySearch1: string;
     textEmptySearch2: string;
+    textSelectAll: string;
 }

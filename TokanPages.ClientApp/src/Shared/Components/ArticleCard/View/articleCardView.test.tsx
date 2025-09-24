@@ -15,6 +15,8 @@ describe("test articles group component: ArticleCardView", () => {
                 buttonText="READ"
                 flagImage="eng.png"
                 canAnimate={false}
+                canDisplayDate={true}
+                published="2020-01-01"
                 readCount={"1.000"}
                 totalLikes="1.951"
             />
