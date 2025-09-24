@@ -173,8 +173,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     }, [isSortingEnabled, isOrderByAscending, article.payload.results.length, selection]);
 
     React.useEffect(() => {
-        const hasPayload = article.payload.results.length !== 0;
-        if (isCategoryChanged && hasPayload) {
+        if (isCategoryChanged) {
             setIsCategoryChanged(false);
             const pagingInfo = article.payload.pagingInfo;
             dispatch(
@@ -188,15 +187,14 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 })
             );
         }
-    }, [isCategoryChanged, isOrderByAscending, selection, form.searchInput, article.payload.results.length]);
+    }, [isCategoryChanged, isOrderByAscending, selection, form.searchInput]);
 
     React.useEffect(() => {
         const hasNoCategories = !categories || categories.length === 0;
         const hasLabel = !Validate.isEmpty(content.labels.textSelectAll);
         const articleCategories = article.payload.articleCategories;
-        const hasPayload = article.payload.results.length !== 0;
 
-        if (hasLabel && hasNoCategories && hasPayload && articleCategories.length > 0) {
+        if (hasLabel && hasNoCategories && articleCategories.length > 0) {
             let data: ArticleCategory[] = [];
 
             data = articleCategories.slice();
@@ -207,7 +205,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
             setCategories(data);
         }
-    }, [categories, article.payload.articleCategories, article.payload.results, content.labels.textSelectAll]);
+    }, [categories, article.payload.articleCategories, content.labels.textSelectAll]);
 
     React.useEffect(() => {
         if (Validate.isEmpty(form.searchInput)) {
@@ -231,6 +229,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 pageSize: article.payload.pagingInfo.pageSize,
                 onClick: onClickChangePage,
             }}
+            selectedCategory={selection === "" ? SELECT_ALL_ID : selection}
             categories={categories ?? []}
             articles={article.payload.results}
             className={props.className}
