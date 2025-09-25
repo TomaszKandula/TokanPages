@@ -170,15 +170,15 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
 const RenderCategories = (props: ArticleListViewProps): React.ReactElement => (
     <div className="bulma-tags m-0 pt-4">
         <Skeleton isLoading={props.isContentLoading} height={40}>
-        {props.categories.map((value: ArticleCategory, _index: number) => (
-            <span
-                key={value.id}
-                className={`bulma-tag bulma-is-medium is-clickable ${props.selectedCategory === value.id ? "bulma-is-dark" : ""}`}
-                onClick={() => props.onCategoryChange(value.id)}
-            >
-                {value.categoryName}
-            </span>
-        ))}
+            {props.categories.map((value: ArticleCategory, _index: number) => (
+                <span
+                    key={value.id}
+                    className={`bulma-tag bulma-is-medium is-clickable ${props.selectedCategory === value.id ? "bulma-is-dark" : ""}`}
+                    onClick={() => props.onCategoryChange(value.id)}
+                >
+                    {value.categoryName}
+                </span>
+            ))}
         </Skeleton>
     </div>
 );
