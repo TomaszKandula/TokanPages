@@ -70,6 +70,7 @@ export interface ArticleListViewProps
 export interface RenderContentProps extends ArticlesProps {}
 
 export interface RenderSortProps {
+    isDisabled?: boolean;
     onSortClick: () => void;
 }
 

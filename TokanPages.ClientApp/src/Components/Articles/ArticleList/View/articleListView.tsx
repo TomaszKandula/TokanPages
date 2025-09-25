@@ -95,22 +95,22 @@ const RenderFiltering = (props: RenderFilteringProps): React.ReactElement => (
                 </IconButton>
             </Skeleton>
             {props.isOrderByAscending ? (
-                <RenderSortAZ onSortClick={props.onSortClick} />
+                <RenderSortAZ onSortClick={props.onSortClick} isDisabled={props.isDisabled} />
             ) : (
-                <RenderSortZA onSortClick={props.onSortClick} />
+                <RenderSortZA onSortClick={props.onSortClick} isDisabled={props.isDisabled} />
             )}
         </div>
     </div>
 );
 
 const RenderSortAZ = (props: RenderSortProps): React.ReactElement => (
-    <IconButton size={36} onClick={props.onSortClick} hasGreyBackground>
+    <IconButton size={36} onClick={props.onSortClick} isDisabled={props.isDisabled} hasGreyBackground>
         <Icon name="SortAlphabeticalAscending" size={1.5} />
     </IconButton>
 );
 
 const RenderSortZA = (props: RenderSortProps): React.ReactElement => (
-    <IconButton size={36} onClick={props.onSortClick} hasGreyBackground>
+    <IconButton size={36} onClick={props.onSortClick} isDisabled={props.isDisabled} hasGreyBackground>
         <Icon name="SortAlphabeticalDescending" size={1.5} />
     </IconButton>
 );
@@ -179,22 +179,26 @@ const RenderCategories = (props: ArticleListViewProps): React.ReactElement => (
     </div>
 );
 
-export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => (
-    <section className={props.className}>
-        <div className="bulma-container bulma-is-max-tablet pb-6">
-            <div className={props.isMobile ? "p-4" : "py-4"}>
-                <RenderHeader {...props} />
-                <RenderCategories {...props} />
-                <RenderFiltering {...props} />
-                {props.isLoading ? (
-                    <ProgressBar />
-                ) : (
-                    <>
-                        <RenderContent {...props} />
-                        <RenderPagination {...props} />
-                    </>
-                )}
+export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => {
+    const hasDisabledFiltering = props.articles.length === 0 || props.articles.length === 1;
+
+    return (
+        <section className={props.className}>
+            <div className="bulma-container bulma-is-max-tablet pb-6">
+                <div className={props.isMobile ? "p-4" : "py-4"}>
+                    <RenderHeader {...props} />
+                    <RenderCategories {...props} />
+                    <RenderFiltering {...props} isDisabled={hasDisabledFiltering} />
+                    {props.isLoading ? (
+                        <ProgressBar />
+                    ) : (
+                        <>
+                            <RenderContent {...props} />
+                            <RenderPagination {...props} />
+                        </>
+                    )}
+                </div>
             </div>
-        </div>
-    </section>
-);
+        </section>
+    );
+};
