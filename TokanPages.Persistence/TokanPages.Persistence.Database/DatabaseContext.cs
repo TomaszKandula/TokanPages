@@ -17,6 +17,7 @@ public class DatabaseContext : DbContext
 
     /* Category: Article */
     public virtual DbSet<Articles> Articles { get; set; }
+    public virtual DbSet<ArticleCategory> ArticleCategory { get; set; }
     public virtual DbSet<ArticleLikes> ArticleLikes { get; set; }
     public virtual DbSet<ArticleCounts> ArticleCounts { get; set; }
 

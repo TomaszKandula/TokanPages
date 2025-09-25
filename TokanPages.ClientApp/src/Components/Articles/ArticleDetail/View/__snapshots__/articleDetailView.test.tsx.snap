@@ -13,9 +13,7 @@ Object {
             class="py-4"
           >
             <div
-              class="mb-5"
-              data-aos="fade-down"
-              data-aos-delay="0"
+              class="mb-6"
             >
               <div
                 class="bulma-grid is-flex m-0 "
@@ -31,7 +29,7 @@ Object {
                   class="bulma-cell is-align-content-center"
                 >
                   <p
-                    class="is-size-5"
+                    class="is-size-4"
                   >
                     Ester
                      
@@ -211,9 +209,7 @@ Object {
           class="py-4"
         >
           <div
-            class="mb-5"
-            data-aos="fade-down"
-            data-aos-delay="0"
+            class="mb-6"
           >
             <div
               class="bulma-grid is-flex m-0 "
@@ -229,7 +225,7 @@ Object {
                 class="bulma-cell is-align-content-center"
               >
                 <p
-                  class="is-size-5"
+                  class="is-size-4"
                 >
                   Ester
                    

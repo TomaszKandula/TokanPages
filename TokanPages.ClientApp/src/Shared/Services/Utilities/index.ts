@@ -6,3 +6,4 @@ export { GetTextError } from "./GetTextError/getTextError";
 export { GetImageUrl } from "./GetImageUrl/getImageUrl";
 export { MapLanguage } from "./MapLanguage";
 export { TryParse } from "./TryParse";
+export { ProcessQueryParams } from "./ProcessQueryParams";

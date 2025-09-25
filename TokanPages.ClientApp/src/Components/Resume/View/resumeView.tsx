@@ -1,38 +1,42 @@
 import React from "react";
 import { GET_IMAGES_URL, GET_TESTIMONIALS_URL } from "../../../Api";
 import { EducationItemProps, OccupationProps } from "../../../Api/Models";
-import { CustomImage, Link, Media, RenderList, Skeleton } from "../../../Shared/Components";
+import { CustomImage, Icon, Link, Media, RenderList, Skeleton } from "../../../Shared/Components";
 import { RenderTag } from "../../../Shared/Components/RenderContent/Renderers";
-import { ProcessedExperienceItemProps, ProcessTimeSpanProps, RenderCaptionProps, ResumeViewProps } from "../Types";
+import { ProcessedExperienceItemProps, RenderCaptionProps, ResumeViewProps } from "../Types";
+import { ProcessTimeSpan } from "../Utilities";
 import { v4 as uuid } from "uuid";
+import Validate from "validate.js";
+
+const RenderCompanyLink = (props: ProcessedExperienceItemProps): React.ReactElement =>
+    Validate.isEmpty(props.companyLink) ? (
+        <Icon name="OpenInNew" size={1.2} className="has-text-grey" />
+    ) : (
+        <Link to={props.companyLink}>
+            <Icon name="OpenInNew" size={1.2} className="has-text-link is-clickable" />
+        </Link>
+    );
 
 const RenderCaption = (props: RenderCaptionProps): React.ReactElement => (
     <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={24} hasSkeletonCentered className="my-4">
-        <RenderTag tag={props.tag ?? "p"} className="is-size-4 has-text-grey-dark has-text-centered is-uppercase p-4">
+        <RenderTag tag={props.tag ?? "p"} className="is-size-4 has-text-grey-dark has-text-centered is-uppercase p-5">
             <>{props.text}</>
         </RenderTag>
     </Skeleton>
 );
 
-const ProcessTimeSpan = (props: ProcessTimeSpanProps): React.ReactElement => {
-    if (!props.months) {
-        return <></>;
-    }
-
-    if (props.months > 12) {
-        const years = Math.floor(props.months / 12);
-        const month = props.months % 12;
-
-        return (
-            <>
-                {years} {years > 1 ? props.yearsLabel : props.yearLabel} {month}{" "}
-                {month > 1 ? props.monthsLabel : props.monthLabel}
-            </>
-        );
-    }
-
-    return <>{props.months > 1 ? `${props.months} ${props.monthsLabel}` : `${props.months} ${props.monthLabel}`}</>;
-};
+const RenderTags = (props: OccupationProps): React.ReactElement =>
+    Validate.isEmpty(props.tags) ? (
+        <></>
+    ) : (
+        <div className="bulma-tags pt-2 ml-3 mb-4">
+            {props.tags?.map((item: string, _index: number) => (
+                <div className="bulma-tag bulma-is-medium" key={uuid()}>
+                    {item}
+                </div>
+            ))}
+        </div>
+    );
 
 const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
     <>
@@ -40,19 +44,22 @@ const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
             <div key={uuid()} className="is-flex is-flex-direction-column mb-4">
                 <div className="is-flex is-justify-content-space-between is-align-items-center">
                     <div className="is-flex is-flex-direction-column my-3">
-                        <Skeleton isLoading={props.isLoading} width={50} height={24}>
-                            <p className="is-size-6 has-text-weight-bold has-text-grey-dark">{value.companyName}</p>
-                        </Skeleton>
+                        <div className="is-flex is-align-items-center is-gap-1.5">
+                            <Skeleton isLoading={props.isLoading} width={50} height={24}>
+                                <p className="is-size-5 has-text-weight-bold has-text-grey-dark">{value.companyName}</p>
+                            </Skeleton>
+                            <RenderCompanyLink {...value} />
+                        </div>
                         <Skeleton isLoading={props.isLoading} width={100} height={24}>
-                            <p className="is-size-6 has-text-grey">{value.contractType}</p>
+                            <p className="is-size-5 has-text-grey">{value.contractType}</p>
                         </Skeleton>
                     </div>
                     <div className="is-flex is-flex-direction-column my-3">
                         <Skeleton isLoading={props.isLoading} width={100} height={24}>
-                            <p className="is-size-6 has-text-right has-text-grey-dark is-lowercase">
+                            <p className="is-size-5 has-text-right has-text-grey-dark is-lowercase">
                                 {value.dateStart} - {value.dateEnd}
                             </p>
-                            <p className="is-size-6 has-text-right has-text-grey is-lowercase">
+                            <p className="is-size-5 has-text-right has-text-grey is-lowercase">
                                 <ProcessTimeSpan
                                     months={value.timespan}
                                     yearLabel={props.page?.translations?.singular?.yearLabel}
@@ -68,8 +75,8 @@ const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
                     <React.Fragment key={uuid()}>
                         <div className="is-flex is-flex-direction-column my-2">
                             <Skeleton isLoading={props.isLoading} width={250} height={24}>
-                                <p className="is-size-6 has-text-grey-dark py-0">{value.name}</p>
-                                <p className="is-size-6 has-text-grey py-0 is-lowercase">
+                                <p className="is-size-5 has-text-grey-dark py-0">{value.name}</p>
+                                <p className="is-size-5 has-text-grey py-0 is-lowercase">
                                     {value.dateStart} - {value.dateEnd}
                                 </p>
                             </Skeleton>
@@ -78,8 +85,9 @@ const RenderExperienceList = (props: ResumeViewProps): React.ReactElement => (
                             <RenderList
                                 isLoading={props.isLoading}
                                 list={value.details}
-                                className="is-size-6 has-text-grey-dark"
+                                className="is-size-5 has-text-grey-dark"
                             />
+                            <RenderTags {...value} />
                         </div>
                     </React.Fragment>
                 ))}
@@ -95,27 +103,27 @@ const RenderEducationList = (props: ResumeViewProps): React.ReactElement => (
                 <div className="is-flex is-justify-content-space-between is-align-items-center">
                     <div className="is-flex is-flex-direction-column my-2">
                         <Skeleton isLoading={props.isLoading} width={50} height={24}>
-                            <p className="is-size-6 has-text-weight-bold has-text-grey-dark">{value.schoolName}</p>
+                            <p className="is-size-5 has-text-weight-bold has-text-grey-dark">{value.schoolName}</p>
                         </Skeleton>
                         <Skeleton isLoading={props.isLoading} width={100} height={24}>
-                            <p className="is-size-6 has-text-grey">{value.tenureInfo}</p>
+                            <p className="is-size-5 has-text-grey">{value.tenureInfo}</p>
                         </Skeleton>
                     </div>
                     <Skeleton isLoading={props.isLoading} width={100} height={24}>
-                        <p className="is-size-6 has-text-grey-dark">
+                        <p className="is-size-5 has-text-grey-dark">
                             {value.dateStart} - {value.dateEnd}
                         </p>
                     </Skeleton>
                 </div>
                 <Skeleton isLoading={props.isLoading} width={300} height={24}>
-                    <p className="is-size-6 has-text-grey-dark my-1">{value.details}</p>
+                    <p className="is-size-5 has-text-grey-dark my-1">{value.details}</p>
                 </Skeleton>
                 <div className="is-flex is-gap-1.5">
                     <Skeleton isLoading={props.isLoading} height={24}>
-                        <p className="is-size-6 has-text-grey-dark my-1">{value.thesis.label}:</p>
+                        <p className="is-size-5 has-text-grey-dark my-1">{value.thesis.label}:</p>
                         <Link
                             to={`document?name=${value.thesis.file}&redirect=resume`}
-                            className="is-size-6 my-1 is-underlined"
+                            className="is-size-5 my-1 is-underlined"
                         >
                             <>{value.thesis.name}</>
                         </Link>
@@ -139,7 +147,7 @@ const RenderInterestsList = (props: ResumeViewProps): React.ReactElement => (
 );
 
 const RenderTestimonials = (props: ResumeViewProps) => (
-    <div className="bulma-content is-size-6 has-text-grey-dark">
+    <div className="bulma-content is-size-5 has-text-grey-dark">
         <div className="mt-5 mb-6">
             <Skeleton isLoading={props.isLoading} mode="Rect" height={150}>
                 <blockquote className="is-italic has-text-justified has-background-white line-height-20 m-0">
@@ -241,7 +249,7 @@ const RenderResume = (props: ResumeViewProps) => (
         <div className="is-flex is-gap-2.5 mb-4">
             <div className="bulma-cell is-align-content-center">
                 <Skeleton isLoading={props.isLoading} mode="Circle" width={98} height={98} disableMarginY>
-                    <figure className="bulma-image bulma-is-96x96">
+                    <figure className="bulma-image bulma-is-128x128">
                         <CustomImage
                             base={GET_IMAGES_URL}
                             source={props.page?.photo?.href}
@@ -254,7 +262,7 @@ const RenderResume = (props: ResumeViewProps) => (
             </div>
             <div className="bulma-cell is-align-content-center">
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                    <p className="is-size-6 has-text-grey-dark has-text-weight-bold is-capitalized">
+                    <p className="is-size-4 has-text-grey-dark has-text-weight-bold is-capitalized">
                         {props.page?.resume?.header?.fullName}
                     </p>
                 </Skeleton>
@@ -277,7 +285,7 @@ const RenderResume = (props: ResumeViewProps) => (
         </div>
         <RenderCaption isLoading={props.isLoading} text={props.page.resume.summary.caption} tag="h3" />
         <Skeleton isLoading={props.isLoading} mode="Text" height={24} className="my-4">
-            <h4 className="is-size-6 has-text-grey-dark has-text-justified line-height-20">
+            <h4 className="is-size-5 has-text-grey-dark has-text-justified line-height-20">
                 {props.page.resume.summary.text}
             </h4>
         </Skeleton>
@@ -286,7 +294,7 @@ const RenderResume = (props: ResumeViewProps) => (
             <RenderList
                 isLoading={props.isLoading}
                 list={props.page.resume.achievements.list}
-                className="is-size-6 has-text-justified line-height-20"
+                className="is-size-5 has-text-justified line-height-20"
             />
         </div>
         <RenderCaption isLoading={props.isLoading} text={props.page.resume.experience.caption} />

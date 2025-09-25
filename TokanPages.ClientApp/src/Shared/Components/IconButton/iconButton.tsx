@@ -7,21 +7,61 @@ interface IconButtonProps {
     children: React.ReactElement | React.ReactElement[];
     hasNoHoverEffect?: boolean;
     className?: string;
+    isDisabled?: boolean;
+    hasGreyBackground?: boolean;
     onClick?: (event: ReactMouseEvent) => void;
     onMouseDown?: (event: ReactMouseEvent) => void;
 }
 
 export const IconButton = (props: IconButtonProps): React.ReactElement => {
     const size = props.size ?? 48;
-    const baseClassName = props.hasNoHoverEffect ? "icon-button-no-hover" : "icon-button";
-    const className = `${baseClassName} ${props.className ?? ""}`;
+    const ref = React.useRef<HTMLButtonElement>(null);
+    const baseClass = "icon-button-base is-flex is-align-self-center";
+
+    const buttonHoverable = props.hasGreyBackground ? "icon-button-hoverable-grey" : "icon-button-hoverable";
+    const buttonNonHoverable = props.hasGreyBackground ? "icon-button-non-hoverable-grey" : "icon-button-non-hoverable";
+    const buttonDisabled = props.hasGreyBackground ? "icon-button-disabled-grey" : "icon-button-disabled";
+
+    React.useLayoutEffect(() => {
+        const classList = ref.current?.classList;
+        if (!classList) {
+            return;
+        }
+
+        if (props.className && props.className !== "") {
+            if (props.className.includes(" ")) {
+                const list = props.className.split(" ");
+                list.forEach(item => {
+                    classList.add(item);
+                });
+            }
+        }
+
+        if (props.hasNoHoverEffect) {
+            classList.add(buttonNonHoverable);
+            classList.remove(buttonHoverable);
+        } else {
+            classList.remove(buttonNonHoverable);
+            classList.add(buttonHoverable);
+        }
+
+        if (props.isDisabled) {
+            classList.add(buttonDisabled);
+            classList.remove("has-text-grey");
+        } else {
+            classList.remove(buttonDisabled);
+            classList.add("has-text-grey");
+        }
+    }, [props.className, props.hasNoHoverEffect, props.isDisabled]);
 
     return (
         <button
-            className={`${className} is-flex is-align-self-center`}
+            ref={ref}
+            className={baseClass}
             onClick={props.onClick}
             onMouseDown={props.onMouseDown}
             style={{ height: size, width: size }}
+            disabled={props.isDisabled}
         >
             {props.children}
         </button>

@@ -24,7 +24,7 @@ Object {
               target="_blank"
             >
               <button
-                class="icon-button  is-flex is-align-self-center"
+                class="icon-button-base is-flex is-align-self-center"
                 style="height: 48px; width: 48px;"
               >
                 <figure
@@ -117,7 +117,7 @@ Object {
             target="_blank"
           >
             <button
-              class="icon-button  is-flex is-align-self-center"
+              class="icon-button-base is-flex is-align-self-center"
               style="height: 48px; width: 48px;"
             >
               <figure

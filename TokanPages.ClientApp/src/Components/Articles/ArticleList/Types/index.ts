@@ -1,3 +1,4 @@
+import { ArticleCategory } from "../../../../Api/Models";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
@@ -47,20 +48,39 @@ export interface ArticleListProps {
     className?: string;
 }
 
-export interface ArticleListViewProps extends ViewProperties, ArticlesProps, ArticleListProps, TextProps, ButtonsProps {
+export interface ArticleListViewProps
+    extends ViewProperties,
+        ArticlesProps,
+        ArticleListProps,
+        TextProps,
+        ButtonsProps,
+        RenderSortProps {
     isMobile: boolean;
     isContentLoading: boolean;
+    isOrderByAscending: boolean;
+    selectedCategory: string;
+    categories: ArticleCategory[];
     pageData: PageDataProps;
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
+    onCategoryChange: (id: string) => void;
     value: SearchInputProps;
 }
 
 export interface RenderContentProps extends ArticlesProps {}
 
-export interface RenderStaticTextProps extends TextProps, ButtonsProps {
+export interface RenderSortProps {
+    isDisabled?: boolean;
+    onSortClick: () => void;
+}
+
+export interface RenderHeaderProps extends TextProps, ButtonsProps {
     isContentLoading: boolean;
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
     value: SearchInputProps;
+}
+
+export interface RenderFilteringProps extends RenderHeaderProps, RenderSortProps {
+    isOrderByAscending: boolean;
 }

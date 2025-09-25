@@ -48,12 +48,16 @@ describe("test articles group component: ArticleListView", () => {
                     isLoading={false}
                     isMobile={false}
                     isContentLoading={false}
+                    isOrderByAscending={false}
+                    onSortClick={jest.fn()}
                     pageData={{
                         pageNumber: 1,
                         pageSize: 5,
                         totalSize: 10,
                         onClick: jest.fn(),
                     }}
+                    selectedCategory=""
+                    categories={[]}
                     articles={[articles]}
                     title=""
                     text={[""]}
@@ -63,6 +67,7 @@ describe("test articles group component: ArticleListView", () => {
                     searchEmptyText2="Try again..."
                     onChange={jest.fn()}
                     onKeyUp={jest.fn()}
+                    onCategoryChange={jest.fn()}
                     buttonSearch={{
                         isSearchDisabled: false,
                         label: "",

@@ -24,7 +24,7 @@ const CustomListItem = (props: ItemsProps): React.ReactElement => {
         <li>
             <div className="is-flex">
                 <p className="is-size-6 m-1">{props.item}</p>
-                <Icon name="Check" size={1} className="has-text-primary-35 m-1" />
+                <Icon name="Check" size={1.5} className="has-text-primary-35 m-1" />
             </div>
         </li>
     );

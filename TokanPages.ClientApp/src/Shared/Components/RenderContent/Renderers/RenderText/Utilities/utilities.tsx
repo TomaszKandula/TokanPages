@@ -171,6 +171,8 @@ export const RenderExternalLink = (props: TextItem): React.ReactElement => {
             buttonText={props.text}
             flagImage={""}
             canAnimate={false}
+            canDisplayDate={false}
+            published=""
             loading={props.loading}
         />
     );
@@ -199,6 +201,8 @@ export const RenderInternalLink = (props: TextItem): React.ReactElement => {
             buttonText={props.text}
             flagImage={""}
             canAnimate={false}
+            canDisplayDate={false}
+            published=""
             loading={props.loading}
         />
     );
@@ -235,6 +239,8 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
             description={info?.description ?? ""}
             languageIso={info?.languageIso ?? ""}
             canAnimate={false}
+            canDisplayDate={false}
+            published=""
             readCount={info?.readCount}
             totalLikes={info?.totalLikes}
             loading={props.loading}
@@ -246,7 +252,7 @@ export const RenderArticleLink = (props: DataProps): React.ReactElement => {
 
 export const RenderTitle = (props: DataProps): React.ReactElement => {
     return (
-        <RenderHtml value={props.value ?? NO_CONTENT} tag="h2" className="bulma-title has-text-grey-dark pt-2 pb-2" />
+        <RenderHtml value={props.value ?? NO_CONTENT} tag="h2" className="bulma-title has-text-grey-dark pt-2 pb-1" />
     );
 };
 
