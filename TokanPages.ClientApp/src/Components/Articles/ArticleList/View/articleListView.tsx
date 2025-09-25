@@ -170,7 +170,7 @@ const RenderCategories = (props: ArticleListViewProps): React.ReactElement => (
         {props.categories.map((value: ArticleCategory, _index: number) => (
             <span
                 key={value.id}
-                className={`bulma-tag bulma-is-medium bulma-is-light bulma-is-info is-clickable ${props.selectedCategory === value.id ? "bulma-is-success" : ""}`}
+                className={`bulma-tag bulma-is-medium is-clickable ${props.selectedCategory === value.id ? "bulma-is-dark" : ""}`}
                 onClick={() => props.onCategoryChange(value.id)}
             >
                 {value.categoryName}
