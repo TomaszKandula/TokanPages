@@ -8,7 +8,7 @@ interface IconButtonProps {
     hasNoHoverEffect?: boolean;
     className?: string;
     isDisabled?: boolean;
-    isGrey?: boolean;
+    hasGreyBackground?: boolean;
     onClick?: (event: ReactMouseEvent) => void;
     onMouseDown?: (event: ReactMouseEvent) => void;
 }
@@ -18,9 +18,9 @@ export const IconButton = (props: IconButtonProps): React.ReactElement => {
     const ref = React.useRef<HTMLButtonElement>(null);
     const baseClass = "icon-button-base is-flex is-align-self-center";
 
-    const buttonHoverable = props.isGrey ? "icon-button-hoverable-grey" : "icon-button-hoverable";
-    const buttonNonHoverable = props.isGrey ? "icon-button-non-hoverable-grey" : "icon-button-non-hoverable";
-    const buttonDisabled = props.isGrey ? "icon-button-disabled-grey" : "icon-button-disabled";
+    const buttonHoverable = props.hasGreyBackground ? "icon-button-hoverable-grey" : "icon-button-hoverable";
+    const buttonNonHoverable = props.hasGreyBackground ? "icon-button-non-hoverable-grey" : "icon-button-non-hoverable";
+    const buttonDisabled = props.hasGreyBackground ? "icon-button-disabled-grey" : "icon-button-disabled";
 
     React.useLayoutEffect(() => {
         const classList = ref.current?.classList;

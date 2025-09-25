@@ -45,11 +45,11 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => {
 
 const RenderHeader = (props: RenderHeaderProps): React.ReactElement => (
     <div className="bulma-content">
-        <Skeleton isLoading={props.isContentLoading} mode="Text" height={32}>
+        <Skeleton isLoading={props.isContentLoading} mode="Text" height={40}>
             <h2 className="bulma-title has-text-grey-dark">{props.title}</h2>
         </Skeleton>
         {props.text.map((value: string, index: number) => (
-            <Skeleton isLoading={props.isContentLoading} mode="Text" key={uuidv4()}>
+            <Skeleton isLoading={props.isContentLoading} mode="Text" height={20} key={uuidv4()}>
                 {index === 0 ? (
                     <h3 className="bulma-subtitle has-text-grey-dark line-height-22">{value}</h3>
                 ) : (
@@ -74,43 +74,45 @@ const RenderFiltering = (props: RenderFilteringProps): React.ReactElement => (
             startIcon={<Icon name="Magnify" size={1.5} className="has-text-link" />}
         />
         <div className="is-flex is-gap-1.5">
-            <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY>
+            <Skeleton isLoading={props.isContentLoading} mode="Circle" disableMarginY>
                 <IconButton
                     size={36}
                     onClick={props.buttonSearch.onClick}
                     isDisabled={props.buttonSearch.isSearchDisabled}
-                    isGrey
+                    hasGreyBackground
                 >
                     <Icon name="FilterOutline" size={1.5} />
                 </IconButton>
             </Skeleton>
-            <Skeleton isLoading={props.isContentLoading} mode="Rect" height={40} disableMarginY className="ml-3">
+            <Skeleton isLoading={props.isContentLoading} mode="Circle" disableMarginY>
                 <IconButton
                     size={36}
                     onClick={props.buttonClear.onClick}
                     isDisabled={props.buttonClear.isClearDisabled}
-                    isGrey
+                    hasGreyBackground
                 >
                     <Icon name="FilterRemoveOutline" size={1.5} />
                 </IconButton>
             </Skeleton>
-            {props.isOrderByAscending ? (
-                <RenderSortAZ onSortClick={props.onSortClick} />
-            ) : (
-                <RenderSortZA onSortClick={props.onSortClick} />
-            )}
+            <Skeleton isLoading={props.isContentLoading} mode="Circle" disableMarginY>
+                {props.isOrderByAscending ? (
+                    <RenderSortAZ onSortClick={props.onSortClick} isDisabled={props.isDisabled} />
+                ) : (
+                    <RenderSortZA onSortClick={props.onSortClick} isDisabled={props.isDisabled} />
+                )}
+            </Skeleton>
         </div>
     </div>
 );
 
 const RenderSortAZ = (props: RenderSortProps): React.ReactElement => (
-    <IconButton size={36} onClick={props.onSortClick} isGrey>
+    <IconButton size={36} onClick={props.onSortClick} isDisabled={props.isDisabled} hasGreyBackground>
         <Icon name="SortAlphabeticalAscending" size={1.5} />
     </IconButton>
 );
 
 const RenderSortZA = (props: RenderSortProps): React.ReactElement => (
-    <IconButton size={36} onClick={props.onSortClick} isGrey>
+    <IconButton size={36} onClick={props.onSortClick} isDisabled={props.isDisabled} hasGreyBackground>
         <Icon name="SortAlphabeticalDescending" size={1.5} />
     </IconButton>
 );
@@ -167,34 +169,40 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
 
 const RenderCategories = (props: ArticleListViewProps): React.ReactElement => (
     <div className="bulma-tags m-0 pt-4">
-        {props.categories.map((value: ArticleCategory, _index: number) => (
-            <span
-                key={value.id}
-                className={`bulma-tag bulma-is-medium bulma-is-light bulma-is-info is-clickable ${props.selectedCategory === value.id ? "bulma-is-success" : ""}`}
-                onClick={() => props.onCategoryChange(value.id)}
-            >
-                {value.categoryName}
-            </span>
-        ))}
+        <Skeleton isLoading={props.isContentLoading} height={40}>
+            {props.categories.map((value: ArticleCategory, _index: number) => (
+                <span
+                    key={value.id}
+                    className={`bulma-tag bulma-is-medium is-clickable ${props.selectedCategory === value.id ? "bulma-is-dark" : ""}`}
+                    onClick={() => props.onCategoryChange(value.id)}
+                >
+                    {value.categoryName}
+                </span>
+            ))}
+        </Skeleton>
     </div>
 );
 
-export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => (
-    <section className={props.className}>
-        <div className="bulma-container bulma-is-max-tablet pb-6">
-            <div className={props.isMobile ? "p-4" : "py-4"}>
-                <RenderHeader {...props} />
-                <RenderCategories {...props} />
-                <RenderFiltering {...props} />
-                {props.isLoading ? (
-                    <ProgressBar />
-                ) : (
-                    <>
-                        <RenderContent {...props} />
-                        <RenderPagination {...props} />
-                    </>
-                )}
+export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => {
+    const hasDisabledFiltering = props.articles.length === 0 || props.articles.length === 1;
+
+    return (
+        <section className={props.className}>
+            <div className="bulma-container bulma-is-max-tablet pb-6">
+                <div className={props.isMobile ? "p-4" : "py-4"}>
+                    <RenderHeader {...props} />
+                    <RenderCategories {...props} />
+                    <RenderFiltering {...props} isDisabled={hasDisabledFiltering} />
+                    {props.isLoading ? (
+                        <ProgressBar />
+                    ) : (
+                        <>
+                            <RenderContent {...props} />
+                            <RenderPagination {...props} />
+                        </>
+                    )}
+                </div>
             </div>
-        </div>
-    </section>
-);
+        </section>
+    );
+};

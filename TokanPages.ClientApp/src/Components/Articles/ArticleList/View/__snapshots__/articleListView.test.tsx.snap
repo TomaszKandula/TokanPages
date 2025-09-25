@@ -98,6 +98,7 @@ Object {
                 </button>
                 <button
                   class="icon-button-base is-flex is-align-self-center"
+                  disabled=""
                   style="height: 36px; width: 36px;"
                 >
                   <div>
@@ -369,6 +370,7 @@ Object {
               </button>
               <button
                 class="icon-button-base is-flex is-align-self-center"
+                disabled=""
                 style="height: 36px; width: 36px;"
               >
                 <div>

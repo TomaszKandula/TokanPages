@@ -2,7 +2,7 @@
     flex-direction: row;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .article-box-card {
         flex-direction: column;
     }

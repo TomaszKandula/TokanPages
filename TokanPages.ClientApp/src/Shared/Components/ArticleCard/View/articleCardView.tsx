@@ -1,6 +1,6 @@
 import * as React from "react";
 import { GET_FLAG_URL } from "../../../../Api";
-import { Animated, CustomImage, Icon } from "../../../../Shared/Components";
+import { Animated, CustomImage, Icon, Media } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { TLoading } from "../../../../Shared/types";
 import Validate from "validate.js";
@@ -89,7 +89,12 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
             <div className="article-box-content">
                 <div className="article-box-content-text">
                     <p className="is-size-4 has-text-black-ter mb-0">{props.title}</p>
-                    <p className="is-size-6 has-text-grey has-text-weight-normal m-0">{props.description}</p>
+                    <Media.DesktopOnly>
+                        <p className="is-size-6 has-text-grey has-text-weight-normal m-0">{props.description}</p>
+                    </Media.DesktopOnly>
+                    <Media.TabletOnly>
+                        <p className="is-size-6 has-text-grey has-text-weight-normal m-0">{props.description}</p>
+                    </Media.TabletOnly>
                     {props.canDisplayDate ? (
                         <div className="is-flex is-align-items-center mt-2">
                             <Icon name="CalendarMonth" size={1.5} />
