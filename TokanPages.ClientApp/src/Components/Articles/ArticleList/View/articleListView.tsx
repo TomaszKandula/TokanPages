@@ -79,7 +79,7 @@ const RenderFiltering = (props: RenderFilteringProps): React.ReactElement => (
                     size={36}
                     onClick={props.buttonSearch.onClick}
                     isDisabled={props.buttonSearch.isSearchDisabled}
-                    isGrey
+                    hasGreyBackground
                 >
                     <Icon name="FilterOutline" size={1.5} />
                 </IconButton>
@@ -89,7 +89,7 @@ const RenderFiltering = (props: RenderFilteringProps): React.ReactElement => (
                     size={36}
                     onClick={props.buttonClear.onClick}
                     isDisabled={props.buttonClear.isClearDisabled}
-                    isGrey
+                    hasGreyBackground
                 >
                     <Icon name="FilterRemoveOutline" size={1.5} />
                 </IconButton>
@@ -104,13 +104,13 @@ const RenderFiltering = (props: RenderFilteringProps): React.ReactElement => (
 );
 
 const RenderSortAZ = (props: RenderSortProps): React.ReactElement => (
-    <IconButton size={36} onClick={props.onSortClick} isGrey>
+    <IconButton size={36} onClick={props.onSortClick} hasGreyBackground>
         <Icon name="SortAlphabeticalAscending" size={1.5} />
     </IconButton>
 );
 
 const RenderSortZA = (props: RenderSortProps): React.ReactElement => (
-    <IconButton size={36} onClick={props.onSortClick} isGrey>
+    <IconButton size={36} onClick={props.onSortClick} hasGreyBackground>
         <Icon name="SortAlphabeticalDescending" size={1.5} />
     </IconButton>
 );
