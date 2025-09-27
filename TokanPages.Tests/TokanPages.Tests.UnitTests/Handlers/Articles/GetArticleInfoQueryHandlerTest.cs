@@ -46,10 +46,17 @@ public class GetArticleInfoQueryHandlerTest : TestBase
             ModifiedBy = null,
             ModifiedAt = null
         };
-        
+
+        var categories = new ArticleCategory
+        {
+            Id = Guid.NewGuid(),
+            CategoryName = DataUtilityService.GetRandomString()
+        };
+
         var articles = new Backend.Domain.Entities.Article.Articles
         {
             Id = Guid.NewGuid(),
+            CategoryId = categories.Id,
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = false,
@@ -83,6 +90,7 @@ public class GetArticleInfoQueryHandlerTest : TestBase
         await databaseContext.UserInfo.AddAsync(userInfo);
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.ArticleLikes.AddRangeAsync(likes);
+        await databaseContext.ArticleCategory.AddAsync(categories);
         await databaseContext.SaveChangesAsync();
 
         var mockedUserProvider = new Mock<IUserService>();

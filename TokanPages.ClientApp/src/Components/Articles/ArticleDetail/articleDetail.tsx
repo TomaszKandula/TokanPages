@@ -1,10 +1,12 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { GET_AVATARS_URL } from "../../../Api/Paths";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction, ArticleUpdateAction } from "../../../Store/Actions";
 import { GetDateTime } from "../../../Shared/Services/Formatters";
-import { LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
+import { DEFAULT_USER_IMAGE, LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
+import { Author } from "../../../Shared/Components/RenderContent/Models";
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
 import { MapLanguage } from "../../../Shared/Services/Utilities";
 import { useDimensions } from "../../../Shared/Hooks";
@@ -23,9 +25,12 @@ export interface ArticleDetailProps extends ExtendedViewProps {
     title: string;
 }
 
+const fallbackImagePath = `${GET_AVATARS_URL}/${DEFAULT_USER_IMAGE}`;
+
 export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => {
     const media = useDimensions();
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
     const user = useSelector((state: ApplicationState) => state.userDataStore);
@@ -44,8 +49,18 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const [isThumbClicked, setIsThumbsClicked] = React.useState(false);
     const [likesLeft, setLikesLeft] = React.useState(0);
 
-    const history = useHistory();
-    const userLetter = selection.article.author.aliasName.charAt(0).toUpperCase();
+    const deletedUser: Author = {
+        userId: "n/a",
+        aliasName: "",
+        avatarName: "",
+        firstName: content.textDeletedUser,
+        lastName: "",
+        shortBio: "n/a",
+        registered: "",
+    };
+
+    const author = !Validate.isDefined(selection.article?.author) ? deletedUser : (selection.article?.author as Author);
+    const userLetter = author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
 
     const flagImage = MapLanguage(selection.article.languageIso);
@@ -114,23 +129,25 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             articleReadCount={selection.article.readCount.toLocaleString(undefined, { minimumFractionDigits: 0 })}
             renderSmallAvatar={
                 <UserAvatar
-                    userId={selection.article.author.userId}
+                    userId={author.userId}
                     size={FigoureSize.extralarge}
-                    avatarName={selection.article.author.avatarName}
+                    avatarName={author.avatarName}
                     userLetter={userLetter}
+                    altSource={fallbackImagePath}
                 />
             }
             renderLargeAvatar={
                 <UserAvatar
-                    userId={selection.article.author.userId}
+                    userId={author.userId}
                     size={FigoureSize.extralarge}
-                    avatarName={selection.article.author.avatarName}
+                    avatarName={author.avatarName}
                     userLetter={userLetter}
+                    altSource={fallbackImagePath}
                 />
             }
-            authorFirstName={selection.article.author.firstName}
-            authorLastName={selection.article.author.lastName}
-            authorRegistered={GetDateTime({ value: selection.article.author.registered, hasTimeVisible: false })}
+            authorFirstName={author.firstName}
+            authorLastName={author.lastName}
+            authorRegistered={GetDateTime({ value: author.registered, hasTimeVisible: false })}
             articleReadTime={ReadTime(selection.article.text)}
             articleCreatedAt={GetDateTime({ value: selection.article.createdAt, hasTimeVisible: true })}
             articleUpdatedAt={GetDateTime({ value: selection.article.updatedAt, hasTimeVisible: true })}
@@ -138,7 +155,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             renderLikesLeft={LikesLeft(isAnonymous, likesLeft, template)}
             thumbsHandler={thumbsHandler}
             totalLikes={totalLikes.toLocaleString(undefined, { minimumFractionDigits: 0 })}
-            authorShortBio={selection.article.author.shortBio}
+            authorShortBio={author.shortBio}
             flagImage={flagImage}
             content={content}
             className={props.className}

@@ -39,43 +39,44 @@ public class GetArticleInfoQueryHandler : RequestHandler<GetArticleInfoQuery, Ge
             .Select(likes => likes.LikeCount)
             .SumAsync(cancellationToken);
 
-        var query = await (from articles in DatabaseContext.Articles
-            join userInfo in DatabaseContext.UserInfo
-            on articles.UserId equals userInfo.UserId
-            join users in DatabaseContext.Users
-            on articles.UserId equals users.Id
+        var article = await (from articles in DatabaseContext.Articles
+            join articleCategory in DatabaseContext.ArticleCategory 
+            on articles.CategoryId equals articleCategory.Id
             where articles.Id == requestId
-            select new GetArticleQueryResult
+            select new 
             {
-                Id = articles.Id,
-                Title = articles.Title,
-                Description = articles.Description,
-                IsPublished = articles.IsPublished,
-                CreatedAt = articles.CreatedAt,
-                UpdatedAt = articles.UpdatedAt,
-                ReadCount = articles.ReadCount,
-                LanguageIso = articles.LanguageIso,
+                articles.Id,
+                articles.UserId,
+                articles.Title,
+                articles.Description,
+                articles.IsPublished,
+                articles.CreatedAt,
+                articles.UpdatedAt,
+                articles.ReadCount,
+                articles.LanguageIso,
+                articleCategory.CategoryName,
                 TotalLikes = totalLikes,
                 UserLikes = userLikes
             })
             .AsNoTracking()
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (query is null)
+        if (article is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         return new GetArticleInfoQueryResult
         {
-            Id = query.Id,
-            Title = query.Title,
-            Description = query.Description,
-            IsPublished = query.IsPublished,
-            CreatedAt = query.CreatedAt,
-            UpdatedAt = query.UpdatedAt,
-            ReadCount = query.ReadCount,
-            LanguageIso = query.LanguageIso,
-            TotalLikes = query.TotalLikes,
-            UserLikes = query.UserLikes
+            Id = article.Id,
+            Title = article.Title,
+            CategoryName = article.CategoryName,
+            Description = article.Description,
+            IsPublished = article.IsPublished,
+            CreatedAt = article.CreatedAt,
+            UpdatedAt = article.UpdatedAt,
+            ReadCount = article.ReadCount,
+            LanguageIso = article.LanguageIso,
+            TotalLikes = article.TotalLikes,
+            UserLikes = article.UserLikes
         };
     }
 }

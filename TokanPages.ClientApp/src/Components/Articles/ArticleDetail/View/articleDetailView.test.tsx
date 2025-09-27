@@ -9,6 +9,7 @@ describe("test articles group component: ArticleDetailView", () => {
         const testContent: ArticleContentDto = {
             language: "eng",
             button: "Read now",
+            textDeletedUser: "Deleted User",
             textReadCount: "Read count:",
             textFirstName: "First name:",
             textSurname: "Last name:",
