@@ -107,6 +107,11 @@ export const UserSignin = (props: UserSigninProps): React.ReactElement => {
                 message: template.templates.user.signingWarning,
                 validation: result,
                 icon: IconType.warning,
+                buttons: {
+                    primaryButton: {
+                        label: "OK",
+                    },
+                },
             })
         );
     }, [form, template]);

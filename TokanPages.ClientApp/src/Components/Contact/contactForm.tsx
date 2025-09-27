@@ -82,6 +82,11 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
                     title: templates.forms.textContactForm,
                     message: templates.templates.messageOut.success,
                     icon: IconType.info,
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        },
+                    },
                 })
             );
         }
@@ -131,6 +136,11 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
                 message: templates.templates.messageOut.warning,
                 validation: result,
                 icon: IconType.warning,
+                buttons: {
+                    primaryButton: {
+                        label: "OK",
+                    },
+                },
             })
         );
     }, [form, message, templates]);

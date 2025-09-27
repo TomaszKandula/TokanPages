@@ -104,6 +104,11 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                 message: template.templates.user.updateWarning,
                 validation: result,
                 icon: IconType.warning,
+                buttons: {
+                    primaryButton: {
+                        label: "OK",
+                    },
+                },
             })
         );
     }, [form, template.forms.textAccountSettings, template.templates.user.updateWarning]);
@@ -155,6 +160,11 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                     title: template.forms.textAccountSettings,
                     message: template.templates.user.updateSuccess,
                     icon: IconType.info,
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        },
+                    },
                 })
             );
 
@@ -212,6 +222,11 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                     title: template.forms.textAccountSettings,
                     message: template.templates.user.emailVerification,
                     icon: IconType.info,
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        },
+                    },
                 })
             );
         }

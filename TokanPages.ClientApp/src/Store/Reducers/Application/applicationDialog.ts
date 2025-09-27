@@ -18,6 +18,7 @@ export const ApplicationDialog: Reducer<ApplicationDialogState> = (
                 message: undefined,
                 validation: undefined,
                 icon: undefined,
+                buttons: undefined,
             };
         case RAISE:
             return {
@@ -25,6 +26,7 @@ export const ApplicationDialog: Reducer<ApplicationDialogState> = (
                 message: action.dialog.message,
                 validation: action.dialog.validation,
                 icon: action.dialog.icon,
+                buttons: action.dialog.buttons,
             };
         default:
             return state;

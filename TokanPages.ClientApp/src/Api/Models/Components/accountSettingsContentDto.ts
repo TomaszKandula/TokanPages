@@ -1,10 +1,16 @@
 export interface AccountSettingsContentDto {
     language: string;
+    confirmation: ConfirmationProps;
     sectionAccessDenied: SectionAccessDenied;
     sectionAccountInformation: SectionAccountInformation;
     sectionAccountPassword: SectionAccountPassword;
     sectionAccountDeactivation: SectionAccountDeactivation;
     sectionAccountRemoval: SectionAccountRemoval;
+}
+
+export interface ConfirmationProps {
+    positive: string;
+    negative: string;
 }
 
 export interface SectionAccessDenied {
@@ -43,10 +49,12 @@ export interface SectionAccountDeactivation {
     caption: string;
     warningText: string[];
     deactivateButtonText: string;
+    deactivatePromptText: string;
 }
 
 export interface SectionAccountRemoval {
     caption: string;
     warningText: string[];
     deleteButtonText: string;
+    deletePromptText: string;
 }

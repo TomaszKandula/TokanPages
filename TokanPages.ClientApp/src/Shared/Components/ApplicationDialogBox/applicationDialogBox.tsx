@@ -8,22 +8,45 @@ export const ApplicationDialogBox = (): React.ReactElement => {
     const dispatch = useDispatch();
     const dialog = useSelector((state: ApplicationState) => state.applicationDialog);
 
-    const onClickHandler = React.useCallback(() => {
-        dispatch(ApplicationDialogAction.clear());
-    }, []);
+    const [isActionExecuted, setIsActionExecuted] = React.useState(false);
 
     const hasTitle = dialog?.title !== undefined;
     const hasIcon = dialog?.icon !== undefined;
     const hasMessage = dialog?.message && dialog?.message?.length !== 0;
+    const isOpen = hasTitle && hasIcon && hasMessage;
+
+    const onClickPrimaryButtonHandler = React.useCallback(() => {
+        setIsActionExecuted(true);
+        if (dialog.buttons?.primaryButton?.action) {
+            dialog.buttons?.primaryButton.action();
+        }
+    }, [dialog?.buttons?.primaryButton?.action]);
+
+    const onClickSecondaryButtonHandler = React.useCallback(() => {
+        setIsActionExecuted(true);
+        if (dialog.buttons?.secondaryButton?.action) {
+            dialog.buttons?.secondaryButton.action();
+        }
+    }, [dialog?.buttons?.secondaryButton?.action]);
+
+    React.useEffect(() => {
+        if (isActionExecuted) {
+            setIsActionExecuted(false);
+            dispatch(ApplicationDialogAction.clear());
+        }
+    }, [isActionExecuted]);
 
     return (
         <ApplicationDialogBoxView
-            isOpen={(hasTitle && hasIcon && hasMessage) ?? false}
+            isOpen={isOpen ?? false}
             icon={dialog?.icon}
             title={dialog?.title}
             message={dialog?.message}
             validation={dialog?.validation}
-            closeHandler={onClickHandler}
+            primaryButtonLabel={dialog?.buttons?.primaryButton?.label}
+            onClickPrimaryButtonHandler={onClickPrimaryButtonHandler}
+            secondaryButtonLabel={dialog?.buttons?.secondaryButton?.label}
+            onClickSecondaryButtonHandler={onClickSecondaryButtonHandler}
         />
     );
 };

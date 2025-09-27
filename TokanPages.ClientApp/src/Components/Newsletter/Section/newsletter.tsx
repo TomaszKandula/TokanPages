@@ -54,6 +54,11 @@ export const NewsletterSection = (props: NewsletterProps): React.ReactElement =>
                     title: template.forms.textNewsletter,
                     message: template.templates.newsletter.success,
                     icon: IconType.info,
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        },
+                    },
                 })
             );
         }
@@ -89,6 +94,11 @@ export const NewsletterSection = (props: NewsletterProps): React.ReactElement =>
                 message: template.templates.newsletter.warning,
                 validation: result,
                 icon: IconType.warning,
+                buttons: {
+                    primaryButton: {
+                        label: "OK",
+                    },
+                },
             })
         );
     }, [form, template]);
