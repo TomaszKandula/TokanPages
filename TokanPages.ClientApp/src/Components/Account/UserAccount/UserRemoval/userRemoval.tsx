@@ -67,7 +67,11 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
                     title: template.forms.textAccountSettings,
                     message: template.templates.user.removal,
                     icon: IconType.info,
-                })
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        }
+                    }                })
             );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);

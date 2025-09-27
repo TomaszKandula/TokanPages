@@ -65,7 +65,11 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
                     title: template.forms.textAccountSettings,
                     message: template.templates.user.deactivation,
                     icon: IconType.info,
-                })
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        }
+                    }                })
             );
 
             dispatch(UserDataStoreAction.clear());

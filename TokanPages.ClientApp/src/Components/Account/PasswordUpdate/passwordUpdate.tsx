@@ -85,7 +85,11 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
                     title: template.forms.textAccountSettings,
                     message: template.templates.password.updateSuccess,
                     icon: IconType.info,
-                })
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        }
+                    }                })
             );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
@@ -133,7 +137,11 @@ export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement =
                 message: template.templates.password.updateWarning,
                 validation: result,
                 icon: IconType.warning,
-            })
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        }
+                    }            })
         );
     }, [form, template]);
 

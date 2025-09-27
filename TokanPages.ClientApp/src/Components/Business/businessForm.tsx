@@ -159,7 +159,11 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
                 message: templates.templates.messageOut.warning,
                 validation: result,
                 icon: IconType.warning,
-            })
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        }
+                    }            })
         );
     }, [form, description, templates, serviceItems, technologyItems]);
 
@@ -217,7 +221,11 @@ export const BusinessForm = (props: BusinessFormProps): React.ReactElement => {
                     title: templates.forms.textBusinessForm,
                     message: templates.templates.messageOut.success,
                     icon: IconType.info,
-                })
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        }
+                    }                })
             );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, technologyItems, serviceItems, languageId]);

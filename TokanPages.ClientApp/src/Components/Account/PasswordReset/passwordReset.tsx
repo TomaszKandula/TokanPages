@@ -67,7 +67,11 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
                     title: template.forms.textPasswordReset,
                     message: template.templates.password.resetSuccess,
                     icon: IconType.info,
-                })
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        }
+                    }                })
             );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template, languageId]);
@@ -98,7 +102,11 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
                 message: template.templates.password.resetWarning,
                 validation: result,
                 icon: IconType.warning,
-            })
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        }
+                    }            })
         );
     }, [form, template]);
 

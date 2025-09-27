@@ -85,7 +85,11 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
                     title: template.forms.textSignup,
                     message: template.templates.user.signupSuccess,
                     icon: IconType.info,
-                })
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        }
+                    }                })
             );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template, languageId]);
@@ -141,7 +145,11 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
                 message: template.templates.user.signupWarning,
                 validation: result,
                 icon: IconType.warning,
-            })
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        }
+                    }            })
         );
     }, [form, template]);
 
