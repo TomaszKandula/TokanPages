@@ -123,7 +123,7 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
                 <div className={props.isMobile ? "mx-4 mt-6" : "mt-6"}>
                     <div className="bulma-grid is-flex">
                         <div className="bulma-cell is-align-content-center">
-                            <Skeleton isLoading={props.isLoading} mode="Circle" height={24} width={24}> 
+                            <Skeleton isLoading={props.isLoading} mode="Circle" height={24} width={24}>
                                 <Icon
                                     name="ThumbUp"
                                     size={1.2}
