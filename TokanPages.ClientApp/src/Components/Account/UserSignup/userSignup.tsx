@@ -88,8 +88,9 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
                     buttons: {
                         primaryButton: {
                             label: "OK",
-                        }
-                    }                })
+                        },
+                    },
+                })
             );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template, languageId]);
@@ -145,11 +146,12 @@ export const UserSignup = (props: UserSignupProps): React.ReactElement => {
                 message: template.templates.user.signupWarning,
                 validation: result,
                 icon: IconType.warning,
-                    buttons: {
-                        primaryButton: {
-                            label: "OK",
-                        }
-                    }            })
+                buttons: {
+                    primaryButton: {
+                        label: "OK",
+                    },
+                },
+            })
         );
     }, [form, template]);
 

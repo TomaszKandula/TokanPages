@@ -74,8 +74,8 @@ export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactEleme
                     buttons: {
                         primaryButton: {
                             label: "OK",
-                        }
-                    }
+                        },
+                    },
                 })
             );
         }
@@ -106,11 +106,12 @@ export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactEleme
                 message: template.templates.newsletter.warning,
                 validation: result,
                 icon: IconType.warning,
-                    buttons: {
-                        primaryButton: {
-                            label: "OK",
-                        }
-                    }            })
+                buttons: {
+                    primaryButton: {
+                        label: "OK",
+                    },
+                },
+            })
         );
     }, [props.id, form, template]);
 

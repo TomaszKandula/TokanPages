@@ -1,6 +1,6 @@
 export interface AccountSettingsContentDto {
     language: string;
-    confirmation: ConfirmationProps,
+    confirmation: ConfirmationProps;
     sectionAccessDenied: SectionAccessDenied;
     sectionAccountInformation: SectionAccountInformation;
     sectionAccountPassword: SectionAccountPassword;

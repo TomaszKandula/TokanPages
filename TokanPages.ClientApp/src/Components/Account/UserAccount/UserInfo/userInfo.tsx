@@ -104,11 +104,12 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                 message: template.templates.user.updateWarning,
                 validation: result,
                 icon: IconType.warning,
-                    buttons: {
-                        primaryButton: {
-                            label: "OK",
-                        }
-                    }            })
+                buttons: {
+                    primaryButton: {
+                        label: "OK",
+                    },
+                },
+            })
         );
     }, [form, template.forms.textAccountSettings, template.templates.user.updateWarning]);
 
@@ -162,8 +163,9 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                     buttons: {
                         primaryButton: {
                             label: "OK",
-                        }
-                    }                })
+                        },
+                    },
+                })
             );
 
             clear();
@@ -223,8 +225,9 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
                     buttons: {
                         primaryButton: {
                             label: "OK",
-                        }
-                    }                })
+                        },
+                    },
+                })
             );
         }
     }, [hasError, isRequesting, template, form.email, hasVerificationNotStarted, hasVerificationFinished, languageId]);

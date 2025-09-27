@@ -70,8 +70,9 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
                     buttons: {
                         primaryButton: {
                             label: "OK",
-                        }
-                    }                })
+                        },
+                    },
+                })
             );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);

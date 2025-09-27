@@ -85,8 +85,9 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
                     buttons: {
                         primaryButton: {
                             label: "OK",
-                        }
-                    }                })
+                        },
+                    },
+                })
             );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, templates, message, form, languageId]);
@@ -135,11 +136,12 @@ export const ContactForm = (props: ContactFormProps): React.ReactElement => {
                 message: templates.templates.messageOut.warning,
                 validation: result,
                 icon: IconType.warning,
-                    buttons: {
-                        primaryButton: {
-                            label: "OK",
-                        }
-                    }            })
+                buttons: {
+                    primaryButton: {
+                        label: "OK",
+                    },
+                },
+            })
         );
     }, [form, message, templates]);
 

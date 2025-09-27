@@ -17,7 +17,7 @@ describe("test account group component: userDeactivationView", () => {
                         caption: "Account Deactivation",
                         warningText: ["Warning!", "You can deactivate the account..."],
                         deactivateButtonText: "Dactivate",
-                        deactivatePromptText: "Are you sure?"
+                        deactivatePromptText: "Are you sure?",
                     }}
                 />
             </BrowserRouter>

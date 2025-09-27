@@ -13,6 +13,6 @@ export interface ApplicationDialogState {
         secondaryButton?: {
             label?: string;
             action?: () => void;
-        }
-    }
+        };
+    };
 }

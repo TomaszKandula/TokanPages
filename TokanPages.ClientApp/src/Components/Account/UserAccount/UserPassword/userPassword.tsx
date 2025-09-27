@@ -77,8 +77,9 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
                     buttons: {
                         primaryButton: {
                             label: "OK",
-                        }
-                    }                })
+                        },
+                    },
+                })
             );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
@@ -127,11 +128,12 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
                 message: template.templates.password.updateWarning,
                 validation: result,
                 icon: IconType.warning,
-                    buttons: {
-                        primaryButton: {
-                            label: "OK",
-                        }
-                    }            })
+                buttons: {
+                    primaryButton: {
+                        label: "OK",
+                    },
+                },
+            })
         );
     }, [form]);
 

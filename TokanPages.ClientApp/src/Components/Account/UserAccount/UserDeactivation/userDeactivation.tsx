@@ -68,8 +68,9 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
                     buttons: {
                         primaryButton: {
                             label: "OK",
-                        }
-                    }                })
+                        },
+                    },
+                })
             );
 
             dispatch(UserDataStoreAction.clear());

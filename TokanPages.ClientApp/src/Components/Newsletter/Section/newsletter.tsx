@@ -57,8 +57,9 @@ export const NewsletterSection = (props: NewsletterProps): React.ReactElement =>
                     buttons: {
                         primaryButton: {
                             label: "OK",
-                        }
-                    }                })
+                        },
+                    },
+                })
             );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
@@ -93,11 +94,12 @@ export const NewsletterSection = (props: NewsletterProps): React.ReactElement =>
                 message: template.templates.newsletter.warning,
                 validation: result,
                 icon: IconType.warning,
-                    buttons: {
-                        primaryButton: {
-                            label: "OK",
-                        }
-                    }            })
+                buttons: {
+                    primaryButton: {
+                        label: "OK",
+                    },
+                },
+            })
         );
     }, [form, template]);
 

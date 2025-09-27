@@ -70,8 +70,9 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
                     buttons: {
                         primaryButton: {
                             label: "OK",
-                        }
-                    }                })
+                        },
+                    },
+                })
             );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template, languageId]);
@@ -102,11 +103,12 @@ export const PasswordReset = (props: PasswordResetProps): React.ReactElement => 
                 message: template.templates.password.resetWarning,
                 validation: result,
                 icon: IconType.warning,
-                    buttons: {
-                        primaryButton: {
-                            label: "OK",
-                        }
-                    }            })
+                buttons: {
+                    primaryButton: {
+                        label: "OK",
+                    },
+                },
+            })
         );
     }, [form, template]);
 
