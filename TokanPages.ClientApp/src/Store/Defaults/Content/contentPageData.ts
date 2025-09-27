@@ -127,6 +127,7 @@ export const ContentPageData: ContentPageDataState = {
         pageArticle: {
             language: "",
             button: "",
+            textDeletedUser: "",
             textReadCount: "",
             textFirstName: "",
             textSurname: "",

@@ -1,6 +1,7 @@
 export interface ArticleContentDto {
     language: string;
     button: string;
+    textDeletedUser: string;
     textReadCount: string;
     textFirstName: string;
     textSurname: string;
