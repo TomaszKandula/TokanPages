@@ -11,9 +11,9 @@ interface Properties {
     disablePortal?: boolean;
     hideBackdrop?: boolean;
     primaryButtonLabel?: string;
-    onClickPrimaryButtonHandler: () => void;
+    onClickPrimaryButtonHandler?: () => void;
     secondaryButtonLabel?: string;
-    onClickSecondaryButtonHandler: () => void;
+    onClickSecondaryButtonHandler?: () => void;
 }
 
 const RenderIcon = (props: Properties): React.ReactElement | null => {
