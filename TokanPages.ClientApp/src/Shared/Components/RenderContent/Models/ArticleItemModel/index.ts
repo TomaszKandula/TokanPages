@@ -16,5 +16,6 @@ export interface ArticleItemBase {
 
 export interface ArticleItem extends ArticleItemBase {
     author?: Author;
+    tags?: string[];
     text: TextItem[];
 }

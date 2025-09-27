@@ -148,6 +148,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             authorFirstName={author.firstName}
             authorLastName={author.lastName}
             authorRegistered={GetDateTime({ value: author.registered, hasTimeVisible: false })}
+            articleTags={selection.article.tags}
             articleReadTime={ReadTime(selection.article.text)}
             articleCreatedAt={GetDateTime({ value: selection.article.createdAt, hasTimeVisible: true })}
             articleUpdatedAt={GetDateTime({ value: selection.article.updatedAt, hasTimeVisible: true })}
