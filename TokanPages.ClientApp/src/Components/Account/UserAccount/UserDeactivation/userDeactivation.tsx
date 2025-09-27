@@ -30,6 +30,7 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [hasProgress, setHasProgress] = React.useState(false);
+    const [isConfirmed, setIsConfirmed] = React.useState(false);
 
     const clear = React.useCallback(() => {
         if (!hasProgress) return;
@@ -37,6 +38,23 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
         dispatch(UserUpdateAction.clear());
         setHasProgress(false);
     }, [hasProgress]);
+
+    const deactivateButtonHandler = React.useCallback(() => {
+        dispatch(ApplicationDialogAction.raise({
+            title: template.forms.textAccountSettings,
+            message: [account?.sectionAccountDeactivation?.deactivatePromptText],
+            icon: IconType.warning,
+            buttons: {
+                primaryButton: {
+                    label: account?.confirmation?.positive,
+                    action: () => setIsConfirmed(true),
+                },
+                secondaryButton: {
+                    label: account?.confirmation?.negative,
+                }
+            },
+        }));
+    }, [account, template]);
 
     React.useEffect(() => {
         if (!hasProgress) {
@@ -79,7 +97,13 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
         }
     }, [store, template, languageId, hasProgress, hasError, hasUpdateNotStarted, hasUpdateFinished]);
 
-    const deactivateButtonHandler = React.useCallback(() => {
+    React.useEffect(() => {
+        if (!isConfirmed) {
+            return;
+        }
+
+        setIsConfirmed(false);
+
         if (update?.status !== OperationStatus.notStarted) {
             dispatch(UserUpdateAction.clear());
         }
@@ -87,7 +111,7 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
         if (!hasProgress) {
             setHasProgress(true);
         }
-    }, [hasProgress]);
+    }, [isConfirmed, hasProgress, update?.status]);
 
     return (
         <UserDeactivationView
