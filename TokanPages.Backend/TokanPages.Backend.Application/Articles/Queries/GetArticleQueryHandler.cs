@@ -105,6 +105,14 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             .AsNoTracking()
             .SingleOrDefaultAsync(cancellationToken);
 
+        var tags = await (from articleTags in DatabaseContext.ArticleTags
+            join articles in DatabaseContext.Articles
+            on articleTags.ArticleId equals articles.Id
+            where articles.Id == requestId
+            select articleTags.TagName)
+            .AsNoTracking()
+            .ToArrayAsync(cancellationToken);
+
         return new GetArticleQueryResult
         {
             Id = article.Id,
@@ -119,6 +127,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             TotalLikes = totalLikes,
             UserLikes = userLikes,
             Author = author,
+            Tags = tags,
             Text = textAsObject
         };
     }
