@@ -20,14 +20,14 @@ export const ApplicationDialogBox = (): React.ReactElement => {
         if (dialog.buttons?.primaryButton?.action) {
             dialog.buttons?.primaryButton.action();
         }
-    }, [dialog.buttons?.primaryButton?.action]);
+    }, [dialog?.buttons?.primaryButton?.action]);
 
     const onClickSecondaryButtonHandler = React.useCallback(() => {
         setIsActionExecuted(true);
         if (dialog.buttons?.secondaryButton?.action) {
             dialog.buttons?.secondaryButton.action();
         }
-    }, [dialog.buttons?.secondaryButton?.action]);
+    }, [dialog?.buttons?.secondaryButton?.action]);
 
     React.useEffect(() => {
         if (isActionExecuted) {
