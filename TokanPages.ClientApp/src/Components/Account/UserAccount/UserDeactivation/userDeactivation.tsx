@@ -40,20 +40,22 @@ export const UserDeactivation = (props: UserDeactivationProps): React.ReactEleme
     }, [hasProgress]);
 
     const deactivateButtonHandler = React.useCallback(() => {
-        dispatch(ApplicationDialogAction.raise({
-            title: template.forms.textAccountSettings,
-            message: [account?.sectionAccountDeactivation?.deactivatePromptText],
-            icon: IconType.warning,
-            buttons: {
-                primaryButton: {
-                    label: account?.confirmation?.positive,
-                    action: () => setIsConfirmed(true),
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: template.forms.textAccountSettings,
+                message: [account?.sectionAccountDeactivation?.deactivatePromptText],
+                icon: IconType.warning,
+                buttons: {
+                    primaryButton: {
+                        label: account?.confirmation?.positive,
+                        action: () => setIsConfirmed(true),
+                    },
+                    secondaryButton: {
+                        label: account?.confirmation?.negative,
+                    },
                 },
-                secondaryButton: {
-                    label: account?.confirmation?.negative,
-                }
-            },
-        }));
+            })
+        );
     }, [account, template]);
 
     React.useEffect(() => {
