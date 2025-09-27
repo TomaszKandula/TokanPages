@@ -20,6 +20,7 @@ describe("test account group component: userRemovalView", () => {
                             "Once you remove your existing account, you will lose all your data...",
                         ],
                         deleteButtonText: "Delete",
+                        deletePromptText: "Are you sure?"
                     }}
                 />
             </BrowserRouter>
