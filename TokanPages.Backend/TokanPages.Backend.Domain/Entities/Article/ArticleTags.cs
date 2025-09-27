@@ -5,11 +5,13 @@ using TokanPages.Backend.Domain.Contracts;
 namespace TokanPages.Backend.Domain.Entities.Article;
 
 [ExcludeFromCodeCoverage]
-public class ArticleCategory : Entity<Guid>, IAuditable
+public class ArticleTags : Entity<Guid>, IAuditable
 {
+    public Guid ArticleId { get; set; }
+
     [Required]
     [MaxLength(255)]
-    public string CategoryName { get; set; }
+    public string TagName { get; set; }
 
     public Guid CreatedBy { get; set; }
 
@@ -20,5 +22,5 @@ public class ArticleCategory : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
+    public Articles Articles { get; set; }
 }
