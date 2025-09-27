@@ -10,7 +10,10 @@ interface Properties {
     validation?: object;
     disablePortal?: boolean;
     hideBackdrop?: boolean;
-    closeHandler: () => void;
+    primaryButtonLabel?: string;
+    onClickPrimaryButtonHandler: () => void;
+    secondaryButtonLabel?: string;
+    onClickSecondaryButtonHandler: () => void;
 }
 
 const RenderIcon = (props: Properties): React.ReactElement | null => {
@@ -55,7 +58,7 @@ export const ApplicationDialogBoxView = (props: Properties): React.ReactElement 
             <header className="bulma-modal-card-head">
                 <RenderIcon {...props} />
                 <p className="bulma-modal-card-title p-3">{props.title}</p>
-                <button className="bulma-delete" aria-label="close" onClick={props.closeHandler}></button>
+                <button className="bulma-delete" aria-label="close" onClick={props.onClickSecondaryButtonHandler}></button>
             </header>
             <section className="bulma-modal-card-body">
                 <div className="bulma-content">
@@ -71,9 +74,16 @@ export const ApplicationDialogBoxView = (props: Properties): React.ReactElement 
             </section>
             <footer className="bulma-modal-card-foot is-justify-content-flex-end">
                 <div className="bulma-buttons">
-                    <button className="bulma-button bulma-is-link bulma-is-light" onClick={props.closeHandler}>
-                        OK
-                    </button>
+                    {props.primaryButtonLabel 
+                    ? <button className="bulma-button bulma-is-link bulma-is-light" onClick={props.onClickPrimaryButtonHandler}>
+                        {props.primaryButtonLabel}
+                    </button> 
+                    : null}
+                    {props.secondaryButtonLabel 
+                    ? <button className="bulma-button bulma-is-danger bulma-is-light" onClick={props.onClickSecondaryButtonHandler}>
+                        {props.secondaryButtonLabel}
+                    </button> 
+                    : null}
                 </div>
             </footer>
         </div>

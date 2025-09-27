@@ -5,4 +5,14 @@ export interface ApplicationDialogState {
     message: string[] | undefined;
     validation?: object | undefined;
     icon: IconType | undefined;
+    buttons?: {
+        primaryButton: {
+            label: string;
+            action: () => void;
+        };
+        secondaryButton: {
+            label: string;
+            action: () => void;
+        }
+    }
 }
