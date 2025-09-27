@@ -56,10 +56,10 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
         firstName: content.textDeletedUser,
         lastName: "",
         shortBio: "n/a",
-        registered: ""
-    }
+        registered: "",
+    };
 
-    const author = !Validate.isDefined(selection.article?.author) ? deletedUser : selection.article?.author as Author;
+    const author = !Validate.isDefined(selection.article?.author) ? deletedUser : (selection.article?.author as Author);
     const userLetter = author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
 
