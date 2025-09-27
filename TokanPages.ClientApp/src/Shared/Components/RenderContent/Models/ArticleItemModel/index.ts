@@ -15,6 +15,6 @@ export interface ArticleItemBase {
 }
 
 export interface ArticleItem extends ArticleItemBase {
-    author: Author;
+    author?: Author;
     text: TextItem[];
 }
