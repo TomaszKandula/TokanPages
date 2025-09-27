@@ -115,6 +115,7 @@ export type { SocialsContentDto } from "./Components/socialsContentDto";
 export type { PdfViewerContentDto } from "./Components/pdfViewerContentDto";
 export type {
     AccountSettingsContentDto,
+    ConfirmationProps,
     SectionAccessDenied,
     SectionAccountInformation,
     SectionAccountPassword,
