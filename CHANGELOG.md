@@ -1,3 +1,37 @@
+# [0.172.0](https://github.com/TomaszKandula/TokanPages/compare/v0.171.0...v0.172.0) (2025-09-28)
+
+
+### Bug Fixes
+
+* add missing prefix ([e17b4bf](https://github.com/TomaszKandula/TokanPages/commit/e17b4bf090cd0b8a30e03084c63bc5e686543ef3))
+* do not use string.Equals ([330cdcb](https://github.com/TomaszKandula/TokanPages/commit/330cdcbdd9e2773b2f7f1f0e4ad0b5136db9c356))
+* fallback to undeifned ([8430482](https://github.com/TomaszKandula/TokanPages/commit/8430482fb7de6c80d0b57c9238a1579f4a5d648d))
+* get article w/categoryName and author object optionally ([501a97c](https://github.com/TomaszKandula/TokanPages/commit/501a97ce2f9d9a325ec1c02ce00bb259ee8c91a8))
+* pass missing prop ([1b23850](https://github.com/TomaszKandula/TokanPages/commit/1b23850358ad014b93eb0a5e2429d2cc9f55c00f))
+* resolve found pagingation issues ([c1dd3ab](https://github.com/TomaszKandula/TokanPages/commit/c1dd3ab088066fe11306971716733a589a2d56b3))
+* use paragraph ([c366e41](https://github.com/TomaszKandula/TokanPages/commit/c366e41fb287b793d0f620578a4ab6ea388c69c9))
+
+
+### Features
+
+* add ArticleTags table ([7f77899](https://github.com/TomaszKandula/TokanPages/commit/7f77899bcd3e57b89869064426ccd3f5f800734b))
+* add constant ([62f9377](https://github.com/TomaszKandula/TokanPages/commit/62f9377ef0d708a8fc4ff6af0aec1b727a5f48c1))
+* add new property ([919ec95](https://github.com/TomaszKandula/TokanPages/commit/919ec954c0016a35a8ca35f687fb3d723b9b6fa4))
+* add optional buttons to the application dialog box ([de76a69](https://github.com/TomaszKandula/TokanPages/commit/de76a691b8f5293585a20faa22fac952b25088ce))
+* add path ([b013345](https://github.com/TomaszKandula/TokanPages/commit/b013345a26552d72b70e3bae5a640d126c91e107))
+* add primary button with OK label ([1886958](https://github.com/TomaszKandula/TokanPages/commit/1886958ec00a58af4820d1ececff4229da4fb0a0))
+* allow undefined ([c695042](https://github.com/TomaszKandula/TokanPages/commit/c695042f83b052655e06212bcaca7bac97a8c9ba))
+* apply prettier ([1e60df1](https://github.com/TomaszKandula/TokanPages/commit/1e60df13ca5afdeae46b76c1d83a560997198303))
+* apply prettier ([c2fdd7c](https://github.com/TomaszKandula/TokanPages/commit/c2fdd7cf050842bf380d95c598a6d90678e08b63))
+* ask user before deactivation happens ([1c6d59f](https://github.com/TomaszKandula/TokanPages/commit/1c6d59fe1a2fadf0213a62159da4ddec2819a509))
+* ask user before deletation happens ([7817667](https://github.com/TomaszKandula/TokanPages/commit/7817667b4fdeea1b21bf9beb155532c8ffbb9aca))
+* display deleted user when author object is undefined ([52896b5](https://github.com/TomaszKandula/TokanPages/commit/52896b52a9865f79fab07c0246a0797d6f240e03))
+* display tags ([cb8a4ee](https://github.com/TomaszKandula/TokanPages/commit/cb8a4ee8b949422e8b29a01f522808ce003e93be))
+* extend model ([2c90a67](https://github.com/TomaszKandula/TokanPages/commit/2c90a6744156c224c7a1a9324600697b3ac7167d))
+* extend search via description and tags ([b47b2d5](https://github.com/TomaszKandula/TokanPages/commit/b47b2d5fdac9f062f9fc72e3ed13e6e436dc8d4f))
+* return associated tags ([95abd8b](https://github.com/TomaszKandula/TokanPages/commit/95abd8b312690b6de0fa6c251c79693f444efe09))
+* use alt source when avatar name is empty ([67e6280](https://github.com/TomaszKandula/TokanPages/commit/67e6280981750b6f3ff4bf7b01a39590501e52d1))
+
 # [0.171.0](https://github.com/TomaszKandula/TokanPages/compare/v0.170.0...v0.171.0) (2025-09-25)
 
 
