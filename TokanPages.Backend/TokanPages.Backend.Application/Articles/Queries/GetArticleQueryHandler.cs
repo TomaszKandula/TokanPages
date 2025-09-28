@@ -137,12 +137,12 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var comparableTitle = title.Replace("-", " ").ToLower();
         return await DatabaseContext.Articles
             .AsNoTracking()
-            .Where(articles => articles.Title.Equals(comparableTitle, StringComparison.InvariantCultureIgnoreCase))
+            .Where(articles => articles.Title.ToLower() == comparableTitle)
             .Select(articles => articles.Id)
             .SingleOrDefaultAsync(cancellationToken);
     }
 
-    private async Task<string> GetArticleTextContent(Guid articleId, CancellationToken cancellationToken)
+    private async Task<string> GetArticleTextContent(Guid articleId, CancellationToken cancellationToken = default)
     {
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var contentStream = await azureBlob.OpenRead($"content/articles/{articleId}/text.json", cancellationToken);
