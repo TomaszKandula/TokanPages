@@ -269,6 +269,15 @@ Object {
                     2
                   </a>
                 </li>
+                <li>
+                  <a
+                    aria-current="page"
+                    aria-label="Page-3"
+                    class="bulma-pagination-link"
+                  >
+                    3
+                  </a>
+                </li>
               </ul>
             </nav>
           </div>
@@ -539,6 +548,15 @@ Object {
                   class="bulma-pagination-link"
                 >
                   2
+                </a>
+              </li>
+              <li>
+                <a
+                  aria-current="page"
+                  aria-label="Page-3"
+                  class="bulma-pagination-link"
+                >
+                  3
                 </a>
               </li>
             </ul>

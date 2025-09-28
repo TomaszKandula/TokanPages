@@ -6,25 +6,25 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center bulma-is-48x48 "
+        class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center avatar-is-48x48 "
       >
-        <h2
+        <p
           class="is-size-4 has-text-white"
         >
           T
-        </h2>
+        </p>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center bulma-is-48x48 "
+      class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center avatar-is-48x48 "
     >
-      <h2
+      <p
         class="is-size-4 has-text-white"
       >
         T
-      </h2>
+      </p>
     </div>
   </div>,
   "debug": [Function],
@@ -170,25 +170,25 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center bulma-is-24x24 "
+        class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center avatar-is-24x24 "
       >
-        <h2
+        <p
           class="is-size-4 has-text-white"
         >
           T
-        </h2>
+        </p>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center bulma-is-24x24 "
+      class="has-background-grey-light has-text-white is-flex is-justify-content-center is-align-items-center avatar-is-24x24 "
     >
-      <h2
+      <p
         class="is-size-4 has-text-white"
       >
         T
-      </h2>
+      </p>
     </div>
   </div>,
   "debug": [Function],
