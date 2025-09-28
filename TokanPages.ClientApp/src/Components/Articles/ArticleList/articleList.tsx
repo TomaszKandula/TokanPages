@@ -51,7 +51,8 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         setIsSortingEnabled(true);
     }, [isOrderByAscending]);
 
-    const onClickChangePage = React.useCallback((page: number) => {
+    const onClickChangePage = React.useCallback(
+        (page: number) => {
             dispatch(
                 ArticleListingAction.get({
                     ...BaseRequest,
@@ -61,7 +62,9 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                     orderByAscending: isOrderByAscending,
                 })
             );
-    }, [isOrderByAscending, selection]);
+        },
+        [isOrderByAscending, selection]
+    );
 
     const onKeyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {

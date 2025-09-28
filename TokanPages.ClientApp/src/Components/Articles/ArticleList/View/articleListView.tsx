@@ -123,7 +123,7 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
     }
 
     const pageNumber = props.pageData.pageNumber;
-    const pages = Math.floor((props.pageData.totalSize / props.pageData.pageSize) + 1);
+    const pages = Math.floor(props.pageData.totalSize / props.pageData.pageSize + 1);
     const paginationItem = [];
 
     for (let index = 1; index <= pages; index++) {
