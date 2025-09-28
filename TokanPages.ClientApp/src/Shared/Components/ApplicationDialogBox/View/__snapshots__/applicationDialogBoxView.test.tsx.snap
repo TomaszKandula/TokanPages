@@ -69,6 +69,11 @@ Object {
               >
                 OK
               </button>
+              <button
+                class="bulma-button bulma-is-danger bulma-is-light"
+              >
+                Cancel
+              </button>
             </div>
           </footer>
         </div>
@@ -139,6 +144,11 @@ Object {
               class="bulma-button bulma-is-link bulma-is-light"
             >
               OK
+            </button>
+            <button
+              class="bulma-button bulma-is-danger bulma-is-light"
+            >
+              Cancel
             </button>
           </div>
         </footer>

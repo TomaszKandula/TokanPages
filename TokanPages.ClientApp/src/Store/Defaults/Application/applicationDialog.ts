@@ -6,4 +6,5 @@ export const ApplicationDialog: ApplicationDialogState = {
     message: undefined,
     validation: undefined,
     icon: IconType.info,
+    buttons: undefined,
 };

@@ -12,7 +12,10 @@ describe("test view component for application diaog box", () => {
                 icon={IconType.info}
                 title="Test title"
                 message={["Test item 1", "Test item 2"]}
-                closeHandler={jest.fn()}
+                primaryButtonLabel="OK"
+                onClickPrimaryButtonHandler={jest.fn()}
+                secondaryButtonLabel="Cancel"
+                onClickSecondaryButtonHandler={jest.fn()}
                 disablePortal={true}
                 hideBackdrop={true}
             />

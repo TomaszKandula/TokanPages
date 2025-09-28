@@ -62,43 +62,74 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             .Select(likes => likes.LikeCount)
             .SumAsync(cancellationToken);
 
-        var query = await (from articles in DatabaseContext.Articles
-            join userInfo in DatabaseContext.UserInfo
-            on articles.UserId equals userInfo.UserId
-            join users in DatabaseContext.Users
-            on articles.UserId equals users.Id
+        var article = await (from articles in DatabaseContext.Articles
+            join articleCategory in DatabaseContext.ArticleCategory 
+            on articles.CategoryId equals articleCategory.Id
             where articles.Id == requestId
-            select new GetArticleQueryResult
+            select new 
             {
-                Id = articles.Id,
-                Title = articles.Title,
-                Description = articles.Description,
-                IsPublished = articles.IsPublished,
-                CreatedAt = articles.CreatedAt,
-                UpdatedAt = articles.UpdatedAt,
-                ReadCount = articles.ReadCount,
-                LanguageIso = articles.LanguageIso,
+                articles.Id,
+                articles.UserId,
+                articles.Title,
+                articles.Description,
+                articles.IsPublished,
+                articles.CreatedAt,
+                articles.UpdatedAt,
+                articles.ReadCount,
+                articles.LanguageIso,
+                articleCategory.CategoryName,
                 TotalLikes = totalLikes,
                 UserLikes = userLikes,
-                Author = new GetUserDto
-                {
-                    UserId = users.Id,
-                    AliasName = users.UserAlias,
-                    AvatarName = userInfo.UserImageName,
-                    FirstName = userInfo.FirstName,
-                    LastName = userInfo.LastName,
-                    ShortBio = userInfo.UserAboutText,
-                    Registered = userInfo.CreatedAt
-                },
                 Text = textAsObject
             })
             .AsNoTracking()
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (query is null)
+        if (article is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        return query;
+        var author = await (from users in DatabaseContext.Users
+            join userInfo in DatabaseContext.UserInfo 
+            on users.Id equals userInfo.UserId
+            where users.Id == article.UserId
+            select new GetUserDto
+            {
+                UserId = users.Id,
+                AliasName = users.UserAlias,
+                AvatarName = userInfo.UserImageName,
+                FirstName = userInfo.FirstName,
+                LastName = userInfo.LastName,
+                ShortBio = userInfo.UserAboutText,
+                Registered = userInfo.CreatedAt
+            })
+            .AsNoTracking()
+            .SingleOrDefaultAsync(cancellationToken);
+
+        var tags = await (from articleTags in DatabaseContext.ArticleTags
+            join articles in DatabaseContext.Articles
+            on articleTags.ArticleId equals articles.Id
+            where articles.Id == requestId
+            select articleTags.TagName)
+            .AsNoTracking()
+            .ToArrayAsync(cancellationToken);
+
+        return new GetArticleQueryResult
+        {
+            Id = article.Id,
+            Title = article.Title,
+            CategoryName = article.CategoryName,
+            Description = article.Description,
+            IsPublished = article.IsPublished,
+            CreatedAt = article.CreatedAt,
+            UpdatedAt = article.UpdatedAt,
+            ReadCount = article.ReadCount,
+            LanguageIso = article.LanguageIso,
+            TotalLikes = totalLikes,
+            UserLikes = userLikes,
+            Author = author,
+            Tags = tags,
+            Text = textAsObject
+        };
     }
 
     private async Task<Guid> GetArticleIdByTitle(string title, CancellationToken cancellationToken = default)
@@ -106,12 +137,12 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var comparableTitle = title.Replace("-", " ").ToLower();
         return await DatabaseContext.Articles
             .AsNoTracking()
-            .Where(articles => articles.Title.Equals(comparableTitle, StringComparison.InvariantCultureIgnoreCase))
+            .Where(articles => articles.Title.ToLower() == comparableTitle)
             .Select(articles => articles.Id)
             .SingleOrDefaultAsync(cancellationToken);
     }
 
-    private async Task<string> GetArticleTextContent(Guid articleId, CancellationToken cancellationToken)
+    private async Task<string> GetArticleTextContent(Guid articleId, CancellationToken cancellationToken = default)
     {
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var contentStream = await azureBlob.OpenRead($"content/articles/{articleId}/text.json", cancellationToken);

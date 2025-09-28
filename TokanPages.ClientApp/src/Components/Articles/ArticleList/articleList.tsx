@@ -51,36 +51,20 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         setIsSortingEnabled(true);
     }, [isOrderByAscending]);
 
-    const onClickChangePage = React.useCallback(() => {
-        const totalSize = article.payload.totalSize;
-        const pagingInfo = article.payload.pagingInfo;
-
-        const nextPage = pagingInfo.pageNumber + 1;
-        const prevPage = pagingInfo.pageNumber - 1;
-        const pages = Math.round(totalSize / pagingInfo.pageSize);
-
-        if (nextPage <= pages) {
+    const onClickChangePage = React.useCallback(
+        (page: number) => {
             dispatch(
                 ArticleListingAction.get({
                     ...BaseRequest,
-                    pageNumber: nextPage,
+                    pageNumber: page,
                     pageSize: ARTICLES_PAGE_SIZE,
                     categoryId: selection,
                     orderByAscending: isOrderByAscending,
                 })
             );
-        } else if (prevPage > 0) {
-            dispatch(
-                ArticleListingAction.get({
-                    ...BaseRequest,
-                    pageNumber: prevPage,
-                    pageSize: ARTICLES_PAGE_SIZE,
-                    categoryId: selection,
-                    orderByAscending: isOrderByAscending,
-                })
-            );
-        }
-    }, [article.payload, isOrderByAscending, selection]);
+        },
+        [isOrderByAscending, selection]
+    );
 
     const onKeyHandler = React.useCallback(
         (event: ReactKeyboardEvent) => {

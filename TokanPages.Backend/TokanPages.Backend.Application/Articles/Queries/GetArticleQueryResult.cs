@@ -8,5 +8,7 @@ public class GetArticleQueryResult : GetArticlesQueryResult
 
     public GetUserDto? Author { get; set; }
 
+    public string[]? Tags { get; set; }
+
     public List<ArticleSectionDto>? Text { get; set; }
 }

@@ -4,6 +4,7 @@ import { ArticleContentDto } from "../../../../Api/Models";
 import { Icon, CustomImage, Skeleton } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ExtendedViewProps } from "../articleDetail";
+import { v4 as uuidv4 } from "uuid";
 import "./articleDetailView.css";
 
 interface ArticleDetailViewProps extends ExtendedViewProps {
@@ -16,6 +17,7 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
     authorFirstName: string;
     authorLastName: string;
     authorRegistered: string;
+    articleTags?: string[];
     articleReadTime: string;
     articleCreatedAt: string;
     articleUpdatedAt: string;
@@ -108,18 +110,32 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
 
                 {props.articleContent}
 
+                <div className="bulma-tags pt-6 pb-3">
+                    <Skeleton isLoading={props.isLoading} mode="Rect" height={40}>
+                        {props.articleTags?.map((value: string, _index: number) => (
+                            <div key={uuidv4()} className="bulma-tag bulma-is-light bulma-is-medium">
+                                {value}
+                            </div>
+                        ))}
+                    </Skeleton>
+                </div>
+
                 <div className={props.isMobile ? "mx-4 mt-6" : "mt-6"}>
                     <div className="bulma-grid is-flex">
                         <div className="bulma-cell is-align-content-center">
-                            <Icon
-                                name="ThumbUp"
-                                size={1.2}
-                                className="article-details-thumbup"
-                                onClick={props.thumbsHandler}
-                            />
+                            <Skeleton isLoading={props.isLoading} mode="Circle" height={24} width={24}>
+                                <Icon
+                                    name="ThumbUp"
+                                    size={1.2}
+                                    className="article-details-thumbup"
+                                    onClick={props.thumbsHandler}
+                                />
+                            </Skeleton>
                         </div>
                         <div className="bulma-cell is-align-content-center">
-                            <p>{props.totalLikes}</p>
+                            <Skeleton isLoading={props.isLoading} mode="Circle" height={24} width={24}>
+                                <p>{props.totalLikes}</p>
+                            </Skeleton>
                         </div>
                     </div>
                 </div>

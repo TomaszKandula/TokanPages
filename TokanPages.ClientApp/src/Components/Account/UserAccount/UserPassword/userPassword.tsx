@@ -74,6 +74,11 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
                     title: template.forms.textAccountSettings,
                     message: template.templates.password.updateSuccess,
                     icon: IconType.info,
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        },
+                    },
                 })
             );
         }
@@ -123,6 +128,11 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
                 message: template.templates.password.updateWarning,
                 validation: result,
                 icon: IconType.warning,
+                buttons: {
+                    primaryButton: {
+                        label: "OK",
+                    },
+                },
             })
         );
     }, [form]);

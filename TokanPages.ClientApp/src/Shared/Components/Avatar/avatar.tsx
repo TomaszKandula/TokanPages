@@ -34,7 +34,7 @@ export const Avatar = (props: AvatarProps): React.ReactElement => {
     if (!hasSrc && props.children) {
         const baseFlex = "is-flex is-justify-content-center is-align-items-center";
         const baseClass = `has-background-grey-light has-text-white ${baseFlex}`;
-        const className = `${baseClass} ${ConvertSize(props.size)} ${props.className ?? ""}`;
+        const className = `${baseClass} ${ConvertSize(props.size, "avatar")} ${props.className ?? ""}`;
         return <div className={className}>{props.children}</div>;
     }
 

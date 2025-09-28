@@ -26,7 +26,7 @@ export const UserAvatar = (props: Properties): React.ReactElement => {
         source = baseUrl.replace("{name}", props.avatarName ?? "");
     }
 
-    if (hasAltSource) {
+    if (hasAltSource && !hasAvatarName) {
         source = props.altSource ?? "";
     }
 

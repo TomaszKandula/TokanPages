@@ -36,6 +36,7 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
     const [hasProgress, setHasProgress] = React.useState(false);
+    const [isConfirmed, setIsConfirmed] = React.useState(false);
 
     const clear = React.useCallback(() => {
         if (!hasProgress) return;
@@ -47,6 +48,25 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
         setHasProgress(false);
         history.push(`/${languageId}`);
     }, [hasProgress, languageId]);
+
+    const deleteButtonHandler = React.useCallback(() => {
+        dispatch(
+            ApplicationDialogAction.raise({
+                title: template.forms.textAccountSettings,
+                message: [account?.sectionAccountRemoval?.deletePromptText],
+                icon: IconType.warning,
+                buttons: {
+                    primaryButton: {
+                        label: account?.confirmation?.positive,
+                        action: () => setIsConfirmed(true),
+                    },
+                    secondaryButton: {
+                        label: account?.confirmation?.negative,
+                    },
+                },
+            })
+        );
+    }, [template, account]);
 
     React.useEffect(() => {
         if (hasError) {
@@ -67,12 +87,23 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
                     title: template.forms.textAccountSettings,
                     message: template.templates.user.removal,
                     icon: IconType.info,
+                    buttons: {
+                        primaryButton: {
+                            label: "OK",
+                        },
+                    },
                 })
             );
         }
     }, [hasProgress, hasError, hasNotStarted, hasFinished, template]);
 
-    const deleteButtonHandler = React.useCallback(() => {
+    React.useEffect(() => {
+        if (!isConfirmed) {
+            return;
+        }
+
+        setIsConfirmed(false);
+
         if (remove?.status !== OperationStatus.notStarted) {
             dispatch(UserRemoveAction.clear());
         }
@@ -80,7 +111,7 @@ export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
         if (!hasProgress) {
             setHasProgress(true);
         }
-    }, [hasProgress]);
+    }, [isConfirmed, hasProgress, remove?.status]);
 
     return (
         <UserRemovalView

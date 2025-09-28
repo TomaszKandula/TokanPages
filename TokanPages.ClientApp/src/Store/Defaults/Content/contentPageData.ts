@@ -37,6 +37,10 @@ export const ContentPageData: ContentPageDataState = {
         },
         accountSettings: {
             language: "",
+            confirmation: {
+                positive: "",
+                negative: "",
+            },
             sectionAccessDenied: {
                 accessDeniedCaption: "",
                 accessDeniedPrompt: [""],
@@ -70,11 +74,13 @@ export const ContentPageData: ContentPageDataState = {
                 caption: "",
                 warningText: [""],
                 deactivateButtonText: "",
+                deactivatePromptText: "",
             },
             sectionAccountRemoval: {
                 caption: "",
                 warningText: [""],
                 deleteButtonText: "",
+                deletePromptText: "",
             },
         },
         accountActivate: {
@@ -121,6 +127,7 @@ export const ContentPageData: ContentPageDataState = {
         pageArticle: {
             language: "",
             button: "",
+            textDeletedUser: "",
             textReadCount: "",
             textFirstName: "",
             textSurname: "",
