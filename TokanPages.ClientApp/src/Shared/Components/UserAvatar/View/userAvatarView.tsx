@@ -14,7 +14,7 @@ export const UserAvatarView = (props: Properties): React.ReactElement => {
     if (Validate.isEmpty(props.avatarSource)) {
         return (
             <Avatar className={props.className} alt="User avatar" title="Avatar" size={props.size}>
-                <h2 className="is-size-4 has-text-white">{props.userLetter}</h2>
+                <p className="is-size-4 has-text-white">{props.userLetter}</p>
             </Avatar>
         );
     }
