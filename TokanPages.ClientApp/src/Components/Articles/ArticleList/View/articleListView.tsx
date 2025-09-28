@@ -123,7 +123,7 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
     }
 
     const pageNumber = props.pageData.pageNumber;
-    const pages = Math.round(props.pageData.totalSize / props.pageData.pageSize);
+    const pages = Math.floor((props.pageData.totalSize / props.pageData.pageSize) + 1);
     const paginationItem = [];
 
     for (let index = 1; index <= pages; index++) {
@@ -131,7 +131,7 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
             paginationItem.push(
                 <li key={uuidv4()}>
                     <a
-                        onClick={props.pageData.onClick}
+                        onClick={() => props.pageData.onClick(index)}
                         className="bulma-pagination-link bulma-is-current"
                         aria-label={`Page-${index}`}
                         aria-current="page"
@@ -144,7 +144,7 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
             paginationItem.push(
                 <li key={uuidv4()}>
                     <a
-                        onClick={props.pageData.onClick}
+                        onClick={() => props.pageData.onClick(index)}
                         className="bulma-pagination-link"
                         aria-label={`Page-${index}`}
                         aria-current="page"

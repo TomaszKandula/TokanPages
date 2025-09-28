@@ -7,7 +7,7 @@ export interface PageDataProps {
     totalSize: number;
     pageNumber: number;
     pageSize: number;
-    onClick: () => void;
+    onClick: (page: number) => void;
 }
 
 export interface SearchInputProps {
