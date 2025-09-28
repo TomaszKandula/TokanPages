@@ -15,22 +15,16 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
 
     public override async Task<GetAllArticlesQueryResult> Handle(GetArticlesQuery request, CancellationToken cancellationToken)
     {
-        var hasSearchPhrase = !string.IsNullOrWhiteSpace(request.SearchTerm);
-        var categories = await DatabaseContext.ArticleCategory
-            .AsNoTracking()
-            .Select(articleCategory => new ArticleCategoryDto
-            {
-                Id = articleCategory.Id,
-                CategoryName = articleCategory.CategoryName
-            })
-            .ToListAsync(cancellationToken);
+        var foundArticleIds = await GetSearchResult(request.SearchTerm, cancellationToken);
+        var hasIds = foundArticleIds != null && foundArticleIds.Count != 0;
+        var hasCategoryId = request.CategoryId != null && request.CategoryId != Guid.Empty;
 
-        var query = DatabaseContext.Articles
+        var articles = DatabaseContext.Articles
             .AsNoTracking()
             .Include(articles => articles.ArticleCategory)
             .Where(articles => articles.IsPublished == request.IsPublished)
-            .WhereIf(hasSearchPhrase, articles => articles.Title.Contains(request.SearchTerm!))
-            .WhereIf(request.CategoryId is not null, articles => articles.ArticleCategory.Id == request.CategoryId)
+            .WhereIf(hasIds, articles => foundArticleIds!.Contains(articles.Id))
+            .WhereIf(hasCategoryId, articles => articles.ArticleCategory.Id == request.CategoryId)
             .Select(articles => new GetArticlesQueryResult
             { 
                 Id = articles.Id,
@@ -45,10 +39,19 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
                 LanguageIso = articles.LanguageIso
             });
 
-        var totalSize = await query.CountAsync(cancellationToken);
-        var result = await query
+        var totalSize = await articles.CountAsync(cancellationToken);
+        var result = await articles
             .ApplyOrdering(request, GetOrderingExpressions())
             .ApplyPaging(request)
+            .ToListAsync(cancellationToken);
+
+        var categories = await DatabaseContext.ArticleCategory
+            .AsNoTracking()
+            .Select(articleCategory => new ArticleCategoryDto
+            {
+                Id = articleCategory.Id,
+                CategoryName = articleCategory.CategoryName
+            })
             .ToListAsync(cancellationToken);
 
         return new GetAllArticlesQueryResult
@@ -58,6 +61,29 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
             ArticleCategories = categories,
             Results = result
         };
+    }
+
+    private async Task<HashSet<Guid>?> GetSearchResult(string? searchTerm, CancellationToken cancellationToken)
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+        {
+            return null;
+        }
+
+        var searchTitleAndDescription = await DatabaseContext.Articles
+            .AsNoTracking()
+            .Where(articles => articles.Title.Contains(searchTerm) || articles.Description.Contains(searchTerm))
+            .Select(articles => articles.Id)
+            .ToListAsync(cancellationToken);
+
+        var searchTags = await DatabaseContext.ArticleTags
+            .AsNoTracking()
+            .Where(articleTags => articleTags.TagName.Contains(searchTerm))
+            .Select(articleTags => articleTags.ArticleId)
+            .ToListAsync(cancellationToken);
+
+        var articleIds = searchTitleAndDescription.Union(searchTags);
+        return new HashSet<Guid>(articleIds);
     }
 
     private static Dictionary<string, Expression<Func<GetArticlesQueryResult, object>>> GetSortingConfig()
