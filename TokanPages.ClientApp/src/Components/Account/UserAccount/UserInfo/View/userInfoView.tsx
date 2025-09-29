@@ -178,12 +178,14 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                         className="ml-4"
                                         disableMarginY
                                     >
-                                        <UploadUserMedia
-                                            customHandle={props.fileUploadingCustomHandle}
-                                            mediaTarget={UserMedia.userImage}
-                                            handle="userInfoSection_userImage"
-                                            previewImage={previewImage}
-                                        />
+                                        <div className="is-flex">
+                                            <UploadUserMedia
+                                                customHandle={props.fileUploadingCustomHandle}
+                                                mediaTarget={UserMedia.userImage}
+                                                handle="userInfoSection_userImage"
+                                                previewImage={previewImage}
+                                            />
+                                        </div>
                                     </Skeleton>
                                 </div>
                             </div>
