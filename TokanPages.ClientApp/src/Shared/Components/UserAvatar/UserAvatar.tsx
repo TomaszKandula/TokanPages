@@ -21,12 +21,10 @@ export const UserAvatar = (props: Properties): React.ReactElement => {
     const hasUserId = !Validate.isEmpty(props.userId);
     const hasAvatarName = !Validate.isEmpty(props.avatarName);
 
-    if (!hasAltSource && hasUserId && hasAvatarName) {
+    if (hasUserId && hasAvatarName) {
         baseUrl = GET_USER_IMAGE.replace("{id}", props.userId ?? "");
         source = baseUrl.replace("{name}", props.avatarName ?? "");
-    }
-
-    if (hasAltSource && !hasAvatarName) {
+    } else if (hasAltSource) {
         source = props.altSource ?? "";
     }
 
