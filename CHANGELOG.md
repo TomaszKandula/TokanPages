@@ -1,3 +1,18 @@
+# [0.173.0](https://github.com/TomaszKandula/TokanPages/compare/v0.172.0...v0.173.0) (2025-09-29)
+
+
+### Bug Fixes
+
+* add missing reset list of articles ([badaef0](https://github.com/TomaszKandula/TokanPages/commit/badaef077a3bd438fe7304dea8eaaae2f9d3dda0))
+* correct user avatar logic ([a92e25c](https://github.com/TomaszKandula/TokanPages/commit/a92e25cc9ba69a63d0589c854bc7d0298f92e2b5))
+* resolve position issues on mobile views ([a6e1257](https://github.com/TomaszKandula/TokanPages/commit/a6e12574bba7dd210b5ca2864901df63c206c562))
+
+
+### Features
+
+* update layout ([8fe4a73](https://github.com/TomaszKandula/TokanPages/commit/8fe4a731f6db0e49b7b3c8e4e94fed7f683cd290))
+* use wrapper to avoid label taking the whole space ([6be3b5f](https://github.com/TomaszKandula/TokanPages/commit/6be3b5f69200c579fc17fa4c07ed6c50b6802b27))
+
 # [0.172.0](https://github.com/TomaszKandula/TokanPages/compare/v0.171.0...v0.172.0) (2025-09-28)
 
 
