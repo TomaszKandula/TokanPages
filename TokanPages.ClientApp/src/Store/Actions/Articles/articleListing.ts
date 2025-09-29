@@ -41,8 +41,7 @@ export const ArticleListingAction = {
 
             actions.storeAction(input);
         },
-    clear: (): ApplicationAction<TKnownActions> =>
-        (dispatch, _getState) => {
-            dispatch({ type: RESET });
-        }
+    clear: (): ApplicationAction<TKnownActions> => (dispatch, _getState) => {
+        dispatch({ type: RESET });
+    },
 };

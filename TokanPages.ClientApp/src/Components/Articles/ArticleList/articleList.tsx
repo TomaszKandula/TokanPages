@@ -201,7 +201,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     }, [form.searchInput]);
 
     React.useEffect(() => {
-        return () => { 
+        return () => {
             dispatch(ArticleListingAction.clear());
         };
     }, []);

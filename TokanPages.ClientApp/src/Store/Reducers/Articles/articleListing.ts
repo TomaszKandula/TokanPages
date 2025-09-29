@@ -33,13 +33,13 @@ export const ArticleListing: Reducer<ArticleListingState> = (
                         pageNumber: 0,
                         pageSize: 0,
                         orderByColumn: "",
-                        orderByAscending: false
+                        orderByAscending: false,
                     },
                     totalSize: 0,
                     articleCategories: [],
-                    results: []
+                    results: [],
                 },
-            }
+            };
         default:
             return state;
     }
