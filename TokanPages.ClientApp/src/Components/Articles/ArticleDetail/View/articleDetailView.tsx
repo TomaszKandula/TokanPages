@@ -110,17 +110,16 @@ export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactEle
 
                 {props.articleContent}
 
-                <div className="bulma-tags pt-6 pb-3">
-                    <Skeleton isLoading={props.isLoading} mode="Rect" height={40}>
-                        {props.articleTags?.map((value: string, _index: number) => (
-                            <div key={uuidv4()} className="bulma-tag bulma-is-light bulma-is-medium">
-                                {value}
-                            </div>
-                        ))}
-                    </Skeleton>
-                </div>
-
                 <div className={props.isMobile ? "mx-4 mt-6" : "mt-6"}>
+                    <div className="bulma-tags pb-6">
+                        <Skeleton isLoading={props.isLoading} mode="Rect" height={40}>
+                            {props.articleTags?.map((value: string, _index: number) => (
+                                <div key={uuidv4()} className="bulma-tag bulma-is-light bulma-is-medium">
+                                    {value}
+                                </div>
+                            ))}
+                        </Skeleton>
+                    </div>
                     <div className="bulma-grid is-flex">
                         <div className="bulma-cell is-align-content-center">
                             <Skeleton isLoading={props.isLoading} mode="Circle" height={24} width={24}>

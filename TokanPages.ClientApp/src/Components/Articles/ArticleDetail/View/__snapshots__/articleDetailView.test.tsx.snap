@@ -120,11 +120,11 @@ Object {
               articleContent
             </div>
             <div
-              class="bulma-tags pt-6 pb-3"
-            />
-            <div
               class="mt-6"
             >
+              <div
+                class="bulma-tags pb-6"
+              />
               <div
                 class="bulma-grid is-flex"
               >
@@ -319,11 +319,11 @@ Object {
             articleContent
           </div>
           <div
-            class="bulma-tags pt-6 pb-3"
-          />
-          <div
             class="mt-6"
           >
+            <div
+              class="bulma-tags pb-6"
+            />
             <div
               class="bulma-grid is-flex"
             >
