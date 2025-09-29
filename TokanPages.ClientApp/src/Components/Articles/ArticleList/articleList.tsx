@@ -200,6 +200,12 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
     }, [form.searchInput]);
 
+    React.useEffect(() => {
+        return () => { 
+            dispatch(ArticleListingAction.clear());
+        };
+    }, []);
+
     return (
         <ArticleListView
             isLoading={article.isLoading}

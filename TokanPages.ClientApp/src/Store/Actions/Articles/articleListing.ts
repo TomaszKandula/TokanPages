@@ -6,6 +6,7 @@ import { ProcessQueryParams } from "../../../Shared/Services/Utilities";
 
 export const REQUEST = "REQUEST_ARTICLES";
 export const RECEIVE = "RECEIVE_ARTICLES";
+export const RESET = "RESET_ARTICLES";
 interface Request {
     type: typeof REQUEST;
 }
@@ -13,7 +14,10 @@ interface Receive {
     type: typeof RECEIVE;
     payload: GetArticlesDto;
 }
-export type TKnownActions = Request | Receive;
+interface Reset {
+    type: typeof RESET;
+}
+export type TKnownActions = Request | Receive | Reset;
 
 export const ArticleListingAction = {
     get:
@@ -37,4 +41,8 @@ export const ArticleListingAction = {
 
             actions.storeAction(input);
         },
+    clear: (): ApplicationAction<TKnownActions> =>
+        (dispatch, _getState) => {
+            dispatch({ type: RESET });
+        }
 };
