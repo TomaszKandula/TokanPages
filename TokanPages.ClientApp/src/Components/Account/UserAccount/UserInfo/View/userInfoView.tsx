@@ -155,8 +155,8 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                 </div>
                             </div>
                             <hr />
-                            <div className="bulma-block m-0 py-2">
-                                <div className="is-flex is-align-items-center p-0">
+                            <div className="bulma-columns m-0 py-2">
+                                <div className="bulma-column bulma-is-one-fifth p-0 is-align-content-center">
                                     <Skeleton
                                         isLoading={props.isLoading}
                                         mode="Text"
@@ -168,6 +168,8 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
                                             {props.sectionAccountInformation?.labelUserAvatar}
                                         </p>
                                     </Skeleton>
+                                </div>
+                                <div className="bulma-column p-0">
                                     <Skeleton
                                         isLoading={props.isLoading}
                                         mode="Circle"
