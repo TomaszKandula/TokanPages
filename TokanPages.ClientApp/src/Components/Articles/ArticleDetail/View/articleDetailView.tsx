@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GET_FLAG_URL } from "../../../../Api";
 import { ArticleContentDto } from "../../../../Api/Models";
-import { Icon, CustomImage, Skeleton } from "../../../../Shared/Components";
+import { Icon, CustomImage, Skeleton, Media } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ExtendedViewProps } from "../articleDetail";
 import { v4 as uuidv4 } from "uuid";
@@ -30,81 +30,99 @@ interface ArticleDetailViewProps extends ExtendedViewProps {
     content: ArticleContentDto;
 }
 
+const RenderTopHeader = (props: ArticleDetailViewProps): React.ReactElement => (
+    <div className="is-flex is-gap-1.5 is-align-items-center">
+        <Skeleton isLoading={props.isLoading} mode="Text" width={75} height={24}>
+            <p className="bulma-cell is-align-content-center is-size-7">{props.content.textLanguage}</p>
+        </Skeleton>
+        <Skeleton isLoading={props.isLoading} mode="Circle" width={24} height={24}>
+            <CustomImage
+                base={GET_FLAG_URL}
+                source={props.flagImage}
+                title="Articles"
+                alt="An article language flag"
+                className="article-details-flag is-flex is-align-self-center is-round-border"
+            />
+        </Skeleton>
+        <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={24}>
+            <p className="is-size-7">{props.content.textReadTime1}</p>
+            <p className="is-size-7">
+                {props.articleReadTime} {props.content.textReadTime2}
+            </p>
+        </Skeleton>
+        <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={24}>
+            <p className="is-size-7">{props.content.textPublished}</p>
+            <p className="is-size-7">{GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}</p>
+        </Skeleton>
+        <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={24}>
+            <p className="is-size-7">{props.content.textReadCount}</p>
+            <p className="is-size-7">{props.articleReadCount}</p>
+        </Skeleton>
+    </div>
+);
+
+const RenderTopHeaderMobile = (props: ArticleDetailViewProps): React.ReactElement => (
+    <div className="is-flex is-flex-direction-column">
+        <div className="is-flex is-gap-1.5 is-align-items-center">
+            <Skeleton isLoading={props.isLoading} mode="Text" width={75} height={24}>
+                <p className="bulma-cell is-align-content-center is-size-7">{props.content.textLanguage}</p>
+            </Skeleton>
+            <Skeleton isLoading={props.isLoading} mode="Circle" width={24} height={24}>
+                <CustomImage
+                base={GET_FLAG_URL}
+                source={props.flagImage}
+                title="Articles"
+                alt="An article language flag"
+                className="article-details-flag is-flex is-align-self-center is-round-border"
+                />
+            </Skeleton>
+            <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={24}>
+                <p className="is-size-7">{props.content.textReadTime1}</p>
+                <p className="is-size-7">
+                    {props.articleReadTime} {props.content.textReadTime2}
+                </p>
+            </Skeleton>
+        </div>
+        <div className="is-flex is-gap-1.5 is-align-items-center">
+            <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={24}>
+                <p className="is-size-7">{props.content.textPublished}</p>
+                <p className="is-size-7">{GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}</p>
+            </Skeleton>
+            <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={24}>
+                <p className="is-size-7">{props.content.textReadCount}</p>
+                <p className="is-size-7">{props.articleReadCount}</p>
+            </Skeleton>
+        </div>
+    </div>
+);
+
 export const ArticleDetailView = (props: ArticleDetailViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet">
             <article className="py-4">
-                <div className="mb-6">
-                    <div className={`bulma-grid is-flex m-0 ${props.isMobile ? "mx-4" : ""}`}>
-                        <div className="bulma-cell is-align-content-center">
-                            <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72} disableMarginY>
+                <div className={props.isMobile ? "mx-4 mb-5" : "mb-5"}>
+                    <div className="is-flex is-flex-direction-column">
+                        <div className="is-flex is-gap-1.5 is-align-items-center">
+                            <Skeleton isLoading={props.isLoading} mode="Circle" width={48} height={48} disableMarginY>
                                 {props.renderSmallAvatar}
                             </Skeleton>
-                        </div>
-                        <div className="bulma-cell is-align-content-center">
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={24} disableMarginY>
-                                <p className="is-size-4">
+                            <Skeleton isLoading={props.isLoading} mode="Text" width={220} height={24} disableMarginY>
+                                <p className="is-size-6">
                                     {props.authorFirstName} {props.authorLastName}
                                 </p>
                             </Skeleton>
                         </div>
-                    </div>
-
-                    <div className={props.isMobile ? "mx-4 mt-4 mb-6" : "my-4"}>
-                        <div className="bulma-grid is-flex m-0">
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                                <p className="bulma-cell is-align-content-center is-size-6">
-                                    {props.content.textLanguage}
-                                </p>
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Rect" width={100} height={12}>
-                                <CustomImage
-                                    base={GET_FLAG_URL}
-                                    source={props.flagImage}
-                                    title="Articles"
-                                    alt="An article language flag"
-                                    className="article-details-flag is-flex is-align-self-center is-round-border"
-                                />
-                            </Skeleton>
-                        </div>
-                        <div className="bulma-grid is-flex m-0">
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                                <p className="is-size-6">{props.content.textReadTime1}</p>
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                                <p className="is-size-6">
-                                    {props.articleReadTime} {props.content.textReadTime2}
-                                </p>
-                            </Skeleton>
-                        </div>
-                        <div className="bulma-grid is-flex m-0">
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                                <p className="is-size-6">{props.content.textPublished}</p>
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                                <p className="is-size-6">
-                                    {GetDateTime({ value: props.articleCreatedAt, hasTimeVisible: true })}
-                                </p>
-                            </Skeleton>
-                        </div>
-                        <div className="bulma-grid is-flex m-0">
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                                <p className="is-size-6">{props.content.textUpdated}</p>
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                                <p className="is-size-6">
-                                    {GetDateTime({ value: props.articleUpdatedAt, hasTimeVisible: true })}
-                                </p>
-                            </Skeleton>
-                        </div>
-                        <div className="bulma-grid is-flex m-0">
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                                <p className="is-size-6">{props.content.textReadCount}</p>
-                            </Skeleton>
-                            <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
-                                <p className="is-size-6">{props.articleReadCount}</p>
-                            </Skeleton>
-                        </div>
+                        <hr className="m-0 my-2" />
+                        <Media.MobileOnly>
+                            <RenderTopHeaderMobile {...props} />
+                        </Media.MobileOnly>
+                        <Media.TabletOnly>
+                            <RenderTopHeader {...props} />
+                        </Media.TabletOnly>
+                        <Media.DesktopOnly>
+                            <RenderTopHeader {...props} />
+                        </Media.DesktopOnly>
+                        <hr className="m-0 my-2" />
                     </div>
                 </div>
 
