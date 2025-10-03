@@ -69,11 +69,11 @@ const RenderTopHeaderMobile = (props: ArticleDetailViewProps): React.ReactElemen
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Circle" width={24} height={24}>
                 <CustomImage
-                base={GET_FLAG_URL}
-                source={props.flagImage}
-                title="Articles"
-                alt="An article language flag"
-                className="article-details-flag is-flex is-align-self-center is-round-border"
+                    base={GET_FLAG_URL}
+                    source={props.flagImage}
+                    title="Articles"
+                    alt="An article language flag"
+                    className="article-details-flag is-flex is-align-self-center is-round-border"
                 />
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={24}>
