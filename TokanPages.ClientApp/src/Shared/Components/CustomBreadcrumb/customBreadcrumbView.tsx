@@ -34,7 +34,7 @@ const makeStyledBreadcrumb = (
 
     if (fragments !== undefined) {
         return fragments.map((_: string, index: number) => (
-            <li key={uuidv4()} onClick={rootName.hasHash ? undefined : onClick}>
+            <li className="py-1" key={uuidv4()} onClick={rootName.hasHash ? undefined : onClick}>
                 <div className="mx-2">
                     <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable">
                         <span className="p-2">{setValue(index)}</span>
@@ -70,7 +70,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
             <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={18}>
                 <nav className="bulma-breadcrumb bulma-has-arrow-separator">
                     <ul>
-                        <li>
+                        <li className="py-1">
                             <div className="mr-2">
                                 <div
                                     onClick={onBackToRoot}
@@ -83,7 +83,7 @@ export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactE
                         </li>
                         {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
                         {hasParam ? (
-                            <li>
+                            <li className="py-1">
                                 <div className="mx-2">
                                     <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center">
                                         <span className="p-2">{toUpperCase(paramValue)}</span>

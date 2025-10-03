@@ -13,107 +13,31 @@ Object {
             class="py-4"
           >
             <div
-              class="mb-6"
+              class="mb-5"
             >
               <div
-                class="bulma-grid is-flex m-0 "
+                class="is-flex is-flex-direction-column"
               >
                 <div
-                  class="bulma-cell is-align-content-center"
+                  class="is-flex is-gap-1.5 is-align-items-center"
                 >
                   <div>
                     renderSmallAvatar
                   </div>
-                </div>
-                <div
-                  class="bulma-cell is-align-content-center"
-                >
                   <p
-                    class="is-size-4"
+                    class="is-size-6"
                   >
                     Ester
                      
                     Exposito
                   </p>
                 </div>
-              </div>
-              <div
-                class="my-4"
-              >
-                <div
-                  class="bulma-grid is-flex m-0"
-                >
-                  <p
-                    class="bulma-cell is-align-content-center is-size-6"
-                  >
-                    Article language:
-                  </p>
-                  <img
-                    alt="An article language flag"
-                    class="article-details-flag is-flex is-align-self-center is-round-border"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
-                    title="Articles"
-                  />
-                </div>
-                <div
-                  class="bulma-grid is-flex m-0"
-                >
-                  <p
-                    class="is-size-6"
-                  >
-                    Read time:
-                  </p>
-                  <p
-                    class="is-size-6"
-                  >
-                    4
-                     
-                    min.
-                  </p>
-                </div>
-                <div
-                  class="bulma-grid is-flex m-0"
-                >
-                  <p
-                    class="is-size-6"
-                  >
-                    Published at:
-                  </p>
-                  <p
-                    class="is-size-6"
-                  >
-                    01/10/2020, 12:15 PM
-                  </p>
-                </div>
-                <div
-                  class="bulma-grid is-flex m-0"
-                >
-                  <p
-                    class="is-size-6"
-                  >
-                    Updated at:
-                  </p>
-                  <p
-                    class="is-size-6"
-                  >
-                    01/10/2020, 12:15 PM
-                  </p>
-                </div>
-                <div
-                  class="bulma-grid is-flex m-0"
-                >
-                  <p
-                    class="is-size-6"
-                  >
-                    Read count:
-                  </p>
-                  <p
-                    class="is-size-6"
-                  >
-                    1.000.000
-                  </p>
-                </div>
+                <hr
+                  class="m-0 my-2"
+                />
+                <hr
+                  class="m-0 my-2"
+                />
               </div>
             </div>
             <div>
@@ -212,107 +136,31 @@ Object {
           class="py-4"
         >
           <div
-            class="mb-6"
+            class="mb-5"
           >
             <div
-              class="bulma-grid is-flex m-0 "
+              class="is-flex is-flex-direction-column"
             >
               <div
-                class="bulma-cell is-align-content-center"
+                class="is-flex is-gap-1.5 is-align-items-center"
               >
                 <div>
                   renderSmallAvatar
                 </div>
-              </div>
-              <div
-                class="bulma-cell is-align-content-center"
-              >
                 <p
-                  class="is-size-4"
+                  class="is-size-6"
                 >
                   Ester
                    
                   Exposito
                 </p>
               </div>
-            </div>
-            <div
-              class="my-4"
-            >
-              <div
-                class="bulma-grid is-flex m-0"
-              >
-                <p
-                  class="bulma-cell is-align-content-center is-size-6"
-                >
-                  Article language:
-                </p>
-                <img
-                  alt="An article language flag"
-                  class="article-details-flag is-flex is-align-self-center is-round-border"
-                  loading="lazy"
-                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/eng.png"
-                  title="Articles"
-                />
-              </div>
-              <div
-                class="bulma-grid is-flex m-0"
-              >
-                <p
-                  class="is-size-6"
-                >
-                  Read time:
-                </p>
-                <p
-                  class="is-size-6"
-                >
-                  4
-                   
-                  min.
-                </p>
-              </div>
-              <div
-                class="bulma-grid is-flex m-0"
-              >
-                <p
-                  class="is-size-6"
-                >
-                  Published at:
-                </p>
-                <p
-                  class="is-size-6"
-                >
-                  01/10/2020, 12:15 PM
-                </p>
-              </div>
-              <div
-                class="bulma-grid is-flex m-0"
-              >
-                <p
-                  class="is-size-6"
-                >
-                  Updated at:
-                </p>
-                <p
-                  class="is-size-6"
-                >
-                  01/10/2020, 12:15 PM
-                </p>
-              </div>
-              <div
-                class="bulma-grid is-flex m-0"
-              >
-                <p
-                  class="is-size-6"
-                >
-                  Read count:
-                </p>
-                <p
-                  class="is-size-6"
-                >
-                  1.000.000
-                </p>
-              </div>
+              <hr
+                class="m-0 my-2"
+              />
+              <hr
+                class="m-0 my-2"
+              />
             </div>
           </div>
           <div>

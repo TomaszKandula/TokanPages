@@ -32,7 +32,6 @@ export const useXssWarning = (): void => {
         }
 
         const warning = data[0];
-        console.clear();
         console.log(
             "%c" + warning.caption,
             "color:" +

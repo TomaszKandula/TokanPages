@@ -7,3 +7,4 @@ export { GetImageUrl } from "./GetImageUrl/getImageUrl";
 export { MapLanguage } from "./MapLanguage";
 export { TryParse } from "./TryParse";
 export { ProcessQueryParams } from "./ProcessQueryParams";
+export { ToggleBodyScroll } from "./ToggleBodyScroll";
