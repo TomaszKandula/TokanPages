@@ -13,7 +13,7 @@ public interface IArticlesCache
     /// <param name="query">Options</param>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object</returns>
-    Task<GetAllArticlesQueryResult> GetArticles(GetArticlesQuery query, bool noCache = false);
+    Task<GetArticlesQueryResult> GetArticles(GetArticlesQuery query, bool noCache = false);
 
     /// <summary>
     /// Returns information for given article ID.

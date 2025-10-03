@@ -3,7 +3,7 @@ using TokanPages.Backend.Core.Paging;
 
 namespace TokanPages.Backend.Application.Articles.Queries;
 
-public class GetArticlesQuery : PagingInfo, IRequest<GetAllArticlesQueryResult>
+public class GetArticlesQuery : PagingInfo, IRequest<GetArticlesQueryResult>
 {
     public bool IsPublished { get; set; }
 

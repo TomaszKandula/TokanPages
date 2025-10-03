@@ -42,8 +42,8 @@ public class ArticlesController : ApiBaseController
     /// <returns>Object list.</returns>
     [HttpGet]
     [Route("[action]")]
-    [ProducesResponseType(typeof(GetAllArticlesQueryResult), StatusCodes.Status200OK)]
-    public async Task<GetAllArticlesQueryResult> GetArticles(
+    [ProducesResponseType(typeof(GetArticlesQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetArticlesQueryResult> GetArticles(
         [FromQuery] int pageNumber,
         [FromQuery] int pageSize,
         [FromQuery] string? phrase = null,
