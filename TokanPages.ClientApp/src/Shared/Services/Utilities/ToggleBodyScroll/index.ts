@@ -4,4 +4,4 @@ export const ToggleBodyScroll = (isBodyScrollEnabled: boolean): void => {
     } else {
         window.document.body.style.overflow = "hidden";
     }
-}
+};
