@@ -2,9 +2,9 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { GET_NON_VIDEO_ASSET } from "../../../../../../Api/Paths";
+import { ArticleDataDto } from "../../../../../../Api/Models";
 import { ArticleInfoAction } from "../../../../../../Store/Actions";
 import { ApplicationState } from "../../../../../../Store/Configuration";
-import { ArticleItemBase } from "../../../Models";
 import { TextItem } from "../../../Models/TextModel";
 import { useHash } from "../../../../../../Shared/Hooks";
 import {
@@ -23,6 +23,11 @@ import DOMPurify from "dompurify";
 import Validate from "validate.js";
 import { v4 as uuidv4 } from "uuid";
 import "./utilities.css";
+
+interface LinksProps {
+    value: string[];
+    loading?: TLoading;
+}
 
 interface DataProps {
     value?: string;
@@ -208,44 +213,40 @@ export const RenderInternalLink = (props: TextItem): React.ReactElement => {
     );
 };
 
-export const RenderArticleLink = (props: DataProps): React.ReactElement => {
+export const RenderArticleLink = (props: LinksProps): React.ReactElement => {
     const dispatch = useDispatch();
     const selection = useSelector((state: ApplicationState) => state.articleInfo);
-
-    const hasCollection = selection.collectedInfo && selection.collectedInfo?.length > 0;
-    const collectedInfo = selection.collectedInfo?.filter((value: ArticleItemBase) => value.id === props.value);
-    const hasInfo = collectedInfo !== undefined && collectedInfo.length === 1;
-
-    const [info, setInfo] = React.useState<ArticleItemBase | undefined>(undefined);
+    const hasCollection = selection.info.articles.length > 0;
 
     React.useEffect(() => {
-        if (props.value && props.value !== "" && !hasInfo) {
-            dispatch(ArticleInfoAction.get(props.value));
+        if (props.value && props.value.length > 0 && !hasCollection) {
+            dispatch(ArticleInfoAction.get({ articleIds: props.value, noCache: false }));
         }
-    }, [props.value, hasInfo]);
+    }, [props.value, hasCollection]);
 
     React.useEffect(() => {
-        if (!selection.isLoading && hasCollection && hasInfo) {
-            setInfo(collectedInfo[0]);
-        }
-    }, [props.value, selection.isLoading, hasCollection, hasInfo, collectedInfo]);
+        return () => { dispatch(ArticleInfoAction.clear()) };
+    }, []);
 
-    return selection.isLoading ? (
-        <ProgressBar />
-    ) : (
+    if (!selection.isLoading && !hasCollection) {
+        return <></>;
+    }
+
+    return selection.isLoading ? <ProgressBar /> : <>{selection.info.articles.map((value: ArticleDataDto, _index: number) => (
         <ArticleCard
-            id={info?.id ?? ""}
-            title={info?.title ?? ""}
-            description={info?.description ?? ""}
-            languageIso={info?.languageIso ?? ""}
+            key={uuidv4()}
+            id={value?.id ?? ""}
+            title={value?.title ?? ""}
+            description={value?.description ?? ""}
+            languageIso={value?.languageIso ?? ""}
             canAnimate={false}
             canDisplayDate={false}
             published=""
-            readCount={info?.readCount}
-            totalLikes={info?.totalLikes}
+            readCount={value?.readCount}
+            totalLikes={value?.totalLikes}
             loading={props.loading}
         />
-    );
+    ))}</>;
 };
 
 /* HEADER COMPONENT */
