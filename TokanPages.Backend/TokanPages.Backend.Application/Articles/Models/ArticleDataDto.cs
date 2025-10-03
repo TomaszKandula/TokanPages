@@ -1,5 +1,8 @@
-﻿namespace TokanPages.Backend.Application.Articles.Models;
+﻿using System.Diagnostics.CodeAnalysis;
 
+namespace TokanPages.Backend.Application.Articles.Models;
+
+[ExcludeFromCodeCoverage]
 public class ArticleDataDto
 {
     public Guid Id { get; set; }
