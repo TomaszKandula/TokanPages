@@ -13,7 +13,6 @@ const API_NON_VIDEO_ASSETS_URI = `${API_ASSETS_URI}/getNonVideoAsset`;
 
 export const LOG_MESSAGE = `${API_LOGGER_URI}/logMessage`;
 
-export const GET_ARTICLE_INFO = `${API_ARTICLES_URI}/{id}/getArticleInfo`;
 export const GET_ARTICLES = `${API_ARTICLES_URI}/getArticles`;
 export const GET_ARTICLE = `${API_ARTICLES_URI}/{id}/getArticle`;
 export const GET_ARTICLE_BY_TITLE = `${API_ARTICLES_URI}/{title}/getArticle`;
@@ -22,6 +21,7 @@ export const UPDATE_ARTICLE_CONTENT = `${API_ARTICLES_URI}/updateArticleContent`
 export const UPDATE_ARTICLE_COUNT = `${API_ARTICLES_URI}/updateArticleCount`;
 export const UPDATE_ARTICLE_LIKES = `${API_ARTICLES_URI}/updateArticleLikes`;
 export const UPDATE_ARTICLE_VISIBILITY = `${API_ARTICLES_URI}/updateArticleVisibility`;
+export const RETRIEVE_ARTICLE_INFO = `${API_ARTICLES_URI}/retrieveArticleInfo`;
 export const REMOVE_ARTICLE = `${API_ARTICLES_URI}/removeArticle`;
 
 export const ACTIVATE_USER = `${API_USERS_URI}/activateUser`;
