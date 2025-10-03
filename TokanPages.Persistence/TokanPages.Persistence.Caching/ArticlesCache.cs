@@ -1,7 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using Microsoft.Extensions.Hosting;
+using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Application.Articles.Queries;
+using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
 
@@ -19,17 +21,21 @@ public class ArticlesCache : IArticlesCache
 
     private readonly IMediator _mediator;
 
+    private readonly IJsonSerializer _jsonSerializer;
+
     /// <summary>
     /// Articles cache implementation
     /// </summary>
     /// <param name="redisDistributedCache">Redis distributed cache instance</param>
     /// <param name="environment">Host environment instance</param>
     /// <param name="mediator">Mediator instance</param>
-    public ArticlesCache(IRedisDistributedCache redisDistributedCache, IMediator mediator, IHostEnvironment environment)
+    /// <param name="jsonSerializer">JSON Serializer instance</param>
+    public ArticlesCache(IRedisDistributedCache redisDistributedCache, IMediator mediator, IHostEnvironment environment, IJsonSerializer jsonSerializer)
     {
         _redisDistributedCache = redisDistributedCache;
         _mediator = mediator;
         _environment = environment;
+        _jsonSerializer = jsonSerializer;
     }
 
     /// <inheritdoc />
@@ -44,22 +50,6 @@ public class ArticlesCache : IArticlesCache
         if (value is not null) return value;
 
         value = await _mediator.Send(query);
-        await _redisDistributedCache.SetObjectAsync(key, value);
-
-        return value;
-    }
-
-    /// <inheritdoc />
-    public async Task<GetArticleInfoQueryResult> GetArticleInfo(Guid id, bool noCache = false)
-    {
-        if (noCache)
-            return await _mediator.Send(new GetArticleInfoQuery { Id = id });
-
-        var key = $"{_environment.EnvironmentName}:article:info:{id}";
-        var value = await _redisDistributedCache.GetObjectAsync<GetArticleInfoQueryResult>(key);
-        if (value is not null) return value;
-
-        value = await _mediator.Send(new GetArticleInfoQuery { Id = id });
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;
@@ -92,6 +82,23 @@ public class ArticlesCache : IArticlesCache
         if (value is not null) return value;
 
         value = await _mediator.Send(new GetArticleQuery { Title = title });
+        await _redisDistributedCache.SetObjectAsync(key, value);
+
+        return value;
+    }
+
+    /// <inheritdoc />
+    public async Task<RetrieveArticleInfoCommandResult> RetrieveArticleInfo(List<Guid> articleIds, bool noCache = false)
+    {
+        if (noCache)
+            return await _mediator.Send(new RetrieveArticleInfoCommand { ArticleIds = articleIds });
+
+        var list = _jsonSerializer.Serialize(articleIds);
+        var key = $"{_environment.EnvironmentName}:article:info:ids:{list}";
+        var value = await _redisDistributedCache.GetObjectAsync<RetrieveArticleInfoCommandResult>(key);
+        if (value is not null) return value;
+
+        value = await _mediator.Send(new RetrieveArticleInfoCommand { ArticleIds = articleIds });
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;
