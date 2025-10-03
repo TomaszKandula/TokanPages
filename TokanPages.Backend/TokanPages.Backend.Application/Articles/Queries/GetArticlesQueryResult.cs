@@ -1,24 +1,9 @@
-﻿namespace TokanPages.Backend.Application.Articles.Queries;
+using TokanPages.Backend.Application.Articles.Models;
+using TokanPages.Backend.Core.Paging;
 
-public class GetArticlesQueryResult
+namespace TokanPages.Backend.Application.Articles.Queries;
+
+public class GetArticlesQueryResult : PagingResults<ArticleDataDto>
 {
-    public Guid Id { get; set; }
-
-    public string CategoryName { get; set; } = "";
-
-    public string Title { get; set; } = "";
-
-    public string Description { get; set; } = "";
-
-    public bool IsPublished { get; set; }
-
-    public int ReadCount { get; set; }
-
-    public int TotalLikes { get; set; }
-
-    public DateTime CreatedAt { get; set; }
-
-    public DateTime? UpdatedAt { get; set; }
-
-    public string? LanguageIso { get; set; }
+    public List<ArticleCategoryDto>  ArticleCategories { get; set; } = new();
 }

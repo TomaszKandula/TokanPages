@@ -7,13 +7,13 @@ using TokanPages.Persistence.Database;
 
 namespace TokanPages.Backend.Application.Articles.Queries;
 
-public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResult, GetArticlesQuery, GetAllArticlesQueryResult>
+public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetArticlesQuery, GetArticlesQueryResult>
 {
     public GetArticlesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
 
-    public override IDictionary<string, Expression<Func<GetArticlesQueryResult, object>>> GetOrderingExpressions() => GetSortingConfig();
+    public override IDictionary<string, Expression<Func<ArticleDataDto, object>>> GetOrderingExpressions() => GetSortingConfig();
 
-    public override async Task<GetAllArticlesQueryResult> Handle(GetArticlesQuery request, CancellationToken cancellationToken)
+    public override async Task<GetArticlesQueryResult> Handle(GetArticlesQuery request, CancellationToken cancellationToken)
     {
         var foundArticleIds = await GetSearchResult(request.SearchTerm, cancellationToken);
         var hasIds = foundArticleIds != null && foundArticleIds.Count != 0;
@@ -25,7 +25,7 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
             .Where(articles => articles.IsPublished == request.IsPublished)
             .WhereIf(hasIds, articles => foundArticleIds!.Contains(articles.Id))
             .WhereIf(hasCategoryId, articles => articles.ArticleCategory.Id == request.CategoryId)
-            .Select(articles => new GetArticlesQueryResult
+            .Select(articles => new ArticleDataDto
             { 
                 Id = articles.Id,
                 CategoryName = articles.ArticleCategory.CategoryName,
@@ -54,7 +54,7 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
             })
             .ToListAsync(cancellationToken);
 
-        return new GetAllArticlesQueryResult
+        return new GetArticlesQueryResult
         {
             PagingInfo = request,
             TotalSize = totalSize,
@@ -86,13 +86,13 @@ public class GetArticlesQueryHandler : TableRequestHandler<GetArticlesQueryResul
         return new HashSet<Guid>(articleIds);
     }
 
-    private static Dictionary<string, Expression<Func<GetArticlesQueryResult, object>>> GetSortingConfig()
+    private static Dictionary<string, Expression<Func<ArticleDataDto, object>>> GetSortingConfig()
     {
-        return new Dictionary<string, Expression<Func<GetArticlesQueryResult, object>>>(StringComparer.OrdinalIgnoreCase)
+        return new Dictionary<string, Expression<Func<ArticleDataDto, object>>>(StringComparer.OrdinalIgnoreCase)
         {
-            {nameof(GetArticlesQueryResult.Title), articlesQueryResult => articlesQueryResult.Title},
-            {nameof(GetArticlesQueryResult.Description), articlesQueryResult => articlesQueryResult.Description},
-            {nameof(GetArticlesQueryResult.CreatedAt), articlesQueryResult => articlesQueryResult.CreatedAt}
+            {nameof(ArticleDataDto.Title), articlesQueryResult => articlesQueryResult.Title},
+            {nameof(ArticleDataDto.Description), articlesQueryResult => articlesQueryResult.Description},
+            {nameof(ArticleDataDto.CreatedAt), articlesQueryResult => articlesQueryResult.CreatedAt}
         };
     }
 }

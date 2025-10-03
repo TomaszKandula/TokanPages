@@ -1,3 +1,4 @@
+using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Application.Articles.Queries;
 
 namespace TokanPages.Persistence.Caching.Abstractions;
@@ -13,15 +14,7 @@ public interface IArticlesCache
     /// <param name="query">Options</param>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object</returns>
-    Task<GetAllArticlesQueryResult> GetArticles(GetArticlesQuery query, bool noCache = false);
-
-    /// <summary>
-    /// Returns information for given article ID.
-    /// </summary>
-    /// <param name="id">Article ID</param>
-    /// <param name="noCache">Enable/disable REDIS cache</param>
-    /// <returns>Object</returns>
-    Task<GetArticleInfoQueryResult> GetArticleInfo(Guid id, bool noCache = false);
+    Task<GetArticlesQueryResult> GetArticles(GetArticlesQuery query, bool noCache = false);
 
     /// <summary>
     /// Returns single article
@@ -38,4 +31,12 @@ public interface IArticlesCache
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object</returns>
     Task<GetArticleQueryResult> GetArticle(string title, bool noCache = false);
+
+    /// <summary>
+    /// Returns information for given article IDs.
+    /// </summary>
+    /// <param name="articleIds">List of given article IDs</param>
+    /// <param name="noCache">Enable/disable REDIS cache</param>
+    /// <returns>List of article info</returns>
+    Task<RetrieveArticleInfoCommandResult> RetrieveArticleInfo(List<Guid> articleIds, bool noCache = false);
 }

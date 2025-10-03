@@ -1,6 +1,6 @@
-import { ArticleItemBase } from "../../../Shared/Components/RenderContent/Models";
+import { RetrieveArticleInfoResponseDto } from "../../../Api/Models";
 
 export interface ArticleInfoState {
     isLoading: boolean;
-    collectedInfo: ArticleItemBase[] | undefined;
+    info: RetrieveArticleInfoResponseDto;
 }

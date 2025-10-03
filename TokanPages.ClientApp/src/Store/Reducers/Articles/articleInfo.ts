@@ -2,8 +2,7 @@ import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { ArticleInfoState } from "../../States";
 
-import { TKnownActions, RECEIVE, REQUEST } from "../../Actions/Articles/articleInfo";
-import { ArticleItemBase } from "../../../Shared/Components/RenderContent/Models";
+import { TKnownActions, RECEIVE, REQUEST, CLEAR } from "../../Actions/Articles/articleInfo";
 
 export const ArticleInfo: Reducer<ArticleInfoState> = (
     state: ArticleInfoState | undefined,
@@ -16,22 +15,25 @@ export const ArticleInfo: Reducer<ArticleInfoState> = (
         case REQUEST:
             return {
                 isLoading: true,
-                collectedInfo: [],
+                info: {
+                    articles: [],
+                },
             };
 
         case RECEIVE:
-            let data = [];
-            if (state.collectedInfo && state.collectedInfo.length > 0) {
-                data = { ...state.collectedInfo };
-                data = data.filter((value: ArticleItemBase) => value.id !== action.payload.id);
-                data.push(action.payload);
-            } else {
-                data.push(action.payload);
-            }
-
             return {
                 isLoading: false,
-                collectedInfo: data,
+                info: {
+                    articles: action.payload.articles,
+                },
+            };
+
+        case CLEAR:
+            return {
+                isLoading: false,
+                info: {
+                    articles: [],
+                },
             };
 
         default:

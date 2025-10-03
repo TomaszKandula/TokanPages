@@ -1,26 +1,24 @@
 using FluentAssertions;
 using Moq;
-using TokanPages.Backend.Application.Articles.Queries;
-using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Article;
 using TokanPages.Backend.Domain.Entities.User;
-using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
-public class GetArticleInfoQueryHandlerTest : TestBase
+public class RetrieveArticleInfoCommandHandlerTest : TestBase
 {
     private const string UserAlias = "Victoria";
 
     private const string IpAddressFirst = "255.255.255.255";
-        
+
     private const string IpAddressSecond = "1.1.1.1";
 
     [Fact]
-    public async Task GivenCorrectId_WhenGetArticleInfo_ShouldReturnEntity() 
+    public async Task GivenCorrectIds_WhenRetrieveArticleInfo_ShouldReturnEntities() 
     {
         // Arrange
         var testDate = DateTime.Now;
@@ -100,8 +98,15 @@ public class GetArticleInfoQueryHandlerTest : TestBase
             .Setup(provider => provider.GetRequestIpAddress())
             .Returns(IpAddressFirst);
 
-        var query = new GetArticleInfoQuery { Id = articles.Id };
-        var handler = new GetArticleInfoQueryHandler(
+        var query = new RetrieveArticleInfoCommand 
+        { 
+            ArticleIds = new List<Guid>
+            {
+                articles.Id
+            }
+        };
+
+        var handler = new RetrieveArticleInfoCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedUserProvider.Object);
@@ -111,63 +116,15 @@ public class GetArticleInfoQueryHandlerTest : TestBase
 
         // Assert
         result.Should().NotBeNull();
-        result.Title.Should().Be(articles.Title);
-        result.Description.Should().Be(articles.Description);
-        result.IsPublished.Should().BeFalse();
-        result.ReadCount.Should().Be(articles.ReadCount);
-        result.UserLikes.Should().Be(10);
-        result.UpdatedAt.Should().BeNull();
-        result.CreatedAt.Should().Be(testDate);
-        result.TotalLikes.Should().Be(25);
-    }
-
-    [Fact]
-    public async Task GivenIncorrectId_WhenGetArticleInfo_ShouldThrowError()
-    {
-        // Arrange
-        var users = new Backend.Domain.Entities.User.Users
-        {
-            Id = Guid.NewGuid(),
-            IsActivated = true,
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            CryptedPassword = DataUtilityService.GetRandomString()
-        };
-
-        var articles = new Backend.Domain.Entities.Article.Articles
-        {
-            Id = Guid.NewGuid(),
-            Title = DataUtilityService.GetRandomString(),
-            Description = DataUtilityService.GetRandomString(),
-            IsPublished = false,
-            ReadCount = 0,
-            CreatedAt = DateTime.Now,
-            UpdatedAt = null,
-            UserId = users.Id,
-            LanguageIso = "ENG"
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.Articles.AddAsync(articles);
-        await databaseContext.SaveChangesAsync();
-
-        var mockedUserProvider = new Mock<IUserService>();
-        var mockedLogger = new Mock<ILoggerService>();
-
-        mockedUserProvider
-            .Setup(provider => provider.GetRequestIpAddress())
-            .Returns(IpAddressFirst);
-
-        var query = new GetArticleInfoQuery { Id = Guid.NewGuid() };
-        var handler = new GetArticleInfoQueryHandler(
-            databaseContext, 
-            mockedLogger.Object,
-            mockedUserProvider.Object);
-
-        // Act
-        // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(query, CancellationToken.None));
-        result.ErrorCode.Should().Contain(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS));
+        result.Articles.Should().NotBeNull();
+        result.Articles.Count.Should().Be(1);
+        result.Articles[0].CategoryName.Should().Be(categories.CategoryName);
+        result.Articles[0].Title.Should().Be(articles.Title);
+        result.Articles[0].Description.Should().Be(articles.Description);
+        result.Articles[0].IsPublished.Should().BeFalse();
+        result.Articles[0].ReadCount.Should().Be(articles.ReadCount);
+        result.Articles[0].UpdatedAt.Should().BeNull();
+        result.Articles[0].CreatedAt.Should().Be(testDate);
+        result.Articles[0].TotalLikes.Should().Be(25);
     }
 }
