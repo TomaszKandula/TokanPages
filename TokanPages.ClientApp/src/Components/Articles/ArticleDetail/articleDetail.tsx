@@ -130,7 +130,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
             renderSmallAvatar={
                 <UserAvatar
                     userId={author.userId}
-                    size={FigoureSize.extralarge}
+                    size={FigoureSize.medium}
                     avatarName={author.avatarName}
                     userLetter={userLetter}
                     altSource={fallbackImagePath}
