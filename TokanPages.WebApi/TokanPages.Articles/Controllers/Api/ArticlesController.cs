@@ -7,6 +7,7 @@ using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Articles.Controllers.Mappers;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Articles.Dto.Articles;
+using TokanPages.Backend.Application.Articles.Commands;
 
 namespace TokanPages.Articles.Controllers.Api;
 
@@ -62,18 +63,6 @@ public class ArticlesController : ApiBaseController
             OrderByColumn = orderByColumn!,
             OrderByAscending = orderByAscending
         }, noCache);
-
-    /// <summary>
-    /// Returns information for given article ID.
-    /// </summary>
-    /// <param name="id">Article ID.</param>
-    /// <param name="noCache">Enable/disable REDIS cache.</param>
-    /// <returns>Object.</returns>
-    [HttpGet]
-    [Route("{id:guid}/[action]")]
-    [ProducesResponseType(typeof(GetArticleInfoQueryResult), StatusCodes.Status200OK)]
-    public async Task<GetArticleInfoQueryResult> GetArticleInfo([FromRoute] Guid id, [FromQuery] bool noCache = false)
-        => await _articlesCache.GetArticleInfo(id, noCache);
 
     /// <summary>
     /// Returns single article.
@@ -156,6 +145,17 @@ public class ArticlesController : ApiBaseController
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> UpdateArticleVisibility([FromBody] UpdateArticleVisibilityDto payload)
         => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payload));
+
+    /// <summary>
+    /// Returns information for given article IDs.
+    /// </summary>
+    /// <param name="payload">List of article IDs.</param>
+    /// <returns>List of article info.</returns>
+    [HttpPost]
+    [Route("[action]")]
+    [ProducesResponseType(typeof(RetrieveArticleInfoCommandResult), StatusCodes.Status200OK)]
+    public async Task<RetrieveArticleInfoCommandResult> RetrieveArticleInfo(RetrieveArticleInfoDto payload)
+        => await _articlesCache.RetrieveArticleInfo(payload.ArticleIds, payload.NoCache);
 
     /// <summary>
     /// Removes existing article.
