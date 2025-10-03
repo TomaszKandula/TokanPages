@@ -225,28 +225,36 @@ export const RenderArticleLink = (props: LinksProps): React.ReactElement => {
     }, [props.value, hasCollection]);
 
     React.useEffect(() => {
-        return () => { dispatch(ArticleInfoAction.clear()) };
+        return () => {
+            dispatch(ArticleInfoAction.clear());
+        };
     }, []);
 
     if (!selection.isLoading && !hasCollection) {
         return <></>;
     }
 
-    return selection.isLoading ? <ProgressBar /> : <>{selection.info.articles.map((value: ArticleDataDto, _index: number) => (
-        <ArticleCard
-            key={uuidv4()}
-            id={value?.id ?? ""}
-            title={value?.title ?? ""}
-            description={value?.description ?? ""}
-            languageIso={value?.languageIso ?? ""}
-            canAnimate={false}
-            canDisplayDate={false}
-            published=""
-            readCount={value?.readCount}
-            totalLikes={value?.totalLikes}
-            loading={props.loading}
-        />
-    ))}</>;
+    return selection.isLoading ? (
+        <ProgressBar />
+    ) : (
+        <>
+            {selection.info.articles.map((value: ArticleDataDto, _index: number) => (
+                <ArticleCard
+                    key={uuidv4()}
+                    id={value?.id ?? ""}
+                    title={value?.title ?? ""}
+                    description={value?.description ?? ""}
+                    languageIso={value?.languageIso ?? ""}
+                    canAnimate={false}
+                    canDisplayDate={false}
+                    published=""
+                    readCount={value?.readCount}
+                    totalLikes={value?.totalLikes}
+                    loading={props.loading}
+                />
+            ))}
+        </>
+    );
 };
 
 /* HEADER COMPONENT */

@@ -41,5 +41,5 @@ export const ArticleInfoAction = {
         },
     clear: (): ApplicationAction<TKnownActions> => (dispatch, _getState) => {
         dispatch({ type: CLEAR });
-    }
+    },
 };

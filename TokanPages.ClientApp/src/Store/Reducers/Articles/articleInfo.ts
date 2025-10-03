@@ -15,7 +15,7 @@ export const ArticleInfo: Reducer<ArticleInfoState> = (
         case REQUEST:
             return {
                 isLoading: true,
-                info: { 
+                info: {
                     articles: [],
                 },
             };
@@ -28,12 +28,12 @@ export const ArticleInfo: Reducer<ArticleInfoState> = (
                 },
             };
 
-        case CLEAR: 
+        case CLEAR:
             return {
                 isLoading: false,
                 info: {
                     articles: [],
-                }
+                },
             };
 
         default:
