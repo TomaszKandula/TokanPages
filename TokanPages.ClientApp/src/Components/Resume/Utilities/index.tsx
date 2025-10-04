@@ -10,6 +10,14 @@ export const ProcessTimeSpan = (props: ProcessTimeSpanProps): React.ReactElement
         const years = Math.floor(props.months / 12);
         const month = props.months % 12;
 
+        if (month === 0) {
+            return (
+                <>
+                    {years} {years > 1 ? props.yearsLabel : props.yearLabel}
+                </>
+            );
+        }
+
         return (
             <>
                 {years} {years > 1 ? props.yearsLabel : props.yearLabel} {month}{" "}
