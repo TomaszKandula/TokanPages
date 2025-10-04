@@ -58,5 +58,5 @@ export const useArticleQuery = (): UsePageProps => {
     return {
         title: title,
         page: page,
-    }
-}
+    };
+};
