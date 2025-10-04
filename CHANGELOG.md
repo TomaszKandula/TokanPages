@@ -1,3 +1,42 @@
+# [0.174.0](https://github.com/TomaszKandula/TokanPages/compare/v0.173.0...v0.174.0) (2025-10-04)
+
+
+### Bug Fixes
+
+* resolve month zero issue ([f511ff6](https://github.com/TomaszKandula/TokanPages/commit/f511ff66a778d219a9911fdcf353b651bce4a774))
+
+
+### Features
+
+* add article query hook to handle page number ([8bdfb75](https://github.com/TomaszKandula/TokanPages/commit/8bdfb75a5b6e2002e143af536d1303d27152a5a8))
+* add command ([9c16ce6](https://github.com/TomaszKandula/TokanPages/commit/9c16ce6d52384d2c1ac5998bc6ba8721078b2205))
+* add command result ([ecec37a](https://github.com/TomaszKandula/TokanPages/commit/ecec37a0761e34697502003f0de4dfb6242df74d))
+* add DTO model ([cae7264](https://github.com/TomaszKandula/TokanPages/commit/cae72641bee22660452334369d281bb0932ad60e))
+* add models ([6ce2197](https://github.com/TomaszKandula/TokanPages/commit/6ce219728761eccd4a3aca2dfbbc97df2a5853cb))
+* add page URL query helpers ([e400a17](https://github.com/TomaszKandula/TokanPages/commit/e400a17edfb3288c8ab486b004f7e1618861e944))
+* add test, remove unnecessary test ([764b875](https://github.com/TomaszKandula/TokanPages/commit/764b875e50bdfee6379f0f8a0f57dec627e879f6))
+* add utility function ([cb5d68b](https://github.com/TomaszKandula/TokanPages/commit/cb5d68bdbfcd15a8d7cf09c7d18e475754f882cf))
+* add validator ([25cd538](https://github.com/TomaszKandula/TokanPages/commit/25cd538609db7a2fc177c060f36f7462ee60a100))
+* add Y paddings to breadcrumb item ([2fe23a3](https://github.com/TomaszKandula/TokanPages/commit/2fe23a3a7f9cab58a09cbcf39bb39deb6b7377e1))
+* allow document page to be cached ([932234e](https://github.com/TomaszKandula/TokanPages/commit/932234e18bce76198525d2fa4497dcaa5a4910f0))
+* change API path ([3c88a8f](https://github.com/TomaszKandula/TokanPages/commit/3c88a8f763ea90ff5f8039ed85c01f79be447292))
+* change cache method for retrieving article info ([d23b0bb](https://github.com/TomaszKandula/TokanPages/commit/d23b0bbc9c623d2b7d2e29e64a100447c01574e5))
+* change endpoint ([443a124](https://github.com/TomaszKandula/TokanPages/commit/443a12485bf02b3d01f90b982620904bbdeef4c6))
+* change icon size ([3dbc16d](https://github.com/TomaszKandula/TokanPages/commit/3dbc16d297e12e3c230763bf6943862ceb3b9bb2))
+* change margins and container size ([5a28466](https://github.com/TomaszKandula/TokanPages/commit/5a2846626d51ba4c5809e2fe4e72d0a28a3bd21c))
+* change redux action ([2495d8d](https://github.com/TomaszKandula/TokanPages/commit/2495d8dcd90fb37b2c8ec8dfe5ad9d1f915101e6))
+* change renderer to accept list ([aac651a](https://github.com/TomaszKandula/TokanPages/commit/aac651abfc029da78259cdf7b8aa54a444c4fb81))
+* change validator ([5817ace](https://github.com/TomaszKandula/TokanPages/commit/5817ace7cbf47799f9327b2335e469f4666fc5cf))
+* exclude from code coverage ([201cafd](https://github.com/TomaszKandula/TokanPages/commit/201cafdef4892ca20f4b641f46e7be0361c43b20))
+* handle article page from query param ([e60bbc8](https://github.com/TomaszKandula/TokanPages/commit/e60bbc883e17dfd815f61e80e757f84ae9c0617c))
+* pass language ID to avoid snapshot path (SPA caching mechanism) ([ecdc2b9](https://github.com/TomaszKandula/TokanPages/commit/ecdc2b9ca181729d8d95699499869755cd323b63))
+* remove console clear ([8e00564](https://github.com/TomaszKandula/TokanPages/commit/8e00564cddc34bbf5f0b217e7720cb6c878fa61f))
+* remove unused code ([7ade5d2](https://github.com/TomaszKandula/TokanPages/commit/7ade5d27f3be9314325f55a496dbb4b292cfda20))
+* restyle article details top header ([970b944](https://github.com/TomaszKandula/TokanPages/commit/970b9447473b8f0a8941e4acd68b262b00d1b2db))
+* rewrite handler ([79cc52f](https://github.com/TomaszKandula/TokanPages/commit/79cc52fb0be7e19f2ce0bde32d8509e109f92fa1))
+* update tags ([5a7a2fa](https://github.com/TomaszKandula/TokanPages/commit/5a7a2fa9c61a1d6de4073105aed89ea8a5423d2c))
+* use query param for page current number ([2499c71](https://github.com/TomaszKandula/TokanPages/commit/2499c71cb27e9f72c9b65243db78f1a2b775e0f1))
+
 # [0.173.0](https://github.com/TomaszKandula/TokanPages/compare/v0.172.0...v0.173.0) (2025-09-29)
 
 
