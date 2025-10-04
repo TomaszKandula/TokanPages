@@ -35,6 +35,10 @@
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
+		<loc>https://tomkandula.com/en/document</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
 		<loc>https://tomkandula.com/en/leisure/bicycle</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
@@ -89,6 +93,10 @@
 	</url>
 	<url>
 		<loc>https://tomkandula.com/pl/showcase</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/pl/document</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
@@ -149,6 +157,10 @@
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
+		<loc>https://tomkandula.com/es/document</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
 		<loc>https://tomkandula.com/es/leisure/bicycle</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
@@ -203,6 +215,10 @@
 	</url>
 	<url>
 		<loc>https://tomkandula.com/uk/showcase</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/uk/document</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
@@ -263,6 +279,10 @@
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>
+		<loc>https://tomkandula.com/de/document</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
 		<loc>https://tomkandula.com/de/leisure/bicycle</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
@@ -317,6 +337,10 @@
 	</url>
 	<url>
 		<loc>https://tomkandula.com/fr/showcase</loc>
+		<lastmod>{{TIMESTAMP}}</lastmod>
+	</url>
+	<url>
+		<loc>https://tomkandula.com/fr/document</loc>
 		<lastmod>{{TIMESTAMP}}</lastmod>
 	</url>
 	<url>

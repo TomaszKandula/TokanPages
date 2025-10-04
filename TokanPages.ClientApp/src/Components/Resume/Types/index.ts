@@ -8,6 +8,7 @@ export interface ProcessedExperienceItemProps extends ExperienceItemProps {
 
 export interface ResumeViewProps extends ViewProperties {
     className?: string;
+    languageId: string;
     page: ResumeContentDto;
     section: TestimonialsContentDto;
     processed: ProcessedExperienceItemProps[];

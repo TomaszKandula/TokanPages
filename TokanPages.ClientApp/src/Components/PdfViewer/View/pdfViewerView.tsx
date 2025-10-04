@@ -44,7 +44,7 @@ const RenderIconOrLoading = (props: RenderIconOrErrorProps): React.ReactElement 
 
 const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => (
     <section className={props.className}>
-        <div className="bulma-container bulma-is-max-desktop">
+        <div className="bulma-container bulma-is-max-desktop mb-6">
             <div className="py-6">
                 <div className="bulma-card m-4">
                     <div className="bulma-card-content p-0">
@@ -81,7 +81,7 @@ const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => (
 
 const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement => (
     <section className={props.className}>
-        <div className="bulma-container">
+        <div className="bulma-container bulma-is-max-tablet mb-6">
             <div className="py-6">
                 <CustomCard
                     isLoading={props?.content?.isLoading}
@@ -97,7 +97,7 @@ const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement =
 
 const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => (
     <section className={props.className}>
-        <div className="bulma-container">
+        <div className="bulma-container bulma-is-max-tablet mb-6">
             <div className="py-6">
                 <CustomCard
                     isLoading={props?.content?.isLoading}

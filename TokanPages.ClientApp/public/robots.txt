@@ -36,7 +36,7 @@ Allow: /en/about/story
 Disallow: /en/legal/terms
 Disallow: /en/legal/policy
 Disallow: /en/contact
-Disallow: /en/document
+Allow: /en/document
 Disallow: /en/newsletter/update
 Disallow: /en/newsletter/remove
 Allow: /en/account/signin
@@ -64,7 +64,7 @@ Allow: /pl/about/story
 Disallow: /pl/legal/terms
 Disallow: /pl/legal/policy
 Disallow: /pl/contact
-Disallow: /pl/document
+Allow: /pl/document
 Disallow: /pl/newsletter/update
 Disallow: /pl/newsletter/remove
 Allow: /pl/account/signin
@@ -92,7 +92,7 @@ Allow: /es/about/story
 Disallow: /es/legal/terms
 Disallow: /es/legal/policy
 Disallow: /es/contact
-Disallow: /es/document
+Allow: /es/document
 Disallow: /es/newsletter/update
 Disallow: /es/newsletter/remove
 Allow: /es/account/signin
@@ -120,7 +120,7 @@ Allow: /uk/about/story
 Disallow: /uk/legal/terms
 Disallow: /uk/legal/policy
 Disallow: /uk/contact
-Disallow: /uk/document
+Allow: /uk/document
 Disallow: /uk/newsletter/update
 Disallow: /uk/newsletter/remove
 Allow: /uk/account/signin
@@ -148,7 +148,7 @@ Allow: /de/about/story
 Disallow: /de/legal/terms
 Disallow: /de/legal/policy
 Disallow: /de/contact
-Disallow: /de/document
+Allow: /de/document
 Disallow: /de/newsletter/update
 Disallow: /de/newsletter/remove
 Allow: /de/account/signin
@@ -176,7 +176,7 @@ Allow: /fr/about/story
 Disallow: /fr/legal/terms
 Disallow: /fr/legal/policy
 Disallow: /fr/contact
-Disallow: /fr/document
+Allow: /fr/document
 Disallow: /fr/newsletter/update
 Disallow: /fr/newsletter/remove
 Allow: /fr/account/signin
