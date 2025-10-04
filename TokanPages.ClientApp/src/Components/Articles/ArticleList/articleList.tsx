@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { ArticleCategory } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
-import { useDimensions, useQuery } from "../../../Shared/Hooks";
+import { useDimensions } from "../../../Shared/Hooks";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ARTICLES_PAGE_SIZE, ARTICLES_SELECT_ALL_ID } from "../../../Shared/constants";
+import { UpdatePageParam } from "../../../Shared/Services/Utilities";
 import { ArticleListProps, SearchInputProps } from "./Types";
 import { ArticleListView } from "./View/articleListView";
 import Validate from "validate.js";
@@ -16,32 +17,13 @@ const BaseRequest = {
     noCache: false,
 };
 
-const getPage = (page: string | null): number => {
-    if (!Validate.isNumber(page)) {
-        return 1;
-    }
-
-    return parseInt(page!);
-}
-
-const setPage = (page: number): void => {
-    window.history.pushState({}, "", `${window.location.href}?page=${page}`);
-}
-
-const updatePage = (page: number): void => {
-    const base = `${window.location.origin}${window.location.pathname}`;
-    window.history.replaceState({}, "", `${base}?page=${page}`);
-}
-
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
-    const queryParam = useQuery();
     const media = useDimensions();
     const dispatch = useDispatch();
     const article = useSelector((state: ApplicationState) => state.articleListing);
     const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageArticles);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isContentLoading = data.isLoading;
-    const page = queryParam.get("page");
 
     const [form, setForm] = React.useState<SearchInputProps>({ searchInput: "" });
     const [categories, setCategories] = React.useState<ArticleCategory[] | undefined>(undefined);
@@ -72,7 +54,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
     const onClickChangePage = React.useCallback(
         (page: number) => {
-            updatePage(page);
+            UpdatePageParam(page);
             dispatch(
                 ArticleListingAction.get({
                     ...BaseRequest,
@@ -104,7 +86,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
     const onClickSearch = React.useCallback(() => {
         const pagingInfo = article.payload.pagingInfo;
-        updatePage(pagingInfo.pageNumber);
+        UpdatePageParam(pagingInfo.pageNumber);
         dispatch(
             ArticleListingAction.get({
                 ...BaseRequest,
@@ -149,18 +131,18 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             return;
         }
 
-        if (article.payload.results.length === 0) {
+        if (props.page > 0 && article.payload.results.length === 0) {
             dispatch(
                 ArticleListingAction.get({
                     ...BaseRequest,
-                    pageNumber: getPage(page),
+                    pageNumber: props.page,
                     pageSize: ARTICLES_PAGE_SIZE,
                     categoryId: selection,
                     orderByAscending: isOrderByAscending,
                 })
             );
         }
-    }, [article.isLoading, article.payload.results, form.searchInput, isOrderByAscending, selection, page]);
+    }, [article.isLoading, article.payload.results, form.searchInput, props.page, isOrderByAscending, selection]);
 
     /* SORTING  AZ | ZA */
     React.useEffect(() => {
@@ -184,7 +166,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         if (isCategoryChanged) {
             setIsCategoryChanged(false);
             const pagingInfo = article.payload.pagingInfo;
-            updatePage(pagingInfo.pageNumber);
+            UpdatePageParam(pagingInfo.pageNumber);
             dispatch(
                 ArticleListingAction.get({
                     ...BaseRequest,
@@ -216,13 +198,6 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             setCategories(data);
         }
     }, [categories, article.payload.articleCategories, content.labels.textSelectAll]);
-
-    /* FALLBACK TO PAGE 1 */
-    React.useEffect(() => {
-        if (page === null || Validate.isEmpty(page)) {
-            setPage(1);
-        }
-    }, [page]);
 
     /* SORTING MECHANISM */
     React.useEffect(() => {

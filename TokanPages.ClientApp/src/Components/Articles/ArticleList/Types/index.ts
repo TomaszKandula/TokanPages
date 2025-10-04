@@ -44,14 +44,18 @@ export interface TextProps {
     placeholder: string;
 }
 
-export interface ArticleListProps {
+export interface ArticleListProps extends ArticleStyleProps {
+    page: number;
+}
+
+export interface ArticleStyleProps {
     className?: string;
 }
 
 export interface ArticleListViewProps
     extends ViewProperties,
         ArticlesProps,
-        ArticleListProps,
+        ArticleStyleProps,
         TextProps,
         ButtonsProps,
         RenderSortProps {
