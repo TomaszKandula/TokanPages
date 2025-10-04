@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ArticleCategory } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
-import { useDimensions } from "../../../Shared/Hooks";
+import { useDimensions, useQuery } from "../../../Shared/Hooks";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import { ARTICLES_PAGE_SIZE, ARTICLES_SELECT_ALL_ID } from "../../../Shared/constants";
 import { ArticleListProps, SearchInputProps } from "./Types";
@@ -16,13 +16,32 @@ const BaseRequest = {
     noCache: false,
 };
 
+const getPage = (page: string | null): number => {
+    if (!Validate.isNumber(page)) {
+        return 1;
+    }
+
+    return parseInt(page!);
+}
+
+const setPage = (page: number): void => {
+    window.history.pushState({}, "", `${window.location.href}?page=${page}`);
+}
+
+const updatePage = (page: number): void => {
+    const base = `${window.location.origin}${window.location.pathname}`;
+    window.history.replaceState({}, "", `${base}?page=${page}`);
+}
+
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
+    const queryParam = useQuery();
     const media = useDimensions();
     const dispatch = useDispatch();
     const article = useSelector((state: ApplicationState) => state.articleListing);
     const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageArticles);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
     const isContentLoading = data.isLoading;
+    const page = queryParam.get("page");
 
     const [form, setForm] = React.useState<SearchInputProps>({ searchInput: "" });
     const [categories, setCategories] = React.useState<ArticleCategory[] | undefined>(undefined);
@@ -33,6 +52,8 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const [isOrderByAscending, setIsOrderByAscending] = React.useState(false);
     const [isSortingEnabled, setIsSortingEnabled] = React.useState(false);
     const [isCategoryChanged, setIsCategoryChanged] = React.useState(false);
+
+    const category = selection === "" ? ARTICLES_SELECT_ALL_ID : selection;
 
     const onCategoryChangeClick = React.useCallback((id: string) => {
         if (id === ARTICLES_SELECT_ALL_ID) {
@@ -51,6 +72,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
     const onClickChangePage = React.useCallback(
         (page: number) => {
+            updatePage(page);
             dispatch(
                 ArticleListingAction.get({
                     ...BaseRequest,
@@ -82,6 +104,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
     const onClickSearch = React.useCallback(() => {
         const pagingInfo = article.payload.pagingInfo;
+        updatePage(pagingInfo.pageNumber);
         dispatch(
             ArticleListingAction.get({
                 ...BaseRequest,
@@ -112,6 +135,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         );
     }, [form.searchInput, isOrderByAscending, selection]);
 
+    /* ON START: RETRIEVE ARTICLES */
     React.useEffect(() => {
         if (article.isLoading) {
             return;
@@ -129,15 +153,16 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             dispatch(
                 ArticleListingAction.get({
                     ...BaseRequest,
-                    pageNumber: 1,
+                    pageNumber: getPage(page),
                     pageSize: ARTICLES_PAGE_SIZE,
                     categoryId: selection,
                     orderByAscending: isOrderByAscending,
                 })
             );
         }
-    }, [article.isLoading, article.payload.results, form.searchInput, isOrderByAscending, selection]);
+    }, [article.isLoading, article.payload.results, form.searchInput, isOrderByAscending, selection, page]);
 
+    /* SORTING  AZ | ZA */
     React.useEffect(() => {
         const hasPayload = article.payload.results.length !== 0;
         if (isSortingEnabled && hasPayload) {
@@ -154,10 +179,12 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
     }, [isSortingEnabled, isOrderByAscending, article.payload.results.length, selection]);
 
+    /* FILTERING BY CATEGORY NAME */
     React.useEffect(() => {
         if (isCategoryChanged) {
             setIsCategoryChanged(false);
             const pagingInfo = article.payload.pagingInfo;
+            updatePage(pagingInfo.pageNumber);
             dispatch(
                 ArticleListingAction.get({
                     ...BaseRequest,
@@ -171,6 +198,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
     }, [isCategoryChanged, isOrderByAscending, selection, form.searchInput]);
 
+    /* ADD 'SELECT ALL' TO CATEGORY LIST */
     React.useEffect(() => {
         const hasNoCategories = !categories || categories.length === 0;
         const hasLabel = !Validate.isEmpty(content.labels.textSelectAll);
@@ -189,6 +217,14 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
     }, [categories, article.payload.articleCategories, content.labels.textSelectAll]);
 
+    /* FALLBACK TO PAGE 1 */
+    React.useEffect(() => {
+        if (page === null || Validate.isEmpty(page)) {
+            setPage(1);
+        }
+    }, [page]);
+
+    /* SORTING MECHANISM */
     React.useEffect(() => {
         if (Validate.isEmpty(form.searchInput)) {
             setIsSearchDisabled(true);
@@ -198,6 +234,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
     }, [form.searchInput]);
 
+    /* CLEAR ON UNMOUNT */
     React.useEffect(() => {
         return () => {
             dispatch(ArticleListingAction.clear());
@@ -217,7 +254,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 pageSize: article.payload.pagingInfo.pageSize,
                 onClick: onClickChangePage,
             }}
-            selectedCategory={selection === "" ? ARTICLES_SELECT_ALL_ID : selection}
+            selectedCategory={category}
             categories={categories ?? []}
             articles={article.payload.results}
             className={props.className}
