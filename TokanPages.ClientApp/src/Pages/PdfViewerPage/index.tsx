@@ -1,10 +1,11 @@
 import React from "react";
-import { usePageContent, useQuery, useUnhead } from "../../Shared/Hooks";
+import { usePageContent, useQuery, useSnapshot, useUnhead } from "../../Shared/Hooks";
 import { PdfViewer } from "../../Components/PdfViewer";
 import { Footer, Navigation } from "../../Components/Layout";
 
 export const PdfViewerPage = () => {
     const heading = useUnhead("PdfViewerPage");
+    useSnapshot();
     usePageContent(["navigation", "layoutFooter", "templates", "cookiesPrompt", "pagePdfViewer"], "PdfViewerPage");
 
     const queryParam = useQuery();
