@@ -2,7 +2,7 @@
 
 namespace TokanPages.Backend.Application.Articles.Queries;
 
-public class GetArticleQueryResult : GetArticlesQueryResult
+public class GetArticleQueryResult : ArticleDataDto
 {
     public int UserLikes { get; set; }
 

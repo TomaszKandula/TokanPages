@@ -9,7 +9,7 @@ Object {
         class="has-background-white"
       >
         <div
-          class="bulma-container bulma-is-max-desktop"
+          class="bulma-container bulma-is-max-desktop mb-6"
         >
           <div
             class="py-6"
@@ -108,7 +108,7 @@ Object {
       class="has-background-white"
     >
       <div
-        class="bulma-container bulma-is-max-desktop"
+        class="bulma-container bulma-is-max-desktop mb-6"
       >
         <div
           class="py-6"

@@ -12,3 +12,4 @@ export { useUnhead } from "./UseUnhead";
 export { useUserData } from "./UseUserData";
 export { useXssWarning } from "./UseXssWarning";
 export { useQuery } from "./UseQuery";
+export { useArticleQuery } from "./UseArticleQuery";

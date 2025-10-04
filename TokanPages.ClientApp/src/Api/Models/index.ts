@@ -34,6 +34,8 @@ export type { UpdateArticleContentDto } from "./Articles/updateArticleContentDto
 export type { UpdateArticleCountDto } from "./Articles/updateArticleCountDto";
 export type { UpdateArticleLikesDto } from "./Articles/updateArticleLikesDto";
 export type { UpdateArticleVisibilityDto } from "./Articles/updateArticleVisibilityDto";
+export type { RetrieveArticleInfoRequestDto } from "./Articles/retrieveArticleInfoRequestDto";
+export type { RetrieveArticleInfoResponseDto, ArticleDataDto } from "./Articles/retrieveArticleInfoResponseDto";
 export type { RemoveArticleDto } from "./Articles/removeArticleDto";
 
 /* USERS */
