@@ -22,12 +22,12 @@ export const Resume = (): React.ReactElement => {
     }, [page.resume.experience.list]);
 
     return (
-        <ResumeView 
+        <ResumeView
             isLoading={isContentLoading}
             languageId={languageId}
             page={page}
             section={testimonials}
-            processed={experienceItems ?? []} 
+            processed={experienceItems ?? []}
         />
     );
 };
