@@ -14,6 +14,7 @@ export const LIKES_LIMIT_FOR_USER = 50;
 export const WORDS_PER_MINUTE = 265;
 export const ARTICLES_PAGE_SIZE = 4;
 
+export const ARTICLES_SELECT_ALL_ID = "b4ce2cce-28a0-486a-9c26-f6f8a559e229";
 export const INTERNAL_SUBJECT_TEXT = "Incoming Business Inquiry";
 export const INTERNAL_MESSAGE_TEXT = "Please check the internal payload for more details.";
 export const RECEIVED_ERROR_MESSAGE = "RECEIVED_ERROR_MESSAGE";

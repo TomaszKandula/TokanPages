@@ -5,7 +5,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
 import { useDimensions } from "../../../Shared/Hooks";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
-import { ARTICLES_PAGE_SIZE } from "../../../Shared/constants";
+import { ARTICLES_PAGE_SIZE, ARTICLES_SELECT_ALL_ID } from "../../../Shared/constants";
 import { ArticleListProps, SearchInputProps } from "./Types";
 import { ArticleListView } from "./View/articleListView";
 import Validate from "validate.js";
@@ -15,8 +15,6 @@ const BaseRequest = {
     isPublished: true,
     noCache: false,
 };
-
-const SELECT_ALL_ID = "b4ce2cce-28a0-486a-9c26-f6f8a559e229";
 
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const media = useDimensions();
@@ -37,7 +35,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const [isCategoryChanged, setIsCategoryChanged] = React.useState(false);
 
     const onCategoryChangeClick = React.useCallback((id: string) => {
-        if (id === SELECT_ALL_ID) {
+        if (id === ARTICLES_SELECT_ALL_ID) {
             setSelection("");
         } else {
             setSelection(id);
@@ -183,7 +181,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
             data = articleCategories.slice();
             data.unshift({
-                id: SELECT_ALL_ID,
+                id: ARTICLES_SELECT_ALL_ID,
                 categoryName: content.labels.textSelectAll,
             });
 
@@ -219,7 +217,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 pageSize: article.payload.pagingInfo.pageSize,
                 onClick: onClickChangePage,
             }}
-            selectedCategory={selection === "" ? SELECT_ALL_ID : selection}
+            selectedCategory={selection === "" ? ARTICLES_SELECT_ALL_ID : selection}
             categories={categories ?? []}
             articles={article.payload.results}
             className={props.className}
