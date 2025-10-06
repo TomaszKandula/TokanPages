@@ -35,7 +35,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
     const user = useSelector((state: ApplicationState) => state.userDataStore);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
     const template = data.components.templates.templates.articles;
     const content = data.components.pageArticle;
 
@@ -63,7 +63,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const userLetter = author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
 
-    const flagImage = MapLanguage(selection.article.languageIso);
+    const flagImage = MapLanguage(selection.article.languageIso, language.flagImageType);
 
     React.useEffect(() => {
         const likesLimitForAnonym = LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs;
@@ -118,8 +118,8 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
 
     const backButtonHandler = React.useCallback(() => {
         dispatch(ArticleSelectionAction.reset());
-        history.push(`/${languageId}/articles`);
-    }, [languageId]);
+        history.push(`/${language?.id}/articles`);
+    }, [language?.id]);
 
     return (
         <ArticleDetailView
