@@ -14,7 +14,7 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
         <a className="bulma-navbar-link is-transparent" onClick={props.languageMenuHandler}>
             <CustomImage
                 base={GET_FLAG_URL}
-                source={`${props.languageId}.png`}
+                source={`${props.languageId}.${props.languageFlagType}`}
                 title="Language flag"
                 alt={`A flag (${props.languageId}) for current language selection`}
                 className="bulma-image bulma-is-16x16 is-round-border"
@@ -26,7 +26,7 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
                 <a className="bulma-navbar-item" key={uuidv4()} onClick={() => props.languagePickHandler(item.id)}>
                     <CustomImage
                         base={GET_FLAG_URL}
-                        source={`${item.id}.png`}
+                        source={`${item.id}.${props.languageFlagType}`}
                         title="Language flag"
                         alt={`A flag (${item.name}) symbolizing available language`}
                         className="bulma-image bulma-is-16x16 is-round-border mr-4"

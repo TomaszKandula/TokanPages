@@ -44,7 +44,7 @@ Object {
                 alt="A flag (en) for current language selection"
                 class="bulma-image bulma-is-16x16 is-round-border"
                 loading="lazy"
-                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.webp"
                 title="Language flag"
               />
               <div>
@@ -61,7 +61,7 @@ Object {
                   alt="A flag (English) symbolizing available language"
                   class="bulma-image bulma-is-16x16 is-round-border mr-4"
                   loading="lazy"
-                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.webp"
                   title="Language flag"
                 />
                 <div>
@@ -88,7 +88,7 @@ Object {
                   alt="A flag (Polski) symbolizing available language"
                   class="bulma-image bulma-is-16x16 is-round-border mr-4"
                   loading="lazy"
-                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
+                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.webp"
                   title="Language flag"
                 />
                 <div>
@@ -141,7 +141,7 @@ Object {
               alt="A flag (en) for current language selection"
               class="bulma-image bulma-is-16x16 is-round-border"
               loading="lazy"
-              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.webp"
               title="Language flag"
             />
             <div>
@@ -158,7 +158,7 @@ Object {
                 alt="A flag (English) symbolizing available language"
                 class="bulma-image bulma-is-16x16 is-round-border mr-4"
                 loading="lazy"
-                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.webp"
                 title="Language flag"
               />
               <div>
@@ -185,7 +185,7 @@ Object {
                 alt="A flag (Polski) symbolizing available language"
                 class="bulma-image bulma-is-16x16 is-round-border mr-4"
                 loading="lazy"
-                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.png"
+                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.webp"
                 title="Language flag"
               />
               <div>

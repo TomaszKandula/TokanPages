@@ -1,18 +1,18 @@
-export const MapLanguage = (input: string): string => {
+export const MapLanguage = (input: string, type: string): string => {
     switch (input.toLowerCase()) {
         case "eng":
-            return "en.png";
+            return `en.${type}`;
         case "fra":
-            return "fr.png";
+            return `fr.${type}`;
         case "ger":
-            return "de.png";
+            return `de.${type}`;
         case "pol":
-            return "pl.png";
+            return `pl.${type}`;
         case "esp":
-            return "es.png";
+            return `es.${type}`;
         case "ukr":
-            return "uk.png";
+            return `uk.${type}`;
         default:
-            return "en.png";
+            return `en.${type}`;
     }
 };

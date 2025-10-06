@@ -101,6 +101,7 @@ export const Navigation = (props: NavigationProps): React.ReactElement => {
             backPathHandler={backButtonHandler}
             languages={language}
             languageId={language?.id}
+            languageFlagType={language?.flagImageType}
             languagePickHandler={languagePickHandler}
             languageMenuHandler={languageMenuHandler}
             isLanguageMenuOpen={isLanguageMenuOpen}
