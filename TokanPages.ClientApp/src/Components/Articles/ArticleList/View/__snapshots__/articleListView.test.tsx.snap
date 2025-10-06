@@ -231,7 +231,7 @@ Object {
                         class="article-flag-image is-round-border"
                         height="24"
                         loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.undefined"
                         title="Articles"
                         width="24"
                       />
@@ -512,7 +512,7 @@ Object {
                       class="article-flag-image is-round-border"
                       height="24"
                       loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.png"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.undefined"
                       title="Articles"
                       width="24"
                     />
