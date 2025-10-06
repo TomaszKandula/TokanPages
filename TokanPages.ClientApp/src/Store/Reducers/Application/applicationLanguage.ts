@@ -15,6 +15,7 @@ export const ApplicationLanguage: Reducer<ApplicationLanguageState> = (
         case RESET:
             return {
                 id: state.id,
+                flagImageType: state.flagImageType,
                 languages: state.languages,
                 warnings: state.warnings,
                 pages: state.pages,
@@ -24,6 +25,7 @@ export const ApplicationLanguage: Reducer<ApplicationLanguageState> = (
         case SET:
             return {
                 id: action.language.id,
+                flagImageType: action.language.flagImageType,
                 languages: action.language.languages,
                 warnings: action.language.warnings,
                 pages: action.language.pages,
