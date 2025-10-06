@@ -37,10 +37,10 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
 
     const onClickEvent = React.useCallback(() => {
         dispatch(ArticleSelectionAction.select({ id: props.id }));
-        history.push(`/${language.id}${articleUrl}`);
-    }, [props.id, language.id, articleUrl]);
+        history.push(`/${language?.id}${articleUrl}`);
+    }, [props.id, language?.id, articleUrl]);
 
-    const flagImage = MapLanguage(props.languageIso, language.flagImageType);
+    const flagImage = MapLanguage(props.languageIso, language?.flagImageType);
 
     const readCount =
         props.readCount !== undefined
