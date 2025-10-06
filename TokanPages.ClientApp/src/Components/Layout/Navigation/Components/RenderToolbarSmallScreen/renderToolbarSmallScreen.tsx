@@ -27,7 +27,7 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => (
             >
                 <CustomImage
                     base={GET_FLAG_URL}
-                    source={`${props.languageId}.png`}
+                    source={`${props.languageId}.${props.languageFlagType}`}
                     title="Language flag"
                     alt={`A flag (${props.languageId}) for current language selection`}
                     className="bulma-image bulma-is-16x16 is-round-border"
@@ -95,7 +95,7 @@ const RenderLanguageList = (props: RenderLanguageListProps): React.ReactElement 
                             <div className="is-flex is-align-items-center">
                                 <CustomImage
                                     base={GET_FLAG_URL}
-                                    source={`${item.id}.png`}
+                                    source={`${item.id}.${props.languageFlagType}`}
                                     title="Language flag"
                                     alt={`A flag (${item.name}) symbolizing available language`}
                                     className="bulma-image bulma-is-24x24 is-round-border my-2 mx-0"
