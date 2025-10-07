@@ -15,6 +15,7 @@ export interface SearchInputProps {
 }
 
 export interface ArticlesProps {
+    hasSnapshotMode: boolean;
     articles: ArticleItem[];
     searchEmptyText1: string;
     searchEmptyText2: string;

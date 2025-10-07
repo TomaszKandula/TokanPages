@@ -5,6 +5,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
 import { useDimensions } from "../../../Shared/Hooks";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { HasSnapshotMode } from "../../../Shared/Services/SpaCaching";
 import { ARTICLES_PAGE_SIZE, ARTICLES_SELECT_ALL_ID } from "../../../Shared/constants";
 import { UpdatePageParam } from "../../../Shared/Services/Utilities";
 import { ArticleListProps, SearchInputProps } from "./Types";
@@ -20,6 +21,7 @@ const BaseRequest = {
 export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const media = useDimensions();
     const dispatch = useDispatch();
+    const hasSnapshot = HasSnapshotMode();
     const article = useSelector((state: ApplicationState) => state.articleListing);
     const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageArticles);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
@@ -119,6 +121,10 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
     /* ON START: RETRIEVE ARTICLES */
     React.useEffect(() => {
+        if (hasSnapshot) {
+            return;
+        }
+
         if (article.isLoading) {
             return;
         }
@@ -222,6 +228,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
             isContentLoading={isContentLoading}
             isMobile={media.isMobile}
             isOrderByAscending={isOrderByAscending}
+            hasSnapshotMode={hasSnapshot}
             onSortClick={onSortClick}
             pageData={{
                 totalSize: article.payload.totalSize,
