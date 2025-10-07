@@ -49,6 +49,7 @@ describe("test articles group component: ArticleListView", () => {
                     isMobile={false}
                     isContentLoading={false}
                     isOrderByAscending={false}
+                    hasSnapshotMode={false}
                     onSortClick={jest.fn()}
                     pageData={{
                         pageNumber: 1,
