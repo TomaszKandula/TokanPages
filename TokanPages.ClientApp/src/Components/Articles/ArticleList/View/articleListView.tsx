@@ -22,7 +22,7 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => {
             </div>
         );
     } else {
-        <></>
+        <></>;
     }
 
     return (
