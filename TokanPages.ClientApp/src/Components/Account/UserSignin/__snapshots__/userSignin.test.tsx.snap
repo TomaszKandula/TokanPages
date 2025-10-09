@@ -191,7 +191,7 @@ Object {
                                 alt="Illustration for security news"
                                 class="user-signin-view-card-image"
                                 loading="lazy"
-                                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news/news_01.webp"
+                                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news_01.webp"
                                 title="Security news image"
                               />
                             </figure>
@@ -445,7 +445,7 @@ Object {
                               alt="Illustration for security news"
                               class="user-signin-view-card-image"
                               loading="lazy"
-                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news/news_01.webp"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news_01.webp"
                               title="Security news image"
                             />
                           </figure>
