@@ -20,11 +20,10 @@ Object {
             <img
               alt="An application logo"
               class="ml-4"
-              height="30"
               loading="lazy"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.webp"
+              style="width: 180px; height: 30px;"
               title="TomKandula logo"
-              width="180"
             />
           </a>
         </div>
@@ -117,11 +116,10 @@ Object {
           <img
             alt="An application logo"
             class="ml-4"
-            height="30"
             loading="lazy"
             src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.webp"
+            style="width: 180px; height: 30px;"
             title="TomKandula logo"
-            width="180"
           />
         </a>
       </div>

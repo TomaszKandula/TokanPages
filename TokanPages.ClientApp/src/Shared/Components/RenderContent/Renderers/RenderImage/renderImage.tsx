@@ -30,6 +30,7 @@ const RenderPicture = (props: RenderPictureProps) => (
                 onClick={props.onClick}
                 width={props.constraint?.width}
                 height={props.constraint?.height}
+                objectFit={props.constraint?.objectFit}
                 loading={props.loading}
             />
         </figure>

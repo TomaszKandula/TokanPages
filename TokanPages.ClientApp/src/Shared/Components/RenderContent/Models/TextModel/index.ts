@@ -1,4 +1,4 @@
-import { TLoading } from "../../../../../Shared/types";
+import { TLoading, TObjectFit } from "../../../../../Shared/types";
 
 export interface TextObject {
     items: TextItem[];
@@ -7,6 +7,7 @@ export interface TextObject {
 export interface ConstraintProps {
     width?: number;
     height?: number;
+    objectFit?: TObjectFit;
 }
 
 export interface TextItem {
