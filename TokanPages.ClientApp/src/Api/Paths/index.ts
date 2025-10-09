@@ -75,7 +75,6 @@ export const GET_FEATURED_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=imag
 export const GET_TESTIMONIALS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/sections/testimonials`;
 export const GET_SHOWCASE_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/sections/showcase`;
 export const GET_SOCIALS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/sections/socials`;
-export const GET_NEWS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/news`;
 export const GET_ICONS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/icons`;
 export const GET_FLAG_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/flags`;
 
