@@ -343,6 +343,12 @@ export const ContentPageData: ContentPageDataState = {
             signup: {
                 caption: "",
                 link: "",
+                icon: "",
+            },
+            signout: {
+                caption: "",
+                link: "",
+                icon: "",
             },
             userInfo: {
                 textUserAlias: "",
