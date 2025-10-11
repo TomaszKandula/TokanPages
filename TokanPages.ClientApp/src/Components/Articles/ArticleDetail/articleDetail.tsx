@@ -27,6 +27,16 @@ export interface ArticleDetailProps extends ExtendedViewProps {
 
 const fallbackImagePath = `${GET_IMAGES_URL}/avatars/${DEFAULT_USER_IMAGE}`;
 
+const userData: Author = {
+    userId: "n/a",
+    aliasName: "",
+    avatarName: "",
+    firstName: "",
+    lastName: "",
+    shortBio: "n/a",
+    registered: "",
+};
+
 export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => {
     const media = useDimensions();
     const dispatch = useDispatch();
@@ -50,20 +60,15 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const [likesLeft, setLikesLeft] = React.useState(0);
 
     const deletedUser: Author = {
-        userId: "n/a",
-        aliasName: "",
-        avatarName: "",
+        ...userData,
         firstName: content.textDeletedUser,
-        lastName: "",
-        shortBio: "n/a",
-        registered: "",
     };
 
     const author = !Validate.isDefined(selection.article?.author) ? deletedUser : (selection.article?.author as Author);
     const userLetter = author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
 
-    const flagImage = MapLanguage(selection.article.languageIso, language.flagImageType);
+    const flagImage = `${language?.flagImageDir}/${MapLanguage(selection.article.languageIso, language.flagImageType)}`;
 
     React.useEffect(() => {
         const likesLimitForAnonym = LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs;
