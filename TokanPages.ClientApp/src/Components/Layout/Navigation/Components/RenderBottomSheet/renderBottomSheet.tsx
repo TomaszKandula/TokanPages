@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { NavigationContentDto } from "../../../../../Api/Models";
 import { useDimensions } from "../../../../../Shared/Hooks";
 import { Icon } from "../../../../../Shared/Components";
+import { ToggleBodyScroll } from "../../../../../Shared/Services/Utilities";
 import "./renderBottomSheet.css";
 
 interface RenderBottomSheetProps {
@@ -37,6 +38,7 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
 
     React.useEffect(() => {
         if (props.isBottomSheetOpen && !canCloseBottomSheet) {
+            ToggleBodyScroll(false);
             setTimeout(() => setCanShowBackdrop(true), 75);
             setTimeout(() => setCanOpenBottomSheet(true), 175);
         }
@@ -44,6 +46,7 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
 
     React.useEffect(() => {
         if (props.isBottomSheetOpen && canCloseBottomSheet) {
+            ToggleBodyScroll(true);
             setTimeout(() => setCanShowBackdrop(false), 250);
             setTimeout(() => setCanOpenBottomSheet(false), 150);
             setTimeout(() => {
