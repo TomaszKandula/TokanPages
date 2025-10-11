@@ -3,6 +3,7 @@ import { GET_IMAGES_URL } from "../../../../../Api";
 import { NavigationContentDto } from "../../../../../Api/Models";
 import { CustomImage, Icon, IconButton } from "../../../../../Shared/Components";
 import { useDimensions, UseDimensionsResult } from "../../../../../Shared/Hooks";
+import { ToggleBodyScroll } from "../../../../../Shared/Services/Utilities";
 import { RenderSideMenu } from "../RenderMenu";
 import "./renderDrawer.css";
 
@@ -32,7 +33,7 @@ const getWidthRatio = (media: UseDimensionsResult): number => {
 
 export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
     const media = useDimensions();
-    let widthRatio = getWidthRatio(media);
+    const widthRatio = getWidthRatio(media);
 
     const [canOpenMenu, setCanOpenMenu] = React.useState(false);
     const [canCloseMenu, setCanCloseMenu] = React.useState(false);
@@ -44,6 +45,7 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
 
     React.useEffect(() => {
         if (props.isMenuOpen && !canCloseMenu) {
+            ToggleBodyScroll(false);
             setTimeout(() => setCanShowBackdrop(true), 150);
             setTimeout(() => setCanOpenMenu(true), 250);
         }
@@ -51,6 +53,7 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
 
     React.useEffect(() => {
         if (props.isMenuOpen && canCloseMenu) {
+            ToggleBodyScroll(true);
             setTimeout(() => setCanShowBackdrop(false), 250);
             setTimeout(() => setCanOpenMenu(false), 150);
             setTimeout(() => {
