@@ -7,6 +7,7 @@ export interface PageDataProps {
     totalSize: number;
     pageNumber: number;
     pageSize: number;
+    paginationNumber: number;
     onClick: (page: number) => void;
 }
 
