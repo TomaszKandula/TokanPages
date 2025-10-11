@@ -68,42 +68,42 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
     }
 
     return (
-        <div role="presentation" className="navigation-nav-root">
+        <div
+            role="presentation"
+            className="navigation-nav-drawer-root"
+            style={{
+                width: media.width,
+                left: canOpenMenu ? 0 : -media.width,
+            }}
+            onMouseLeave={menuHandler}
+        >
             <div
-                className="navigation-nav-drawer-root"
-                style={{
-                    width: media.width,
-                    left: canOpenMenu ? 0 : -media.width,
-                }}
-                onMouseLeave={menuHandler}
-            >
-                <div
-                    className="navigation-nav-drawer-backdrop"
-                    style={{ opacity: canShowBackdrop ? 1 : 0 }}
-                    onClick={menuHandler}
-                ></div>
-                <div className="navigation-nav-drawer-container" style={{ width: media.width * widthRatio }}>
-                    <div className="is-flex is-justify-content-space-between">
-                        <CustomImage
-                            base={GET_IMAGES_URL}
-                            source={props.navigation?.menu?.image}
-                            title="Logo"
-                            alt="An application logo"
-                            className="ml-4"
-                            width={40}
-                            height={40}
-                        />
-                        <IconButton hasNoHoverEffect className="no-select mr-2">
-                            <Icon name="WindowClose" size={1.5} onClick={menuHandler} />
-                        </IconButton>
-                    </div>
-                    <hr className="line-separator" />
-                    <RenderSideMenu
-                        isAnonymous={props.isAnonymous}
-                        languageId={props.languageId}
-                        items={props.navigation.menu?.items}
+                aria-hidden="true"
+                className="navigation-nav-drawer-backdrop"
+                style={{ opacity: canShowBackdrop ? 1 : 0 }}
+                onClick={menuHandler}
+            ></div>
+            <div tabIndex={-1} className="navigation-nav-drawer-container" style={{ width: media.width * widthRatio }}>
+                <div className="is-flex is-justify-content-space-between">
+                    <CustomImage
+                        base={GET_IMAGES_URL}
+                        source={props.navigation?.menu?.image}
+                        title="Logo"
+                        alt="An application logo"
+                        className="ml-4"
+                        width={40}
+                        height={40}
                     />
+                    <IconButton hasNoHoverEffect className="no-select mr-2">
+                        <Icon name="WindowClose" size={1.5} onClick={menuHandler} />
+                    </IconButton>
                 </div>
+                <hr className="line-separator" />
+                <RenderSideMenu
+                    isAnonymous={props.isAnonymous}
+                    languageId={props.languageId}
+                    items={props.navigation.menu?.items}
+                />
             </div>
         </div>
     );

@@ -1,15 +1,9 @@
-.navigation-nav-root {
-    position: fixed;
-    z-index: 1300;
-    inset: 0px;
-}
-
 .bottomsheet-nav-drawer-root {
-    z-index: 1200;
-    position: fixed;
     bottom: 0;
     height: 100%;
     outline: 0;
+    z-index: 1300;
+    position: fixed;
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;
@@ -17,13 +11,13 @@
 }
 
 .bottomsheet-nav-drawer-backdrop {
-    z-index: 1000;
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     display: flex;
+    z-index: -1;
+    position: fixed;
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.5);
@@ -34,9 +28,6 @@
 
 .bottomsheet-nav-drawer-container {
     overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    z-index: 1100;
     width: 100%;
     background-color: white;
-    touch-action: manipulation;
 }

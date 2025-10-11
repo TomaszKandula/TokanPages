@@ -61,37 +61,35 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
     }
 
     return (
-        <div role="presentation" className="navigation-nav-root">
+        <div
+            role="presentation"
+            className="bottomsheet-nav-drawer-root"
+            style={{
+                width: media.width,
+                height: media.height,
+                bottom: canOpenBottomSheet ? -media.height + bottomSheetHeight : -media.height,
+            }}
+            onMouseLeave={onCloseHandler}
+        >
             <div
-                className="bottomsheet-nav-drawer-root"
-                style={{
-                    width: media.width,
-                    height: media.height,
-                    bottom: canOpenBottomSheet ? -media.height + bottomSheetHeight : -media.height,
-                }}
-                onMouseLeave={onCloseHandler}
-            >
-                <div
-                    className="bottomsheet-nav-drawer-backdrop"
-                    style={{ opacity: canShowBackdrop ? 1 : 0 }}
-                    onClick={onCloseHandler}
-                ></div>
-                <div ref={ref} className="bottomsheet-nav-drawer-container">
-                    <div className="pb-6">
-                        <div className="navbar-top-line"></div>
-                        <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 mt-5">
-                            <h2 className="is-size-4 has-text-weight-normal">
-                                {props.navigation?.languageMenu.caption}
-                            </h2>
-                            <Icon
-                                name="WindowClose"
-                                size={2.0}
-                                className="has-text-grey-dark no-select"
-                                onClick={onCloseHandler}
-                            />
-                        </div>
-                        {props.children}
+                aria-hidden="true"
+                className="bottomsheet-nav-drawer-backdrop"
+                style={{ opacity: canShowBackdrop ? 1 : 0 }}
+                onClick={onCloseHandler}
+            ></div>
+            <div ref={ref} tabIndex={-1} className="bottomsheet-nav-drawer-container">
+                <div className="pb-6">
+                    <div className="navbar-top-line"></div>
+                    <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 mt-5">
+                        <h2 className="is-size-4 has-text-weight-normal">{props.navigation?.languageMenu.caption}</h2>
+                        <Icon
+                            name="WindowClose"
+                            size={2.0}
+                            className="has-text-grey-dark no-select"
+                            onClick={onCloseHandler}
+                        />
                     </div>
+                    {props.children}
                 </div>
             </div>
         </div>
