@@ -181,7 +181,7 @@ const RenderNotification = (props: RenderNotificationProps): React.ReactElement 
 
 export const UserSignupView = (props: UserSignupViewProps): React.ReactElement => (
     <section className={props.className}>
-        <div className="bulma-container">
+        <div className="bulma-container pb-6">
             <div className="bulma-columns mx-4 my-6 is-gap-4.5">
                 <div className="bulma-column is-flex is-justify-content-center user-signup-view-column py-0 px-2">
                     <RenderSignupCard

@@ -225,7 +225,7 @@ const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
 
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => (
     <section className={props.className}>
-        <div className="bulma-container">
+        <div className="bulma-container pb-6">
             <div className="bulma-columns mx-4 my-6">
                 <div className="bulma-column is-flex is-justify-content-center p-0">
                     <RenderSigninCard {...props} className="user-signin-view-card-signin" />

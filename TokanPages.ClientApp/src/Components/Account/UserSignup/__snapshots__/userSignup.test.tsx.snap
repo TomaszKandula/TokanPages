@@ -7,7 +7,7 @@ Object {
     <div>
       <section>
         <div
-          class="bulma-container"
+          class="bulma-container pb-6"
         >
           <div
             class="bulma-columns mx-4 my-6 is-gap-4.5"
@@ -264,7 +264,7 @@ Object {
   "container": <div>
     <section>
       <div
-        class="bulma-container"
+        class="bulma-container pb-6"
       >
         <div
           class="bulma-columns mx-4 my-6 is-gap-4.5"
