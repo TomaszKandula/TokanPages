@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { NavigationViewProps } from "../../Abstractions";
-import { GET_ICONS_URL } from "../../../../../Api";
+import { GET_IMAGES_URL } from "../../../../../Api";
 import { CustomImage, Media } from "../../../../../Shared/Components";
 import { RenderLanguageSection } from "../RenderLanguageSection";
 import { RenderNavbarMenu } from "../RenderMenu";
@@ -12,7 +12,7 @@ export const RenderToolbarLargeScreen = (props: NavigationViewProps): React.Reac
         <div className="bulma-navbar-start render-toolbar-constraints-start">
             <Link to={`/${props.languageId}`} rel="noopener nofollow" className="is-flex is-align-self-center">
                 <CustomImage
-                    base={GET_ICONS_URL}
+                    base={GET_IMAGES_URL}
                     source={props.navigation?.logo}
                     title="TomKandula logo"
                     alt="An application logo"

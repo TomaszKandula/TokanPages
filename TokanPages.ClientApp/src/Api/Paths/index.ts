@@ -69,13 +69,5 @@ export const GET_ARTICLE_MAIN_IMAGE_URL = `${API_ASSETS_URI}/getArticleAsset?id=
 
 export const GET_DOCUMENTS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=documents`;
 export const GET_IMAGES_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images`;
-export const GET_AVATARS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/avatars`;
-export const GET_ARTICLE_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/sections/articles`;
-export const GET_FEATURED_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/sections/featured`;
-export const GET_TESTIMONIALS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/sections/testimonials`;
-export const GET_SHOWCASE_IMAGE_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/sections/showcase`;
-export const GET_SOCIALS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/sections/socials`;
-export const GET_ICONS_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/icons`;
-export const GET_FLAG_URL = `${API_NON_VIDEO_ASSETS_URI}?blobName=images/flags`;
 
 export const ARTICLE_PATH = "/articles?title={title}";

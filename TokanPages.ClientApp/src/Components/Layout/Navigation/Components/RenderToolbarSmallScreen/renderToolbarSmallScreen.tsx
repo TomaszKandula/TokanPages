@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { NavigationViewProps, RenderLanguageListProps } from "../../Abstractions";
 import { RenderMenuIcon } from "../RenderMenuIcon";
-import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../../Api";
+import { GET_IMAGES_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
 import { CustomImage, Icon, Link, Media, Skeleton } from "../../../../../Shared/Components";
 import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP_TOP } from "../../../../../Shared/constants";
@@ -26,8 +26,8 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => (
                 onClick={props.triggerBottomSheet}
             >
                 <CustomImage
-                    base={GET_FLAG_URL}
-                    source={`${props.languageId}.${props.languageFlagType}`}
+                    base={GET_IMAGES_URL}
+                    source={`${props.languageFlagDir}/${props.languageId}.${props.languageFlagType}`}
                     title="Language flag"
                     alt={`A flag (${props.languageId}) for current language selection`}
                     className="bulma-image bulma-is-16x16 is-round-border"
@@ -63,7 +63,7 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => (
                         className="is-flex is-align-self-center"
                     >
                         <CustomImage
-                            base={GET_ICONS_URL}
+                            base={GET_IMAGES_URL}
                             source={props.navigation?.logo}
                             title="TomKandula logo"
                             alt="An application logo"
@@ -94,8 +94,8 @@ const RenderLanguageList = (props: RenderLanguageListProps): React.ReactElement 
                         >
                             <div className="is-flex is-align-items-center">
                                 <CustomImage
-                                    base={GET_FLAG_URL}
-                                    source={`${item.id}.${props.languageFlagType}`}
+                                    base={GET_IMAGES_URL}
+                                    source={`${props.languageFlagDir}/${item.id}.${props.languageFlagType}`}
                                     title="Language flag"
                                     alt={`A flag (${item.name}) symbolizing available language`}
                                     className="bulma-image bulma-is-24x24 is-round-border my-2 mx-0"

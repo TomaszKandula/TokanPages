@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GET_FLAG_URL } from "../../../../Api";
+import { GET_IMAGES_URL } from "../../../../Api";
 import { Animated, CustomImage, Icon, Media } from "../../../../Shared/Components";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { TLoading } from "../../../../Shared/types";
@@ -60,7 +60,7 @@ const RenderFlag = (props: RenderFlagProps): React.ReactElement => {
         <>
             <Icon name="Translate" size={1.5} className="mx-2" />
             <CustomImage
-                base={GET_FLAG_URL}
+                base={GET_IMAGES_URL}
                 source={props.flagImage}
                 title="Articles"
                 alt="An article language flag"

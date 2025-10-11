@@ -51,7 +51,7 @@ Object {
                             alt="Memory Management"
                             class="featured-card-image"
                             loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article0.jpg"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article0.jpg"
                             title="Illustration"
                           />
                         </figure>
@@ -100,7 +100,7 @@ Object {
                             alt="Stored Procedures"
                             class="featured-card-image"
                             loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article1.jpg"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article1.jpg"
                             title="Illustration"
                           />
                         </figure>
@@ -149,7 +149,7 @@ Object {
                             alt="SQL Injection"
                             class="featured-card-image"
                             loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article2.jpg"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article2.jpg"
                             title="Illustration"
                           />
                         </figure>
@@ -225,7 +225,7 @@ Object {
                           alt="Memory Management"
                           class="featured-card-image"
                           loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article0.jpg"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article0.jpg"
                           title="Illustration"
                         />
                       </figure>
@@ -274,7 +274,7 @@ Object {
                           alt="Stored Procedures"
                           class="featured-card-image"
                           loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article1.jpg"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article1.jpg"
                           title="Illustration"
                         />
                       </figure>
@@ -323,7 +323,7 @@ Object {
                           alt="SQL Injection"
                           class="featured-card-image"
                           loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/featured/article2.jpg"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article2.jpg"
                           title="Illustration"
                         />
                       </figure>

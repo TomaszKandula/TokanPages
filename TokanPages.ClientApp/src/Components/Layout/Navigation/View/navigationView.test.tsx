@@ -19,6 +19,7 @@ describe("test component: NavigationView", () => {
 
         const languages: ApplicationLanguageState = {
             id: "en",
+            flagImageDir: "flags",
             flagImageType: "webp",
             languages: [
                 {
@@ -119,6 +120,7 @@ describe("test component: NavigationView", () => {
                 }}
                 languages={languages}
                 languageId="en"
+                languageFlagDir="flags"
                 languageFlagType="webp"
                 languagePickHandler={jest.fn()}
                 languageMenuHandler={jest.fn()}

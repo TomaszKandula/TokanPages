@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { GET_SHOWCASE_IMAGE_URL } from "../../../Api";
+import { GET_IMAGES_URL } from "../../../Api";
 import { FeatureShowcaseContentDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, CustomImage, RenderHtml, Skeleton } from "../../../Shared/Components";
@@ -69,7 +69,7 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                                         <figure className="bulma-image">
                                             <Skeleton isLoading={isLoading} mode="Rect" height={400}>
                                                 <CustomImage
-                                                    base={GET_SHOWCASE_IMAGE_URL}
+                                                    base={GET_IMAGES_URL}
                                                     source={showcase?.image}
                                                     className="showcase-feature-image"
                                                     title="Illustration"

@@ -40,7 +40,7 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
         history.push(`/${language?.id}${articleUrl}`);
     }, [props.id, language?.id, articleUrl]);
 
-    const flagImage = MapLanguage(props.languageIso, language?.flagImageType);
+    const flagImage = `${language?.flagImageDir}/${MapLanguage(props.languageIso, language?.flagImageType)}`;
 
     const readCount =
         props.readCount !== undefined

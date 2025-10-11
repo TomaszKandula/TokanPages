@@ -29,6 +29,11 @@ public class ContentManifestDto
     public string Default { get; set; } = "";
 
     /// <summary>
+    /// Image directory of the supplied language flag.
+    /// </summary>
+    public string FlagImageDir { get; set; } = "";
+
+    /// <summary>
     /// Image file type of the supplied language flag.
     /// </summary>
     public string FlagImageType { get; set; } = "";

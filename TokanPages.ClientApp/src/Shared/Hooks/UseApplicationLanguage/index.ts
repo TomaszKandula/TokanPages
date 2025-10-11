@@ -46,6 +46,7 @@ export const useApplicationLanguage = (manifest?: GetContentManifestDto): UseApp
             dispatch(
                 ApplicationLanguageAction.set({
                     id: paths[1],
+                    flagImageDir: manifest.flagImageDir,
                     flagImageType: manifest.flagImageType,
                     languages: manifest.languages,
                     warnings: manifest.warnings,
@@ -58,6 +59,7 @@ export const useApplicationLanguage = (manifest?: GetContentManifestDto): UseApp
             dispatch(
                 ApplicationLanguageAction.set({
                     id: paths[0],
+                    flagImageDir: manifest.flagImageDir,
                     flagImageType: manifest.flagImageType,
                     languages: manifest.languages,
                     warnings: manifest.warnings,
@@ -70,6 +72,7 @@ export const useApplicationLanguage = (manifest?: GetContentManifestDto): UseApp
             dispatch(
                 ApplicationLanguageAction.set({
                     id: defaultId,
+                    flagImageDir: manifest.flagImageDir,
                     flagImageType: manifest.flagImageType,
                     languages: manifest.languages,
                     warnings: manifest.warnings,
@@ -87,6 +90,7 @@ export const useApplicationLanguage = (manifest?: GetContentManifestDto): UseApp
         dispatch(
             ApplicationLanguageAction.set({
                 id: defaultId,
+                flagImageDir: manifest.flagImageDir,
                 flagImageType: manifest.flagImageType,
                 languages: manifest.languages,
                 warnings: manifest.warnings,

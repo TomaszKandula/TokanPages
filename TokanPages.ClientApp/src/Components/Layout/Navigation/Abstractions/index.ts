@@ -19,6 +19,7 @@ export interface BaseProperties extends ViewProperties {
     backPathHandler: () => void;
     languages: ApplicationLanguageState;
     languageId: string;
+    languageFlagDir: string;
     languageFlagType: string;
     languagePickHandler: (id: string) => void;
     languageMenuHandler: () => void;
