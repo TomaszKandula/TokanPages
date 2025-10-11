@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { NavigationViewProps, RenderLanguageListProps } from "../../Abstractions";
 import { RenderMenuIcon } from "../RenderMenuIcon";
-import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../../Api";
+import { GET_FLAG_URL, GET_IMAGES_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
 import { CustomImage, Icon, Link, Media, Skeleton } from "../../../../../Shared/Components";
 import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP_TOP } from "../../../../../Shared/constants";
@@ -63,7 +63,7 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => (
                         className="is-flex is-align-self-center"
                     >
                         <CustomImage
-                            base={GET_ICONS_URL}
+                            base={GET_IMAGES_URL}
                             source={props.navigation?.logo}
                             title="TomKandula logo"
                             alt="An application logo"

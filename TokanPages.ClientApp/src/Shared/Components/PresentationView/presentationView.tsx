@@ -1,5 +1,5 @@
 import React from "react";
-import { GET_ICONS_URL, GET_IMAGES_URL } from "../../../Api";
+import { GET_IMAGES_URL } from "../../../Api";
 import { ImageDto } from "../../../Api/Models";
 import { ProcessParagraphs } from "../RenderContent/Renderers";
 import { CustomImage } from "../CustomImage/customImage";
@@ -57,7 +57,7 @@ export const PresentationView = (props: PresentationViewProps) => (
                         >
                             <Skeleton isLoading={props.isLoading} mode="Rect" width={value.width} height={value.heigh}>
                                 <CustomImage
-                                    base={GET_ICONS_URL}
+                                    base={GET_IMAGES_URL}
                                     source={value.link}
                                     title={value.title}
                                     alt={value.alt}

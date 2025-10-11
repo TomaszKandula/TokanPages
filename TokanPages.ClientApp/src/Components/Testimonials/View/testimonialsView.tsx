@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GET_TESTIMONIALS_URL } from "../../../Api";
+import { GET_IMAGES_URL } from "../../../Api";
 import { ViewProperties } from "../../../Shared/Abstractions";
 import { Animated, CustomImage, Collapsible, Skeleton, RenderHtml, Link, Icon } from "../../../Shared/Components";
 import "./testimonialsView.css";
@@ -36,7 +36,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             <div className="bulma-card">
                                 <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
                                     <CustomImage
-                                        base={GET_TESTIMONIALS_URL}
+                                        base={GET_IMAGES_URL}
                                         source={props.Testimonial1.photo}
                                         className="testimonials-card-image"
                                         title="Testimonials"
@@ -87,7 +87,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             <div className="bulma-card">
                                 <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
                                     <CustomImage
-                                        base={GET_TESTIMONIALS_URL}
+                                        base={GET_IMAGES_URL}
                                         source={props.Testimonial2.photo}
                                         className="testimonials-card-image"
                                         title="Testimonials"
@@ -138,7 +138,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                             <div className="bulma-card">
                                 <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
                                     <CustomImage
-                                        base={GET_TESTIMONIALS_URL}
+                                        base={GET_IMAGES_URL}
                                         source={props.Testimonial3.photo}
                                         className="testimonials-card-image"
                                         title="Testimonials"

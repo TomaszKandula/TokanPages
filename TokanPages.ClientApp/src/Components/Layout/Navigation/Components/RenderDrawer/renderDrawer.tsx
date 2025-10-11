@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GET_ICONS_URL } from "../../../../../Api";
+import { GET_IMAGES_URL } from "../../../../../Api";
 import { NavigationContentDto } from "../../../../../Api/Models";
 import { CustomImage, Icon, IconButton } from "../../../../../Shared/Components";
 import { useDimensions, UseDimensionsResult } from "../../../../../Shared/Hooks";
@@ -82,7 +82,7 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
                 <div className="navigation-nav-drawer-container" style={{ width: media.width * widthRatio }}>
                     <div className="is-flex is-justify-content-space-between">
                         <CustomImage
-                            base={GET_ICONS_URL}
+                            base={GET_IMAGES_URL}
                             source={props.navigation?.menu?.image}
                             title="Logo"
                             alt="An application logo"
