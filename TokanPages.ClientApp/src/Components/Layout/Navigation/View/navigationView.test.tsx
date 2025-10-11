@@ -105,6 +105,12 @@ describe("test component: NavigationView", () => {
                     signup: {
                         caption: "Create a new account",
                         link: "/en/signup",
+                        icon: "PlusCircleOutline",
+                    },
+                    signout: {
+                        caption: "Sign out",
+                        link: "/en/signout",
+                        icon: "LockOpenOutline",
                     },
                     userInfo: {
                         textUserAlias: "tokan",

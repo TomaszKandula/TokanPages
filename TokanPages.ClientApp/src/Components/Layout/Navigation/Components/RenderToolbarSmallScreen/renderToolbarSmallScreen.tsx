@@ -15,35 +15,46 @@ const listSeparator = (length: number, index: number): string => {
     return length === index + 1 ? "" : "line-separator";
 };
 
-const RenderDoubleToolbar = (props: NavigationViewProps) => (
+const RenderLanguageOption = (props: NavigationViewProps): React.ReactElement => (
+    <a className="bulma-navbar-start is-flex is-align-items-center ml-4 no-select" onClick={props.triggerBottomSheet}>
+        <CustomImage
+            base={GET_IMAGES_URL}
+            source={`${props.languageFlagDir}/${props.languageId}.${props.languageFlagType}`}
+            title="Language flag"
+            alt={`A flag (${props.languageId}) for current language selection`}
+            className="bulma-image bulma-is-16x16 is-round-border"
+        />
+        <div className="has-text-black ml-2">{props.languageId?.toUpperCase()}</div>
+        <Icon name="ChevronDown" size={1.4} className="ml-1" />
+    </a>
+);
+
+const RenderCreateAccountOption = (props: NavigationViewProps): React.ReactElement => (
+    <Skeleton isLoading={props.isLoading} mode="Rect" height={24} width={175} className="mr-3">
+        <Link to={props.navigation?.signup?.link} className="bulma-navbar-end is-flex is-align-items-center mr-4">
+            <Icon name={props.navigation?.signup?.icon} size={1.2} className="mr-1" />
+            <p className="is-size-7 has-text-black">{props.navigation?.signup?.caption}</p>
+        </Link>
+    </Skeleton>
+);
+
+const RenderSignoutOption = (props: NavigationViewProps): React.ReactElement => (
+    <Skeleton isLoading={props.isLoading} mode="Rect" height={24} width={175} className="mr-3">
+        <Link to={props.navigation?.signout?.link} className="bulma-navbar-end is-flex is-align-items-center mr-4">
+            <Icon name={props.navigation?.signout?.icon} size={1.2} className="mr-1" />
+            <p className="is-size-7 has-text-black">{props.navigation?.signout?.caption}</p>
+        </Link>
+    </Skeleton>
+);
+
+const RenderDoubleToolbar = (props: NavigationViewProps): React.ReactElement => (
     <div className="is-flex is-flex-direction-column is-flex-grow-1">
         <div
             className="is-flex is-justify-content-space-between is-align-items-center"
             style={{ height: APP_BAR_HEIGHT_NON_DESKTOP_TOP }}
         >
-            <a
-                className="bulma-navbar-start is-flex is-align-items-center ml-4 no-select"
-                onClick={props.triggerBottomSheet}
-            >
-                <CustomImage
-                    base={GET_IMAGES_URL}
-                    source={`${props.languageFlagDir}/${props.languageId}.${props.languageFlagType}`}
-                    title="Language flag"
-                    alt={`A flag (${props.languageId}) for current language selection`}
-                    className="bulma-image bulma-is-16x16 is-round-border"
-                />
-                <div className="has-text-black ml-2">{props.languageId?.toUpperCase()}</div>
-                <Icon name="ChevronDown" size={1.4} className="ml-1" />
-            </a>
-            <Skeleton isLoading={props.isLoading} mode="Rect" height={24} width={175} className="mr-3">
-                <Link
-                    to={props.navigation?.signup?.link}
-                    className="bulma-navbar-end is-flex is-align-items-center mr-4"
-                >
-                    <Icon name="PlusCircleOutline" size={1.2} className="mr-1" />
-                    <p className="is-size-7 has-text-black">{props.navigation?.signup?.caption}</p>
-                </Link>
-            </Skeleton>
+            <RenderLanguageOption {...props} />
+            {props.isAnonymous ? <RenderCreateAccountOption {...props} /> : <RenderSignoutOption {...props} />}
         </div>
         <hr className="line-separator" />
         <div
