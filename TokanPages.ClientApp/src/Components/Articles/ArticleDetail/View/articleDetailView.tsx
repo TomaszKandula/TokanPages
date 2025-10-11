@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GET_FLAG_URL } from "../../../../Api";
+import { GET_IMAGES_URL } from "../../../../Api";
 import { ArticleContentDto } from "../../../../Api/Models";
 import { Icon, CustomImage, Skeleton, Media } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
@@ -37,7 +37,7 @@ const RenderTopHeader = (props: ArticleDetailViewProps): React.ReactElement => (
         </Skeleton>
         <Skeleton isLoading={props.isLoading} mode="Circle" width={24} height={24}>
             <CustomImage
-                base={GET_FLAG_URL}
+                base={GET_IMAGES_URL}
                 source={props.flagImage}
                 title="Articles"
                 alt="An article language flag"
@@ -69,7 +69,7 @@ const RenderTopHeaderMobile = (props: ArticleDetailViewProps): React.ReactElemen
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Circle" width={24} height={24}>
                 <CustomImage
-                    base={GET_FLAG_URL}
+                    base={GET_IMAGES_URL}
                     source={props.flagImage}
                     title="Articles"
                     alt="An article language flag"
