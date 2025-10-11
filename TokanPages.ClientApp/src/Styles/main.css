@@ -122,3 +122,7 @@ body {
 .is-transparent {
     background-color: transparent;
 }
+
+.is-lock-scroll {
+    overflow: hidden;
+}
