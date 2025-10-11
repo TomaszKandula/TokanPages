@@ -9,7 +9,7 @@ Object {
         class="mt-5 mb-5"
       >
         <div
-          class="bulma-container"
+          class="bulma-container pb-6"
         >
           <div
             class="bulma-columns mx-4 my-6"
@@ -323,7 +323,7 @@ Object {
       class="mt-5 mb-5"
     >
       <div
-        class="bulma-container"
+        class="bulma-container pb-6"
       >
         <div
           class="bulma-columns mx-4 my-6"
