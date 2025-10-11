@@ -21,7 +21,7 @@ Object {
               alt="An application logo"
               class="ml-4"
               loading="lazy"
-              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.webp"
+              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/logo.webp"
               style="width: 180px; height: 30px;"
               title="TomKandula logo"
             />
@@ -117,7 +117,7 @@ Object {
             alt="An application logo"
             class="ml-4"
             loading="lazy"
-            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/icons/logo.webp"
+            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/logo.webp"
             style="width: 180px; height: 30px;"
             title="TomKandula logo"
           />

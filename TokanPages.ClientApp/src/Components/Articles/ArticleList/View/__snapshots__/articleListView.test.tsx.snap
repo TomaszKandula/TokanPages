@@ -230,7 +230,7 @@ Object {
                         alt="An article language flag"
                         class="article-flag-image is-round-border"
                         loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.undefined"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/en.undefined"
                         style="width: 24px; height: 24px;"
                         title="Articles"
                       />
@@ -528,7 +528,7 @@ Object {
                       alt="An article language flag"
                       class="article-flag-image is-round-border"
                       loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.undefined"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/en.undefined"
                       style="width: 24px; height: 24px;"
                       title="Articles"
                     />
