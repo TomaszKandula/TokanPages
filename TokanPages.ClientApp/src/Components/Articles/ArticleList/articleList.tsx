@@ -30,6 +30,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const [form, setForm] = React.useState<SearchInputProps>({ searchInput: "" });
     const [categories, setCategories] = React.useState<ArticleCategory[] | undefined>(undefined);
     const [selection, setSelection] = React.useState<string>("");
+    const [paginationNumber, setPaginationNumber] = React.useState(0);
 
     const [isSearchDisabled, setIsSearchDisabled] = React.useState(true);
     const [isClearDisabled, setIsClearDisabled] = React.useState(true);
@@ -215,6 +216,22 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
     }, [form.searchInput]);
 
+    /* CALCULATE NUMBER OF PAGES */
+    React.useEffect(() => {
+        const pageOffset = 1;
+        const totalSize = article.payload.totalSize;
+        const pageSize = article.payload.pagingInfo.pageSize;
+        const calc = totalSize / pageSize;
+
+        let pages = Math.floor(calc);
+        if (Number.isInteger(calc)) {
+            setPaginationNumber(pages);
+        } else {
+            pages += pageOffset;
+            setPaginationNumber(pages);
+        }
+    }, [article.payload.totalSize, article.payload.pagingInfo.pageSize]);
+
     /* CLEAR ON UNMOUNT */
     React.useEffect(() => {
         return () => {
@@ -234,6 +251,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                 totalSize: article.payload.totalSize,
                 pageNumber: article.payload.pagingInfo.pageNumber,
                 pageSize: article.payload.pagingInfo.pageSize,
+                paginationNumber: paginationNumber,
                 onClick: onClickChangePage,
             }}
             selectedCategory={category}

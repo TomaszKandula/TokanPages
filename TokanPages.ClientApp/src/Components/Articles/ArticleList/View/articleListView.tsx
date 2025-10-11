@@ -124,12 +124,9 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
         return <div className="mb-4">&nbsp;</div>;
     }
 
-    const pageNumber = props.pageData.pageNumber;
-    const pages = Math.floor(props.pageData.totalSize / props.pageData.pageSize + 1);
     const paginationItem = [];
-
-    for (let index = 1; index <= pages; index++) {
-        if (pageNumber === index) {
+    for (let index = 1; index <= props.pageData.paginationNumber; index++) {
+        if (props.pageData.pageNumber === index) {
             paginationItem.push(
                 <li key={uuidv4()}>
                     <a

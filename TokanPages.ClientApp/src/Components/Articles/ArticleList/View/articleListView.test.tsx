@@ -55,6 +55,7 @@ describe("test articles group component: ArticleListView", () => {
                         pageNumber: 1,
                         pageSize: 5,
                         totalSize: 10,
+                        paginationNumber: 5,
                         onClick: jest.fn(),
                     }}
                     selectedCategory=""
