@@ -33,6 +33,7 @@ it("renders without crashing", () => {
         created: "2022-09-09",
         updated: "2022-09-09",
         default: "x-default",
+        flagImageDir: "flags",
         flagImageType: "webp",
         languages: [
             {
