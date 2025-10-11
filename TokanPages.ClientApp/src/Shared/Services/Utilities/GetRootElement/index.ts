@@ -5,4 +5,4 @@ export const GetRootElement = (): HTMLElement => {
     }
 
     return root;
-}
+};

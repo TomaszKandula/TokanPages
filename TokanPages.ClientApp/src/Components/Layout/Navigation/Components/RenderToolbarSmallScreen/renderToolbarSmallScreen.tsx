@@ -146,19 +146,25 @@ export const RenderToolbarSmallScreen = (props: NavigationViewProps): React.Reac
     const root = GetRootElement();
 
     return (
-    <>
-        <Media.TabletOnly>
-            <RenderDoubleToolbar {...props} />
-            {createPortal(<RenderBottomSheet {...props}>
-                    <RenderLanguages {...props} />
-                </RenderBottomSheet>, root)}
-        </Media.TabletOnly>
-        <Media.MobileOnly>
-            <RenderDoubleToolbar {...props} />
-            {createPortal(<RenderBottomSheet {...props}>
-                    <RenderLanguages {...props} />
-                </RenderBottomSheet>, root)}
-        </Media.MobileOnly>
-    </>
-);
+        <>
+            <Media.TabletOnly>
+                <RenderDoubleToolbar {...props} />
+                {createPortal(
+                    <RenderBottomSheet {...props}>
+                        <RenderLanguages {...props} />
+                    </RenderBottomSheet>,
+                    root
+                )}
+            </Media.TabletOnly>
+            <Media.MobileOnly>
+                <RenderDoubleToolbar {...props} />
+                {createPortal(
+                    <RenderBottomSheet {...props}>
+                        <RenderLanguages {...props} />
+                    </RenderBottomSheet>,
+                    root
+                )}
+            </Media.MobileOnly>
+        </>
+    );
 };
