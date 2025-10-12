@@ -26,11 +26,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
         <AppBar height={height} offset={2}>
             <RenderToolbarLargeScreen {...props} />
             <RenderToolbarSmallScreen {...props} />
-            <Drawer
-                isOpen={props.isMenuOpen}
-                isExternalClose={isClose}
-                onTrigger={props.triggerSideMenu}
-            >
+            <Drawer isOpen={props.isMenuOpen} isExternalClose={isClose} onTrigger={props.triggerSideMenu}>
                 <div className="is-flex is-justify-content-space-between">
                     <CustomImage
                         base={GET_IMAGES_URL}
@@ -42,7 +38,13 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
                         height={40}
                     />
                     <IconButton hasNoHoverEffect className="no-select mr-2">
-                        <Icon name="WindowClose" size={1.5} onClick={() => { setIsClose(true) }} />
+                        <Icon
+                            name="WindowClose"
+                            size={1.5}
+                            onClick={() => {
+                                setIsClose(true);
+                            }}
+                        />
                     </IconButton>
                 </div>
                 <hr className="line-separator" />
