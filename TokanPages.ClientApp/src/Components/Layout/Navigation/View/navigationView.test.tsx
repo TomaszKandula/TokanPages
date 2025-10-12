@@ -136,7 +136,8 @@ describe("test component: NavigationView", () => {
                 languageMenuHandler={jest.fn()}
                 isLanguageMenuOpen={false}
                 backPathHandler={jest.fn()}
-            />, { wrapper: BrowserRouter }
+            />,
+            { wrapper: BrowserRouter }
         );
 
         expect(html).toMatchSnapshot();
