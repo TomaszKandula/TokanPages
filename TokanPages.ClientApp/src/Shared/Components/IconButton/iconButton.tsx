@@ -1,5 +1,6 @@
 import * as React from "react";
 import { ReactMouseEvent } from "../../../Shared/types";
+import { ClassListAdd, ClassListClear } from "../../../Shared/Services/Utilities";
 import "./iconButton.css";
 
 interface IconButtonProps {
@@ -13,10 +14,15 @@ interface IconButtonProps {
     onMouseDown?: (event: ReactMouseEvent) => void;
 }
 
+const baseClasses = [
+    "icon-button-base",
+    "is-flex",
+    "is-align-self-center"
+];
+
 export const IconButton = (props: IconButtonProps): React.ReactElement => {
     const size = props.size ?? 48;
     const ref = React.useRef<HTMLButtonElement>(null);
-    const baseClass = "icon-button-base is-flex is-align-self-center";
 
     const buttonHoverable = props.hasGreyBackground ? "icon-button-hoverable-grey" : "icon-button-hoverable";
     const buttonNonHoverable = props.hasGreyBackground ? "icon-button-non-hoverable-grey" : "icon-button-non-hoverable";
@@ -31,13 +37,15 @@ export const IconButton = (props: IconButtonProps): React.ReactElement => {
         if (props.className && props.className !== "") {
             if (props.className.includes(" ")) {
                 const list = props.className.split(" ");
-                list.forEach(item => {
-                    classList.add(item);
-                });
+                ClassListClear(classList);
+                ClassListAdd(classList, list);
             } else {
+                classList.remove(props.className);
                 classList.add(props.className);
             }
         }
+        
+        ClassListAdd(classList, baseClasses);
 
         if (props.hasNoHoverEffect) {
             classList.add(buttonNonHoverable);
@@ -59,7 +67,6 @@ export const IconButton = (props: IconButtonProps): React.ReactElement => {
     return (
         <button
             ref={ref}
-            className={baseClass}
             onClick={props.onClick}
             onMouseDown={props.onMouseDown}
             style={{ height: size, width: size }}
