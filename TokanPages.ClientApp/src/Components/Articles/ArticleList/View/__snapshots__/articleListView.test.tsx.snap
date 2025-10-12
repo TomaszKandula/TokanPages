@@ -61,7 +61,6 @@ Object {
                 class="is-flex is-gap-1.5"
               >
                 <button
-                  class="icon-button-base is-flex is-align-self-center"
                   style="height: 36px; width: 36px;"
                 >
                   <div>
@@ -79,7 +78,6 @@ Object {
                   </div>
                 </button>
                 <button
-                  class="icon-button-base is-flex is-align-self-center"
                   style="height: 36px; width: 36px;"
                 >
                   <div>
@@ -97,7 +95,6 @@ Object {
                   </div>
                 </button>
                 <button
-                  class="icon-button-base is-flex is-align-self-center"
                   disabled=""
                   style="height: 36px; width: 36px;"
                 >
@@ -359,7 +356,6 @@ Object {
               class="is-flex is-gap-1.5"
             >
               <button
-                class="icon-button-base is-flex is-align-self-center"
                 style="height: 36px; width: 36px;"
               >
                 <div>
@@ -377,7 +373,6 @@ Object {
                 </div>
               </button>
               <button
-                class="icon-button-base is-flex is-align-self-center"
                 style="height: 36px; width: 36px;"
               >
                 <div>
@@ -395,7 +390,6 @@ Object {
                 </div>
               </button>
               <button
-                class="icon-button-base is-flex is-align-self-center"
                 disabled=""
                 style="height: 36px; width: 36px;"
               >
