@@ -51,7 +51,9 @@ export const BottomSheet = (props: BottomSheetProps): React.ReactElement => {
     }, [props.isOpen, canCloseBottomSheet]);
 
     React.useEffect(() => {
-        return () => { ToggleBodyScroll(true); }
+        return () => {
+            ToggleBodyScroll(true);
+        };
     }, []);
 
     if (!props.isOpen || shouldClear) {
@@ -61,7 +63,7 @@ export const BottomSheet = (props: BottomSheetProps): React.ReactElement => {
     return (
         <div
             role="presentation"
-            className="bottomsheet-nav-drawer-root"
+            className="bottomsheet-root"
             style={{
                 width: media.width,
                 height: media.height,
@@ -70,7 +72,7 @@ export const BottomSheet = (props: BottomSheetProps): React.ReactElement => {
             onMouseLeave={onCloseHandler}
         >
             <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0 }} onClick={onCloseHandler} />
-            <div ref={ref} tabIndex={-1} className="bottomsheet-nav-drawer-container">
+            <div ref={ref} tabIndex={-1} className="bottomsheet-container">
                 <div className="pb-6">
                     <div className="navbar-top-line"></div>
                     <div className="is-flex is-justify-content-space-between is-align-items-center mx-4 mt-5">
