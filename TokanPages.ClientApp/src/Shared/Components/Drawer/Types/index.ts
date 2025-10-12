@@ -1,6 +1,6 @@
 export interface DrawerProps {
-    isAnonymous: boolean;
     isOpen: boolean;
+    isExternalClose?: boolean;
     onTrigger: () => void;
-    children: React.ReactElement;
+    children: React.ReactElement | React.ReactElement[];
 }
