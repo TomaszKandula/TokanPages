@@ -7,7 +7,7 @@ Object {
     <div>
       <section>
         <div
-          class="backdrop"
+          class="spinner-backdrop"
         >
           <div
             class="progress-bar-box "
@@ -120,7 +120,7 @@ Object {
   "container": <div>
     <section>
       <div
-        class="backdrop"
+        class="spinner-backdrop"
       >
         <div
           class="progress-bar-box "
