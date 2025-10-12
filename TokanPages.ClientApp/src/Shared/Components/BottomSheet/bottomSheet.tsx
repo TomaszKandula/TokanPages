@@ -50,6 +50,10 @@ export const BottomSheet = (props: BottomSheetProps): React.ReactElement => {
         }
     }, [props.isOpen, canCloseBottomSheet]);
 
+    React.useEffect(() => {
+        return () => { ToggleBodyScroll(true); }
+    }, []);
+
     if (!props.isOpen || shouldClear) {
         return <></>;
     }
