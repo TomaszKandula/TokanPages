@@ -1,7 +1,10 @@
 import React, { useRef } from "react";
 import { StandardBackdropProps } from "../Types";
+import { ClassListAdd, ClassListClear } from "../../../../Shared/Services/Utilities";
 import Validation from "validate.js";
 import "./standardBackdrop.css";
+
+const baseClasses = ["standard-backdrop"];
 
 export const StandardBackdrop = (props: StandardBackdropProps): React.ReactElement => {
     const ref = useRef<HTMLDivElement>(null);
@@ -17,13 +20,15 @@ export const StandardBackdrop = (props: StandardBackdropProps): React.ReactEleme
         if (props.className && hasClassName) {
             if (props.className.includes(" ")) {
                 const list = props.className.split(" ");
-                list.forEach(item => {
-                    classList.add(item);
-                });
+                ClassListClear(classList);
+                ClassListAdd(classList, list);
             } else {
+                classList.remove(props.className);
                 classList.add(props.className);
             }
         }
+
+        ClassListAdd(classList, baseClasses);
     }, [props.className]);
 
     return (

@@ -76,7 +76,6 @@ Object {
                           class="bulma-icon bulma-is-right text-field-with-password"
                         >
                           <button
-                            class="icon-button-base is-flex is-align-self-center"
                             style="height: 48px; width: 48px;"
                           >
                             <div>
@@ -330,7 +329,6 @@ Object {
                         class="bulma-icon bulma-is-right text-field-with-password"
                       >
                         <button
-                          class="icon-button-base is-flex is-align-self-center"
                           style="height: 48px; width: 48px;"
                         >
                           <div>
