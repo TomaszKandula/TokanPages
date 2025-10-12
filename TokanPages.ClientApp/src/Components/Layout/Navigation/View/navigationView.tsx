@@ -51,7 +51,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
                 <RenderSideMenu
                     isAnonymous={props.isAnonymous}
                     languageId={props.languageId}
-                    items={props.navigation.menu?.items}
+                    items={props.navigation?.menu?.items}
                 />
             </Drawer>
         </AppBar>
