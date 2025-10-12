@@ -75,6 +75,10 @@ describe("test component: NavigationView", () => {
             ],
         };
 
+        const root = document.createElement("div");
+        root.setAttribute("id", "root");
+        document.body.appendChild(root);
+
         const html = render(
             <NavigationView
                 isLoading={false}
@@ -132,8 +136,7 @@ describe("test component: NavigationView", () => {
                 languageMenuHandler={jest.fn()}
                 isLanguageMenuOpen={false}
                 backPathHandler={jest.fn()}
-            />,
-            { wrapper: BrowserRouter }
+            />, { wrapper: BrowserRouter }
         );
 
         expect(html).toMatchSnapshot();

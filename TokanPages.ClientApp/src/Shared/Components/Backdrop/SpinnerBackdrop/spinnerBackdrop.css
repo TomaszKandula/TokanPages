@@ -1,4 +1,4 @@
-.backdrop {
+.spinner-backdrop {
     z-index: 1201;
     position: fixed;
     display: flex;

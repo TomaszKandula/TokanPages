@@ -89,12 +89,16 @@ it("renders without crashing", () => {
         ],
     };
 
+    const root = document.createElement("div");
+    root.setAttribute("id", "root");
+    document.body.appendChild(root);
+
     ReactDOM.render(
         <Provider store={store}>
             <MemoryRouter>
                 <App manifest={manifest} />
             </MemoryRouter>
         </Provider>,
-        document.createElement("div")
+        root
     );
 });

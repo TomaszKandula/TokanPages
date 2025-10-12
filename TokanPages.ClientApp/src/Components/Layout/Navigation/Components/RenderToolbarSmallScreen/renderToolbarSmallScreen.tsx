@@ -4,9 +4,8 @@ import { NavigationViewProps, RenderLanguageListProps } from "../../Abstractions
 import { RenderMenuIcon } from "../RenderMenuIcon";
 import { GET_IMAGES_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
-import { CustomImage, Icon, Link, Media, Skeleton } from "../../../../../Shared/Components";
+import { BottomSheet, CustomImage, Icon, Link, Media, Skeleton } from "../../../../../Shared/Components";
 import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP_TOP } from "../../../../../Shared/constants";
-import { RenderBottomSheet } from "../RenderBottomSheet";
 import { RenderSelectionIcon } from "..";
 import "./renderToolbarSmallScreen.css";
 import { v4 as uuidv4 } from "uuid";
@@ -144,15 +143,23 @@ export const RenderToolbarSmallScreen = (props: NavigationViewProps): React.Reac
     <>
         <Media.TabletOnly>
             <RenderDoubleToolbar {...props} />
-            <RenderBottomSheet {...props}>
+            <BottomSheet
+                isOpen={props.isBottomSheetOpen}
+                onTrigger={props.triggerBottomSheet}
+                caption={props.navigation?.languageMenu?.caption}
+            >
                 <RenderLanguages {...props} />
-            </RenderBottomSheet>
+            </BottomSheet>
         </Media.TabletOnly>
         <Media.MobileOnly>
             <RenderDoubleToolbar {...props} />
-            <RenderBottomSheet {...props}>
+            <BottomSheet
+                isOpen={props.isBottomSheetOpen}
+                onTrigger={props.triggerBottomSheet}
+                caption={props.navigation?.languageMenu?.caption}
+            >
                 <RenderLanguages {...props} />
-            </RenderBottomSheet>
+            </BottomSheet>
         </Media.MobileOnly>
     </>
 );
