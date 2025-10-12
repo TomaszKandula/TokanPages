@@ -33,3 +33,4 @@ export { Media } from "./Media";
 export { RenderHtml } from "./RenderHtml";
 export { PresentationView } from "./PresentationView";
 export { BottomSheet } from "./BottomSheet";
+export { Drawer } from "./Drawer";
