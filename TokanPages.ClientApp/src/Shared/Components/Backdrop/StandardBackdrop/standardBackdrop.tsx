@@ -20,6 +20,8 @@ export const StandardBackdrop = (props: StandardBackdropProps): React.ReactEleme
                 list.forEach(item => {
                     classList.add(item);
                 });
+            } else {
+                classList.add(props.className);
             }
         }
     }, [props.className]);

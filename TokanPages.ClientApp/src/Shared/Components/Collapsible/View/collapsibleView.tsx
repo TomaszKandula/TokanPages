@@ -10,26 +10,24 @@ interface CollapsibleViewProps {
     reference: React.RefObject<HTMLDivElement>;
 }
 
-export const CollapsibleView = (props: CollapsibleViewProps): React.ReactElement => {
-    return (
-        <div className="is-flex is-flex-direction-column is-align-items-center">
-            <div className="collapsible-transition" style={{ height: props.height }}>
-                <div className="collapsible-content" ref={props.reference}>
-                    <div
-                        className={
-                            props.isOpen ? "collapsible-gradient collapsible-gradient-expanded" : "collapsible-gradient"
-                        }
-                        style={{ height: props.height }}
-                    ></div>
-                    {props.children}
-                </div>
+const openGradientClass = "collapsible-gradient collapsible-gradient-expanded";
+const closeGradientClass = "collapsible-gradient";
+const openExpandClass = "no-select collapsible-expand collapsible-expand-open";
+const closeExpandClass = "no-select collapsible-expand";
+
+export const CollapsibleView = (props: CollapsibleViewProps): React.ReactElement => (
+    <div className="is-flex is-flex-direction-column is-align-items-center">
+        <div className="collapsible-transition" style={{ height: props.height }}>
+            <div className="collapsible-content" ref={props.reference}>
+                <div
+                    className={props.isOpen ? openGradientClass : closeGradientClass}
+                    style={{ height: props.height }}
+                ></div>
+                {props.children}
             </div>
-            <IconButton
-                className={props.isOpen ? "collapsible-expand collapsible-expand-open" : "collapsible-expand"}
-                onClick={props.clickHandler}
-            >
-                <Icon name="ChevronDown" size={1.5} className="has-text-grey" />
-            </IconButton>
         </div>
-    );
-};
+        <IconButton className={props.isOpen ? openExpandClass : closeExpandClass} onClick={props.clickHandler}>
+            <Icon name="ChevronDown" size={1.5} className="has-text-grey" />
+        </IconButton>
+    </div>
+);
