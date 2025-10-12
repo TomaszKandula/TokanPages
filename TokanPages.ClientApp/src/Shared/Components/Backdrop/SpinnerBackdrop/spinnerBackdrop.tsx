@@ -1,6 +1,6 @@
 import * as React from "react";
-import { ProgressBar } from "..";
-import "./backdrop.css";
+import { ProgressBar } from "../..";
+import "./spinnerBackdrop.css";
 
 interface RenderbackdropProps {
     isLoading: boolean;
@@ -11,10 +11,10 @@ const ChildrenOrSpinner = (props: RenderbackdropProps) => {
     return props.children === undefined ? <ProgressBar colour="#fff" size={50} thickness={4} /> : props.children;
 };
 
-export const RenderBackdrop = (props: RenderbackdropProps): React.ReactElement => (
+export const SpinnerBackdrop = (props: RenderbackdropProps): React.ReactElement => (
     <>
         {props.isLoading ? (
-            <div className="backdrop">
+            <div className="spinner-backdrop">
                 <ChildrenOrSpinner {...props} />
             </div>
         ) : null}
