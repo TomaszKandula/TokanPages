@@ -10,3 +10,5 @@ export { ProcessQueryParams } from "./ProcessQueryParams";
 export { ToggleBodyScroll } from "./ToggleBodyScroll";
 export { SetPageParam, UpdatePageParam } from "./QueryPageParam";
 export { GetRootElement } from "./GetRootElement";
+export { ClassListAdd } from "./ClassListAdd";
+export { ClassListClear } from "./ClassListClear"; 
