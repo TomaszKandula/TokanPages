@@ -1,6 +1,6 @@
 import * as React from "react";
 import { UserNoteResultDto } from "../../../../../Api/Models";
-import { Backdrop, Skeleton, TextArea } from "../../../../../Shared/Components";
+import { SpinnerBackdrop, Skeleton, TextArea } from "../../../../../Shared/Components";
 import { ReactChangeTextEvent } from "../../../../../Shared/types";
 import Validate from "validate.js";
 import "./userNotesView.css";
@@ -70,7 +70,7 @@ export const UserNotesView = (props: UserNotesViewProps): React.ReactElement => 
 
     return (
         <section>
-            <Backdrop isLoading={props.hasProgress} />
+            <SpinnerBackdrop isLoading={props.hasProgress} />
             <div className="bulma-container bulma-is-max-desktop">
                 <div className="py-6">
                     <div className={`bulma-card ${props.mediaQuery.isMobile ? "mx-4" : ""}`}>
