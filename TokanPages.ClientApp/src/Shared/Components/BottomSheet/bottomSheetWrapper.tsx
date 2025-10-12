@@ -1,6 +1,6 @@
 import React from "react";
 import { BottomSheetProps } from "./Types";
-import { GetRootElement } from "Shared/Services/Utilities";
+import { GetRootElement } from "../../../Shared/Services/Utilities";
 import { createPortal } from "react-dom";
 import { BottomSheet } from "./bottomSheet";
 
