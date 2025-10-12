@@ -14,7 +14,7 @@ export const Drawer = (props: DrawerProps): React.ReactElement => {
     const [canCloseMenu, setCanCloseMenu] = React.useState(false);
     const [canShowBackdrop, setCanShowBackdrop] = React.useState(false);
 
-    const menuHandler = React.useCallback(() => {
+    const onCloseHandler = React.useCallback(() => {
         setCanCloseMenu(true);
     }, []);
 
@@ -39,6 +39,12 @@ export const Drawer = (props: DrawerProps): React.ReactElement => {
     }, [props.isOpen, canCloseMenu]);
 
     React.useEffect(() => {
+        if (props.isExternalClose) {
+            onCloseHandler();
+        }
+    }, [props.isExternalClose]);
+
+    React.useEffect(() => {
         return () => {
             ToggleBodyScroll(true);
         };
@@ -56,9 +62,9 @@ export const Drawer = (props: DrawerProps): React.ReactElement => {
                 width: media.width,
                 left: canOpenMenu ? 0 : -media.width,
             }}
-            onMouseLeave={menuHandler}
+            onMouseLeave={onCloseHandler}
         >
-            <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0 }} onClick={menuHandler} />
+            <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0 }} onClick={onCloseHandler} />
             <div tabIndex={-1} className="drawer-container" style={{ width: media.width * widthRatio }}>
                 {props.children}
             </div>
