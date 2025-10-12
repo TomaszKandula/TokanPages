@@ -1,3 +1,59 @@
+# [0.175.0](https://github.com/TomaszKandula/TokanPages/compare/v0.174.0...v0.175.0) (2025-10-12)
+
+
+### Bug Fixes
+
+* add image type prop ([261cef9](https://github.com/TomaszKandula/TokanPages/commit/261cef9228342f56d53efbc0ae1ae10dad4acfdd))
+* add missing 'no-select' css class ([59fa51a](https://github.com/TomaszKandula/TokanPages/commit/59fa51aea861325b96cabb8313de6acb7d87ed16))
+* add missing language image type to the manifest ([b0bcf0b](https://github.com/TomaszKandula/TokanPages/commit/b0bcf0b9e291207b1e0b146abe5598a99ae3f85b))
+* add missing object-fit prop ([008665d](https://github.com/TomaszKandula/TokanPages/commit/008665d245d201c44d7fb8fe5d49b21a4715d969))
+* allow undefined ([853d513](https://github.com/TomaszKandula/TokanPages/commit/853d513841336a6f58bcba344d6b420ea68d21a0))
+* correct class names ([b85104d](https://github.com/TomaszKandula/TokanPages/commit/b85104d22470ea8d33f1b491fbf08e5849475fd4))
+* correct page calculation ([eaefcb2](https://github.com/TomaszKandula/TokanPages/commit/eaefcb286567c4d1db4579b14d46fd65425934a8))
+* do not display/load list when in snapshot mode for caching purposes ([db30640](https://github.com/TomaszKandula/TokanPages/commit/db30640ad020602643fce83993be53345e7105e8))
+* fallback to undefined ([a7adfa1](https://github.com/TomaszKandula/TokanPages/commit/a7adfa1bd0ae65f1ef7e0b0fdd4c0d75424e63e5))
+* fallback to undefined ([eda629e](https://github.com/TomaszKandula/TokanPages/commit/eda629ef0dfcd1177ecc288c258bff5ea40f02b3))
+* pass image type ([04ead0d](https://github.com/TomaszKandula/TokanPages/commit/04ead0d638ce5b525e71db5ff7d88af0301ccc17))
+* pass prop ([bd74c05](https://github.com/TomaszKandula/TokanPages/commit/bd74c051a679f8fc3886d6c58300980f3308385c))
+* pass prop ([e388808](https://github.com/TomaszKandula/TokanPages/commit/e388808c8e7dc048947968bbd33509797b4d21b2))
+* pass single class name ([c0d5292](https://github.com/TomaszKandula/TokanPages/commit/c0d52921d929b3279bd12e7318e1d020359729b6))
+* remove hardcoded image type, pass prop ([6b05ae4](https://github.com/TomaszKandula/TokanPages/commit/6b05ae40653774c8d1d797adcc940ac643042cfa))
+* resolve found issues with adding/updating css classes ([1347332](https://github.com/TomaszKandula/TokanPages/commit/13473320a10069b86a9bf21e70ea31681048072c))
+* use base image url ([34b3d1c](https://github.com/TomaszKandula/TokanPages/commit/34b3d1cbc497fac57ee9836c68da62c392304af7))
+
+
+### Features
+
+* accept external close calls ([d979031](https://github.com/TomaszKandula/TokanPages/commit/d979031f8d306be9a3e2be66a99fb4931827721e))
+* add css class utility helpers ([8d8ee0a](https://github.com/TomaszKandula/TokanPages/commit/8d8ee0a5cd4195a338700928767fb5e031d1d706))
+* add flag directory prop ([94afaaa](https://github.com/TomaszKandula/TokanPages/commit/94afaaaadc4e18d92ce9cfa33f41a512f7e2ff4c))
+* add new bottom sheet component ([8651e78](https://github.com/TomaszKandula/TokanPages/commit/8651e78a53e3f0f8c762e6427fe68b52b47d3e54))
+* add new drawer component ([c20e676](https://github.com/TomaszKandula/TokanPages/commit/c20e6769c13c3516d678c2661db510cb5801a495))
+* add new shared types ([2804d4a](https://github.com/TomaszKandula/TokanPages/commit/2804d4a56060a897a005aad125befaa495fb0b7b))
+* add overflow auto to html ([9fd62c9](https://github.com/TomaszKandula/TokanPages/commit/9fd62c99207f7956f88b3631552bff7ec9fdf0c8))
+* add overflow to the html, not to the body ([0b018f7](https://github.com/TomaszKandula/TokanPages/commit/0b018f77ac3805569c84c6efc5b71fa9f728907f))
+* add scroll lock class ([da3db91](https://github.com/TomaszKandula/TokanPages/commit/da3db910a473f040760157136cce1f547120f2ef))
+* add utility function to get root element ([cd0dea3](https://github.com/TomaszKandula/TokanPages/commit/cd0dea317459b17e3776e05b634d8b3c7c3c276d))
+* change bottom padding ([d812db7](https://github.com/TomaszKandula/TokanPages/commit/d812db71016b7dce323abcfb3635978593fd212d))
+* change contract ([1abf028](https://github.com/TomaszKandula/TokanPages/commit/1abf0288d510809597b36fce173b5e05ba90d8ff))
+* change models, add new prop ([2097f8a](https://github.com/TomaszKandula/TokanPages/commit/2097f8a49851c9a879a6090d56fced8ff92cfae3))
+* change utility function for scroll bar locking ([7d7a207](https://github.com/TomaszKandula/TokanPages/commit/7d7a2071bed0e1dc8a963cced5265bf084fddc36))
+* display sign out option when use is logged ([fb88bad](https://github.com/TomaszKandula/TokanPages/commit/fb88bad5b6ec73ad515c315e710b6803f90d9263))
+* mount drawer and bottom sheet in the root ([43c1a1c](https://github.com/TomaszKandula/TokanPages/commit/43c1a1c2294f41c500df2e29a5eb000cc6d3392e))
+* pass flag directory prop ([4d70f84](https://github.com/TomaszKandula/TokanPages/commit/4d70f84c38bb1e44d3b18be5a34975a1265f7cee))
+* re-do backdrop component, split into two components ([b35e3b7](https://github.com/TomaszKandula/TokanPages/commit/b35e3b7a5914678c5a44cda7d714ba9989df4500))
+* remove flag URL from constants ([56a7d4b](https://github.com/TomaszKandula/TokanPages/commit/56a7d4bc4d8a11573dca4f50ce4e746aa7ef6c0f))
+* remove unused code ([4023c5b](https://github.com/TomaszKandula/TokanPages/commit/4023c5b845e91da0ada8a5e2370ca00c5139fd79))
+* remove unused component ([dbbc342](https://github.com/TomaszKandula/TokanPages/commit/dbbc3429b2a6f12ed9ca0dae8e385548e1349ccf))
+* simplify structure ([e62b321](https://github.com/TomaszKandula/TokanPages/commit/e62b321f18206edf9cda9fe00ec660460d96f738))
+* toggle scroll on unmount ([971aa74](https://github.com/TomaszKandula/TokanPages/commit/971aa743d83308635881f82d7ac13b217bf0f48a))
+* use 'ToggleBodyScroll' ([2e8f4de](https://github.com/TomaszKandula/TokanPages/commit/2e8f4def47dc8e16970390326d004a12045bc44b))
+* use base image URL ([073f5f5](https://github.com/TomaszKandula/TokanPages/commit/073f5f55a9192aa70df6a6e758e6d2dcc6214ae3))
+* use drawer component and external close button ([f773825](https://github.com/TomaszKandula/TokanPages/commit/f7738254643f9ac239dfb914cbcbbe6d79b02a79))
+* use new bottom sheet component ([146cf0e](https://github.com/TomaszKandula/TokanPages/commit/146cf0ef2fd4e0d7a2297884f60300bdd45e60db))
+* use spinner backdrop ([de6cd78](https://github.com/TomaszKandula/TokanPages/commit/de6cd7839cc19bbc30d5e681bf48341d87240b6e))
+* use standard backdrop ([e6a3224](https://github.com/TomaszKandula/TokanPages/commit/e6a3224dfb0eef0b4805f684455c910e42b9d519))
+
 # [0.174.0](https://github.com/TomaszKandula/TokanPages/compare/v0.173.0...v0.174.0) (2025-10-04)
 
 
