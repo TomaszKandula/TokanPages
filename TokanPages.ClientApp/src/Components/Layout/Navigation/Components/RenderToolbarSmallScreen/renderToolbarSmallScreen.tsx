@@ -1,14 +1,11 @@
 import * as React from "react";
-import { createPortal } from "react-dom";
 import { Link as RouterLink } from "react-router-dom";
 import { NavigationViewProps, RenderLanguageListProps } from "../../Abstractions";
 import { RenderMenuIcon } from "../RenderMenuIcon";
 import { GET_IMAGES_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
-import { CustomImage, Icon, Link, Media, Skeleton } from "../../../../../Shared/Components";
+import { BottomSheet, CustomImage, Icon, Link, Media, Skeleton } from "../../../../../Shared/Components";
 import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP_TOP } from "../../../../../Shared/constants";
-import { GetRootElement } from "../../../../../Shared/Services/Utilities";
-import { RenderBottomSheet } from "../RenderBottomSheet";
 import { RenderSelectionIcon } from "..";
 import "./renderToolbarSmallScreen.css";
 import { v4 as uuidv4 } from "uuid";
@@ -142,29 +139,27 @@ const RenderLanguages = (props: NavigationViewProps): React.ReactElement =>
         </div>
     );
 
-export const RenderToolbarSmallScreen = (props: NavigationViewProps): React.ReactElement => {
-    const root = GetRootElement();
-
-    return (
+export const RenderToolbarSmallScreen = (props: NavigationViewProps): React.ReactElement => (
         <>
             <Media.TabletOnly>
                 <RenderDoubleToolbar {...props} />
-                {createPortal(
-                    <RenderBottomSheet {...props}>
-                        <RenderLanguages {...props} />
-                    </RenderBottomSheet>,
-                    root
-                )}
+                <BottomSheet 
+                    isOpen={props.isBottomSheetOpen}
+                    onTrigger={props.triggerBottomSheet}
+                    caption={props.navigation?.languageMenu?.caption}
+                >
+                    <RenderLanguages {...props} />
+                </BottomSheet>
             </Media.TabletOnly>
             <Media.MobileOnly>
                 <RenderDoubleToolbar {...props} />
-                {createPortal(
-                    <RenderBottomSheet {...props}>
-                        <RenderLanguages {...props} />
-                    </RenderBottomSheet>,
-                    root
-                )}
+                <BottomSheet 
+                    isOpen={props.isBottomSheetOpen}
+                    onTrigger={props.triggerBottomSheet}
+                    caption={props.navigation?.languageMenu?.caption}
+                >
+                    <RenderLanguages {...props} />
+                </BottomSheet>
             </Media.MobileOnly>
         </>
     );
-};
