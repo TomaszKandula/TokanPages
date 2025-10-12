@@ -34,6 +34,8 @@ export const IconButton = (props: IconButtonProps): React.ReactElement => {
                 list.forEach(item => {
                     classList.add(item);
                 });
+            } else {
+                classList.add(props.className);
             }
         }
 
