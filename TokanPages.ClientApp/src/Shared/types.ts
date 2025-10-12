@@ -14,11 +14,13 @@ export type TInputColours =
 export type TInputSizes = "bulma-is-small" | "bulma-is-normal" | "bulma-is-medium" | "bulma-is-large";
 export type TLoading = "lazy" | "eager";
 
+export type ReactCSSProps = React.CSSProperties;
 export type ReactSyntheticEvent = React.SyntheticEvent;
 
 export type ReactMouseEvent = React.MouseEvent<HTMLElement, MouseEvent>;
 export type ReactMouseEventButton = React.MouseEvent<HTMLButtonElement, MouseEvent>;
 export type ReactMouseEventHandler = React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+export type ReactMouseDivEventHandler = React.MouseEventHandler<HTMLDivElement>;
 
 export type ReactKeyboardEvent = React.KeyboardEvent<HTMLInputElement>;
 export type ReactChangeEvent = React.ChangeEvent<HTMLInputElement>;
