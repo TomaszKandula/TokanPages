@@ -2,11 +2,10 @@ import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { NavigationViewProps, RenderLanguageListProps } from "../../Abstractions";
 import { RenderMenuIcon } from "../RenderMenuIcon";
-import { GET_FLAG_URL, GET_ICONS_URL } from "../../../../../Api";
+import { GET_IMAGES_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
-import { CustomImage, Icon, Link, Media, Skeleton } from "../../../../../Shared/Components";
+import { BottomSheet, CustomImage, Icon, Link, Media, Skeleton } from "../../../../../Shared/Components";
 import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP_TOP } from "../../../../../Shared/constants";
-import { RenderBottomSheet } from "../RenderBottomSheet";
 import { RenderSelectionIcon } from "..";
 import "./renderToolbarSmallScreen.css";
 import { v4 as uuidv4 } from "uuid";
@@ -15,35 +14,46 @@ const listSeparator = (length: number, index: number): string => {
     return length === index + 1 ? "" : "line-separator";
 };
 
-const RenderDoubleToolbar = (props: NavigationViewProps) => (
+const RenderLanguageOption = (props: NavigationViewProps): React.ReactElement => (
+    <a className="bulma-navbar-start is-flex is-align-items-center ml-4 no-select" onClick={props.triggerBottomSheet}>
+        <CustomImage
+            base={GET_IMAGES_URL}
+            source={`${props.languageFlagDir}/${props.languageId}.${props.languageFlagType}`}
+            title="Language flag"
+            alt={`A flag (${props.languageId}) for current language selection`}
+            className="bulma-image bulma-is-16x16 is-round-border"
+        />
+        <div className="has-text-black ml-2">{props.languageId?.toUpperCase()}</div>
+        <Icon name="ChevronDown" size={1.4} className="ml-1" />
+    </a>
+);
+
+const RenderCreateAccountOption = (props: NavigationViewProps): React.ReactElement => (
+    <Skeleton isLoading={props.isLoading} mode="Rect" height={24} width={175} className="mr-3">
+        <Link to={props.navigation?.signup?.link} className="bulma-navbar-end is-flex is-align-items-center mr-4">
+            <Icon name={props.navigation?.signup?.icon} size={1.2} className="mr-1" />
+            <p className="is-size-7 has-text-black">{props.navigation?.signup?.caption}</p>
+        </Link>
+    </Skeleton>
+);
+
+const RenderSignoutOption = (props: NavigationViewProps): React.ReactElement => (
+    <Skeleton isLoading={props.isLoading} mode="Rect" height={24} width={175} className="mr-3">
+        <Link to={props.navigation?.signout?.link} className="bulma-navbar-end is-flex is-align-items-center mr-4">
+            <Icon name={props.navigation?.signout?.icon} size={1.2} className="mr-1" />
+            <p className="is-size-7 has-text-black">{props.navigation?.signout?.caption}</p>
+        </Link>
+    </Skeleton>
+);
+
+const RenderDoubleToolbar = (props: NavigationViewProps): React.ReactElement => (
     <div className="is-flex is-flex-direction-column is-flex-grow-1">
         <div
             className="is-flex is-justify-content-space-between is-align-items-center"
             style={{ height: APP_BAR_HEIGHT_NON_DESKTOP_TOP }}
         >
-            <a
-                className="bulma-navbar-start is-flex is-align-items-center ml-4 no-select"
-                onClick={props.triggerBottomSheet}
-            >
-                <CustomImage
-                    base={GET_FLAG_URL}
-                    source={`${props.languageId}.png`}
-                    title="Language flag"
-                    alt={`A flag (${props.languageId}) for current language selection`}
-                    className="bulma-image bulma-is-16x16 is-round-border"
-                />
-                <div className="has-text-black ml-2">{props.languageId?.toUpperCase()}</div>
-                <Icon name="ChevronDown" size={1.4} className="ml-1" />
-            </a>
-            <Skeleton isLoading={props.isLoading} mode="Rect" height={24} width={175} className="mr-3">
-                <Link
-                    to={props.navigation?.signup?.link}
-                    className="bulma-navbar-end is-flex is-align-items-center mr-4"
-                >
-                    <Icon name="PlusCircleOutline" size={1.2} className="mr-1" />
-                    <p className="is-size-7 has-text-black">{props.navigation?.signup?.caption}</p>
-                </Link>
-            </Skeleton>
+            <RenderLanguageOption {...props} />
+            {props.isAnonymous ? <RenderCreateAccountOption {...props} /> : <RenderSignoutOption {...props} />}
         </div>
         <hr className="line-separator" />
         <div
@@ -63,7 +73,7 @@ const RenderDoubleToolbar = (props: NavigationViewProps) => (
                         className="is-flex is-align-self-center"
                     >
                         <CustomImage
-                            base={GET_ICONS_URL}
+                            base={GET_IMAGES_URL}
                             source={props.navigation?.logo}
                             title="TomKandula logo"
                             alt="An application logo"
@@ -94,8 +104,8 @@ const RenderLanguageList = (props: RenderLanguageListProps): React.ReactElement 
                         >
                             <div className="is-flex is-align-items-center">
                                 <CustomImage
-                                    base={GET_FLAG_URL}
-                                    source={`${item.id}.png`}
+                                    base={GET_IMAGES_URL}
+                                    source={`${props.languageFlagDir}/${item.id}.${props.languageFlagType}`}
                                     title="Language flag"
                                     alt={`A flag (${item.name}) symbolizing available language`}
                                     className="bulma-image bulma-is-24x24 is-round-border my-2 mx-0"
@@ -133,15 +143,23 @@ export const RenderToolbarSmallScreen = (props: NavigationViewProps): React.Reac
     <>
         <Media.TabletOnly>
             <RenderDoubleToolbar {...props} />
-            <RenderBottomSheet {...props}>
+            <BottomSheet
+                isOpen={props.isBottomSheetOpen}
+                onTrigger={props.triggerBottomSheet}
+                caption={props.navigation?.languageMenu?.caption}
+            >
                 <RenderLanguages {...props} />
-            </RenderBottomSheet>
+            </BottomSheet>
         </Media.TabletOnly>
         <Media.MobileOnly>
             <RenderDoubleToolbar {...props} />
-            <RenderBottomSheet {...props}>
+            <BottomSheet
+                isOpen={props.isBottomSheetOpen}
+                onTrigger={props.triggerBottomSheet}
+                caption={props.navigation?.languageMenu?.caption}
+            >
                 <RenderLanguages {...props} />
-            </RenderBottomSheet>
+            </BottomSheet>
         </Media.MobileOnly>
     </>
 );

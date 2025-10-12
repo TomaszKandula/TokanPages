@@ -24,7 +24,6 @@ Object {
                   class="is-flex is-justify-content-space-around is-align-items-center"
                 >
                   <button
-                    class="icon-button-base is-flex is-align-self-center"
                     style="height: 48px; width: 48px;"
                   >
                     <a
@@ -56,7 +55,6 @@ Object {
                     class="is-flex"
                   >
                     <button
-                      class="icon-button-base is-flex is-align-self-center"
                       style="height: 48px; width: 48px;"
                     >
                       <div>
@@ -74,7 +72,6 @@ Object {
                       </div>
                     </button>
                     <button
-                      class="icon-button-base is-flex is-align-self-center"
                       style="height: 48px; width: 48px;"
                     >
                       <div>
@@ -123,7 +120,6 @@ Object {
                 class="is-flex is-justify-content-space-around is-align-items-center"
               >
                 <button
-                  class="icon-button-base is-flex is-align-self-center"
                   style="height: 48px; width: 48px;"
                 >
                   <a
@@ -155,7 +151,6 @@ Object {
                   class="is-flex"
                 >
                   <button
-                    class="icon-button-base is-flex is-align-self-center"
                     style="height: 48px; width: 48px;"
                   >
                     <div>
@@ -173,7 +168,6 @@ Object {
                     </div>
                   </button>
                   <button
-                    class="icon-button-base is-flex is-align-self-center"
                     style="height: 48px; width: 48px;"
                   >
                     <div>

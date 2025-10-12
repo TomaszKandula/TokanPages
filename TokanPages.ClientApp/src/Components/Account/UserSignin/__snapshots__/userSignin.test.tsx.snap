@@ -7,7 +7,7 @@ Object {
     <div>
       <section>
         <div
-          class="bulma-container"
+          class="bulma-container pb-6"
         >
           <div
             class="bulma-columns mx-4 my-6"
@@ -76,7 +76,6 @@ Object {
                           class="bulma-icon bulma-is-right text-field-with-password"
                         >
                           <button
-                            class="icon-button-base is-flex is-align-self-center"
                             style="height: 48px; width: 48px;"
                           >
                             <div>
@@ -191,7 +190,7 @@ Object {
                                 alt="Illustration for security news"
                                 class="user-signin-view-card-image"
                                 loading="lazy"
-                                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news/news_01.webp"
+                                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news_01.webp"
                                 title="Security news image"
                               />
                             </figure>
@@ -261,7 +260,7 @@ Object {
   "container": <div>
     <section>
       <div
-        class="bulma-container"
+        class="bulma-container pb-6"
       >
         <div
           class="bulma-columns mx-4 my-6"
@@ -330,7 +329,6 @@ Object {
                         class="bulma-icon bulma-is-right text-field-with-password"
                       >
                         <button
-                          class="icon-button-base is-flex is-align-self-center"
                           style="height: 48px; width: 48px;"
                         >
                           <div>
@@ -445,7 +443,7 @@ Object {
                               alt="Illustration for security news"
                               class="user-signin-view-card-image"
                               loading="lazy"
-                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news/news_01.webp"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news_01.webp"
                               title="Security news image"
                             />
                           </figure>

@@ -51,7 +51,7 @@ Object {
                             alt="Somebody"
                             class="socials-image"
                             loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_header.webp"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/linkedin_header.webp"
                             title="Illustration"
                           />
                         </figure>
@@ -63,7 +63,7 @@ Object {
                           alt="Somebody"
                           class="socials-avatar"
                           loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/linkedin_user.webp"
                           title="Socials"
                         />
                       </div>
@@ -140,7 +140,7 @@ Object {
                             alt="Somebody"
                             class="socials-image"
                             loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_header.webp"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/github_header.webp"
                             title="Illustration"
                           />
                         </figure>
@@ -152,7 +152,7 @@ Object {
                           alt="Somebody"
                           class="socials-avatar"
                           loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/github_user.webp"
                           title="Socials"
                         />
                       </div>
@@ -235,7 +235,7 @@ Object {
                             alt="TomKandula"
                             class="socials-image"
                             loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_header.webp"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/instagram_header.webp"
                             title="Illustration"
                           />
                         </figure>
@@ -247,7 +247,7 @@ Object {
                           alt="TomKandula"
                           class="socials-avatar"
                           loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/instagram_user.webp"
                           title="Socials"
                         />
                       </div>
@@ -353,7 +353,7 @@ Object {
                           alt="Somebody"
                           class="socials-image"
                           loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_header.webp"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/linkedin_header.webp"
                           title="Illustration"
                         />
                       </figure>
@@ -365,7 +365,7 @@ Object {
                         alt="Somebody"
                         class="socials-avatar"
                         loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/linkedin_user.webp"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/linkedin_user.webp"
                         title="Socials"
                       />
                     </div>
@@ -442,7 +442,7 @@ Object {
                           alt="Somebody"
                           class="socials-image"
                           loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_header.webp"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/github_header.webp"
                           title="Illustration"
                         />
                       </figure>
@@ -454,7 +454,7 @@ Object {
                         alt="Somebody"
                         class="socials-avatar"
                         loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/github_user.webp"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/github_user.webp"
                         title="Socials"
                       />
                     </div>
@@ -537,7 +537,7 @@ Object {
                           alt="TomKandula"
                           class="socials-image"
                           loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_header.webp"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/instagram_header.webp"
                           title="Illustration"
                         />
                       </figure>
@@ -549,7 +549,7 @@ Object {
                         alt="TomKandula"
                         class="socials-avatar"
                         loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/socials/instagram_user.webp"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/instagram_user.webp"
                         title="Socials"
                       />
                     </div>

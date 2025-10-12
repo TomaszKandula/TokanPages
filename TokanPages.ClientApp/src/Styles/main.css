@@ -32,6 +32,7 @@
 /* BASELINE */
 
 html {
+    overflow: auto;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -120,4 +121,8 @@ body {
 
 .is-transparent {
     background-color: transparent;
+}
+
+.is-lock-scroll {
+    overflow: hidden;
 }

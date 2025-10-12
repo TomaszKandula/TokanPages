@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { GET_AVATARS_URL } from "../../../Api/Paths";
+import { GET_IMAGES_URL } from "../../../Api/Paths";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction, ArticleUpdateAction } from "../../../Store/Actions";
 import { GetDateTime } from "../../../Shared/Services/Formatters";
@@ -25,7 +25,17 @@ export interface ArticleDetailProps extends ExtendedViewProps {
     title: string;
 }
 
-const fallbackImagePath = `${GET_AVATARS_URL}/${DEFAULT_USER_IMAGE}`;
+const fallbackImagePath = `${GET_IMAGES_URL}/avatars/${DEFAULT_USER_IMAGE}`;
+
+const userData: Author = {
+    userId: "n/a",
+    aliasName: "",
+    avatarName: "",
+    firstName: "",
+    lastName: "",
+    shortBio: "n/a",
+    registered: "",
+};
 
 export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => {
     const media = useDimensions();
@@ -35,7 +45,7 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const selection = useSelector((state: ApplicationState) => state.articleSelection);
     const user = useSelector((state: ApplicationState) => state.userDataStore);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
     const template = data.components.templates.templates.articles;
     const content = data.components.pageArticle;
 
@@ -50,20 +60,15 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
     const [likesLeft, setLikesLeft] = React.useState(0);
 
     const deletedUser: Author = {
-        userId: "n/a",
-        aliasName: "",
-        avatarName: "",
+        ...userData,
         firstName: content.textDeletedUser,
-        lastName: "",
-        shortBio: "n/a",
-        registered: "",
     };
 
     const author = !Validate.isDefined(selection.article?.author) ? deletedUser : (selection.article?.author as Author);
     const userLetter = author.aliasName.charAt(0).toUpperCase();
     const isAnonymous = Validate.isEmpty(user.userData.userId);
 
-    const flagImage = MapLanguage(selection.article.languageIso);
+    const flagImage = `${language?.flagImageDir}/${MapLanguage(selection.article.languageIso, language.flagImageType)}`;
 
     React.useEffect(() => {
         const likesLimitForAnonym = LIKES_LIMIT_FOR_ANONYM - selection.article.userLikes - totalThumbs;
@@ -118,8 +123,8 @@ export const ArticleDetail = (props: ArticleDetailProps): React.ReactElement => 
 
     const backButtonHandler = React.useCallback(() => {
         dispatch(ArticleSelectionAction.reset());
-        history.push(`/${languageId}/articles`);
-    }, [languageId]);
+        history.push(`/${language?.id}/articles`);
+    }, [language?.id]);
 
     return (
         <ArticleDetailView

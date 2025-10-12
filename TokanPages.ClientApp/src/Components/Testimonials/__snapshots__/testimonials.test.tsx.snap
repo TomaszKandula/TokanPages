@@ -39,7 +39,7 @@ Object {
                       alt="Picture of Joanna"
                       class="testimonials-card-image"
                       loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/joanna.webp"
                       title="Testimonials"
                     />
                     <div
@@ -104,7 +104,6 @@ Object {
                           </div>
                         </div>
                         <button
-                          class="icon-button-base is-flex is-align-self-center"
                           style="height: 48px; width: 48px;"
                         >
                           <div>
@@ -140,7 +139,7 @@ Object {
                       alt="Picture of Adama"
                       class="testimonials-card-image"
                       loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/adama.webp"
                       title="Testimonials"
                     />
                     <div
@@ -203,7 +202,6 @@ Object {
                           </div>
                         </div>
                         <button
-                          class="icon-button-base is-flex is-align-self-center"
                           style="height: 48px; width: 48px;"
                         >
                           <div>
@@ -239,7 +237,7 @@ Object {
                       alt="Picture of Scott"
                       class="testimonials-card-image"
                       loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/scott.webp"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/scott.webp"
                       title="Testimonials"
                     />
                     <div
@@ -302,7 +300,6 @@ Object {
                           </div>
                         </div>
                         <button
-                          class="icon-button-base is-flex is-align-self-center"
                           style="height: 48px; width: 48px;"
                         >
                           <div>
@@ -365,7 +362,7 @@ Object {
                     alt="Picture of Joanna"
                     class="testimonials-card-image"
                     loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/joanna.webp"
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/joanna.webp"
                     title="Testimonials"
                   />
                   <div
@@ -430,7 +427,6 @@ Object {
                         </div>
                       </div>
                       <button
-                        class="icon-button-base is-flex is-align-self-center"
                         style="height: 48px; width: 48px;"
                       >
                         <div>
@@ -466,7 +462,7 @@ Object {
                     alt="Picture of Adama"
                     class="testimonials-card-image"
                     loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/adama.webp"
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/adama.webp"
                     title="Testimonials"
                   />
                   <div
@@ -529,7 +525,6 @@ Object {
                         </div>
                       </div>
                       <button
-                        class="icon-button-base is-flex is-align-self-center"
                         style="height: 48px; width: 48px;"
                       >
                         <div>
@@ -565,7 +560,7 @@ Object {
                     alt="Picture of Scott"
                     class="testimonials-card-image"
                     loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/testimonials/scott.webp"
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/scott.webp"
                     title="Testimonials"
                   />
                   <div
@@ -628,7 +623,6 @@ Object {
                         </div>
                       </div>
                       <button
-                        class="icon-button-base is-flex is-align-self-center"
                         style="height: 48px; width: 48px;"
                       >
                         <div>

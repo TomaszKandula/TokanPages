@@ -33,6 +33,8 @@ it("renders without crashing", () => {
         created: "2022-09-09",
         updated: "2022-09-09",
         default: "x-default",
+        flagImageDir: "flags",
+        flagImageType: "webp",
         languages: [
             {
                 id: "en",
@@ -87,12 +89,16 @@ it("renders without crashing", () => {
         ],
     };
 
+    const root = document.createElement("div");
+    root.setAttribute("id", "root");
+    document.body.appendChild(root);
+
     ReactDOM.render(
         <Provider store={store}>
             <MemoryRouter>
                 <App manifest={manifest} />
             </MemoryRouter>
         </Provider>,
-        document.createElement("div")
+        root
     );
 });

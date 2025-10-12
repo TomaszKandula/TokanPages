@@ -13,7 +13,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 
 const RenderContent = (props: RenderContentProps): React.ReactElement => {
-    if (props.articles.length === 0) {
+    if (props.articles.length === 0 && !props.hasSnapshotMode) {
         return (
             <div className="is-flex is-flex-direction-column is-align-items-center is-align-content-center is-gap-1.5">
                 <Icon name="FolderSearch" size={8} className="has-text-grey-light" />
@@ -21,6 +21,8 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => {
                 <p className="is-size-6 has-text-weight-light has-text-grey-dark">{props.searchEmptyText2}</p>
             </div>
         );
+    } else {
+        <></>;
     }
 
     return (
@@ -122,12 +124,9 @@ const RenderPagination = (props: ArticleListViewProps): React.ReactElement => {
         return <div className="mb-4">&nbsp;</div>;
     }
 
-    const pageNumber = props.pageData.pageNumber;
-    const pages = Math.floor(props.pageData.totalSize / props.pageData.pageSize + 1);
     const paginationItem = [];
-
-    for (let index = 1; index <= pages; index++) {
-        if (pageNumber === index) {
+    for (let index = 1; index <= props.pageData.paginationNumber; index++) {
+        if (props.pageData.pageNumber === index) {
             paginationItem.push(
                 <li key={uuidv4()}>
                     <a

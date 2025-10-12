@@ -36,7 +36,7 @@ export const DocumentView = (props: DocumentViewProps): React.ReactElement => {
 
     return (
         <section className={props.className}>
-            <article className="bulma-container bulma-is-max-tablet">
+            <article className="bulma-container bulma-is-max-tablet pb-6">
                 {props.isLoading ? (
                     <ProgressBar className="my-5" thickness={4} />
                 ) : (

@@ -49,11 +49,13 @@ describe("test articles group component: ArticleListView", () => {
                     isMobile={false}
                     isContentLoading={false}
                     isOrderByAscending={false}
+                    hasSnapshotMode={false}
                     onSortClick={jest.fn()}
                     pageData={{
                         pageNumber: 1,
                         pageSize: 5,
                         totalSize: 10,
+                        paginationNumber: 5,
                         onClick: jest.fn(),
                     }}
                     selectedCategory=""

@@ -4,21 +4,25 @@ export interface NavigationContentDto {
     language: string;
     logo: string;
     languageMenu: LanguageMenuProps;
-    signup: SignupProps;
+    signup: OptionsProps;
+    signout: OptionsProps;
     userInfo: UserInfoProps;
-    menu: {
-        image: string;
-        items: ItemDto[];
-    };
+    menu: MenuProps;
+}
+
+export interface MenuProps {
+    image: string;
+    items: ItemDto[];
 }
 
 export interface LanguageMenuProps {
     caption: string;
 }
 
-export interface SignupProps {
+export interface OptionsProps {
     caption: string;
     link: string;
+    icon: string;
 }
 
 export interface UserInfoProps {

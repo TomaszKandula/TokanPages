@@ -96,7 +96,8 @@ export type { DocumentContentDto } from "./Components/documentContentDto";
 export type {
     NavigationContentDto,
     UserInfoProps,
-    SignupProps,
+    OptionsProps,
+    MenuProps,
     LanguageMenuProps,
 } from "./Components/navigationContentDto";
 export type { HeaderContentDto, HeaderPhotoDto } from "./Components/headerContentDto";

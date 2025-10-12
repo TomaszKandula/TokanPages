@@ -7,6 +7,7 @@ export interface PageDataProps {
     totalSize: number;
     pageNumber: number;
     pageSize: number;
+    paginationNumber: number;
     onClick: (page: number) => void;
 }
 
@@ -15,6 +16,7 @@ export interface SearchInputProps {
 }
 
 export interface ArticlesProps {
+    hasSnapshotMode: boolean;
     articles: ArticleItem[];
     searchEmptyText1: string;
     searchEmptyText2: string;

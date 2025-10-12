@@ -1,6 +1,6 @@
 import * as React from "react";
 import Slider from "react-slick";
-import { GET_NEWS_URL } from "../../../../Api/Paths";
+import { GET_IMAGES_URL } from "../../../../Api";
 import { LinkDto, NewsItemDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Abstractions";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
@@ -83,7 +83,7 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
             <figure className="bulma-image">
                 <Skeleton isLoading={props.isLoading ?? false} mode="Rect" height={150} disableMarginY>
                     <CustomImage
-                        base={GET_NEWS_URL}
+                        base={GET_IMAGES_URL}
                         source={props.image}
                         className="user-signin-view-card-image"
                         title="Security news image"
@@ -225,7 +225,7 @@ const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
 
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => (
     <section className={props.className}>
-        <div className="bulma-container">
+        <div className="bulma-container pb-6">
             <div className="bulma-columns mx-4 my-6">
                 <div className="bulma-column is-flex is-justify-content-center p-0">
                     <RenderSigninCard {...props} className="user-signin-view-card-signin" />

@@ -19,6 +19,8 @@ describe("test component: NavigationView", () => {
 
         const languages: ApplicationLanguageState = {
             id: "en",
+            flagImageDir: "flags",
+            flagImageType: "webp",
             languages: [
                 {
                     id: "en",
@@ -73,6 +75,10 @@ describe("test component: NavigationView", () => {
             ],
         };
 
+        const root = document.createElement("div");
+        root.setAttribute("id", "root");
+        document.body.appendChild(root);
+
         const html = render(
             <NavigationView
                 isLoading={false}
@@ -103,6 +109,12 @@ describe("test component: NavigationView", () => {
                     signup: {
                         caption: "Create a new account",
                         link: "/en/signup",
+                        icon: "PlusCircleOutline",
+                    },
+                    signout: {
+                        caption: "Sign out",
+                        link: "/en/signout",
+                        icon: "LockOpenOutline",
                     },
                     userInfo: {
                         textUserAlias: "tokan",
@@ -118,6 +130,8 @@ describe("test component: NavigationView", () => {
                 }}
                 languages={languages}
                 languageId="en"
+                languageFlagDir="flags"
+                languageFlagType="webp"
                 languagePickHandler={jest.fn()}
                 languageMenuHandler={jest.fn()}
                 isLanguageMenuOpen={false}

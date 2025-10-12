@@ -26,7 +26,7 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
     const history = useHistory();
 
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage?.id);
+    const language = useSelector((state: ApplicationState) => state.applicationLanguage);
 
     const isLoading = data?.isLoading;
     const content = data?.components?.pageArticle;
@@ -37,10 +37,10 @@ export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
 
     const onClickEvent = React.useCallback(() => {
         dispatch(ArticleSelectionAction.select({ id: props.id }));
-        history.push(`/${languageId}${articleUrl}`);
-    }, [props.id, languageId, articleUrl]);
+        history.push(`/${language?.id}${articleUrl}`);
+    }, [props.id, language?.id, articleUrl]);
 
-    const flagImage = MapLanguage(props.languageIso);
+    const flagImage = `${language?.flagImageDir}/${MapLanguage(props.languageIso, language?.flagImageType)}`;
 
     const readCount =
         props.readCount !== undefined

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TLoading } from "../../../Shared/types";
+import { TLoading, TObjectFit } from "../../../Shared/types";
 import validate from "validate.js";
 
 interface RenderImageProps {
@@ -8,6 +8,7 @@ interface RenderImageProps {
     className?: string;
     width?: number;
     height?: number;
+    objectFit?: TObjectFit;
     alt?: string;
     title?: string;
     loading?: TLoading;
@@ -28,8 +29,11 @@ export const CustomImage = (props: RenderImageProps): React.ReactElement | null 
         <img
             src={src}
             loading={props.loading ?? "lazy"}
-            width={props.width}
-            height={props.height}
+            style={{
+                objectFit: props.objectFit,
+                width: props.width,
+                height: props.height,
+            }}
             className={props.className}
             alt={props.alt}
             title={props.title}

@@ -3,7 +3,7 @@ import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../.
 import { GET_USER_IMAGE } from "../../../../../Api";
 import { UserMedia } from "../../../../../Shared/enums";
 import {
-    Backdrop,
+    SpinnerBackdrop,
     ProgressBar,
     Skeleton,
     TextArea,
@@ -82,7 +82,7 @@ export const UserInfoView = (props: UserInfoViewProps): React.ReactElement => {
 
     return (
         <section className={props.className}>
-            <Backdrop isLoading={props.isRequestingVerification} />
+            <SpinnerBackdrop isLoading={props.isRequestingVerification} />
             <div className="bulma-container bulma-is-max-desktop">
                 <div className="mt-6 mb-4">
                     <div className={`bulma-card ${props.isMobile ? "mx-4" : ""}`}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { GET_IMAGES_URL, GET_TESTIMONIALS_URL } from "../../../Api";
+import { GET_IMAGES_URL } from "../../../Api";
 import { EducationItemProps, OccupationProps } from "../../../Api/Models";
 import { CustomImage, Icon, Link, Media, RenderList, Skeleton } from "../../../Shared/Components";
 import { RenderTag } from "../../../Shared/Components/RenderContent/Renderers";
@@ -168,7 +168,7 @@ const RenderTestimonials = (props: ResumeViewProps) => (
                 <Skeleton isLoading={props.isLoading} mode="Circle" width={64} height={64}>
                     <figure className="bulma-image bulma-is-64x64">
                         <CustomImage
-                            base={GET_TESTIMONIALS_URL}
+                            base={GET_IMAGES_URL}
                             source={props.section.photo1}
                             title={props.section.name1}
                             alt={props.section.name1}
@@ -198,7 +198,7 @@ const RenderTestimonials = (props: ResumeViewProps) => (
                 <Skeleton isLoading={props.isLoading} mode="Circle" width={64} height={64}>
                     <figure className="bulma-image bulma-is-64x64">
                         <CustomImage
-                            base={GET_TESTIMONIALS_URL}
+                            base={GET_IMAGES_URL}
                             source={props.section.photo2}
                             title={props.section.name2}
                             alt={props.section.name2}
@@ -228,7 +228,7 @@ const RenderTestimonials = (props: ResumeViewProps) => (
                 <Skeleton isLoading={props.isLoading} mode="Circle" width={64} height={64}>
                     <figure className="bulma-image bulma-is-64x64">
                         <CustomImage
-                            base={GET_TESTIMONIALS_URL}
+                            base={GET_IMAGES_URL}
                             source={props.section.photo3}
                             title={props.section.name3}
                             alt={props.section.name3}
@@ -310,7 +310,7 @@ const RenderResume = (props: ResumeViewProps) => (
 
 export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
     <section className={props.className}>
-        <div className="bulma-container bulma-is-max-tablet">
+        <div className="bulma-container bulma-is-max-tablet pb-6">
             <Media.DesktopOnly>
                 <RenderResume {...props} />
             </Media.DesktopOnly>

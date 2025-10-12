@@ -7,7 +7,7 @@ Object {
     <div>
       <section>
         <div
-          class="bulma-container"
+          class="bulma-container pb-6"
         >
           <div
             class="bulma-columns mx-4 my-6 is-gap-4.5"
@@ -129,7 +129,6 @@ Object {
                             class="bulma-icon bulma-is-right text-field-with-password"
                           >
                             <button
-                              class="icon-button-base is-flex is-align-self-center"
                               style="height: 48px; width: 48px;"
                             >
                               <div>
@@ -264,7 +263,7 @@ Object {
   "container": <div>
     <section>
       <div
-        class="bulma-container"
+        class="bulma-container pb-6"
       >
         <div
           class="bulma-columns mx-4 my-6 is-gap-4.5"
@@ -386,7 +385,6 @@ Object {
                           class="bulma-icon bulma-is-right text-field-with-password"
                         >
                           <button
-                            class="icon-button-base is-flex is-align-self-center"
                             style="height: 48px; width: 48px;"
                           >
                             <div>

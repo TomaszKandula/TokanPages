@@ -74,7 +74,7 @@ Object {
                           alt="An image illustrating showcase section"
                           class="showcase-feature-image"
                           loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/showcase/image.webp"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image.webp"
                           title="Illustration"
                         />
                       </figure>
@@ -158,7 +158,7 @@ Object {
                         alt="An image illustrating showcase section"
                         class="showcase-feature-image"
                         loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/sections/showcase/image.webp"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image.webp"
                         title="Illustration"
                       />
                     </figure>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
-import { GET_ICONS_URL } from "../../../Api";
+import { GET_IMAGES_URL } from "../../../Api";
 import { ClientImageDto, ClientsContentDto } from "../../../Api/Models";
 import { Skeleton } from "../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
@@ -29,7 +29,7 @@ const RenderCaption = (props: ClientsViewExtendedProps): React.ReactElement | nu
 };
 
 const RenderImages = (props: ClientsViewExtendedProps): React.ReactElement => {
-    const getImagePath = (value: string): string => `${GET_ICONS_URL}/${value}`;
+    const getImagePath = (value: string): string => `${GET_IMAGES_URL}/${value}`;
 
     return (
         <div className="is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-center">

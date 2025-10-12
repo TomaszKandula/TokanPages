@@ -9,6 +9,8 @@ export interface GetContentManifestDto {
     created: string;
     updated: string;
     default: string;
+    flagImageDir: string;
+    flagImageType: string;
     languages: LanguageItemDto[];
     warnings: WarningModelDto[];
     pages: PagesModelDto[];

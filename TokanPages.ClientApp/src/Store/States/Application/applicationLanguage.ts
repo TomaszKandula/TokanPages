@@ -2,6 +2,8 @@ import { ErrorContentDto, LanguageItemDto, PagesModelDto, MetaModelDto, WarningM
 
 export interface ApplicationLanguageState {
     id: string;
+    flagImageDir: string;
+    flagImageType: string;
     languages: LanguageItemDto[];
     warnings: WarningModelDto[];
     pages: PagesModelDto[];

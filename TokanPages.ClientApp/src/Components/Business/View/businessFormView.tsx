@@ -110,7 +110,7 @@ const RenderHeader = (props: BusinessFormViewProps): React.ReactElement =>
 
 export const BusinessFormView = (props: BusinessFormViewProps): React.ReactElement => (
     <section className={props.className}>
-        <div className="bulma-container">
+        <div className="bulma-container pb-6">
             <div className="bulma-columns mx-4 my-6">
                 <div className="bulma-column bulma-is-half p-0">
                     <RenderCaption {...props} />
