@@ -25,7 +25,7 @@ export const CollapsibleView = (props: CollapsibleViewProps): React.ReactElement
                 </div>
             </div>
             <IconButton
-                className={props.isOpen ? "collapsible-expand collapsible-expand-open" : "collapsible-expand"}
+                className={props.isOpen ? "no-select collapsible-expand collapsible-expand-open" : "no-select collapsible-expand"}
                 onClick={props.clickHandler}
             >
                 <Icon name="ChevronDown" size={1.5} className="has-text-grey" />
