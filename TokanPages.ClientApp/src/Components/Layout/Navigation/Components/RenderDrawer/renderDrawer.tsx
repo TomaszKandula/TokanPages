@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GET_IMAGES_URL } from "../../../../../Api";
 import { NavigationContentDto } from "../../../../../Api/Models";
-import { CustomImage, Icon, IconButton } from "../../../../../Shared/Components";
+import { CustomImage, Icon, IconButton, StandardBackdrop } from "../../../../../Shared/Components";
 import { useDimensions, UseDimensionsResult } from "../../../../../Shared/Hooks";
 import { ToggleBodyScroll } from "../../../../../Shared/Services/Utilities";
 import { RenderSideMenu } from "../RenderMenu";
@@ -77,12 +77,7 @@ export const RenderDrawer = (props: RenderDrawerProps): React.ReactElement => {
             }}
             onMouseLeave={menuHandler}
         >
-            <div
-                aria-hidden="true"
-                className="navigation-nav-drawer-backdrop"
-                style={{ opacity: canShowBackdrop ? 1 : 0 }}
-                onClick={menuHandler}
-            ></div>
+            <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0 }} onClick={menuHandler} />
             <div tabIndex={-1} className="navigation-nav-drawer-container" style={{ width: media.width * widthRatio }}>
                 <div className="is-flex is-justify-content-space-between">
                     <CustomImage

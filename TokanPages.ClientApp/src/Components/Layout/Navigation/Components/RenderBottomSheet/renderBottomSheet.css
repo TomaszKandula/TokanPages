@@ -10,22 +10,6 @@
     transition: bottom 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-.bottomsheet-nav-drawer-backdrop {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    z-index: -1;
-    position: fixed;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    -webkit-tap-highlight-color: transparent;
-    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    touch-action: none;
-}
-
 .bottomsheet-nav-drawer-container {
     overflow-y: auto;
     width: 100%;

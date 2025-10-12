@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { NavigationContentDto } from "../../../../../Api/Models";
 import { useDimensions } from "../../../../../Shared/Hooks";
-import { Icon } from "../../../../../Shared/Components";
+import { Icon, StandardBackdrop } from "../../../../../Shared/Components";
 import { ToggleBodyScroll } from "../../../../../Shared/Services/Utilities";
 import "./renderBottomSheet.css";
 
@@ -71,12 +71,7 @@ export const RenderBottomSheet = (props: RenderBottomSheetProps): React.ReactEle
             }}
             onMouseLeave={onCloseHandler}
         >
-            <div
-                aria-hidden="true"
-                className="bottomsheet-nav-drawer-backdrop"
-                style={{ opacity: canShowBackdrop ? 1 : 0 }}
-                onClick={onCloseHandler}
-            ></div>
+            <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0 }} onClick={onCloseHandler} />
             <div ref={ref} tabIndex={-1} className="bottomsheet-nav-drawer-container">
                 <div className="pb-6">
                     <div className="navbar-top-line"></div>
