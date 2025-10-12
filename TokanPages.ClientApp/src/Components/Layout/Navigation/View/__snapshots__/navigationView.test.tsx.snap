@@ -4,6 +4,9 @@ exports[`test component: NavigationView should render correctly '<NavigationView
 Object {
   "asFragment": [Function],
   "baseElement": <body>
+    <div
+      id="root"
+    />
     <div>
       <nav
         class="bulma-navbar app-bar  "
