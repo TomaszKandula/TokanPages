@@ -31,7 +31,6 @@ export const StandardBackdrop = (props: StandardBackdropProps): React.ReactEleme
             className="standard-backdrop"
             onClick={props.onClick}
             style={props.style}
-        >
-        </div>
+        ></div>
     );
-}
+};

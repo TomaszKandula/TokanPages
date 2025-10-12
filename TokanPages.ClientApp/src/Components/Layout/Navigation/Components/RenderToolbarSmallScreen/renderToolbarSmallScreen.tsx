@@ -140,26 +140,26 @@ const RenderLanguages = (props: NavigationViewProps): React.ReactElement =>
     );
 
 export const RenderToolbarSmallScreen = (props: NavigationViewProps): React.ReactElement => (
-        <>
-            <Media.TabletOnly>
-                <RenderDoubleToolbar {...props} />
-                <BottomSheet 
-                    isOpen={props.isBottomSheetOpen}
-                    onTrigger={props.triggerBottomSheet}
-                    caption={props.navigation?.languageMenu?.caption}
-                >
-                    <RenderLanguages {...props} />
-                </BottomSheet>
-            </Media.TabletOnly>
-            <Media.MobileOnly>
-                <RenderDoubleToolbar {...props} />
-                <BottomSheet 
-                    isOpen={props.isBottomSheetOpen}
-                    onTrigger={props.triggerBottomSheet}
-                    caption={props.navigation?.languageMenu?.caption}
-                >
-                    <RenderLanguages {...props} />
-                </BottomSheet>
-            </Media.MobileOnly>
-        </>
-    );
+    <>
+        <Media.TabletOnly>
+            <RenderDoubleToolbar {...props} />
+            <BottomSheet
+                isOpen={props.isBottomSheetOpen}
+                onTrigger={props.triggerBottomSheet}
+                caption={props.navigation?.languageMenu?.caption}
+            >
+                <RenderLanguages {...props} />
+            </BottomSheet>
+        </Media.TabletOnly>
+        <Media.MobileOnly>
+            <RenderDoubleToolbar {...props} />
+            <BottomSheet
+                isOpen={props.isBottomSheetOpen}
+                onTrigger={props.triggerBottomSheet}
+                caption={props.navigation?.languageMenu?.caption}
+            >
+                <RenderLanguages {...props} />
+            </BottomSheet>
+        </Media.MobileOnly>
+    </>
+);

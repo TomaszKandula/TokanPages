@@ -3,6 +3,6 @@ export const ToggleBodyScroll = (isBodyScrollEnabled: boolean): void => {
     if (isBodyScrollEnabled) {
         html.classList.remove("is-lock-scroll");
     } else {
-        html.classList.add("is-lock-scroll")
+        html.classList.add("is-lock-scroll");
     }
 };
