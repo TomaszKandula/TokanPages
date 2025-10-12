@@ -4,9 +4,7 @@ import { ClassListAdd, ClassListClear } from "../../../../Shared/Services/Utilit
 import Validation from "validate.js";
 import "./standardBackdrop.css";
 
-const baseClasses = [
-    "standard-backdrop",
-];
+const baseClasses = ["standard-backdrop"];
 
 export const StandardBackdrop = (props: StandardBackdropProps): React.ReactElement => {
     const ref = useRef<HTMLDivElement>(null);
@@ -31,7 +29,6 @@ export const StandardBackdrop = (props: StandardBackdropProps): React.ReactEleme
         }
 
         ClassListAdd(classList, baseClasses);
-
     }, [props.className]);
 
     return (

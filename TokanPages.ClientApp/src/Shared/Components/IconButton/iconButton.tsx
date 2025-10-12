@@ -14,11 +14,7 @@ interface IconButtonProps {
     onMouseDown?: (event: ReactMouseEvent) => void;
 }
 
-const baseClasses = [
-    "icon-button-base",
-    "is-flex",
-    "is-align-self-center"
-];
+const baseClasses = ["icon-button-base", "is-flex", "is-align-self-center"];
 
 export const IconButton = (props: IconButtonProps): React.ReactElement => {
     const size = props.size ?? 48;
@@ -44,7 +40,7 @@ export const IconButton = (props: IconButtonProps): React.ReactElement => {
                 classList.add(props.className);
             }
         }
-        
+
         ClassListAdd(classList, baseClasses);
 
         if (props.hasNoHoverEffect) {

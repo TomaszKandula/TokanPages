@@ -4,4 +4,4 @@ export const ClassListAdd = (list: DOMTokenList, items: string[]): void => {
             list.add(item);
         });
     }
-}
+};
