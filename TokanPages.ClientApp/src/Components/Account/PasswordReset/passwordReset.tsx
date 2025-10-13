@@ -8,15 +8,12 @@ import { ResetFormInput, ValidateResetForm } from "../../../Shared/Services/Form
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { useDimensions } from "../../../Shared/Hooks";
 import { PasswordResetView } from "./View/passwordResetView";
+import { PasswordResetProps } from "./Types";
 import Validate from "validate.js";
 
 const formDefaultValues: ResetFormInput = {
     email: "",
 };
-
-export interface PasswordResetProps {
-    className?: string;
-}
 
 export const PasswordReset = (props: PasswordResetProps): React.ReactElement => {
     const dispatch = useDispatch();

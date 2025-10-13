@@ -1,22 +1,7 @@
 import * as React from "react";
-import { ViewProperties } from "../../../../Shared/Abstractions";
 import { CustomCard, Icon } from "../../../../Shared/Components";
 import { TColour } from "../../../../Shared/types";
-import { ExtendedViewProps } from "../accountActivate";
-
-interface AccountActivateViewProps extends ViewProperties, ExtendedViewProps {
-    shouldFallback: boolean;
-    caption: string;
-    text1: string;
-    text2: string;
-    fallback: {
-        caption: string;
-        text: string[];
-    };
-    hasProgress: boolean;
-    hasError: boolean;
-    hasSuccess: boolean;
-}
+import { AccountActivateViewProps } from "../Types";
 
 const ProblemIcon = <Icon name="Alert" size={4.5} />;
 const AlertIcon = <Icon name="AlertCircle" size={4.5} />;

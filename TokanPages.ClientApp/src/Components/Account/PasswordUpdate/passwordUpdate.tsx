@@ -8,6 +8,7 @@ import { UpdateFormInput, ValidateUpdateForm } from "../../../Shared/Services/Fo
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { useDimensions, useQuery } from "../../../Shared/Hooks";
 import { PasswordUpdateView } from "./View/passwordUpdateView";
+import { PasswordUpdateProps } from "./Types";
 import Validate from "validate.js";
 
 const formDefaultValues: UpdateFormInput = {
@@ -25,10 +26,6 @@ const formDefaultValues: UpdateFormInput = {
         missingSmallLetter: "",
     },
 };
-
-export interface PasswordUpdateProps {
-    className?: string;
-}
 
 export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement => {
     const queryParam = useQuery();

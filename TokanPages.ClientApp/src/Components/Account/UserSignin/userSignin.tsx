@@ -8,6 +8,7 @@ import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Action
 import { SigninFormInput, ValidateSigninForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { UserSigninView } from "./View/userSigninView";
+import { UserSigninProps } from "./Types";
 import Validate from "validate.js";
 
 const formDefault: SigninFormInput = {
@@ -18,10 +19,6 @@ const formDefault: SigninFormInput = {
         passwordInvalid: "",
     },
 };
-
-export interface UserSigninProps {
-    className?: string;
-}
 
 export const UserSignin = (props: UserSigninProps): React.ReactElement => {
     const dispatch = useDispatch();

@@ -5,6 +5,7 @@ import { UserActivateAction, UserNotificationAction } from "../../../Store/Actio
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { OperationStatus } from "../../../Shared/enums";
 import { AccountActivateView } from "./View/accountActivateView";
+import { AccountActivateProps } from "./Types";
 import Validate from "validate.js";
 
 const DefaultValues = {
@@ -14,15 +15,6 @@ const DefaultValues = {
     text2: "",
     button: "",
 };
-
-export interface ExtendedViewProps {
-    className?: string;
-}
-
-export interface AccountActivateProps extends ExtendedViewProps {
-    id: string;
-    type: string;
-}
 
 export const AccountActivate = (props: AccountActivateProps): React.ReactElement => {
     const dispatch = useDispatch();

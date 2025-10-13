@@ -16,16 +16,8 @@ import { RECEIVED_ERROR_MESSAGE, SET_INTERVAL_DELAY } from "../../../../Shared/c
 import { IconType, OperationStatus } from "../../../../Shared/enums";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { UserInfoView } from "./View/userInfoView";
+import { UpdateStoreProps, UserInfoProps } from "./Types";
 import Validate from "validate.js";
-
-interface UpdateStoreProps {
-    canUpdate: boolean;
-    isVerified: boolean;
-}
-
-export interface UserInfoProps {
-    className?: string;
-}
 
 export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const dispatch = useDispatch();

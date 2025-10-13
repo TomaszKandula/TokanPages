@@ -4,11 +4,8 @@ import { UserDataStoreAction, UserSignoutAction } from "../../../Store/Actions";
 import { ApplicationState } from "../../../Store/Configuration";
 import { OperationStatus } from "../../../Shared/enums";
 import { UserSignoutView } from "./View/userSignoutView";
+import { UserSignoutProps } from "./Types";
 import Validate from "validate.js";
-
-export interface UserSignoutProps {
-    className?: string;
-}
 
 export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
     const dispatch = useDispatch();

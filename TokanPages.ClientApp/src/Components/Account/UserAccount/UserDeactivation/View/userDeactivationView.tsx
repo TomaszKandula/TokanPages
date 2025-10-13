@@ -1,15 +1,6 @@
 import * as React from "react";
-import { ViewProperties } from "../../../../../Shared/Abstractions";
-import { SectionAccountDeactivation } from "../../../../../Api/Models";
 import { ProgressBar, RenderParagraphs, Skeleton } from "../../../../../Shared/Components";
-import { UserDeactivationProps } from "../userDeactivation";
-
-interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProps {
-    isMobile: boolean;
-    buttonHandler: () => void;
-    progress: boolean;
-    section: SectionAccountDeactivation;
-}
+import { UserDeactivationViewProps } from "../Types";
 
 const DeactivationButton = (props: UserDeactivationViewProps): React.ReactElement => (
     <button

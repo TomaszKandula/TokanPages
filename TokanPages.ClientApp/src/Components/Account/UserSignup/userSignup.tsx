@@ -7,6 +7,7 @@ import { ApplicationDialogAction, UserSignupAction } from "../../../Store/Action
 import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { UserSignupView } from "./View/userSignupView";
+import { UserSignupProps } from "./Types";
 import Validate from "validate.js";
 
 const defaultForm: SignupFormInput = {
@@ -27,10 +28,6 @@ const defaultForm: SignupFormInput = {
         missingSmallLetter: "",
     },
 };
-
-export interface UserSignupProps {
-    className?: string;
-}
 
 export const UserSignup = (props: UserSignupProps): React.ReactElement => {
     const dispatch = useDispatch();

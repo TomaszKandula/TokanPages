@@ -13,12 +13,7 @@ import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { ReactChangeTextEvent } from "../../../../Shared/types";
 import { OperationStatus } from "../../../../Shared/enums";
 import { useDimensions } from "../../../../Shared/Hooks";
-
-type ActionType = "ADD" | "UPDATE" | "REMOVE";
-
-export interface UserNotesProps {
-    background?: React.CSSProperties;
-}
+import { ActionType, UserNotesProps } from "./Types";
 
 export const UserNotes = (props: UserNotesProps): React.ReactElement => {
     const dispatch = useDispatch();

@@ -1,23 +1,6 @@
 import * as React from "react";
-import { ViewProperties } from "../../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
 import { Icon, ProgressBar, Skeleton, TextFieldWithPassword } from "../../../../Shared/Components";
-import { PasswordUpdateProps } from "../passwordUpdate";
-
-interface Properties extends ViewProperties, PasswordUpdateProps {
-    isMobile: boolean;
-    progress: boolean;
-    caption: string;
-    button: string;
-    newPassword: string;
-    verifyPassword: string;
-    keyHandler: (event: ReactKeyboardEvent) => void;
-    formHandler: (event: ReactChangeEvent) => void;
-    buttonHandler: () => void;
-    disableForm: boolean;
-    labelNewPassword: string;
-    labelVerifyPassword: string;
-}
+import { Properties } from "../Types";
 
 const ActiveButton = (props: Properties): React.ReactElement => (
     <button

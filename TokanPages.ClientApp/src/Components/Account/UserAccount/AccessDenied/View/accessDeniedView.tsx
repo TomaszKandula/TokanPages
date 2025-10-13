@@ -1,14 +1,6 @@
 import * as React from "react";
 import { CustomCard, Icon } from "../../../../../Shared/Components";
-import { AccessDeniedProps } from "../accessDenied";
-
-interface AccessDeniedViewProps extends AccessDeniedProps {
-    isLoading: boolean;
-    languageId: string;
-    accessDeniedCaption: string;
-    accessDeniedPrompt: string[];
-    homeButtonText: string;
-}
+import { AccessDeniedViewProps } from "../Types";
 
 export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactElement => {
     return (

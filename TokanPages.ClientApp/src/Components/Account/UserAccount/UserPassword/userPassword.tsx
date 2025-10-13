@@ -8,11 +8,8 @@ import { PasswordFormInput, ValidatePasswordForm } from "../../../../Shared/Serv
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { useDimensions } from "../../../../Shared/Hooks";
 import { UserPasswordView } from "./View/userPasswordView";
+import { UserPasswordProps } from "./Types";
 import Validate from "validate.js";
-
-export interface UserPasswordProps {
-    className?: string;
-}
 
 export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
     const dispatch = useDispatch();

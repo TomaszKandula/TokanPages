@@ -1,15 +1,6 @@
 import * as React from "react";
-import { ViewProperties } from "../../../../Shared/Abstractions";
 import { CustomCard, Icon } from "../../../../Shared/Components";
-import { UserSignoutProps } from "../userSignout";
-
-interface UserSignoutViewProps extends ViewProperties, UserSignoutProps {
-    languageId: string;
-    caption: string;
-    status: string[];
-    buttonText: string;
-    isAnonymous: boolean;
-}
+import { UserSignoutViewProps } from "../Types";
 
 export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement => (
     <section className={props.className}>

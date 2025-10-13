@@ -6,11 +6,8 @@ import { IconType, OperationStatus } from "../../../../Shared/enums";
 import { useDimensions } from "../../../../Shared/Hooks";
 import { ApplicationDialogAction, UserDataStoreAction, UserUpdateAction } from "../../../../Store/Actions";
 import { ApplicationState } from "../../../../Store/Configuration";
+import { UserDeactivationProps } from "./Types";
 import { UserDeactivationView } from "./View/userDeactivationView";
-
-export interface UserDeactivationProps {
-    className?: string;
-}
 
 export const UserDeactivation = (props: UserDeactivationProps): React.ReactElement => {
     const dispatch = useDispatch();

@@ -1,0 +1,33 @@
+import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
+import { ViewProperties } from "../../../../../Shared/Abstractions";
+import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
+
+export interface UpdateStoreProps {
+    canUpdate: boolean;
+    isVerified: boolean;
+}
+
+export interface UserInfoProps {
+    className?: string;
+}
+
+export interface UserInfoViewProps extends ViewProperties, UserInfoProps {
+    isMobile: boolean;
+    fileUploadingCustomHandle?: string;
+    userStore: AuthenticateUserResultDto;
+    accountForm: AccountFormInput;
+    userImageName: string;
+    isRequestingVerification: boolean;
+    formProgress: boolean;
+    keyHandler: (event: ReactKeyboardEvent) => void;
+    formHandler: (event: ReactChangeEvent) => void;
+    descriptionHandler: (event: ReactChangeTextEvent) => void;
+    saveButtonHandler: () => void;
+    verifyButtonHandler: () => void;
+    sectionAccountInformation: SectionAccountInformation;
+    description?: {
+        minRows?: number;
+        message: string;
+    };
+}

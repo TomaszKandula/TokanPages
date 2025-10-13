@@ -1,5 +1,4 @@
 import * as React from "react";
-import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
 import { GET_USER_IMAGE } from "../../../../../Api";
 import { UserMedia } from "../../../../../Shared/enums";
 import {
@@ -10,32 +9,9 @@ import {
     TextField,
     UploadUserMedia,
 } from "../../../../../Shared/Components";
-import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
-import { ViewProperties } from "../../../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
-import { UserInfoProps } from "../userInfo";
 import Validate from "validate.js";
 import "./userInfoView.css";
-
-interface UserInfoViewProps extends ViewProperties, UserInfoProps {
-    isMobile: boolean;
-    fileUploadingCustomHandle?: string;
-    userStore: AuthenticateUserResultDto;
-    accountForm: AccountFormInput;
-    userImageName: string;
-    isRequestingVerification: boolean;
-    formProgress: boolean;
-    keyHandler: (event: ReactKeyboardEvent) => void;
-    formHandler: (event: ReactChangeEvent) => void;
-    descriptionHandler: (event: ReactChangeTextEvent) => void;
-    saveButtonHandler: () => void;
-    verifyButtonHandler: () => void;
-    sectionAccountInformation: SectionAccountInformation;
-    description?: {
-        minRows?: number;
-        message: string;
-    };
-}
+import { UserInfoViewProps } from "../Types";
 
 const UpdateAccountButton = (props: UserInfoViewProps): React.ReactElement => (
     <button
