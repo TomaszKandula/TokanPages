@@ -1,6 +1,6 @@
 import { ApplicationErrorState } from "../../States";
 import { DialogType } from "../../../Shared/Enums";
-import { NO_ERRORS } from "../../../Shared/ConstantsTemp";
+import { NO_ERRORS } from "../../../Shared/Constants";
 
 export const ApplicationError: ApplicationErrorState = {
     errorMessage: NO_ERRORS,

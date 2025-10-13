@@ -5,7 +5,7 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { IconType, OperationStatus } from "../../../Shared/Enums";
 import { ValidateEmailForm } from "../../../Shared/Services/FormValidation";
 import { NewsletterAddAction, ApplicationDialogAction } from "../../../Store/Actions";
-import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/ConstantsTemp";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/Constants";
 import { NewsletterSectionView } from "./View/newsletterSectionView";
 import Validate from "validate.js";
 

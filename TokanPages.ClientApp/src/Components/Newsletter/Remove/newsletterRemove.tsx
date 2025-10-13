@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { NewsletterRemoveAction } from "../../../Store/Actions";
 import { OperationStatus } from "../../../Shared/Enums";
-import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/ConstantsTemp";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/Constants";
 import { useDimensions } from "../../../Shared/Hooks";
 import { ContentDto } from "../../../Api/Models";
 import { NewsletterRemoveView } from "./View/newsletterRemoveView";

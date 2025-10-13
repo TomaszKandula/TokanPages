@@ -5,7 +5,7 @@ import { IconType, OperationStatus } from "../../../Shared/Enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/Types";
 import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../Store/Actions";
 import { UpdateFormInput, ValidateUpdateForm } from "../../../Shared/Services/FormValidation";
-import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/ConstantsTemp";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/Constants";
 import { useDimensions, useQuery } from "../../../Shared/Hooks";
 import { PasswordUpdateView } from "./View/passwordUpdateView";
 import { PasswordUpdateProps } from "./Types";

@@ -5,7 +5,7 @@ import { DialogType } from "../../../Shared/Enums";
 
 import { CLEAR, RAISE, TErrorActions } from "../../Actions/Application/applicationError";
 
-import { NO_ERRORS, RECEIVED_ERROR_MESSAGE } from "../../../Shared/ConstantsTemp";
+import { NO_ERRORS, RECEIVED_ERROR_MESSAGE } from "../../../Shared/Constants";
 
 export const ApplicationError: Reducer<ApplicationErrorState> = (
     state: ApplicationErrorState | undefined,

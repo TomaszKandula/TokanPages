@@ -5,7 +5,7 @@ import { GET_IMAGES_URL } from "../../../Api/Paths";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction, ArticleUpdateAction } from "../../../Store/Actions";
 import { GetDateTime } from "../../../Shared/Services/Formatters";
-import { DEFAULT_USER_IMAGE, LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/ConstantsTemp";
+import { DEFAULT_USER_IMAGE, LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/Constants";
 import { Author } from "../../../Shared/Components/RenderContent/Models";
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
 import { MapLanguage } from "../../../Shared/Services/Utilities";

@@ -1,5 +1,5 @@
 import { ApplicationState } from "../../Store/Configuration";
-import { USER_DATA } from "../../Shared/ConstantsTemp";
+import { USER_DATA } from "../../Shared/Constants";
 import { GetDataFromStorage } from "../../Shared/Services/StorageServices";
 import { AuthenticateUserResultDto } from "../Models";
 import Validate from "validate.js";

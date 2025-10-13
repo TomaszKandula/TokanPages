@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch } from "react-redux";
 import { UserDataStoreAction } from "../../../Store/Actions";
 import { AuthenticateUserResultDto } from "../../../Api/Models";
-import { USER_DATA } from "../../../Shared/ConstantsTemp";
+import { USER_DATA } from "../../../Shared/Constants";
 import { GetDataFromStorage } from "../../../Shared/Services/StorageServices";
 import Validate from "validate.js";
 import base64 from "base-64";

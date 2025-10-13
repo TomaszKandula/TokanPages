@@ -6,7 +6,7 @@ import { ArticleListingAction } from "../../../Store/Actions";
 import { useDimensions } from "../../../Shared/Hooks";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/Types";
 import { HasSnapshotMode } from "../../../Shared/Services/SpaCaching";
-import { ARTICLES_PAGE_SIZE, ARTICLES_SELECT_ALL_ID } from "../../../Shared/ConstantsTemp";
+import { ARTICLES_PAGE_SIZE, ARTICLES_SELECT_ALL_ID } from "../../../Shared/Constants";
 import { UpdatePageParam } from "../../../Shared/Services/Utilities";
 import { ArticleListProps, SearchInputProps } from "./Types";
 import { ArticleListView } from "./View/articleListView";

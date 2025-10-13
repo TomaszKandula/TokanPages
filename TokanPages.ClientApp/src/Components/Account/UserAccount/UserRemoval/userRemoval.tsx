@@ -11,7 +11,7 @@ import {
     UserSigninAction,
     UserRemoveAction,
 } from "../../../../Store/Actions";
-import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/ConstantsTemp";
+import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/Constants";
 import { UserRemovalProps } from "./Types";
 
 export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {

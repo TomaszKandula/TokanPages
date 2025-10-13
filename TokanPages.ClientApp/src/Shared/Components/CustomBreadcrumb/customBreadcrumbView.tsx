@@ -2,7 +2,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
-import { PRERENDER_PATH_PREFIX } from "../../../Shared/ConstantsTemp";
+import { PRERENDER_PATH_PREFIX } from "../../../Shared/Constants";
 import { useDimensions, useQuery } from "../../../Shared/Hooks";
 import { Icon } from "../Icon";
 import { CustomBreadcrumbProps, NavigationProps } from "./Types";

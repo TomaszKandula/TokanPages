@@ -1,7 +1,7 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { UserDataStoreState } from "../../States";
-import { USER_DATA } from "../../../Shared/ConstantsTemp";
+import { USER_DATA } from "../../../Shared/Constants";
 import base64 from "base-64";
 import utf8 from "utf8";
 

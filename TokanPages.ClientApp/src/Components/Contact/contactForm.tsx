@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
 import { ContactFormInput, ValidateContactForm } from "../../Shared/Services/FormValidation";
-import { RECEIVED_ERROR_MESSAGE } from "../../Shared/ConstantsTemp";
+import { RECEIVED_ERROR_MESSAGE } from "../../Shared/Constants";
 import { IconType, OperationStatus } from "../../Shared/Enums";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../Shared/Types";
 import { ContactFormView } from "./View/contactFormView";

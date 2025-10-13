@@ -9,7 +9,7 @@ import {
     UserNoteUpdateAction,
     UserNoteDeleteAction,
 } from "../../../../Store/Actions";
-import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/ConstantsTemp";
+import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/Constants";
 import { ReactChangeTextEvent } from "../../../../Shared/Types";
 import { OperationStatus } from "../../../../Shared/Enums";
 import { useDimensions } from "../../../../Shared/Hooks";
