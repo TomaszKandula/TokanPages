@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { IconType, OperationStatus } from "../../../Shared/enums";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/Types";
 import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Actions";
 import { SigninFormInput, ValidateSigninForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";

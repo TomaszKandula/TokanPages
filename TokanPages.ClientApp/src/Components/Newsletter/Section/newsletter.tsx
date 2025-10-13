@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/Types";
 import { ApplicationState } from "../../../Store/Configuration";
 import { IconType, OperationStatus } from "../../../Shared/enums";
 import { ValidateEmailForm } from "../../../Shared/Services/FormValidation";

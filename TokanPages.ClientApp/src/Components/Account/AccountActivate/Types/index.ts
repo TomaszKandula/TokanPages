@@ -1,4 +1,4 @@
-import { ViewProperties } from "../../../../Shared/types";
+import { ViewProperties } from "../../../../Shared/Types";
 
 export interface ExtendedViewProps {
     className?: string;

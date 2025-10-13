@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { ReactChangeEvent } from "../../../Shared/types";
+import { ReactChangeEvent } from "../../../Shared/Types";
 import { UserMediaUploadAction } from "../../../Store/Actions";
 import { ApplicationState } from "../../../Store/Configuration";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";

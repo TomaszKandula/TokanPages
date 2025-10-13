@@ -7,7 +7,7 @@ import { IconType, OperationStatus } from "../../Shared/enums";
 import { INTERNAL_MESSAGE_TEXT, INTERNAL_SUBJECT_TEXT, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
 import { formatPhoneNumber } from "../../Shared/Services/Converters";
 import { ValidateBusinessForm } from "../../Shared/Services/FormValidation";
-import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../Shared/Types";
 import { getSelection, resetSelection, valueCleanUp } from "./Utilities";
 import { BusinessFormProps, MessageFormProps, OfferItemProps } from "./Types";
 import Validate from "validate.js";

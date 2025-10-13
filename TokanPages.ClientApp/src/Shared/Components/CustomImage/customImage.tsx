@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TLoading, TObjectFit } from "../../../Shared/types";
+import { TLoading, TObjectFit } from "../../../Shared/Types";
 import validate from "validate.js";
 
 interface RenderImageProps {

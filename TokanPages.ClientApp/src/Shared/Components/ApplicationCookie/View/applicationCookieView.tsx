@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ButtonsDto, OptionsDto } from "../../../../Api/Models";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
-import { ReactChangeEvent, ViewProperties } from "../../../../Shared/types";
+import { ReactChangeEvent, ViewProperties } from "../../../../Shared/Types";
 import { v4 as uuidv4 } from "uuid";
 import "./applicationCookieView.css";
 

@@ -1,5 +1,5 @@
 import { DescriptionItemDto, OfferItemDto, PresentationDto } from "../../../Api/Models";
-import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent, ViewProperties } from "../../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent, ViewProperties } from "../../../Shared/Types";
 
 export interface OfferItemProps extends OfferItemDto {
     isChecked: boolean;

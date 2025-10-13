@@ -10,7 +10,7 @@ import {
     UserNoteDeleteAction,
 } from "../../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
-import { ReactChangeTextEvent } from "../../../../Shared/types";
+import { ReactChangeTextEvent } from "../../../../Shared/Types";
 import { OperationStatus } from "../../../../Shared/enums";
 import { useDimensions } from "../../../../Shared/Hooks";
 import { ActionType, UserNotesProps } from "./Types";

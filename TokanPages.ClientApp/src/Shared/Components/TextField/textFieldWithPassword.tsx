@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ReactMouseEvent } from "Shared/types";
+import { ReactMouseEvent } from "../../../Shared/Types";
 import { TextFieldWithPasswordView } from "./View/textFieldWithPasswordView";
 import { TextFieldProps } from "./View/types";
 

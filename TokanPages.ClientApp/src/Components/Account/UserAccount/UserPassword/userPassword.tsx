@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { IconType, OperationStatus } from "../../../../Shared/enums";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/Types";
 import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../../Store/Actions";
 import { PasswordFormInput, ValidatePasswordForm } from "../../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";

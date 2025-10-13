@@ -1,6 +1,6 @@
 import * as React from "react";
 import { CustomCard, Icon } from "../../../../Shared/Components";
-import { TColour } from "../../../../Shared/types";
+import { TColour } from "../../../../Shared/Types";
 import { AccountActivateViewProps } from "../Types";
 
 const ProblemIcon = <Icon name="Alert" size={4.5} />;

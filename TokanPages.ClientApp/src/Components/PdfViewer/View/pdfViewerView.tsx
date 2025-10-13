@@ -1,6 +1,6 @@
 import * as React from "react";
 import { CustomCard, DownloadAsset, Icon, IconButton, PdfCanvas, ProgressBar } from "../../../Shared/Components";
-import { ReactMouseEvent } from "../../../Shared/types";
+import { ReactMouseEvent } from "../../../Shared/Types";
 import "./pdfViewerView.css";
 
 interface PdfViewerViewProps {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ReactChangeEvent } from "../../../../Shared/types";
+import { ReactChangeEvent } from "../../../../Shared/Types";
 import { Icon, UserAvatar } from "../../../../Shared/Components";
 import { FigoureSize } from "../../../../Shared/enums";
 import { v4 as uuidv4 } from "uuid";

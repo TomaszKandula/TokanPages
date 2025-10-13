@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ReactMouseEvent } from "../../../Shared/types";
+import { ReactMouseEvent } from "../../../Shared/Types";
 import { ClassListAdd, ClassListClear } from "../../../Shared/Services/Utilities";
 import "./iconButton.css";
 

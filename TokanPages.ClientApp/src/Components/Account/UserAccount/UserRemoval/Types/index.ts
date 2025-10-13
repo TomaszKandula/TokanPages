@@ -1,5 +1,5 @@
 import { SectionAccountRemoval } from "../../../../../Api/Models";
-import { ViewProperties } from "../../../../../Shared/types";
+import { ViewProperties } from "../../../../../Shared/Types";
 
 export interface UserRemovalProps {
     className?: string;

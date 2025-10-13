@@ -4,7 +4,7 @@ import { ArticleCategory } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
 import { useDimensions } from "../../../Shared/Hooks";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/Types";
 import { HasSnapshotMode } from "../../../Shared/Services/SpaCaching";
 import { ARTICLES_PAGE_SIZE, ARTICLES_SELECT_ALL_ID } from "../../../Shared/constants";
 import { UpdatePageParam } from "../../../Shared/Services/Utilities";

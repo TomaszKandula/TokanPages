@@ -1,5 +1,5 @@
 import { UserNoteResultDto } from "../../../../../Api/Models";
-import { ReactChangeTextEvent } from "../../../../../Shared/types";
+import { ReactChangeTextEvent } from "../../../../../Shared/Types";
 
 export type ActionType = "ADD" | "UPDATE" | "REMOVE";
 

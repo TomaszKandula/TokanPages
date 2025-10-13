@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ReactChangeEvent, ReactKeyboardEvent, ViewProperties } from "../../../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent, ViewProperties } from "../../../../Shared/Types";
 import { Animated, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
 import "./newsletterSectionView.css";
 

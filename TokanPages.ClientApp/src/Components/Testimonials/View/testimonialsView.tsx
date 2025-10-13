@@ -1,6 +1,6 @@
 import * as React from "react";
 import { GET_IMAGES_URL } from "../../../Api";
-import { ViewProperties } from "../../../Shared/types";
+import { ViewProperties } from "../../../Shared/Types";
 import { Animated, CustomImage, Collapsible, Skeleton, RenderHtml, Link, Icon } from "../../../Shared/Components";
 import "./testimonialsView.css";
 

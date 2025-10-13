@@ -1,4 +1,4 @@
-import { ReactChangeEvent, ReactKeyboardEvent, ViewProperties } from "../../../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent, ViewProperties } from "../../../../Shared/Types";
 
 export interface PasswordUpdateProps {
     className?: string;

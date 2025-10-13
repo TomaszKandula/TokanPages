@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { IconType, OperationStatus } from "../../../Shared/enums";
 import { ValidateEmailForm } from "../../../Shared/Services/FormValidation";
-import { ReactChangeEvent } from "../../../Shared/types";
+import { ReactChangeEvent } from "../../../Shared/Types";
 import { ApplicationDialogAction, NewsletterUpdateAction } from "../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { useDimensions } from "../../../Shared/Hooks";

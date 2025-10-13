@@ -6,7 +6,7 @@ import {
     ReactMouseEvent,
     TInputColours,
     TInputSizes,
-} from "../../../../Shared/types";
+} from "../../../../Shared/Types";
 
 interface BaseProps {
     uuid: string;

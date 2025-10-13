@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction } from "../../../Store/Actions";
 import { GetShortText, MapLanguage } from "../../../Shared/Services/Utilities";
-import { TLoading } from "../../../Shared/types";
+import { TLoading } from "../../../Shared/Types";
 import { ARTICLE_PATH, GET_ARTICLE_MAIN_IMAGE_URL } from "../../../Api";
 import { ArticleCardView } from "./View/articleCardView";
 

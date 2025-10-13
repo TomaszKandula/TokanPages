@@ -1,5 +1,5 @@
 import { LinkDto, WarningPasswordDto } from "../../../../Api/Models";
-import { ReactChangeEvent, ReactKeyboardEvent, ViewProperties } from "../../../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent, ViewProperties } from "../../../../Shared/Types";
 
 export interface UserSignupProps {
     className?: string;

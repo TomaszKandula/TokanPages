@@ -1,4 +1,4 @@
-import { TLoading, TObjectFit } from "../../../../../Shared/types";
+import { TLoading, TObjectFit } from "../../../../../Shared/Types";
 
 export interface TextObject {
     items: TextItem[];

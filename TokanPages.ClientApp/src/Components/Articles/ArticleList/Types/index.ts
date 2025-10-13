@@ -1,5 +1,5 @@
 import { ArticleCategory } from "../../../../Api/Models";
-import { ReactChangeEvent, ReactKeyboardEvent, ViewProperties } from "../../../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent, ViewProperties } from "../../../../Shared/Types";
 import { ArticleItem } from "../../../../Shared/Components/RenderContent/Models";
 
 export interface PageDataProps {

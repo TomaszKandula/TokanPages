@@ -14,7 +14,7 @@ import { useWebSockets } from "../../../../Shared/Services/WebSockets";
 import { AccountFormInput, ValidateAccountForm } from "../../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE, SET_INTERVAL_DELAY } from "../../../../Shared/constants";
 import { IconType, OperationStatus } from "../../../../Shared/enums";
-import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../Shared/Types";
 import { UserInfoView } from "./View/userInfoView";
 import { UpdateStoreProps, UserInfoProps } from "./Types";
 import Validate from "validate.js";

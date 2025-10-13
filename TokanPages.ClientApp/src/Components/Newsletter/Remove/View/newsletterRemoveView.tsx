@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ContentDto } from "../../../../Api/Models";
-import { ViewProperties } from "../../../../Shared/types";
+import { ViewProperties } from "../../../../Shared/Types";
 import { CustomCard, Icon, ProgressBar } from "../../../../Shared/Components";
 import { ExtendedViewProps } from "../newsletterRemove";
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GET_IMAGES_URL } from "../../../../Api";
 import { Animated, CustomImage, Icon, Media } from "../../../../Shared/Components";
-import { TLoading, ViewProperties } from "../../../../Shared/types";
+import { TLoading, ViewProperties } from "../../../../Shared/Types";
 import Validate from "validate.js";
 import "./articleCardView.css";
 

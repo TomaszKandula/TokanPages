@@ -16,7 +16,7 @@ import {
     RenderHtml,
     RenderList,
 } from "../../../../../../Shared/Components";
-import { TComponent, TLoading } from "../../../../../../Shared/types";
+import { TComponent, TLoading } from "../../../../../../Shared/Types";
 import { TagType } from "../../../../../../Shared/Components/RenderHtml/types";
 import { TryParse } from "../../../../../../Shared/Services/Utilities";
 import DOMPurify from "dompurify";

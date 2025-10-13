@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { ReactMouseEventHandler } from "../../../Shared/types";
+import { ReactMouseEventHandler } from "../../../Shared/Types";
 import "./link.css";
 
 interface LinkProps {

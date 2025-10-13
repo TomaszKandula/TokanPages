@@ -1,5 +1,5 @@
 import { NavigationContentDto } from "../../../../Api/Models";
-import { ViewProperties } from "../../../../Shared/types";
+import { ViewProperties } from "../../../../Shared/Types";
 import { UseDimensionsResult } from "../../../../Shared/Hooks/useDimensions";
 import { ApplicationLanguageState } from "../../../../Store/States";
 
