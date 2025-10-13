@@ -10,7 +10,7 @@ import { Author } from "../../../Shared/Components/RenderContent/Models";
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
 import { MapLanguage } from "../../../Shared/Services/Utilities";
 import { useDimensions } from "../../../Shared/Hooks";
-import { FigoureSize } from "../../../Shared/enums";
+import { FigoureSize } from "../../../Shared/Enums";
 import { ArticleContent } from "./Helpers/articleContent";
 import { LikesLeft } from "./Helpers/likesLeft";
 import { ReadTime } from "./Helpers/readTime";

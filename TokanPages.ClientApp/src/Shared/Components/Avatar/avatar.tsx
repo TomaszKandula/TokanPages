@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FigoureSize } from "../../../Shared/enums";
+import { FigoureSize } from "../../../Shared/Enums";
 import "./avatar.css";
 
 interface AvatarProps {

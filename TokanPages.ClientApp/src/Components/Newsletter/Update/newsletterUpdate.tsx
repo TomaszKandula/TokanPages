@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
-import { IconType, OperationStatus } from "../../../Shared/enums";
+import { IconType, OperationStatus } from "../../../Shared/Enums";
 import { ValidateEmailForm } from "../../../Shared/Services/FormValidation";
 import { ReactChangeEvent } from "../../../Shared/Types";
 import { ApplicationDialogAction, NewsletterUpdateAction } from "../../../Store/Actions";

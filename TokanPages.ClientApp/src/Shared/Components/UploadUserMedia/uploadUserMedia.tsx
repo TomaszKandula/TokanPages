@@ -4,7 +4,7 @@ import { ReactChangeEvent } from "../../../Shared/Types";
 import { UserMediaUploadAction } from "../../../Store/Actions";
 import { ApplicationState } from "../../../Store/Configuration";
 import { RECEIVED_ERROR_MESSAGE } from "../../constants";
-import { OperationStatus, UserMedia } from "../../enums";
+import { OperationStatus, UserMedia } from "../../Enums";
 import { UploadUserMediaView } from "./View/uploadUserMediaView";
 
 interface Properties {

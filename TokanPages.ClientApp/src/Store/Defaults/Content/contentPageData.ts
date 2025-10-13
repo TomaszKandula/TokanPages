@@ -1,4 +1,4 @@
-import { OperationStatus } from "../../../Shared/enums";
+import { OperationStatus } from "../../../Shared/Enums";
 import { ContentPageDataState } from "../../../Store/States";
 
 export const ContentPageData: ContentPageDataState = {

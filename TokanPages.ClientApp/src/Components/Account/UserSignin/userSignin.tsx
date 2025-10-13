@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
-import { IconType, OperationStatus } from "../../../Shared/enums";
+import { IconType, OperationStatus } from "../../../Shared/Enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/Types";
 import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Actions";
 import { SigninFormInput, ValidateSigninForm } from "../../../Shared/Services/FormValidation";

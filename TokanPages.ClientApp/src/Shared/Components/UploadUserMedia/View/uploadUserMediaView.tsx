@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ReactChangeEvent } from "../../../../Shared/Types";
 import { Icon, UserAvatar } from "../../../../Shared/Components";
-import { FigoureSize } from "../../../../Shared/enums";
+import { FigoureSize } from "../../../../Shared/Enums";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 

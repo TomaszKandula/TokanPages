@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { UserActivateAction, UserNotificationAction } from "../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
-import { OperationStatus } from "../../../Shared/enums";
+import { OperationStatus } from "../../../Shared/Enums";
 import { AccountActivateView } from "./View/accountActivateView";
 import { AccountActivateProps } from "./Types";
 import Validate from "validate.js";

@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationErrorAction } from "../../../Store/Actions";
 import { ApplicationState } from "../../../Store/Configuration";
-import { DialogType } from "../../../Shared/enums";
+import { DialogType } from "../../../Shared/Enums";
 import { NotificationToasterProps, ToastData, MessageType } from "./Types";
 import { ToastList } from "./ToastList";
 import Validate from "validate.js";

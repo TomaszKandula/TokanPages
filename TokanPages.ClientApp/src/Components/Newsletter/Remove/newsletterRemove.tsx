@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { NewsletterRemoveAction } from "../../../Store/Actions";
-import { OperationStatus } from "../../../Shared/enums";
+import { OperationStatus } from "../../../Shared/Enums";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
 import { useDimensions } from "../../../Shared/Hooks";
 import { ContentDto } from "../../../Api/Models";

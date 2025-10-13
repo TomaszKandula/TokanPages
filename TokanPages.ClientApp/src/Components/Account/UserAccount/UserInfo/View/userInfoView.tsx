@@ -1,6 +1,6 @@
 import * as React from "react";
 import { GET_USER_IMAGE } from "../../../../../Api";
-import { UserMedia } from "../../../../../Shared/enums";
+import { UserMedia } from "../../../../../Shared/Enums";
 import {
     SpinnerBackdrop,
     ProgressBar,

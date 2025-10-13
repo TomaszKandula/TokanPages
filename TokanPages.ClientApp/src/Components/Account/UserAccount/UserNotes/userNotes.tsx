@@ -11,7 +11,7 @@ import {
 } from "../../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
 import { ReactChangeTextEvent } from "../../../../Shared/Types";
-import { OperationStatus } from "../../../../Shared/enums";
+import { OperationStatus } from "../../../../Shared/Enums";
 import { useDimensions } from "../../../../Shared/Hooks";
 import { ActionType, UserNotesProps } from "./Types";
 

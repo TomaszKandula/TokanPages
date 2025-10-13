@@ -2,7 +2,7 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { IconType, OperationStatus } from "../../../../Shared/enums";
+import { IconType, OperationStatus } from "../../../../Shared/Enums";
 import { useDimensions } from "../../../../Shared/Hooks";
 import { UserRemovalView } from "./View/userRemovalView";
 import {

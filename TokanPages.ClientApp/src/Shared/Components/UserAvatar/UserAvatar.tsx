@@ -1,6 +1,6 @@
 import * as React from "react";
 import { GET_USER_IMAGE } from "../../../Api";
-import { FigoureSize } from "../../../Shared/enums";
+import { FigoureSize } from "../../../Shared/Enums";
 import { UserAvatarView } from "./View/userAvatarView";
 import Validate from "validate.js";
 

@@ -1,7 +1,7 @@
 import { Action, Reducer } from "redux";
 import { ApplicationErrorState } from "../../States";
 import { ApplicationDefault } from "../../Configuration";
-import { DialogType } from "../../../Shared/enums";
+import { DialogType } from "../../../Shared/Enums";
 
 import { CLEAR, RAISE, TErrorActions } from "../../Actions/Application/applicationError";
 
