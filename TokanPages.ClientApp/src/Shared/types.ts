@@ -27,3 +27,7 @@ export type ReactChangeEvent = React.ChangeEvent<HTMLInputElement>;
 
 export type ReactKeyboardTextEvent = React.KeyboardEvent<HTMLTextAreaElement>;
 export type ReactChangeTextEvent = React.ChangeEvent<HTMLTextAreaElement>;
+
+export interface ViewProperties {
+    isLoading: boolean;
+}

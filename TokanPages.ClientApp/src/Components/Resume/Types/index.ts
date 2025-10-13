@@ -1,6 +1,6 @@
 import { TagType } from "../../../Shared/Components/RenderHtml/types";
 import { ExperienceItemProps, ResumeContentDto, TestimonialsContentDto } from "../../../Api/Models";
-import { ViewProperties } from "../../../Shared/Abstractions";
+import { ViewProperties } from "../../../Shared/types";
 
 export interface ProcessedExperienceItemProps extends ExperienceItemProps {
     timespan: number;

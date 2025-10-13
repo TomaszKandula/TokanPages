@@ -1,4 +1,4 @@
-import { ViewProperties } from "../../../../Shared/Abstractions";
+import { ViewProperties } from "../../../../Shared/types";
 
 export interface ExtendedViewProps {
     className?: string;

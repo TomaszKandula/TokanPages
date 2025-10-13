@@ -1,7 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { ViewProperties } from "../../../Shared/Abstractions";
-import { TColour } from "../../../Shared/types";
+import { TColour, ViewProperties } from "../../../Shared/types";
 import { Skeleton } from "../Skeleton";
 import { v4 as uuidv4 } from "uuid";
 import "./customCard.css";

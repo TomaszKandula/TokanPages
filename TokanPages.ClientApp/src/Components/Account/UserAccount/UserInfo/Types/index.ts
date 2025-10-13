@@ -1,7 +1,6 @@
 import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
-import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
-import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent, ViewProperties } from "../../../../../Shared/types";
 
 export interface UpdateStoreProps {
     canUpdate: boolean;

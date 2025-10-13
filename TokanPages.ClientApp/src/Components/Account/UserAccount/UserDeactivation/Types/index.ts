@@ -1,5 +1,5 @@
 import { SectionAccountDeactivation } from "../../../../../Api/Models";
-import { ViewProperties } from "../../../../../Shared/Abstractions";
+import { ViewProperties } from "../../../../../Shared/types";
 
 export interface UserDeactivationProps {
     className?: string;

@@ -1,6 +1,5 @@
 import * as React from "react";
-import { ViewProperties } from "../../../../Shared/Abstractions";
-import { ReactChangeEvent } from "../../../../Shared/types";
+import { ReactChangeEvent, ViewProperties } from "../../../../Shared/types";
 import { Icon, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
 import { ExtendedViewProps } from "../newsletterUpdate";
 

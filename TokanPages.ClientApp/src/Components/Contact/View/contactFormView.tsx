@@ -1,7 +1,6 @@
 import * as React from "react";
 import { PresentationDto } from "../../../Api/Models";
-import { ViewProperties } from "../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent, ViewProperties } from "../../../Shared/types";
 import {
     Animated,
     Icon,

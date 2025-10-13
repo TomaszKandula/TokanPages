@@ -1,6 +1,5 @@
 import { SectionAccountPassword } from "../../../../../Api/Models";
-import { ViewProperties } from "../../../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent, ViewProperties } from "../../../../../Shared/types";
 
 export interface UserPasswordProps {
     className?: string;
