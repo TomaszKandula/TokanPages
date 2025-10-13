@@ -172,12 +172,11 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     React.useEffect(() => {
         if (isCategoryChanged) {
             setIsCategoryChanged(false);
-            const pagingInfo = article.payload.pagingInfo;
-            UpdatePageParam(pagingInfo.pageNumber);
+            UpdatePageParam(1);
             dispatch(
                 ArticleListingAction.get({
                     ...BaseRequest,
-                    pageNumber: pagingInfo.pageNumber,
+                    pageNumber: 1,
                     pageSize: ARTICLES_PAGE_SIZE,
                     phrase: form.searchInput,
                     categoryId: selection,
