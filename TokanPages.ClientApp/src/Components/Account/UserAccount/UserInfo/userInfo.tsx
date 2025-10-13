@@ -12,7 +12,7 @@ import { NotificationData, UserActivationData } from "../../../../Api/Models";
 import { useApiAction, useDimensions, useInterval } from "../../../../Shared/Hooks";
 import { useWebSockets } from "../../../../Shared/Services/WebSockets";
 import { AccountFormInput, ValidateAccountForm } from "../../../../Shared/Services/FormValidation";
-import { RECEIVED_ERROR_MESSAGE, SET_INTERVAL_DELAY } from "../../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE, SET_INTERVAL_DELAY } from "../../../../Shared/ConstantsTemp";
 import { IconType, OperationStatus } from "../../../../Shared/Enums";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../Shared/Types";
 import { UserInfoView } from "./View/userInfoView";

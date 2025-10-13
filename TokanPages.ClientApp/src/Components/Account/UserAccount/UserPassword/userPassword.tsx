@@ -5,7 +5,7 @@ import { IconType, OperationStatus } from "../../../../Shared/Enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/Types";
 import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../../Store/Actions";
 import { PasswordFormInput, ValidatePasswordForm } from "../../../../Shared/Services/FormValidation";
-import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/ConstantsTemp";
 import { useDimensions } from "../../../../Shared/Hooks";
 import { UserPasswordView } from "./View/userPasswordView";
 import { UserPasswordProps } from "./Types";

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
 import { IconType, OperationStatus } from "../../Shared/Enums";
-import { INTERNAL_MESSAGE_TEXT, INTERNAL_SUBJECT_TEXT, RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
+import { INTERNAL_MESSAGE_TEXT, INTERNAL_SUBJECT_TEXT, RECEIVED_ERROR_MESSAGE } from "../../Shared/ConstantsTemp";
 import { formatPhoneNumber } from "../../Shared/Services/Converters";
 import { ValidateBusinessForm } from "../../Shared/Services/FormValidation";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../Shared/Types";

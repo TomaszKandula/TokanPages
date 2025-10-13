@@ -4,7 +4,7 @@ import { ApplicationState } from "../../Store/Configuration";
 import { GET_DOCUMENTS_URL } from "../../Api";
 import { RaiseError } from "../../Shared/Services/ErrorServices";
 import { ProgressBar } from "../../Shared/Components";
-import { PDF_JS_MIN_URL, PDF_WORKER_URL } from "../../Shared/constants";
+import { PDF_JS_MIN_URL, PDF_WORKER_URL } from "../../Shared/ConstantsTemp";
 import { PdfViewerView } from "./View/pdfViewerView";
 import Validate from "validate.js";
 

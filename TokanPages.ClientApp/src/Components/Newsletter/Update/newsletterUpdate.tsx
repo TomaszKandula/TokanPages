@@ -5,7 +5,7 @@ import { IconType, OperationStatus } from "../../../Shared/Enums";
 import { ValidateEmailForm } from "../../../Shared/Services/FormValidation";
 import { ReactChangeEvent } from "../../../Shared/Types";
 import { ApplicationDialogAction, NewsletterUpdateAction } from "../../../Store/Actions";
-import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/ConstantsTemp";
 import { useDimensions } from "../../../Shared/Hooks";
 import { NewsletterUpdateView } from "./View/newsletterUpdateView";
 import Validate from "validate.js";

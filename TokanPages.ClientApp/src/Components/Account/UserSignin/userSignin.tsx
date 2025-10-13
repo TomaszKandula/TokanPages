@@ -6,7 +6,7 @@ import { IconType, OperationStatus } from "../../../Shared/Enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/Types";
 import { ApplicationDialogAction, UserSigninAction } from "../../../Store/Actions";
 import { SigninFormInput, ValidateSigninForm } from "../../../Shared/Services/FormValidation";
-import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/ConstantsTemp";
 import { UserSigninView } from "./View/userSigninView";
 import { UserSigninProps } from "./Types";
 import Validate from "validate.js";

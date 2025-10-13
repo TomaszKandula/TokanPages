@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Route } from "react-router-dom";
 import { LanguageItemDto } from "./Api/Models";
-import { PRERENDER_PATH_PREFIX } from "./Shared/constants";
+import { PRERENDER_PATH_PREFIX } from "./Shared/ConstantsTemp";
 import { v4 as uuidv4 } from "uuid";
 import {
     MainPage,

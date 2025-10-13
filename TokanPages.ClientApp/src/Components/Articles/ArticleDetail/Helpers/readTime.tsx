@@ -1,7 +1,7 @@
 import { ObjectToText } from "../../../../Shared/Services/Converters";
 import { CountWords, GetReadTime } from "../../../../Shared/Services/Utilities";
 import { TextItem, TextObject } from "../../../../Shared/Components/RenderContent/Models";
-import { WORDS_PER_MINUTE } from "../../../../Shared/constants";
+import { WORDS_PER_MINUTE } from "../../../../Shared/ConstantsTemp";
 
 export const ReadTime = (text: TextItem[]): string => {
     let object: TextObject = {

@@ -1,4 +1,4 @@
-import { IsRunningOnIOS } from "./Services/IsRunningOnIOS";
+import { IsRunningOnIOS } from "../Services/IsRunningOnIOS";
 
 export const APP_BAR_HEIGHT_DESKTOP = 64;
 export const APP_BAR_HEIGHT_NON_DESKTOP_TOP = 48;
