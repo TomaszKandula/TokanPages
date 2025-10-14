@@ -27,7 +27,7 @@ export { Icon } from "./Icon";
 export { Skeleton } from "./Skeleton";
 export { TextField, TextFieldWithPassword, TextArea } from "./TextField";
 export { SpinnerBackdrop, StandardBackdrop } from "./Backdrop";
-export { ApplicationToaster } from "./CustomToast";
+export { ApplicationToaster } from "./ApplicationToaster";
 export { Notification } from "./Notification";
 export { Media } from "./Media";
 export { RenderHtml } from "./RenderHtml";
