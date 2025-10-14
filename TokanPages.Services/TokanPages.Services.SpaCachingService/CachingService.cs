@@ -77,7 +77,7 @@ public class CachingService : ICachingService
     }
 
     /// <inheritdoc />
-    public async Task<string> GeneratePdf(string sourceUrl)
+    public async Task<string> GeneratePdf(string sourceUrl,  string? optionalName = default)
     {
         if (string.IsNullOrWhiteSpace(sourceUrl))
         {
@@ -90,10 +90,14 @@ public class CachingService : ICachingService
             await using var browser = await Puppeteer.LaunchAsync(_launchOptions);
             await using var page = await browser.NewPageAsync();
 
+            page.Viewport.Width = 1920;
+            page.Viewport.Height = 1080;
+            page.Viewport.DeviceScaleFactor = 0.9;
+
             await page.GoToAsync(sourceUrl, FiveMinutesTimeout, waitUntil: WaitUntilOptions);
             await page.EvaluateExpressionHandleAsync(DocumentFontReady);
 
-            var pdfName = $"{Guid.NewGuid()}.pdf";
+            var pdfName = string.IsNullOrWhiteSpace(optionalName) ? $"{Guid.NewGuid()}.pdf" : $"{optionalName}.pdf";
             var tempDir = $"{AppDomain.CurrentDomain.BaseDirectory}{Path.PathSeparator}temp";
             if (!Directory.Exists(tempDir))
             {

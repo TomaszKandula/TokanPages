@@ -119,6 +119,7 @@ public static class Dependencies
         var cachingServicePostUrl = configuration.GetValue<string>("CachingService_PostUrl");
         var cachingServiceFiles = configuration.GetValue<string>("CachingService_Files");
         var cachingServicePaths = configuration.GetValue<string>("CachingService_Paths");
+        var cachingServicePdfSource = configuration.GetValue<string>("CachingService_PdfSource");
 
         if (!string.IsNullOrWhiteSpace(batchInvoicingCron))
         {
@@ -142,7 +143,8 @@ public static class Dependencies
                 GetActionUrl = cachingServiceGetUrl ?? "",
                 PostActionUrl = cachingServicePostUrl ?? "",
                 FilesToCache = hasFiles ? cachingServiceFiles?.Split(";") : null,
-                RoutePaths = GetSerializedList<RoutePath>(cachingServicePaths)
+                PageRoutePaths = GetSerializedList<RoutePath>(cachingServicePaths),
+                PdfRoutePaths = GetSerializedList<RoutePath>(cachingServicePdfSource),
             };
 
             services.AddSingleton<ICachingProcessingConfig>(cachingProcessingConfig);
