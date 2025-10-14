@@ -29,6 +29,8 @@ public class CachingProcessingJob : CronJob
     
     private readonly List<RoutePath> _pagePaths;
 
+    private readonly List<RoutePath> _pdfPaths;
+
     /// <summary>
     /// CRON job implementation.
     /// </summary>
@@ -46,6 +48,7 @@ public class CachingProcessingJob : CronJob
         _postActionUrl = config.PostActionUrl ?? "";
         _filesToCache = config.FilesToCache;
         _pagePaths = config.PageRoutePaths;
+        _pdfPaths = config.PdfRoutePaths;
     }
 
     /// <summary>
