@@ -3,11 +3,8 @@ import { useSelector } from "react-redux";
 import { GET_IMAGES_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, Icon, Link, Image, Skeleton } from "../../../Shared/Components";
+import { SocialsViewProps } from "../Types";
 import "./socialsView.css";
-
-interface SocialsViewProps {
-    className?: string;
-}
 
 export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
