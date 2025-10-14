@@ -3,11 +3,8 @@ import { useSelector } from "react-redux";
 import { GET_IMAGES_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, Link, Image, Skeleton } from "../../../Shared/Components";
+import { FeaturedViewProps } from "../Types";
 import "./featuredView.css";
-
-interface FeaturedViewProps {
-    className?: string;
-}
 
 export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
