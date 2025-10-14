@@ -4,7 +4,7 @@ import { NavigationViewProps, RenderLanguageListProps } from "../../Abstractions
 import { RenderMenuIcon } from "../RenderMenuIcon";
 import { GET_IMAGES_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
-import { BottomSheet, CustomImage, Icon, Link, Media, Skeleton } from "../../../../../Shared/Components";
+import { BottomSheet, Image, Icon, Link, Media, Skeleton } from "../../../../../Shared/Components";
 import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP_TOP } from "../../../../../Shared/Constants";
 import { RenderSelectionIcon } from "..";
 import "./renderToolbarSmallScreen.css";
@@ -16,7 +16,7 @@ const listSeparator = (length: number, index: number): string => {
 
 const RenderLanguageOption = (props: NavigationViewProps): React.ReactElement => (
     <a className="bulma-navbar-start is-flex is-align-items-center ml-4 no-select" onClick={props.triggerBottomSheet}>
-        <CustomImage
+        <Image
             base={GET_IMAGES_URL}
             source={`${props.languageFlagDir}/${props.languageId}.${props.languageFlagType}`}
             title="Language flag"
@@ -72,7 +72,7 @@ const RenderDoubleToolbar = (props: NavigationViewProps): React.ReactElement => 
                         rel="noopener nofollow"
                         className="is-flex is-align-self-center"
                     >
-                        <CustomImage
+                        <Image
                             base={GET_IMAGES_URL}
                             source={props.navigation?.logo}
                             title="TomKandula logo"
@@ -103,7 +103,7 @@ const RenderLanguageList = (props: RenderLanguageListProps): React.ReactElement 
                             onClick={() => props.languagePickHandler(item.id)}
                         >
                             <div className="is-flex is-align-items-center">
-                                <CustomImage
+                                <Image
                                     base={GET_IMAGES_URL}
                                     source={`${props.languageFlagDir}/${item.id}.${props.languageFlagType}`}
                                     title="Language flag"

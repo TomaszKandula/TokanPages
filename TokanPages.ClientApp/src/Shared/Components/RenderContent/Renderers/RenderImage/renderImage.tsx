@@ -1,6 +1,6 @@
 import * as React from "react";
 import { API_BASE_URI } from "../../../../../Api";
-import { CustomImage } from "../../../../../Shared/Components/CustomImage/customImage";
+import { Image } from "../../../Image";
 import { TextItem } from "../../Models/TextModel";
 import Validate from "validate.js";
 
@@ -23,7 +23,7 @@ const RenderDescription = (props: { text: string }): React.ReactElement => {
 const RenderPicture = (props: RenderPictureProps) => (
     <div className="bulma-card-image">
         <figure className="bulma-image">
-            <CustomImage
+            <Image
                 source={props.url}
                 title="Illustration"
                 alt="An image of presented article text"

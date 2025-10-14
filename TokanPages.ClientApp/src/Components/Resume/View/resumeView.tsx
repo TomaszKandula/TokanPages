@@ -1,7 +1,7 @@
 import React from "react";
 import { GET_IMAGES_URL } from "../../../Api";
 import { EducationItemProps, OccupationProps } from "../../../Api/Models";
-import { CustomImage, Icon, Link, Media, RenderList, Skeleton } from "../../../Shared/Components";
+import { Image, Icon, Link, Media, RenderList, Skeleton } from "../../../Shared/Components";
 import { RenderTag } from "../../../Shared/Components/RenderContent/Renderers";
 import { ProcessedExperienceItemProps, RenderCaptionProps, ResumeViewProps } from "../Types";
 import { ProcessTimeSpan } from "../Utilities";
@@ -167,7 +167,7 @@ const RenderTestimonials = (props: ResumeViewProps) => (
                 </div>
                 <Skeleton isLoading={props.isLoading} mode="Circle" width={64} height={64}>
                     <figure className="bulma-image bulma-is-64x64">
-                        <CustomImage
+                        <Image
                             base={GET_IMAGES_URL}
                             source={props.section.photo1}
                             title={props.section.name1}
@@ -197,7 +197,7 @@ const RenderTestimonials = (props: ResumeViewProps) => (
                 </div>
                 <Skeleton isLoading={props.isLoading} mode="Circle" width={64} height={64}>
                     <figure className="bulma-image bulma-is-64x64">
-                        <CustomImage
+                        <Image
                             base={GET_IMAGES_URL}
                             source={props.section.photo2}
                             title={props.section.name2}
@@ -227,7 +227,7 @@ const RenderTestimonials = (props: ResumeViewProps) => (
                 </div>
                 <Skeleton isLoading={props.isLoading} mode="Circle" width={64} height={64}>
                     <figure className="bulma-image bulma-is-64x64">
-                        <CustomImage
+                        <Image
                             base={GET_IMAGES_URL}
                             source={props.section.photo3}
                             title={props.section.name3}
@@ -250,7 +250,7 @@ const RenderResume = (props: ResumeViewProps) => (
             <div className="bulma-cell is-align-content-center">
                 <Skeleton isLoading={props.isLoading} mode="Circle" width={98} height={98} disableMarginY>
                     <figure className="bulma-image bulma-is-128x128">
-                        <CustomImage
+                        <Image
                             base={GET_IMAGES_URL}
                             source={props.page?.photo?.href}
                             title={props.page?.photo?.text}

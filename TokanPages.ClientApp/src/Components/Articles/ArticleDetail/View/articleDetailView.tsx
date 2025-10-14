@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GET_IMAGES_URL } from "../../../../Api";
 import { ArticleContentDto } from "../../../../Api/Models";
-import { Icon, CustomImage, Skeleton, Media } from "../../../../Shared/Components";
+import { Icon, Image, Skeleton, Media } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { ExtendedViewProps } from "../articleDetail";
 import { v4 as uuidv4 } from "uuid";
@@ -36,7 +36,7 @@ const RenderTopHeader = (props: ArticleDetailViewProps): React.ReactElement => (
             <p className="bulma-cell is-align-content-center is-size-7">{props.content.textLanguage}</p>
         </Skeleton>
         <Skeleton isLoading={props.isLoading} mode="Circle" width={24} height={24}>
-            <CustomImage
+            <Image
                 base={GET_IMAGES_URL}
                 source={props.flagImage}
                 title="Articles"
@@ -68,7 +68,7 @@ const RenderTopHeaderMobile = (props: ArticleDetailViewProps): React.ReactElemen
                 <p className="bulma-cell is-align-content-center is-size-7">{props.content.textLanguage}</p>
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Circle" width={24} height={24}>
-                <CustomImage
+                <Image
                     base={GET_IMAGES_URL}
                     source={props.flagImage}
                     title="Articles"

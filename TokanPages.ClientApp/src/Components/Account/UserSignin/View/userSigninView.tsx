@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import { GET_IMAGES_URL } from "../../../../Api";
 import { NewsItemDto } from "../../../../Api/Models";
 import {
-    CustomImage,
+    Image,
     Icon,
     Link,
     Notification,
@@ -46,7 +46,7 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
         <div className="bulma-card-image">
             <figure className="bulma-image">
                 <Skeleton isLoading={props.isLoading ?? false} mode="Rect" height={150} disableMarginY>
-                    <CustomImage
+                    <Image
                         base={GET_IMAGES_URL}
                         source={props.image}
                         className="user-signin-view-card-image"

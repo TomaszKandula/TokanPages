@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GET_IMAGES_URL } from "../../../../Api";
 import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP } from "../../../../Shared/Constants";
-import { ApplicationBar, CustomImage, Drawer, Icon, IconButton } from "../../../../Shared/Components";
+import { ApplicationBar, Image, Drawer, Icon, IconButton } from "../../../../Shared/Components";
 import { RenderSideMenu, RenderToolbarLargeScreen, RenderToolbarSmallScreen } from "../Components";
 import { NavigationViewProps } from "../Abstractions";
 
@@ -28,7 +28,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
             <RenderToolbarSmallScreen {...props} />
             <Drawer isOpen={props.isMenuOpen} isExternalClose={isClose} onTrigger={props.triggerSideMenu}>
                 <div className="is-flex is-justify-content-space-between">
-                    <CustomImage
+                    <Image
                         base={GET_IMAGES_URL}
                         source={props.navigation?.menu?.image}
                         title="Logo"

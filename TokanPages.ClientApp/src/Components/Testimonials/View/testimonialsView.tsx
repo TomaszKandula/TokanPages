@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GET_IMAGES_URL } from "../../../Api";
 import { ViewProperties } from "../../../Shared/Types";
-import { Animated, CustomImage, Collapsible, Skeleton, RenderHtml, Link, Icon } from "../../../Shared/Components";
+import { Animated, Image, Collapsible, Skeleton, RenderHtml, Link, Icon } from "../../../Shared/Components";
 import "./testimonialsView.css";
 
 interface TestimonialItemProps {
@@ -35,7 +35,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                         <Animated dataAos="fade-up" dataAosDelay={350}>
                             <div className="bulma-card">
                                 <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
-                                    <CustomImage
+                                    <Image
                                         base={GET_IMAGES_URL}
                                         source={props.Testimonial1.photo}
                                         className="testimonials-card-image"
@@ -86,7 +86,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                         <Animated dataAos="fade-up" dataAosDelay={150}>
                             <div className="bulma-card">
                                 <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
-                                    <CustomImage
+                                    <Image
                                         base={GET_IMAGES_URL}
                                         source={props.Testimonial2.photo}
                                         className="testimonials-card-image"
@@ -137,7 +137,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                         <Animated dataAos="fade-up" dataAosDelay={250}>
                             <div className="bulma-card">
                                 <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
-                                    <CustomImage
+                                    <Image
                                         base={GET_IMAGES_URL}
                                         source={props.Testimonial3.photo}
                                         className="testimonials-card-image"
