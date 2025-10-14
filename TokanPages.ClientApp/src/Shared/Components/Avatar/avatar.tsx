@@ -1,15 +1,7 @@
 import * as React from "react";
 import { FigoureSize } from "../../../Shared/Enums";
+import { AvatarProps } from "./Types";
 import "./avatar.css";
-
-interface AvatarProps {
-    alt: string;
-    title: string;
-    size: FigoureSize;
-    src?: string;
-    className?: string;
-    children?: React.ReactElement | string;
-}
 
 const ConvertSize = (size: FigoureSize, prefix: string = "bulma"): string => {
     switch (size) {

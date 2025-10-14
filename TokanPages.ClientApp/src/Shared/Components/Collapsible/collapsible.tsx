@@ -1,11 +1,6 @@
 import * as React from "react";
+import { CollapsibleProps } from "./Types";
 import { CollapsibleView } from "./View/collapsibleView";
-
-interface CollapsibleProps {
-    isOpen?: boolean;
-    minHeight?: number;
-    children: React.ReactNode;
-}
 
 export const Collapsible = (props: CollapsibleProps): React.ReactElement => {
     const offset = 30;

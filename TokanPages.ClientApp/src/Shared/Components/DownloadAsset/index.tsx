@@ -1,12 +1,7 @@
 import * as React from "react";
 import { IconButton } from "../IconButton";
 import { Icon } from "../Icon/icon";
-
-interface DownloadAssetProps {
-    url: string;
-    size?: number;
-    className?: string;
-}
+import { DownloadAssetProps } from "./Types";
 
 export const DownloadAsset = (props: DownloadAssetProps): React.ReactElement => {
     const url = `${props.url}&canDownload=true`;

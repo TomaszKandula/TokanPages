@@ -4,14 +4,11 @@ import { useInterval } from "../../../Shared/Hooks";
 import { ApplicationState } from "../../../Store/Configuration";
 import { UserReAuthenticateAction, UserDataStoreAction } from "../../../Store/Actions";
 import { JWT } from "../../../Api/Models";
+import { ApplicationSessionProps } from "./Types";
 import Validate from "validate.js";
 import jwtDecode from "jwt-decode";
 
-interface Properties {
-    children: React.ReactNode;
-}
-
-export const ApplicationSession = (props: Properties): React.ReactElement => {
+export const ApplicationSession = (props: ApplicationSessionProps): React.ReactElement => {
     const dispatch = useDispatch();
     const store = useSelector((state: ApplicationState) => state.userDataStore);
     const [expiration, setExpiration] = React.useState<number | undefined>(undefined);
