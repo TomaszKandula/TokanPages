@@ -27,4 +27,7 @@ public class CachingProcessingConfig : ICachingProcessingConfig
 
     /// <inheritdoc />
     public List<RoutePath> RoutePaths { get; set; } = new();
+
+    /// <inheritdoc />
+    public List<RoutePath> PdfRoutePaths { get; set; } = new();
 }

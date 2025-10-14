@@ -25,4 +25,9 @@ public interface ICachingProcessingConfig : IBaseConfig
     /// List of URLs of web pages to be cached.
     /// </summary>
     public List<RoutePath> RoutePaths { get; set; }
+    
+    /// <summary>
+    /// List of URLs of web pages to be printed to PDF.
+    /// </summary>
+    public List<RoutePath> PdfRoutePaths { get; set; }
 }
