@@ -1,0 +1,1 @@
+export { CountWords } from "./countWords";
