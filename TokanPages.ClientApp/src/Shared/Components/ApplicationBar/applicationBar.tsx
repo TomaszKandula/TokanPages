@@ -1,6 +1,6 @@
 import * as React from "react";
-import { useDimensions, useScroll } from "../../../Shared/Hooks";
-import "./appBar.css";
+import { useDimensions, useScroll } from "../../Hooks";
+import "./applicationBar.css";
 
 interface AppBarProps {
     height?: number;
@@ -8,7 +8,7 @@ interface AppBarProps {
     children: React.ReactElement | React.ReactElement[];
 }
 
-export const AppBar = (props: AppBarProps) => {
+export const ApplicationBar = (props: AppBarProps) => {
     const media = useDimensions();
     const height = props.height ?? 50;
     const offset = props.offset ?? 0;

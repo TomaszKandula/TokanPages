@@ -1,5 +1,5 @@
 export { Animated } from "./Animated";
-export { AppBar } from "./AppBar";
+export { ApplicationBar } from "./ApplicationBar";
 export { ApplicationCookie } from "./ApplicationCookie/applicationCookie";
 export { ApplicationDialogBox } from "./ApplicationDialogBox/applicationDialogBox";
 export { ApplicationUserInfo } from "./ApplicationUserInfo/applicationUserInfo";

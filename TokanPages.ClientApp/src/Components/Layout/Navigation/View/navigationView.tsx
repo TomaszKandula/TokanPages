@@ -1,16 +1,16 @@
 import * as React from "react";
 import { GET_IMAGES_URL } from "../../../../Api";
 import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP } from "../../../../Shared/Constants";
-import { AppBar, CustomImage, Drawer, Icon, IconButton } from "../../../../Shared/Components";
+import { ApplicationBar, CustomImage, Drawer, Icon, IconButton } from "../../../../Shared/Components";
 import { RenderSideMenu, RenderToolbarLargeScreen, RenderToolbarSmallScreen } from "../Components";
 import { NavigationViewProps } from "../Abstractions";
 
 const RenderBackNavigationOnly = (props: NavigationViewProps): React.ReactElement => (
-    <AppBar height={APP_BAR_HEIGHT_DESKTOP}>
+    <ApplicationBar height={APP_BAR_HEIGHT_DESKTOP}>
         <IconButton hasNoHoverEffect={props.media.isMobile || props.media.isTablet} onClick={props.backPathHandler}>
             <Icon name="ArrowLeft" size={1.5} />
         </IconButton>
-    </AppBar>
+    </ApplicationBar>
 );
 
 const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement => {
@@ -23,7 +23,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
     }, [props.isMenuOpen, isClose]);
 
     return (
-        <AppBar height={height} offset={2}>
+        <ApplicationBar height={height} offset={2}>
             <RenderToolbarLargeScreen {...props} />
             <RenderToolbarSmallScreen {...props} />
             <Drawer isOpen={props.isMenuOpen} isExternalClose={isClose} onTrigger={props.triggerSideMenu}>
@@ -54,7 +54,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
                     items={props.navigation?.menu?.items}
                 />
             </Drawer>
-        </AppBar>
+        </ApplicationBar>
     );
 };
 
