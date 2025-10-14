@@ -1,19 +1,7 @@
 import * as React from "react";
 import { ContentDto } from "../../../../Api/Models";
-import { ViewProperties } from "../../../../Shared/Types";
 import { Card, Icon, ProgressBar } from "../../../../Shared/Components";
-import { ExtendedViewProps } from "../newsletterRemove";
-
-interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {
-    isMobile: boolean;
-    hasEmptyId: boolean;
-    contentPre: ContentDto;
-    contentPost: ContentDto;
-    buttonHandler: () => void;
-    buttonState: boolean;
-    progress: boolean;
-    isRemoved: boolean;
-}
+import { NewsletterRemoveViewProps } from "../../Types";
 
 const ActiveButton = (props: NewsletterRemoveViewProps): React.ReactElement => {
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;

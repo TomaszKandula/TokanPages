@@ -1,20 +1,7 @@
 import * as React from "react";
-import { ReactChangeEvent, ReactKeyboardEvent, ViewProperties } from "../../../../Shared/Types";
 import { Animated, ProgressBar, Skeleton, TextField } from "../../../../Shared/Components";
+import { NewsletterViewProps } from "../../Types";
 import "./newsletterSectionView.css";
-
-interface NewsletterViewProps extends ViewProperties {
-    caption: string;
-    text: string;
-    keyHandler: (event: ReactKeyboardEvent) => void;
-    formHandler: (event: ReactChangeEvent) => void;
-    email: string;
-    buttonHandler: () => void;
-    progress: boolean;
-    buttonText: string;
-    labelEmail: string;
-    className?: string;
-}
 
 const ActiveButton = (props: NewsletterViewProps): React.ReactElement => (
     <button

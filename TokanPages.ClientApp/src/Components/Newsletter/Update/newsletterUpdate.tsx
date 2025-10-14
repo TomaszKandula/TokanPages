@@ -7,17 +7,9 @@ import { ReactChangeEvent } from "../../../Shared/Types";
 import { ApplicationDialogAction, NewsletterUpdateAction } from "../../../Store/Actions";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/Constants";
 import { useDimensions } from "../../../Shared/Hooks";
+import { NewsletterUpdateProps } from "../Types";
 import { NewsletterUpdateView } from "./View/newsletterUpdateView";
 import Validate from "validate.js";
-
-export interface ExtendedViewProps {
-    className?: string;
-    background?: string;
-}
-
-export interface NewsletterUpdateProps extends ExtendedViewProps {
-    id: string;
-}
 
 export const NewsletterUpdate = (props: NewsletterUpdateProps): React.ReactElement => {
     const hasId = props.id === null ? false : true;
