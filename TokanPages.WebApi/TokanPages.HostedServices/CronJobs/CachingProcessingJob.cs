@@ -45,7 +45,7 @@ public class CachingProcessingJob : CronJob
         _getActionUrl = config.GetActionUrl ?? "";
         _postActionUrl = config.PostActionUrl ?? "";
         _filesToCache = config.FilesToCache;
-        _paths = config.RoutePaths;
+        _paths = config.PageRoutePaths;
     }
 
     /// <summary>

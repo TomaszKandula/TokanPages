@@ -143,7 +143,7 @@ public static class Dependencies
                 GetActionUrl = cachingServiceGetUrl ?? "",
                 PostActionUrl = cachingServicePostUrl ?? "",
                 FilesToCache = hasFiles ? cachingServiceFiles?.Split(";") : null,
-                RoutePaths = GetSerializedList<RoutePath>(cachingServicePaths),
+                PageRoutePaths = GetSerializedList<RoutePath>(cachingServicePaths),
                 PdfRoutePaths = GetSerializedList<RoutePath>(cachingServicePdfSource),
             };
 
