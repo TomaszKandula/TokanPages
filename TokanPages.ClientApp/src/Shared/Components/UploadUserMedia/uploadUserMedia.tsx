@@ -5,15 +5,8 @@ import { UserMediaUploadAction } from "../../../Store/Actions";
 import { ApplicationState } from "../../../Store/Configuration";
 import { RECEIVED_ERROR_MESSAGE } from "../../Constants";
 import { OperationStatus, UserMedia } from "../../Enums";
+import { UploadUserMediaProps } from "./Types";
 import { UploadUserMediaView } from "./View/uploadUserMediaView";
-
-interface Properties {
-    customHandle?: string;
-    handle?: string;
-    skipDb?: boolean;
-    mediaTarget: UserMedia;
-    previewImage?: string;
-}
 
 const GetAcceptedType = (media: UserMedia): string => {
     const target = media.toString();
@@ -29,7 +22,7 @@ const GetAcceptedType = (media: UserMedia): string => {
     return "";
 };
 
-export const UploadUserMedia = (props: Properties): React.ReactElement => {
+export const UploadUserMedia = (props: UploadUserMediaProps): React.ReactElement => {
     const dispatch = useDispatch();
     const accepting = GetAcceptedType(props.mediaTarget);
 

@@ -1,19 +1,11 @@
 import * as React from "react";
-import { ReactChangeEvent } from "../../../../Shared/Types";
 import { Icon, UserAvatar } from "../../../../Shared/Components";
 import { FigoureSize } from "../../../../Shared/Enums";
+import { UploadUserMediaViewProps } from "../Types";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 
-interface Properties {
-    customHandle?: string;
-    buttonState: boolean;
-    inputHandler: (event: ReactChangeEvent) => void;
-    accepting: string;
-    previewImage?: string;
-}
-
-export const UploadUserMediaView = (props: Properties): React.ReactElement => {
+export const UploadUserMediaView = (props: UploadUserMediaViewProps): React.ReactElement => {
     const uuid = uuidv4();
     const hasPreviewImage = !Validate.isEmpty(props.previewImage);
 
