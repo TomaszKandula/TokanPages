@@ -9,7 +9,7 @@ export const Link = (props: LinkProps): React.ReactElement => {
         return <a className={className}>{props.children}</a>;
     }
 
-    const link: string = props.to;
+    const link = props.to ?? "";
     const isHref: boolean = link?.includes("http://") || link?.includes("https://") || link?.includes("mailto:");
 
     if (isHref) {
@@ -29,7 +29,7 @@ export const Link = (props: LinkProps): React.ReactElement => {
 
     return (
         <RouterLink
-            to={props.to}
+            to={link}
             className={props.className ?? ""}
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}

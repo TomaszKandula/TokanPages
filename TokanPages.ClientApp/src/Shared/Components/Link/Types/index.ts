@@ -1,7 +1,7 @@
 import { ReactMouseEventHandler } from "Shared/Types";
 
 export interface LinkProps {
-    to: string;
+    to: string | undefined;
     className?: string;
     isDisabled?: boolean;
     rel?: string;
