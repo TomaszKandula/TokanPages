@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CustomCard, DownloadAsset, Icon, IconButton, PdfCanvas, ProgressBar } from "../../../Shared/Components";
+import { Card, DownloadAsset, Icon, IconButton, PdfCanvas, ProgressBar } from "../../../Shared/Components";
 import { ReactMouseEvent } from "../../../Shared/Types";
 import "./pdfViewerView.css";
 
@@ -83,7 +83,7 @@ const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement =
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet mb-6">
             <div className="py-6">
-                <CustomCard
+                <Card
                     isLoading={props?.content?.isLoading}
                     caption={props?.content?.caption}
                     text={[props?.content?.warning]}
@@ -99,7 +99,7 @@ const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => 
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet mb-6">
             <div className="py-6">
-                <CustomCard
+                <Card
                     isLoading={props?.content?.isLoading}
                     caption={props?.content?.caption}
                     text={[props?.content?.error]}

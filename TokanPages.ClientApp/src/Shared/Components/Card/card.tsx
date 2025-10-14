@@ -1,24 +1,9 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { TColour, ViewProperties } from "../../../Shared/Types";
 import { Skeleton } from "../Skeleton";
+import { CustomCardProps } from "./Types";
 import { v4 as uuidv4 } from "uuid";
-import "./customCard.css";
-
-interface OptionsProps {
-    buttonLink: string;
-    buttonLabel: string;
-}
-
-interface CustomCardProps extends ViewProperties {
-    caption: string;
-    text: string[];
-    icon: React.ReactElement;
-    colour: TColour;
-    linkButton?: OptionsProps;
-    externalButton?: React.ReactElement;
-    externalContent?: React.ReactElement;
-}
+import "./card.css";
 
 const RenderIcon = (props: CustomCardProps) => {
     return React.cloneElement(props.icon, {
@@ -47,7 +32,7 @@ const RenderExternalButton = (props: CustomCardProps): React.ReactElement => (
     </div>
 );
 
-export const CustomCard = (props: CustomCardProps): React.ReactElement => (
+export const Card = (props: CustomCardProps): React.ReactElement => (
     <div className="bulma-card custom-card-margins">
         <div className="bulma-card-content">
             <div className="custom-card-icon-background is-flex is-justify-content-center is-align-items-center my-6">

@@ -1,12 +1,12 @@
 import * as React from "react";
-import { CustomCard, Icon } from "../../../../Shared/Components";
+import { Card, Icon } from "../../../../Shared/Components";
 import { UserSignoutViewProps } from "../Types";
 
 export const UserSignoutView = (props: UserSignoutViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet">
             <div className="py-6">
-                <CustomCard
+                <Card
                     isLoading={props.isLoading}
                     caption={props.caption}
                     text={props.status}

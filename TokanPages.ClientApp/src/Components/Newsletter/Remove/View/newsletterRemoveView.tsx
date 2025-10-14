@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ContentDto } from "../../../../Api/Models";
 import { ViewProperties } from "../../../../Shared/Types";
-import { CustomCard, Icon, ProgressBar } from "../../../../Shared/Components";
+import { Card, Icon, ProgressBar } from "../../../../Shared/Components";
 import { ExtendedViewProps } from "../newsletterRemove";
 
 interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {
@@ -35,7 +35,7 @@ export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.Re
         <section className={props.className}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className="py-6">
-                    <CustomCard
+                    <Card
                         isLoading={props.isLoading}
                         caption={content.caption}
                         text={[content.text1, content.text2, content.text3]}

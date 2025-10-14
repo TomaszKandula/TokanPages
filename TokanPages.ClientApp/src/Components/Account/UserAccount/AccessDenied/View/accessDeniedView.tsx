@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CustomCard, Icon } from "../../../../../Shared/Components";
+import { Card, Icon } from "../../../../../Shared/Components";
 import { AccessDeniedViewProps } from "../Types";
 
 export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactElement => {
@@ -7,7 +7,7 @@ export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactEleme
         <section className={props.className}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className="py-6">
-                    <CustomCard
+                    <Card
                         isLoading={props.isLoading}
                         caption={props.accessDeniedCaption}
                         text={props.accessDeniedPrompt}

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CustomCard, Icon } from "../../../../Shared/Components";
+import { Card, Icon } from "../../../../Shared/Components";
 import { TColour } from "../../../../Shared/Types";
 import { AccountActivateViewProps } from "../Types";
 
@@ -27,7 +27,7 @@ export const AccountActivateView = (props: AccountActivateViewProps): React.Reac
             <div className="bulma-container bulma-is-max-desktop">
                 <div className="py-6">
                     {props.shouldFallback ? (
-                        <CustomCard
+                        <Card
                             isLoading={props.isLoading}
                             caption={props.fallback?.caption}
                             text={props.fallback?.text}
@@ -35,7 +35,7 @@ export const AccountActivateView = (props: AccountActivateViewProps): React.Reac
                             colour="has-text-warning"
                         />
                     ) : (
-                        <CustomCard
+                        <Card
                             isLoading={props.isLoading}
                             caption={props.caption}
                             text={[props.text1, props.text2]}
