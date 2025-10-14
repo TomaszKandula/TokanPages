@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TextFieldProps } from "./types";
+import { TextFieldProps } from "./Types";
 
 export const TextFieldView = (props: TextFieldProps): React.ReactElement => {
     const rounded = props.isRounded ? "bulma-is-rounded" : "";

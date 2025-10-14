@@ -1,18 +1,6 @@
 import * as React from "react";
+import { SkeletonProps } from "./Types";
 import "./skeleton.css";
-
-type Mode = "Text" | "Rect" | "Circle";
-
-interface SkeletonProps {
-    isLoading: boolean;
-    mode?: Mode;
-    width?: number;
-    height?: number;
-    hasSkeletonCentered?: boolean;
-    disableMarginY?: boolean;
-    className?: string;
-    children: React.ReactNode | React.ReactElement | React.ReactElement[];
-}
 
 export const Skeleton = (props: SkeletonProps): React.ReactElement => {
     const marginClass = props.disableMarginY ? "" : "my-2";

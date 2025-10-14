@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ReactMouseEvent } from "../../../Shared/Types";
 import { TextFieldWithPasswordView } from "./View/textFieldWithPasswordView";
-import { TextFieldProps } from "./View/types";
+import { TextFieldProps } from "./Types";
 
 export const TextFieldWithPassword = (props: TextFieldProps): React.ReactElement => {
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
