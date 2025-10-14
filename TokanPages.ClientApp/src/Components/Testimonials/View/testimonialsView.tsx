@@ -1,25 +1,8 @@
 import * as React from "react";
 import { GET_IMAGES_URL } from "../../../Api";
-import { ViewProperties } from "../../../Shared/Types";
 import { Animated, Image, Collapsible, Skeleton, RenderHtml, Link, Icon } from "../../../Shared/Components";
+import { TestimonialsViewProps } from "../Types";
 import "./testimonialsView.css";
-
-interface TestimonialItemProps {
-    photo: string;
-    name: string;
-    link: string;
-    occupation: string;
-    text: string;
-}
-
-interface TestimonialsViewProps extends ViewProperties {
-    caption: string;
-    subtitle: string;
-    Testimonial1: TestimonialItemProps;
-    Testimonial2: TestimonialItemProps;
-    Testimonial3: TestimonialItemProps;
-    className?: string;
-}
 
 export const TestimonialsView = (props: TestimonialsViewProps): React.ReactElement => (
     <section className={props.className}>
