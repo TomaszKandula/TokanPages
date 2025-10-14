@@ -5,7 +5,7 @@ export { ApplicationDialogBox } from "./ApplicationDialogBox/applicationDialogBo
 export { ApplicationUserInfo } from "./ApplicationUserInfo/applicationUserInfo";
 export { ArticleCard, ArticleCardView } from "./ArticleCard";
 export { Avatar } from "./Avatar";
-export { CustomBreadcrumb } from "./CustomBreadcrumb";
+export { BreadcrumbView as Breadcrumb } from "./Breadcrumb";
 export { CustomCard } from "./CustomCard";
 export { DocumentContentWrapper } from "./DocumentContentWrapper";
 export { DownloadAsset } from "./DownloadAsset";

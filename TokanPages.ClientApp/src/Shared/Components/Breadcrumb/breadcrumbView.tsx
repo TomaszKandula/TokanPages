@@ -2,14 +2,14 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
-import { PRERENDER_PATH_PREFIX } from "../../../Shared/Constants";
-import { useDimensions, useQuery } from "../../../Shared/Hooks";
+import { PRERENDER_PATH_PREFIX } from "../../Constants";
+import { useDimensions, useQuery } from "../../Hooks";
 import { Icon } from "../Icon";
 import { CustomBreadcrumbProps, NavigationProps } from "./Types";
 import { getHomeText, pathToRootText, pathToSubitemText, toUpperCase } from "./Utilities";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
-import "./customBreadcrumbView.css";
+import "./breadcrumbView.css";
 import { Skeleton } from "../Skeleton";
 
 const makeStyledBreadcrumb = (
@@ -47,7 +47,7 @@ const makeStyledBreadcrumb = (
     return null;
 };
 
-export const CustomBreadcrumbView = (props: CustomBreadcrumbProps): React.ReactElement => {
+export const BreadcrumbView = (props: CustomBreadcrumbProps): React.ReactElement => {
     const media = useDimensions();
     const history = useHistory();
     const queryParam = useQuery();
