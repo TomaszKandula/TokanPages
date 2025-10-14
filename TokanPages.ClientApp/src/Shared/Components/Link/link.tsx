@@ -1,17 +1,7 @@
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { ReactMouseEventHandler } from "../../../Shared/Types";
+import { LinkProps } from "./Types";
 import "./link.css";
-
-interface LinkProps {
-    to: string;
-    className?: string;
-    isDisabled?: boolean;
-    rel?: string;
-    onMouseEnter?: ReactMouseEventHandler;
-    onMouseLeave?: ReactMouseEventHandler;
-    children: React.ReactElement | React.ReactElement[];
-}
 
 export const Link = (props: LinkProps): React.ReactElement => {
     if (props.isDisabled === true) {
