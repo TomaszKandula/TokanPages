@@ -24,3 +24,11 @@ type FlipAnimations = "flip-up" | "flip-down" | "flip-left" | "flip-right";
 type SlideAnimations = "slide-up" | "slide-down" | "slide-left" | "slide-right";
 
 export type Animations = FadeAnimations | FlipAnimations | SlideAnimations | ZoomAnimations;
+
+export interface AnimatedProps {
+    isDisabled?: boolean;
+    dataAos: Animations;
+    dataAosDelay?: number;
+    className?: string;
+    children: React.ReactNode;
+}
