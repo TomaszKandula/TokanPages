@@ -27,7 +27,7 @@ public class CachingProcessingJob : CronJob
 
     private readonly string[]? _filesToCache;
     
-    private readonly List<RoutePath> _paths;
+    private readonly List<RoutePath> _pagePaths;
 
     /// <summary>
     /// CRON job implementation.
@@ -45,7 +45,7 @@ public class CachingProcessingJob : CronJob
         _getActionUrl = config.GetActionUrl ?? "";
         _postActionUrl = config.PostActionUrl ?? "";
         _filesToCache = config.FilesToCache;
-        _paths = config.PageRoutePaths;
+        _pagePaths = config.PageRoutePaths;
     }
 
     /// <summary>
@@ -58,13 +58,13 @@ public class CachingProcessingJob : CronJob
         _loggerService.LogInformation($"{ServiceName}: working...");
         await _cachingService.SaveStaticFiles(_filesToCache, _getActionUrl, _postActionUrl);
 
-        if (_paths.Count == 0)
+        if (_pagePaths.Count == 0)
         {
             _loggerService.LogInformation($"{ServiceName}: no routes registered for caching..., quitting the job...");
             return;
         }
 
-        foreach (var path in _paths)
+        foreach (var path in _pagePaths)
         {
             var page = await _cachingService.RenderStaticPage(path.Url, _postActionUrl, path.Name);
             if (!string.IsNullOrWhiteSpace(page))
@@ -91,10 +91,10 @@ public class CachingProcessingJob : CronJob
             }
         }
 
-        _loggerService.LogInformation($"{ServiceName}: {_paths.Count} SPA pages to be cached.");
-        if (_paths.Count > 0)
+        _loggerService.LogInformation($"{ServiceName}: {_pagePaths.Count} SPA pages to be cached.");
+        if (_pagePaths.Count > 0)
         {
-            foreach (var item in _paths)
+            foreach (var item in _pagePaths)
             {
                 _loggerService.LogInformation($"{ServiceName}: ...to be cached: {item.Name} (url: {item.Url})");
             }
