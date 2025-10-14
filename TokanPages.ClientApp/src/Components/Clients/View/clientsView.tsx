@@ -2,19 +2,12 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { GET_IMAGES_URL } from "../../../Api";
-import { ClientImageDto, ClientsContentDto } from "../../../Api/Models";
+import { ClientImageDto } from "../../../Api/Models";
 import { Skeleton } from "../../../Shared/Components";
+import { ClientsViewExtendedProps, ClientsViewProps } from "../Types";
 import { v4 as uuidv4 } from "uuid";
 import Validate from "validate.js";
 import "./clientsView.css";
-
-interface ClientsViewProps {
-    className?: string;
-}
-
-interface ClientsViewExtendedProps extends ClientsContentDto {
-    isLoading: boolean;
-}
 
 const RenderCaption = (props: ClientsViewExtendedProps): React.ReactElement | null => {
     if (!Validate.isEmpty(props?.caption)) {
@@ -46,7 +39,6 @@ const RenderImages = (props: ClientsViewExtendedProps): React.ReactElement => (
             ))}
         </div>
     );
-
 
 export const ClientsView = (props: ClientsViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
