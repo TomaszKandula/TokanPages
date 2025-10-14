@@ -1,8 +1,21 @@
-import { ItemDto, UserInfoProps } from "../../../../Api/Models";
+import { UseDimensionsResult } from "Shared/Hooks";
+import { ItemDto, NavigationContentDto, UserInfoProps } from "../../../../Api/Models";
 
-export interface CustomBreadcrumbProps {
+export interface CustomBreadcrumbBaseProps {
     isLoading: boolean;
+}
+
+export interface CustomBreadcrumbProps extends CustomBreadcrumbBaseProps {
     watchparam?: string;
+}
+
+export interface CustomBreadcrumbViewProps extends CustomBreadcrumbBaseProps  {
+    media: UseDimensionsResult;
+    hasParam: boolean;
+    paramValue: string | undefined;
+    navigation: NavigationContentDto;
+    onBackToRoot: () => void;
+    onBackToPrevious: () => void;
 }
 
 export interface NavigationProps {

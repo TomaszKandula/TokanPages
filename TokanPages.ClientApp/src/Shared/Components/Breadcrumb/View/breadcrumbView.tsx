@@ -1,16 +1,11 @@
 import * as React from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { ApplicationState } from "../../../Store/Configuration";
-import { PRERENDER_PATH_PREFIX } from "../../Constants";
-import { useDimensions, useQuery } from "../../Hooks";
-import { Icon } from "../Icon";
-import { CustomBreadcrumbProps, NavigationProps } from "./Types";
-import { getHomeText, pathToRootText, pathToSubitemText, toUpperCase } from "./Utilities";
+import { PRERENDER_PATH_PREFIX } from "../../../Constants";
+import { Icon } from "../../Icon";
+import { CustomBreadcrumbViewProps, NavigationProps } from "./../Types";
+import { getHomeText, pathToRootText, pathToSubitemText, toUpperCase } from "./../Utilities";
+import { Skeleton } from "../../Skeleton";
 import { v4 as uuidv4 } from "uuid";
-import Validate from "validate.js";
 import "./breadcrumbView.css";
-import { Skeleton } from "../Skeleton";
 
 const makeStyledBreadcrumb = (
     pathname: string,
@@ -47,46 +42,28 @@ const makeStyledBreadcrumb = (
     return null;
 };
 
-export const BreadcrumbView = (props: CustomBreadcrumbProps): React.ReactElement => {
-    const media = useDimensions();
-    const history = useHistory();
-    const queryParam = useQuery();
-    const navigation = useSelector((state: ApplicationState) => state.contentPageData.components.layoutNavigation);
-
-    const param = queryParam.get(props.watchparam ?? "");
-    const hasParam = !Validate.isEmpty(param);
-    let paramValue = param?.replaceAll("-", " ");
-
-    const onBackToRoot = React.useCallback(() => {
-        history.push(`/${navigation.language}`);
-    }, [navigation.language]);
-
-    const onBackToPrevious = React.useCallback(() => {
-        history.push(window.location.pathname);
-    }, [window.location.pathname]);
-
-    return (
-        <div className={`bulma-container bulma-is-max-tablet pt-6 ${media.isMobile ? "px-4" : ""}`}>
+export const BreadcrumbView = (props: CustomBreadcrumbViewProps): React.ReactElement => (
+        <div className={`bulma-container bulma-is-max-tablet pt-6 ${props.media.isMobile ? "px-4" : ""}`}>
             <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={18}>
                 <nav className="bulma-breadcrumb bulma-has-arrow-separator">
                     <ul>
                         <li className="py-1">
                             <div className="mr-2">
                                 <div
-                                    onClick={onBackToRoot}
+                                    onClick={props.onBackToRoot}
                                     className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable"
                                 >
                                     <Icon name="Home" size={1.0} className="mx-1" />
-                                    <span className="pt-2 pr-2 pb-2">{getHomeText(navigation)}</span>
+                                    <span className="pt-2 pr-2 pb-2">{getHomeText(props.navigation)}</span>
                                 </div>
                             </div>
                         </li>
-                        {makeStyledBreadcrumb(window.location.pathname, onBackToPrevious, navigation)}
-                        {hasParam ? (
+                        {makeStyledBreadcrumb(window.location.pathname, props.onBackToPrevious, props.navigation)}
+                        {props.hasParam ? (
                             <li className="py-1">
                                 <div className="mx-2">
                                     <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center">
-                                        <span className="p-2">{toUpperCase(paramValue)}</span>
+                                        <span className="p-2">{toUpperCase(props.paramValue)}</span>
                                     </div>
                                 </div>
                             </li>
@@ -97,4 +74,4 @@ export const BreadcrumbView = (props: CustomBreadcrumbProps): React.ReactElement
             <hr className="my-5" />
         </div>
     );
-};
+
