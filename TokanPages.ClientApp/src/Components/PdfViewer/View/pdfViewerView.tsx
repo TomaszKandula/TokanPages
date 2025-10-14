@@ -1,34 +1,7 @@
 import * as React from "react";
 import { Card, DownloadAsset, Icon, IconButton, PdfCanvas, ProgressBar } from "../../../Shared/Components";
-import { ReactMouseEvent } from "../../../Shared/Types";
+import { PdfViewerViewProps, RenderIconOrErrorProps } from "../Types";
 import "./pdfViewerView.css";
-
-interface PdfViewerViewProps {
-    isDocLoading: boolean;
-    hasNoFilePrompt: boolean;
-    hasPdfError: boolean;
-    hasPdfWorkerError: boolean;
-    content: {
-        isLoading: boolean;
-        caption: string;
-        warning: string;
-        error: string;
-    };
-    currentPage: number;
-    numPages: number;
-    pdfDocument: any;
-    scale?: number;
-    pdfUrl?: string;
-    className?: string;
-    onPreviousPage?: (event: ReactMouseEvent) => void;
-    onNextPage?: (event: ReactMouseEvent) => void;
-}
-
-interface RenderIconOrErrorProps {
-    isDocLoading: boolean;
-    hasPdfWorkerError: boolean;
-    pdfUrl?: string;
-}
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
     return props.hasPdfWorkerError ? (

@@ -7,12 +7,7 @@ import { ProgressBar } from "../../Shared/Components";
 import { PDF_JS_MIN_URL, PDF_WORKER_URL } from "../../Shared/Constants";
 import { PdfViewerView } from "./View/pdfViewerView";
 import Validate from "validate.js";
-
-interface PdfViewerProps {
-    pdfFile: string;
-    scale?: number;
-    className?: string;
-}
+import { PdfViewerProps } from "./Types";
 
 const pdfWorkerUrl = `${window.location.origin}/${PDF_WORKER_URL}`;
 const pdfJsUrl = `${window.location.origin}/${PDF_JS_MIN_URL}`;
