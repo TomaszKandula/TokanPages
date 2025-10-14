@@ -5,12 +5,9 @@ import { GET_IMAGES_URL } from "../../../../Api";
 import { ArticleFeaturesContentDto } from "../../../../Api/Models";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { Animated, Image, RenderHtml, Skeleton } from "../../../../Shared/Components";
+import { ArticleFeatureViewProps } from "../Types";
 import Validate from "validate.js";
 import "./articleFeatureView.css";
-
-interface ArticleFeatureViewProps {
-    className?: string;
-}
 
 const ActiveButton = (props: ArticleFeaturesContentDto): React.ReactElement => {
     if (Validate.isEmpty(props?.action?.href)) {
