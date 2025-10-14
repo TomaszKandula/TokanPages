@@ -39,8 +39,7 @@ export interface ValidateContactFormProps extends NameBaseProps, EmailBaseProps 
     terms: boolean;
 }
 
-export interface ValidateEmailFormProps extends EmailBaseProps{
-}
+export interface ValidateEmailFormProps extends EmailBaseProps {}
 
 export interface ValidatePasswordFormProps extends ContentBaseProps {
     oldPassword: string;
@@ -48,8 +47,7 @@ export interface ValidatePasswordFormProps extends ContentBaseProps {
     confirmPassword: string;
 }
 
-export interface ValidateResetFormProps extends EmailBaseProps {
-}
+export interface ValidateResetFormProps extends EmailBaseProps {}
 
 export interface ValidateSigninFormProps extends ContentBaseProps, EmailBaseProps {
     password: string;

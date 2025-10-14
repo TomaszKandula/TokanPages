@@ -6,11 +6,7 @@ export {
     GetProcessedResponse,
 } from "./Utilities";
 
-export type {
-    ExecuteApiActionResultProps,
-    ExecuteStoreActionProps,
-    ExecuteApiActionProps,
-} from "./Utilities/Types";
+export type { ExecuteApiActionResultProps, ExecuteStoreActionProps, ExecuteApiActionProps } from "./Utilities/Types";
 
 export {
     API_BASE_URI,
