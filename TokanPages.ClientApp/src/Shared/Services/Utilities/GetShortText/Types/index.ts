@@ -1,4 +1,4 @@
-export interface GetShortTextInput {
+export interface GetShortTextProps {
     value: string;
     limit: number;
 }
