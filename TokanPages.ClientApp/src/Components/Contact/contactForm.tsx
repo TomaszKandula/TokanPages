@@ -7,6 +7,7 @@ import { RECEIVED_ERROR_MESSAGE } from "../../Shared/Constants";
 import { IconType, OperationStatus } from "../../Shared/Enums";
 import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../Shared/Types";
 import { ContactFormView } from "./View/contactFormView";
+import { ContactFormProps } from "./Types";
 import Validate from "validate.js";
 
 const formDefault: ValidateContactFormProps = {
@@ -17,14 +18,6 @@ const formDefault: ValidateContactFormProps = {
     message: "",
     terms: true,
 };
-
-export interface ContactFormProps {
-    hasCaption?: boolean;
-    hasIcon?: boolean;
-    hasShadow?: boolean;
-    className?: string;
-    mode: "section" | "page";
-}
 
 export const ContactForm = (props: ContactFormProps): React.ReactElement => {
     const dispatch = useDispatch();
