@@ -1,13 +1,13 @@
 import * as React from "react";
-import { CustomBreadcrumbProps } from "./Types";
-import { useDimensions, useQuery } from "Shared/Hooks";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
-import { ApplicationState } from "Store/Configuration";
-import Validate from "validate.js";
+import { useDimensions, useQuery } from "../../../Shared/Hooks";
+import { ApplicationState } from "../../../Store/Configuration";
 import { BreadcrumbView } from "./View/breadcrumbView";
+import { BreadcrumbProps } from "./Types";
+import Validate from "validate.js";
 
-export const Breadcrumb = (props: CustomBreadcrumbProps): React.ReactElement => {
+export const Breadcrumb = (props: BreadcrumbProps): React.ReactElement => {
     const media = useDimensions();
     const history = useHistory();
     const queryParam = useQuery();

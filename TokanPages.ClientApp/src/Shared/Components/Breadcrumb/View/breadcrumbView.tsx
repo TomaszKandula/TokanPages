@@ -1,23 +1,19 @@
 import * as React from "react";
-import { PRERENDER_PATH_PREFIX } from "../../../Constants";
 import { Icon } from "../../Icon";
-import { CustomBreadcrumbViewProps, NavigationProps } from "./../Types";
-import { getHomeText, pathToRootText, pathToSubitemText, toUpperCase } from "./../Utilities";
 import { Skeleton } from "../../Skeleton";
+import { PRERENDER_PATH_PREFIX } from "../../../Constants";
+import { BreadcrumbViewProps, MakeStyledBreadcrumbProps } from "./../Types";
+import { getHomeText, pathToRootText, pathToSubitemText, toUpperCase } from "./../Utilities";
 import { v4 as uuidv4 } from "uuid";
 import "./breadcrumbView.css";
 
-const makeStyledBreadcrumb = (
-    pathname: string,
-    onClick: () => void,
-    navigation: NavigationProps
-): React.ReactElement[] | null => {
-    const basePathWithLanguageId = `/${navigation.language}`;
-    const path = pathname.replace(PRERENDER_PATH_PREFIX, "").replace(basePathWithLanguageId, "");
+const MakeStyledBreadcrumb = (props: MakeStyledBreadcrumbProps): React.ReactElement | null => {
+    const basePathWithLanguageId = `/${props.navigation.language}`;
+    const path = props.pathname.replace(PRERENDER_PATH_PREFIX, "").replace(basePathWithLanguageId, "");
 
     const fragments = path.split("/").filter(e => String(e).trim());
-    const rootName = pathToRootText({ pathname: path, navigation });
-    const itemName = pathToSubitemText({ pathname: path, navigation });
+    const rootName = pathToRootText({ pathname: path, navigation: props.navigation });
+    const itemName = pathToSubitemText({ pathname: path, navigation: props.navigation });
 
     const setValue = (index: number): string => {
         if (index === 0) {
@@ -28,21 +24,22 @@ const makeStyledBreadcrumb = (
     };
 
     if (fragments !== undefined) {
-        return fragments.map((_: string, index: number) => (
-            <li className="py-1" key={uuidv4()} onClick={rootName.hasHash ? undefined : onClick}>
+        const list = fragments.map((_: string, index: number) => (
+            <li className="py-1" key={uuidv4()} onClick={rootName.hasHash ? undefined : props.onClick}>
                 <div className="mx-2">
                     <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable">
                         <span className="p-2">{setValue(index)}</span>
                     </div>
                 </div>
-            </li>
-        ));
+            </li>));
+
+        return <>{list}</>;
     }
 
     return null;
 };
 
-export const BreadcrumbView = (props: CustomBreadcrumbViewProps): React.ReactElement => (
+export const BreadcrumbView = (props: BreadcrumbViewProps): React.ReactElement => (
         <div className={`bulma-container bulma-is-max-tablet pt-6 ${props.media.isMobile ? "px-4" : ""}`}>
             <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={18}>
                 <nav className="bulma-breadcrumb bulma-has-arrow-separator">
@@ -58,7 +55,11 @@ export const BreadcrumbView = (props: CustomBreadcrumbViewProps): React.ReactEle
                                 </div>
                             </div>
                         </li>
-                        {makeStyledBreadcrumb(window.location.pathname, props.onBackToPrevious, props.navigation)}
+                        <MakeStyledBreadcrumb 
+                            pathname={window.location.pathname} 
+                            navigation={props.navigation}
+                            onClick={props.onBackToPrevious}
+                        />
                         {props.hasParam ? (
                             <li className="py-1">
                                 <div className="mx-2">

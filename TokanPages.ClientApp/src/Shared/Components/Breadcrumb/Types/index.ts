@@ -1,15 +1,15 @@
 import { UseDimensionsResult } from "Shared/Hooks";
 import { ItemDto, NavigationContentDto, UserInfoProps } from "../../../../Api/Models";
 
-export interface CustomBreadcrumbBaseProps {
+export interface BreadcrumbBaseProps {
     isLoading: boolean;
 }
 
-export interface CustomBreadcrumbProps extends CustomBreadcrumbBaseProps {
+export interface BreadcrumbProps extends BreadcrumbBaseProps {
     watchparam?: string;
 }
 
-export interface CustomBreadcrumbViewProps extends CustomBreadcrumbBaseProps  {
+export interface BreadcrumbViewProps extends BreadcrumbBaseProps  {
     media: UseDimensionsResult;
     hasParam: boolean;
     paramValue: string | undefined;
@@ -36,4 +36,10 @@ export interface PathProps {
 export interface PathToRootTextResultProps {
     value: string;
     hasHash: boolean;
+}
+
+export interface MakeStyledBreadcrumbProps {
+    pathname: string;
+    navigation: NavigationProps;
+    onClick: () => void;
 }
