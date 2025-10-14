@@ -77,7 +77,7 @@ public class CachingService : ICachingService
     }
 
     /// <inheritdoc />
-    public async Task<string> GeneratePdf(string sourceUrl,  string? optionalName)
+    public async Task<string> GeneratePdf(string sourceUrl,  string? optionalName = default)
     {
         if (string.IsNullOrWhiteSpace(sourceUrl))
         {
