@@ -18,8 +18,9 @@ public interface ICachingService
     /// It requires browser to be already downloaded.
     /// </remarks>
     /// <param name="sourceUrl">Web page URL.</param>
+    /// <param name="optionalName">Optional PDF file name. Otherwise, name will be generated.</param>
     /// <returns>Returns full path to a PDF file.</returns>
-    Task<string> GeneratePdf(string sourceUrl);
+    Task<string> GeneratePdf(string sourceUrl, string? optionalName);
 
     /// <summary>
     /// Renders static page.
