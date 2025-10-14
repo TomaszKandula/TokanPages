@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { NavigationViewProps } from "../../Abstractions";
+import { NavigationViewProps } from "../../Types";
 import { GET_IMAGES_URL } from "../../../../../Api";
 import { Image, Media } from "../../../../../Shared/Components";
 import { RenderLanguageSection } from "../RenderLanguageSection";

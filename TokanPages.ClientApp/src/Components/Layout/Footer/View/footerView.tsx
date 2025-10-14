@@ -1,34 +1,13 @@
 import * as React from "react";
-import { IconDto, LinkDto } from "../../../../Api/Models";
+import { IconDto } from "../../../../Api/Models";
 import { Icon, IconButton, Link, ProgressBar } from "../../../../Shared/Components";
+import { LoaderProps, FooterViewProps } from "../Types";
 import { v4 as uuidv4 } from "uuid";
-
-interface LegalInfoProps {
-    copyright: string;
-    reserved: string;
-}
-
-interface Properties {
-    isLoading: boolean;
-    terms: LinkDto;
-    policy: LinkDto;
-    versionInfo: string;
-    hasVersionInfo: boolean;
-    legalInfo: LegalInfoProps;
-    hasLegalInfo: boolean;
-    icons: IconDto[];
-    hasIcons: boolean;
-}
-
-interface LoaderProps {
-    isLoading: boolean;
-    children: React.ReactElement;
-}
 
 const Loader = (props: LoaderProps): React.ReactElement =>
     props.isLoading ? <ProgressBar size={32} /> : <>{props.children}</>;
 
-export const FooterView = (props: Properties): React.ReactElement => (
+export const FooterView = (props: FooterViewProps): React.ReactElement => (
     <>
         <hr className="line-separator" />
         <footer className="bulma-footer has-background-white">

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BaseProperties } from "../../Abstractions";
+import { NavigationViewBaseProps } from "../../Types";
 import { RenderAvatarIcon } from "../RenderAvatarIcon";
 import { RenderSelectionIcon } from "../RenderSelectionIcon";
 import { Image } from "../../../../../Shared/Components";
@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const baseStyle = "bulma-navbar-item bulma-has-dropdown mr-4";
 
-const RenderSelection = (props: BaseProperties): React.ReactElement => (
+const RenderSelection = (props: NavigationViewBaseProps): React.ReactElement => (
     <div className={`${baseStyle} ${props.isLanguageMenuOpen ? "bulma-is-active" : ""}`}>
         <a className="bulma-navbar-link is-transparent" onClick={props.languageMenuHandler}>
             <Image
@@ -39,7 +39,7 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
     </div>
 );
 
-export const RenderLanguageSection = (props: BaseProperties): React.ReactElement => (
+export const RenderLanguageSection = (props: NavigationViewBaseProps): React.ReactElement => (
     <>
         <RenderSelection {...props} />
         {props.isAnonymous ? null : <RenderAvatarIcon {...props} />}

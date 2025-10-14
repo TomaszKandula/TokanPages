@@ -1,20 +1,8 @@
 import * as React from "react";
 import { ItemDto } from "../../../../../Api/Models";
 import { ProgressBar } from "../../../../../Shared/Components";
+import { CanContinueProps, RenderNavbarMenuProps } from "../../Types";
 import { RenderNavbarItem } from "./Renderers";
-
-interface RenderNavbarMenuBaseProps {
-    isAnonymous: boolean;
-    languageId: string;
-}
-
-interface RenderNavbarMenuProps extends RenderNavbarMenuBaseProps {
-    items: ItemDto[] | undefined;
-}
-
-interface CanContinueProps extends RenderNavbarMenuBaseProps {
-    item: ItemDto;
-}
 
 const CanContinue = (props: CanContinueProps): boolean => {
     const accountPath = `/${props.languageId}/account`;

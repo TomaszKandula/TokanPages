@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { NavigationViewProps, RenderLanguageListProps } from "../../Abstractions";
+import { NavigationViewProps, RenderLanguageListProps } from "../../Types";
 import { RenderMenuIcon } from "../RenderMenuIcon";
 import { GET_IMAGES_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";

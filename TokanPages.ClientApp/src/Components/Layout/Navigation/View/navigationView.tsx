@@ -3,7 +3,7 @@ import { GET_IMAGES_URL } from "../../../../Api";
 import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP } from "../../../../Shared/Constants";
 import { ApplicationBar, Image, Drawer, Icon, IconButton } from "../../../../Shared/Components";
 import { RenderSideMenu, RenderToolbarLargeScreen, RenderToolbarSmallScreen } from "../Components";
-import { NavigationViewProps } from "../Abstractions";
+import { NavigationViewProps } from "../Types";
 
 const RenderBackNavigationOnly = (props: NavigationViewProps): React.ReactElement => (
     <ApplicationBar height={APP_BAR_HEIGHT_DESKTOP}>
