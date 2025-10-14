@@ -1,6 +1,6 @@
 import Validate from "validate.js";
 import { PasswordFormInput } from "..";
-import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter } from "../Helpers";
+import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter } from "../Utilities";
 
 export const ValidatePasswordForm = (props: PasswordFormInput): object | undefined => {
     const constraints = {

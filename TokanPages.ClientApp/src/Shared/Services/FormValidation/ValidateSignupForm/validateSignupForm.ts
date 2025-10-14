@@ -1,7 +1,7 @@
 import Validate from "validate.js";
 import { SignupFormInput } from "..";
 
-import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter } from "../Helpers";
+import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter } from "../Utilities";
 
 export const ValidateSignupForm = (props: SignupFormInput): object | undefined => {
     const nameConstraints = {
