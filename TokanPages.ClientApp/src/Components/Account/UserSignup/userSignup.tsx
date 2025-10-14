@@ -4,13 +4,13 @@ import { ApplicationState } from "../../../Store/Configuration";
 import { IconType, OperationStatus } from "../../../Shared/Enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/Types";
 import { ApplicationDialogAction, UserSignupAction } from "../../../Store/Actions";
-import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
+import { ValidateSignupFormProps, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/Constants";
 import { UserSignupView } from "./View/userSignupView";
 import { UserSignupProps } from "./Types";
 import Validate from "validate.js";
 
-const defaultForm: SignupFormInput = {
+const defaultForm: ValidateSignupFormProps = {
     firstName: "",
     lastName: "",
     email: "",

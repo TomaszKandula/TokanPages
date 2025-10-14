@@ -1,5 +1,6 @@
 import "../../../../setupTests";
-import { UpdateFormInput, ValidateUpdateForm } from "..";
+import { ValidateUpdateForm } from "..";
+import { ValidateUpdateFormProps } from "../Types";
 
 const testContent = {
     emailInvalid: "does not look like a valid email.",
@@ -16,7 +17,7 @@ const testContent = {
 describe("verify update password form validation methods", () => {
     it("should return undefined, when update password form is filled correctly.", () => {
         // Arrange
-        const form: UpdateFormInput = {
+        const form: ValidateUpdateFormProps = {
             newPassword: "Abcde#123456",
             verifyPassword: "Abcde#123456",
             content: testContent,
@@ -31,25 +32,25 @@ describe("verify update password form validation methods", () => {
 
     it("should return defined, when update password form is filled incorrectly.", () => {
         // Arrange
-        const form1: UpdateFormInput = {
+        const form1: ValidateUpdateFormProps = {
             newPassword: "",
             verifyPassword: "",
             content: testContent,
         };
 
-        const form2: UpdateFormInput = {
+        const form2: ValidateUpdateFormProps = {
             newPassword: "123",
             verifyPassword: "654",
             content: testContent,
         };
 
-        const form3: UpdateFormInput = {
+        const form3: ValidateUpdateFormProps = {
             newPassword: "abcde123456",
             verifyPassword: "",
             content: testContent,
         };
 
-        const form4: UpdateFormInput = {
+        const form4: ValidateUpdateFormProps = {
             newPassword: "",
             verifyPassword: "abcde123456",
             content: testContent,

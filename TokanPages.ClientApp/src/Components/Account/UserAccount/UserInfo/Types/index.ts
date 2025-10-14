@@ -1,5 +1,5 @@
 import { AuthenticateUserResultDto, SectionAccountInformation } from "../../../../../Api/Models";
-import { AccountFormInput } from "../../../../../Shared/Services/FormValidation";
+import { ValidateAccountFormProps } from "../../../../../Shared/Services/FormValidation";
 import {
     ReactChangeEvent,
     ReactChangeTextEvent,
@@ -20,7 +20,7 @@ export interface UserInfoViewProps extends ViewProperties, UserInfoProps {
     isMobile: boolean;
     fileUploadingCustomHandle?: string;
     userStore: AuthenticateUserResultDto;
-    accountForm: AccountFormInput;
+    accountForm: ValidateAccountFormProps;
     userImageName: string;
     isRequestingVerification: boolean;
     formProgress: boolean;

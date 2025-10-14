@@ -4,7 +4,7 @@ import { ApplicationState } from "../../../../Store/Configuration";
 import { IconType, OperationStatus } from "../../../../Shared/Enums";
 import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/Types";
 import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../../Store/Actions";
-import { PasswordFormInput, ValidatePasswordForm } from "../../../../Shared/Services/FormValidation";
+import { ValidatePasswordForm, ValidatePasswordFormProps } from "../../../../Shared/Services/FormValidation";
 import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/Constants";
 import { useDimensions } from "../../../../Shared/Hooks";
 import { UserPasswordView } from "./View/userPasswordView";
@@ -25,7 +25,7 @@ export const UserPassword = (props: UserPasswordProps): React.ReactElement => {
     const hasFinished = update?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const formDefault: PasswordFormInput = {
+    const formDefault: ValidatePasswordFormProps = {
         oldPassword: "",
         newPassword: "",
         confirmPassword: "",

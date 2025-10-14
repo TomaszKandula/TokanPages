@@ -1,5 +1,6 @@
 import "../../../../setupTests";
-import { SignupFormInput, ValidateSignupForm } from "..";
+import { ValidateSignupForm } from "..";
+import { ValidateSignupFormProps } from "../Types";
 
 const testContent = {
     emailInvalid: "does not look like a valid email.",
@@ -16,7 +17,7 @@ const testContent = {
 describe("verify signup form validation methods", () => {
     it("should return defined, when missing first name.", () => {
         // Arrange
-        const form: SignupFormInput = {
+        const form: ValidateSignupFormProps = {
             firstName: "",
             lastName: "exposito",
             email: "ester@gmail.com",
@@ -34,7 +35,7 @@ describe("verify signup form validation methods", () => {
 
     it("should return defined, when missing last name.", () => {
         // Arrange
-        const form: SignupFormInput = {
+        const form: ValidateSignupFormProps = {
             firstName: "ester",
             lastName: "",
             email: "ester@gmail.com",
@@ -52,7 +53,7 @@ describe("verify signup form validation methods", () => {
 
     it("should return defined, when have invalid email.", () => {
         // Arrange
-        const form: SignupFormInput = {
+        const form: ValidateSignupFormProps = {
             firstName: "ester",
             lastName: "exposito",
             email: "ester",
@@ -70,7 +71,7 @@ describe("verify signup form validation methods", () => {
 
     it("should return defined, when have missing request field.", () => {
         // Arrange
-        const form: SignupFormInput = {
+        const form: ValidateSignupFormProps = {
             firstName: "ester",
             lastName: "exposito",
             email: "ester",
@@ -88,7 +89,7 @@ describe("verify signup form validation methods", () => {
 
     it("should return defined, when password is too short.", () => {
         // Arrange
-        const form: SignupFormInput = {
+        const form: ValidateSignupFormProps = {
             firstName: "ester",
             lastName: "exposito",
             email: "ester@gmail.com",
@@ -107,7 +108,7 @@ describe("verify signup form validation methods", () => {
 
     it("should return defined, when password does not contain: number, sign, and large letter.", () => {
         // Arrange
-        const form: SignupFormInput = {
+        const form: ValidateSignupFormProps = {
             firstName: "ester",
             lastName: "exposito",
             email: "ester@gmail.com",
@@ -126,7 +127,7 @@ describe("verify signup form validation methods", () => {
 
     it("should return defined, when password does not contain: sign, and large letter.", () => {
         // Arrange
-        const form: SignupFormInput = {
+        const form: ValidateSignupFormProps = {
             firstName: "ester",
             lastName: "exposito",
             email: "ester@gmail.com",
@@ -145,7 +146,7 @@ describe("verify signup form validation methods", () => {
 
     it("should return defined, when password does not contain: large letter.", () => {
         // Arrange
-        const form: SignupFormInput = {
+        const form: ValidateSignupFormProps = {
             firstName: "ester",
             lastName: "exposito",
             email: "ester@gmail.com",
@@ -164,7 +165,7 @@ describe("verify signup form validation methods", () => {
 
     it("should return undefined, when password contains all the required characters.", () => {
         // Arrange
-        const form: SignupFormInput = {
+        const form: ValidateSignupFormProps = {
             firstName: "ester",
             lastName: "exposito",
             email: "ester@gmail.com",

@@ -1,5 +1,6 @@
 import "../../../../setupTests";
-import { PasswordFormInput, ValidatePasswordForm } from "..";
+import { ValidatePasswordForm } from "..";
+import { ValidatePasswordFormProps } from "../Types";
 
 const testContent = {
     emailInvalid: "does not look like a valid email.",
@@ -16,7 +17,7 @@ const testContent = {
 describe("verify new password validation methods", () => {
     it("should return undefined, when passwords are correct.", () => {
         // Arrange
-        const form: PasswordFormInput = {
+        const form: ValidatePasswordFormProps = {
             oldPassword: "123456789abcde",
             newPassword: "Abcde#123456",
             confirmPassword: "Abcde#123456",
@@ -32,28 +33,28 @@ describe("verify new password validation methods", () => {
 
     it("should return defined, when passwords are incorrect.", () => {
         // Arrange
-        const form1: PasswordFormInput = {
+        const form1: ValidatePasswordFormProps = {
             oldPassword: "",
             newPassword: "",
             confirmPassword: "",
             content: testContent,
         };
 
-        const form2: PasswordFormInput = {
+        const form2: ValidatePasswordFormProps = {
             oldPassword: "456",
             newPassword: "123",
             confirmPassword: "654",
             content: testContent,
         };
 
-        const form3: PasswordFormInput = {
+        const form3: ValidatePasswordFormProps = {
             oldPassword: "",
             newPassword: "abcde123456",
             confirmPassword: "",
             content: testContent,
         };
 
-        const form4: PasswordFormInput = {
+        const form4: ValidatePasswordFormProps = {
             oldPassword: "951",
             newPassword: "",
             confirmPassword: "abcde123456",

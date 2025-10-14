@@ -1,8 +1,8 @@
 import Validate from "validate.js";
-import { PasswordFormInput } from "..";
 import { ContainNumber, HasProperty, HaveLargeLetter, HaveSmallLetter } from "../Utilities";
+import { ValidatePasswordFormProps } from "../Types";
 
-export const ValidatePasswordForm = (props: PasswordFormInput): object | undefined => {
+export const ValidatePasswordForm = (props: ValidatePasswordFormProps): object | undefined => {
     const constraints = {
         oldPassword: {
             presence: true,
