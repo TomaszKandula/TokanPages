@@ -1,13 +1,16 @@
 export {
-    type ExecuteApiActionResultProps,
-    type ExecuteStoreActionProps,
-    type ExecuteApiActionProps,
     IsSuccessStatusCode,
     GetBaseHeaders,
     GetProcessedBody,
     GetProcessedHeaders,
     GetProcessedResponse,
 } from "./Utilities";
+
+export type {
+    ExecuteApiActionResultProps,
+    ExecuteStoreActionProps,
+    ExecuteApiActionProps,
+} from "./Utilities/Types";
 
 export {
     API_BASE_URI,
