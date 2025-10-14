@@ -28,16 +28,13 @@ const RenderCaption = (props: ClientsViewExtendedProps): React.ReactElement | nu
     return null;
 };
 
-const RenderImages = (props: ClientsViewExtendedProps): React.ReactElement => {
-    const getImagePath = (value: string): string => `${GET_IMAGES_URL}/${value}`;
-
-    return (
+const RenderImages = (props: ClientsViewExtendedProps): React.ReactElement => (
         <div className="is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-center">
             {props?.images?.map((item: ClientImageDto, _index: number) => (
                 <div className="client-item-margins" key={uuidv4()}>
                     <Skeleton isLoading={props.isLoading} mode="Rect" width={100} height={100}>
                         <img
-                            src={getImagePath(item.path)}
+                            src={`${GET_IMAGES_URL}/${item.path}`}
                             loading="lazy"
                             alt={`An image of ${item.name}`}
                             title="Clients"
@@ -49,7 +46,7 @@ const RenderImages = (props: ClientsViewExtendedProps): React.ReactElement => {
             ))}
         </div>
     );
-};
+
 
 export const ClientsView = (props: ClientsViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
