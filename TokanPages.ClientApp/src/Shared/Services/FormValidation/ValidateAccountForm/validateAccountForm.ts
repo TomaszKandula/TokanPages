@@ -1,7 +1,7 @@
 import Validate from "validate.js";
-import { AccountFormInput } from "..";
+import { ValidateAccountFormProps } from "../Types";
 
-export const ValidateAccountForm = (props: AccountFormInput): object | undefined => {
+export const ValidateAccountForm = (props: ValidateAccountFormProps): object | undefined => {
     const constraints = {
         firstName: {
             presence: true,

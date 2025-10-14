@@ -1,8 +1,5 @@
-interface Properties {
-    error: string;
-    template: string;
-}
+import { GetTextErrorProps } from "./Types";
 
-export const GetTextError = (props: Properties): string => {
+export const GetTextError = (props: GetTextErrorProps): string => {
     return props.template.replace("{ERROR}", props.error);
 };

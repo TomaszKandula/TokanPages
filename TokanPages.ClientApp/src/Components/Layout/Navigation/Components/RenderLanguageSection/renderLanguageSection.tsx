@@ -1,18 +1,18 @@
 import * as React from "react";
-import { BaseProperties } from "../../Abstractions";
+import { NavigationViewBaseProps } from "../../Types";
 import { RenderAvatarIcon } from "../RenderAvatarIcon";
 import { RenderSelectionIcon } from "../RenderSelectionIcon";
-import { CustomImage } from "../../../../../Shared/Components";
+import { Image } from "../../../../../Shared/Components";
 import { GET_IMAGES_URL } from "../../../../../Api";
 import { LanguageItemDto } from "../../../../../Api/Models";
 import { v4 as uuidv4 } from "uuid";
 
 const baseStyle = "bulma-navbar-item bulma-has-dropdown mr-4";
 
-const RenderSelection = (props: BaseProperties): React.ReactElement => (
+const RenderSelection = (props: NavigationViewBaseProps): React.ReactElement => (
     <div className={`${baseStyle} ${props.isLanguageMenuOpen ? "bulma-is-active" : ""}`}>
         <a className="bulma-navbar-link is-transparent" onClick={props.languageMenuHandler}>
-            <CustomImage
+            <Image
                 base={GET_IMAGES_URL}
                 source={`${props.languageFlagDir}/${props.languageId}.${props.languageFlagType}`}
                 title="Language flag"
@@ -24,7 +24,7 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
         <div className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right" onMouseLeave={props.languageMenuHandler}>
             {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                 <a className="bulma-navbar-item" key={uuidv4()} onClick={() => props.languagePickHandler(item.id)}>
-                    <CustomImage
+                    <Image
                         base={GET_IMAGES_URL}
                         source={`${props.languageFlagDir}/${item.id}.${props.languageFlagType}`}
                         title="Language flag"
@@ -39,7 +39,7 @@ const RenderSelection = (props: BaseProperties): React.ReactElement => (
     </div>
 );
 
-export const RenderLanguageSection = (props: BaseProperties): React.ReactElement => (
+export const RenderLanguageSection = (props: NavigationViewBaseProps): React.ReactElement => (
     <>
         <RenderSelection {...props} />
         {props.isAnonymous ? null : <RenderAvatarIcon {...props} />}

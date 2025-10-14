@@ -1,4 +1,4 @@
-import { UserNoteActionResult } from "../../../Shared/enums";
+import { UserNoteActionResult } from "../../../Shared/Enums";
 
 export interface AddUserNoteResultDto {
     id: string;

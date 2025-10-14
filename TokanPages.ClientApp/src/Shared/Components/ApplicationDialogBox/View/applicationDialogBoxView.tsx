@@ -1,5 +1,5 @@
 import * as React from "react";
-import { IconType } from "../../../enums";
+import { IconType } from "../../../Enums";
 import { RenderParagraphs, RenderList, Icon } from "../../../../Shared/Components";
 
 interface Properties {

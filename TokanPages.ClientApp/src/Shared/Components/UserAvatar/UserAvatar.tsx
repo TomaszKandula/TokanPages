@@ -1,19 +1,10 @@
 import * as React from "react";
 import { GET_USER_IMAGE } from "../../../Api";
-import { FigoureSize } from "../../../Shared/enums";
 import { UserAvatarView } from "./View/userAvatarView";
+import { UserAvatarProps } from "./Types";
 import Validate from "validate.js";
 
-export interface Properties {
-    size: FigoureSize;
-    userId?: string;
-    userLetter?: string;
-    avatarName?: string;
-    altSource?: string;
-    className?: string;
-}
-
-export const UserAvatar = (props: Properties): React.ReactElement => {
+export const UserAvatar = (props: UserAvatarProps): React.ReactElement => {
     let baseUrl = "";
     let source = "";
 

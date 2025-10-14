@@ -1,18 +1,7 @@
 import * as React from "react";
-import { v4 as uuidv4 } from "uuid";
 import { Skeleton } from "../Skeleton";
-
-interface ReplaceProps {
-    key: string;
-    object: React.ReactElement;
-}
-
-interface RenderParagraphsProps {
-    text: string[];
-    className?: string;
-    replace?: ReplaceProps;
-    isLoading?: boolean;
-}
+import { RenderParagraphsProps } from "./Types";
+import { v4 as uuidv4 } from "uuid";
 
 export const RenderParagraphs = (props: RenderParagraphsProps): React.ReactElement => {
     if (props.replace) {

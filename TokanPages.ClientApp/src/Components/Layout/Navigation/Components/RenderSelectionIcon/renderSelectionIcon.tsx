@@ -1,5 +1,5 @@
 import * as React from "react";
-import { LanguageSelectionProps } from "../../Abstractions";
+import { LanguageSelectionProps } from "../../Types";
 import { Icon } from "../../../../../Shared/Components";
 
 export const RenderSelectionIcon = (props: LanguageSelectionProps): React.ReactElement | null => {

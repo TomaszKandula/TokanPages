@@ -1,13 +1,3 @@
-export type { ContactFormInput } from "./Abstractions/ContactFormInput";
-export type { EmailFormInput } from "./Abstractions/EmailFormInput";
-export type { ResetFormInput } from "./Abstractions/ResetFormInput";
-export type { SigninFormInput } from "./Abstractions/SigninFormInput";
-export type { SignupFormInput } from "./Abstractions/SignupFormInput";
-export type { UpdateFormInput } from "./Abstractions/UpdateFormInput";
-export type { AccountFormInput } from "./Abstractions/AccountFormInput";
-export type { PasswordFormInput } from "./Abstractions/PasswordFormInput";
-export type { BusinessFormInput } from "./Abstractions/BusinessFormInput";
-
 export { ValidateContactForm } from "./ValidateContactForm/validateContactForm";
 export { ValidateEmailForm } from "./ValidateEmailForm/validateEmailForm";
 export { ValidateResetForm } from "./ValidateResetForm/validateResetForm";
@@ -17,3 +7,15 @@ export { ValidateUpdateForm } from "./ValidateUpdateForm/validateUpdateForm";
 export { ValidateAccountForm } from "./ValidateAccountForm/validateAccountForm";
 export { ValidatePasswordForm } from "./ValidatePasswordForm/validatePasswordForm";
 export { ValidateBusinessForm } from "./ValidateBusinessForm/validateBusinessForm";
+
+export type {
+    ValidateAccountFormProps,
+    ValidateContactFormProps,
+    ValidateBusinessFormProps,
+    ValidateEmailFormProps,
+    ValidatePasswordFormProps,
+    ValidateResetFormProps,
+    ValidateSigninFormProps,
+    ValidateSignupFormProps,
+    ValidateUpdateFormProps,
+} from "./Types";

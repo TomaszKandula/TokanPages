@@ -1,12 +1,7 @@
 import * as React from "react";
-import { ProgressOnScroll } from "../Scroll";
 import { DocumentContent } from "../../../Components/Document";
-import { TextItemDto } from "../../../Api/Models";
-
-interface DocumentContentWrapperProps {
-    isLoading: boolean;
-    items: TextItemDto[];
-}
+import { ProgressOnScroll } from "../Scroll";
+import { DocumentContentWrapperProps } from "./Types";
 
 export const DocumentContentWrapper = (props: DocumentContentWrapperProps): React.ReactElement => {
     return (

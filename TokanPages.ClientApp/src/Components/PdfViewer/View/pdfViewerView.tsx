@@ -1,34 +1,7 @@
 import * as React from "react";
-import { CustomCard, DownloadAsset, Icon, IconButton, PdfCanvas, ProgressBar } from "../../../Shared/Components";
-import { ReactMouseEvent } from "../../../Shared/types";
+import { Card, DownloadAsset, Icon, IconButton, PdfCanvas, ProgressBar } from "../../../Shared/Components";
+import { PdfViewerViewProps, RenderIconOrErrorProps } from "../Types";
 import "./pdfViewerView.css";
-
-interface PdfViewerViewProps {
-    isDocLoading: boolean;
-    hasNoFilePrompt: boolean;
-    hasPdfError: boolean;
-    hasPdfWorkerError: boolean;
-    content: {
-        isLoading: boolean;
-        caption: string;
-        warning: string;
-        error: string;
-    };
-    currentPage: number;
-    numPages: number;
-    pdfDocument: any;
-    scale?: number;
-    pdfUrl?: string;
-    className?: string;
-    onPreviousPage?: (event: ReactMouseEvent) => void;
-    onNextPage?: (event: ReactMouseEvent) => void;
-}
-
-interface RenderIconOrErrorProps {
-    isDocLoading: boolean;
-    hasPdfWorkerError: boolean;
-    pdfUrl?: string;
-}
 
 const RenderIcon = (props: RenderIconOrErrorProps) => {
     return props.hasPdfWorkerError ? (
@@ -83,7 +56,7 @@ const RenderNoDocumentPrompt = (props: PdfViewerViewProps): React.ReactElement =
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet mb-6">
             <div className="py-6">
-                <CustomCard
+                <Card
                     isLoading={props?.content?.isLoading}
                     caption={props?.content?.caption}
                     text={[props?.content?.warning]}
@@ -99,7 +72,7 @@ const RenderPdfErrorPrompt = (props: PdfViewerViewProps): React.ReactElement => 
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet mb-6">
             <div className="py-6">
-                <CustomCard
+                <Card
                     isLoading={props?.content?.isLoading}
                     caption={props?.content?.caption}
                     text={[props?.content?.error]}

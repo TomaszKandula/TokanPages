@@ -1,0 +1,61 @@
+import * as React from "react";
+import { Link } from "react-router-dom";
+import { Skeleton } from "../Skeleton";
+import { CustomCardProps } from "./Types";
+import { v4 as uuidv4 } from "uuid";
+import "./card.css";
+
+const RenderIcon = (props: CustomCardProps) => {
+    return React.cloneElement(props.icon, {
+        ...props.icon.props,
+        className: `custom-card-icon ${props.colour}`,
+    });
+};
+
+const RenderLinkButton = (props: CustomCardProps): React.ReactElement => (
+    <div className="mt-6">
+        <Skeleton isLoading={props.isLoading} mode="Rect">
+            <Link to={props.linkButton?.buttonLink ?? ""} className="link" rel="noopener nofollow">
+                <button className="bulma-button" disabled={props.isLoading}>
+                    {props.linkButton?.buttonLabel}
+                </button>
+            </Link>
+        </Skeleton>
+    </div>
+);
+
+const RenderExternalButton = (props: CustomCardProps): React.ReactElement => (
+    <div className="mt-6">
+        <Skeleton isLoading={props.isLoading} mode="Rect">
+            {props.externalButton}
+        </Skeleton>
+    </div>
+);
+
+export const Card = (props: CustomCardProps): React.ReactElement => (
+    <div className="bulma-card custom-card-margins">
+        <div className="bulma-card-content">
+            <div className="custom-card-icon-background is-flex is-justify-content-center is-align-items-center my-6">
+                <div className="custom-card-icon-holder is-flex is-justify-content-center is-align-items-center">
+                    <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
+                        <RenderIcon {...props} />
+                    </Skeleton>
+                </div>
+            </div>
+            <Skeleton isLoading={props.isLoading} mode="Text" height={40}>
+                <h2 className="bulma-title has-text-centered">{props.caption}</h2>
+            </Skeleton>
+            <div className="my-5">
+                {props.text.map((value: string, _index: number) => (
+                    <Skeleton key={uuidv4()} isLoading={props.isLoading} mode="Text" height={14}>
+                        <p className="is-size-6 has-text-centered line-height-20">{value}</p>
+                    </Skeleton>
+                ))}
+            </div>
+            {props.externalContent}
+            {props.linkButton ? <RenderLinkButton {...props} /> : null}
+            {props.externalButton ? <RenderExternalButton {...props} /> : null}
+            <div className={props.linkButton || props.externalButton ? "mb-2" : "mb-4"}></div>
+        </div>
+    </div>
+);

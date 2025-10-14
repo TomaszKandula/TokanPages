@@ -1,8 +1,7 @@
 import * as React from "react";
 import { GET_IMAGES_URL } from "../../../../Api";
-import { Animated, CustomImage, Icon, Media } from "../../../../Shared/Components";
-import { ViewProperties } from "../../../../Shared/Abstractions";
-import { TLoading } from "../../../../Shared/types";
+import { Animated, Image, Icon, Media } from "../../../../Shared/Components";
+import { TLoading, ViewProperties } from "../../../../Shared/Types";
 import Validate from "validate.js";
 import "./articleCardView.css";
 
@@ -59,7 +58,7 @@ const RenderFlag = (props: RenderFlagProps): React.ReactElement => {
     return !Validate.isEmpty(props.flagImage) ? (
         <>
             <Icon name="Translate" size={1.5} className="mx-2" />
-            <CustomImage
+            <Image
                 base={GET_IMAGES_URL}
                 source={props.flagImage}
                 title="Articles"
@@ -78,7 +77,7 @@ export const ArticleCardView = (props: ArticleCardViewProps): React.ReactElement
     <Animated isDisabled={!props.canAnimate} dataAos="fade-up">
         <div className="bulma-box is-flex p-0 mb-6 article-box-card">
             <figure className="bulma-image">
-                <CustomImage
+                <Image
                     source={props.imageUrl}
                     className="article-box-image"
                     title="Article illustration"

@@ -1,4 +1,4 @@
-import { OperationStatus } from "../../../Shared/enums";
+import { OperationStatus } from "../../../Shared/Enums";
 import { UserMediaUploadState } from "../../States";
 
 export const UserMediaUpload: UserMediaUploadState = {

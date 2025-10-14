@@ -1,11 +1,5 @@
 import * as React from "react";
-
-interface PdfCanvasProps {
-    pdfDocument: any;
-    pageNumber: number;
-    scale: number;
-    htmlAttributes: React.HTMLAttributes<HTMLCanvasElement>;
-}
+import { PdfCanvasProps } from "./Types";
 
 export const PdfCanvas = (props: PdfCanvasProps): React.ReactElement => {
     const canvasRef = React.useRef<HTMLCanvasElement | null>(null);

@@ -2,19 +2,11 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { GET_IMAGES_URL } from "../../../Api";
-import { FeatureShowcaseContentDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated, CustomImage, RenderHtml, Skeleton } from "../../../Shared/Components";
+import { Animated, Image, RenderHtml, Skeleton } from "../../../Shared/Components";
 import Validate from "validate.js";
 import "./showcaseView.css";
-
-interface ShowcaseViewProps {
-    className?: string;
-}
-
-interface ActiveButtonProps extends FeatureShowcaseContentDto {
-    isLoading: boolean;
-}
+import { ActiveButtonProps, ShowcaseViewProps } from "../Types";
 
 const ActiveButton = (props: ActiveButtonProps): React.ReactElement => {
     if (Validate.isEmpty(props?.action?.href)) {
@@ -68,7 +60,7 @@ export const ShowcaseView = (props: ShowcaseViewProps): React.ReactElement => {
                                     <div className="bulma-card-image">
                                         <figure className="bulma-image">
                                             <Skeleton isLoading={isLoading} mode="Rect" height={400}>
-                                                <CustomImage
+                                                <Image
                                                     base={GET_IMAGES_URL}
                                                     source={showcase?.image}
                                                     className="showcase-feature-image"

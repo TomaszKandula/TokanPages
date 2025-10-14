@@ -1,21 +1,13 @@
 import * as React from "react";
-import { CustomCard, Icon } from "../../../../../Shared/Components";
-import { AccessDeniedProps } from "../accessDenied";
-
-interface AccessDeniedViewProps extends AccessDeniedProps {
-    isLoading: boolean;
-    languageId: string;
-    accessDeniedCaption: string;
-    accessDeniedPrompt: string[];
-    homeButtonText: string;
-}
+import { Card, Icon } from "../../../../../Shared/Components";
+import { AccessDeniedViewProps } from "../Types";
 
 export const AccessDeniedView = (props: AccessDeniedViewProps): React.ReactElement => {
     return (
         <section className={props.className}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className="py-6">
-                    <CustomCard
+                    <Card
                         isLoading={props.isLoading}
                         caption={props.accessDeniedCaption}
                         text={props.accessDeniedPrompt}

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch } from "react-redux";
 import { ItemDto, SubitemDto } from "../../../../../../../Api/Models";
 import { ApplicationNavbarAction } from "../../../../../../../Store/Actions";
-import { ReactMouseEventHandler } from "../../../../../../../Shared/types";
+import { ReactMouseEventHandler } from "../../../../../../../Shared/Types";
 import { Icon, Link } from "../../../../../../../Shared/Components";
 import "./renderNavbarItem.css";
 

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDimensions } from "../../../Shared/Hooks";
 import { TextObject } from "./Models/TextModel";
-import { Languages } from "../../languages";
+import { Languages } from "../../Languages";
 import { ProgressBar } from "..";
 import {
     RenderSuperTitle,

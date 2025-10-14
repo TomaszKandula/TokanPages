@@ -4,22 +4,9 @@ import { useHistory } from "react-router-dom";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction } from "../../../Store/Actions";
 import { GetShortText, MapLanguage } from "../../../Shared/Services/Utilities";
-import { TLoading } from "../../../Shared/types";
 import { ARTICLE_PATH, GET_ARTICLE_MAIN_IMAGE_URL } from "../../../Api";
+import { ArticleCardProps } from "./Types";
 import { ArticleCardView } from "./View/articleCardView";
-
-interface ArticleCardProps {
-    id: string;
-    title: string;
-    description: string;
-    languageIso: string;
-    canAnimate: boolean;
-    canDisplayDate: boolean;
-    published: string;
-    readCount?: number;
-    totalLikes?: number;
-    loading?: TLoading;
-}
 
 export const ArticleCard = (props: ArticleCardProps): React.ReactElement => {
     const dispatch = useDispatch();

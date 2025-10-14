@@ -1,7 +1,4 @@
-interface GetImageUrlProps {
-    base: string;
-    name: string;
-}
+import { GetImageUrlProps } from "./Types";
 
 export const GetImageUrl = (props: GetImageUrlProps): string | undefined => {
     if (props.name === "") return undefined;

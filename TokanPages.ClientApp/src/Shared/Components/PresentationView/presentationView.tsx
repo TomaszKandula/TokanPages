@@ -2,7 +2,7 @@ import React from "react";
 import { GET_IMAGES_URL } from "../../../Api";
 import { ImageDto } from "../../../Api/Models";
 import { ProcessParagraphs } from "../RenderContent/Renderers";
-import { CustomImage } from "../CustomImage/customImage";
+import { Image } from "../Image";
 import { Skeleton } from "../Skeleton";
 import { Link } from "../Link";
 import { Icon } from "../Icon";
@@ -14,7 +14,7 @@ export const PresentationView = (props: PresentationViewProps) => (
         <div className="is-flex mb-5">
             <Skeleton isLoading={props.isLoading} mode="Circle" width={128} height={128}>
                 <figure className="bulma-image bulma-is-128x128">
-                    <CustomImage
+                    <Image
                         base={GET_IMAGES_URL}
                         source={props.image.link}
                         title={props.image.title}
@@ -56,7 +56,7 @@ export const PresentationView = (props: PresentationViewProps) => (
                             key={uuidv4()}
                         >
                             <Skeleton isLoading={props.isLoading} mode="Rect" width={value.width} height={value.heigh}>
-                                <CustomImage
+                                <Image
                                     base={GET_IMAGES_URL}
                                     source={value.link}
                                     title={value.title}

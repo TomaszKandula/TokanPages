@@ -1,16 +1,17 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
-import { IconType, OperationStatus } from "../../../Shared/enums";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { IconType, OperationStatus } from "../../../Shared/Enums";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/Types";
 import { ApplicationDialogAction, UserPasswordUpdateAction } from "../../../Store/Actions";
-import { UpdateFormInput, ValidateUpdateForm } from "../../../Shared/Services/FormValidation";
-import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
+import { ValidateUpdateFormProps, ValidateUpdateForm } from "../../../Shared/Services/FormValidation";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/Constants";
 import { useDimensions, useQuery } from "../../../Shared/Hooks";
 import { PasswordUpdateView } from "./View/passwordUpdateView";
+import { PasswordUpdateProps } from "./Types";
 import Validate from "validate.js";
 
-const formDefaultValues: UpdateFormInput = {
+const formDefaultValues: ValidateUpdateFormProps = {
     newPassword: "",
     verifyPassword: "",
     content: {
@@ -25,10 +26,6 @@ const formDefaultValues: UpdateFormInput = {
         missingSmallLetter: "",
     },
 };
-
-export interface PasswordUpdateProps {
-    className?: string;
-}
 
 export const PasswordUpdate = (props: PasswordUpdateProps): React.ReactElement => {
     const queryParam = useQuery();

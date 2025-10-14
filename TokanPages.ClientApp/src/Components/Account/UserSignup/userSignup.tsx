@@ -1,15 +1,16 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
-import { IconType, OperationStatus } from "../../../Shared/enums";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { IconType, OperationStatus } from "../../../Shared/Enums";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/Types";
 import { ApplicationDialogAction, UserSignupAction } from "../../../Store/Actions";
-import { SignupFormInput, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
-import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
+import { ValidateSignupFormProps, ValidateSignupForm } from "../../../Shared/Services/FormValidation";
+import { RECEIVED_ERROR_MESSAGE } from "../../../Shared/Constants";
 import { UserSignupView } from "./View/userSignupView";
+import { UserSignupProps } from "./Types";
 import Validate from "validate.js";
 
-const defaultForm: SignupFormInput = {
+const defaultForm: ValidateSignupFormProps = {
     firstName: "",
     lastName: "",
     email: "",
@@ -27,10 +28,6 @@ const defaultForm: SignupFormInput = {
         missingSmallLetter: "",
     },
 };
-
-export interface UserSignupProps {
-    className?: string;
-}
 
 export const UserSignup = (props: UserSignupProps): React.ReactElement => {
     const dispatch = useDispatch();

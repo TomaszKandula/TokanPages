@@ -1,7 +1,7 @@
 import "../../../../setupTests";
 import React from "react";
 import { render } from "@testing-library/react";
-import { FigoureSize } from "../../../../Shared/enums";
+import { FigoureSize } from "../../../../Shared/Enums";
 import { UserAvatarView } from "./userAvatarView";
 
 describe("test user avatar component", () => {

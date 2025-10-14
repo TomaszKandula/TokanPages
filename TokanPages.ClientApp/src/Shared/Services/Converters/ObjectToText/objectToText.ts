@@ -1,10 +1,6 @@
-import { TextObject } from "../../../../Shared/Components/RenderContent/Models";
+import { ObjectToTextProps } from "../Types";
 
-interface Properties {
-    textObject: TextObject | undefined;
-}
-
-export const ObjectToText = (props: Properties): string | undefined => {
+export const ObjectToText = (props: ObjectToTextProps): string | undefined => {
     if (props.textObject === undefined) return undefined;
     if (props.textObject.items.length === 0) return undefined;
 

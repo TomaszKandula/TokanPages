@@ -1,0 +1,1 @@
+export { GetTextError } from "./getTextError";
