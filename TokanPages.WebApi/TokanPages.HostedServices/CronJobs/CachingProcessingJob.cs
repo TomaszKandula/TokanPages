@@ -82,7 +82,7 @@ public class CachingProcessingJob : CronJob
 
         foreach (var pdfPath in _pdfPaths)
         {
-            var pdf = await _cachingService.GeneratePdf(pdfPath.Url, $"{pdfPath.Name}.pdf");
+            var pdf = await _cachingService.GeneratePdf(pdfPath.Url, pdfPath.Name);
             if (!string.IsNullOrWhiteSpace(pdf))
                 _loggerService.LogInformation($"{ServiceName}: PDF file '{pdfPath.Name}' has been rendered and saved. Url: '{pdfPath.Url}'.");
         }
