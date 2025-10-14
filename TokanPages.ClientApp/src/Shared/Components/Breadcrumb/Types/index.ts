@@ -9,7 +9,7 @@ export interface BreadcrumbProps extends BreadcrumbBaseProps {
     watchparam?: string;
 }
 
-export interface BreadcrumbViewProps extends BreadcrumbBaseProps  {
+export interface BreadcrumbViewProps extends BreadcrumbBaseProps {
     media: UseDimensionsResult;
     hasParam: boolean;
     paramValue: string | undefined;

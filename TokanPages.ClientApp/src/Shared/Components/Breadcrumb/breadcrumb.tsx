@@ -36,4 +36,4 @@ export const Breadcrumb = (props: BreadcrumbProps): React.ReactElement => {
             onBackToPrevious={onBackToPrevious}
         />
     );
-}
+};
