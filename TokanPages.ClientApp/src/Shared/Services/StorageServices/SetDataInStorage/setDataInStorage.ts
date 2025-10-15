@@ -1,11 +1,7 @@
 import Validate from "validate.js";
+import { SetDataInStorageProps } from "../Types";
 
-interface Properties {
-    selection: {} | any[];
-    key: string;
-}
-
-export const SetDataInStorage = (props: Properties): boolean => {
+export const SetDataInStorage = (props: SetDataInStorageProps): boolean => {
     if (Validate.isEmpty(props.key)) return false;
 
     let serialized = JSON.stringify(props.selection);

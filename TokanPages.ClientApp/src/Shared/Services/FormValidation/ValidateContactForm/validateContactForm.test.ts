@@ -1,10 +1,11 @@
 import "../../../../setupTests";
-import { ContactFormInput, ValidateContactForm } from "..";
+import { ValidateContactForm } from "..";
+import { ValidateContactFormProps } from "../Types";
 
 describe("verify contact form validation methods", () => {
     it("should return undefined, when contact form is filled correctly.", () => {
         // Arrange
-        const form: ContactFormInput = {
+        const form: ValidateContactFormProps = {
             firstName: "Ester",
             lastName: "Exposito",
             email: "ester.exposito@gmail.com",
@@ -22,7 +23,7 @@ describe("verify contact form validation methods", () => {
 
     it("should return defined, when contact form is filled incorrectly.", () => {
         // Arrange
-        const form: ContactFormInput = {
+        const form: ValidateContactFormProps = {
             firstName: "",
             lastName: "Deacon",
             email: "john@gmail",

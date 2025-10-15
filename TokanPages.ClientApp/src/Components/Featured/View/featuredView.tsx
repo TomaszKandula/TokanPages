@@ -2,12 +2,9 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { GET_IMAGES_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated, Link, CustomImage, Skeleton } from "../../../Shared/Components";
+import { Animated, Link, Image, Skeleton } from "../../../Shared/Components";
+import { FeaturedViewProps } from "../Types";
 import "./featuredView.css";
-
-interface FeaturedViewProps {
-    className?: string;
-}
 
 export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
@@ -37,7 +34,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                                     mode="Rect"
                                                     className="featured-card-image"
                                                 >
-                                                    <CustomImage
+                                                    <Image
                                                         base={GET_IMAGES_URL}
                                                         source={featured?.image1}
                                                         className="featured-card-image"
@@ -74,7 +71,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                                     mode="Rect"
                                                     className="featured-card-image"
                                                 >
-                                                    <CustomImage
+                                                    <Image
                                                         base={GET_IMAGES_URL}
                                                         source={featured?.image2}
                                                         className="featured-card-image"
@@ -111,7 +108,7 @@ export const FeaturedView = (props: FeaturedViewProps): React.ReactElement => {
                                                     mode="Rect"
                                                     className="featured-card-image"
                                                 >
-                                                    <CustomImage
+                                                    <Image
                                                         base={GET_IMAGES_URL}
                                                         source={featured?.image3}
                                                         className="featured-card-image"

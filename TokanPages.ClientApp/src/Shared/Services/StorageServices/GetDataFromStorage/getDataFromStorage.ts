@@ -1,10 +1,7 @@
 import Validate from "validate.js";
+import { GetDataFromStorageProps } from "../Types";
 
-interface Properties {
-    key: string;
-}
-
-export const GetDataFromStorage = (props: Properties): string | {} | any[] => {
+export const GetDataFromStorage = (props: GetDataFromStorageProps): string | {} | any[] => {
     const serialized = localStorage.getItem(props.key) as string;
     if (Validate.isEmpty(serialized)) return {};
 

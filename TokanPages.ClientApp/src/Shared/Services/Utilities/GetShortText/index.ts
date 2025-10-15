@@ -1,0 +1,1 @@
+export { GetShortText } from "./getShortText";

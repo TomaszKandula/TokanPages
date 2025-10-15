@@ -2,10 +2,7 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
 import { AccessDeniedView } from "./View/accessDeniedView";
-
-export interface AccessDeniedProps {
-    className?: string;
-}
+import { AccessDeniedProps } from "./Types";
 
 export const AccessDenied = (props: AccessDeniedProps): React.ReactElement => {
     const contentPageData = useSelector((state: ApplicationState) => state.contentPageData);

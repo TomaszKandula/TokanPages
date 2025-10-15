@@ -1,7 +1,4 @@
 import * as React from "react";
-import { PresentationDto } from "../../../Api/Models";
-import { ViewProperties } from "../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../Shared/types";
 import {
     Animated,
     Icon,
@@ -12,31 +9,8 @@ import {
     Notification,
     PresentationView,
 } from "../../../Shared/Components";
-import { ContactFormProps } from "../contactForm";
+import { ContactFormViewProps } from "../Types";
 import "./contactFormView.css";
-
-interface ContactFormViewProps extends ViewProperties, ContactFormProps {
-    caption: string;
-    keyHandler: (event: ReactKeyboardEvent) => void;
-    formHandler: (event: ReactChangeEvent) => void;
-    messageHandler: (event: ReactChangeTextEvent) => void;
-    firstName: string;
-    lastName: string;
-    email: string;
-    subject: string;
-    message: string;
-    buttonHandler: () => void;
-    progress: boolean;
-    buttonText: string;
-    consent: string;
-    presentation: PresentationDto;
-    labelFirstName: string;
-    labelLastName: string;
-    labelEmail: string;
-    labelSubject: string;
-    labelMessage: string;
-    minRows?: number;
-}
 
 const ActiveButton = (props: ContactFormViewProps): React.ReactElement => (
     <button

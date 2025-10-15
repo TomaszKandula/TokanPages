@@ -1,7 +1,7 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { ApplicationEmailState } from "../../States";
-import { OperationStatus } from "../../../Shared/enums";
+import { OperationStatus } from "../../../Shared/Enums";
 
 import { TKnownActions, SEND, RESPONSE, CLEAR } from "../../Actions/Application/applicationMessage";
 

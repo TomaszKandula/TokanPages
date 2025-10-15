@@ -1,10 +1,11 @@
 import "../../../../setupTests";
-import { ResetFormInput, ValidateResetForm } from "..";
+import { ValidateResetForm } from "..";
+import { ValidateResetFormProps } from "../Types";
 
 describe("verify reset form validation methods", () => {
     it("should return undefined, when reset form filled correctly.", () => {
         // Arrange
-        const form: ResetFormInput = {
+        const form: ValidateResetFormProps = {
             email: "ester.exposito@gmail.com",
         };
 
@@ -17,11 +18,11 @@ describe("verify reset form validation methods", () => {
 
     it("should return defined, when reset form filled incorrectly.", () => {
         // Arrange
-        const form1: ResetFormInput = {
+        const form1: ValidateResetFormProps = {
             email: "gmail.com",
         };
 
-        const form2: ResetFormInput = {
+        const form2: ValidateResetFormProps = {
             email: "ester@",
         };
 

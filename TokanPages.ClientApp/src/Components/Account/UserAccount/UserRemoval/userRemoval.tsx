@@ -2,22 +2,17 @@ import * as React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { IconType, OperationStatus } from "../../../../Shared/enums";
+import { IconType, OperationStatus } from "../../../../Shared/Enums";
 import { useDimensions } from "../../../../Shared/Hooks";
 import { UserRemovalView } from "./View/userRemovalView";
-
 import {
     ApplicationDialogAction,
     UserDataStoreAction,
     UserSigninAction,
     UserRemoveAction,
 } from "../../../../Store/Actions";
-
-import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/constants";
-
-export interface UserRemovalProps {
-    className?: string;
-}
+import { RECEIVED_ERROR_MESSAGE } from "../../../../Shared/Constants";
+import { UserRemovalProps } from "./Types";
 
 export const UserRemoval = (props: UserRemovalProps): React.ReactElement => {
     const dispatch = useDispatch();

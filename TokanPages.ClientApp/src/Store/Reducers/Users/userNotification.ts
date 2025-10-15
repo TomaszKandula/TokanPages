@@ -1,7 +1,7 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { UserNotificationState } from "../../States";
-import { OperationStatus } from "../../../Shared/enums";
+import { OperationStatus } from "../../../Shared/Enums";
 import { TKnownActions, NOTIFY, CLEAR, NOTIFIED } from "../../Actions/Users/userNotification";
 
 export const UserNotification: Reducer<UserNotificationState> = (

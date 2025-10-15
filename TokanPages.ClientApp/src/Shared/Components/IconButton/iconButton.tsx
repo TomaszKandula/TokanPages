@@ -1,18 +1,7 @@
 import * as React from "react";
-import { ReactMouseEvent } from "../../../Shared/types";
 import { ClassListAdd, ClassListClear } from "../../../Shared/Services/Utilities";
+import { IconButtonProps } from "./Types";
 import "./iconButton.css";
-
-interface IconButtonProps {
-    size?: number;
-    children: React.ReactElement | React.ReactElement[];
-    hasNoHoverEffect?: boolean;
-    className?: string;
-    isDisabled?: boolean;
-    hasGreyBackground?: boolean;
-    onClick?: (event: ReactMouseEvent) => void;
-    onMouseDown?: (event: ReactMouseEvent) => void;
-}
 
 const baseClasses = ["icon-button-base", "is-flex", "is-align-self-center"];
 

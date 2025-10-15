@@ -2,11 +2,8 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../Store/Configuration";
 import { Animated, Icon, RenderHtml, Skeleton } from "../../../Shared/Components";
+import { TechnologiesViewProps } from "../Types";
 import "./technologiesView.css";
-
-interface TechnologiesViewProps {
-    className?: string;
-}
 
 const ICON_SIZE = 1.8;
 

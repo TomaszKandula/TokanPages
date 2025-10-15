@@ -1,12 +1,6 @@
 import * as React from "react";
+import { ProgressBarViewProps } from "../Types";
 import "./progressBarView.css";
-
-interface ProgressBarViewProps {
-    className?: string;
-    size?: number;
-    thickness?: number;
-    colour?: string;
-}
 
 export const ProgressBarView = (props: ProgressBarViewProps): React.ReactElement => {
     const className = !props.className ? "" : props.className;

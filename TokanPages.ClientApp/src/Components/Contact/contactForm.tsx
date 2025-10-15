@@ -2,14 +2,15 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
 import { ApplicationDialogAction, ApplicationMessageAction } from "../../Store/Actions";
-import { ContactFormInput, ValidateContactForm } from "../../Shared/Services/FormValidation";
-import { RECEIVED_ERROR_MESSAGE } from "../../Shared/constants";
-import { IconType, OperationStatus } from "../../Shared/enums";
-import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../Shared/types";
+import { ValidateContactForm, ValidateContactFormProps } from "../../Shared/Services/FormValidation";
+import { RECEIVED_ERROR_MESSAGE } from "../../Shared/Constants";
+import { IconType, OperationStatus } from "../../Shared/Enums";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../Shared/Types";
 import { ContactFormView } from "./View/contactFormView";
+import { ContactFormProps } from "./Types";
 import Validate from "validate.js";
 
-const formDefault: ContactFormInput = {
+const formDefault: ValidateContactFormProps = {
     firstName: "",
     lastName: "",
     email: "",
@@ -17,14 +18,6 @@ const formDefault: ContactFormInput = {
     message: "",
     terms: true,
 };
-
-export interface ContactFormProps {
-    hasCaption?: boolean;
-    hasIcon?: boolean;
-    hasShadow?: boolean;
-    className?: string;
-    mode: "section" | "page";
-}
 
 export const ContactForm = (props: ContactFormProps): React.ReactElement => {
     const dispatch = useDispatch();

@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Icon } from "../../Icon";
 import { IconButton } from "../../IconButton";
+import { TextFieldExtendedProps } from "../Types";
 import "./textFiedWithPasswordView.css";
-import { TextFieldExtendedProps } from "./types";
 
 const IconElement = (props: TextFieldExtendedProps): React.ReactElement =>
     props.showPassword ? <Icon name="Eye" size={1} /> : <Icon name="EyeOff" size={1} />;

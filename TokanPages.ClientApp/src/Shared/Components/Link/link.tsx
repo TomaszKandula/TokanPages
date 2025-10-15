@@ -1,17 +1,7 @@
 import * as React from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { ReactMouseEventHandler } from "../../../Shared/types";
+import { LinkProps } from "./Types";
 import "./link.css";
-
-interface LinkProps {
-    to: string;
-    className?: string;
-    isDisabled?: boolean;
-    rel?: string;
-    onMouseEnter?: ReactMouseEventHandler;
-    onMouseLeave?: ReactMouseEventHandler;
-    children: React.ReactElement | React.ReactElement[];
-}
 
 export const Link = (props: LinkProps): React.ReactElement => {
     if (props.isDisabled === true) {
@@ -19,7 +9,7 @@ export const Link = (props: LinkProps): React.ReactElement => {
         return <a className={className}>{props.children}</a>;
     }
 
-    const link: string = props.to;
+    const link = props.to ?? "";
     const isHref: boolean = link?.includes("http://") || link?.includes("https://") || link?.includes("mailto:");
 
     if (isHref) {
@@ -39,7 +29,7 @@ export const Link = (props: LinkProps): React.ReactElement => {
 
     return (
         <RouterLink
-            to={props.to}
+            to={link}
             className={props.className ?? ""}
             onMouseEnter={props.onMouseEnter}
             onMouseLeave={props.onMouseLeave}

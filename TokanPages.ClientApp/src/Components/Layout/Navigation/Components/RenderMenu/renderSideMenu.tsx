@@ -1,21 +1,9 @@
 import * as React from "react";
 import { ItemDto } from "../../../../../Api/Models";
 import { ProgressBar } from "../../../../../Shared/Components";
+import { CanContinueProps, RenderSideMenuProps } from "../../Types";
 import { RenderSidemenuItem } from "./Renderers";
 import { v4 as uuidv4 } from "uuid";
-
-interface RenderSideMenuBaseProps {
-    isAnonymous: boolean;
-    languageId: string;
-}
-
-interface RenderSideMenuProps extends RenderSideMenuBaseProps {
-    items: ItemDto[] | undefined;
-}
-
-interface CanContinueProps extends RenderSideMenuBaseProps {
-    item: ItemDto;
-}
 
 const CanContinue = (props: CanContinueProps): boolean => {
     const accountPath = "account";

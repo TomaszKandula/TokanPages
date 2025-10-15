@@ -1,51 +1,8 @@
 import * as React from "react";
-import { UserNoteResultDto } from "../../../../../Api/Models";
 import { SpinnerBackdrop, Skeleton, TextArea } from "../../../../../Shared/Components";
-import { ReactChangeTextEvent } from "../../../../../Shared/types";
+import { RenderRowProps, UserNoteProps, UserNotesViewProps } from "../Types";
 import Validate from "validate.js";
 import "./userNotesView.css";
-
-interface UserNotesViewProps {
-    isLoading: boolean;
-    mediaQuery: {
-        isTablet: boolean;
-        isMobile: boolean;
-    };
-    hasProgress: boolean;
-    userNotes?: UserNoteProps[];
-    captionText: string;
-    descriptionText: string;
-    listLabel: string;
-    noteLabel: string;
-    onRowClick: (index: number) => void;
-    selection?: UserNoteResultDto;
-    clearButtonText: string;
-    clearButtonHandler: () => void;
-    removeButtonText: string;
-    removeButtonHandler: () => void;
-    saveButtonText: string;
-    saveButtonHandler: () => void;
-    messageForm: { note: string };
-    messageHandler: (event: ReactChangeTextEvent) => void;
-    background?: React.CSSProperties;
-}
-
-interface UserNoteProps {
-    id: string;
-    note: string;
-    createdBy: string;
-    createdAt: string;
-    modifiedBy?: string;
-    modifiedAt?: string;
-}
-
-interface RenderRowProps {
-    id: string;
-    note: string;
-    index: number;
-    selection?: string;
-    onClick: (index: number) => void | undefined;
-}
 
 const RenderRow = (props: RenderRowProps): React.ReactElement => {
     const baseClass = "is-size-6 has-text-grey py-4 px-4 user-notes-text-selection";

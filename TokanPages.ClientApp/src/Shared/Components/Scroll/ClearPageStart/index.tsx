@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useLocation } from "react-router-dom";
-import { Properties } from "../Types";
+import { ClearPageStartProps } from "../Types";
 
-export const ClearPageStart = (props: Properties): React.ReactElement => {
+export const ClearPageStart = (props: ClearPageStartProps): React.ReactElement => {
     const location = useLocation();
 
     React.useEffect(() => {

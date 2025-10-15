@@ -2,13 +2,10 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { UserDataStoreAction, UserSignoutAction } from "../../../Store/Actions";
 import { ApplicationState } from "../../../Store/Configuration";
-import { OperationStatus } from "../../../Shared/enums";
+import { OperationStatus } from "../../../Shared/Enums";
 import { UserSignoutView } from "./View/userSignoutView";
+import { UserSignoutProps } from "./Types";
 import Validate from "validate.js";
-
-export interface UserSignoutProps {
-    className?: string;
-}
 
 export const UserSignout = (props: UserSignoutProps): React.ReactElement => {
     const dispatch = useDispatch();

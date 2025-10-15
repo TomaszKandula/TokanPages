@@ -1,10 +1,7 @@
 import Validate from "validate.js";
+import { DelDataFromStorageProps } from "../Types";
 
-interface Properties {
-    key: string;
-}
-
-export const DelDataFromStorage = (props: Properties): boolean => {
+export const DelDataFromStorage = (props: DelDataFromStorageProps): boolean => {
     if (Validate.isEmpty(props.key)) return false;
     localStorage.removeItem(props.key);
     return true;

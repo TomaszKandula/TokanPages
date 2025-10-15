@@ -1,12 +1,6 @@
-import { ContentPageDataState } from "../../../../Store/States";
+import { GetVerifiedComponentsProps } from "./Types";
 
-interface ComponentsCheckProps {
-    components: string[];
-    state: ContentPageDataState;
-    languageId: string;
-}
-
-export const GetVerifiedComponents = (props: ComponentsCheckProps): string[] | undefined => {
+export const GetVerifiedComponents = (props: GetVerifiedComponentsProps): string[] | undefined => {
     let result: string[] = [];
 
     props.components.forEach(item => {

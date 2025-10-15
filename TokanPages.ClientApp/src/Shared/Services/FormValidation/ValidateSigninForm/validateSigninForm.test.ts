@@ -1,5 +1,6 @@
 import "../../../../setupTests";
-import { SigninFormInput, ValidateSigninForm } from "..";
+import { ValidateSigninForm } from "..";
+import { ValidateSigninFormProps } from "../Types";
 
 const testContent = {
     emailInvalid: "does not look like a valid email.",
@@ -16,7 +17,7 @@ const testContent = {
 describe("verify signin form validation methods", () => {
     it("should return undefined, when signin form is filled correctly.", () => {
         // Arrange
-        const form: SigninFormInput = {
+        const form: ValidateSigninFormProps = {
             email: "ester.exposito@gmail.com",
             password: "ester1990spain",
             content: testContent,
@@ -31,7 +32,7 @@ describe("verify signin form validation methods", () => {
 
     it("should return defined, when signin form is filled incorrectly.", () => {
         // Arrange
-        const form: SigninFormInput = {
+        const form: ValidateSigninFormProps = {
             email: "ester.exposito@",
             password: "e",
             content: testContent,

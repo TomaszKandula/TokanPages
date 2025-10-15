@@ -1,5 +1,5 @@
 import { LogMessageDto } from "../../../Api/Models";
-import { TSeverity } from "../../../Shared/types";
+import { TSeverity } from "../../../Shared/Types";
 import { RaiseError } from "../../../Shared/Services/ErrorServices";
 import { UAParser } from "ua-parser-js";
 import {

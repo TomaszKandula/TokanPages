@@ -1,34 +1,10 @@
 import * as React from "react";
 import { GET_IMAGES_URL } from "../../../../Api";
-import { ArticleContentDto } from "../../../../Api/Models";
-import { Icon, CustomImage, Skeleton, Media } from "../../../../Shared/Components";
+import { Icon, Image, Skeleton, Media } from "../../../../Shared/Components";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
-import { ExtendedViewProps } from "../articleDetail";
+import { ArticleDetailViewProps } from "../Types";
 import { v4 as uuidv4 } from "uuid";
 import "./articleDetailView.css";
-
-interface ArticleDetailViewProps extends ExtendedViewProps {
-    isLoading: boolean;
-    isMobile: boolean;
-    backButtonHandler: () => void;
-    articleReadCount: string;
-    renderSmallAvatar: React.ReactElement;
-    renderLargeAvatar: React.ReactElement;
-    authorFirstName: string;
-    authorLastName: string;
-    authorRegistered: string;
-    articleTags?: string[];
-    articleReadTime: string;
-    articleCreatedAt: string;
-    articleUpdatedAt: string;
-    articleContent: React.ReactElement;
-    renderLikesLeft: string;
-    thumbsHandler: () => void;
-    totalLikes: string;
-    authorShortBio: string;
-    flagImage: string;
-    content: ArticleContentDto;
-}
 
 const RenderTopHeader = (props: ArticleDetailViewProps): React.ReactElement => (
     <div className="is-flex is-gap-1.5 is-align-items-center">
@@ -36,7 +12,7 @@ const RenderTopHeader = (props: ArticleDetailViewProps): React.ReactElement => (
             <p className="bulma-cell is-align-content-center is-size-7">{props.content.textLanguage}</p>
         </Skeleton>
         <Skeleton isLoading={props.isLoading} mode="Circle" width={24} height={24}>
-            <CustomImage
+            <Image
                 base={GET_IMAGES_URL}
                 source={props.flagImage}
                 title="Articles"
@@ -68,7 +44,7 @@ const RenderTopHeaderMobile = (props: ArticleDetailViewProps): React.ReactElemen
                 <p className="bulma-cell is-align-content-center is-size-7">{props.content.textLanguage}</p>
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Circle" width={24} height={24}>
-                <CustomImage
+                <Image
                     base={GET_IMAGES_URL}
                     source={props.flagImage}
                     title="Articles"

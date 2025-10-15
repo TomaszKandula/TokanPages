@@ -1,7 +1,7 @@
 import Validate from "validate.js";
-import { ResetFormInput } from "..";
+import { ValidateResetFormProps } from "../Types";
 
-export const ValidateResetForm = (props: ResetFormInput): object | undefined => {
+export const ValidateResetForm = (props: ValidateResetFormProps): object | undefined => {
     const constraints = {
         email: {
             email: {

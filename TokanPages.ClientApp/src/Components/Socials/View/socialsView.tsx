@@ -2,12 +2,9 @@ import * as React from "react";
 import { useSelector } from "react-redux";
 import { GET_IMAGES_URL } from "../../../Api";
 import { ApplicationState } from "../../../Store/Configuration";
-import { Animated, Icon, Link, CustomImage, Skeleton } from "../../../Shared/Components";
+import { Animated, Icon, Link, Image, Skeleton } from "../../../Shared/Components";
+import { SocialsViewProps } from "../Types";
 import "./socialsView.css";
-
-interface SocialsViewProps {
-    className?: string;
-}
 
 export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);
@@ -33,7 +30,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         <div className="bulma-card-image">
                                             <figure className="bulma-image">
                                                 <Skeleton isLoading={isLoading} mode="Rect" className="socials-image">
-                                                    <CustomImage
+                                                    <Image
                                                         base={GET_IMAGES_URL}
                                                         source={socials?.social1?.images?.header}
                                                         className="socials-image"
@@ -45,7 +42,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         </div>
                                         <div className="socials-card-image-holder">
                                             <Skeleton isLoading={isLoading} mode="Rect" className="socials-avatar">
-                                                <CustomImage
+                                                <Image
                                                     base={GET_IMAGES_URL}
                                                     source={socials?.social1?.images?.avatar}
                                                     className="socials-avatar"
@@ -91,7 +88,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         <div className="bulma-card-image">
                                             <figure className="bulma-image">
                                                 <Skeleton isLoading={isLoading} mode="Rect" className="socials-image">
-                                                    <CustomImage
+                                                    <Image
                                                         base={GET_IMAGES_URL}
                                                         source={socials?.social2?.images?.header}
                                                         className="socials-image"
@@ -103,7 +100,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         </div>
                                         <div className="socials-card-image-holder">
                                             <Skeleton isLoading={isLoading} mode="Rect" className="socials-avatar">
-                                                <CustomImage
+                                                <Image
                                                     base={GET_IMAGES_URL}
                                                     source={socials?.social2?.images?.avatar}
                                                     className="socials-avatar"
@@ -149,7 +146,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         <div className="bulma-card-image">
                                             <figure className="bulma-image">
                                                 <Skeleton isLoading={isLoading} mode="Rect" className="socials-image">
-                                                    <CustomImage
+                                                    <Image
                                                         base={GET_IMAGES_URL}
                                                         source={socials?.social3?.images?.header}
                                                         className="socials-image"
@@ -161,7 +158,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                         </div>
                                         <div className="socials-card-image-holder">
                                             <Skeleton isLoading={isLoading} mode="Rect" className="socials-avatar">
-                                                <CustomImage
+                                                <Image
                                                     base={GET_IMAGES_URL}
                                                     source={socials?.social3?.images?.avatar}
                                                     className="socials-avatar"

@@ -1,11 +1,8 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
+import { TestimonialsProps } from "./Types";
 import { TestimonialsView } from "./View/testimonialsView";
-
-interface TestimonialsProps {
-    className?: string;
-}
 
 export const Testimonials = (props: TestimonialsProps): React.ReactElement => {
     const data = useSelector((state: ApplicationState) => state.contentPageData);

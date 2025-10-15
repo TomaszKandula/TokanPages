@@ -1,8 +1,8 @@
 import * as React from "react";
 import { ButtonsDto, OptionsDto } from "../../../../Api/Models";
-import { ViewProperties } from "../../../../Shared/Abstractions";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
-import { ReactChangeEvent } from "../../../../Shared/types";
+import { ReactChangeEvent, ViewProperties } from "../../../../Shared/Types";
+import { StandardBackdrop } from "../../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
 import "./applicationCookieView.css";
 
@@ -136,7 +136,8 @@ const CookieWindowLoading = (props: ApplicationCookieViewProps): React.ReactElem
 const CookieWindowContainer = (props: ApplicationCookieViewProps): React.ReactElement => {
     const style = props.isClose ? "cookie-window-close" : "cookie-window-open";
     return (
-        <div data-testid="application-cookie-view" className={`backdrop ${style}`}>
+        <div data-testid="application-cookie-view" className={style}>
+            <StandardBackdrop style={{ opacity: 1, zIndex: 9000 }} />
             {props.isLoading ? <CookieWindowLoading {...props} /> : <CookieWindowPrompt {...props} />}
         </div>
     );

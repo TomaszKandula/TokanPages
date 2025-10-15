@@ -1,4 +1,4 @@
-import { OperationStatus } from "../../../../Shared/enums";
+import { OperationStatus } from "../../../../Shared/Enums";
 import { UserNoteReadState } from "../../../States";
 
 export const UserNoteRead: UserNoteReadState = {

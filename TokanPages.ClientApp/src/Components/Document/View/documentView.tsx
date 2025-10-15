@@ -1,13 +1,7 @@
 import * as React from "react";
 import { ProgressBar, RenderContent } from "../../../Shared/Components";
-import { TextItem } from "../../../Shared/Components/RenderContent/Models";
 import { useHash } from "../../../Shared/Hooks";
-
-interface DocumentViewProps {
-    isLoading: boolean;
-    items: TextItem[];
-    className?: string;
-}
+import { DocumentViewProps } from "../Types";
 
 export const DocumentView = (props: DocumentViewProps): React.ReactElement => {
     const hash = useHash();

@@ -1,4 +1,4 @@
-import { TSeverity } from "Shared/types";
+import { TSeverity } from "../../../Shared/Types";
 
 export interface LogMessageDto {
     eventDateTime: string;

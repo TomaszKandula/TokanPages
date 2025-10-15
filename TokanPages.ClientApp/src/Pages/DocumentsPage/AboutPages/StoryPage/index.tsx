@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "../../../../Store/Configuration";
-import { CustomBreadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
+import { Breadcrumb, DocumentContentWrapper } from "../../../../Shared/Components";
 import { usePageContent, useSnapshot, useUnhead } from "../../../../Shared/Hooks";
 import { Navigation, Footer } from "../../../../Components/Layout";
 
@@ -20,7 +20,7 @@ export const StoryPage = (): React.ReactElement => {
             <Navigation />
             <main>
                 <h1 className="seo-only">{heading}</h1>
-                <CustomBreadcrumb isLoading={isLoading} />
+                <Breadcrumb isLoading={isLoading} />
                 <DocumentContentWrapper isLoading={isLoading} items={items} />
             </main>
             <Footer />

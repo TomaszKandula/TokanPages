@@ -2,7 +2,7 @@ import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { ContentPageDataState } from "../../States";
 import { ContentPageData as ContentPageDataDefault } from "../../Defaults";
-import { OperationStatus } from "../../../Shared/enums";
+import { OperationStatus } from "../../../Shared/Enums";
 import { UpdateComponents } from "../../../Shared/Services/Utilities";
 import { TKnownActions, CLEAR, RECEIVE, REQUEST } from "../../Actions/Content/contentPageData";
 

@@ -1,11 +1,9 @@
 import * as React from "react";
 import Slider from "react-slick";
 import { GET_IMAGES_URL } from "../../../../Api";
-import { LinkDto, NewsItemDto } from "../../../../Api/Models";
-import { ViewProperties } from "../../../../Shared/Abstractions";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { NewsItemDto } from "../../../../Api/Models";
 import {
-    CustomImage,
+    Image,
     Icon,
     Link,
     Notification,
@@ -15,45 +13,11 @@ import {
     TextField,
     TextFieldWithPassword,
 } from "../../../../Shared/Components";
-import { UserSigninProps } from "../userSignin";
 import { v4 as uuidv4 } from "uuid";
+import { RenderSigninCardProps, RenderSlideProps, RenderSliderProps, UserSigninViewProps } from "../Types";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./userSigninView.css";
-
-interface UserSigninViewProps extends ViewProperties, UserSigninProps {
-    caption: string;
-    button: string;
-    link1: LinkDto;
-    link2: LinkDto;
-    consent: string;
-    security: NewsItemDto[];
-    buttonHandler: () => void;
-    progress: boolean;
-    keyHandler: (event: ReactKeyboardEvent) => void;
-    formHandler: (event: ReactChangeEvent) => void;
-    email: string;
-    password: string;
-    labelEmail: string;
-    labelPassword: string;
-}
-
-interface RenderSigninCardProps extends UserSigninViewProps {
-    className?: string;
-}
-
-interface RenderSliderProps extends UserSigninViewProps {
-    className?: string;
-}
-
-interface RenderSlideProps {
-    image: string;
-    tags: string[];
-    date: string;
-    title: string;
-    lead: string;
-    isLoading?: boolean;
-}
 
 const ButtonSignin = (props: UserSigninViewProps): React.ReactElement => (
     <button
@@ -82,7 +46,7 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
         <div className="bulma-card-image">
             <figure className="bulma-image">
                 <Skeleton isLoading={props.isLoading ?? false} mode="Rect" height={150} disableMarginY>
-                    <CustomImage
+                    <Image
                         base={GET_IMAGES_URL}
                         source={props.image}
                         className="user-signin-view-card-image"

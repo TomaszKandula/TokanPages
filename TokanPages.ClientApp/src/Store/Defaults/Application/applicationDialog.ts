@@ -1,5 +1,5 @@
 import { ApplicationDialogState } from "../../States";
-import { IconType } from "../../../Shared/enums";
+import { IconType } from "../../../Shared/Enums";
 
 export const ApplicationDialog: ApplicationDialogState = {
     title: "",
