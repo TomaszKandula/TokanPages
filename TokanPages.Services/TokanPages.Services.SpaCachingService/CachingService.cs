@@ -101,7 +101,7 @@ public class CachingService : ICachingService
 
             page.Viewport.Width = 1920;
             page.Viewport.Height = 1080;
-            page.Viewport.DeviceScaleFactor = 0.9;
+            page.Viewport.DeviceScaleFactor = 1;
 
             await page.GoToAsync(sourceUrl, FiveMinutesTimeout, waitUntil: WaitUntilOptions);
             await page.EvaluateExpressionHandleAsync(DocumentFontReady);
