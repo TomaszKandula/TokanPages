@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { ApplicationState } from "../../Store/Configuration";
+import { HasSnapshotMode } from "../../Shared/Services/SpaCaching";
 import { ProcessedExperienceItemProps } from "./Types";
 import { GetTimeRange } from "./Utilities";
 import { ResumeView } from "./View/resumeView";
 
 export const Resume = (): React.ReactElement => {
+    const isSnapshot = HasSnapshotMode();
     const page = useSelector((state: ApplicationState) => state.contentPageData.components.pageResume);
     const testimonials = useSelector((state: ApplicationState) => state.contentPageData.components.sectionTestimonials);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
@@ -24,6 +26,7 @@ export const Resume = (): React.ReactElement => {
     return (
         <ResumeView
             isLoading={isContentLoading}
+            isSnapshot={isSnapshot}
             languageId={languageId}
             page={page}
             section={testimonials}

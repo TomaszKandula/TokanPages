@@ -7,6 +7,7 @@ export interface ProcessedExperienceItemProps extends ExperienceItemProps {
 }
 
 export interface ResumeViewProps extends ViewProperties {
+    isSnapshot: boolean;
     className?: string;
     languageId: string;
     page: ResumeContentDto;
