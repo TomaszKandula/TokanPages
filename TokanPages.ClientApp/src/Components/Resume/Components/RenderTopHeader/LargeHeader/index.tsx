@@ -28,7 +28,7 @@ export const HeaderLarge = (props: ResumeViewProps): React.ReactElement => (
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
                 <div className="is-flex is-gap-1.5">
-                    <Icon name="Phone" size={ICON_SIZE} />
+                    <Icon name="Phone" size={ICON_SIZE} className="has-text-grey" />
                     <p className="is-size-6 has-text-grey-dark is-lowercase">
                         {props.page?.resume?.header?.mobilePhone}
                     </p>
@@ -36,7 +36,7 @@ export const HeaderLarge = (props: ResumeViewProps): React.ReactElement => (
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
                 <div className="is-flex is-gap-1.5">
-                    <Icon name="Email" size={ICON_SIZE} />
+                    <Icon name="Email" size={ICON_SIZE} className="has-text-grey" />
                     <Link to={`mailto:${props.page?.resume?.header?.email}`} className="is-size-6 is-underlined">
                         <p className="is-lowercase">{props.page?.resume?.header?.email}</p>
                     </Link>
@@ -44,7 +44,7 @@ export const HeaderLarge = (props: ResumeViewProps): React.ReactElement => (
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
                 <div className="is-flex is-gap-1.5">
-                    <Icon name="Web" size={ICON_SIZE} />
+                    <Icon name="Web" size={ICON_SIZE} className="has-text-grey" />
                     <Link to={props.page?.resume?.header?.www.href} className="is-size-6 is-underlined">
                         <p className="is-lowercase">{props.page?.resume?.header?.www.text}</p>
                     </Link>
@@ -52,7 +52,7 @@ export const HeaderLarge = (props: ResumeViewProps): React.ReactElement => (
             </Skeleton>
             <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
                 <div className="is-flex is-gap-1.5">
-                    <Icon name="GitHub" size={ICON_SIZE} />
+                    <Icon name="GitHub" size={ICON_SIZE} className="has-text-grey" />
                     <Link to={props.page?.resume?.header?.github.href} className="is-size-6 is-underlined">
                         <p className="is-lowercase">{props.page?.resume?.header?.github.text}</p>
                     </Link>
