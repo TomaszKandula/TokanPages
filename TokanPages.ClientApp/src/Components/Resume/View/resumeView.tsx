@@ -13,9 +13,6 @@ import {
 
 const RenderResume = (props: ResumeViewProps): React.ReactElement => (
     <>
-        <h2 className="is-size-3 is-uppercase has-text-grey-dark has-text-centered has-text-weight-light m-5">
-            {props.page?.caption}
-        </h2>
         <Media.DesktopOnly>
             <RenderTopHeaderSmall {...props} />
         </Media.DesktopOnly>
