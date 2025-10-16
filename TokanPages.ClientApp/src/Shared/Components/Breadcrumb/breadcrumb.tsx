@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDimensions, useQuery } from "../../../Shared/Hooks";
 import { ApplicationState } from "../../../Store/Configuration";
