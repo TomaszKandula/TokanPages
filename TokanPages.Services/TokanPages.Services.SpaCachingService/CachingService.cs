@@ -26,7 +26,16 @@ public class CachingService : ICachingService
 
     private readonly IHttpClientServiceFactory _httpClientServiceFactory;
 
-    private static LaunchOptions _launchOptions = new()
+    private readonly PdfOptions _pdfOptions = new()
+    {
+        Format = PaperFormat.A4,
+        Scale = (decimal)0.95,
+        Landscape = false,
+        DisplayHeaderFooter = false,
+        PrintBackground = true
+    };
+
+    private readonly LaunchOptions _launchOptions = new()
     {
         Headless = true,
         HeadlessMode = HeadlessMode.True,
