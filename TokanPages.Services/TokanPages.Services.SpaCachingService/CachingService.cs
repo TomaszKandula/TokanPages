@@ -1,6 +1,7 @@
 using System.Text;
 using PuppeteerSharp;
 using PuppeteerSharp.BrowserData;
+using PuppeteerSharp.Media;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
@@ -119,7 +120,11 @@ public class CachingService : ICachingService
             if (fileInfo.Exists)
                 fileInfo.Delete();
 
-            await page.PdfAsync(outputPath);
+            await using var stream = await page.PdfStreamAsync(_pdfOptions);
+            await using var file = new FileStream(outputPath, FileMode.Create);
+            stream.Position = 0;
+            await stream.CopyToAsync(file);
+
             await SaveToAzureStorage(outputPath, $"documents/{pdfName}");
 
             _loggerService.LogInformation($"{ServiceName}: PDF has been generated.");
