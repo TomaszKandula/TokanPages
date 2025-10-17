@@ -58,7 +58,7 @@ export const RenderExperienceList = (props: ResumeViewProps): React.ReactElement
                                 list={value.details}
                                 className="is-size-5 has-text-grey-dark"
                             />
-                            <Skeleton isLoading={props.isLoading} >
+                            <Skeleton isLoading={props.isLoading}>
                                 <RenderTags {...value} />
                             </Skeleton>
                         </div>
