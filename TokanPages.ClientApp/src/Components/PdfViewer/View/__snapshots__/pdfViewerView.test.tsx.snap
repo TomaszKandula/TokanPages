@@ -21,10 +21,10 @@ Object {
                 class="bulma-card-content p-0"
               >
                 <div
-                  class="is-flex is-justify-content-space-around is-align-items-center"
+                  class="is-flex is-justify-content-space-around is-align-items-center py-4"
                 >
                   <button
-                    style="height: 48px; width: 48px;"
+                    style="height: 2.25rem; width: 2.25rem;"
                   >
                     <a
                       href="https://test.com/documents/some_document.pdf&canDownload=true"
@@ -52,14 +52,14 @@ Object {
                     1
                   </p>
                   <div
-                    class="is-flex"
+                    class="is-flex is-gap-1.5"
                   >
                     <button
-                      style="height: 48px; width: 48px;"
+                      style="height: 2.5rem; width: 2.5rem;"
                     >
                       <div>
                         <svg
-                          class="is-flex is-align-self-center "
+                          class="is-flex is-align-self-center has-text-black"
                           role="presentation"
                           style="width: 1.5rem; height: 1.5rem;"
                           viewBox="0 0 24 24"
@@ -72,11 +72,11 @@ Object {
                       </div>
                     </button>
                     <button
-                      style="height: 48px; width: 48px;"
+                      style="height: 2.5rem; width: 2.5rem;"
                     >
                       <div>
                         <svg
-                          class="is-flex is-align-self-center "
+                          class="is-flex is-align-self-center has-text-black"
                           role="presentation"
                           style="width: 1.5rem; height: 1.5rem;"
                           viewBox="0 0 24 24"
@@ -90,6 +90,9 @@ Object {
                     </button>
                   </div>
                 </div>
+                <hr
+                  class="m-0"
+                />
                 <canvas
                   class="pdf-canvas"
                 />
@@ -117,10 +120,10 @@ Object {
               class="bulma-card-content p-0"
             >
               <div
-                class="is-flex is-justify-content-space-around is-align-items-center"
+                class="is-flex is-justify-content-space-around is-align-items-center py-4"
               >
                 <button
-                  style="height: 48px; width: 48px;"
+                  style="height: 2.25rem; width: 2.25rem;"
                 >
                   <a
                     href="https://test.com/documents/some_document.pdf&canDownload=true"
@@ -148,14 +151,14 @@ Object {
                   1
                 </p>
                 <div
-                  class="is-flex"
+                  class="is-flex is-gap-1.5"
                 >
                   <button
-                    style="height: 48px; width: 48px;"
+                    style="height: 2.5rem; width: 2.5rem;"
                   >
                     <div>
                       <svg
-                        class="is-flex is-align-self-center "
+                        class="is-flex is-align-self-center has-text-black"
                         role="presentation"
                         style="width: 1.5rem; height: 1.5rem;"
                         viewBox="0 0 24 24"
@@ -168,11 +171,11 @@ Object {
                     </div>
                   </button>
                   <button
-                    style="height: 48px; width: 48px;"
+                    style="height: 2.5rem; width: 2.5rem;"
                   >
                     <div>
                       <svg
-                        class="is-flex is-align-self-center "
+                        class="is-flex is-align-self-center has-text-black"
                         role="presentation"
                         style="width: 1.5rem; height: 1.5rem;"
                         viewBox="0 0 24 24"
@@ -186,6 +189,9 @@ Object {
                   </button>
                 </div>
               </div>
+              <hr
+                class="m-0"
+              />
               <canvas
                 class="pdf-canvas"
               />
