@@ -2,7 +2,7 @@ import * as React from "react";
 import Icon from "@mdi/react";
 import { mdiChevronUp } from "@mdi/js";
 import { useDimensions, useScroll } from "../../../../Shared/Hooks";
-import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP } from "../../../../Shared/constants";
+import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP } from "../../../../Shared/Constants";
 import "./scrollToTop.css";
 
 const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {

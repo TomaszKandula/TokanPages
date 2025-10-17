@@ -1,24 +1,12 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
 import { GET_IMAGES_URL } from "../../../Api";
-import { HeaderContentDto, HeaderPhotoDto } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { useDimensions } from "../../../Shared/Hooks";
 import { Link, RenderHtml, Skeleton } from "../../../Shared/Components";
+import { ButtonProps, HeaderViewProps, RenderPictureProps } from "./Types";
 import Validate from "validate.js";
 import "./headerView.css";
-
-interface HeaderViewProps {
-    className?: string;
-}
-
-interface RenderPictureProps {
-    sources: HeaderPhotoDto | undefined;
-}
-
-interface ButtonProps extends HeaderContentDto {
-    isLoading: boolean;
-}
 
 const TertiaryButton = (props: ButtonProps): React.ReactElement => (
     <Link to={props?.tertiaryButton?.href ?? ""} className="link">

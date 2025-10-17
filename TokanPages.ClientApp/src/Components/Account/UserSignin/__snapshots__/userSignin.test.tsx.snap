@@ -76,7 +76,7 @@ Object {
                           class="bulma-icon bulma-is-right text-field-with-password"
                         >
                           <button
-                            style="height: 48px; width: 48px;"
+                            style="height: 2rem; width: 2rem;"
                           >
                             <div>
                               <svg
@@ -329,7 +329,7 @@ Object {
                         class="bulma-icon bulma-is-right text-field-with-password"
                       >
                         <button
-                          style="height: 48px; width: 48px;"
+                          style="height: 2rem; width: 2rem;"
                         >
                           <div>
                             <svg

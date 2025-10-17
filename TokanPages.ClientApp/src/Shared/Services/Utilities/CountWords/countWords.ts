@@ -1,8 +1,6 @@
-interface Properties {
-    inputText: string | undefined;
-}
+import { CountWordsProps } from "./Types";
 
-export const CountWords = (props: Properties): number => {
+export const CountWords = (props: CountWordsProps): number => {
     if (props.inputText === undefined) {
         return 0;
     }

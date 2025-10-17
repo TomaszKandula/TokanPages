@@ -1,19 +1,7 @@
 import * as React from "react";
 import { ContentDto } from "../../../../Api/Models";
-import { ViewProperties } from "../../../../Shared/Abstractions";
-import { CustomCard, Icon, ProgressBar } from "../../../../Shared/Components";
-import { ExtendedViewProps } from "../newsletterRemove";
-
-interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {
-    isMobile: boolean;
-    hasEmptyId: boolean;
-    contentPre: ContentDto;
-    contentPost: ContentDto;
-    buttonHandler: () => void;
-    buttonState: boolean;
-    progress: boolean;
-    isRemoved: boolean;
-}
+import { Card, Icon, ProgressBar } from "../../../../Shared/Components";
+import { NewsletterRemoveViewProps } from "../../Types";
 
 const ActiveButton = (props: NewsletterRemoveViewProps): React.ReactElement => {
     const content: ContentDto = props.isRemoved ? props.contentPost : props.contentPre;
@@ -35,7 +23,7 @@ export const NewsletterRemoveView = (props: NewsletterRemoveViewProps): React.Re
         <section className={props.className}>
             <div className="bulma-container bulma-is-max-desktop">
                 <div className="py-6">
-                    <CustomCard
+                    <Card
                         isLoading={props.isLoading}
                         caption={content.caption}
                         text={[content.text1, content.text2, content.text3]}

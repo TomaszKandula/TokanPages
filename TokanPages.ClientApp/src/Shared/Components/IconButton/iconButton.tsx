@@ -1,23 +1,12 @@
 import * as React from "react";
-import { ReactMouseEvent } from "../../../Shared/types";
 import { ClassListAdd, ClassListClear } from "../../../Shared/Services/Utilities";
+import { IconButtonProps } from "./Types";
 import "./iconButton.css";
-
-interface IconButtonProps {
-    size?: number;
-    children: React.ReactElement | React.ReactElement[];
-    hasNoHoverEffect?: boolean;
-    className?: string;
-    isDisabled?: boolean;
-    hasGreyBackground?: boolean;
-    onClick?: (event: ReactMouseEvent) => void;
-    onMouseDown?: (event: ReactMouseEvent) => void;
-}
 
 const baseClasses = ["icon-button-base", "is-flex", "is-align-self-center"];
 
 export const IconButton = (props: IconButtonProps): React.ReactElement => {
-    const size = props.size ?? 48;
+    const size = props.size ?? 2.0;
     const ref = React.useRef<HTMLButtonElement>(null);
 
     const buttonHoverable = props.hasGreyBackground ? "icon-button-hoverable-grey" : "icon-button-hoverable";
@@ -65,7 +54,7 @@ export const IconButton = (props: IconButtonProps): React.ReactElement => {
             ref={ref}
             onClick={props.onClick}
             onMouseDown={props.onMouseDown}
-            style={{ height: size, width: size }}
+            style={{ height: `${size}rem`, width: `${size}rem` }}
             disabled={props.isDisabled}
         >
             {props.children}

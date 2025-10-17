@@ -6,9 +6,14 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="backdrop cookie-window-open"
+        class="cookie-window-open"
         data-testid="application-cookie-view"
       >
+        <div
+          aria-hidden="true"
+          class="standard-backdrop"
+          style="opacity: 1; z-index: 9000;"
+        />
         <div
           class="cookie-window"
           data-testid="cookie-window-prompt"
@@ -137,9 +142,14 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="backdrop cookie-window-open"
+      class="cookie-window-open"
       data-testid="application-cookie-view"
     >
+      <div
+        aria-hidden="true"
+        class="standard-backdrop"
+        style="opacity: 1; z-index: 9000;"
+      />
       <div
         class="cookie-window"
         data-testid="cookie-window-prompt"
@@ -325,9 +335,14 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="backdrop cookie-window-open"
+        class="cookie-window-open"
         data-testid="application-cookie-view"
       >
+        <div
+          aria-hidden="true"
+          class="standard-backdrop"
+          style="opacity: 1; z-index: 9000;"
+        />
         <div
           class="cookie-window"
           data-testid="cookie-window-prompt"
@@ -385,9 +400,14 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="backdrop cookie-window-open"
+      class="cookie-window-open"
       data-testid="application-cookie-view"
     >
+      <div
+        aria-hidden="true"
+        class="standard-backdrop"
+        style="opacity: 1; z-index: 9000;"
+      />
       <div
         class="cookie-window"
         data-testid="cookie-window-prompt"
@@ -502,9 +522,14 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="backdrop cookie-window-open"
+        class="cookie-window-open"
         data-testid="application-cookie-view"
       >
+        <div
+          aria-hidden="true"
+          class="standard-backdrop"
+          style="opacity: 1; z-index: 9000;"
+        />
         <div
           class="cookie-window"
           data-testid="cookie-window-loading"
@@ -541,9 +566,14 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="backdrop cookie-window-open"
+      class="cookie-window-open"
       data-testid="application-cookie-view"
     >
+      <div
+        aria-hidden="true"
+        class="standard-backdrop"
+        style="opacity: 1; z-index: 9000;"
+      />
       <div
         class="cookie-window"
         data-testid="cookie-window-loading"

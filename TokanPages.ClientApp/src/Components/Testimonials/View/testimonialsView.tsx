@@ -1,25 +1,8 @@
 import * as React from "react";
 import { GET_IMAGES_URL } from "../../../Api";
-import { ViewProperties } from "../../../Shared/Abstractions";
-import { Animated, CustomImage, Collapsible, Skeleton, RenderHtml, Link, Icon } from "../../../Shared/Components";
+import { Animated, Image, Collapsible, Skeleton, RenderHtml, Link, Icon } from "../../../Shared/Components";
+import { TestimonialsViewProps } from "../Types";
 import "./testimonialsView.css";
-
-interface TestimonialItemProps {
-    photo: string;
-    name: string;
-    link: string;
-    occupation: string;
-    text: string;
-}
-
-interface TestimonialsViewProps extends ViewProperties {
-    caption: string;
-    subtitle: string;
-    Testimonial1: TestimonialItemProps;
-    Testimonial2: TestimonialItemProps;
-    Testimonial3: TestimonialItemProps;
-    className?: string;
-}
 
 export const TestimonialsView = (props: TestimonialsViewProps): React.ReactElement => (
     <section className={props.className}>
@@ -35,7 +18,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                         <Animated dataAos="fade-up" dataAosDelay={350}>
                             <div className="bulma-card">
                                 <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
-                                    <CustomImage
+                                    <Image
                                         base={GET_IMAGES_URL}
                                         source={props.Testimonial1.photo}
                                         className="testimonials-card-image"
@@ -59,7 +42,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         <div className="is-flex is-justify-content-center">
                                             <Link to={props.Testimonial1.link} aria-label={props.Testimonial1.name}>
                                                 <figure className="bulma-image bulma-is-24x24">
-                                                    <Icon name="LinkedIn" size={1.5} />
+                                                    <Icon name="LinkedIn" size={1.5} className="has-text-black" />
                                                 </figure>
                                             </Link>
                                         </div>
@@ -86,7 +69,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                         <Animated dataAos="fade-up" dataAosDelay={150}>
                             <div className="bulma-card">
                                 <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
-                                    <CustomImage
+                                    <Image
                                         base={GET_IMAGES_URL}
                                         source={props.Testimonial2.photo}
                                         className="testimonials-card-image"
@@ -110,7 +93,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         <div className="is-flex is-justify-content-center">
                                             <Link to={props.Testimonial2.link} aria-label={props.Testimonial2.name}>
                                                 <figure className="bulma-image bulma-is-24x24">
-                                                    <Icon name="LinkedIn" size={1.5} />
+                                                    <Icon name="LinkedIn" size={1.5} className="has-text-black" />
                                                 </figure>
                                             </Link>
                                         </div>
@@ -137,7 +120,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                         <Animated dataAos="fade-up" dataAosDelay={250}>
                             <div className="bulma-card">
                                 <Skeleton isLoading={props.isLoading} className="testimonials-card-image">
-                                    <CustomImage
+                                    <Image
                                         base={GET_IMAGES_URL}
                                         source={props.Testimonial3.photo}
                                         className="testimonials-card-image"
@@ -161,7 +144,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         <div className="is-flex is-justify-content-center">
                                             <Link to={props.Testimonial3.link} aria-label={props.Testimonial3.name}>
                                                 <figure className="bulma-image bulma-is-24x24">
-                                                    <Icon name="LinkedIn" size={1.5} />
+                                                    <Icon name="LinkedIn" size={1.5} className="has-text-black" />
                                                 </figure>
                                             </Link>
                                         </div>

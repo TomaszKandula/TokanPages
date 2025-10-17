@@ -1,7 +1,7 @@
 import * as React from "react";
 import { GetDateTime } from "../../../../Shared/Services/Formatters";
 import { Icon } from "../../../../Shared/Components";
-import { FigoureSize } from "../../../../Shared/enums";
+import { FigoureSize } from "../../../../Shared/Enums";
 import { AuthenticateUserResultDto, UserInfoProps, UserPermissionDto, UserRoleDto } from "../../../../Api/Models";
 import { UserAvatar } from "../../UserAvatar";
 import { v4 as uuidv4 } from "uuid";

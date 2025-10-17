@@ -1,7 +1,7 @@
 import Validate from "validate.js";
-import { SigninFormInput } from "..";
+import { ValidateSigninFormProps } from "../Types";
 
-export const ValidateSigninForm = (props: SigninFormInput): object | undefined => {
+export const ValidateSigninForm = (props: ValidateSigninFormProps): object | undefined => {
     const constraints = {
         email: {
             email: {

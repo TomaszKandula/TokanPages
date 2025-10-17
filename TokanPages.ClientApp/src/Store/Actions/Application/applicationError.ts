@@ -1,4 +1,4 @@
-import { DialogType } from "../../../Shared/enums";
+import { DialogType } from "../../../Shared/Enums";
 import { ApplicationAction } from "../../Configuration";
 
 export const CLEAR = "CLEAR_ERROR";

@@ -1,12 +1,12 @@
 import * as React from "react";
 import { Avatar, IconButton, Media } from "../../../../../Shared/Components";
-import { FigoureSize } from "../../../../../Shared/enums";
-import { BaseProperties } from "../../Abstractions";
+import { FigoureSize } from "../../../../../Shared/Enums";
+import { NavigationViewBaseProps } from "../../Types";
 import Validate from "validate.js";
 
 const ANONYMOUS_LETTER = "A";
 
-const RenderAvatar = (props: BaseProperties): React.ReactElement => {
+const RenderAvatar = (props: NavigationViewBaseProps): React.ReactElement => {
     if (props.isAnonymous) {
         return (
             <Avatar alt="User avatar" title="Avatar" size={FigoureSize.medium}>
@@ -26,7 +26,7 @@ const RenderAvatar = (props: BaseProperties): React.ReactElement => {
     }
 };
 
-export const RenderAvatarIcon = (props: BaseProperties): React.ReactElement => (
+export const RenderAvatarIcon = (props: NavigationViewBaseProps): React.ReactElement => (
     <Media.DesktopOnly>
         <IconButton onClick={props.infoHandler} className="mr-4">
             <RenderAvatar {...props} />

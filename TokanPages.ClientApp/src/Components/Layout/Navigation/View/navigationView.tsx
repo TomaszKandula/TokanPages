@@ -1,16 +1,20 @@
 import * as React from "react";
 import { GET_IMAGES_URL } from "../../../../Api";
-import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP } from "../../../../Shared/constants";
-import { AppBar, CustomImage, Drawer, Icon, IconButton } from "../../../../Shared/Components";
+import { APP_BAR_HEIGHT_DESKTOP, APP_BAR_HEIGHT_NON_DESKTOP } from "../../../../Shared/Constants";
+import { ApplicationBar, Image, Drawer, Icon, IconButton } from "../../../../Shared/Components";
 import { RenderSideMenu, RenderToolbarLargeScreen, RenderToolbarSmallScreen } from "../Components";
-import { NavigationViewProps } from "../Abstractions";
+import { NavigationViewProps } from "../Types";
 
 const RenderBackNavigationOnly = (props: NavigationViewProps): React.ReactElement => (
-    <AppBar height={APP_BAR_HEIGHT_DESKTOP}>
-        <IconButton hasNoHoverEffect={props.media.isMobile || props.media.isTablet} onClick={props.backPathHandler}>
+    <ApplicationBar height={APP_BAR_HEIGHT_DESKTOP}>
+        <IconButton
+            size={3.0}
+            hasNoHoverEffect={props.media.isMobile || props.media.isTablet}
+            onClick={props.backPathHandler}
+        >
             <Icon name="ArrowLeft" size={1.5} />
         </IconButton>
-    </AppBar>
+    </ApplicationBar>
 );
 
 const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement => {
@@ -23,12 +27,12 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
     }, [props.isMenuOpen, isClose]);
 
     return (
-        <AppBar height={height} offset={2}>
+        <ApplicationBar height={height} offset={2}>
             <RenderToolbarLargeScreen {...props} />
             <RenderToolbarSmallScreen {...props} />
             <Drawer isOpen={props.isMenuOpen} isExternalClose={isClose} onTrigger={props.triggerSideMenu}>
-                <div className="is-flex is-justify-content-space-between">
-                    <CustomImage
+                <div className="is-flex is-justify-content-space-between is-align-items-center">
+                    <Image
                         base={GET_IMAGES_URL}
                         source={props.navigation?.menu?.image}
                         title="Logo"
@@ -37,7 +41,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
                         width={40}
                         height={40}
                     />
-                    <IconButton hasNoHoverEffect className="no-select mr-2">
+                    <IconButton size={3.0} hasNoHoverEffect className="no-select mr-2">
                         <Icon
                             name="WindowClose"
                             size={1.5}
@@ -54,7 +58,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
                     items={props.navigation?.menu?.items}
                 />
             </Drawer>
-        </AppBar>
+        </ApplicationBar>
     );
 };
 

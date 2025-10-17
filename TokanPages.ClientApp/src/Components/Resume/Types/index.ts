@@ -1,12 +1,13 @@
 import { TagType } from "../../../Shared/Components/RenderHtml/types";
 import { ExperienceItemProps, ResumeContentDto, TestimonialsContentDto } from "../../../Api/Models";
-import { ViewProperties } from "../../../Shared/Abstractions";
+import { ViewProperties } from "../../../Shared/Types";
 
 export interface ProcessedExperienceItemProps extends ExperienceItemProps {
     timespan: number;
 }
 
 export interface ResumeViewProps extends ViewProperties {
+    isSnapshot: boolean;
     className?: string;
     languageId: string;
     page: ResumeContentDto;

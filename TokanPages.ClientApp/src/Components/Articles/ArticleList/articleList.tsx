@@ -4,9 +4,9 @@ import { ArticleCategory } from "../../../Api/Models";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleListingAction } from "../../../Store/Actions";
 import { useDimensions } from "../../../Shared/Hooks";
-import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/types";
+import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/Types";
 import { HasSnapshotMode } from "../../../Shared/Services/SpaCaching";
-import { ARTICLES_PAGE_SIZE, ARTICLES_SELECT_ALL_ID } from "../../../Shared/constants";
+import { ARTICLES_PAGE_SIZE, ARTICLES_SELECT_ALL_ID } from "../../../Shared/Constants";
 import { UpdatePageParam } from "../../../Shared/Services/Utilities";
 import { ArticleListProps, SearchInputProps } from "./Types";
 import { ArticleListView } from "./View/articleListView";
@@ -172,12 +172,11 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     React.useEffect(() => {
         if (isCategoryChanged) {
             setIsCategoryChanged(false);
-            const pagingInfo = article.payload.pagingInfo;
-            UpdatePageParam(pagingInfo.pageNumber);
+            UpdatePageParam(1);
             dispatch(
                 ArticleListingAction.get({
                     ...BaseRequest,
-                    pageNumber: pagingInfo.pageNumber,
+                    pageNumber: 1,
                     pageSize: ARTICLES_PAGE_SIZE,
                     phrase: form.searchInput,
                     categoryId: selection,

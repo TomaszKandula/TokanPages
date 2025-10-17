@@ -27,7 +27,9 @@ public class CachingProcessingJob : CronJob
 
     private readonly string[]? _filesToCache;
     
-    private readonly List<RoutePath> _paths;
+    private readonly List<RoutePath> _pagePaths;
+
+    private readonly List<RoutePath> _pdfPaths;
 
     /// <summary>
     /// CRON job implementation.
@@ -45,7 +47,8 @@ public class CachingProcessingJob : CronJob
         _getActionUrl = config.GetActionUrl ?? "";
         _postActionUrl = config.PostActionUrl ?? "";
         _filesToCache = config.FilesToCache;
-        _paths = config.RoutePaths;
+        _pagePaths = config.PageRoutePaths;
+        _pdfPaths = config.PdfRoutePaths;
     }
 
     /// <summary>
@@ -58,17 +61,30 @@ public class CachingProcessingJob : CronJob
         _loggerService.LogInformation($"{ServiceName}: working...");
         await _cachingService.SaveStaticFiles(_filesToCache, _getActionUrl, _postActionUrl);
 
-        if (_paths.Count == 0)
+        if (_pagePaths.Count == 0)
         {
             _loggerService.LogInformation($"{ServiceName}: no routes registered for caching..., quitting the job...");
             return;
         }
 
-        foreach (var path in _paths)
+        foreach (var pagePath in _pagePaths)
         {
-            var page = await _cachingService.RenderStaticPage(path.Url, _postActionUrl, path.Name);
+            var page = await _cachingService.RenderStaticPage(pagePath.Url, _postActionUrl, pagePath.Name);
             if (!string.IsNullOrWhiteSpace(page))
-                _loggerService.LogInformation($"{ServiceName}: page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
+                _loggerService.LogInformation($"{ServiceName}: page '{pagePath.Name}' has been rendered and saved. Url: '{pagePath.Url}'.");
+        }
+
+        if (_pdfPaths.Count == 0)
+        {
+            _loggerService.LogInformation($"{ServiceName}: no routes registered for generating PDFs..., quitting the job...");
+            return;
+        }
+
+        foreach (var pdfPath in _pdfPaths)
+        {
+            var pdf = await _cachingService.GeneratePdf(pdfPath.Url, pdfPath.Name);
+            if (!string.IsNullOrWhiteSpace(pdf))
+                _loggerService.LogInformation($"{ServiceName}: PDF file '{pdfPath.Name}' has been rendered and saved. Url: '{pdfPath.Url}'.");
         }
     }
 
@@ -91,12 +107,21 @@ public class CachingProcessingJob : CronJob
             }
         }
 
-        _loggerService.LogInformation($"{ServiceName}: {_paths.Count} SPA pages to be cached.");
-        if (_paths.Count > 0)
+        _loggerService.LogInformation($"{ServiceName}: {_pagePaths.Count} SPA pages to be cached.");
+        if (_pagePaths.Count > 0)
         {
-            foreach (var item in _paths)
+            foreach (var item in _pagePaths)
             {
                 _loggerService.LogInformation($"{ServiceName}: ...to be cached: {item.Name} (url: {item.Url})");
+            }
+        }
+
+        _loggerService.LogInformation($"{ServiceName}: {_pdfPaths.Count} pages for PDF printouts.");
+        if (_pdfPaths.Count > 0)
+        {
+            foreach (var item in _pdfPaths)
+            {
+                _loggerService.LogInformation($"{ServiceName}: ...to be printed to PDF: {item.Name} (url: {item.Url})");
             }
         }
 

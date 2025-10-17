@@ -1,16 +1,7 @@
 import * as React from "react";
+import { ProgressStyleBaseProperties, ProgressStyleProps } from "../Types";
 
-interface BaseProperties {
-    height: number;
-    bgcolor: string;
-    duration: number;
-}
-
-interface Properties extends BaseProperties {
-    width: number;
-}
-
-const ProgressStyle = (props: Properties): React.CSSProperties => ({
+const ProgressStyle = (props: ProgressStyleProps): React.CSSProperties => ({
     margin: 0,
     padding: 0,
     position: "fixed",
@@ -24,7 +15,7 @@ const ProgressStyle = (props: Properties): React.CSSProperties => ({
     transitionTimingFunction: "ease-out",
 });
 
-export const ProgressOnScroll = (props: BaseProperties) => {
+export const ProgressOnScroll = (props: ProgressStyleBaseProperties) => {
     const [width, setWidth] = React.useState(0);
 
     const Scrolling = () => {

@@ -6,11 +6,8 @@ import { UserDataStoreAction, ApplicationLanguageAction } from "../../../Store/A
 import { ApplicationState } from "../../../Store/Configuration";
 import { useDimensions, useQuery } from "../../../Shared/Hooks";
 import { NavigationView } from "./View/navigationView";
+import { NavigationProps } from "./Types";
 import Validate from "validate.js";
-
-interface NavigationProps {
-    backNavigationOnly?: boolean;
-}
 
 export const Navigation = (props: NavigationProps): React.ReactElement => {
     const media = useDimensions();

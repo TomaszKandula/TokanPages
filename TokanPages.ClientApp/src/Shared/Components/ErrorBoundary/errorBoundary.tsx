@@ -1,14 +1,7 @@
-import React, { Component, ErrorInfo, ReactNode } from "react";
-import { ErrorBoundaryView } from "./errorBoundaryView";
+import React, { Component, ErrorInfo } from "react";
 import { useApiAction } from "../../../Shared/Hooks";
-
-interface Props {
-    children?: ReactNode;
-}
-
-interface State {
-    hasError: boolean;
-}
+import { Props, State } from "./Types";
+import { ErrorBoundaryView } from "./errorBoundaryView";
 
 export class ErrorBoundary extends Component<Props, State> {
     public state: State = {

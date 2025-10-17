@@ -1,7 +1,7 @@
 import "../../../../setupTests";
 import React from "react";
 import { render } from "@testing-library/react";
-import { IconType } from "../../../enums";
+import { IconType } from "../../../Enums";
 import { ApplicationDialogBoxView } from "../View/applicationDialogBoxView";
 
 describe("test view component for application diaog box", () => {

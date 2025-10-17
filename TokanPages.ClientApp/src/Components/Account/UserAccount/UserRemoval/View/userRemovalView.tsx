@@ -1,15 +1,6 @@
 import * as React from "react";
-import { SectionAccountRemoval } from "../../../../../Api/Models";
-import { ViewProperties } from "../../../../../Shared/Abstractions";
 import { ProgressBar, RenderParagraphs, Skeleton } from "../../../../../Shared/Components";
-import { UserRemovalProps } from "../userRemoval";
-
-interface UserRemovalViewProps extends ViewProperties, UserRemovalProps {
-    isMobile: boolean;
-    deleteButtonHandler: () => void;
-    deleteAccountProgress: boolean;
-    sectionAccountRemoval: SectionAccountRemoval;
-}
+import { UserRemovalViewProps } from "../Types";
 
 const DeleteAccountButton = (props: UserRemovalViewProps): React.ReactElement => (
     <button

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TextAreaProps } from "./types";
+import { TextAreaProps } from "../Types";
 
 export const TextAreaView = (props: TextAreaProps): React.ReactElement => {
     const loading = props.isLoading ? "bulma-is-loading" : "";

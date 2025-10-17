@@ -1,7 +1,7 @@
 import { Action, Reducer } from "redux";
 import { ApplicationDefault } from "../../Configuration";
 import { UserEmailVerificationState } from "../../States";
-import { OperationStatus } from "../../../Shared/enums";
+import { OperationStatus } from "../../../Shared/Enums";
 
 import { TKnownActions, VERIFY, CLEAR, RESPONSE } from "../../Actions/Users/userEmailVerification";
 

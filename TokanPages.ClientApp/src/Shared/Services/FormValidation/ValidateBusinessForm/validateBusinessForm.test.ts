@@ -1,11 +1,11 @@
 import "../../../../setupTests";
-import { BusinessFormInput } from "../Abstractions/BusinessFormInput";
+import { ValidateBusinessFormProps } from "../Types";
 import { ValidateBusinessForm } from "./validateBusinessForm";
 
 describe("verify business form validation methods", () => {
     it("should return undefined, when business form is filled correctly.", () => {
         // Arrange
-        const form: BusinessFormInput = {
+        const form: ValidateBusinessFormProps = {
             company: "Espana Software",
             firstName: "Ester",
             lastName: "Exposito",
@@ -25,7 +25,7 @@ describe("verify business form validation methods", () => {
 
     it("should return undefined, when business form is filled correctly without TechStack.", () => {
         // Arrange
-        const form: BusinessFormInput = {
+        const form: ValidateBusinessFormProps = {
             company: "Espana Software",
             firstName: "Ester",
             lastName: "Exposito",
@@ -44,7 +44,7 @@ describe("verify business form validation methods", () => {
 
     it("should return defined, when business form is missing 'company'.", () => {
         // Arrange
-        const form: BusinessFormInput = {
+        const form: ValidateBusinessFormProps = {
             company: "",
             firstName: "Ester",
             lastName: "Exposito",
@@ -64,7 +64,7 @@ describe("verify business form validation methods", () => {
 
     it("should return defined, when business form is missing 'firstName'.", () => {
         // Arrange
-        const form: BusinessFormInput = {
+        const form: ValidateBusinessFormProps = {
             company: "Espana Software",
             firstName: "",
             lastName: "Exposito",
@@ -84,7 +84,7 @@ describe("verify business form validation methods", () => {
 
     it("should return defined, when business form is missing 'lastName'.", () => {
         // Arrange
-        const form: BusinessFormInput = {
+        const form: ValidateBusinessFormProps = {
             company: "Espana Software",
             firstName: "Ester",
             lastName: "",
@@ -104,7 +104,7 @@ describe("verify business form validation methods", () => {
 
     it("should return defined, when business form is missing 'email'.", () => {
         // Arrange
-        const form: BusinessFormInput = {
+        const form: ValidateBusinessFormProps = {
             company: "Espana Software",
             firstName: "Ester",
             lastName: "Exposito",
@@ -124,7 +124,7 @@ describe("verify business form validation methods", () => {
 
     it("should return defined, when business form is missing 'description'.", () => {
         // Arrange
-        const form: BusinessFormInput = {
+        const form: ValidateBusinessFormProps = {
             company: "Espana Software",
             firstName: "Ester",
             lastName: "Exposito",
@@ -144,7 +144,7 @@ describe("verify business form validation methods", () => {
 
     it("should return defined, when business form is missing 'techStack'.", () => {
         // Arrange
-        const form: BusinessFormInput = {
+        const form: ValidateBusinessFormProps = {
             company: "Espana Software",
             firstName: "Ester",
             lastName: "Exposito",
@@ -163,7 +163,7 @@ describe("verify business form validation methods", () => {
 
     it("should return defined, when business form is missing 'services'.", () => {
         // Arrange
-        const form: BusinessFormInput = {
+        const form: ValidateBusinessFormProps = {
             company: "Espana Software",
             firstName: "Ester",
             lastName: "Exposito",

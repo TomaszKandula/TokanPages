@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Avatar } from "../../../../Shared/Components";
-import { FigoureSize } from "../../../../Shared/enums";
+import { FigoureSize } from "../../../../Shared/Enums";
 import Validate from "validate.js";
 
 interface Properties {

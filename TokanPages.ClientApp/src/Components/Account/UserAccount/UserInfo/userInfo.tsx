@@ -11,21 +11,13 @@ import { ExecuteApiActionProps, NOTIFICATION_STATUS } from "../../../../Api";
 import { NotificationData, UserActivationData } from "../../../../Api/Models";
 import { useApiAction, useDimensions, useInterval } from "../../../../Shared/Hooks";
 import { useWebSockets } from "../../../../Shared/Services/WebSockets";
-import { AccountFormInput, ValidateAccountForm } from "../../../../Shared/Services/FormValidation";
-import { RECEIVED_ERROR_MESSAGE, SET_INTERVAL_DELAY } from "../../../../Shared/constants";
-import { IconType, OperationStatus } from "../../../../Shared/enums";
-import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../Shared/types";
+import { ValidateAccountForm, ValidateAccountFormProps } from "../../../../Shared/Services/FormValidation";
+import { RECEIVED_ERROR_MESSAGE, SET_INTERVAL_DELAY } from "../../../../Shared/Constants";
+import { IconType, OperationStatus } from "../../../../Shared/Enums";
+import { ReactChangeEvent, ReactChangeTextEvent, ReactKeyboardEvent } from "../../../../Shared/Types";
 import { UserInfoView } from "./View/userInfoView";
+import { UpdateStoreProps, UserInfoProps } from "./Types";
 import Validate from "validate.js";
-
-interface UpdateStoreProps {
-    canUpdate: boolean;
-    isVerified: boolean;
-}
-
-export interface UserInfoProps {
-    className?: string;
-}
 
 export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const dispatch = useDispatch();
@@ -50,7 +42,7 @@ export const UserInfo = (props: UserInfoProps): React.ReactElement => {
     const hasVerificationFinished = verification?.status === OperationStatus.hasFinished;
     const hasError = error?.errorMessage === RECEIVED_ERROR_MESSAGE;
 
-    const formDefault: AccountFormInput = {
+    const formDefault: ValidateAccountFormProps = {
         ...store,
         description: store.shortBio ?? "",
     };

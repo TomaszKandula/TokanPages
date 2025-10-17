@@ -1,11 +1,11 @@
 import { Action, Reducer } from "redux";
 import { ApplicationErrorState } from "../../States";
 import { ApplicationDefault } from "../../Configuration";
-import { DialogType } from "../../../Shared/enums";
+import { DialogType } from "../../../Shared/Enums";
 
 import { CLEAR, RAISE, TErrorActions } from "../../Actions/Application/applicationError";
 
-import { NO_ERRORS, RECEIVED_ERROR_MESSAGE } from "../../../Shared/constants";
+import { NO_ERRORS, RECEIVED_ERROR_MESSAGE } from "../../../Shared/Constants";
 
 export const ApplicationError: Reducer<ApplicationErrorState> = (
     state: ApplicationErrorState | undefined,

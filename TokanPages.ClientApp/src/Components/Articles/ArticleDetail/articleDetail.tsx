@@ -5,25 +5,17 @@ import { GET_IMAGES_URL } from "../../../Api/Paths";
 import { ApplicationState } from "../../../Store/Configuration";
 import { ArticleSelectionAction, ArticleUpdateAction } from "../../../Store/Actions";
 import { GetDateTime } from "../../../Shared/Services/Formatters";
-import { DEFAULT_USER_IMAGE, LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/constants";
+import { DEFAULT_USER_IMAGE, LIKES_LIMIT_FOR_ANONYM, LIKES_LIMIT_FOR_USER } from "../../../Shared/Constants";
 import { Author } from "../../../Shared/Components/RenderContent/Models";
 import { UserAvatar } from "../../../Shared/Components/UserAvatar";
 import { MapLanguage } from "../../../Shared/Services/Utilities";
 import { useDimensions } from "../../../Shared/Hooks";
-import { FigoureSize } from "../../../Shared/enums";
-import { ArticleContent } from "./Helpers/articleContent";
-import { LikesLeft } from "./Helpers/likesLeft";
-import { ReadTime } from "./Helpers/readTime";
+import { FigoureSize } from "../../../Shared/Enums";
+import { ArticleContent } from "./Utilities/articleContent";
+import { ReadTime, LikesLeft } from "./Utilities";
+import { ArticleDetailProps } from "./Types";
 import { ArticleDetailView } from "./View/articleDetailView";
 import Validate from "validate.js";
-
-export interface ExtendedViewProps {
-    className?: string;
-}
-
-export interface ArticleDetailProps extends ExtendedViewProps {
-    title: string;
-}
 
 const fallbackImagePath = `${GET_IMAGES_URL}/avatars/${DEFAULT_USER_IMAGE}`;
 

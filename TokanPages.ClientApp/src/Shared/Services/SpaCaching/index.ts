@@ -1,5 +1,5 @@
 import { ApplicationState } from "../../../Store/Configuration";
-import { PRERENDER_PATH_PREFIX } from "../../../Shared/constants";
+import { PRERENDER_PATH_PREFIX } from "../../../Shared/Constants";
 import base64 from "base-64";
 import utf8 from "utf8";
 

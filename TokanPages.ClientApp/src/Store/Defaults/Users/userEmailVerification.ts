@@ -1,4 +1,4 @@
-import { OperationStatus } from "../../../Shared/enums";
+import { OperationStatus } from "../../../Shared/Enums";
 import { UserEmailVerificationState } from "../../../Store/States";
 
 export const UserEmailVerification: UserEmailVerificationState = {

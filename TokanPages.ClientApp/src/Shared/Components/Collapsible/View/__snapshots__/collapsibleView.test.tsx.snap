@@ -33,7 +33,7 @@ Object {
           </div>
         </div>
         <button
-          style="height: 48px; width: 48px;"
+          style="height: 3rem; width: 3rem;"
         >
           <div>
             <svg
@@ -81,7 +81,7 @@ Object {
         </div>
       </div>
       <button
-        style="height: 48px; width: 48px;"
+        style="height: 3rem; width: 3rem;"
       >
         <div>
           <svg
@@ -186,7 +186,7 @@ Object {
           </div>
         </div>
         <button
-          style="height: 48px; width: 48px;"
+          style="height: 3rem; width: 3rem;"
         >
           <div>
             <svg
@@ -234,7 +234,7 @@ Object {
         </div>
       </div>
       <button
-        style="height: 48px; width: 48px;"
+        style="height: 3rem; width: 3rem;"
       >
         <div>
           <svg

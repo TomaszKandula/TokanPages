@@ -1,4 +1,4 @@
-import { OperationStatus } from "../../../Shared/enums";
+import { OperationStatus } from "../../../Shared/Enums";
 
 export interface UserSigninState {
     status: OperationStatus;

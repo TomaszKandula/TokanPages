@@ -1,9 +1,9 @@
 export { UpdateComponents, GetVerifiedComponents } from "./UpdateComponents";
-export { CountWords } from "./CountWords/countWords";
-export { GetReadTime } from "./GetReadTime/getReadTime";
-export { GetShortText } from "./GetShortText/getShortText";
-export { GetTextError } from "./GetTextError/getTextError";
-export { GetImageUrl } from "./GetImageUrl/getImageUrl";
+export { CountWords } from "./CountWords";
+export { GetReadTime } from "./GetReadTime";
+export { GetShortText } from "./GetShortText";
+export { GetTextError } from "./GetTextError";
+export { GetImageUrl } from "./GetImageUrl";
 export { MapLanguage } from "./MapLanguage";
 export { TryParse } from "./TryParse";
 export { ProcessQueryParams } from "./ProcessQueryParams";

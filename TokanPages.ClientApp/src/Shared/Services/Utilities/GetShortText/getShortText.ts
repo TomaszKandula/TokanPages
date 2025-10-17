@@ -1,9 +1,6 @@
-interface Properties {
-    value: string;
-    limit: number;
-}
+import { GetShortTextProps } from "./Types";
 
-export const GetShortText = (props: Properties): string => {
+export const GetShortText = (props: GetShortTextProps): string => {
     if (props.value === undefined || props.value === "") return "";
 
     let result = props.value;
