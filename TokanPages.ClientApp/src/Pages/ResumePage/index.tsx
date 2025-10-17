@@ -7,7 +7,7 @@ import { Breadcrumb } from "../../Shared/Components";
 import { Footer, Navigation } from "../../Components/Layout";
 import { Resume } from "../../Components/Resume";
 
-const RESUME_NAME_FRAGMENT= "-resume-tom-kandula.pdf";
+const RESUME_NAME_FRAGMENT = "-resume-tom-kandula.pdf";
 
 export const ResumePage = (): React.ReactElement => {
     const heading = useUnhead("ResumePage");

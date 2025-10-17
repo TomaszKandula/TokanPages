@@ -45,37 +45,39 @@ const MakeStyledBreadcrumb = (props: MakeStyledBreadcrumbProps): React.ReactElem
 export const BreadcrumbView = (props: BreadcrumbViewProps): React.ReactElement => (
     <div className={`bulma-container bulma-is-max-tablet pt-6 ${props.media.isMobile ? "px-4" : ""}`}>
         <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={18}>
-            <div className="is-flex is-justify-content-space-between is-align-content-center">
-            <nav className="bulma-breadcrumb bulma-has-arrow-separator m-0">
-                <ul>
-                    <li className="py-1">
-                        <div className="mr-2">
-                            <div
-                                onClick={props.onBackToRoot}
-                                className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable"
-                            >
-                                <Icon name="Home" size={1.0} className="mx-1" />
-                                <span className="pt-2 pr-2 pb-2">{getHomeText(props.navigation)}</span>
-                            </div>
-                        </div>
-                    </li>
-                    <MakeStyledBreadcrumb
-                        pathname={window.location.pathname}
-                        navigation={props.navigation}
-                        onClick={props.onBackToPrevious}
-                    />
-                    {props.hasParam ? (
+            <div className="is-flex is-justify-content-space-between">
+                <nav className="bulma-breadcrumb bulma-has-arrow-separator m-0">
+                    <ul>
                         <li className="py-1">
-                            <div className="mx-2">
-                                <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center">
-                                    <span className="p-2">{toUpperCase(props.paramValue)}</span>
+                            <div className="mr-2">
+                                <div
+                                    onClick={props.onBackToRoot}
+                                    className="custom-chip is-flex is-justify-content-flex-start is-align-items-center is-clickable"
+                                >
+                                    <Icon name="Home" size={1.0} className="mx-1" />
+                                    <span className="pt-2 pr-2 pb-2">{getHomeText(props.navigation)}</span>
                                 </div>
                             </div>
                         </li>
-                    ) : null}
-                </ul>
-            </nav>
-            {!Validate.isEmpty(props.downloadUrl) ? <DownloadAsset url={props.downloadUrl ?? ""} size={1.5} className="has-text-black" /> : null}
+                        <MakeStyledBreadcrumb
+                            pathname={window.location.pathname}
+                            navigation={props.navigation}
+                            onClick={props.onBackToPrevious}
+                        />
+                        {props.hasParam ? (
+                            <li className="py-1">
+                                <div className="mx-2">
+                                    <div className="custom-chip is-flex is-justify-content-flex-start is-align-items-center">
+                                        <span className="p-2">{toUpperCase(props.paramValue)}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        ) : null}
+                    </ul>
+                </nav>
+                {!Validate.isEmpty(props.downloadUrl) ? (
+                    <DownloadAsset url={props.downloadUrl ?? ""} size={1.5} className="has-text-black" />
+                ) : null}
             </div>
         </Skeleton>
         <hr className="my-5" />
