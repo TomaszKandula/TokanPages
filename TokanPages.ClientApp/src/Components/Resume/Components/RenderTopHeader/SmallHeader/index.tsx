@@ -7,7 +7,7 @@ const ICON_SIZE = 1.2;
 
 export const HeaderSmall = (props: ResumeViewProps): React.ReactElement => (
     <>
-        <Skeleton isLoading={props.isLoading} mode="Text" width={100}>
+        <Skeleton isLoading={props.isLoading} mode="Text" width={250} height={20} hasSkeletonCentered>
             <h2 className="is-size-4 has-text-centered has-text-grey-dark has-text-weight-medium is-capitalized">
                 {props.page?.resume?.header?.fullName}
             </h2>

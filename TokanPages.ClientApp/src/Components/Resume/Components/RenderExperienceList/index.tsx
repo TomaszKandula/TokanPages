@@ -17,7 +17,9 @@ export const RenderExperienceList = (props: ResumeViewProps): React.ReactElement
                             <Skeleton isLoading={props.isLoading} width={50} height={24}>
                                 <p className="is-size-5 has-text-weight-bold has-text-grey-dark">{value.companyName}</p>
                             </Skeleton>
-                            <RenderCompanyLink {...value} />
+                            <Skeleton isLoading={props.isLoading} width={24} height={24}>
+                                <RenderCompanyLink {...value} />
+                            </Skeleton>
                         </div>
                         <Skeleton isLoading={props.isLoading} width={100} height={24}>
                             <p className="is-size-5 has-text-grey">{value.contractType}</p>
@@ -56,7 +58,9 @@ export const RenderExperienceList = (props: ResumeViewProps): React.ReactElement
                                 list={value.details}
                                 className="is-size-5 has-text-grey-dark"
                             />
-                            <RenderTags {...value} />
+                            <Skeleton isLoading={props.isLoading} >
+                                <RenderTags {...value} />
+                            </Skeleton>
                         </div>
                     </React.Fragment>
                 ))}
