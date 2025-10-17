@@ -1,8 +1,8 @@
 import React from "react";
-import { OccupationProps } from "Api/Models";
-import { RenderList, Skeleton } from "Shared/Components";
+import { OccupationProps } from "../../../../Api/Models";
+import { RenderList, Skeleton } from "../../../../Shared/Components";
 import { ProcessedExperienceItemProps, ResumeViewProps } from "../../Types";
-import { ProcessTimeSpan } from "../..//Utilities";
+import { ProcessTimeSpan } from "../../Utilities";
 import { RenderCompanyLink } from "../RenderCompanyLink";
 import { RenderTags } from "../RenderTags";
 import { v4 as uuid } from "uuid";
