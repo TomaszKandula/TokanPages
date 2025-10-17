@@ -27,7 +27,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
             <RenderToolbarLargeScreen {...props} />
             <RenderToolbarSmallScreen {...props} />
             <Drawer isOpen={props.isMenuOpen} isExternalClose={isClose} onTrigger={props.triggerSideMenu}>
-                <div className="is-flex is-justify-content-space-between">
+                <div className="is-flex is-justify-content-space-between is-align-items-center">
                     <Image
                         base={GET_IMAGES_URL}
                         source={props.navigation?.menu?.image}
@@ -37,7 +37,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
                         width={40}
                         height={40}
                     />
-                    <IconButton hasNoHoverEffect className="no-select mr-2">
+                    <IconButton size={3.0} hasNoHoverEffect className="no-select mr-2">
                         <Icon
                             name="WindowClose"
                             size={1.5}
