@@ -4,7 +4,9 @@ import { Skeleton } from "../../Skeleton";
 import { PRERENDER_PATH_PREFIX } from "../../../Constants";
 import { BreadcrumbViewProps, MakeStyledBreadcrumbProps } from "./../Types";
 import { getHomeText, pathToRootText, pathToSubitemText, toUpperCase } from "./../Utilities";
+import { DownloadAsset } from "../../../../Shared/Components/DownloadAsset";
 import { v4 as uuidv4 } from "uuid";
+import Validate from "validate.js";
 import "./breadcrumbView.css";
 
 const MakeStyledBreadcrumb = (props: MakeStyledBreadcrumbProps): React.ReactElement | null => {
@@ -43,7 +45,8 @@ const MakeStyledBreadcrumb = (props: MakeStyledBreadcrumbProps): React.ReactElem
 export const BreadcrumbView = (props: BreadcrumbViewProps): React.ReactElement => (
     <div className={`bulma-container bulma-is-max-tablet pt-6 ${props.media.isMobile ? "px-4" : ""}`}>
         <Skeleton isLoading={props.isLoading} mode="Text" width={200} height={18}>
-            <nav className="bulma-breadcrumb bulma-has-arrow-separator">
+            <div className="is-flex is-justify-content-space-between is-align-content-center">
+            <nav className="bulma-breadcrumb bulma-has-arrow-separator m-0">
                 <ul>
                     <li className="py-1">
                         <div className="mr-2">
@@ -72,6 +75,8 @@ export const BreadcrumbView = (props: BreadcrumbViewProps): React.ReactElement =
                     ) : null}
                 </ul>
             </nav>
+            {!Validate.isEmpty(props.downloadUrl) ? <DownloadAsset url={props.downloadUrl ?? ""} size={1.5} className="has-text-black" /> : null}
+            </div>
         </Skeleton>
         <hr className="my-5" />
     </div>

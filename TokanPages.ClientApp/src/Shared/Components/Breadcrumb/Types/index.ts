@@ -3,6 +3,7 @@ import { ItemDto, NavigationContentDto, UserInfoProps } from "../../../../Api/Mo
 
 export interface BreadcrumbBaseProps {
     isLoading: boolean;
+    downloadUrl?: string;
 }
 
 export interface BreadcrumbProps extends BreadcrumbBaseProps {
