@@ -21,7 +21,7 @@ const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => (
             <div className="py-6">
                 <div className="bulma-card m-4">
                     <div className="bulma-card-content p-0">
-                        <div className="is-flex is-justify-content-space-around is-align-items-center">
+                        <div className="is-flex is-justify-content-space-around is-align-items-center py-4">
                             <RenderIconOrLoading
                                 isDocLoading={props.isDocLoading}
                                 hasPdfWorkerError={props.hasPdfWorkerError}
@@ -30,15 +30,16 @@ const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => (
                             <p className="is-size-6 has-text-weight-semibold is-flex is-align-self-center">
                                 {props.currentPage} / {props.numPages}
                             </p>
-                            <div className="is-flex">
-                                <IconButton onClick={props.onPreviousPage}>
-                                    <Icon name="ChevronLeft" size={1.5} />
+                            <div className="is-flex is-gap-1.5">
+                                <IconButton size={2.5} hasGreyBackground onClick={props.onPreviousPage}>
+                                    <Icon name="ChevronLeft" size={1.5} className="has-text-black" />
                                 </IconButton>
-                                <IconButton onClick={props.onNextPage}>
-                                    <Icon name="ChevronRight" size={1.5} />
+                                <IconButton size={2.5} hasGreyBackground onClick={props.onNextPage}>
+                                    <Icon name="ChevronRight" size={1.5} className="has-text-black" />
                                 </IconButton>
                             </div>
                         </div>
+                        <hr className="m-0" />
                         <PdfCanvas
                             pdfDocument={props.pdfDocument}
                             pageNumber={props.currentPage}
