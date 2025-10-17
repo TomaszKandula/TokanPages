@@ -1,3 +1,49 @@
+# [0.176.0](https://github.com/TomaszKandula/TokanPages/compare/v0.175.0...v0.176.0) (2025-10-17)
+
+
+### Bug Fixes
+
+* accomodate to rem values ([387b8a0](https://github.com/TomaszKandula/TokanPages/commit/387b8a06824eb9db1b325649614e000781c8164f))
+* add icon button size, align items ([f79a853](https://github.com/TomaszKandula/TokanPages/commit/f79a853e6c52cd1b97799450fb3ad4d9437f11de))
+* add missing index files ([e47d764](https://github.com/TomaszKandula/TokanPages/commit/e47d764c38a13aa72d64e3769d6d3e00da0cbf41))
+* add size to match previous look ([e6834fe](https://github.com/TomaszKandula/TokanPages/commit/e6834fede9d3b7b995dab128b5ebab390530d0a3))
+* allow to set icon colour ([3c50dc5](https://github.com/TomaszKandula/TokanPages/commit/3c50dc54bb636abaa67b594cc8956328944aaf83))
+* avoid undefined link ([5b4be2c](https://github.com/TomaszKandula/TokanPages/commit/5b4be2c7225600ec5878b45922b3a894e9c1c702))
+* change sizes for icon buttons ([25b83b2](https://github.com/TomaszKandula/TokanPages/commit/25b83b2e7c4e6332e794d875f49f4f25b29db7ac))
+* correct import paths ([8663423](https://github.com/TomaszKandula/TokanPages/commit/8663423eaec95bd2eb32913d5718efa462c912bf))
+* icon size after changes in IconButton ([32ecf42](https://github.com/TomaszKandula/TokanPages/commit/32ecf42a1c2b56b79a0552b787236a850e0e0df0))
+* reset to first page when filtering ([300f98e](https://github.com/TomaszKandula/TokanPages/commit/300f98e335a79f5487d53858c3fade9468e1e1bf))
+* set icon colour ([ea9a1f8](https://github.com/TomaszKandula/TokanPages/commit/ea9a1f82661817dce104c5cde314a608828c3c71))
+* skeletons ([5768ee1](https://github.com/TomaszKandula/TokanPages/commit/5768ee17709366786a8802e489364c4e14ed6b7a))
+* use backdrop component instead of deprecated CSS class ([8be717a](https://github.com/TomaszKandula/TokanPages/commit/8be717a42f74fee35792b830ad14401f286f0ce9))
+* use react router dom ([e68d717](https://github.com/TomaszKandula/TokanPages/commit/e68d717194b6f062d67c5926f9e7805f0d6fd863))
+* use rem ([04cb039](https://github.com/TomaszKandula/TokanPages/commit/04cb03949b73d2bb370d8318e7a9da3e911c3c48))
+
+
+### Features
+
+* add configuration for sorce url for pdf printouts ([5b362d9](https://github.com/TomaszKandula/TokanPages/commit/5b362d9bdc90d7d439313a5e004a6f12098bb479))
+* add optional download component to the breadcramb for 'page pdf downloading' ([996b534](https://github.com/TomaszKandula/TokanPages/commit/996b5343222a79564d45f736cdaa7e0453bb973a))
+* add optional file name ([727ed21](https://github.com/TomaszKandula/TokanPages/commit/727ed212d274d1453d26adb546c75842a2ab266c))
+* add pdf file for resume page ([b0b867d](https://github.com/TomaszKandula/TokanPages/commit/b0b867d2cd49510c7de8bd748db57f9b7ee6d167))
+* add PDF generating ([bd325f8](https://github.com/TomaszKandula/TokanPages/commit/bd325f8b786825e59d40498e3c04ce48a2e5acd1))
+* add pdf options ([765ffda](https://github.com/TomaszKandula/TokanPages/commit/765ffda5c54294abfd6991e98c15163a098a71eb))
+* change size ([2b379eb](https://github.com/TomaszKandula/TokanPages/commit/2b379eb6b58dab0e55c2f77c86123ccfa757a558))
+* change style for pdf viewer controls ([2662256](https://github.com/TomaszKandula/TokanPages/commit/26622567ebe5168dfdf524df488ed1035d1ddc1b))
+* get paths for pdf printouts ([8592b35](https://github.com/TomaszKandula/TokanPages/commit/8592b3530bfa0bd299e186b48d1b851f53de7cc8))
+* make page printable ([1fd949d](https://github.com/TomaszKandula/TokanPages/commit/1fd949d7d864614bd5f153e0ebd7e7295b453132))
+* make param default ([2d7c208](https://github.com/TomaszKandula/TokanPages/commit/2d7c2080bb16e0326d093b45c4b36e1df0677df2))
+* pass prop for pdf routes ([2f44502](https://github.com/TomaszKandula/TokanPages/commit/2f4450254c5144b42d121650d0430cbe05ffe54b))
+* pass snapshot state ([06a79a8](https://github.com/TomaszKandula/TokanPages/commit/06a79a8a84e6dc2775dfadde7429830085ab900f))
+* print to pdf using pdf options ([9fa6873](https://github.com/TomaszKandula/TokanPages/commit/9fa68738832a90f3d21ff985f51332925e0b85f6))
+* remove caption from page ([2ab4e3a](https://github.com/TomaszKandula/TokanPages/commit/2ab4e3a04d21ac504240ee18cdb4defb9b98a9c4))
+* remove file extension ([e8cebcd](https://github.com/TomaszKandula/TokanPages/commit/e8cebcdc66e36c161bb404b744082232ff0aec3a))
+* restyle top header for PDF printouts ([f3ba16e](https://github.com/TomaszKandula/TokanPages/commit/f3ba16e3f97e12a1e79647b64655bcb2aec9dae9))
+* restyle top header, use eager loading when shanpshot is enabled ([1e37aad](https://github.com/TomaszKandula/TokanPages/commit/1e37aadd498c5f32b385dc6b0ec2c53cec235554))
+* set device scale to '1' ([c449f3e](https://github.com/TomaszKandula/TokanPages/commit/c449f3e74f80add54f53aeaeb7d2a11bff8eafd1))
+* set icon colour ([9835eb1](https://github.com/TomaszKandula/TokanPages/commit/9835eb1873624e4a0fb7554c4d8c4620699a0693))
+* set viewport and scale, pass optional name ([4e3649a](https://github.com/TomaszKandula/TokanPages/commit/4e3649acb2dc06765a1bfd7fa0988875108e762f))
+
 # [0.175.0](https://github.com/TomaszKandula/TokanPages/compare/v0.174.0...v0.175.0) (2025-10-12)
 
 
