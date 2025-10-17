@@ -76,7 +76,7 @@ export const BreadcrumbView = (props: BreadcrumbViewProps): React.ReactElement =
                     </ul>
                 </nav>
                 {!Validate.isEmpty(props.downloadUrl) ? (
-                    <DownloadAsset url={props.downloadUrl ?? ""} size={1.5} className="has-text-black" />
+                    <DownloadAsset url={props.downloadUrl ?? ""} size={1.2} className="has-text-black" />
                 ) : null}
             </div>
         </Skeleton>
