@@ -42,7 +42,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         <div className="is-flex is-justify-content-center">
                                             <Link to={props.Testimonial1.link} aria-label={props.Testimonial1.name}>
                                                 <figure className="bulma-image bulma-is-24x24">
-                                                    <Icon name="LinkedIn" size={1.5} />
+                                                    <Icon name="LinkedIn" size={1.5} className="has-text-black" />
                                                 </figure>
                                             </Link>
                                         </div>
@@ -93,7 +93,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         <div className="is-flex is-justify-content-center">
                                             <Link to={props.Testimonial2.link} aria-label={props.Testimonial2.name}>
                                                 <figure className="bulma-image bulma-is-24x24">
-                                                    <Icon name="LinkedIn" size={1.5} />
+                                                    <Icon name="LinkedIn" size={1.5} className="has-text-black" />
                                                 </figure>
                                             </Link>
                                         </div>
@@ -144,7 +144,7 @@ export const TestimonialsView = (props: TestimonialsViewProps): React.ReactEleme
                                         <div className="is-flex is-justify-content-center">
                                             <Link to={props.Testimonial3.link} aria-label={props.Testimonial3.name}>
                                                 <figure className="bulma-image bulma-is-24x24">
-                                                    <Icon name="LinkedIn" size={1.5} />
+                                                    <Icon name="LinkedIn" size={1.5} className="has-text-black" />
                                                 </figure>
                                             </Link>
                                         </div>

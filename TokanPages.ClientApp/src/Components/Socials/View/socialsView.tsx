@@ -55,7 +55,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                             <div className="is-flex is-justify-content-center pt-6">
                                                 <Skeleton isLoading={isLoading} mode="Rect" height={24}>
                                                     <figure className="bulma-image bulma-is-32x32">
-                                                        <Icon name={socials?.social1?.images?.icon} size={2} />
+                                                        <Icon name={socials?.social1?.images?.icon} size={2} className="has-text-black" />
                                                     </figure>
                                                 </Skeleton>
                                             </div>
@@ -113,7 +113,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                             <div className="is-flex is-justify-content-center pt-6">
                                                 <Skeleton isLoading={isLoading} mode="Rect" height={24}>
                                                     <figure className="bulma-image bulma-is-32x32">
-                                                        <Icon name={socials?.social2?.images?.icon} size={2} />
+                                                        <Icon name={socials?.social2?.images?.icon} size={2} className="has-text-black" />
                                                     </figure>
                                                 </Skeleton>
                                             </div>
@@ -171,7 +171,7 @@ export const SocialsView = (props: SocialsViewProps): React.ReactElement => {
                                             <div className="is-flex is-justify-content-center pt-6">
                                                 <Skeleton isLoading={isLoading} mode="Rect" height={24}>
                                                     <figure className="bulma-image bulma-is-32x32">
-                                                        <Icon name={socials?.social3?.images?.icon} size={2} />
+                                                        <Icon name={socials?.social3?.images?.icon} size={2} className="has-text-black" />
                                                     </figure>
                                                 </Skeleton>
                                             </div>
