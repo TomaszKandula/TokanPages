@@ -61,7 +61,7 @@ Object {
                 class="is-flex is-gap-1.5"
               >
                 <button
-                  style="height: 36px; width: 36px;"
+                  style="height: 2.2rem; width: 2.2rem;"
                 >
                   <div>
                     <svg
@@ -78,7 +78,7 @@ Object {
                   </div>
                 </button>
                 <button
-                  style="height: 36px; width: 36px;"
+                  style="height: 2.2rem; width: 2.2rem;"
                 >
                   <div>
                     <svg
@@ -96,7 +96,7 @@ Object {
                 </button>
                 <button
                   disabled=""
-                  style="height: 36px; width: 36px;"
+                  style="height: 2.2rem; width: 2.2rem;"
                 >
                   <div>
                     <svg
@@ -356,7 +356,7 @@ Object {
               class="is-flex is-gap-1.5"
             >
               <button
-                style="height: 36px; width: 36px;"
+                style="height: 2.2rem; width: 2.2rem;"
               >
                 <div>
                   <svg
@@ -373,7 +373,7 @@ Object {
                 </div>
               </button>
               <button
-                style="height: 36px; width: 36px;"
+                style="height: 2.2rem; width: 2.2rem;"
               >
                 <div>
                   <svg
@@ -391,7 +391,7 @@ Object {
               </button>
               <button
                 disabled=""
-                style="height: 36px; width: 36px;"
+                style="height: 2.2rem; width: 2.2rem;"
               >
                 <div>
                   <svg

@@ -7,7 +7,11 @@ import { NavigationViewProps } from "../Types";
 
 const RenderBackNavigationOnly = (props: NavigationViewProps): React.ReactElement => (
     <ApplicationBar height={APP_BAR_HEIGHT_DESKTOP}>
-        <IconButton hasNoHoverEffect={props.media.isMobile || props.media.isTablet} onClick={props.backPathHandler}>
+        <IconButton
+            size={3.0}
+            hasNoHoverEffect={props.media.isMobile || props.media.isTablet}
+            onClick={props.backPathHandler}
+        >
             <Icon name="ArrowLeft" size={1.5} />
         </IconButton>
     </ApplicationBar>
@@ -27,7 +31,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
             <RenderToolbarLargeScreen {...props} />
             <RenderToolbarSmallScreen {...props} />
             <Drawer isOpen={props.isMenuOpen} isExternalClose={isClose} onTrigger={props.triggerSideMenu}>
-                <div className="is-flex is-justify-content-space-between">
+                <div className="is-flex is-justify-content-space-between is-align-items-center">
                     <Image
                         base={GET_IMAGES_URL}
                         source={props.navigation?.menu?.image}
@@ -37,7 +41,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
                         width={40}
                         height={40}
                     />
-                    <IconButton hasNoHoverEffect className="no-select mr-2">
+                    <IconButton size={3.0} hasNoHoverEffect className="no-select mr-2">
                         <Icon
                             name="WindowClose"
                             size={1.5}

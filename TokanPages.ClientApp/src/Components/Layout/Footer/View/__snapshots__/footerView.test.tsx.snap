@@ -24,14 +24,14 @@ Object {
               target="_blank"
             >
               <button
-                style="height: 48px; width: 48px;"
+                style="height: 3rem; width: 3rem;"
               >
                 <figure
                   class="is-flex is-align-self-center bulma-image bulma-is-24x24"
                 >
                   <div>
                     <svg
-                      class="is-flex is-align-self-center "
+                      class="is-flex is-align-self-center has-text-black"
                       role="presentation"
                       style="width: 1.5rem; height: 1.5rem;"
                       viewBox="0 0 24 24"
@@ -116,14 +116,14 @@ Object {
             target="_blank"
           >
             <button
-              style="height: 48px; width: 48px;"
+              style="height: 3rem; width: 3rem;"
             >
               <figure
                 class="is-flex is-align-self-center bulma-image bulma-is-24x24"
               >
                 <div>
                   <svg
-                    class="is-flex is-align-self-center "
+                    class="is-flex is-align-self-center has-text-black"
                     role="presentation"
                     style="width: 1.5rem; height: 1.5rem;"
                     viewBox="0 0 24 24"

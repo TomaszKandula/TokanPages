@@ -29,6 +29,7 @@ export const Breadcrumb = (props: BreadcrumbProps): React.ReactElement => {
         <BreadcrumbView
             isLoading={props.isLoading}
             media={media}
+            downloadUrl={props.downloadUrl}
             navigation={navigation}
             hasParam={hasParam}
             paramValue={paramValue}

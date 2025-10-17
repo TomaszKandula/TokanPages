@@ -6,6 +6,7 @@ import { NavigationViewProps } from "../../Types";
 
 export const RenderMenuIcon = (props: NavigationViewProps): React.ReactElement => (
     <IconButton
+        size={3.0}
         aria-label="menu"
         hasNoHoverEffect={props.media.isMobile || props.media.isTablet}
         className="no-select"
