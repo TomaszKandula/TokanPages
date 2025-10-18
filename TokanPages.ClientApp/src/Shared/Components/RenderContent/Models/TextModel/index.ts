@@ -32,4 +32,5 @@ export interface RowItem {
 export interface ImageItemProps {
     image: string;
     caption: string;
+    constraint?: ConstraintProps;
 }

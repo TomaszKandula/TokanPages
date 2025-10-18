@@ -29,9 +29,9 @@ export const RenderImages = (props: TextItem): ReactElement => {
                                 source={`${API_BASE_URI}${value.image}`}
                                 title={props.text}
                                 alt={props.text}
-                                width={props.constraint?.width}
-                                height={props.constraint?.height}
-                                objectFit={props.constraint?.objectFit}
+                                width={value.constraint?.width ?? props.constraint?.width}
+                                height={value.constraint?.height ?? props.constraint?.height}
+                                objectFit={value.constraint?.objectFit ?? props.constraint?.objectFit}
                                 loading={props.loading}
                             />
                         </figure>
