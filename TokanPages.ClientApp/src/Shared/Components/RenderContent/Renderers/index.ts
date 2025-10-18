@@ -1,5 +1,6 @@
 export { RenderGist } from "./RenderGist/renderGist";
 export { RenderImage } from "./RenderImage/renderImage";
+export { RenderImages } from "./RenderImages";
 export { RenderSeparator } from "./RenderSeparator/renderSeparator";
 export { RenderTable } from "./RenderTable/renderTable";
 export { RenderText } from "./RenderText/renderText";
