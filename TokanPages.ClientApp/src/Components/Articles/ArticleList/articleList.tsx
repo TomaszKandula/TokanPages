@@ -63,12 +63,13 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                     ...BaseRequest,
                     pageNumber: page,
                     pageSize: ARTICLES_PAGE_SIZE,
+                    phrase: form.searchInput,
                     categoryId: selection,
                     orderByAscending: isOrderByAscending,
                 })
             );
         },
-        [isOrderByAscending, selection]
+        [form.searchInput, selection, isOrderByAscending]
     );
 
     const onKeyHandler = React.useCallback(
@@ -161,12 +162,13 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
                     ...BaseRequest,
                     pageNumber: 1,
                     pageSize: ARTICLES_PAGE_SIZE,
+                    phrase: form.searchInput,
                     categoryId: selection,
                     orderByAscending: isOrderByAscending,
                 })
             );
         }
-    }, [isSortingEnabled, isOrderByAscending, article.payload.results.length, selection]);
+    }, [article.payload.results.length, isSortingEnabled, form.searchInput, selection, isOrderByAscending]);
 
     /* FILTERING BY CATEGORY NAME */
     React.useEffect(() => {
