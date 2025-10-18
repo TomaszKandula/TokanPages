@@ -14,6 +14,9 @@ export type TInputColours =
 export type TInputSizes = "bulma-is-small" | "bulma-is-normal" | "bulma-is-medium" | "bulma-is-large";
 export type TLoading = "lazy" | "eager";
 
+export type ReactElement = React.ReactElement;
+export type ReactElements = React.ReactElement[];
+
 export type ReactCSSProps = React.CSSProperties;
 export type ReactSyntheticEvent = React.SyntheticEvent;
 
