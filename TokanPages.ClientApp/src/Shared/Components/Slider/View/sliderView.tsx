@@ -31,6 +31,8 @@ export const SliderView = (props: SliderViewProps): ReactElement => (
                 waitForAnimate={false}
                 fade={props.isFading}
                 infinite={props.isInfinite}
+                lazyLoad={props.isLazyLoad ? "ondemand" : "anticipated"}
+                swipeToSlide={props.isSwipeToSlide}
                 autoplay={props.autoplay}
                 autoplaySpeed={props.autoplaySpeed}
                 pauseOnHover={props.pauseOnHover}

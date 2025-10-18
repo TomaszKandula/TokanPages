@@ -10,6 +10,8 @@ export interface SliderProps extends ViewProperties, ContentProps {
     pauseOnHover?: boolean;
     isFading?: boolean;
     isInfinite?: boolean;
+    isLazyLoad?: boolean;
+    isSwipeToSlide?: boolean;
     isNavigation?: boolean;
     className?: string;
 }
