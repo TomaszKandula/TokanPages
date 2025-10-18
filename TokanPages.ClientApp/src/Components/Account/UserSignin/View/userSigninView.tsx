@@ -1,7 +1,7 @@
 import * as React from "react";
-import Slider from "react-slick";
 import { GET_IMAGES_URL } from "../../../../Api";
 import { NewsItemDto } from "../../../../Api/Models";
+import { RenderSigninCardProps, RenderSlideProps, UserSigninViewProps } from "../Types";
 import {
     Image,
     Icon,
@@ -12,11 +12,9 @@ import {
     Skeleton,
     TextField,
     TextFieldWithPassword,
+    Slider,
 } from "../../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
-import { RenderSigninCardProps, RenderSlideProps, RenderSliderProps, UserSigninViewProps } from "../Types";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import "./userSigninView.css";
 
 const ButtonSignin = (props: UserSigninViewProps): React.ReactElement => (
@@ -73,57 +71,6 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
         </div>
     </>
 );
-
-const RenderSlider = (props: RenderSliderProps): React.ReactElement => {
-    const [selection, setSelection] = React.useState(0);
-
-    const handleChange = React.useCallback((_current: number, next: number) => {
-        setSelection(next);
-    }, []);
-
-    return (
-        <div className={`bulma-card ${props.className ?? ""}`}>
-            <Slider
-                dots={false}
-                arrows={false}
-                fade={true}
-                infinite={true}
-                slidesToShow={1}
-                slidesToScroll={1}
-                autoplay={true}
-                autoplaySpeed={5500}
-                pauseOnHover={true}
-                waitForAnimate={false}
-                beforeChange={handleChange}
-            >
-                {props.isLoading ? (
-                    <RenderSlide isLoading={props.isLoading} image="" tags={[]} date="" title="" lead="" />
-                ) : (
-                    props.security.map((value: NewsItemDto, _index: number) => (
-                        <RenderSlide
-                            key={uuidv4()}
-                            image={value.image}
-                            tags={value.tags}
-                            date={value.date}
-                            title={value.title}
-                            lead={value.lead}
-                        />
-                    ))
-                )}
-            </Slider>
-            <div className="is-flex is-justify-content-center is-gap-1.5 p-5 user-signin-view-bottom-container">
-                {props.security.map((_value: NewsItemDto, index: number) => (
-                    <Icon
-                        key={uuidv4()}
-                        name="Circle"
-                        size={0.6}
-                        className={selection === index ? "has-text-grey-dark" : "has-text-grey-light"}
-                    />
-                ))}
-            </div>
-        </div>
-    );
-};
 
 const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
     <div className={`bulma-card ${props.className ?? ""}`}>
@@ -195,7 +142,27 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                     <RenderSigninCard {...props} className="user-signin-view-card-signin" />
                 </div>
                 <div className="bulma-column is-flex is-justify-content-center p-0">
-                    <RenderSlider {...props} className="user-signin-view-card-news is-flex is-flex-direction-column" />
+                    <Slider
+                        isLoading={props.isLoading}
+                        isFading={false}
+                        isInfinite={true}
+                        isNavigation={true}
+                        autoplay={true}
+                        autoplaySpeed={5500}
+                        pauseOnHover={true}
+                        className="user-signin-view-card-news is-flex is-flex-direction-column"
+                    >
+                        {props.security.map((value: NewsItemDto, _index: number) => (
+                            <RenderSlide
+                                key={uuidv4()}
+                                image={value.image}
+                                tags={value.tags}
+                                date={value.date}
+                                title={value.title}
+                                lead={value.lead}
+                            />
+                        ))}
+                    </Slider>
                 </div>
             </div>
         </div>
