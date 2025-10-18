@@ -13,7 +13,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 
 const RenderContent = (props: RenderContentProps): React.ReactElement => {
-    if (props.articles.length === 0 && !props.hasSnapshotMode) {
+    if (props.articles.length === 0 && !props.isSnapshot) {
         return (
             <div className="is-flex is-flex-direction-column is-align-items-center is-align-content-center is-gap-1.5">
                 <Icon name="FolderSearch" size={8} className="has-text-grey-light" />
@@ -65,8 +65,8 @@ const RenderHeader = (props: RenderHeaderProps): React.ReactElement => (
 const RenderFiltering = (props: RenderFilteringProps): React.ReactElement => (
     <div className="is-flex is-align-items-center is-gap-1.5 my-6">
         <TextField
-            uuid="searchInput"
-            value={props.value.searchInput}
+            uuid="value"
+            value={props.searchInputForm.value}
             onKeyUp={props.onKeyUp}
             onChange={props.onChange}
             placeholder={props.placeholder}
@@ -183,7 +183,7 @@ const RenderCategories = (props: ArticleListViewProps): React.ReactElement => (
 );
 
 export const ArticleListView = (props: ArticleListViewProps): React.ReactElement => {
-    const hasDisabledFiltering = props.articles.length === 0 || props.articles.length === 1;
+    const isFilterDisabled = props.articles.length === 0 || props.articles.length === 1;
 
     return (
         <section className={props.className}>
@@ -191,7 +191,7 @@ export const ArticleListView = (props: ArticleListViewProps): React.ReactElement
                 <div className={props.isMobile ? "p-4" : "py-4"}>
                     <RenderHeader {...props} />
                     <RenderCategories {...props} />
-                    <RenderFiltering {...props} isDisabled={hasDisabledFiltering} />
+                    <RenderFiltering {...props} isDisabled={isFilterDisabled} />
                     {props.isLoading ? (
                         <ProgressBar />
                     ) : (
