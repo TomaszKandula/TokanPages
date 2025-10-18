@@ -30,7 +30,7 @@ const ButtonSignin = (props: UserSigninViewProps): React.ReactElement => (
 
 const RenderTags = (props: RenderSlideProps): React.ReactElement | null =>
     props.tags.length < 1 ? null : (
-        <div className="bulma-tags m-0 px-5 pb-3">
+        <div className="bulma-tags m-0 pb-3">
             {props.tags.map((value: string, _index: number) => (
                 <span className="bulma-tag bulma-is-warning" key={uuidv4()}>
                     {value}
@@ -40,36 +40,37 @@ const RenderTags = (props: RenderSlideProps): React.ReactElement | null =>
     );
 
 const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
-    <>
+    <div className="m-4">
         <div className="bulma-card-image">
             <figure className="bulma-image">
-                <Skeleton isLoading={props.isLoading ?? false} mode="Rect" height={150} disableMarginY>
+                <Skeleton isLoading={props.isLoading ?? false} mode="Rect" height={256} disableMarginY>
                     <Image
                         base={GET_IMAGES_URL}
                         source={props.image}
                         className="user-signin-view-card-image"
                         title="Security news image"
                         alt="Illustration for security news"
+                        loading="lazy"
                     />
                 </Skeleton>
             </figure>
         </div>
         <div className="bulma-card-content p-0 pt-3">
-            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={100} className="mx-5">
+            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={100}>
                 <RenderTags {...props} />
             </Skeleton>
             <hr className="m-0" />
-            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={75} className="mx-5 my-4">
-                <p className="is-size-7 px-5 pt-3">{props.date}</p>
+            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={75} className="my-4">
+                <p className="is-size-7 pt-3">{props.date}</p>
             </Skeleton>
-            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={250} className="mx-5">
-                <RenderHtml value={props.title} tag="h2" className="is-size-6 has-text-weight-semibold px-5 py-3" />
+            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={250}>
+                <RenderHtml value={props.title} tag="h2" className="is-size-6 has-text-weight-semibold pt-1 pb-3" />
             </Skeleton>
-            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={350} className="mx-5">
-                <RenderHtml value={props.lead} tag="p" className="is-size-6 px-5" />
+            <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={48} width={350}>
+                <RenderHtml value={props.lead} tag="p" className="is-size-6" />
             </Skeleton>
         </div>
-    </>
+    </div>
 );
 
 const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
@@ -144,24 +145,30 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                 <div className="bulma-column is-flex is-justify-content-center p-0">
                     <Slider
                         isLoading={props.isLoading}
+                        isLazyLoad={true}
                         isFading={false}
                         isInfinite={true}
+                        isSwipeToSlide={true}
                         isNavigation={true}
                         autoplay={true}
                         autoplaySpeed={5500}
                         pauseOnHover={true}
                         className="user-signin-view-card-news is-flex is-flex-direction-column"
                     >
-                        {props.security.map((value: NewsItemDto, _index: number) => (
-                            <RenderSlide
-                                key={uuidv4()}
-                                image={value.image}
-                                tags={value.tags}
-                                date={value.date}
-                                title={value.title}
-                                lead={value.lead}
-                            />
-                        ))}
+                        {props.isLoading ? (
+                            <RenderSlide isLoading={props.isLoading} image="" tags={[""]} date="" title="" lead="" />
+                        ) : (
+                            props.security.map((value: NewsItemDto, _index: number) => (
+                                <RenderSlide
+                                    key={uuidv4()}
+                                    image={value.image}
+                                    tags={value.tags}
+                                    date={value.date}
+                                    title={value.title}
+                                    lead={value.lead}
+                                />
+                            ))
+                        )}
                     </Slider>
                 </div>
             </div>
