@@ -32,7 +32,7 @@ const RenderTags = (props: RenderSlideProps): React.ReactElement | null =>
     props.tags.length < 1 ? null : (
         <div className="bulma-tags m-0 pb-3">
             {props.tags.map((value: string, _index: number) => (
-                <span className="bulma-tag bulma-is-warning" key={uuidv4()}>
+                <span className="bulma-tag bulma-is-link" key={uuidv4()}>
                     {value}
                 </span>
             ))}
@@ -40,7 +40,7 @@ const RenderTags = (props: RenderSlideProps): React.ReactElement | null =>
     );
 
 const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
-    <div className="m-4">
+    <div className="p-4">
         <div className="bulma-card-image">
             <figure className="bulma-image">
                 <Skeleton isLoading={props.isLoading ?? false} mode="Rect" height={256} disableMarginY>
@@ -64,7 +64,7 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
                 <p className="is-size-7 pt-3">{props.date}</p>
             </Skeleton>
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={24} width={250}>
-                <RenderHtml value={props.title} tag="h2" className="is-size-6 has-text-weight-semibold pt-1 pb-3" />
+                <RenderHtml value={props.title} tag="h2" className="is-size-6 has-text-weight-semibold pt-1 pb-2" />
             </Skeleton>
             <Skeleton isLoading={props.isLoading ?? false} mode="Text" height={48} width={350}>
                 <RenderHtml value={props.lead} tag="p" className="is-size-6" />
