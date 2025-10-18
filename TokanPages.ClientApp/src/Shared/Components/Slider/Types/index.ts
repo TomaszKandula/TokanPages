@@ -1,7 +1,7 @@
-import { ReactElements, ViewProperties } from "../../../../Shared/Types";
+import { ReactElement, ReactElements, ViewProperties } from "../../../../Shared/Types";
 
 export interface ContentProps {
-    children: ReactElements;
+    children: ReactElement | ReactElements;
 }
 
 export interface SliderProps extends ViewProperties, ContentProps {
