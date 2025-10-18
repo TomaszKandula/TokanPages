@@ -22,21 +22,24 @@ const Navigation = (props: SliderViewProps): ReactElement => (
 
 export const SliderView = (props: SliderViewProps): ReactElement => (
     <div className={`bulma-card ${props.className ?? ""}`}>
-        <Slider
-            dots={false}
-            arrows={false}
-            slidesToShow={1}
-            slidesToScroll={1}
-            waitForAnimate={false}
-            fade={props.isFading}
-            infinite={props.isInfinite}
-            autoplay={props.autoplay}
-            autoplaySpeed={props.autoplaySpeed}
-            pauseOnHover={props.pauseOnHover}
-            beforeChange={props.onSlideChange}
-        >
-            {props.isLoading ? <ProgressBar /> : props.children}
-        </Slider>
-        {props.isNavigation && <Navigation {...props} />}
+        {!props.isLoading && (
+            <Slider
+                dots={false}
+                arrows={false}
+                slidesToShow={1}
+                slidesToScroll={1}
+                waitForAnimate={false}
+                fade={props.isFading}
+                infinite={props.isInfinite}
+                autoplay={props.autoplay}
+                autoplaySpeed={props.autoplaySpeed}
+                pauseOnHover={props.pauseOnHover}
+                beforeChange={props.onSlideChange}
+            >
+                {props.children}
+            </Slider>
+        )}
+        {props.isLoading && <ProgressBar thickness={3} size={50} className="is-flex-grow-2 my-6" />}
+        {!props.isLoading && props.isNavigation && <Navigation {...props} />}
     </div>
 );
