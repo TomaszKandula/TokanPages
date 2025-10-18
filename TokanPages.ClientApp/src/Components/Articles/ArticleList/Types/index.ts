@@ -11,11 +11,15 @@ export interface PageDataProps {
 }
 
 export interface SearchInputProps {
-    searchInput: string;
+    value: string;
+}
+
+export interface SearchFormProps {
+    searchInputForm: SearchInputProps;
 }
 
 export interface ArticlesProps {
-    hasSnapshotMode: boolean;
+    isSnapshot: boolean;
     articles: ArticleItem[];
     searchEmptyText1: string;
     searchEmptyText2: string;
@@ -59,7 +63,8 @@ export interface ArticleListViewProps
         ArticleStyleProps,
         TextProps,
         ButtonsProps,
-        RenderSortProps {
+        RenderSortProps,
+        SearchFormProps {
     isMobile: boolean;
     isContentLoading: boolean;
     isOrderByAscending: boolean;
@@ -69,7 +74,6 @@ export interface ArticleListViewProps
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
     onCategoryChange: (id: string) => void;
-    value: SearchInputProps;
 }
 
 export interface RenderContentProps extends ArticlesProps {}
@@ -79,11 +83,10 @@ export interface RenderSortProps {
     onSortClick: () => void;
 }
 
-export interface RenderHeaderProps extends TextProps, ButtonsProps {
+export interface RenderHeaderProps extends TextProps, ButtonsProps, SearchFormProps {
     isContentLoading: boolean;
     onKeyUp?: (event: ReactKeyboardEvent) => void;
     onChange?: (event: ReactChangeEvent) => void;
-    value: SearchInputProps;
 }
 
 export interface RenderFilteringProps extends RenderHeaderProps, RenderSortProps {

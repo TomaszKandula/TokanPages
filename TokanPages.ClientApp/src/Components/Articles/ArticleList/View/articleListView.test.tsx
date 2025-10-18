@@ -49,7 +49,7 @@ describe("test articles group component: ArticleListView", () => {
                     isMobile={false}
                     isContentLoading={false}
                     isOrderByAscending={false}
-                    hasSnapshotMode={false}
+                    isSnapshot={false}
                     onSortClick={jest.fn()}
                     pageData={{
                         pageNumber: 1,
@@ -64,7 +64,7 @@ describe("test articles group component: ArticleListView", () => {
                     title=""
                     text={[""]}
                     placeholder=""
-                    value={{ searchInput: "" }}
+                    searchInputForm={{ value: "" }}
                     searchEmptyText1="Not Found"
                     searchEmptyText2="Try again..."
                     onChange={jest.fn()}
