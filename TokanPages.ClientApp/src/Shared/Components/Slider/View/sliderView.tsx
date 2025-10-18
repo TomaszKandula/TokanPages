@@ -6,9 +6,10 @@ import { Icon } from "../../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./sliderView.css";
 
 const Navigation = (props: SliderViewProps): ReactElement => (
-    <div className="is-flex is-justify-content-center is-gap-1.5 p-5">
+    <div className="is-flex is-justify-content-center is-gap-1.5 slider-view-navigation">
         {Array.isArray(props.children) &&
             props.children.map((_value: ReactElement, index: number) => (
                 <Icon
