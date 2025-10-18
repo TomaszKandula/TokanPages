@@ -63,7 +63,7 @@ export interface ArticleListViewProps
         ArticleStyleProps,
         TextProps,
         ButtonsProps,
-        RenderSortProps, 
+        RenderSortProps,
         SearchFormProps {
     isMobile: boolean;
     isContentLoading: boolean;
