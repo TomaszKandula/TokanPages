@@ -166,14 +166,14 @@ Object {
                   >
                     <div
                       class="slick-track"
-                      style="opacity: 1;"
+                      style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
                     />
                   </div>
                   
                   
                 </div>
                 <div
-                  class="is-flex is-justify-content-center is-gap-1.5 p-5 user-signin-view-bottom-container"
+                  class="is-flex is-justify-content-center is-gap-1.5 slider-view-navigation"
                 />
               </div>
             </div>
@@ -344,14 +344,14 @@ Object {
                 >
                   <div
                     class="slick-track"
-                    style="opacity: 1;"
+                    style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
                   />
                 </div>
                 
                 
               </div>
               <div
-                class="is-flex is-justify-content-center is-gap-1.5 p-5 user-signin-view-bottom-container"
+                class="is-flex is-justify-content-center is-gap-1.5 slider-view-navigation"
               />
             </div>
           </div>
