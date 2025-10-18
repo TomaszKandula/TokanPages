@@ -193,9 +193,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         const articleCategories = article.payload.articleCategories;
 
         if (hasLabel && hasNoCategories && articleCategories.length > 0) {
-            let data: ArticleCategory[] = [];
-
-            data = articleCategories.slice();
+            const data: ArticleCategory[] = articleCategories.slice();
             data.unshift({
                 id: ARTICLES_SELECT_ALL_ID,
                 categoryName: content.labels.textSelectAll,
