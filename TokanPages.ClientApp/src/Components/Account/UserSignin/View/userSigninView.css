@@ -5,6 +5,8 @@
 .user-signin-view-card-image {
     height: 256px !important;
     object-fit: cover;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
 }
 
 .user-signin-view-card-signin {
