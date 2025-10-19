@@ -30,7 +30,7 @@ public class CachingService : ICachingService
     private readonly PdfOptions _pdfOptions = new()
     {
         Format = PaperFormat.A4,
-        Scale = (decimal)0.95,
+        Scale = (decimal)0.83,
         Landscape = false,
         DisplayHeaderFooter = false,
         PrintBackground = true

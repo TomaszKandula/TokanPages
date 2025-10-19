@@ -34,7 +34,7 @@ export const PresentationView = (props: PresentationViewProps) => (
                     <Skeleton isLoading={props.isLoading} mode="Rect" width={24} height={24}>
                         <Link to={props.icon.href} key={uuidv4()} aria-label={props.icon.name}>
                             <figure className="bulma-image bulma-is-24x24">
-                                <Icon name={props.icon.name} size={1.5} />
+                                <Icon name={props.icon.name} size={1.5} className="has-text-dark" />
                             </figure>
                         </Link>
                     </Skeleton>
