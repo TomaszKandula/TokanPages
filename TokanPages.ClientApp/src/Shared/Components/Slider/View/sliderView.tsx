@@ -23,7 +23,7 @@ const Navigation = (props: SliderViewProps): ReactElement => (
 );
 
 export const SliderView = (props: SliderViewProps): ReactElement => (
-    <div className={props.className ?? ""}>
+    <div className={`is-flex is-flex-direction-column ${props.className ?? ""}`}>
         <Slider
             dots={false}
             arrows={false}
