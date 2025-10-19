@@ -21,7 +21,7 @@ describe("test account group component: userSigninView", () => {
                         href: "/reset",
                     }}
                     consent="By signing in to an account..."
-                    warningBadgeText="warning"
+                    badgeText="warning"
                     security={[]}
                     buttonHandler={jest.fn()}
                     progress={false}
