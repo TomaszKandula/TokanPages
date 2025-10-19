@@ -1,9 +1,9 @@
 import React from "react";
+import { API_BASE_URI } from "../../../../../Api";
 import { ReactElement } from "../../../../../Shared/Types";
 import { Slider, Image } from "../../../../../Shared/Components";
 import { ImageItemProps, TextItem } from "../../Models";
 import { v4 as uuidv4 } from "uuid";
-import { API_BASE_URI } from "Api";
 
 export const RenderImages = (props: TextItem): ReactElement => {
     const items = props.value as ImageItemProps[];
