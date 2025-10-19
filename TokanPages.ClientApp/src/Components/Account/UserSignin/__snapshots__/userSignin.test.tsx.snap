@@ -159,99 +159,125 @@ Object {
               class="bulma-column is-flex is-justify-content-center p-0"
             >
               <div
-                class="bulma-card user-signin-view-card-news is-flex is-flex-direction-column"
+                class="bulma-card user-signin-view-card-news"
               >
                 <div
-                  class="slick-slider slick-initialized"
+                  class="bulma-tag has-background-warning-light bulma-is-medium is-flex is-gap-1.5 user-signin-view-tag-container"
                 >
-                  
-                  <div
-                    class="slick-list"
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center user-signin-view-tag-colour"
+                      role="presentation"
+                      style="width: 1.2rem; height: 1.2rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M13 14H11V9H13M13 18H11V16H13M1 21H23L12 2L1 21Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
+                  <p
+                    class="is-size-6 has-text-weight-medium user-signin-view-tag-colour"
                   >
+                    warning
+                  </p>
+                </div>
+                <div
+                  class="is-flex is-flex-direction-column "
+                >
+                  <div
+                    class="slick-slider slick-initialized"
+                  >
+                    
                     <div
-                      class="slick-track"
-                      style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+                      class="slick-list"
                     >
                       <div
-                        aria-hidden="false"
-                        class="slick-slide slick-active slick-current"
-                        data-index="0"
-                        style="outline: none; width: 0px;"
-                        tabindex="-1"
+                        class="slick-track"
+                        style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
                       >
-                        <div>
-                          <div
-                            class="p-4"
-                          >
+                        <div
+                          aria-hidden="false"
+                          class="slick-slide slick-active slick-current"
+                          data-index="0"
+                          style="outline: none; width: 0px;"
+                          tabindex="-1"
+                        >
+                          <div>
                             <div
-                              class="bulma-card-image"
-                            >
-                              <figure
-                                class="bulma-image"
-                              >
-                                <img
-                                  alt="Illustration for security news"
-                                  class="user-signin-view-card-image"
-                                  loading="lazy"
-                                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news_01.webp"
-                                  title="Security news image"
-                                />
-                              </figure>
-                            </div>
-                            <div
-                              class="bulma-card-content p-0 pt-3"
+                              class="p-4"
                             >
                               <div
-                                class="bulma-tags m-0 pb-3"
+                                class="bulma-card-image"
                               >
-                                <span
-                                  class="bulma-tag bulma-is-link"
+                                <figure
+                                  class="bulma-image"
                                 >
-                                  important
-                                </span>
+                                  <img
+                                    alt="Illustration for security news"
+                                    class="user-signin-view-card-image"
+                                    loading="lazy"
+                                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news_01.webp"
+                                    title="Security news image"
+                                  />
+                                </figure>
                               </div>
-                              <hr
-                                class="m-0"
-                              />
-                              <p
-                                class="is-size-7 pt-3"
+                              <div
+                                class="bulma-card-content p-0 pt-3"
                               >
-                                20205-08-08
-                              </p>
-                              <h2
-                                class="is-size-6 has-text-weight-semibold pt-1 pb-2"
-                              >
-                                Be careful...
-                              </h2>
-                              <p
-                                class="is-size-6"
-                              >
-                                Do not...
-                              </p>
+                                <div
+                                  class="bulma-tags m-0 pb-3"
+                                >
+                                  <span
+                                    class="bulma-tag bulma-is-link"
+                                  >
+                                    important
+                                  </span>
+                                </div>
+                                <hr
+                                  class="m-0"
+                                />
+                                <p
+                                  class="is-size-7 pt-3"
+                                >
+                                  20205-08-08
+                                </p>
+                                <h2
+                                  class="is-size-6 has-text-weight-semibold pt-1 pb-2"
+                                >
+                                  Be careful...
+                                </h2>
+                                <p
+                                  class="is-size-6"
+                                >
+                                  Do not...
+                                </p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                    
+                    
                   </div>
-                  
-                  
-                </div>
-                <div
-                  class="is-flex is-justify-content-center is-gap-1.5 slider-view-navigation"
-                >
-                  <div>
-                    <svg
-                      class="is-flex is-align-self-center has-text-grey-dark"
-                      role="presentation"
-                      style="width: 0.8rem; height: 0.8rem;"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
-                        style="fill: currentColor;"
-                      />
-                    </svg>
+                  <div
+                    class="is-flex is-justify-content-center is-gap-1.5 slider-view-navigation"
+                  >
+                    <div>
+                      <svg
+                        class="is-flex is-align-self-center has-text-grey-dark"
+                        role="presentation"
+                        style="width: 0.8rem; height: 0.8rem;"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                          style="fill: currentColor;"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -416,99 +442,125 @@ Object {
             class="bulma-column is-flex is-justify-content-center p-0"
           >
             <div
-              class="bulma-card user-signin-view-card-news is-flex is-flex-direction-column"
+              class="bulma-card user-signin-view-card-news"
             >
               <div
-                class="slick-slider slick-initialized"
+                class="bulma-tag has-background-warning-light bulma-is-medium is-flex is-gap-1.5 user-signin-view-tag-container"
               >
-                
-                <div
-                  class="slick-list"
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center user-signin-view-tag-colour"
+                    role="presentation"
+                    style="width: 1.2rem; height: 1.2rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13 14H11V9H13M13 18H11V16H13M1 21H23L12 2L1 21Z"
+                      style="fill: currentColor;"
+                    />
+                  </svg>
+                </div>
+                <p
+                  class="is-size-6 has-text-weight-medium user-signin-view-tag-colour"
                 >
+                  warning
+                </p>
+              </div>
+              <div
+                class="is-flex is-flex-direction-column "
+              >
+                <div
+                  class="slick-slider slick-initialized"
+                >
+                  
                   <div
-                    class="slick-track"
-                    style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+                    class="slick-list"
                   >
                     <div
-                      aria-hidden="false"
-                      class="slick-slide slick-active slick-current"
-                      data-index="0"
-                      style="outline: none; width: 0px;"
-                      tabindex="-1"
+                      class="slick-track"
+                      style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
                     >
-                      <div>
-                        <div
-                          class="p-4"
-                        >
+                      <div
+                        aria-hidden="false"
+                        class="slick-slide slick-active slick-current"
+                        data-index="0"
+                        style="outline: none; width: 0px;"
+                        tabindex="-1"
+                      >
+                        <div>
                           <div
-                            class="bulma-card-image"
-                          >
-                            <figure
-                              class="bulma-image"
-                            >
-                              <img
-                                alt="Illustration for security news"
-                                class="user-signin-view-card-image"
-                                loading="lazy"
-                                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news_01.webp"
-                                title="Security news image"
-                              />
-                            </figure>
-                          </div>
-                          <div
-                            class="bulma-card-content p-0 pt-3"
+                            class="p-4"
                           >
                             <div
-                              class="bulma-tags m-0 pb-3"
+                              class="bulma-card-image"
                             >
-                              <span
-                                class="bulma-tag bulma-is-link"
+                              <figure
+                                class="bulma-image"
                               >
-                                important
-                              </span>
+                                <img
+                                  alt="Illustration for security news"
+                                  class="user-signin-view-card-image"
+                                  loading="lazy"
+                                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news_01.webp"
+                                  title="Security news image"
+                                />
+                              </figure>
                             </div>
-                            <hr
-                              class="m-0"
-                            />
-                            <p
-                              class="is-size-7 pt-3"
+                            <div
+                              class="bulma-card-content p-0 pt-3"
                             >
-                              20205-08-08
-                            </p>
-                            <h2
-                              class="is-size-6 has-text-weight-semibold pt-1 pb-2"
-                            >
-                              Be careful...
-                            </h2>
-                            <p
-                              class="is-size-6"
-                            >
-                              Do not...
-                            </p>
+                              <div
+                                class="bulma-tags m-0 pb-3"
+                              >
+                                <span
+                                  class="bulma-tag bulma-is-link"
+                                >
+                                  important
+                                </span>
+                              </div>
+                              <hr
+                                class="m-0"
+                              />
+                              <p
+                                class="is-size-7 pt-3"
+                              >
+                                20205-08-08
+                              </p>
+                              <h2
+                                class="is-size-6 has-text-weight-semibold pt-1 pb-2"
+                              >
+                                Be careful...
+                              </h2>
+                              <p
+                                class="is-size-6"
+                              >
+                                Do not...
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                  
+                  
                 </div>
-                
-                
-              </div>
-              <div
-                class="is-flex is-justify-content-center is-gap-1.5 slider-view-navigation"
-              >
-                <div>
-                  <svg
-                    class="is-flex is-align-self-center has-text-grey-dark"
-                    role="presentation"
-                    style="width: 0.8rem; height: 0.8rem;"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
-                      style="fill: currentColor;"
-                    />
-                  </svg>
+                <div
+                  class="is-flex is-justify-content-center is-gap-1.5 slider-view-navigation"
+                >
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center has-text-grey-dark"
+                      role="presentation"
+                      style="width: 0.8rem; height: 0.8rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
