@@ -1,6 +1,6 @@
 .user-signin-view-tag-container {
     position: absolute;
-    z-index: 900;
+    z-index: 10;
     top: -8px;
     left: -8px;
 }
