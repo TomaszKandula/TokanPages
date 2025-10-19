@@ -143,33 +143,49 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                     <RenderSigninCard {...props} className="user-signin-view-card-signin" />
                 </div>
                 <div className="bulma-column is-flex is-justify-content-center p-0">
-                    <Slider
-                        isLoading={props.isLoading}
-                        isLazyLoad={true}
-                        isFading={false}
-                        isInfinite={true}
-                        isSwipeToSlide={true}
-                        isNavigation={true}
-                        autoplay={true}
-                        autoplaySpeed={5500}
-                        pauseOnHover={true}
-                        className="user-signin-view-card-news is-flex is-flex-direction-column"
-                    >
-                        {props.isLoading ? (
-                            <RenderSlide isLoading={props.isLoading} image="" tags={[""]} date="" title="" lead="" />
-                        ) : (
-                            props.security.map((value: NewsItemDto, _index: number) => (
-                                <RenderSlide
-                                    key={uuidv4()}
-                                    image={value.image}
-                                    tags={value.tags}
-                                    date={value.date}
-                                    title={value.title}
-                                    lead={value.lead}
-                                />
-                            ))
+                    <div className="bulma-card user-signin-view-card-news">
+                        {!props.isLoading && (
+                            <div className="bulma-tag has-background-warning-light bulma-is-medium is-flex is-gap-1.5 user-signin-view-tag-container">
+                                <Icon name="Alert" size={1.2} className="user-signin-view-tag-colour" />
+                                <p className="is-size-6 has-text-weight-medium user-signin-view-tag-colour">
+                                    {props.badgeText}
+                                </p>
+                            </div>
                         )}
-                    </Slider>
+                        <Slider
+                            isLoading={props.isLoading}
+                            isLazyLoad={true}
+                            isFading={false}
+                            isInfinite={true}
+                            isSwipeToSlide={true}
+                            isNavigation={true}
+                            autoplay={true}
+                            autoplaySpeed={5500}
+                            pauseOnHover={true}
+                        >
+                            {props.isLoading ? (
+                                <RenderSlide
+                                    isLoading={props.isLoading}
+                                    image=""
+                                    tags={[""]}
+                                    date=""
+                                    title=""
+                                    lead=""
+                                />
+                            ) : (
+                                props.security.map((value: NewsItemDto, _index: number) => (
+                                    <RenderSlide
+                                        key={uuidv4()}
+                                        image={value.image}
+                                        tags={value.tags}
+                                        date={value.date}
+                                        title={value.title}
+                                        lead={value.lead}
+                                    />
+                                ))
+                            )}
+                        </Slider>
+                    </div>
                 </div>
             </div>
         </div>

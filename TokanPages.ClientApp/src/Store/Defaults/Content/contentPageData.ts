@@ -620,6 +620,7 @@ export const ContentPageData: ContentPageDataState = {
             labelEmail: "",
             labelPassword: "",
             consent: "",
+            badgeText: "",
             securityNews: [],
         },
         accountUserSignout: {

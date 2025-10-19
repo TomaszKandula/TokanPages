@@ -19,7 +19,7 @@ export const RenderImages = (props: TextItem): ReactElement => {
             autoplay={true}
             autoplaySpeed={5500}
             pauseOnHover={true}
-            className="is-flex is-flex-direction-column"
+            className="bulma-card"
         >
             {items.map((value: ImageItemProps, _index: number) => (
                 <React.Fragment key={uuidv4()}>

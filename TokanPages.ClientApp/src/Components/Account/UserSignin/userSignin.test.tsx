@@ -35,6 +35,7 @@ describe("test account group component: userSignin", () => {
         labelEmail: "Email address",
         labelPassword: "Password",
         consent: "By signing in to an account...",
+        badgeText: "warning",
         securityNews: [
             {
                 image: "news_01.webp",
