@@ -9,6 +9,6 @@ export interface AccountUserSigninContentDto {
     labelEmail: string;
     labelPassword: string;
     consent: string;
-    warningBadgeText: string;
+    badgeText: string;
     securityNews: NewsItemDto[];
 }

@@ -147,7 +147,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                         {!props.isLoading && 
                         <div className="bulma-tag has-background-warning-light bulma-is-medium is-flex is-gap-1.5 user-signin-view-tag-container">
                             <Icon name="Alert" size={1.2} className="user-signin-view-tag-colour" />
-                            <p className="is-size-6 has-text-weight-medium user-signin-view-tag-colour">{props.warningBadgeText}</p>
+                            <p className="is-size-6 has-text-weight-medium user-signin-view-tag-colour">{props.badgeText}</p>
                         </div>}
                         <Slider
                             isLoading={props.isLoading}
