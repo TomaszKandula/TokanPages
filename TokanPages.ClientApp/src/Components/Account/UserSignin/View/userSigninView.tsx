@@ -144,33 +144,40 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                 </div>
                 <div className="bulma-column is-flex is-justify-content-center p-0">
                     <div className="bulma-card user-signin-view-card-news">
-                    <Slider
-                        isLoading={props.isLoading}
-                        isLazyLoad={true}
-                        isFading={false}
-                        isInfinite={true}
-                        isSwipeToSlide={true}
-                        isNavigation={true}
-                        autoplay={true}
-                        autoplaySpeed={5500}
-                        pauseOnHover={true}
-                        className="is-flex is-flex-direction-column"
-                    >
-                        {props.isLoading ? (
-                            <RenderSlide isLoading={props.isLoading} image="" tags={[""]} date="" title="" lead="" />
-                        ) : (
-                            props.security.map((value: NewsItemDto, _index: number) => (
+                        <Slider
+                            isLoading={props.isLoading}
+                            isLazyLoad={true}
+                            isFading={false}
+                            isInfinite={true}
+                            isSwipeToSlide={true}
+                            isNavigation={true}
+                            autoplay={true}
+                            autoplaySpeed={5500}
+                            pauseOnHover={true}
+                            className="is-flex is-flex-direction-column"
+                        >
+                            {props.isLoading ? (
                                 <RenderSlide
-                                    key={uuidv4()}
-                                    image={value.image}
-                                    tags={value.tags}
-                                    date={value.date}
-                                    title={value.title}
-                                    lead={value.lead}
+                                    isLoading={props.isLoading}
+                                    image=""
+                                    tags={[""]}
+                                    date=""
+                                    title=""
+                                    lead=""
                                 />
-                            ))
-                        )}
-                    </Slider>
+                            ) : (
+                                props.security.map((value: NewsItemDto, _index: number) => (
+                                    <RenderSlide
+                                        key={uuidv4()}
+                                        image={value.image}
+                                        tags={value.tags}
+                                        date={value.date}
+                                        title={value.title}
+                                        lead={value.lead}
+                                    />
+                                ))
+                            )}
+                        </Slider>
                     </div>
                 </div>
             </div>
