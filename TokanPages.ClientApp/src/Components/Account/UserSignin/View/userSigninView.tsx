@@ -154,7 +154,6 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                             autoplay={true}
                             autoplaySpeed={5500}
                             pauseOnHover={true}
-                            className="is-flex is-flex-direction-column"
                         >
                             {props.isLoading ? (
                                 <RenderSlide
