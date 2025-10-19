@@ -1,3 +1,14 @@
+.user-signin-view-tag-container {
+    position: absolute;
+    z-index: 10;
+    top: -8px;
+    left: -8px;
+}
+
+.user-signin-view-tag-colour {
+    color: #422e00;
+}
+
 .user-signin-view-bottom-container {
     margin-top: auto;
 }
@@ -5,6 +16,8 @@
 .user-signin-view-card-image {
     height: 256px !important;
     object-fit: cover;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
 }
 
 .user-signin-view-card-signin {
@@ -33,6 +46,7 @@
 }
 
 .user-signin-view-card-news {
+    position: relative;
     height: auto;
     width: 33vw;
 }

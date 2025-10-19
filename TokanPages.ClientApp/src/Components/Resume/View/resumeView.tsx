@@ -50,6 +50,7 @@ const RenderResume = (props: ResumeViewProps): React.ReactElement => (
 export const ResumeView = (props: ResumeViewProps): React.ReactElement => (
     <section className={props.className}>
         <div className="bulma-container bulma-is-max-tablet pb-6">
+            {props.isSnapshot && <hr className="m-0 mt-5 mb-3" />}
             <Media.DesktopOnly>
                 <RenderResume {...props} />
             </Media.DesktopOnly>

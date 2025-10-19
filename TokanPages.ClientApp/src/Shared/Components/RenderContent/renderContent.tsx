@@ -11,6 +11,7 @@ import {
     RenderImage,
     RenderVideo,
     RenderSeparator,
+    RenderImages,
 } from "./Renderers";
 
 export const RenderContent = (textObject: TextObject | undefined): React.ReactElement => {
@@ -65,6 +66,21 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
             case "image":
                 renderBuffer.push(
                     <RenderImage
+                        key={item.id}
+                        id={item.id}
+                        type={item.type}
+                        value={item.value}
+                        prop={item.prop}
+                        text={item.text}
+                        loading={item.loading}
+                        constraint={item.constraint}
+                    />
+                );
+                break;
+
+            case "images":
+                renderBuffer.push(
+                    <RenderImages
                         key={item.id}
                         id={item.id}
                         type={item.type}

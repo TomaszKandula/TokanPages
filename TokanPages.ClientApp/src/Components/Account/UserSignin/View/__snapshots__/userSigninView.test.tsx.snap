@@ -155,26 +155,52 @@ Object {
               class="bulma-column is-flex is-justify-content-center p-0"
             >
               <div
-                class="bulma-card user-signin-view-card-news is-flex is-flex-direction-column"
+                class="bulma-card user-signin-view-card-news"
               >
                 <div
-                  class="slick-slider slick-initialized"
+                  class="bulma-tag has-background-warning-light bulma-is-medium is-flex is-gap-1.5 user-signin-view-tag-container"
                 >
-                  
-                  <div
-                    class="slick-list"
-                  >
-                    <div
-                      class="slick-track"
-                      style="opacity: 1;"
-                    />
+                  <div>
+                    <svg
+                      class="is-flex is-align-self-center user-signin-view-tag-colour"
+                      role="presentation"
+                      style="width: 1.2rem; height: 1.2rem;"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M13 14H11V9H13M13 18H11V16H13M1 21H23L12 2L1 21Z"
+                        style="fill: currentColor;"
+                      />
+                    </svg>
                   </div>
-                  
-                  
+                  <p
+                    class="is-size-6 has-text-weight-medium user-signin-view-tag-colour"
+                  >
+                    warning
+                  </p>
                 </div>
                 <div
-                  class="is-flex is-justify-content-center is-gap-1.5 p-5 user-signin-view-bottom-container"
-                />
+                  class="is-flex is-flex-direction-column "
+                >
+                  <div
+                    class="slick-slider slick-initialized"
+                  >
+                    
+                    <div
+                      class="slick-list"
+                    >
+                      <div
+                        class="slick-track"
+                        style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+                      />
+                    </div>
+                    
+                    
+                  </div>
+                  <div
+                    class="is-flex is-justify-content-center is-gap-1.5 slider-view-navigation"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -333,26 +359,52 @@ Object {
             class="bulma-column is-flex is-justify-content-center p-0"
           >
             <div
-              class="bulma-card user-signin-view-card-news is-flex is-flex-direction-column"
+              class="bulma-card user-signin-view-card-news"
             >
               <div
-                class="slick-slider slick-initialized"
+                class="bulma-tag has-background-warning-light bulma-is-medium is-flex is-gap-1.5 user-signin-view-tag-container"
               >
-                
-                <div
-                  class="slick-list"
-                >
-                  <div
-                    class="slick-track"
-                    style="opacity: 1;"
-                  />
+                <div>
+                  <svg
+                    class="is-flex is-align-self-center user-signin-view-tag-colour"
+                    role="presentation"
+                    style="width: 1.2rem; height: 1.2rem;"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13 14H11V9H13M13 18H11V16H13M1 21H23L12 2L1 21Z"
+                      style="fill: currentColor;"
+                    />
+                  </svg>
                 </div>
-                
-                
+                <p
+                  class="is-size-6 has-text-weight-medium user-signin-view-tag-colour"
+                >
+                  warning
+                </p>
               </div>
               <div
-                class="is-flex is-justify-content-center is-gap-1.5 p-5 user-signin-view-bottom-container"
-              />
+                class="is-flex is-flex-direction-column "
+              >
+                <div
+                  class="slick-slider slick-initialized"
+                >
+                  
+                  <div
+                    class="slick-list"
+                  >
+                    <div
+                      class="slick-track"
+                      style="opacity: 1; transform: translate3d(0px, 0px, 0px);"
+                    />
+                  </div>
+                  
+                  
+                </div>
+                <div
+                  class="is-flex is-justify-content-center is-gap-1.5 slider-view-navigation"
+                />
+              </div>
             </div>
           </div>
         </div>

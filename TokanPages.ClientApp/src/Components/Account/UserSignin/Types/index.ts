@@ -11,6 +11,7 @@ export interface UserSigninViewProps extends ViewProperties, UserSigninProps {
     link1: LinkDto;
     link2: LinkDto;
     consent: string;
+    badgeText: string;
     security: NewsItemDto[];
     buttonHandler: () => void;
     progress: boolean;

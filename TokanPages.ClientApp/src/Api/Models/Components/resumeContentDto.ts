@@ -43,7 +43,7 @@ export interface OccupationProps {
 
 export interface InterestsProps {
     caption: string;
-    list: string[];
+    list: LinkDto[];
 }
 
 export interface ExperienceItemProps {
