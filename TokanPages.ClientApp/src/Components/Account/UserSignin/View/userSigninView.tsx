@@ -144,6 +144,10 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                 </div>
                 <div className="bulma-column is-flex is-justify-content-center p-0">
                     <div className="bulma-card user-signin-view-card-news">
+                        <div className="bulma-tag has-background-warning-light bulma-is-medium is-flex is-gap-1.5 user-signin-view-tag-container">
+                            <Icon name="Alert" size={1.2} className="user-signin-view-tag-colour" />
+                            <p className="is-size-6 has-text-weight-medium user-signin-view-tag-colour">Warning</p>
+                        </div>
                         <Slider
                             isLoading={props.isLoading}
                             isLazyLoad={true}
