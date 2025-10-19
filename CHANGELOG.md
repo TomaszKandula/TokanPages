@@ -1,3 +1,38 @@
+# [0.177.0](https://github.com/TomaszKandula/TokanPages/compare/v0.176.0...v0.177.0) (2025-10-19)
+
+
+### Bug Fixes
+
+* correct z-index ([2dc8054](https://github.com/TomaszKandula/TokanPages/commit/2dc80542ab7fdef8ddb5330640e9834f97e64624))
+* import path ([5b83bb5](https://github.com/TomaszKandula/TokanPages/commit/5b83bb55a837e3ed19070291c75f9c188db47f8e))
+* resolve sorting issues ([e8cbf7a](https://github.com/TomaszKandula/TokanPages/commit/e8cbf7aae021947406d019757262253c9d6ba7b6))
+
+
+### Features
+
+* add lazy loading and swipe to slide props ([87c189a](https://github.com/TomaszKandula/TokanPages/commit/87c189a4d15809bcf6f7101c792a94885222cc6a))
+* add new types ([e048626](https://github.com/TomaszKandula/TokanPages/commit/e048626d6c029c083137a4d2eb78490c900e1033))
+* add optional constraints for an image ([52562bc](https://github.com/TomaszKandula/TokanPages/commit/52562bc9488a620c33abb2fc894009a995ba3934))
+* add renderer for arry of images ([cba4cb3](https://github.com/TomaszKandula/TokanPages/commit/cba4cb353c679d762420634c32cb439b2e0c7bdd))
+* add slider component ([5cabe07](https://github.com/TomaszKandula/TokanPages/commit/5cabe07c9f0bfb046fc0b55a6d3cb8b8ef1f70f6))
+* add top line for printable resume ([0c8e6bb](https://github.com/TomaszKandula/TokanPages/commit/0c8e6bb8568e79b7ad0fb5dfd7c5147fa6a0c065))
+* add warning badge at the card top-corner ([292031f](https://github.com/TomaszKandula/TokanPages/commit/292031fdca466b280d0237e82dc62df538ffb243))
+* add warning text prop ([257cc2b](https://github.com/TomaszKandula/TokanPages/commit/257cc2b376d4f6ec0750159fd815dd2b2e5e7ae8))
+* allow to click in tag, redirect to given link ([7c140ae](https://github.com/TomaszKandula/TokanPages/commit/7c140ae499393801c676eda9dc2962f59e3c9c07))
+* center progress bar on loading ([bf55518](https://github.com/TomaszKandula/TokanPages/commit/bf555183074a67276f5f4278da6e925d06079a6c))
+* change colours and paddings ([b1e3d26](https://github.com/TomaszKandula/TokanPages/commit/b1e3d2631b30d2eed830921a9267c1eeee3daf66))
+* change icon colour ([418d293](https://github.com/TomaszKandula/TokanPages/commit/418d293086a3c1c340eabef655eec86cc3df2430))
+* change image borders ([fc8c592](https://github.com/TomaszKandula/TokanPages/commit/fc8c5925b1714a1a37f5da9349bdc488a42af187))
+* change printout scale ([361e724](https://github.com/TomaszKandula/TokanPages/commit/361e7240eea79adc28e34304f1c4cc976fa8044f))
+* do not display warning badge on loading ([4f9a9b9](https://github.com/TomaszKandula/TokanPages/commit/4f9a9b9bca3893189a9686f28a39a17c490efb51))
+* extend props ([419f12a](https://github.com/TomaszKandula/TokanPages/commit/419f12a930b439f785e702a215123dea3c3151ef))
+* improve navigation bar ([ecd9733](https://github.com/TomaszKandula/TokanPages/commit/ecd9733f2b0f7bb10c8ddeaafeec43dc28e4c658))
+* relocate bulma-card outside slider component ([0555077](https://github.com/TomaszKandula/TokanPages/commit/055507729175c3e6902ea7858ab095d7e472de12))
+* remove progress bar, allow to have one slide element ([87ddcdb](https://github.com/TomaszKandula/TokanPages/commit/87ddcdba83e27857378acf044a0cfa271115c361))
+* replace react-slick w/Slider component ([9a88b1f](https://github.com/TomaszKandula/TokanPages/commit/9a88b1f9ebd78a78cce35043289a26e2e474c232))
+* restyle ([b888b0b](https://github.com/TomaszKandula/TokanPages/commit/b888b0b4e4464456752aef157c8f16e0560d9880))
+* use new component to render group of images ([d7e8b3a](https://github.com/TomaszKandula/TokanPages/commit/d7e8b3adfd47798dd80b5a225fd4976935eaaaa4))
+
 # [0.176.0](https://github.com/TomaszKandula/TokanPages/compare/v0.175.0...v0.176.0) (2025-10-17)
 
 
