@@ -23,7 +23,7 @@ const Navigation = (props: SliderViewProps): ReactElement => (
 );
 
 export const SliderView = (props: SliderViewProps): ReactElement => (
-    <div className={`bulma-card ${props.className ?? ""}`}>
+    <div className={props.className ?? ""}>
         <Slider
             dots={false}
             arrows={false}

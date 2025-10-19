@@ -143,6 +143,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                     <RenderSigninCard {...props} className="user-signin-view-card-signin" />
                 </div>
                 <div className="bulma-column is-flex is-justify-content-center p-0">
+                    <div className="bulma-card user-signin-view-card-news">
                     <Slider
                         isLoading={props.isLoading}
                         isLazyLoad={true}
@@ -153,7 +154,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                         autoplay={true}
                         autoplaySpeed={5500}
                         pauseOnHover={true}
-                        className="user-signin-view-card-news is-flex is-flex-direction-column"
+                        className="is-flex is-flex-direction-column"
                     >
                         {props.isLoading ? (
                             <RenderSlide isLoading={props.isLoading} image="" tags={[""]} date="" title="" lead="" />
@@ -170,6 +171,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                             ))
                         )}
                     </Slider>
+                    </div>
                 </div>
             </div>
         </div>
