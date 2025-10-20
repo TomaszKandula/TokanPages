@@ -36,8 +36,10 @@ const RenderResume = (props: ResumeViewProps): React.ReactElement => (
                 className="is-size-5 has-text-justified line-height-20"
             />
         </div>
+        <div className="page-break"></div>
         <RenderCaption isLoading={props.isLoading} text={props.page.resume.experience.caption} />
         <RenderExperienceList {...props} />
+        <div className="page-break"></div>
         <RenderCaption isLoading={props.isLoading} text={props.page.resume.education.caption} />
         <RenderEducationList {...props} />
         <RenderCaption isLoading={props.isLoading} text={props.section.caption} />
