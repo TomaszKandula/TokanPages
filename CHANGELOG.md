@@ -1,3 +1,16 @@
+# [0.178.0](https://github.com/TomaszKandula/TokanPages/compare/v0.177.0...v0.178.0) (2025-10-21)
+
+
+### Bug Fixes
+
+* resolve rendering issues ([b96850b](https://github.com/TomaszKandula/TokanPages/commit/b96850b8f9b3c9de4ccb1a8f9785df0def0bcfbe))
+
+
+### Features
+
+* add page break ([d28e855](https://github.com/TomaszKandula/TokanPages/commit/d28e855d9fc596f872efb4a253906dd8d0de246e))
+* improve viewport settings for PDF print ([6ea4f8b](https://github.com/TomaszKandula/TokanPages/commit/6ea4f8b7dfd27ee845f8b8c610b4d4cef2ada1c7))
+
 # [0.177.0](https://github.com/TomaszKandula/TokanPages/compare/v0.176.0...v0.177.0) (2025-10-19)
 
 
