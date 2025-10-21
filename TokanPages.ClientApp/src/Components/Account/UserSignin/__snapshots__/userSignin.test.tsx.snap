@@ -184,7 +184,7 @@ Object {
                   </p>
                 </div>
                 <div
-                  class="is-flex is-flex-direction-column "
+                  class="is-flex is-flex-direction-column is-gap-1.5 "
                 >
                   <div
                     class="slick-slider slick-initialized"
@@ -263,7 +263,7 @@ Object {
                     
                   </div>
                   <div
-                    class="is-flex is-justify-content-center is-gap-1.5 slider-view-navigation"
+                    class="is-flex is-justify-content-center is-gap-1.5 mb-5"
                   >
                     <div>
                       <svg
@@ -467,7 +467,7 @@ Object {
                 </p>
               </div>
               <div
-                class="is-flex is-flex-direction-column "
+                class="is-flex is-flex-direction-column is-gap-1.5 "
               >
                 <div
                   class="slick-slider slick-initialized"
@@ -546,7 +546,7 @@ Object {
                   
                 </div>
                 <div
-                  class="is-flex is-justify-content-center is-gap-1.5 slider-view-navigation"
+                  class="is-flex is-justify-content-center is-gap-1.5 mb-5"
                 >
                   <div>
                     <svg
