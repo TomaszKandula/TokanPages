@@ -21,20 +21,20 @@ public class CachingService : ICachingService
 
     private const string ServiceName = $"[{nameof(CachingService)}]";
 
+    private const string Script = @"
+        () => {
+            return {
+                width: document.documentElement.scrollWidth,
+                height: document.documentElement.scrollHeight
+            };
+        }
+    ";
+
     private readonly ILoggerService _loggerService;
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
     private readonly IHttpClientServiceFactory _httpClientServiceFactory;
-
-    private readonly PdfOptions _pdfOptions = new()
-    {
-        Format = PaperFormat.A4,
-        Scale = (decimal)0.83,
-        Landscape = false,
-        DisplayHeaderFooter = false,
-        PrintBackground = true
-    };
 
     private readonly LaunchOptions _launchOptions = new()
     {
@@ -100,12 +100,23 @@ public class CachingService : ICachingService
             await using var browser = await Puppeteer.LaunchAsync(_launchOptions);
             await using var page = await browser.NewPageAsync();
 
-            page.Viewport.Width = 1920;
-            page.Viewport.Height = 1080;
-            page.Viewport.DeviceScaleFactor = 1;
+            await page.EmulateMediaTypeAsync(MediaType.Print);
+            await page.SetViewportAsync(new ViewPortOptions
+            {
+                Width = 1920, 
+                Height = 1080
+            });
 
             await page.GoToAsync(sourceUrl, FiveMinutesTimeout, waitUntil: WaitUntilOptions);
             await page.EvaluateExpressionHandleAsync(DocumentFontReady);
+
+            // Set the viewport size based on the actual content size
+            var contentSize = await page.EvaluateFunctionAsync<dynamic>(Script);
+            await page.SetViewportAsync(new ViewPortOptions
+            {
+                Width = (int)contentSize.width,
+                Height = (int)contentSize.height
+            });            
 
             var pdfName = string.IsNullOrWhiteSpace(optionalName) ? $"{Guid.NewGuid()}.pdf" : $"{optionalName}.pdf";
             var tempDir = $"{AppDomain.CurrentDomain.BaseDirectory}{Path.PathSeparator}temp";
@@ -120,11 +131,21 @@ public class CachingService : ICachingService
             if (fileInfo.Exists)
                 fileInfo.Delete();
 
-            await using var stream = await page.PdfStreamAsync(_pdfOptions);
+            var pdfOptions = new PdfOptions
+            {
+                Format = PaperFormat.A4,
+                Scale = (decimal)0.80,
+                Landscape = false,
+                DisplayHeaderFooter = false,
+                PrintBackground = true,
+                Width = (int)contentSize.width,
+                Height = (int)contentSize.height
+            };
+
+            await using var stream = await page.PdfStreamAsync(pdfOptions);
             await using var file = new FileStream(outputPath, FileMode.Create);
             stream.Position = 0;
             await stream.CopyToAsync(file);
-
             await SaveToAzureStorage(outputPath, $"documents/{pdfName}");
 
             _loggerService.LogInformation($"{ServiceName}: PDF has been generated.");

@@ -64,6 +64,11 @@ body {
     body {
         background-color: #ffffff;
     }
+
+    .page-break {
+        clear: both;
+        page-break-after: always;
+    }
 }
 
 /* SHARED STYLES BY COMPONENTS */
