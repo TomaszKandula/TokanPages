@@ -56,4 +56,14 @@ public static class LoggerMapper
             }
         }
     };
+
+    /// <summary>
+    /// Map request DTO to a given command.
+    /// </summary>
+    /// <param name="model">Assets object.</param>
+    /// <returns>Command object.</returns>
+    public static UploadLogFileCommand UploadLogFileCommand(UploadLogFileDto model) => new()
+    {
+        Data = model.Data,
+    };
 }
