@@ -11,7 +11,7 @@ namespace TokanPages.Logger.Dto;
 public class UploadLogFileDto
 {
     /// <summary>
-    /// Binary data.
+    /// Binary data. Existing file is always overwritten.
     /// </summary>
     [DataType(DataType.Upload)]
     public IFormFile? Data { get; set; }
