@@ -90,6 +90,10 @@ public abstract class TestBase
             .Returns(mockedSection);
 
         mockedConfig
+            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeUserMedia"))
+            .Returns(SetReturnValue("4096"));
+
+        mockedConfig
             .Setup(configuration => configuration.GetSection("Paths_Templates_ContactForm"))
             .Returns(mockedSection);
 
