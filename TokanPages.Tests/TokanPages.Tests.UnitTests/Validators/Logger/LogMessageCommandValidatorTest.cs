@@ -100,6 +100,7 @@ public class LogMessageCommandValidatorTest : TestBase
 
         var command = new UploadLogFileCommand
         {
+            CatalogName = DataUtilityService.GetRandomString(),
             Data = mockFile.Object
         };
 
@@ -121,6 +122,7 @@ public class LogMessageCommandValidatorTest : TestBase
 
         var command = new UploadLogFileCommand
         {
+            CatalogName = DataUtilityService.GetRandomString(),
             Data = mockFile.Object
         };
 
@@ -131,5 +133,52 @@ public class LogMessageCommandValidatorTest : TestBase
         // Assert
         result.Errors.Count.Should().Be(1);
         result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.INVALID_FILE_SIZE));
+    }
+
+    [Fact]
+    public void GivenTooLargeFileAndTooLongCatalog_WhenUploadLogFile_ShouldFail()
+    {
+        // Arrange
+        var mockedConfig = SetConfiguration();
+        var mockFile = new Mock<IFormFile>();
+        mockFile.Setup(f => f.Length).Returns(90128);
+
+        var command = new UploadLogFileCommand
+        {
+            CatalogName = DataUtilityService.GetRandomString(500),
+            Data = mockFile.Object
+        };
+
+        // Act
+        var validator = new UploadLogFileCommandValidator(mockedConfig.Object);
+        var result = validator.Validate(command);
+
+        // Assert
+        result.Errors.Count.Should().Be(2);
+        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.LENGTH_TOO_LONG_225));
+        result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.INVALID_FILE_SIZE));
+    }
+
+    [Fact]
+    public void GivenMissingFileAndCatalog_WhenUploadLogFile_ShouldFail()
+    {
+        // Arrange
+        var mockedConfig = SetConfiguration();
+        var mockFile = new Mock<IFormFile>();
+        mockFile.Setup(f => f.Length).Returns(0);
+
+        var command = new UploadLogFileCommand
+        {
+            Data = mockFile.Object
+        };
+
+        // Act
+        var validator = new UploadLogFileCommandValidator(mockedConfig.Object);
+        var result = validator.Validate(command);
+
+        // Assert
+        result.Errors.Count.Should().Be(2);
+        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.REQUIRED));
+        result.Errors[1].ErrorCode.Should().Be(nameof(ValidationCodes.INVALID_FILE_SIZE));
     }
 }
