@@ -1,4 +1,6 @@
 using FluentAssertions;
+using Microsoft.AspNetCore.Http;
+using Moq;
 using TokanPages.Backend.Application.Logger.Commands;
 using TokanPages.Backend.Shared.Resources;
 using Xunit;
@@ -86,5 +88,48 @@ public class LogMessageCommandValidatorTest : TestBase
         result.Errors[3].ErrorCode.Should().Be(nameof(ValidationCodes.LENGTH_TOO_LONG_4096));
         result.Errors[4].ErrorCode.Should().Be(nameof(ValidationCodes.LENGTH_TOO_LONG_2048));
         result.Errors[5].ErrorCode.Should().Be(nameof(ValidationCodes.LENGTH_TOO_LONG_225));
+    }
+
+    [Fact]
+    public void GivenValidFile_WhenUploadLogFile_ShouldSucceed()
+    {
+        // Arrange
+        var mockedConfig = SetConfiguration();
+        var mockFile = new Mock<IFormFile>();
+        mockFile.Setup(f => f.Length).Returns(4096);
+
+        var command = new UploadLogFileCommand
+        {
+            Data = mockFile.Object
+        };
+
+        // Act
+        var validator = new UploadLogFileCommandValidator(mockedConfig.Object);
+        var result = validator.Validate(command);
+
+        // Assert
+        result.Errors.Should().BeEmpty();
+    }
+
+    [Fact]
+    public void GivenTooLargeFile_WhenUploadLogFile_ShouldFail()
+    {
+        // Arrange
+        var mockedConfig = SetConfiguration();
+        var mockFile = new Mock<IFormFile>();
+        mockFile.Setup(f => f.Length).Returns(90128);
+
+        var command = new UploadLogFileCommand
+        {
+            Data = mockFile.Object
+        };
+
+        // Act
+        var validator = new UploadLogFileCommandValidator(mockedConfig.Object);
+        var result = validator.Validate(command);
+
+        // Assert
+        result.Errors.Count.Should().Be(1);
+        result.Errors[0].ErrorCode.Should().Be(nameof(ValidationCodes.INVALID_FILE_SIZE));
     }
 }
