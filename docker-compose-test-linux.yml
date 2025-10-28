@@ -15,6 +15,7 @@ services:
       - "80"
     volumes:
       - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+      - /home/tom/Projects/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   content-api:
     build:
@@ -30,6 +31,7 @@ services:
       - "80"
     volumes:
       - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+      - /home/tom/Projects/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   sender-api:
     build:
@@ -45,6 +47,7 @@ services:
       - "80"
     volumes:
       - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+      - /home/tom/Projects/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   revenue-api:
     build:
@@ -60,6 +63,7 @@ services:
       - "80"
     volumes:
       - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+      - /home/tom/Projects/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   users-api:
     build:
@@ -75,6 +79,7 @@ services:
       - "80"
     volumes:
       - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+      - /home/tom/Projects/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   invoicing-api:
     build:
@@ -90,6 +95,7 @@ services:
       - "80"
     volumes:
       - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+      - /home/tom/Projects/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   logger-api:
     build:
@@ -120,6 +126,7 @@ services:
       - "80"
     volumes:
       - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+      - /home/tom/Projects/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   chat-api:
     build:
@@ -135,6 +142,7 @@ services:
       - "80"
     volumes:
       - /home/tom/Projects/.secrets/secrets1.json:/app/appsettings.Testing.json:ro
+      - /home/tom/Projects/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   gateway-api:
     build:
@@ -150,6 +158,7 @@ services:
       - "80"
     volumes:
       - /home/tom/Projects/.secrets/secrets2.json:/app/appsettings.Testing.json:ro
+      - /home/tom/Projects/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   hosted-services-api:
     build:

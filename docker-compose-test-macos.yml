@@ -15,6 +15,7 @@ services:
       - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+      - /Users/tomkandula/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   content-api:
     build:
@@ -30,6 +31,7 @@ services:
       - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+      - /Users/tomkandula/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   sender-api:
     build:
@@ -45,6 +47,7 @@ services:
       - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+      - /Users/tomkandula/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   revenue-api:
     build:
@@ -60,6 +63,7 @@ services:
       - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+      - /Users/tomkandula/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   users-api:
     build:
@@ -75,6 +79,7 @@ services:
       - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+      - /Users/tomkandula/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   invoicing-api:
     build:
@@ -90,6 +95,7 @@ services:
       - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+      - /Users/tomkandula/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   logger-api:
     build:
@@ -120,6 +126,7 @@ services:
       - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+      - /Users/tomkandula/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   chat-api:
     build:
@@ -135,6 +142,7 @@ services:
       - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/8b3e70b5-d8ea-4e82-a5b9-080a2e2d1f40/secrets.json:/app/appsettings.Testing.json:ro
+      - /Users/tomkandula/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   gateway-api:
     build:
@@ -150,6 +158,7 @@ services:
       - "80"
     volumes:
       - /Users/tomkandula/.microsoft/usersecrets/adf9015c-8c97-47bb-aabd-27827bc78822/secrets-docker.json:/app/appsettings.Testing.json:ro
+      - /Users/tomkandula/.certs/redis_tls.pfx:/app/redis_tls.pfx.json:ro
 
   hosted-services-api:
     build:
