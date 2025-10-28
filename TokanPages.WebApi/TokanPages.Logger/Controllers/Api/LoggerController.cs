@@ -35,6 +35,6 @@ public class LoggerController : ApiBaseController
     /// <returns>Empty object.</returns>
     [HttpPost]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
-    public async Task<Unit> LogMessage([FromForm] UploadLogFileDto payload) 
+    public async Task<Unit> UploadLogFile([FromForm] UploadLogFileDto payload) 
         => await Mediator.Send(LoggerMapper.UploadLogFileCommand(payload));
 }
