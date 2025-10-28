@@ -24,7 +24,7 @@ public class UploadLogFileCommandValidator : AbstractValidator<UploadLogFileComm
             .WithMessage(ValidationCodes.REQUIRED);
 
         RuleFor(command => command.Data)
-            .Must(bytes => bytes!.Length <= sizeLimit)
+            .Must(bytes => bytes!.Length > 0 && bytes.Length <= sizeLimit)
             .WithErrorCode(nameof(ValidationCodes.INVALID_FILE_SIZE))
             .WithMessage(ValidationCodes.INVALID_FILE_SIZE);
     }
