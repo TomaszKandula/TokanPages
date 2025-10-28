@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography.X509Certificates;
 using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Gateway.Extensions;
@@ -46,10 +47,21 @@ public class Startup
         });
         services.AddSignalR().AddStackExchangeRedis(options =>
         {
-            options.Configuration.EndPoints.Add(RedisSupport.GetHostAndPort(_configuration));
-            options.Configuration.Password = RedisSupport.GetPassword(_configuration);
-            options.Configuration.Ssl = RedisSupport.GetSsl(_configuration);
-            options.Configuration.AbortOnConnectFail = RedisSupport.GetAbortConnect(_configuration);
+            var certificateFile = _configuration.GetValue<string>("AZ_Redis_CertificateFile");
+            var certificatePass = _configuration.GetValue<string>("AZ_Redis_CertificatePass");
+            var endpoints = RedisSupport.GetHostAndPort(_configuration);
+            var password = RedisSupport.GetPassword(_configuration);
+            var ssl = RedisSupport.GetSsl(_configuration);
+            var abort = RedisSupport.GetAbortConnect(_configuration);
+
+            options.Configuration.EndPoints.Add(endpoints);
+            options.Configuration.Password = password;
+            options.Configuration.Ssl = ssl;
+            options.Configuration.AbortOnConnectFail = abort;
+            options.Configuration.CertificateSelection += delegate
+            {
+                return new X509Certificate2(certificateFile!, certificatePass);
+            };
         });
         services.AddOptions();
         services.AddSingleton<ILoggerService, LoggerService>();
