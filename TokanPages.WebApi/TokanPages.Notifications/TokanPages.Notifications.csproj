@@ -22,6 +22,10 @@
             <Link>appsettings.Production.json</Link>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
+        <None Include="..\..\TokanPages.Certificates\redis_tls.pfx">
+            <Link>redis_tls.pfx</Link>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
     <ItemGroup>

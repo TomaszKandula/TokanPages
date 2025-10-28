@@ -14,6 +14,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\..\TokanPages.Certificates\redis_tls.pfx">
+      <Link>redis_tls.pfx</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+     </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Configuration\TokanPages.Backend.Configuration.csproj" />
     <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Application\TokanPages.Backend.Application.csproj" />
   </ItemGroup>
