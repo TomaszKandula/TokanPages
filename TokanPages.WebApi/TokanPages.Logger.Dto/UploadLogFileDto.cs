@@ -11,6 +11,11 @@ namespace TokanPages.Logger.Dto;
 public class UploadLogFileDto
 {
     /// <summary>
+    /// Log file will be saved under given catalog name. 
+    /// </summary>
+    public string CatalogName { get; set; } = "";
+
+    /// <summary>
     /// Binary data. Existing file is always overwritten.
     /// </summary>
     [DataType(DataType.Upload)]

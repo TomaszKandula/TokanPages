@@ -64,6 +64,7 @@ public static class LoggerMapper
     /// <returns>Command object.</returns>
     public static UploadLogFileCommand UploadLogFileCommand(UploadLogFileDto model) => new()
     {
+        CatalogName = model.CatalogName,
         Data = model.Data,
     };
 }

@@ -20,7 +20,7 @@ public class UploadLogFileCommandHandler : RequestHandler<UploadLogFileCommand, 
         var contentType = request.Data!.ContentType;
         var binary = request.Data.GetByteArray();
 
-        var destinationPath = $"logs/RedisServer/{fileName}";
+        var destinationPath = $"logs/{request.CatalogName}/{fileName}";
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         using var stream = new MemoryStream(binary);
 
