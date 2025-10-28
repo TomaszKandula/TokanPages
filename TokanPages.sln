@@ -17,13 +17,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.AzureSt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Tests.UnitTests", "TokanPages.Tests\TokanPages.Tests.UnitTests\TokanPages.Tests.UnitTests.csproj", "{3A138774-9DA3-40E3-8DA3-50620F0FD310}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9. WebApi", "9. WebApi", "{32D5033E-6D95-4045-9B90-E8EE7A0644CC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10. WebApi", "10. WebApi", "{32D5033E-6D95-4045-9B90-E8EE7A0644CC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Backend", "6. Backend", "{B6059425-BCF6-468D-BAF2-450E3E6D6C43}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7. Backend", "7. Backend", "{B6059425-BCF6-468D-BAF2-450E3E6D6C43}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10. Tests", "10. Tests", "{B30AF865-7C21-4323-B7E5-14762C5B1DC0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "11. Tests", "11. Tests", "{B30AF865-7C21-4323-B7E5-14762C5B1DC0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8. Services", "8. Services", "{7B457C82-AEA6-49F3-8F9F-A7F0798166FF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9. Services", "9. Services", "{7B457C82-AEA6-49F3-8F9F-A7F0798166FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.BehaviourService", "TokanPages.Services\TokanPages.Services.BehaviourService\TokanPages.Services.BehaviourService.csproj", "{0E68D499-C546-42A7-BFF7-9585002DA3A7}"
 EndProject
@@ -37,7 +37,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.UserSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.EmailSenderService", "TokanPages.Services\TokanPages.Services.EmailSenderService\TokanPages.Services.EmailSenderService.csproj", "{2537C6F4-8115-4ECF-816B-0D00207163E5}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7. Persistence", "7. Persistence", "{49EAB969-487E-44FD-85B1-041D4836A8DC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8. Persistence", "8. Persistence", "{49EAB969-487E-44FD-85B1-041D4836A8DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Persistence.Caching", "TokanPages.Persistence\TokanPages.Persistence.Caching\TokanPages.Persistence.Caching.csproj", "{2C3954CF-EB27-45CA-8A22-5A44497BEC36}"
 EndProject
@@ -51,7 +51,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Configuration", "2. Conf
 		TokanPages.Configuration\appsettings.Testing.json = TokanPages.Configuration\appsettings.Testing.json
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Deployment", "3. Deployment", "{A6A91832-D2B6-4665-B081-A349B5B2B16C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Deployment", "4. Deployment", "{A6A91832-D2B6-4665-B081-A349B5B2B16C}"
 	ProjectSection(SolutionItems) = preProject
 		dev_build.yml = .github\workflows\dev_build.yml
 		master_build.yml = .github\workflows\master_build.yml
@@ -64,7 +64,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Documentation", "1. Docu
 		LICENSE = LICENSE
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Docker", "4. Docker", "{44E3FCFF-AF4A-4E91-89E7-F5E4D607611B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Docker", "5. Docker", "{44E3FCFF-AF4A-4E91-89E7-F5E4D607611B}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose-test-macos.yml = docker-compose-test-macos.yml
 		docker-compose-test-linux.yml = docker-compose-test-linux.yml
@@ -116,7 +116,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Users", "TokanPa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Users.Dto", "TokanPages.WebApi\TokanPages.Users.Dto\TokanPages.Users.Dto.csproj", "{55893928-56BE-4EBD-A440-99C6B5248203}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Nginx", "5. Nginx", "{81559082-2D02-493B-98BA-12AA28B99871}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6. Nginx", "6. Nginx", "{81559082-2D02-493B-98BA-12AA28B99871}"
 	ProjectSection(SolutionItems) = preProject
 		TokanPages.ClientApp\nginx\nginx-base.conf = TokanPages.ClientApp\nginx\nginx-base.conf
 		TokanPages.ClientApp\nginx\nginx-paths.conf = TokanPages.ClientApp\nginx\nginx-paths.conf
@@ -167,6 +167,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Logger.Dto", "TokanPages.WebApi\TokanPages.Logger.Dto\TokanPages.Logger.Dto.csproj", "{13526651-6841-4A21-80F1-1F758CE5776E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.CookieAccessorService", "TokanPages.Services\TokanPages.Services.CookieAccessorService\TokanPages.Services.CookieAccessorService.csproj", "{A8B4670D-B731-4ED3-87A9-168EF14A4A7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Certificates", "3. Certificates", "{B27E3F0A-A602-4096-8CEA-876D4237DE2A}"
+	ProjectSection(SolutionItems) = preProject
+		TokanPages.Certificates\redis_tls.pfx = TokanPages.Certificates\redis_tls.pfx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
