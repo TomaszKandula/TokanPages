@@ -9,6 +9,8 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
+using TokanPages.Services.AzureStorageService;
+using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Abstractions;
@@ -45,7 +47,7 @@ public static class Dependencies
     public static void CommonServices(this IServiceCollection services, IConfiguration configuration)
     {
         SetupLogger(services);
-        SetupServices(services);
+        SetupServices(services, configuration);
         SetupValidators(services);
         SetupMediatR(services);
         WebTokenSupport.SetupWebToken(services, configuration);
@@ -66,7 +68,7 @@ public static class Dependencies
         });
     }
 
-    private static void SetupServices(IServiceCollection services) 
+    private static void SetupServices(IServiceCollection services, IConfiguration configuration) 
     {
         services.AddHttpContextAccessor();
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
@@ -76,6 +78,13 @@ public static class Dependencies
         services.AddScoped<IJsonSerializer, JsonSerializer>();
         services.AddScoped<IDateTimeService, DateTimeService>();
         services.AddScoped<IDataUtilityService, DataUtilityService>();
+
+        services.AddSingleton<IAzureBlobStorageFactory>(_ =>
+        {
+            var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName") ?? "";
+            var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "";
+            return new AzureBlobStorageFactory(connectionString, containerName);
+        });
     }
 
     private static void SetupValidators(IServiceCollection services)
