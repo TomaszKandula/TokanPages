@@ -1,3 +1,24 @@
+# [0.179.0](https://github.com/TomaszKandula/TokanPages/compare/v0.178.0...v0.179.0) (2025-10-29)
+
+
+### Bug Fixes
+
+* add missing dependency ([dc6e544](https://github.com/TomaszKandula/TokanPages/commit/dc6e544e038086fec6fedefe0b0f6dbdfc5ec96d))
+* rename ([f6ca1e8](https://github.com/TomaszKandula/TokanPages/commit/f6ca1e8d88b4a586fe08f8c5a61ea56c37dbe9ff))
+
+
+### Features
+
+* add catalog name ([6adb7a9](https://github.com/TomaszKandula/TokanPages/commit/6adb7a9668845e0357f1fb9f6995d9a7350584bf))
+* add command ([942f682](https://github.com/TomaszKandula/TokanPages/commit/942f6825b7e2237aa6b88df2de942a1d4b6ed464))
+* add DTO model ([53bd7d1](https://github.com/TomaszKandula/TokanPages/commit/53bd7d197fd688ade768ecd341e8ed3cee951447))
+* add endpoint ([96c1f52](https://github.com/TomaszKandula/TokanPages/commit/96c1f52e6bf114cc0b4b12e3f40c432fe0be5ded))
+* add handler ([af27d7c](https://github.com/TomaszKandula/TokanPages/commit/af27d7c66b40e6efb636791c2bf9c3a8e3b4d2e7))
+* add mapper ([88cd81d](https://github.com/TomaszKandula/TokanPages/commit/88cd81d91bbc78364d3a2fc34942049eec935dfa))
+* add validator ([4e0b53e](https://github.com/TomaszKandula/TokanPages/commit/4e0b53ee876f100acf7bff1a220f3c2de70dd8ee))
+* require catalog name to be not longer than 225 chars ([be9684d](https://github.com/TomaszKandula/TokanPages/commit/be9684d7818c375e585815f943e11f0a610575ac))
+* require file to be larger than 0 ([7b5618c](https://github.com/TomaszKandula/TokanPages/commit/7b5618c2376bcda244c2bdc5b36da6256b294de3))
+
 # [0.178.0](https://github.com/TomaszKandula/TokanPages/compare/v0.177.0...v0.178.0) (2025-10-21)
 
 
