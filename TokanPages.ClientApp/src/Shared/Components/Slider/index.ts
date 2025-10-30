@@ -1,1 +1,1 @@
-export { Slider } from "./slider";
+export { Carousel as Slider } from "./slider";
