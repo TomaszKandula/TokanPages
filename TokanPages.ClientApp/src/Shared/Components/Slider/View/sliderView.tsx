@@ -10,9 +10,11 @@ import "slick-carousel/slick/slick-theme.css";
 const Navigation = (props: SliderViewProps): ReactElement => (
     <div className="is-flex is-justify-content-center is-gap-1.5 mb-5">
         <IconButton onClick={props.onPlayPauseClick}>
-            {props.isPaused 
-            ? <Icon name="PlayCircleOutline" size={1.8} className="has-text-link" /> 
-            : <Icon name="PauseCircleOutline" size={1.8} className="has-text-link" />}
+            {props.isPaused ? (
+                <Icon name="PlayCircleOutline" size={1.8} className="has-text-link" />
+            ) : (
+                <Icon name="PauseCircleOutline" size={1.8} className="has-text-link" />
+            )}
         </IconButton>
         <IconButton onClick={props.onPrevSlideClick}>
             <Icon name="ChevronLeft" size={1.8} className="has-text-link" />
