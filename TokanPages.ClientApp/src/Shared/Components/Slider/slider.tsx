@@ -1,20 +1,50 @@
 import * as React from "react";
-import { SliderView } from "./View/sliderView";
+import Slider from "react-slick";
+import { CarouselView } from "./View/sliderView";
 import { SliderProps } from "./Types";
 
-export const Slider = (props: SliderProps) => {
+export const Carousel = (props: SliderProps) => {
+    const ref = React.useRef<Slider | null>(null);
+
     const [selection, setSelection] = React.useState(0);
+    const [isPaused, setIsPaused] = React.useState(false);
 
     const onSlideChange = React.useCallback((_current: number, next: number) => {
         setSelection(next);
     }, []);
 
+    const onNextSlideClick = React.useCallback(() => {
+        if (ref !== null) {
+            ref.current?.slickNext();
+        }
+    }, [ref]);
+
+    const onPrevSlideClick = React.useCallback(() => {
+        if (ref !== null) {
+            ref.current?.slickPrev();
+        }
+    }, [ref]);
+
+    const onPlayPauseClick = React.useCallback(() => {
+        setIsPaused(!isPaused);
+    }, [isPaused]);
+
+    React.useEffect(() => {
+        if (isPaused) {
+            ref.current?.slickPause();
+        } else {
+            ref.current?.slickPlay();
+        }
+    }, [isPaused, ref]);
+
     return (
-        <SliderView
+        <CarouselView
+            reference={ref}
             isLoading={props.isLoading}
             autoplay={props.autoplay}
             autoplaySpeed={props.autoplaySpeed}
             pauseOnHover={props.pauseOnHover}
+            isPaused={isPaused}
             isFading={props.isFading}
             isInfinite={props.isInfinite}
             isNavigation={props.isNavigation}
@@ -22,6 +52,9 @@ export const Slider = (props: SliderProps) => {
             selection={selection}
             onSlideChange={onSlideChange}
             className={props.className}
+            onNextSlideClick={onNextSlideClick}
+            onPrevSlideClick={onPrevSlideClick}
+            onPlayPauseClick={onPlayPauseClick}
         />
     );
 };
