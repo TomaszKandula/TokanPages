@@ -21,8 +21,6 @@ const RenderContent = (props: RenderContentProps): React.ReactElement => {
                 <p className="is-size-6 has-text-weight-light has-text-grey-dark">{props.searchEmptyText2}</p>
             </div>
         );
-    } else {
-        <></>;
     }
 
     return (
