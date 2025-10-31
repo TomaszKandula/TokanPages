@@ -34,4 +34,4 @@ export { RenderHtml } from "./RenderHtml";
 export { PresentationView } from "./PresentationView";
 export { BottomSheet } from "./BottomSheet";
 export { Drawer } from "./Drawer";
-export { Slider } from "./Slider";
+export { Carousel } from "./Carousel";

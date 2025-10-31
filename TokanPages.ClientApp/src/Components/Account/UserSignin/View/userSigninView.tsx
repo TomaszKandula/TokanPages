@@ -12,7 +12,7 @@ import {
     Skeleton,
     TextField,
     TextFieldWithPassword,
-    Slider,
+    Carousel,
 } from "../../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
 import "./userSigninView.css";
@@ -73,10 +73,13 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
     </div>
 );
 
-const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
-    <div className={`bulma-card ${props.className ?? ""}`}>
-        <div className="bulma-card-content">
-            <div>
+const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => {
+    const bulmaCardBase = "bulma-card is-flex is-flex-direction-column is-justify-content-space-between";
+    const cardBottomBase = "is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container";
+
+    return (
+        <div className={`${bulmaCardBase} ${props.className ?? ""}`}>
+            <div className="bulma-card-content">
                 <div className="is-flex is-flex-direction-column is-align-items-center">
                     <Skeleton isLoading={props.isLoading} mode="Circle" width={72} height={72}>
                         <Icon name="AccountCircle" size={3.75} className="card-icon-colour" />
@@ -115,11 +118,11 @@ const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
                         <ButtonSignin {...props} />
                     </Skeleton>
                 </div>
+                <Skeleton isLoading={props.isLoading} mode="Rect" height={90}>
+                    <Notification text={props.consent} hasIcon />
+                </Skeleton>
             </div>
-            <Skeleton isLoading={props.isLoading} mode="Rect" height={90}>
-                <Notification text={props.consent} hasIcon />
-            </Skeleton>
-            <div className="is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container">
+            <div className={`${cardBottomBase} mx-5 mb-5 py-2`}>
                 <Skeleton isLoading={props.isLoading} mode="Text" width={100} height={30}>
                     <Link to={props.link1?.href}>
                         <>{props.link1?.text}</>
@@ -132,8 +135,8 @@ const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => (
                 </Skeleton>
             </div>
         </div>
-    </div>
-);
+    );
+};
 
 export const UserSigninView = (props: UserSigninViewProps): React.ReactElement => (
     <section className={props.className}>
@@ -152,7 +155,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                 </p>
                             </div>
                         )}
-                        <Slider
+                        <Carousel
                             isLoading={props.isLoading}
                             isLazyLoad={true}
                             isFading={false}
@@ -184,7 +187,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                     />
                                 ))
                             )}
-                        </Slider>
+                        </Carousel>
                     </div>
                 </div>
             </div>
