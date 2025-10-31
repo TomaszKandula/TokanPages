@@ -18,7 +18,7 @@ export const RenderImages = (props: TextItem): ReactElement => {
             isNavigation={true}
             autoplay={true}
             autoplaySpeed={5500}
-            pauseOnHover={true}
+            pauseOnHover={false}
             className="bulma-card"
         >
             {items.map((value: ImageItemProps, _index: number) => (

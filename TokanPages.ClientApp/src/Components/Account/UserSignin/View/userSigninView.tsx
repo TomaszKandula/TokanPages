@@ -164,7 +164,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                             isNavigation={true}
                             autoplay={true}
                             autoplaySpeed={5500}
-                            pauseOnHover={true}
+                            pauseOnHover={false}
                         >
                             {props.isLoading ? (
                                 <RenderSlide
