@@ -75,7 +75,8 @@ const RenderSlide = (props: RenderSlideProps): React.ReactElement => (
 
 const RenderSigninCard = (props: RenderSigninCardProps): React.ReactElement => {
     const bulmaCardBase = "bulma-card is-flex is-flex-direction-column is-justify-content-space-between";
-    const cardBottomBase = "is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container";
+    const cardBottomBase =
+        "is-flex is-flex-direction-row is-justify-content-space-between user-signin-view-bottom-container";
 
     return (
         <div className={`${bulmaCardBase} ${props.className ?? ""}`}>
