@@ -20,6 +20,11 @@ const RenderBackNavigationOnly = (props: NavigationViewProps): React.ReactElemen
 const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement => {
     const height = props.media.isDesktop ? APP_BAR_HEIGHT_DESKTOP : APP_BAR_HEIGHT_NON_DESKTOP;
     const [isClose, setIsClose] = React.useState(false);
+
+    const onCloseClick = React.useCallback(() => {
+        setIsClose(true);
+    }, []);
+
     React.useEffect(() => {
         if (!props.isMenuOpen && isClose) {
             setIsClose(false);
@@ -45,9 +50,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
                         <Icon
                             name="WindowClose"
                             size={1.5}
-                            onClick={() => {
-                                setIsClose(true);
-                            }}
+                            onClick={onCloseClick}
                         />
                     </IconButton>
                 </div>
