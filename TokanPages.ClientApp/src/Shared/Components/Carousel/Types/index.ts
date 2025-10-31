@@ -1,17 +1,17 @@
 import Slider from "react-slick";
-import { ReactElement, ReactElements, ViewProperties } from "../../../../Shared/Types";
+import { ReactElement, ReactElements, ViewProperties } from "../../../Types";
 
 export interface ContentProps {
     children: ReactElement | ReactElements;
 }
 
-export interface SliderOptionsProps {
+export interface CarouselOptionsProps {
     onNextSlideClick?: () => void;
     onPrevSlideClick?: () => void;
     onPlayPauseClick?: () => void;
 }
 
-export interface SliderProps extends ViewProperties, ContentProps, SliderOptionsProps {
+export interface CarouselProps extends ViewProperties, ContentProps, CarouselOptionsProps {
     autoplay?: boolean;
     autoplaySpeed?: number;
     pauseOnHover?: boolean;
@@ -23,7 +23,7 @@ export interface SliderProps extends ViewProperties, ContentProps, SliderOptions
     className?: string;
 }
 
-export interface SliderViewProps extends SliderProps {
+export interface CarouselViewProps extends CarouselProps {
     isPaused: boolean;
     reference: React.MutableRefObject<Slider | null>;
     selection: number;

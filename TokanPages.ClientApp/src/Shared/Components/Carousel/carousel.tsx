@@ -1,9 +1,9 @@
 import * as React from "react";
 import Slider from "react-slick";
-import { CarouselView } from "./View/sliderView";
-import { SliderProps } from "./Types";
+import { CarouselView } from "./View/carouselView";
+import { CarouselProps } from "./Types";
 
-export const Carousel = (props: SliderProps) => {
+export const Carousel = (props: CarouselProps) => {
     const ref = React.useRef<Slider | null>(null);
 
     const [selection, setSelection] = React.useState(0);

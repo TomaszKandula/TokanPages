@@ -1,7 +1,7 @@
 import React from "react";
 import { API_BASE_URI } from "../../../../../Api";
 import { ReactElement } from "../../../../../Shared/Types";
-import { Slider, Image } from "../../../../../Shared/Components";
+import { Carousel, Image } from "../../../../../Shared/Components";
 import { ImageItemProps, TextItem } from "../../Models";
 import { v4 as uuidv4 } from "uuid";
 
@@ -9,7 +9,7 @@ export const RenderImages = (props: TextItem): ReactElement => {
     const items = props.value as ImageItemProps[];
 
     return (
-        <Slider
+        <Carousel
             isLoading={false}
             isLazyLoad={true}
             isFading={false}
@@ -41,6 +41,6 @@ export const RenderImages = (props: TextItem): ReactElement => {
                     </div>
                 </React.Fragment>
             ))}
-        </Slider>
+        </Carousel>
     );
 };

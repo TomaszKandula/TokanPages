@@ -12,7 +12,7 @@ import {
     Skeleton,
     TextField,
     TextFieldWithPassword,
-    Slider,
+    Carousel,
 } from "../../../../Shared/Components";
 import { v4 as uuidv4 } from "uuid";
 import "./userSigninView.css";
@@ -152,7 +152,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                 </p>
                             </div>
                         )}
-                        <Slider
+                        <Carousel
                             isLoading={props.isLoading}
                             isLazyLoad={true}
                             isFading={false}
@@ -184,7 +184,7 @@ export const UserSigninView = (props: UserSigninViewProps): React.ReactElement =
                                     />
                                 ))
                             )}
-                        </Slider>
+                        </Carousel>
                     </div>
                 </div>
             </div>

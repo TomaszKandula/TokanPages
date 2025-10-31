@@ -1,13 +1,13 @@
 import * as React from "react";
 import Slider from "react-slick";
-import { SliderViewProps } from "../Types";
-import { ReactElement } from "../../../../Shared/Types";
-import { Icon, IconButton } from "../../../../Shared/Components";
+import { CarouselViewProps } from "../Types";
+import { ReactElement } from "../../../Types";
+import { Icon, IconButton } from "../..";
 import { v4 as uuidv4 } from "uuid";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const Navigation = (props: SliderViewProps): ReactElement => (
+const Navigation = (props: CarouselViewProps): ReactElement => (
     <div className="is-flex is-justify-content-center is-gap-1.5 mb-5">
         <IconButton onClick={props.onPlayPauseClick}>
             {props.isPaused ? (
@@ -36,7 +36,7 @@ const Navigation = (props: SliderViewProps): ReactElement => (
     </div>
 );
 
-export const CarouselView = (props: SliderViewProps): ReactElement => (
+export const CarouselView = (props: CarouselViewProps): ReactElement => (
     <div className={`is-flex is-flex-direction-column is-gap-1.5 ${props.className ?? ""}`}>
         <Slider
             ref={props.reference}
