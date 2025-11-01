@@ -95,7 +95,12 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                 <Icon name="WindowClose" size={2.0} className="has-text-white is-clickable" onClick={onCloseHandler} />
             </div>
             <div className="is-flex is-justify-content-space-between is-align-items-center">
-                <Icon name="ChevronLeft" size={2.0} className="mx-4 has-text-white is-clickable" onClick={onPrevImage} />
+                <Icon
+                    name="ChevronLeft"
+                    size={2.0}
+                    className="mx-4 has-text-white is-clickable"
+                    onClick={onPrevImage}
+                />
                 <figure className="bulma-image">
                     <Image
                         source={`${API_BASE_URI}${props.collection[imageNumber]}`}
@@ -104,8 +109,13 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                         loading="eager"
                     />
                 </figure>
-                <Icon name="ChevronRight" size={2.0} className="mx-4 has-text-white is-clickable" onClick={onNextImage} />
+                <Icon
+                    name="ChevronRight"
+                    size={2.0}
+                    className="mx-4 has-text-white is-clickable"
+                    onClick={onNextImage}
+                />
             </div>
         </div>
     );
-}
+};
