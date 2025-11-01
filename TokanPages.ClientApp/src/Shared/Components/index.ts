@@ -35,3 +35,4 @@ export { PresentationView } from "./PresentationView";
 export { BottomSheet } from "./BottomSheet";
 export { Drawer } from "./Drawer";
 export { Carousel } from "./Carousel";
+export { MediaPresenter } from "./MediaPresenter";
