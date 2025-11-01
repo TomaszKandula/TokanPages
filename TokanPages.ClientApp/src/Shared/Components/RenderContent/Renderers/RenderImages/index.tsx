@@ -1,12 +1,13 @@
 import React from "react";
 import { API_BASE_URI } from "../../../../../Api";
 import { ReactElement } from "../../../../../Shared/Types";
-import { Carousel, Image } from "../../../../../Shared/Components";
+import { Carousel, Image, MediaPresenter } from "../../../../../Shared/Components";
 import { ImageItemProps, TextItem } from "../../Models";
 import { v4 as uuidv4 } from "uuid";
 
 interface RenderImageProps extends TextItem {
     imageItem: ImageItemProps;
+    onClick: () => void;
 }
 
 const RenderImage = (props: RenderImageProps) => {
@@ -15,7 +16,7 @@ const RenderImage = (props: RenderImageProps) => {
     return (
         <>
             <div className="bulma-card-image">
-                <figure className="bulma-image">
+                <figure className="bulma-image is-clickable" onClick={props.onClick}>
                     <Image
                         source={`${API_BASE_URI}${value.image}`}
                         title={props.text}
@@ -37,22 +38,43 @@ const RenderImage = (props: RenderImageProps) => {
 export const RenderImages = (props: TextItem): ReactElement => {
     const items = props.value as ImageItemProps[];
 
+    const [isImageOpen, setIsImageOpen] = React.useState(false);
+    const [selection, setSelection] = React.useState(0);
+
+    const onSelection = React.useCallback((selection: number) => {
+        setSelection(selection);
+        onImageOpenClick();
+    }, []);
+
+    const onImageOpenClick = React.useCallback(() => {
+        setIsImageOpen(!isImageOpen);
+    }, [isImageOpen]);
+
     return (
-        <Carousel
-            isLoading={false}
-            isLazyLoad={true}
-            isFading={false}
-            isInfinite={true}
-            isSwipeToSlide={true}
-            isNavigation={true}
-            autoplay={true}
-            autoplaySpeed={5500}
-            pauseOnHover={false}
-            className="bulma-card"
-        >
-            {items.map((value: ImageItemProps, _index: number) => (
-                <RenderImage key={uuidv4()} {...props} imageItem={value} />
-            ))}
-        </Carousel>
+        <>
+            <Carousel
+                isLoading={false}
+                isLazyLoad={true}
+                isFading={false}
+                isInfinite={true}
+                isSwipeToSlide={true}
+                isNavigation={true}
+                autoplay={true}
+                autoplaySpeed={5500}
+                pauseOnHover={false}
+                className="bulma-card"
+            >
+                {items.map((value: ImageItemProps, index: number) => (
+                    <RenderImage key={uuidv4()} {...props} imageItem={value} onClick={() => onSelection(index)} />
+                ))}
+            </Carousel>
+            <MediaPresenter
+                isOpen={isImageOpen}
+                presenting={selection}
+                collection={items.map(items => items.image)}
+                type="image"
+                onTrigger={onImageOpenClick}
+            />
+        </>
     );
 };
