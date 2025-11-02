@@ -11,5 +11,7 @@ export interface RenderImageProps {
     title?: string;
     loading?: TLoading;
     isPreviewIcon?: boolean;
+    isPreviewTopRadius?: boolean;
+    isPreviewBottomRadius?: boolean;
     onClick?: () => void;
 }
