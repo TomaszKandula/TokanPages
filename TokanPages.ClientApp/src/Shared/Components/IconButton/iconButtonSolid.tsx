@@ -53,4 +53,4 @@ export const IconButtonSolid = (props: IconButtonSolidProps): ReactElement => {
             <Icon name={props.name} size={size} />
         </button>
     );
-}
+};

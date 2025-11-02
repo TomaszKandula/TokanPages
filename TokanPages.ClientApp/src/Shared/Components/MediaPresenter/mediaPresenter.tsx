@@ -113,12 +113,18 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
 
     return (
         <div role="presentation" className="media-presenter-root" style={{ opacity: canOpenMenu ? 1 : 0 }}>
-            <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0 }}/>
+            <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0 }} />
             <div ref={headerRef} className="m-4 is-flex is-justify-content-flex-end">
                 <IconButtonSolid name="WindowClose" size={2.0} onClick={onCloseHandler} />
             </div>
             <div className="is-flex is-justify-content-space-between is-align-items-center">
-                <IconButtonSolid name="ChevronLeft" size={2.0} className="mx-4" onClick={onPrevImage} isDisabled={!canMoveBack} />
+                <IconButtonSolid
+                    name="ChevronLeft"
+                    size={2.0}
+                    className="mx-4"
+                    onClick={onPrevImage}
+                    isDisabled={!canMoveBack}
+                />
                 <figure className="bulma-image">
                     <Image
                         source={`${API_BASE_URI}${props.collection[imageNumber ?? props.presenting]}`}
@@ -127,7 +133,13 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                         loading="eager"
                     />
                 </figure>
-                <IconButtonSolid name="ChevronRight" size={2.0} className="mx-4" onClick={onNextImage} isDisabled={!canMoveNext} />
+                <IconButtonSolid
+                    name="ChevronRight"
+                    size={2.0}
+                    className="mx-4"
+                    onClick={onNextImage}
+                    isDisabled={!canMoveNext}
+                />
             </div>
         </div>
     );

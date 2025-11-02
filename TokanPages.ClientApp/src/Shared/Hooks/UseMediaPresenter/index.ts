@@ -24,6 +24,6 @@ export const useMediaPresenter = (): UseMediaPresenterReturnProps => {
         isPresenterOpen: isPresenterOpen,
         selection: selection,
         onSelectionClick: onSelectionClick,
-        onPresenterClick: onPresenterClick
-    }
-}
+        onPresenterClick: onPresenterClick,
+    };
+};
