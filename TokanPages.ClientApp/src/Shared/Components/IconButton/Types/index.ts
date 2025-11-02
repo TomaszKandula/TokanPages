@@ -1,12 +1,19 @@
 import { ReactMouseEvent } from "../../../../Shared/Types";
 
-export interface IconButtonProps {
+export interface IconButtonBase {
     size?: number;
-    children: React.ReactElement | React.ReactElement[];
-    hasNoHoverEffect?: boolean;
     className?: string;
     isDisabled?: boolean;
-    hasGreyBackground?: boolean;
     onClick?: (event: ReactMouseEvent) => void;
     onMouseDown?: (event: ReactMouseEvent) => void;
+}
+
+export interface IconButtonProps extends IconButtonBase {
+    children: React.ReactElement | React.ReactElement[];
+    hasNoHoverEffect?: boolean;
+    hasGreyBackground?: boolean;
+}
+
+export interface IconButtonSolidProps extends IconButtonBase {
+    name: string;
 }
