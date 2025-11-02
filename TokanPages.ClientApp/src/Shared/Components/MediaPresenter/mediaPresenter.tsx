@@ -118,15 +118,13 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                 <IconButtonSolid name="WindowClose" size={2.0} onClick={onCloseHandler} />
             </div>
             <div className="is-flex is-justify-content-space-between is-align-items-center">
-                {props.collection.length > 1 && (
-                    <IconButtonSolid
-                        name="ChevronLeft"
-                        size={2.0}
-                        className="mx-4"
-                        onClick={onPrevImage}
-                        isDisabled={!canMoveBack}
-                    />
-                )}
+                <IconButtonSolid
+                    name="ChevronLeft"
+                    size={2.0}
+                    className="mx-4"
+                    onClick={onPrevImage}
+                    isDisabled={!canMoveBack || props.collection.length === 1}
+                />
                 <figure className="bulma-image">
                     <Image
                         source={`${API_BASE_URI}${props.collection[imageNumber ?? props.presenting]}`}
@@ -135,15 +133,13 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                         loading="eager"
                     />
                 </figure>
-                {props.collection.length > 1 && (
-                    <IconButtonSolid
-                        name="ChevronRight"
-                        size={2.0}
-                        className="mx-4"
-                        onClick={onNextImage}
-                        isDisabled={!canMoveNext}
-                    />
-                )}
+                <IconButtonSolid
+                    name="ChevronRight"
+                    size={2.0}
+                    className="mx-4"
+                    onClick={onNextImage}
+                    isDisabled={!canMoveNext || props.collection.length === 1}
+                />
             </div>
         </div>
     );
