@@ -21,7 +21,7 @@ export { UploadUserMedia } from "./UploadUserMedia";
 export { ApplicationSession } from "./ApplicationSession";
 export { ErrorBoundary } from "./ErrorBoundary";
 export { Collapsible } from "./Collapsible";
-export { IconButton } from "./IconButton";
+export { IconButton, IconButtonSolid } from "./IconButton";
 export { Link } from "./Link";
 export { Icon } from "./Icon";
 export { Skeleton } from "./Skeleton";
