@@ -19,6 +19,7 @@ const RenderImage = (props: RenderImageProps) => {
             <div className="bulma-card-image">
                 <figure className="bulma-image is-clickable" onClick={props.onClick}>
                     <Image
+                        isPreviewIcon
                         source={`${API_BASE_URI}${value.image}`}
                         title={props.text}
                         alt={props.text}
@@ -47,7 +48,7 @@ export const RenderImages = (props: TextItem): ReactElement => {
                 isLazyLoad={true}
                 isFading={false}
                 isInfinite={true}
-                isSwipeToSlide={true}
+                isSwipeToSlide={false}
                 isNavigation={true}
                 autoplay={true}
                 autoplaySpeed={5500}
