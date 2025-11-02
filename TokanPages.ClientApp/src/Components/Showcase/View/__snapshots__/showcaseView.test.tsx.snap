@@ -70,13 +70,15 @@ Object {
                       <figure
                         class="bulma-image"
                       >
-                        <img
-                          alt="An image illustrating showcase section"
-                          class="showcase-feature-image"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image.webp"
-                          title="Illustration"
-                        />
+                        <div>
+                          <img
+                            alt="An image illustrating showcase section"
+                            class="showcase-feature-image"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image.webp"
+                            title="Illustration"
+                          />
+                        </div>
                       </figure>
                     </div>
                   </div>
@@ -154,13 +156,15 @@ Object {
                     <figure
                       class="bulma-image"
                     >
-                      <img
-                        alt="An image illustrating showcase section"
-                        class="showcase-feature-image"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image.webp"
-                        title="Illustration"
-                      />
+                      <div>
+                        <img
+                          alt="An image illustrating showcase section"
+                          class="showcase-feature-image"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image.webp"
+                          title="Illustration"
+                        />
+                      </div>
                     </figure>
                   </div>
                 </div>

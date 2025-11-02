@@ -47,25 +47,29 @@ Object {
                         <figure
                           class="bulma-image"
                         >
-                          <img
-                            alt="Somebody"
-                            class="socials-image"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/linkedin_header.webp"
-                            title="Illustration"
-                          />
+                          <div>
+                            <img
+                              alt="Somebody"
+                              class="socials-image"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/linkedin_header.webp"
+                              title="Illustration"
+                            />
+                          </div>
                         </figure>
                       </div>
                       <div
                         class="socials-card-image-holder"
                       >
-                        <img
-                          alt="Somebody"
-                          class="socials-avatar"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/linkedin_user.webp"
-                          title="Socials"
-                        />
+                        <div>
+                          <img
+                            alt="Somebody"
+                            class="socials-avatar"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/linkedin_user.webp"
+                            title="Socials"
+                          />
+                        </div>
                       </div>
                       <div
                         class="bulma-card-content socials-card-content"
@@ -136,25 +140,29 @@ Object {
                         <figure
                           class="bulma-image"
                         >
-                          <img
-                            alt="Somebody"
-                            class="socials-image"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/github_header.webp"
-                            title="Illustration"
-                          />
+                          <div>
+                            <img
+                              alt="Somebody"
+                              class="socials-image"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/github_header.webp"
+                              title="Illustration"
+                            />
+                          </div>
                         </figure>
                       </div>
                       <div
                         class="socials-card-image-holder"
                       >
-                        <img
-                          alt="Somebody"
-                          class="socials-avatar"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/github_user.webp"
-                          title="Socials"
-                        />
+                        <div>
+                          <img
+                            alt="Somebody"
+                            class="socials-avatar"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/github_user.webp"
+                            title="Socials"
+                          />
+                        </div>
                       </div>
                       <div
                         class="bulma-card-content socials-card-content"
@@ -230,25 +238,29 @@ Object {
                         <figure
                           class="bulma-image"
                         >
-                          <img
-                            alt="TomKandula"
-                            class="socials-image"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/instagram_header.webp"
-                            title="Illustration"
-                          />
+                          <div>
+                            <img
+                              alt="TomKandula"
+                              class="socials-image"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/instagram_header.webp"
+                              title="Illustration"
+                            />
+                          </div>
                         </figure>
                       </div>
                       <div
                         class="socials-card-image-holder"
                       >
-                        <img
-                          alt="TomKandula"
-                          class="socials-avatar"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/instagram_user.webp"
-                          title="Socials"
-                        />
+                        <div>
+                          <img
+                            alt="TomKandula"
+                            class="socials-avatar"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/instagram_user.webp"
+                            title="Socials"
+                          />
+                        </div>
                       </div>
                       <div
                         class="bulma-card-content socials-card-content"
@@ -347,25 +359,29 @@ Object {
                       <figure
                         class="bulma-image"
                       >
-                        <img
-                          alt="Somebody"
-                          class="socials-image"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/linkedin_header.webp"
-                          title="Illustration"
-                        />
+                        <div>
+                          <img
+                            alt="Somebody"
+                            class="socials-image"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/linkedin_header.webp"
+                            title="Illustration"
+                          />
+                        </div>
                       </figure>
                     </div>
                     <div
                       class="socials-card-image-holder"
                     >
-                      <img
-                        alt="Somebody"
-                        class="socials-avatar"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/linkedin_user.webp"
-                        title="Socials"
-                      />
+                      <div>
+                        <img
+                          alt="Somebody"
+                          class="socials-avatar"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/linkedin_user.webp"
+                          title="Socials"
+                        />
+                      </div>
                     </div>
                     <div
                       class="bulma-card-content socials-card-content"
@@ -436,25 +452,29 @@ Object {
                       <figure
                         class="bulma-image"
                       >
-                        <img
-                          alt="Somebody"
-                          class="socials-image"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/github_header.webp"
-                          title="Illustration"
-                        />
+                        <div>
+                          <img
+                            alt="Somebody"
+                            class="socials-image"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/github_header.webp"
+                            title="Illustration"
+                          />
+                        </div>
                       </figure>
                     </div>
                     <div
                       class="socials-card-image-holder"
                     >
-                      <img
-                        alt="Somebody"
-                        class="socials-avatar"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/github_user.webp"
-                        title="Socials"
-                      />
+                      <div>
+                        <img
+                          alt="Somebody"
+                          class="socials-avatar"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/github_user.webp"
+                          title="Socials"
+                        />
+                      </div>
                     </div>
                     <div
                       class="bulma-card-content socials-card-content"
@@ -530,25 +550,29 @@ Object {
                       <figure
                         class="bulma-image"
                       >
-                        <img
-                          alt="TomKandula"
-                          class="socials-image"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/instagram_header.webp"
-                          title="Illustration"
-                        />
+                        <div>
+                          <img
+                            alt="TomKandula"
+                            class="socials-image"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/instagram_header.webp"
+                            title="Illustration"
+                          />
+                        </div>
                       </figure>
                     </div>
                     <div
                       class="socials-card-image-holder"
                     >
-                      <img
-                        alt="TomKandula"
-                        class="socials-avatar"
-                        loading="lazy"
-                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/instagram_user.webp"
-                        title="Socials"
-                      />
+                      <div>
+                        <img
+                          alt="TomKandula"
+                          class="socials-avatar"
+                          loading="lazy"
+                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/instagram_user.webp"
+                          title="Socials"
+                        />
+                      </div>
                     </div>
                     <div
                       class="bulma-card-content socials-card-content"

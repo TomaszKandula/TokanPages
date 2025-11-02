@@ -113,12 +113,14 @@ Object {
             <figure
               class="bulma-image"
             >
-              <img
-                alt="An image of presented article text"
-                loading="lazy"
-                src="http://localhost:5000/api/v1image.jpg"
-                title="Illustration"
-              />
+              <div>
+                <img
+                  alt="An image of presented article text"
+                  loading="lazy"
+                  src="http://localhost:5000/api/v1image.jpg"
+                  title="Illustration"
+                />
+              </div>
             </figure>
           </div>
         </div>
@@ -306,12 +308,14 @@ Object {
           <figure
             class="bulma-image"
           >
-            <img
-              alt="An image of presented article text"
-              loading="lazy"
-              src="http://localhost:5000/api/v1image.jpg"
-              title="Illustration"
-            />
+            <div>
+              <img
+                alt="An image of presented article text"
+                loading="lazy"
+                src="http://localhost:5000/api/v1image.jpg"
+                title="Illustration"
+              />
+            </div>
           </figure>
         </div>
       </div>
