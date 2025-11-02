@@ -52,7 +52,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
         }
     }, [props.collection.length, props.presenting, imageNumber]);
 
-    /* NEXT/BACK BUTTON CONTROLS */
+    /* NEXT/BACK BUTTON ON/OFF */
     React.useEffect(() => {
         const length = props.collection.length - 1;
         const number = imageNumber ?? props.presenting;
