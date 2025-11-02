@@ -68,7 +68,7 @@ Object {
                     alt="A flag (English) symbolizing available language"
                     class="bulma-image bulma-is-16x16 is-round-border mr-4"
                     loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.webp"
+                    src=""
                     title="Language flag"
                   />
                 </div>
@@ -172,7 +172,7 @@ Object {
                   alt="A flag (English) symbolizing available language"
                   class="bulma-image bulma-is-16x16 is-round-border mr-4"
                   loading="lazy"
-                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.webp"
+                  src=""
                   title="Language flag"
                 />
               </div>

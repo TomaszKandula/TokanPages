@@ -4,9 +4,25 @@ exports[`test rendering image component should not render an image component. 1`
 Object {
   "asFragment": [Function],
   "baseElement": <body>
-    <div />
+    <div>
+      <div>
+        <img
+          class="style"
+          loading="lazy"
+          src=""
+        />
+      </div>
+    </div>
   </body>,
-  "container": <div />,
+  "container": <div>
+    <div>
+      <img
+        class="style"
+        loading="lazy"
+        src=""
+      />
+    </div>
+  </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
   "findAllByDisplayValue": [Function],
