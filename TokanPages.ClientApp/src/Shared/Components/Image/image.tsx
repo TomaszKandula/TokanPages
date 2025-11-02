@@ -8,6 +8,9 @@ export const Image = (props: RenderImageProps): React.ReactElement | null => {
     const [isMouseOver, setIsMouseOver] = React.useState(false);
     const [source, setSource] = React.useState("");
 
+    const topRadius = props.isPreviewTopRadius ? "preview-top-radius" : "";
+    const bottomRadius = props.isPreviewBottomRadius ? "preview-bottom-radius" : "";
+
     const onMouseOver = React.useCallback(() => {
         setIsMouseOver(!isMouseOver);
     }, [isMouseOver]);
@@ -23,7 +26,7 @@ export const Image = (props: RenderImageProps): React.ReactElement | null => {
     return (
         <div onMouseEnter={onMouseOver} onMouseLeave={onMouseOver}>
             {isMouseOver && props.isPreviewIcon && (
-                <div className="preview-container">
+                <div className={`preview-container ${topRadius} ${bottomRadius}`}>
                     <Icon name="MagnifyPlusOutline" size={5} className="preview-icon" />
                 </div>
             )}

@@ -20,3 +20,13 @@
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 }
+
+.preview-top-radius {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.preview-bottom-radius {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
