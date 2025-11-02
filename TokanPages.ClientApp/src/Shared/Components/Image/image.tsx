@@ -37,6 +37,8 @@ export const Image = (props: RenderImageProps): React.ReactElement | null => {
                     objectFit: props.objectFit,
                     width: props.width,
                     height: props.height,
+                    maxWidth: props.width,
+                    maxHeight: props.height,
                 }}
                 className={props.className}
                 alt={props.alt}
