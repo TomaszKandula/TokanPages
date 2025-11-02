@@ -26,7 +26,7 @@ Object {
                 class="ml-4"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/logo.webp"
-                style="width: 180px; height: 30px;"
+                style="width: 180px; height: 30px; max-width: 180px; max-height: 30px;"
                 title="TomKandula logo"
               />
             </div>
@@ -50,7 +50,7 @@ Object {
                   class="bulma-image bulma-is-16x16 is-round-border"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.webp"
-                  title="Language flag"
+                  title="Selected language flag"
                 />
               </div>
               <div>
@@ -59,6 +59,7 @@ Object {
             </a>
             <div
               class="bulma-navbar-dropdown bulma-is-boxed bulma-is-right"
+              style="z-index: 30;"
             >
               <a
                 class="bulma-navbar-item"
@@ -66,9 +67,10 @@ Object {
                 <div>
                   <img
                     alt="A flag (English) symbolizing available language"
-                    class="bulma-image bulma-is-16x16 is-round-border mr-4"
+                    class="bulma-image bulma-is-16x16 is-round-border mr-3"
                     loading="lazy"
                     src=""
+                    style="width: 16px; max-width: 16px;"
                     title="Language flag"
                   />
                 </div>
@@ -95,9 +97,10 @@ Object {
                 <div>
                   <img
                     alt="A flag (Polski) symbolizing available language"
-                    class="bulma-image bulma-is-16x16 is-round-border mr-4"
+                    class="bulma-image bulma-is-16x16 is-round-border mr-3"
                     loading="lazy"
                     src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.webp"
+                    style="width: 16px; max-width: 16px;"
                     title="Language flag"
                   />
                 </div>
@@ -130,7 +133,7 @@ Object {
               class="ml-4"
               loading="lazy"
               src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/logo.webp"
-              style="width: 180px; height: 30px;"
+              style="width: 180px; height: 30px; max-width: 180px; max-height: 30px;"
               title="TomKandula logo"
             />
           </div>
@@ -154,7 +157,7 @@ Object {
                 class="bulma-image bulma-is-16x16 is-round-border"
                 loading="lazy"
                 src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/en.webp"
-                title="Language flag"
+                title="Selected language flag"
               />
             </div>
             <div>
@@ -163,6 +166,7 @@ Object {
           </a>
           <div
             class="bulma-navbar-dropdown bulma-is-boxed bulma-is-right"
+            style="z-index: 30;"
           >
             <a
               class="bulma-navbar-item"
@@ -170,9 +174,10 @@ Object {
               <div>
                 <img
                   alt="A flag (English) symbolizing available language"
-                  class="bulma-image bulma-is-16x16 is-round-border mr-4"
+                  class="bulma-image bulma-is-16x16 is-round-border mr-3"
                   loading="lazy"
                   src=""
+                  style="width: 16px; max-width: 16px;"
                   title="Language flag"
                 />
               </div>
@@ -199,9 +204,10 @@ Object {
               <div>
                 <img
                   alt="A flag (Polski) symbolizing available language"
-                  class="bulma-image bulma-is-16x16 is-round-border mr-4"
+                  class="bulma-image bulma-is-16x16 is-round-border mr-3"
                   loading="lazy"
                   src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/flags/pl.webp"
+                  style="width: 16px; max-width: 16px;"
                   title="Language flag"
                 />
               </div>
