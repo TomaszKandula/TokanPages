@@ -1,5 +1,6 @@
 import React from "react";
 import { API_BASE_URI } from "../../../../../Api";
+import { useMediaPresenter } from "../../../../../Shared/Hooks";
 import { ReactElement } from "../../../../../Shared/Types";
 import { Carousel, Image, MediaPresenter } from "../../../../../Shared/Components";
 import { ImageItemProps, TextItem } from "../../Models";
@@ -36,19 +37,8 @@ const RenderImage = (props: RenderImageProps) => {
 };
 
 export const RenderImages = (props: TextItem): ReactElement => {
+    const presenter = useMediaPresenter();
     const items = props.value as ImageItemProps[];
-
-    const [isImageOpen, setIsImageOpen] = React.useState(false);
-    const [selection, setSelection] = React.useState(0);
-
-    const onSelection = React.useCallback((selection: number) => {
-        setSelection(selection);
-        onImageOpenClick();
-    }, []);
-
-    const onImageOpenClick = React.useCallback(() => {
-        setIsImageOpen(!isImageOpen);
-    }, [isImageOpen]);
 
     return (
         <>
@@ -70,17 +60,17 @@ export const RenderImages = (props: TextItem): ReactElement => {
                         {...props}
                         imageItem={value}
                         onClick={() => {
-                            onSelection(index);
+                            presenter.onSelectionClick(index);
                         }}
                     />
                 ))}
             </Carousel>
             <MediaPresenter
-                isOpen={isImageOpen}
-                presenting={selection}
+                isOpen={presenter.isPresenterOpen}
+                presenting={presenter.selection}
                 collection={items.map(items => items.image)}
                 type="image"
-                onTrigger={onImageOpenClick}
+                onTrigger={presenter.onPresenterClick}
             />
         </>
     );
