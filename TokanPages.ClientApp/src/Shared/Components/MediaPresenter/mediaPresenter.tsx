@@ -2,9 +2,8 @@ import React from "react";
 import { API_BASE_URI } from "../../../Api";
 import { ReactElement } from "../../../Shared/Types";
 import { useDimensions } from "../../../Shared/Hooks";
-import { IconButton, Image } from "../../../Shared/Components";
+import { IconButtonSolid, Image } from "../../../Shared/Components";
 import { ToggleBodyScroll } from "../../../Shared/Services/Utilities";
-import { Icon } from "../Icon";
 import { StandardBackdrop } from "../Backdrop";
 import { MediaPresenterProps } from "./Types";
 import "./mediaPresenter.css";
@@ -97,14 +96,10 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
         <div role="presentation" className="media-presenter-root" style={{ opacity: canOpenMenu ? 1 : 0 }}>
             <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0 }}/>
             <div ref={headerRef} className="m-4 is-flex is-justify-content-flex-end">
-                <IconButton onClick={onCloseHandler} className="is-clickable">
-                    <Icon name="WindowClose" size={2.0} className="has-text-white" />
-                </IconButton>
+                <IconButtonSolid name="WindowClose" size={2.0} onClick={onCloseHandler} />
             </div>
             <div className="is-flex is-justify-content-space-between is-align-items-center">
-                <IconButton onClick={onPrevImage} className="mx-4 is-clickable">
-                    <Icon name="ChevronLeft" size={2.0} className="has-text-white" />
-                </IconButton>
+                <IconButtonSolid name="ChevronLeft" size={2.0} className="mx-4" onClick={onPrevImage} />
                 <figure className="bulma-image">
                     <Image
                         source={`${API_BASE_URI}${props.collection[imageNumber ?? props.presenting]}`}
@@ -113,9 +108,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                         loading="eager"
                     />
                 </figure>
-                <IconButton onClick={onNextImage} className="mx-4 is-clickable">
-                    <Icon name="ChevronRight" size={2.0} className="has-text-white" />
-                </IconButton>
+                <IconButtonSolid name="ChevronRight" size={2.0} className="mx-4" onClick={onNextImage} />
             </div>
         </div>
     );
