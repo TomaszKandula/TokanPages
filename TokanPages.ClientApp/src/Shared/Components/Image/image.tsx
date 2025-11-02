@@ -6,18 +6,19 @@ import "./image.css";
 
 export const Image = (props: RenderImageProps): React.ReactElement | null => {
     const [isMouseOver, setIsMouseOver] = React.useState(false);
+    const [source, setSource] = React.useState("");
+
     const onMouseOver = React.useCallback(() => {
         setIsMouseOver(!isMouseOver);
     }, [isMouseOver]);
 
-    let src = props.source;
-    if (!validate.isEmpty(props.base) && !validate.isEmpty(props.source)) {
-        src = `${props.base}/${props.source}`;
-    }
-
-    if (validate.isEmpty(props.source)) {
-        return null;
-    }
+    React.useEffect(() => {
+        if (!validate.isEmpty(props.base) && !validate.isEmpty(props.source)) {
+            setSource(`${props.base}/${props.source}`);
+        } else if (!validate.isEmpty(props.source)) {
+            setSource(props.source);
+        }
+    }, [props.source, props.base]);
 
     return (
         <div onMouseEnter={onMouseOver} onMouseLeave={onMouseOver}>
@@ -27,7 +28,7 @@ export const Image = (props: RenderImageProps): React.ReactElement | null => {
                 </div>
             )}
             <img
-                src={src}
+                src={source}
                 loading={props.loading ?? "lazy"}
                 style={{
                     objectFit: props.objectFit,
