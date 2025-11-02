@@ -66,7 +66,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
         <div className="bulma-card my-6">
             <RenderPicture {...props} url={imageUrl} onClick={onClickEvent} />
             {hasText ? <RenderDescription text={props.text} /> : null}
-            <MediaPresenter 
+            <MediaPresenter
                 isOpen={presenter.isPresenterOpen}
                 presenting={presenter.selection}
                 collection={[imageUrl]}
