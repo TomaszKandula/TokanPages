@@ -22,22 +22,31 @@ const RenderDescription = (props: { text: string }): React.ReactElement => {
     );
 };
 
-const RenderPicture = (props: RenderPictureProps) => (
-    <div className="bulma-card-image">
-        <figure className="bulma-image" onClick={props.onClick}>
-            <Image
-                isPreviewIcon
-                source={!Validate.isEmpty(props.url) ? `${API_BASE_URI}${props.url}` : ""}
-                title="Illustration"
-                alt="An image of presented article text"
-                width={props.constraint?.width}
-                height={props.constraint?.height}
-                objectFit={props.constraint?.objectFit}
-                loading={props.loading}
-            />
-        </figure>
-    </div>
-);
+const RenderPicture = (props: RenderPictureProps): React.ReactElement => {
+    const hasText = !Validate.isEmpty(props.text);
+
+    return (
+        <>
+            <div className="bulma-card-image">
+                <figure className="bulma-image" onClick={props.onClick}>
+                    <Image
+                        isPreviewIcon
+                        isPreviewTopRadius
+                        isPreviewBottomRadius={!hasText}
+                        source={!Validate.isEmpty(props.url) ? `${API_BASE_URI}${props.url}` : ""}
+                        title="Illustration"
+                        alt="An image of presented article text"
+                        width={props.constraint?.width}
+                        height={props.constraint?.height}
+                        objectFit={props.constraint?.objectFit}
+                        loading={props.loading}
+                    />
+                </figure>
+            </div>
+            {hasText ? <RenderDescription text={props.text} /> : null}
+        </>
+    );
+};
 
 export const RenderImage = (props: TextItem): React.ReactElement => {
     const presenter = useMediaPresenter();
@@ -46,7 +55,6 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
 
     const hasProp = !Validate.isEmpty(props.prop);
     const hasValue = !Validate.isEmpty(props.value);
-    const hasText = !Validate.isEmpty(props.text);
     const hasPropAndValue = hasProp && hasValue;
     const hasValueOnly = !hasProp && hasValue;
 
@@ -65,7 +73,6 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
     return (
         <div className="bulma-card my-6">
             <RenderPicture {...props} url={imageUrl} onClick={onClickEvent} />
-            {hasText ? <RenderDescription text={props.text} /> : null}
             <MediaPresenter
                 isOpen={presenter.isPresenterOpen}
                 presenting={presenter.selection}
