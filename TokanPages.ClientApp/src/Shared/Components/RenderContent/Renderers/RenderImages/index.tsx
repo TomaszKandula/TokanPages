@@ -11,7 +11,7 @@ interface RenderImageProps extends TextItem {
     onClick: () => void;
 }
 
-const RenderImage = (props: RenderImageProps) => {
+const RenderImage = (props: RenderImageProps): ReactElement => {
     const value = props.imageItem;
 
     return (
