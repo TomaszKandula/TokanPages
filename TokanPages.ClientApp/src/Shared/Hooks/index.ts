@@ -13,3 +13,4 @@ export { useUserData } from "./UseUserData";
 export { useXssWarning } from "./UseXssWarning";
 export { useQuery } from "./UseQuery";
 export { useArticleQuery } from "./UseArticleQuery";
+export { useMediaPresenter} from "./UseMediaPresenter";
