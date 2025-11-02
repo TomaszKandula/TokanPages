@@ -21,7 +21,11 @@ const RenderSelection = (props: NavigationViewBaseProps): React.ReactElement => 
             />
             <div>{props.languageId?.toUpperCase()}</div>
         </a>
-        <div className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right" style={{ zIndex: 30 }} onMouseLeave={props.languageMenuHandler}>
+        <div
+            className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right"
+            style={{ zIndex: 30 }}
+            onMouseLeave={props.languageMenuHandler}
+        >
             {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                 <a className="bulma-navbar-item" key={uuidv4()} onClick={() => props.languagePickHandler(item.id)}>
                     <Image
