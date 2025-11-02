@@ -65,7 +65,7 @@ export const RenderImages = (props: TextItem): ReactElement => {
                 className="bulma-card"
             >
                 {items.map((value: ImageItemProps, index: number) => (
-                    <RenderImage key={uuidv4()} {...props} imageItem={value} onClick={() => onSelection(index)} />
+                    <RenderImage key={uuidv4()} {...props} imageItem={value} onClick={() => { onSelection(index) }} />
                 ))}
             </Carousel>
             <MediaPresenter
