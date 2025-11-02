@@ -20,6 +20,7 @@ const RenderImage = (props: RenderImageProps): ReactElement => {
                 <figure className="bulma-image is-clickable" onClick={props.onClick}>
                     <Image
                         isPreviewIcon
+                        isPreviewTopRadius
                         source={`${API_BASE_URI}${value.image}`}
                         title={props.text}
                         alt={props.text}
