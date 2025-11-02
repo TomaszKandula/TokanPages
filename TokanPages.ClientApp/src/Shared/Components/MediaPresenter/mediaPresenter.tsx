@@ -2,7 +2,7 @@ import React from "react";
 import { API_BASE_URI } from "../../../Api";
 import { ReactElement } from "../../../Shared/Types";
 import { useDimensions } from "../../../Shared/Hooks";
-import { Image } from "../../../Shared/Components";
+import { IconButton, Image } from "../../../Shared/Components";
 import { ToggleBodyScroll } from "../../../Shared/Services/Utilities";
 import { Icon } from "../Icon";
 import { StandardBackdrop } from "../Backdrop";
@@ -95,17 +95,16 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
 
     return (
         <div role="presentation" className="media-presenter-root" style={{ opacity: canOpenMenu ? 1 : 0 }}>
-            <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0 }} onClick={onCloseHandler} />
+            <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0 }}/>
             <div ref={headerRef} className="m-4 is-flex is-justify-content-flex-end">
-                <Icon name="WindowClose" size={2.0} className="has-text-white is-clickable" onClick={onCloseHandler} />
+                <IconButton onClick={onCloseHandler} className="is-clickable">
+                    <Icon name="WindowClose" size={2.0} className="has-text-white" />
+                </IconButton>
             </div>
             <div className="is-flex is-justify-content-space-between is-align-items-center">
-                <Icon
-                    name="ChevronLeft"
-                    size={2.0}
-                    className="mx-4 has-text-white is-clickable"
-                    onClick={onPrevImage}
-                />
+                <IconButton onClick={onPrevImage} className="mx-4 is-clickable">
+                    <Icon name="ChevronLeft" size={2.0} className="has-text-white" />
+                </IconButton>
                 <figure className="bulma-image">
                     <Image
                         source={`${API_BASE_URI}${props.collection[imageNumber ?? props.presenting]}`}
@@ -114,12 +113,9 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                         loading="eager"
                     />
                 </figure>
-                <Icon
-                    name="ChevronRight"
-                    size={2.0}
-                    className="mx-4 has-text-white is-clickable"
-                    onClick={onNextImage}
-                />
+                <IconButton onClick={onNextImage} className="mx-4 is-clickable">
+                    <Icon name="ChevronRight" size={2.0} className="has-text-white" />
+                </IconButton>
             </div>
         </div>
     );
