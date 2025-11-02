@@ -68,10 +68,12 @@
 
 .icon-button-solid-hoverable-disabled {
     cursor: default;
+    color: hsl(0, 0%, 86%) !important;
     background-color: hsl(0, 0%, 96%);
 }
 
 .icon-button-solid-hoverable-disabled:hover {
     cursor: default;
+    color: hsl(0, 0%, 86%) !important;
     background-color: hsl(0, 0%, 96%);
 }
