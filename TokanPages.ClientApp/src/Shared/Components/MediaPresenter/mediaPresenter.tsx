@@ -14,6 +14,8 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
 
     const [imageNumber, setImageNumber] = React.useState<number | undefined>(undefined);
     const [imageHeight, setImageHeight] = React.useState(0);
+    const [canMoveNext, setCanMoveNext] = React.useState(false);
+    const [canMoveBack, setCanMoveBack] = React.useState(false);
     const [canOpenMenu, setCanOpenMenu] = React.useState(false);
     const [canCloseMenu, setCanCloseMenu] = React.useState(false);
     const [canShowBackdrop, setCanShowBackdrop] = React.useState(false);
@@ -49,6 +51,23 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
             setImageNumber(prevImage);
         }
     }, [props.collection.length, props.presenting, imageNumber]);
+
+    /* NEXT/BACK BUTTON CONTROLS */
+    React.useEffect(() => {
+        const length = props.collection.length - 1;
+        const number = imageNumber ?? props.presenting;
+
+        if (number === length) {
+            setCanMoveNext(false);
+            setCanMoveBack(true);
+        } else if (number !== 0) {
+            setCanMoveNext(true);
+            setCanMoveBack(true);
+        } else {
+            setCanMoveNext(true);
+            setCanMoveBack(false);
+        }
+    }, [imageNumber, props.presenting, props.collection.length]);
 
     /* SET IMAGE HEIGHT */
     React.useEffect(() => {
@@ -99,7 +118,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                 <IconButtonSolid name="WindowClose" size={2.0} onClick={onCloseHandler} />
             </div>
             <div className="is-flex is-justify-content-space-between is-align-items-center">
-                <IconButtonSolid name="ChevronLeft" size={2.0} className="mx-4" onClick={onPrevImage} />
+                <IconButtonSolid name="ChevronLeft" size={2.0} className="mx-4" onClick={onPrevImage} isDisabled={!canMoveBack} />
                 <figure className="bulma-image">
                     <Image
                         source={`${API_BASE_URI}${props.collection[imageNumber ?? props.presenting]}`}
@@ -108,7 +127,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                         loading="eager"
                     />
                 </figure>
-                <IconButtonSolid name="ChevronRight" size={2.0} className="mx-4" onClick={onNextImage} />
+                <IconButtonSolid name="ChevronRight" size={2.0} className="mx-4" onClick={onNextImage} isDisabled={!canMoveNext} />
             </div>
         </div>
     );
