@@ -13,7 +13,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
     const media = useDimensions();
     const headerRef = React.useRef<HTMLDivElement | null>(null);
 
-    const [imageNumber, setImageNumber] = React.useState(props.presenting);
+    const [imageNumber, setImageNumber] = React.useState<number | undefined>(undefined);
     const [imageHeight, setImageHeight] = React.useState(0);
     const [canOpenMenu, setCanOpenMenu] = React.useState(false);
     const [canCloseMenu, setCanCloseMenu] = React.useState(false);
@@ -29,11 +29,13 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
             return;
         }
 
-        const nextImage = imageNumber + 1;
+        const baseNumber = imageNumber ?? props.presenting;
+        const nextImage = baseNumber + 1;
+
         if (nextImage < length) {
             setImageNumber(nextImage);
         }
-    }, [props.collection.length, imageNumber]);
+    }, [props.collection.length, props.presenting, imageNumber]);
 
     const onPrevImage = React.useCallback(() => {
         const length = props.collection.length;
@@ -41,11 +43,13 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
             return;
         }
 
-        const prevImage = imageNumber - 1;
+        const baseNumber = imageNumber ?? props.presenting;
+        const prevImage = baseNumber - 1;
+
         if (prevImage > -1) {
             setImageNumber(prevImage);
         }
-    }, [props.collection.length, imageNumber]);
+    }, [props.collection.length, props.presenting, imageNumber]);
 
     /* SET IMAGE HEIGHT */
     React.useEffect(() => {
@@ -72,6 +76,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
             setTimeout(() => setCanOpenMenu(false), 150);
             setTimeout(() => {
                 props.onTrigger();
+                setImageNumber(undefined);
                 setCanCloseMenu(false);
             }, 430);
         }
@@ -103,7 +108,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                 />
                 <figure className="bulma-image">
                     <Image
-                        source={`${API_BASE_URI}${props.collection[imageNumber]}`}
+                        source={`${API_BASE_URI}${props.collection[imageNumber ?? props.presenting]}`}
                         height={imageHeight}
                         objectFit="scale-down"
                         loading="eager"
