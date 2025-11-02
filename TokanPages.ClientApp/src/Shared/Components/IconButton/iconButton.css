@@ -55,3 +55,23 @@
 .icon-button-disabled-grey:hover {
     background-color: hsl(0, 0%, 96%);
 }
+
+/* SOLIDO STYLE */
+.icon-button-solid-hoverable {
+    cursor: pointer;
+    background-color: hsl(0, 0%, 96%);
+}
+
+.icon-button-solid-hoverable:hover {
+    background-color: hsl(0, 0%, 86%);
+}
+
+.icon-button-solid-hoverable-disabled {
+    cursor: default;
+    background-color: hsl(0, 0%, 96%);
+}
+
+.icon-button-solid-hoverable-disabled:hover {
+    cursor: default;
+    background-color: hsl(0, 0%, 96%);
+}
