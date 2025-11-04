@@ -212,13 +212,15 @@ Object {
                                 <figure
                                   class="bulma-image"
                                 >
-                                  <img
-                                    alt="Illustration for security news"
-                                    class="user-signin-view-card-image"
-                                    loading="lazy"
-                                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news_01.webp"
-                                    title="Security news image"
-                                  />
+                                  <div>
+                                    <img
+                                      alt="Illustration for security news"
+                                      class="user-signin-view-card-image"
+                                      loading="lazy"
+                                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news_01.webp"
+                                      title="Security news image"
+                                    />
+                                  </div>
                                 </figure>
                               </div>
                               <div
@@ -548,13 +550,15 @@ Object {
                               <figure
                                 class="bulma-image"
                               >
-                                <img
-                                  alt="Illustration for security news"
-                                  class="user-signin-view-card-image"
-                                  loading="lazy"
-                                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news_01.webp"
-                                  title="Security news image"
-                                />
+                                <div>
+                                  <img
+                                    alt="Illustration for security news"
+                                    class="user-signin-view-card-image"
+                                    loading="lazy"
+                                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/news_01.webp"
+                                    title="Security news image"
+                                  />
+                                </div>
                               </figure>
                             </div>
                             <div

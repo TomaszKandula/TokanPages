@@ -47,11 +47,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
                         height={40}
                     />
                     <IconButton size={3.0} hasNoHoverEffect className="no-select mr-2">
-                        <Icon
-                            name="WindowClose"
-                            size={1.5}
-                            onClick={onCloseClick}
-                        />
+                        <Icon name="WindowClose" size={1.5} onClick={onCloseClick} />
                     </IconButton>
                 </div>
                 <hr className="line-separator" />

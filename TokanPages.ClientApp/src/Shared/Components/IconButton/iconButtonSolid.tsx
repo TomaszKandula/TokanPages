@@ -1,19 +1,17 @@
 import * as React from "react";
+import { ReactElement } from "../../../Shared/Types";
 import { ClassListAdd, ClassListClear } from "../../../Shared/Services/Utilities";
-import { IconButtonProps } from "./Types";
+import { Icon } from "../Icon";
+import { IconButtonSolidProps } from "./Types";
 import { baseClasses } from "./Constants";
 import "./iconButton.css";
 
-export const IconButton = (props: IconButtonProps): React.ReactElement => {
+export const IconButtonSolid = (props: IconButtonSolidProps): ReactElement => {
     const size = props.size ?? 2.0;
-    const ref = React.useRef<HTMLButtonElement>(null);
-
-    const buttonHoverable = props.hasGreyBackground ? "icon-button-hoverable-grey" : "icon-button-hoverable";
-    const buttonNonHoverable = props.hasGreyBackground ? "icon-button-non-hoverable-grey" : "icon-button-non-hoverable";
-    const buttonDisabled = props.hasGreyBackground ? "icon-button-disabled-grey" : "icon-button-disabled";
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
 
     React.useLayoutEffect(() => {
-        const classList = ref.current?.classList;
+        const classList = buttonRef.current?.classList;
         if (!classList) {
             return;
         }
@@ -31,32 +29,28 @@ export const IconButton = (props: IconButtonProps): React.ReactElement => {
 
         ClassListAdd(classList, baseClasses);
 
-        if (props.hasNoHoverEffect) {
-            classList.add(buttonNonHoverable);
-            classList.remove(buttonHoverable);
-        } else {
-            classList.remove(buttonNonHoverable);
-            classList.add(buttonHoverable);
-        }
-
         if (props.isDisabled) {
-            classList.add(buttonDisabled);
+            classList.add("icon-button-solid-hoverable-disabled");
+            classList.remove("is-clickable");
             classList.remove("has-text-grey");
+            classList.remove("icon-button-solid-hoverable");
         } else {
-            classList.remove(buttonDisabled);
+            classList.remove("icon-button-solid-hoverable-disabled");
             classList.add("has-text-grey");
+            classList.add("is-clickable");
+            classList.add("icon-button-solid-hoverable");
         }
-    }, [ref.current?.classList, props.className, props.hasNoHoverEffect, props.isDisabled]);
+    }, [buttonRef.current?.classList, props.className, props.isDisabled]);
 
     return (
         <button
-            ref={ref}
+            ref={buttonRef}
             onClick={props.onClick}
             onMouseDown={props.onMouseDown}
             style={{ height: `${size}rem`, width: `${size}rem` }}
             disabled={props.isDisabled}
         >
-            {props.children}
+            <Icon name={props.name} size={size} />
         </button>
     );
 };

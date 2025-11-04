@@ -12,13 +12,15 @@ Object {
           <figure
             class="bulma-image"
           >
-            <img
-              alt="An article card for given article"
-              class="article-box-image"
-              loading="lazy"
-              src="/images/card.jpg"
-              title="Article illustration"
-            />
+            <div>
+              <img
+                alt="An article card for given article"
+                class="article-box-image"
+                loading="lazy"
+                src="/images/card.jpg"
+                title="Article illustration"
+              />
+            </div>
           </figure>
           <div
             class="article-box-content"
@@ -114,14 +116,16 @@ Object {
                     />
                   </svg>
                 </div>
-                <img
-                  alt="An article language flag"
-                  class="article-flag-image is-round-border"
-                  loading="lazy"
-                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/eng.png"
-                  style="width: 24px; height: 24px;"
-                  title="Articles"
-                />
+                <div>
+                  <img
+                    alt="An article language flag"
+                    class="article-flag-image is-round-border"
+                    loading="lazy"
+                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/eng.png"
+                    style="width: 24px; height: 24px; max-width: 24px; max-height: 24px;"
+                    title="Articles"
+                  />
+                </div>
               </div>
               <button
                 class="bulma-button bulma-is-link bulma-is-light"
@@ -142,13 +146,15 @@ Object {
         <figure
           class="bulma-image"
         >
-          <img
-            alt="An article card for given article"
-            class="article-box-image"
-            loading="lazy"
-            src="/images/card.jpg"
-            title="Article illustration"
-          />
+          <div>
+            <img
+              alt="An article card for given article"
+              class="article-box-image"
+              loading="lazy"
+              src="/images/card.jpg"
+              title="Article illustration"
+            />
+          </div>
         </figure>
         <div
           class="article-box-content"
@@ -244,14 +250,16 @@ Object {
                   />
                 </svg>
               </div>
-              <img
-                alt="An article language flag"
-                class="article-flag-image is-round-border"
-                loading="lazy"
-                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/eng.png"
-                style="width: 24px; height: 24px;"
-                title="Articles"
-              />
+              <div>
+                <img
+                  alt="An article language flag"
+                  class="article-flag-image is-round-border"
+                  loading="lazy"
+                  src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/eng.png"
+                  style="width: 24px; height: 24px; max-width: 24px; max-height: 24px;"
+                  title="Articles"
+                />
+              </div>
             </div>
             <button
               class="bulma-button bulma-is-link bulma-is-light"

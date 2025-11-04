@@ -15,13 +15,17 @@ const RenderSelection = (props: NavigationViewBaseProps): React.ReactElement => 
             <Image
                 base={GET_IMAGES_URL}
                 source={`${props.languageFlagDir}/${props.languageId}.${props.languageFlagType}`}
-                title="Language flag"
+                title="Selected language flag"
                 alt={`A flag (${props.languageId}) for current language selection`}
                 className="bulma-image bulma-is-16x16 is-round-border"
             />
             <div>{props.languageId?.toUpperCase()}</div>
         </a>
-        <div className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right" onMouseLeave={props.languageMenuHandler}>
+        <div
+            className="bulma-navbar-dropdown bulma-is-boxed bulma-is-right"
+            style={{ zIndex: 30 }}
+            onMouseLeave={props.languageMenuHandler}
+        >
             {props.languages?.languages.map((item: LanguageItemDto, _index: number) => (
                 <a className="bulma-navbar-item" key={uuidv4()} onClick={() => props.languagePickHandler(item.id)}>
                     <Image
@@ -29,7 +33,8 @@ const RenderSelection = (props: NavigationViewBaseProps): React.ReactElement => 
                         source={`${props.languageFlagDir}/${item.id}.${props.languageFlagType}`}
                         title="Language flag"
                         alt={`A flag (${item.name}) symbolizing available language`}
-                        className="bulma-image bulma-is-16x16 is-round-border mr-4"
+                        className="bulma-image bulma-is-16x16 is-round-border mr-3"
+                        width={16}
                     />
                     <div>{item.name}</div>
                     <RenderSelectionIcon selection={item.id} languageId={props.languageId} size={1.3} />

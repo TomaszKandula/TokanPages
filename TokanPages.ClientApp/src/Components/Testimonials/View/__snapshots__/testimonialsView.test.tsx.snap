@@ -35,13 +35,15 @@ Object {
                   <div
                     class="bulma-card"
                   >
-                    <img
-                      alt="Picture of Joanna"
-                      class="testimonials-card-image"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/joanna.webp"
-                      title="Testimonials"
-                    />
+                    <div>
+                      <img
+                        alt="Picture of Joanna"
+                        class="testimonials-card-image"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/joanna.webp"
+                        title="Testimonials"
+                      />
+                    </div>
                     <div
                       class="bulma-card-content mt-6 testimonials-card-content"
                     >
@@ -135,13 +137,15 @@ Object {
                   <div
                     class="bulma-card"
                   >
-                    <img
-                      alt="Picture of Adama"
-                      class="testimonials-card-image"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/adama.webp"
-                      title="Testimonials"
-                    />
+                    <div>
+                      <img
+                        alt="Picture of Adama"
+                        class="testimonials-card-image"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/adama.webp"
+                        title="Testimonials"
+                      />
+                    </div>
                     <div
                       class="bulma-card-content mt-6 testimonials-card-content"
                     >
@@ -233,13 +237,15 @@ Object {
                   <div
                     class="bulma-card"
                   >
-                    <img
-                      alt="Picture of Scott"
-                      class="testimonials-card-image"
-                      loading="lazy"
-                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/scott.webp"
-                      title="Testimonials"
-                    />
+                    <div>
+                      <img
+                        alt="Picture of Scott"
+                        class="testimonials-card-image"
+                        loading="lazy"
+                        src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/scott.webp"
+                        title="Testimonials"
+                      />
+                    </div>
                     <div
                       class="bulma-card-content mt-6 testimonials-card-content"
                     >
@@ -358,13 +364,15 @@ Object {
                 <div
                   class="bulma-card"
                 >
-                  <img
-                    alt="Picture of Joanna"
-                    class="testimonials-card-image"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/joanna.webp"
-                    title="Testimonials"
-                  />
+                  <div>
+                    <img
+                      alt="Picture of Joanna"
+                      class="testimonials-card-image"
+                      loading="lazy"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/joanna.webp"
+                      title="Testimonials"
+                    />
+                  </div>
                   <div
                     class="bulma-card-content mt-6 testimonials-card-content"
                   >
@@ -458,13 +466,15 @@ Object {
                 <div
                   class="bulma-card"
                 >
-                  <img
-                    alt="Picture of Adama"
-                    class="testimonials-card-image"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/adama.webp"
-                    title="Testimonials"
-                  />
+                  <div>
+                    <img
+                      alt="Picture of Adama"
+                      class="testimonials-card-image"
+                      loading="lazy"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/adama.webp"
+                      title="Testimonials"
+                    />
+                  </div>
                   <div
                     class="bulma-card-content mt-6 testimonials-card-content"
                   >
@@ -556,13 +566,15 @@ Object {
                 <div
                   class="bulma-card"
                 >
-                  <img
-                    alt="Picture of Scott"
-                    class="testimonials-card-image"
-                    loading="lazy"
-                    src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/scott.webp"
-                    title="Testimonials"
-                  />
+                  <div>
+                    <img
+                      alt="Picture of Scott"
+                      class="testimonials-card-image"
+                      loading="lazy"
+                      src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/scott.webp"
+                      title="Testimonials"
+                    />
+                  </div>
                   <div
                     class="bulma-card-content mt-6 testimonials-card-content"
                   >
