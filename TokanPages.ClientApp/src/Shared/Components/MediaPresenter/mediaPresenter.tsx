@@ -12,8 +12,8 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
     const media = useDimensions();
     const headerRef = React.useRef<HTMLDivElement | null>(null);
 
-    const [imageNumber, setImageNumber] = React.useState<number | undefined>(undefined);
-    const [imageHeight, setImageHeight] = React.useState(0);
+    const [mediaNumber, setMediaNumber] = React.useState<number | undefined>(undefined);
+    const [mediaHeight, setMediaHeight] = React.useState(0);
     const [canMoveNext, setCanMoveNext] = React.useState(false);
     const [canMoveBack, setCanMoveBack] = React.useState(false);
     const [canOpenMenu, setCanOpenMenu] = React.useState(false);
@@ -30,13 +30,13 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
             return;
         }
 
-        const baseNumber = imageNumber ?? props.presenting;
+        const baseNumber = mediaNumber ?? props.presenting;
         const nextImage = baseNumber + 1;
 
         if (nextImage < length) {
-            setImageNumber(nextImage);
+            setMediaNumber(nextImage);
         }
-    }, [props.collection.length, props.presenting, imageNumber]);
+    }, [props.collection.length, props.presenting, mediaNumber]);
 
     const onPrevImage = React.useCallback(() => {
         const length = props.collection.length;
@@ -44,18 +44,18 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
             return;
         }
 
-        const baseNumber = imageNumber ?? props.presenting;
+        const baseNumber = mediaNumber ?? props.presenting;
         const prevImage = baseNumber - 1;
 
         if (prevImage > -1) {
-            setImageNumber(prevImage);
+            setMediaNumber(prevImage);
         }
-    }, [props.collection.length, props.presenting, imageNumber]);
+    }, [props.collection.length, props.presenting, mediaNumber]);
 
     /* NEXT/BACK BUTTON ON/OFF */
     React.useEffect(() => {
         const length = props.collection.length - 1;
-        const number = imageNumber ?? props.presenting;
+        const number = mediaNumber ?? props.presenting;
 
         if (number === length) {
             setCanMoveNext(false);
@@ -67,13 +67,13 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
             setCanMoveNext(true);
             setCanMoveBack(false);
         }
-    }, [imageNumber, props.presenting, props.collection.length]);
+    }, [mediaNumber, props.presenting, props.collection.length]);
 
     /* SET IMAGE HEIGHT */
     React.useEffect(() => {
         const clientHeight = headerRef.current?.getBoundingClientRect().height;
         if (clientHeight && clientHeight !== 0) {
-            setImageHeight(media.height - clientHeight * 4);
+            setMediaHeight(media.height - clientHeight * 4);
         }
     }, [headerRef.current?.clientHeight]);
 
@@ -94,7 +94,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
             setTimeout(() => setCanOpenMenu(false), 150);
             setTimeout(() => {
                 props.onTrigger();
-                setImageNumber(undefined);
+                setMediaNumber(undefined);
                 setCanCloseMenu(false);
             }, 430);
         }
@@ -126,12 +126,16 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                     isDisabled={!canMoveBack || props.collection.length === 1}
                 />
                 <figure className="bulma-image">
-                    <Image
-                        source={`${API_BASE_URI}${props.collection[imageNumber ?? props.presenting]}`}
-                        height={imageHeight}
+                    {props.type === "image" 
+                    ? <Image
+                        source={`${API_BASE_URI}${props.collection[mediaNumber ?? props.presenting]}`}
+                        height={mediaHeight}
                         objectFit="scale-down"
                         loading="eager"
-                    />
+                    /> 
+                    : <video 
+                    
+                    />}
                 </figure>
                 <IconButtonSolid
                     name="ChevronRight"
