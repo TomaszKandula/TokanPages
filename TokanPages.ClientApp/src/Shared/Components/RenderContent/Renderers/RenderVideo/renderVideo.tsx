@@ -73,6 +73,7 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
                 isOpen={presenter.isPresenterOpen}
                 presenting={presenter.selection}
                 collection={[videoUrl]}
+                posters={[posterUrl]}
                 type="video"
                 onTrigger={presenter.onPresenterClick}
             />

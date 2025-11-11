@@ -75,6 +75,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                 isOpen={presenter.isPresenterOpen}
                 presenting={presenter.selection}
                 collection={[imageUrl]}
+                posters={[]}
                 type="image"
                 onTrigger={presenter.onPresenterClick}
             />
