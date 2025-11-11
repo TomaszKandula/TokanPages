@@ -1,4 +1,5 @@
 import * as React from "react";
+import { API_BASE_URI } from "../../../../../Api";
 import { useMediaPresenter } from "../../../../../Shared/Hooks";
 import { MediaPresenter } from "../../../../../Shared/Components/MediaPresenter";
 import { TextItem } from "../../Models/TextModel";
@@ -28,6 +29,7 @@ const RenderClip = (props: RenderClipProps): React.ReactElement => {
             <div className="bulma-card-image">
                 <figure className="bulma-image">
                     <Video
+                        base={API_BASE_URI}
                         source={props.videoUrl}
                         poster={props.posterUrl}
                         controls={true}
@@ -61,7 +63,7 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
             setPosterUrl(props.prop);
             setVideoUrl(props.value as string);
         }
-    }, [hasPropAndValue]);
+    }, [hasPropAndValue, props.prop, props.value]);
 
     return (
         <div className="bulma-card my-6">
