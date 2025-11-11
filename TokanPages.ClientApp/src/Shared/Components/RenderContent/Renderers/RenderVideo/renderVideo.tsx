@@ -39,7 +39,7 @@ const RenderClip = (props: RenderClipProps): React.ReactElement => {
                     />
                 </figure>
             </div>
-            {hasText ? null : <RenderDescription text={props.text} />}
+            {hasText ? <RenderDescription text={props.text} /> : null}
         </>
     );
 };
