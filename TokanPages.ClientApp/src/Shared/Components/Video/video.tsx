@@ -7,7 +7,8 @@ import "./video.css";
 
 export const Video = (props: VideoProps): ReactElement => {
     const [isMouseOver, setIsMouseOver] = React.useState(false);
-    const [source, setSource] = React.useState("");
+    const [videoUrl, setVideoUrl] = React.useState("");
+    const [posterUrl, setPosterUrl] = React.useState("");
 
     const topRadius = props.isPreviewTopRadius ? "preview-top-radius" : "";
     const bottomRadius = props.isPreviewBottomRadius ? "preview-bottom-radius" : "";
@@ -18,11 +19,19 @@ export const Video = (props: VideoProps): ReactElement => {
 
     React.useEffect(() => {
         if (!validate.isEmpty(props.base) && !validate.isEmpty(props.source)) {
-            setSource(`${props.base}/${props.source}`);
+            setVideoUrl(`${props.base}${props.source}`);
         } else if (!validate.isEmpty(props.source)) {
-            setSource(props.source);
+            setVideoUrl(props.source);
         }
-    }, [props.source, props.base]);
+    }, [props.base, props.source]);
+
+    React.useEffect(() => {
+        if (!validate.isEmpty(props.base) && !validate.isEmpty(props.poster)) {
+            setPosterUrl(`${props.base}${props.poster}`);
+        } else if (!validate.isEmpty(props.poster)) {
+            setPosterUrl(props.poster);
+        }
+    }, [props.base, props.poster]);
 
     return (
         <div onMouseEnter={onMouseOver} onMouseLeave={onMouseOver}>
@@ -32,8 +41,8 @@ export const Video = (props: VideoProps): ReactElement => {
                 </div>
             )}
             <video
-                src={source}
-                poster={props.poster}
+                src={videoUrl}
+                poster={posterUrl}
                 preload={props.preload}
                 controls={props.controls}
                 onClick={props.onClick}
