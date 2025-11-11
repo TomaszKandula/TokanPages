@@ -140,6 +140,8 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                             poster={`${props.posters[mediaNumber ?? props.presenting]}`}
                             controls={true}
                             preload="metadata"
+                            height={mediaHeight}
+                            objectFit="scale-down"
                         />
                     )}
                 </figure>
