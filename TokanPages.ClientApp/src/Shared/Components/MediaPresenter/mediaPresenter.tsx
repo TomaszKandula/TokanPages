@@ -126,16 +126,16 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                     isDisabled={!canMoveBack || props.collection.length === 1}
                 />
                 <figure className="bulma-image">
-                    {props.type === "image" 
-                    ? <Image
-                        source={`${API_BASE_URI}${props.collection[mediaNumber ?? props.presenting]}`}
-                        height={mediaHeight}
-                        objectFit="scale-down"
-                        loading="eager"
-                    /> 
-                    : <video 
-                    
-                    />}
+                    {props.type === "image" ? (
+                        <Image
+                            source={`${API_BASE_URI}${props.collection[mediaNumber ?? props.presenting]}`}
+                            height={mediaHeight}
+                            objectFit="scale-down"
+                            loading="eager"
+                        />
+                    ) : (
+                        <video />
+                    )}
                 </figure>
                 <IconButtonSolid
                     name="ChevronRight"
