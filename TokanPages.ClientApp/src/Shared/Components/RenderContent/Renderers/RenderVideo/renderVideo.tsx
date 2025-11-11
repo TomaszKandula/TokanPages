@@ -26,11 +26,7 @@ const RenderPoster = (props: RenderClipProps): React.ReactElement => {
         <>
             <div className="bulma-card-image">
                 <figure className="bulma-image" onClick={props.onClick}>
-                    <Image
-                        isPreviewIcon
-                        isPreviewTopRadius
-                        source={`${API_BASE_URI}${props.posterUrl}`}
-                    />
+                    <Image isPreviewIcon isPreviewTopRadius source={`${API_BASE_URI}${props.posterUrl}`} />
                 </figure>
             </div>
             {hasText ? <RenderDescription text={props.text} /> : null}
