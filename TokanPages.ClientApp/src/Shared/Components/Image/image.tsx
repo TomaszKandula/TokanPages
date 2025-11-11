@@ -4,7 +4,7 @@ import { RenderImageProps } from "./Types";
 import validate from "validate.js";
 import "./image.css";
 
-export const Image = (props: RenderImageProps): React.ReactElement | null => {
+export const Image = (props: RenderImageProps): React.ReactElement => {
     const [isMouseOver, setIsMouseOver] = React.useState(false);
     const [source, setSource] = React.useState("");
 
