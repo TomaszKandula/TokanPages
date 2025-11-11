@@ -44,8 +44,10 @@ export const Video = (props: VideoProps): ReactElement => {
                     height: props.height,
                     maxWidth: props.width,
                     maxHeight: props.height,
+                    borderTopLeftRadius: "0.75rem",
+                    borderTopRightRadius: "0.75rem",
                 }}
             />
         </div>
     );
-}
+};
