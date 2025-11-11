@@ -1,14 +1,12 @@
 import * as React from "react";
 import { API_BASE_URI } from "../../../../../Api";
 import { useMediaPresenter } from "../../../../../Shared/Hooks";
-import { MediaPresenter } from "../../../../../Shared/Components/MediaPresenter";
+import { MediaPresenter, Image } from "../../../../../Shared/Components";
 import { TextItem } from "../../Models/TextModel";
 import Validate from "validate.js";
-import { Video } from "Shared/Components/Video";
 
 interface RenderClipProps extends TextItem {
     posterUrl: string;
-    videoUrl: string;
     onClick: () => void;
 }
 
@@ -21,22 +19,17 @@ const RenderDescription = (props: { text: string }): React.ReactElement => (
     </>
 );
 
-const RenderClip = (props: RenderClipProps): React.ReactElement => {
+const RenderPoster = (props: RenderClipProps): React.ReactElement => {
     const hasText = !Validate.isEmpty(props.text);
 
     return (
         <>
             <div className="bulma-card-image">
-                <figure className="bulma-image">
-                    <Video
-                        base={API_BASE_URI}
-                        source={props.videoUrl}
-                        poster={props.posterUrl}
-                        controls={true}
-                        preload="metadata"
-                        width={props.constraint?.width ?? "100%"}
-                        height={props.constraint?.height}
-                        onClick={props.onClick}
+                <figure className="bulma-image" onClick={props.onClick}>
+                    <Image
+                        isPreviewIcon
+                        isPreviewTopRadius
+                        source={`${API_BASE_URI}${props.posterUrl}`}
                     />
                 </figure>
             </div>
@@ -68,7 +61,7 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
 
     return (
         <div className="bulma-card my-6">
-            <RenderClip {...props} posterUrl={posterUrl} videoUrl={videoUrl} onClick={onClickEvent} />
+            <RenderPoster {...props} posterUrl={posterUrl} onClick={onClickEvent} />
             <MediaPresenter
                 isOpen={presenter.isPresenterOpen}
                 presenting={presenter.selection}
