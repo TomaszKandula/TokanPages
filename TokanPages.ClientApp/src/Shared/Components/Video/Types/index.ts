@@ -1,4 +1,4 @@
-import { TObjectFit, TVideoPreload } from "Shared/Types";
+import { TObjectFit, TVideoPreload } from "../../../../Shared/Types";
 
 export interface VideoProps {
     source: string;
