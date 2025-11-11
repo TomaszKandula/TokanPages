@@ -7,8 +7,8 @@ export interface VideoProps {
     preload: TVideoPreload;
     base?: string;
     className?: string;
-    width?: number;
-    height?: number;
+    width?: number | string;
+    height?: number | string;
     objectFit?: TObjectFit;
     isPreviewIcon?: boolean;
     isPreviewTopRadius?: boolean;
