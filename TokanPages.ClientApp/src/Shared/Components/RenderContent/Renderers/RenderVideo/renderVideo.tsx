@@ -36,6 +36,7 @@ const RenderClip = (props: RenderClipProps): React.ReactElement => {
                         preload="metadata"
                         width={props.constraint?.width ?? "100%"}
                         height={props.constraint?.height}
+                        onClick={props.onClick}
                     />
                 </figure>
             </div>
