@@ -36,3 +36,4 @@ export { BottomSheet } from "./BottomSheet";
 export { Drawer } from "./Drawer";
 export { Carousel } from "./Carousel";
 export { MediaPresenter } from "./MediaPresenter";
+export { Video } from "./Video";
