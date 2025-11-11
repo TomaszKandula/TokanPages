@@ -2,7 +2,7 @@ import React from "react";
 import { API_BASE_URI } from "../../../Api";
 import { ReactElement } from "../../../Shared/Types";
 import { useDimensions } from "../../../Shared/Hooks";
-import { IconButtonSolid, Image } from "../../../Shared/Components";
+import { IconButtonSolid, Image, Video } from "../../../Shared/Components";
 import { ToggleBodyScroll } from "../../../Shared/Services/Utilities";
 import { StandardBackdrop } from "../Backdrop";
 import { MediaPresenterProps } from "./Types";
@@ -134,7 +134,13 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                             loading="eager"
                         />
                     ) : (
-                        <video />
+                        <Video
+                            base={API_BASE_URI}
+                            source={`${props.collection[mediaNumber ?? props.presenting]}`}
+                            poster={`${props.posters[mediaNumber ?? props.presenting]}`}
+                            controls={true}
+                            preload="metadata"
+                        />
                     )}
                 </figure>
                 <IconButtonSolid
