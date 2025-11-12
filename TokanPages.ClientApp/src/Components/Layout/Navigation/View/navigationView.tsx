@@ -11,7 +11,7 @@ const RenderBackNavigationOnly = (props: NavigationViewProps): React.ReactElemen
 
     return (
         <ApplicationBar height={APP_BAR_HEIGHT_DESKTOP}>
-            <IconButton size={3.0} hasNoHoverEffect={isMobile || isTablet} onClick={props.backPathHandler}>
+            <IconButton size={3.0} hasNoHoverEffect={isMobile || isTablet} className="no-select" onClick={props.backPathHandler}>
                 <Icon name="ArrowLeft" size={1.5} />
             </IconButton>
         </ApplicationBar>

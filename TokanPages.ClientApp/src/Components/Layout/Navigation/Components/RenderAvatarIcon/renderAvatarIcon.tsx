@@ -28,7 +28,7 @@ const RenderAvatar = (props: NavigationViewBaseProps): React.ReactElement => {
 
 export const RenderAvatarIcon = (props: NavigationViewBaseProps): React.ReactElement => (
     <Media.DesktopOnly>
-        <IconButton onClick={props.infoHandler} className="mr-4">
+        <IconButton onClick={props.infoHandler} className="mr-4 no-select">
             <RenderAvatar {...props} />
         </IconButton>
     </Media.DesktopOnly>

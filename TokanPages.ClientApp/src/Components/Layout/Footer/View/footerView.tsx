@@ -16,7 +16,7 @@ export const FooterView = (props: FooterViewProps): React.ReactElement => (
                     <div className="is-flex is-justify-content-center mb-4">
                         {props?.icons?.map((item: IconDto, _index: number) => (
                             <Link to={item.href} key={uuidv4()} aria-label={item.name}>
-                                <IconButton size={3.0}>
+                                <IconButton size={3.0} className="no-select">
                                     <figure className="is-flex is-align-self-center bulma-image bulma-is-24x24">
                                         <Icon name={item.name} size={1.5} className="has-text-black" />
                                     </figure>

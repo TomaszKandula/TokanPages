@@ -9,14 +9,14 @@ import "slick-carousel/slick/slick-theme.css";
 
 const Navigation = (props: CarouselViewProps): ReactElement => (
     <div className="is-flex is-justify-content-center is-gap-1.5 mb-5">
-        <IconButton onClick={props.onPlayPauseClick}>
+        <IconButton onClick={props.onPlayPauseClick} className="no-select">
             {props.isPaused ? (
                 <Icon name="PlayCircleOutline" size={1.8} className="has-text-link" />
             ) : (
                 <Icon name="PauseCircleOutline" size={1.8} className="has-text-link" />
             )}
         </IconButton>
-        <IconButton onClick={props.onPrevSlideClick}>
+        <IconButton onClick={props.onPrevSlideClick} className="no-select">
             <Icon name="ChevronLeft" size={1.8} className="has-text-link" />
         </IconButton>
         <div className="is-flex is-justify-content-center is-align-items-center">
@@ -30,7 +30,7 @@ const Navigation = (props: CarouselViewProps): ReactElement => (
                     />
                 ))}
         </div>
-        <IconButton onClick={props.onNextSlideClick}>
+        <IconButton onClick={props.onNextSlideClick} className="no-select">
             <Icon name="ChevronRight" size={1.8} className="has-text-link" />
         </IconButton>
     </div>

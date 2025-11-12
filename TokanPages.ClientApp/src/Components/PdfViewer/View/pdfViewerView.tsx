@@ -31,10 +31,10 @@ const RenderDocument = (props: PdfViewerViewProps): React.ReactElement => (
                                 {props.currentPage} / {props.numPages}
                             </p>
                             <div className="is-flex is-gap-1.5">
-                                <IconButton size={2.5} hasGreyBackground onClick={props.onPreviousPage}>
+                                <IconButton size={2.5} hasGreyBackground className="no-select" onClick={props.onPreviousPage}>
                                     <Icon name="ChevronLeft" size={1.5} className="has-text-black" />
                                 </IconButton>
-                                <IconButton size={2.5} hasGreyBackground onClick={props.onNextPage}>
+                                <IconButton size={2.5} hasGreyBackground className="no-select" onClick={props.onNextPage}>
                                     <Icon name="ChevronRight" size={1.5} className="has-text-black" />
                                 </IconButton>
                             </div>
