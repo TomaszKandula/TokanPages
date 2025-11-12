@@ -5,15 +5,19 @@ import validate from "validate.js";
 import "./image.css";
 
 export const Image = (props: RenderImageProps): React.ReactElement => {
-    const [isMouseOver, setIsMouseOver] = React.useState(false);
+    const [isMouseOver, setIsMouseOver] = React.useState(props.isPreviewAlways ?? false);
     const [source, setSource] = React.useState("");
 
     const topRadius = props.isPreviewTopRadius ? "preview-top-radius" : "";
     const bottomRadius = props.isPreviewBottomRadius ? "preview-bottom-radius" : "";
 
     const onMouseOver = React.useCallback(() => {
-        setIsMouseOver(!isMouseOver);
-    }, [isMouseOver]);
+        if (props.isPreviewAlways) {
+            setIsMouseOver(true);    
+        } else {
+            setIsMouseOver(!isMouseOver);
+        }
+    }, [isMouseOver, props.isPreviewAlways]);
 
     React.useEffect(() => {
         if (!validate.isEmpty(props.base) && !validate.isEmpty(props.source)) {
@@ -27,7 +31,7 @@ export const Image = (props: RenderImageProps): React.ReactElement => {
         <div onMouseEnter={onMouseOver} onMouseLeave={onMouseOver}>
             {isMouseOver && props.isPreviewIcon && (
                 <div className={`preview-container ${topRadius} ${bottomRadius}`}>
-                    <Icon name="MagnifyPlusOutline" size={5} className="preview-icon" />
+                    <Icon name={props.previewIcon ?? "MagnifyPlusOutline"} size={5} className="preview-icon" />
                 </div>
             )}
             <img
