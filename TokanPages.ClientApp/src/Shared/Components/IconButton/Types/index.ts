@@ -3,6 +3,7 @@ import { ReactMouseEvent } from "../../../../Shared/Types";
 export interface IconButtonBase {
     size?: number;
     className?: string;
+    isInvisible?: boolean;
     isDisabled?: boolean;
     onClick?: (event: ReactMouseEvent) => void;
     onMouseDown?: (event: ReactMouseEvent) => void;

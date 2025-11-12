@@ -123,7 +123,8 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                     size={2.0}
                     className="mx-4"
                     onClick={onPrevImage}
-                    isDisabled={!canMoveBack || props.collection.length === 1}
+                    isDisabled={!canMoveBack}
+                    isInvisible={props.collection.length === 1}
                 />
                 <figure className="bulma-image">
                     {props.type === "image" ? (
@@ -150,7 +151,8 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                     size={2.0}
                     className="mx-4"
                     onClick={onNextImage}
-                    isDisabled={!canMoveNext || props.collection.length === 1}
+                    isDisabled={!canMoveNext}
+                    isInvisible={props.collection.length === 1}
                 />
             </div>
         </div>
