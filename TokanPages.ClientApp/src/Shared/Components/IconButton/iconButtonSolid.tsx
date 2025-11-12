@@ -47,7 +47,7 @@ export const IconButtonSolid = (props: IconButtonSolidProps): ReactElement => {
             ref={buttonRef}
             onClick={props.onClick}
             onMouseDown={props.onMouseDown}
-            style={{ height: `${size}rem`, width: `${size}rem` }}
+            style={{ height: `${size}rem`, width: `${size}rem`, visibility: props.isInvisible ? "hidden" : "visible" }}
             disabled={props.isDisabled}
         >
             <Icon name={props.name} size={size} />

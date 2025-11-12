@@ -2,45 +2,45 @@ import React from "react";
 import { API_BASE_URI } from "../../../../../Api";
 import { useMediaPresenter } from "../../../../../Shared/Hooks";
 import { ReactElement } from "../../../../../Shared/Types";
-import { Carousel, Image, MediaPresenter } from "../../../../../Shared/Components";
-import { ImageItemProps, TextItem } from "../../Models";
+import { Carousel, MediaPresenter, Image } from "../../../../../Shared/Components";
+import { VideoItemProps } from "../../Models/TextModel";
+import { TextItem } from "../../Models";
 import { v4 as uuidv4 } from "uuid";
 
-interface RenderImageProps extends TextItem {
-    imageItem: ImageItemProps;
+interface RenderPosterProps extends TextItem {
+    item: VideoItemProps;
     onClick: () => void;
 }
 
-const RenderImage = (props: RenderImageProps): ReactElement => {
-    const value = props.imageItem;
+const RenderPoster = (props: RenderPosterProps): ReactElement => {
+    const value = props.item;
 
     return (
         <>
             <div className="bulma-card-image">
                 <figure className="bulma-image is-clickable" onClick={props.onClick}>
                     <Image
+                        isPreviewAlways
                         isPreviewIcon
                         isPreviewTopRadius
-                        source={`${API_BASE_URI}${value.image}`}
-                        title={props.text}
-                        alt={props.text}
+                        previewIcon="PlayCircleOutline"
+                        source={`${API_BASE_URI}${value.poster}`}
                         width={value.constraint?.width ?? props.constraint?.width}
                         height={value.constraint?.height ?? props.constraint?.height}
                         objectFit={value.constraint?.objectFit ?? props.constraint?.objectFit}
-                        loading={props.loading}
                     />
                 </figure>
             </div>
             <div className="bulma-card-content">
-                <p className="is-size-6 has-text-black">{value.caption}</p>
+                <p className="is-size-6 has-text-black">{value.text}</p>
             </div>
         </>
     );
 };
 
-export const RenderImages = (props: TextItem): ReactElement => {
+export const RenderVideos = (props: TextItem): ReactElement => {
     const presenter = useMediaPresenter();
-    const items = props.value as ImageItemProps[];
+    const items = props.value as VideoItemProps[];
 
     return (
         <>
@@ -56,11 +56,11 @@ export const RenderImages = (props: TextItem): ReactElement => {
                 pauseOnHover={false}
                 className="bulma-card"
             >
-                {items.map((value: ImageItemProps, index: number) => (
-                    <RenderImage
+                {items.map((value: VideoItemProps, index: number) => (
+                    <RenderPoster
                         key={uuidv4()}
                         {...props}
-                        imageItem={value}
+                        item={value}
                         onClick={() => {
                             presenter.onSelectionClick(index);
                         }}
@@ -70,9 +70,9 @@ export const RenderImages = (props: TextItem): ReactElement => {
             <MediaPresenter
                 isOpen={presenter.isPresenterOpen}
                 presenting={presenter.selection}
-                collection={items.map(items => items.image)}
-                posters={[]}
-                type="image"
+                collection={items.map(items => items.video)}
+                posters={items.map(items => items.poster)}
+                type="video"
                 onTrigger={presenter.onPresenterClick}
             />
         </>

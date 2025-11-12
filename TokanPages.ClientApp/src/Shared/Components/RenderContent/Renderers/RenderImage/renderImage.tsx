@@ -11,16 +11,14 @@ interface RenderPictureProps extends TextItem {
     onClick: () => void;
 }
 
-const RenderDescription = (props: { text: string }): React.ReactElement => {
-    return (
-        <>
-            <hr className="m-0" />
-            <div className="bulma-card-content">
-                <span className="is-size-6">{props.text}</span>
-            </div>
-        </>
-    );
-};
+const RenderDescription = (props: { text: string }): React.ReactElement => (
+    <>
+        <hr className="m-0" />
+        <div className="bulma-card-content">
+            <span className="is-size-6">{props.text}</span>
+        </div>
+    </>
+);
 
 const RenderPicture = (props: RenderPictureProps): React.ReactElement => {
     const hasText = !Validate.isEmpty(props.text);
@@ -77,6 +75,7 @@ export const RenderImage = (props: TextItem): React.ReactElement => {
                 isOpen={presenter.isPresenterOpen}
                 presenting={presenter.selection}
                 collection={[imageUrl]}
+                posters={[]}
                 type="image"
                 onTrigger={presenter.onPresenterClick}
             />
