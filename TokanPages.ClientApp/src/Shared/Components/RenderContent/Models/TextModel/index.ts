@@ -13,7 +13,7 @@ export interface ConstraintProps {
 export interface TextItem {
     id: string;
     type: string;
-    value: string | string[] | RowItem[] | ImageItemProps[];
+    value: string | string[] | RowItem[] | ImageItemProps[] | VideoItemProps[];
     prop: string;
     text: string;
     propTitle?: string;
@@ -32,5 +32,12 @@ export interface RowItem {
 export interface ImageItemProps {
     image: string;
     caption: string;
+    constraint?: ConstraintProps;
+}
+
+export interface VideoItemProps {
+    poster: string;
+    video: string;
+    text: string;
     constraint?: ConstraintProps;
 }
