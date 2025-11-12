@@ -3,21 +3,21 @@ import * as React from "react";
 export interface UseDimensionsResult {
     width: number;
     height: number;
-    hasPortrait: boolean;
-    hasLandscape: boolean;
-    isMobile: boolean;
-    isTablet: boolean;
-    isDesktop: boolean;
+    hasPortrait: boolean | null;
+    hasLandscape: boolean | null;
+    isMobile: boolean | null;
+    isTablet: boolean | null;
+    isDesktop: boolean | null;
 }
 
 export const useDimensions = (): UseDimensionsResult => {
     const [width, setWidth] = React.useState(window.innerWidth);
     const [height, setHeight] = React.useState(window.innerHeight);
-    const [hasLandscape, setHasLandscape] = React.useState(false);
-    const [hasPortrait, setHasPortrait] = React.useState(false);
-    const [isMobile, setIsMobile] = React.useState(false);
-    const [isTablet, setIsTablet] = React.useState(false);
-    const [isDesktop, setIsDesktop] = React.useState(false);
+    const [hasLandscape, setHasLandscape] = React.useState<boolean | null>(null);
+    const [hasPortrait, setHasPortrait] = React.useState<boolean | null>(null);
+    const [isMobile, setIsMobile] = React.useState<boolean | null>(null);
+    const [isTablet, setIsTablet] = React.useState<boolean | null>(null);
+    const [isDesktop, setIsDesktop] = React.useState<boolean | null>(null);
 
     const updateDimensions = (): void => {
         setWidth(window.innerWidth);

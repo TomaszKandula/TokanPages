@@ -24,7 +24,7 @@ export interface NewsletterUpdateProps extends ExtendedViewProps {
 }
 
 export interface NewsletterUpdateViewProps extends ViewProperties, ExtendedViewProps {
-    isMobile: boolean;
+    isMobile: boolean | null;
     caption: string;
     formHandler: (event: ReactChangeEvent) => void;
     email: string;
@@ -36,7 +36,7 @@ export interface NewsletterUpdateViewProps extends ViewProperties, ExtendedViewP
 }
 
 export interface NewsletterRemoveViewProps extends ViewProperties, ExtendedViewProps {
-    isMobile: boolean;
+    isMobile: boolean | null;
     hasEmptyId: boolean;
     contentPre: ContentDto;
     contentPost: ContentDto;

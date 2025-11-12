@@ -6,7 +6,7 @@ export interface UserPasswordProps {
 }
 
 export interface UserPasswordViewProps extends ViewProperties, UserPasswordProps {
-    isMobile: boolean;
+    isMobile: boolean | null;
     oldPassword: string;
     newPassword: string;
     confirmPassword: string;

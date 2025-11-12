@@ -6,7 +6,7 @@ export interface UserRemovalProps {
 }
 
 export interface UserRemovalViewProps extends ViewProperties, UserRemovalProps {
-    isMobile: boolean;
+    isMobile: boolean | null;
     deleteButtonHandler: () => void;
     deleteAccountProgress: boolean;
     sectionAccountRemoval: SectionAccountRemoval;

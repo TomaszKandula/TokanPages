@@ -65,7 +65,7 @@ export interface ArticleListViewProps
         ButtonsProps,
         RenderSortProps,
         SearchFormProps {
-    isMobile: boolean;
+    isMobile: boolean | null;
     isContentLoading: boolean;
     isOrderByAscending: boolean;
     selectedCategory: string;
