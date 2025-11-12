@@ -141,7 +141,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                             controls={true}
                             preload="metadata"
                             height={mediaHeight}
-                            objectFit="scale-down"
+                            objectFit="contain"
                         />
                     )}
                 </figure>
