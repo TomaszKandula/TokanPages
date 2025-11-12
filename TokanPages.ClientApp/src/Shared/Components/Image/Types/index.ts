@@ -10,5 +10,10 @@ export interface RenderImageProps {
     alt?: string;
     title?: string;
     loading?: TLoading;
+    previewIcon?: string;
+    isPreviewAlways?: boolean;
+    isPreviewIcon?: boolean;
+    isPreviewTopRadius?: boolean;
+    isPreviewBottomRadius?: boolean;
     onClick?: () => void;
 }

@@ -6,7 +6,7 @@ export interface UserDeactivationProps {
 }
 
 export interface UserDeactivationViewProps extends ViewProperties, UserDeactivationProps {
-    isMobile: boolean;
+    isMobile: boolean | null;
     buttonHandler: () => void;
     progress: boolean;
     section: SectionAccountDeactivation;

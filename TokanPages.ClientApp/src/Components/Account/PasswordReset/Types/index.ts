@@ -5,7 +5,7 @@ export interface PasswordResetProps {
 }
 
 export interface Properties extends ViewProperties, PasswordResetProps {
-    isMobile: boolean;
+    isMobile: boolean | null;
     progress: boolean;
     caption: string;
     button: string;

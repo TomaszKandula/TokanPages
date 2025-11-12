@@ -47,13 +47,15 @@ Object {
                           <figure
                             class="bulma-image"
                           >
-                            <img
-                              alt="An image illustrating listed features"
-                              class="article-feature-image article-feature-image-large"
-                              loading="lazy"
-                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1.jpg"
-                              title="Illustration"
-                            />
+                            <div>
+                              <img
+                                alt="An image illustrating listed features"
+                                class="article-feature-image article-feature-image-large"
+                                loading="lazy"
+                                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1.jpg"
+                                title="Illustration"
+                              />
+                            </div>
                           </figure>
                         </div>
                       </div>
@@ -70,13 +72,15 @@ Object {
                           <figure
                             class="bulma-image"
                           >
-                            <img
-                              alt="An image illustrating listed features"
-                              class="article-feature-image article-feature-image-small"
-                              loading="lazy"
-                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image2.jpg"
-                              title="Illustration"
-                            />
+                            <div>
+                              <img
+                                alt="An image illustrating listed features"
+                                class="article-feature-image article-feature-image-small"
+                                loading="lazy"
+                                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image2.jpg"
+                                title="Illustration"
+                              />
+                            </div>
                           </figure>
                         </div>
                       </div>
@@ -97,13 +101,15 @@ Object {
                           <figure
                             class="bulma-image"
                           >
-                            <img
-                              alt="An image illustrating listed features"
-                              class="article-feature-image article-feature-image-small"
-                              loading="lazy"
-                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image3.jpg"
-                              title="Illustration"
-                            />
+                            <div>
+                              <img
+                                alt="An image illustrating listed features"
+                                class="article-feature-image article-feature-image-small"
+                                loading="lazy"
+                                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image3.jpg"
+                                title="Illustration"
+                              />
+                            </div>
                           </figure>
                         </div>
                       </div>
@@ -120,13 +126,15 @@ Object {
                           <figure
                             class="bulma-image"
                           >
-                            <img
-                              alt="An image illustrating listed features"
-                              class="article-feature-image article-feature-image-large"
-                              loading="lazy"
-                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image4.jpg"
-                              title="Illustration"
-                            />
+                            <div>
+                              <img
+                                alt="An image illustrating listed features"
+                                class="article-feature-image article-feature-image-large"
+                                loading="lazy"
+                                src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image4.jpg"
+                                title="Illustration"
+                              />
+                            </div>
                           </figure>
                         </div>
                       </div>
@@ -217,13 +225,15 @@ Object {
                         <figure
                           class="bulma-image"
                         >
-                          <img
-                            alt="An image illustrating listed features"
-                            class="article-feature-image article-feature-image-large"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1.jpg"
-                            title="Illustration"
-                          />
+                          <div>
+                            <img
+                              alt="An image illustrating listed features"
+                              class="article-feature-image article-feature-image-large"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image1.jpg"
+                              title="Illustration"
+                            />
+                          </div>
                         </figure>
                       </div>
                     </div>
@@ -240,13 +250,15 @@ Object {
                         <figure
                           class="bulma-image"
                         >
-                          <img
-                            alt="An image illustrating listed features"
-                            class="article-feature-image article-feature-image-small"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image2.jpg"
-                            title="Illustration"
-                          />
+                          <div>
+                            <img
+                              alt="An image illustrating listed features"
+                              class="article-feature-image article-feature-image-small"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image2.jpg"
+                              title="Illustration"
+                            />
+                          </div>
                         </figure>
                       </div>
                     </div>
@@ -267,13 +279,15 @@ Object {
                         <figure
                           class="bulma-image"
                         >
-                          <img
-                            alt="An image illustrating listed features"
-                            class="article-feature-image article-feature-image-small"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image3.jpg"
-                            title="Illustration"
-                          />
+                          <div>
+                            <img
+                              alt="An image illustrating listed features"
+                              class="article-feature-image article-feature-image-small"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image3.jpg"
+                              title="Illustration"
+                            />
+                          </div>
                         </figure>
                       </div>
                     </div>
@@ -290,13 +304,15 @@ Object {
                         <figure
                           class="bulma-image"
                         >
-                          <img
-                            alt="An image illustrating listed features"
-                            class="article-feature-image article-feature-image-large"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image4.jpg"
-                            title="Illustration"
-                          />
+                          <div>
+                            <img
+                              alt="An image illustrating listed features"
+                              class="article-feature-image article-feature-image-large"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/image4.jpg"
+                              title="Illustration"
+                            />
+                          </div>
                         </figure>
                       </div>
                     </div>

@@ -1,9 +1,8 @@
 import * as React from "react";
 import { ClassListAdd, ClassListClear } from "../../../Shared/Services/Utilities";
 import { IconButtonProps } from "./Types";
+import { baseClasses } from "./Constants";
 import "./iconButton.css";
-
-const baseClasses = ["icon-button-base", "is-flex", "is-align-self-center"];
 
 export const IconButton = (props: IconButtonProps): React.ReactElement => {
     const size = props.size ?? 2.0;
@@ -47,7 +46,7 @@ export const IconButton = (props: IconButtonProps): React.ReactElement => {
             classList.remove(buttonDisabled);
             classList.add("has-text-grey");
         }
-    }, [props.className, props.hasNoHoverEffect, props.isDisabled]);
+    }, [ref.current?.classList, props.className, props.hasNoHoverEffect, props.isDisabled]);
 
     return (
         <button

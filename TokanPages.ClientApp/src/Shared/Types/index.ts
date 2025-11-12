@@ -13,6 +13,7 @@ export type TInputColours =
     | "bulma-is-danger";
 export type TInputSizes = "bulma-is-small" | "bulma-is-normal" | "bulma-is-medium" | "bulma-is-large";
 export type TLoading = "lazy" | "eager";
+export type TVideoPreload = "auto" | "metadata" | "none";
 
 export type ReactElement = React.ReactElement;
 export type ReactElements = React.ReactElement[];

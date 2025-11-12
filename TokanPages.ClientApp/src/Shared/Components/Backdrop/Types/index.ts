@@ -2,6 +2,6 @@ import { ReactCSSProps, ReactMouseDivEventHandler } from "../../../../Shared/Typ
 
 export interface StandardBackdropProps {
     className?: string;
-    style?: ReactCSSProps | undefined;
-    onClick?: ReactMouseDivEventHandler | undefined;
+    style?: ReactCSSProps;
+    onClick?: ReactMouseDivEventHandler;
 }

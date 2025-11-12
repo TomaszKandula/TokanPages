@@ -10,8 +10,8 @@ export interface UserNotesProps {
 export interface UserNotesViewProps {
     isLoading: boolean;
     mediaQuery: {
-        isTablet: boolean;
-        isMobile: boolean;
+        isTablet: boolean | null;
+        isMobile: boolean | null;
     };
     hasProgress: boolean;
     userNotes?: UserNoteProps[];

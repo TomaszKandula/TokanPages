@@ -47,13 +47,15 @@ Object {
                         <figure
                           class="bulma-image"
                         >
-                          <img
-                            alt="Memory Management"
-                            class="featured-card-image"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article0.jpg"
-                            title="Illustration"
-                          />
+                          <div>
+                            <img
+                              alt="Memory Management"
+                              class="featured-card-image"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article0.jpg"
+                              title="Illustration"
+                            />
+                          </div>
                         </figure>
                       </div>
                       <div
@@ -96,13 +98,15 @@ Object {
                         <figure
                           class="bulma-image"
                         >
-                          <img
-                            alt="Stored Procedures"
-                            class="featured-card-image"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article1.jpg"
-                            title="Illustration"
-                          />
+                          <div>
+                            <img
+                              alt="Stored Procedures"
+                              class="featured-card-image"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article1.jpg"
+                              title="Illustration"
+                            />
+                          </div>
                         </figure>
                       </div>
                       <div
@@ -145,13 +149,15 @@ Object {
                         <figure
                           class="bulma-image"
                         >
-                          <img
-                            alt="SQL Injection"
-                            class="featured-card-image"
-                            loading="lazy"
-                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article2.jpg"
-                            title="Illustration"
-                          />
+                          <div>
+                            <img
+                              alt="SQL Injection"
+                              class="featured-card-image"
+                              loading="lazy"
+                              src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article2.jpg"
+                              title="Illustration"
+                            />
+                          </div>
                         </figure>
                       </div>
                       <div
@@ -221,13 +227,15 @@ Object {
                       <figure
                         class="bulma-image"
                       >
-                        <img
-                          alt="Memory Management"
-                          class="featured-card-image"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article0.jpg"
-                          title="Illustration"
-                        />
+                        <div>
+                          <img
+                            alt="Memory Management"
+                            class="featured-card-image"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article0.jpg"
+                            title="Illustration"
+                          />
+                        </div>
                       </figure>
                     </div>
                     <div
@@ -270,13 +278,15 @@ Object {
                       <figure
                         class="bulma-image"
                       >
-                        <img
-                          alt="Stored Procedures"
-                          class="featured-card-image"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article1.jpg"
-                          title="Illustration"
-                        />
+                        <div>
+                          <img
+                            alt="Stored Procedures"
+                            class="featured-card-image"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article1.jpg"
+                            title="Illustration"
+                          />
+                        </div>
                       </figure>
                     </div>
                     <div
@@ -319,13 +329,15 @@ Object {
                       <figure
                         class="bulma-image"
                       >
-                        <img
-                          alt="SQL Injection"
-                          class="featured-card-image"
-                          loading="lazy"
-                          src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article2.jpg"
-                          title="Illustration"
-                        />
+                        <div>
+                          <img
+                            alt="SQL Injection"
+                            class="featured-card-image"
+                            loading="lazy"
+                            src="http://localhost:5000/api/v1/content/assets/getNonVideoAsset?blobName=images/article2.jpg"
+                            title="Illustration"
+                          />
+                        </div>
                       </figure>
                     </div>
                     <div

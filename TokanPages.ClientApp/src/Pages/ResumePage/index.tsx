@@ -21,16 +21,16 @@ export const ResumePage = (): React.ReactElement => {
     const mode = queryParam.get("mode") ?? "";
     const isPrintable = mode === "printable";
 
-    if (isPrintable) {
-        return <Resume />;
-    }
-
     const state = useSelector((state: ApplicationState) => state);
     const languageId = state.applicationLanguage.id;
     const data = state.contentPageData;
     const isLoading = data?.isLoading ?? false;
 
     const url = `${GET_DOCUMENTS_URL}/${languageId}${RESUME_NAME_FRAGMENT}`;
+
+    if (isPrintable) {
+        return <Resume />;
+    }
 
     return (
         <>

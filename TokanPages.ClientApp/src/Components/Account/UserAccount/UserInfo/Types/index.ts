@@ -17,7 +17,7 @@ export interface UserInfoProps {
 }
 
 export interface UserInfoViewProps extends ViewProperties, UserInfoProps {
-    isMobile: boolean;
+    isMobile: boolean | null;
     fileUploadingCustomHandle?: string;
     userStore: AuthenticateUserResultDto;
     accountForm: ValidateAccountFormProps;

@@ -32,7 +32,12 @@ export const TextFieldWithPasswordView = (props: TextFieldExtendedProps): React.
                 className={className}
             />
             <span className={icon}>
-                <IconButton onClick={props.iconOnClick} onMouseDown={props.iconOnMouseDown} hasNoHoverEffect>
+                <IconButton
+                    className="no-select"
+                    onClick={props.iconOnClick}
+                    onMouseDown={props.iconOnMouseDown}
+                    hasNoHoverEffect
+                >
                     <IconElement {...props} />
                 </IconButton>
             </span>

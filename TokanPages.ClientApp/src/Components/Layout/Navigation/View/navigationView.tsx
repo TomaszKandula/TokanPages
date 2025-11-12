@@ -5,21 +5,32 @@ import { ApplicationBar, Image, Drawer, Icon, IconButton } from "../../../../Sha
 import { RenderSideMenu, RenderToolbarLargeScreen, RenderToolbarSmallScreen } from "../Components";
 import { NavigationViewProps } from "../Types";
 
-const RenderBackNavigationOnly = (props: NavigationViewProps): React.ReactElement => (
-    <ApplicationBar height={APP_BAR_HEIGHT_DESKTOP}>
-        <IconButton
-            size={3.0}
-            hasNoHoverEffect={props.media.isMobile || props.media.isTablet}
-            onClick={props.backPathHandler}
-        >
-            <Icon name="ArrowLeft" size={1.5} />
-        </IconButton>
-    </ApplicationBar>
-);
+const RenderBackNavigationOnly = (props: NavigationViewProps): React.ReactElement => {
+    const isMobile = props.media.isMobile ?? undefined;
+    const isTablet = props.media.isTablet ?? undefined;
+
+    return (
+        <ApplicationBar height={APP_BAR_HEIGHT_DESKTOP}>
+            <IconButton
+                size={3.0}
+                hasNoHoverEffect={isMobile || isTablet}
+                className="no-select"
+                onClick={props.backPathHandler}
+            >
+                <Icon name="ArrowLeft" size={1.5} />
+            </IconButton>
+        </ApplicationBar>
+    );
+};
 
 const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement => {
     const height = props.media.isDesktop ? APP_BAR_HEIGHT_DESKTOP : APP_BAR_HEIGHT_NON_DESKTOP;
     const [isClose, setIsClose] = React.useState(false);
+
+    const onCloseClick = React.useCallback(() => {
+        setIsClose(true);
+    }, []);
+
     React.useEffect(() => {
         if (!props.isMenuOpen && isClose) {
             setIsClose(false);
@@ -42,13 +53,7 @@ const RenderFullNavigation = (props: NavigationViewProps): React.ReactElement =>
                         height={40}
                     />
                     <IconButton size={3.0} hasNoHoverEffect className="no-select mr-2">
-                        <Icon
-                            name="WindowClose"
-                            size={1.5}
-                            onClick={() => {
-                                setIsClose(true);
-                            }}
-                        />
+                        <Icon name="WindowClose" size={1.5} onClick={onCloseClick} />
                     </IconButton>
                 </div>
                 <hr className="line-separator" />
