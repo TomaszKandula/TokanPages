@@ -5,7 +5,7 @@ export interface PasswordUpdateProps {
 }
 
 export interface Properties extends ViewProperties, PasswordUpdateProps {
-    isMobile: boolean;
+    isMobile: boolean | null;
     progress: boolean;
     caption: string;
     button: string;

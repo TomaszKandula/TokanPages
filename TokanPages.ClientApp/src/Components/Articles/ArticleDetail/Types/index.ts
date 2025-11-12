@@ -10,7 +10,7 @@ export interface ArticleDetailProps extends ExtendedViewProps {
 
 export interface ArticleDetailViewProps extends ExtendedViewProps {
     isLoading: boolean;
-    isMobile: boolean;
+    isMobile: boolean | null;
     backButtonHandler: () => void;
     articleReadCount: string;
     renderSmallAvatar: React.ReactElement;
