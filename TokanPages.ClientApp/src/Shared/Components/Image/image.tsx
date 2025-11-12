@@ -13,7 +13,7 @@ export const Image = (props: RenderImageProps): React.ReactElement => {
 
     const onMouseOver = React.useCallback(() => {
         if (props.isPreviewAlways) {
-            setIsMouseOver(true);    
+            setIsMouseOver(true);
         } else {
             setIsMouseOver(!isMouseOver);
         }

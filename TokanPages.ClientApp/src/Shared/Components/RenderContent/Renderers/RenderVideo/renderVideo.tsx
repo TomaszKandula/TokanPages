@@ -26,7 +26,7 @@ const RenderPoster = (props: RenderClipProps): React.ReactElement => {
         <>
             <div className="bulma-card-image">
                 <figure className="bulma-image" onClick={props.onClick}>
-                    <Image 
+                    <Image
                         previewIcon="PlayCircleOutline"
                         isPreviewAlways
                         isPreviewIcon
