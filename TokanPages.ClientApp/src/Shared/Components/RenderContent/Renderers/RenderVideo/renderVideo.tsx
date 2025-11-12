@@ -10,7 +10,11 @@ interface RenderClipProps extends TextItem {
     onClick: () => void;
 }
 
-const RenderDescription = (props: { text: string }): React.ReactElement => (
+interface RenderDescriptionProps {
+    text: string;
+}
+
+const RenderDescription = (props: RenderDescriptionProps): React.ReactElement => (
     <>
         <hr className="m-0" />
         <div className="bulma-card-content">
