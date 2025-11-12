@@ -7,7 +7,7 @@ import { VideoItemProps } from "../../Models/TextModel";
 import { TextItem } from "../../Models";
 import { v4 as uuidv4 } from "uuid";
 
-interface RenderPosterProps {
+interface RenderPosterProps extends TextItem {
     item: VideoItemProps;
     onClick: () => void;
 }
@@ -25,9 +25,9 @@ const RenderPoster = (props: RenderPosterProps): ReactElement => {
                         isPreviewTopRadius
                         previewIcon="PlayCircleOutline"
                         source={`${API_BASE_URI}${value.poster}`}
-                        width={value.constraint?.width ?? props.item?.constraint?.width}
-                        height={value.constraint?.height ?? props.item?.constraint?.height}
-                        objectFit={value.constraint?.objectFit ?? props.item?.constraint?.objectFit}
+                        width={value.constraint?.width ?? props.constraint?.width}
+                        height={value.constraint?.height ?? props.constraint?.height}
+                        objectFit={value.constraint?.objectFit ?? props.constraint?.objectFit}
                     />
                 </figure>
             </div>
