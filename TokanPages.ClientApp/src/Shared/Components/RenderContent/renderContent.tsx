@@ -12,6 +12,7 @@ import {
     RenderVideo,
     RenderSeparator,
     RenderImages,
+    RenderVideos,
 } from "./Renderers";
 
 export const RenderContent = (textObject: TextObject | undefined): React.ReactElement => {
@@ -96,6 +97,21 @@ export const RenderContent = (textObject: TextObject | undefined): React.ReactEl
             case "video":
                 renderBuffer.push(
                     <RenderVideo
+                        key={item.id}
+                        id={item.id}
+                        type={item.type}
+                        value={item.value}
+                        prop={item.prop}
+                        text={item.text}
+                        loading={item.loading}
+                        constraint={item.constraint}
+                    />
+                );
+                break;
+
+            case "videos":
+                renderBuffer.push(
+                    <RenderVideos
                         key={item.id}
                         id={item.id}
                         type={item.type}
