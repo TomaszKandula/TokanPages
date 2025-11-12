@@ -115,13 +115,13 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
         <div role="presentation" className="media-presenter-root" style={{ opacity: canOpenMenu ? 1 : 0 }}>
             <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0 }} />
             <div ref={headerRef} className="m-4 is-flex is-justify-content-flex-end">
-                <IconButtonSolid name="WindowClose" size={2.0} onClick={onCloseHandler} />
+                <IconButtonSolid name="WindowClose" size={2.0} onClick={onCloseHandler} className="no-select" />
             </div>
             <div className="is-flex is-justify-content-space-between is-align-items-center">
                 <IconButtonSolid
                     name="ChevronLeft"
                     size={2.0}
-                    className="mx-4"
+                    className="mx-4 no-select"
                     onClick={onPrevImage}
                     isDisabled={!canMoveBack}
                     isInvisible={props.collection.length === 1}
@@ -149,7 +149,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                 <IconButtonSolid
                     name="ChevronRight"
                     size={2.0}
-                    className="mx-4"
+                    className="mx-4 no-select"
                     onClick={onNextImage}
                     isDisabled={!canMoveNext}
                     isInvisible={props.collection.length === 1}
