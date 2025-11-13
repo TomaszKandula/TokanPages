@@ -68,7 +68,10 @@ export const RenderVideos = (props: TextItem): ReactElement => {
                 ))}
             </Carousel>
             <MediaPresenter
+                isNavigationOff
                 isOpen={presenter.isPresenterOpen}
+                autoplay={true}
+                background="rgba(0,0,0,0.9)"
                 presenting={presenter.selection}
                 collection={items.map(items => items.video)}
                 posters={items.map(items => items.poster)}
