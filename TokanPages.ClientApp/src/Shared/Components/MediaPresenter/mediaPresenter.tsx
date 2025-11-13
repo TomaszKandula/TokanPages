@@ -100,7 +100,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
         }
     }, [props.isOpen, canCloseMenu]);
 
-    /* ON UNMOUNT EVENT */
+    /* ON UNMOUNT COMPONENT */
     React.useEffect(() => {
         return () => {
             ToggleBodyScroll(true);
@@ -113,7 +113,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
 
     return (
         <div role="presentation" className="media-presenter-root" style={{ opacity: canOpenMenu ? 1 : 0 }}>
-            <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0 }} />
+            <StandardBackdrop style={{ opacity: canShowBackdrop ? 1 : 0, backgroundColor: props.background }} />
             <div ref={headerRef} className="m-4 is-flex is-justify-content-flex-end">
                 <IconButtonSolid name="WindowClose" size={2.0} onClick={onCloseHandler} className="no-select" />
             </div>
@@ -124,7 +124,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                     className="mx-4 no-select"
                     onClick={onPrevImage}
                     isDisabled={!canMoveBack}
-                    isInvisible={props.collection.length === 1}
+                    isInvisible={props.collection.length === 1 || props.isNavigationOff}
                 />
                 <figure className="bulma-image">
                     {props.type === "image" ? (
@@ -139,7 +139,8 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                             base={API_BASE_URI}
                             source={`${props.collection[mediaNumber ?? props.presenting]}`}
                             poster={`${props.posters[mediaNumber ?? props.presenting]}`}
-                            controls={true}
+                            controls={false}
+                            autoplay={props.autoplay ?? false}
                             preload="metadata"
                             height={mediaHeight}
                             objectFit="contain"
@@ -152,7 +153,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
                     className="mx-4 no-select"
                     onClick={onNextImage}
                     isDisabled={!canMoveNext}
-                    isInvisible={props.collection.length === 1}
+                    isInvisible={props.collection.length === 1 || props.isNavigationOff}
                 />
             </div>
         </div>
