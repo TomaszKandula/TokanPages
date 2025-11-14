@@ -74,6 +74,7 @@ export const RenderImages = (props: TextItem): ReactElement => {
                 collection={items.map(items => items.image)}
                 posters={[]}
                 type="image"
+                background="rgba(0,0,0,0.8)"
                 onTrigger={presenter.onPresenterClick}
             />
         </>
