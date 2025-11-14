@@ -24,6 +24,7 @@ const RenderPoster = (props: RenderPosterProps): ReactElement => {
                         isPreviewIcon
                         isPreviewTopRadius
                         previewIcon="PlayCircleOutline"
+                        classNameCursor="is-cursor-pointer"
                         source={`${API_BASE_URI}${value.poster}`}
                         width={value.constraint?.width ?? props.constraint?.width}
                         height={value.constraint?.height ?? props.constraint?.height}

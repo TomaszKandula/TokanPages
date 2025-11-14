@@ -31,6 +31,7 @@ const RenderPicture = (props: RenderPictureProps): React.ReactElement => {
                         isPreviewIcon
                         isPreviewTopRadius
                         isPreviewBottomRadius={!hasText}
+                        classNameCursor="is-cursor-zoom-in"
                         source={!Validate.isEmpty(props.url) ? `${API_BASE_URI}${props.url}` : ""}
                         title="Illustration"
                         alt="An image of presented article text"

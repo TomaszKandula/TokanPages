@@ -21,6 +21,7 @@ const RenderImage = (props: RenderImageProps): ReactElement => {
                     <Image
                         isPreviewIcon
                         isPreviewTopRadius
+                        classNameCursor="is-cursor-zoom-in"
                         source={`${API_BASE_URI}${value.image}`}
                         title={props.text}
                         alt={props.text}

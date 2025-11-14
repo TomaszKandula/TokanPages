@@ -35,6 +35,7 @@ const RenderPoster = (props: RenderClipProps): React.ReactElement => {
                         isPreviewAlways
                         isPreviewIcon
                         isPreviewTopRadius
+                        classNameCursor="is-cursor-pointer"
                         source={`${API_BASE_URI}${props.posterUrl}`}
                     />
                 </figure>
