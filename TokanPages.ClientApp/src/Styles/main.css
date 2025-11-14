@@ -131,3 +131,11 @@ body {
 .is-lock-scroll {
     overflow: hidden;
 }
+
+.is-cursor-zoom-in {
+    cursor: zoom-in !important;
+}
+
+.is-cursor-pointer {
+    cursor: pointer !important;
+}
