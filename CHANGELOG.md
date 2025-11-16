@@ -1,3 +1,25 @@
+# [0.181.0](https://github.com/TomaszKandula/TokanPages/compare/v0.180.0...v0.181.0) (2025-11-16)
+
+
+### Bug Fixes
+
+* chek if true or false before changing state ([e8ccb67](https://github.com/TomaszKandula/TokanPages/commit/e8ccb67d76e2c30fe0af4c374dd0cd678631307e))
+
+
+### Features
+
+* add cursors to styles ([f29bdf4](https://github.com/TomaszKandula/TokanPages/commit/f29bdf407ec09667a322e0c8ea77e17770a85afa))
+* add loader for video before autoplay hits ([8678a33](https://github.com/TomaszKandula/TokanPages/commit/8678a334b6ce038f30328a6c51852e2b0cfd4bf2))
+* align background colour ([6dda2e6](https://github.com/TomaszKandula/TokanPages/commit/6dda2e652f84ce9f5d2bb093885eb36811bddf65))
+* allow to define cursor ([7f3109e](https://github.com/TomaszKandula/TokanPages/commit/7f3109ece4911b9042efcf62be3e7f112132129c))
+* allow to hide navigation, pass autoplay prop, allow to change backdrop ([a14babc](https://github.com/TomaszKandula/TokanPages/commit/a14babc4a62327c2e42b3d902d774b6c633e02a9))
+* change settings, enable autoplay, change backdrop colour ([c149964](https://github.com/TomaszKandula/TokanPages/commit/c149964681c0d5fec71ba3bd20b1a5885356f2cf))
+* define different cursors for image/video ([b7fc382](https://github.com/TomaszKandula/TokanPages/commit/b7fc38220188c21bcb3ba9799399faa9f0697d20))
+* keep scroll lock after the screen is rotated ([bf3643a](https://github.com/TomaszKandula/TokanPages/commit/bf3643afe2c4299da7613fc5763d2f1e0b52d753))
+* recalculate height after the screen is rotated ([adfb0d3](https://github.com/TomaszKandula/TokanPages/commit/adfb0d3405b1384f619953ba44a7988e10a3771e))
+* remove cursor definition from container ([62bbd48](https://github.com/TomaszKandula/TokanPages/commit/62bbd48ba776b807e391318cb47d71498a334b35))
+* remove full screen, add autoplay ([65cbfcb](https://github.com/TomaszKandula/TokanPages/commit/65cbfcb660512181faa5c4143f825b7f2395dff7))
+
 # [0.180.0](https://github.com/TomaszKandula/TokanPages/compare/v0.179.0...v0.180.0) (2025-11-12)
 
 
