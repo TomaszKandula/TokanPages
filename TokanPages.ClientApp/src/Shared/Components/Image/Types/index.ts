@@ -4,6 +4,7 @@ export interface RenderImageProps {
     source: string;
     base?: string;
     className?: string;
+    classNameCursor?: string;
     width?: number;
     height?: number;
     objectFit?: TObjectFit;

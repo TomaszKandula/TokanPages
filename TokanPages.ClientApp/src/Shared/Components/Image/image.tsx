@@ -15,7 +15,11 @@ export const Image = (props: RenderImageProps): React.ReactElement => {
         if (props.isPreviewAlways) {
             setIsMouseOver(true);
         } else {
-            setIsMouseOver(!isMouseOver);
+            if (!isMouseOver) {
+                setIsMouseOver(true);
+            } else {
+                setIsMouseOver(false);
+            }
         }
     }, [isMouseOver, props.isPreviewAlways]);
 
@@ -30,7 +34,7 @@ export const Image = (props: RenderImageProps): React.ReactElement => {
     return (
         <div onMouseEnter={onMouseOver} onMouseLeave={onMouseOver}>
             {isMouseOver && props.isPreviewIcon && (
-                <div className={`preview-container ${topRadius} ${bottomRadius}`}>
+                <div className={`preview-container ${topRadius} ${bottomRadius} ${props.classNameCursor ?? ""}`}>
                     <Icon name={props.previewIcon ?? "MagnifyPlusOutline"} size={5} className="preview-icon" />
                 </div>
             )}
