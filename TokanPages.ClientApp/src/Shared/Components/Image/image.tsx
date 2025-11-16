@@ -15,7 +15,11 @@ export const Image = (props: RenderImageProps): React.ReactElement => {
         if (props.isPreviewAlways) {
             setIsMouseOver(true);
         } else {
-            setIsMouseOver(!isMouseOver);
+            if (!isMouseOver) {
+                setIsMouseOver(true);
+            } else {
+                setIsMouseOver(false);
+            }
         }
     }, [isMouseOver, props.isPreviewAlways]);
 
