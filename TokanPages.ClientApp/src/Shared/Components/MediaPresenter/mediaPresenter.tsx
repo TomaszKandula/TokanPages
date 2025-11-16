@@ -75,7 +75,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
         if (clientHeight && clientHeight !== 0) {
             setMediaHeight(media.height - clientHeight * 4);
         }
-    }, [headerRef.current?.clientHeight]);
+    }, [headerRef.current?.clientHeight, media.hasLandscape, media.hasPortrait]);
 
     /* ON OPEN EVENT */
     React.useEffect(() => {
