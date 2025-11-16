@@ -24,7 +24,6 @@ public class Startup
     /// <param name="services">IServiceCollection.</param>
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddControllers();
         services.RegisterDependencies(_configuration);
         services.SetupDockerInternalNetwork();
     }
