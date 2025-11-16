@@ -24,6 +24,7 @@ const RenderPoster = (props: RenderPosterProps): ReactElement => {
                         isPreviewIcon
                         isPreviewTopRadius
                         previewIcon="PlayCircleOutline"
+                        classNameCursor="is-cursor-pointer"
                         source={`${API_BASE_URI}${value.poster}`}
                         width={value.constraint?.width ?? props.constraint?.width}
                         height={value.constraint?.height ?? props.constraint?.height}
@@ -68,7 +69,10 @@ export const RenderVideos = (props: TextItem): ReactElement => {
                 ))}
             </Carousel>
             <MediaPresenter
+                isNavigationOff
                 isOpen={presenter.isPresenterOpen}
+                autoplay={true}
+                background="rgba(0,0,0,0.8)"
                 presenting={presenter.selection}
                 collection={items.map(items => items.video)}
                 posters={items.map(items => items.poster)}

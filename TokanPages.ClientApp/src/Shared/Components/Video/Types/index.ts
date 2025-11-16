@@ -4,6 +4,7 @@ export interface VideoProps {
     source: string;
     poster: string;
     controls: boolean;
+    autoplay: boolean;
     preload: TVideoPreload;
     base?: string;
     className?: string;

@@ -35,6 +35,7 @@ const RenderPoster = (props: RenderClipProps): React.ReactElement => {
                         isPreviewAlways
                         isPreviewIcon
                         isPreviewTopRadius
+                        classNameCursor="is-cursor-pointer"
                         source={`${API_BASE_URI}${props.posterUrl}`}
                     />
                 </figure>
@@ -70,6 +71,8 @@ export const RenderVideo = (props: TextItem): React.ReactElement => {
             <RenderPoster {...props} posterUrl={posterUrl} onClick={onClickEvent} />
             <MediaPresenter
                 isOpen={presenter.isPresenterOpen}
+                autoplay={true}
+                background="rgba(0,0,0,0.8)"
                 presenting={presenter.selection}
                 collection={[videoUrl]}
                 posters={[posterUrl]}

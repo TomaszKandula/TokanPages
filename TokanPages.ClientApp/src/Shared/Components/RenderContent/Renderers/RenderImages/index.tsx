@@ -21,6 +21,7 @@ const RenderImage = (props: RenderImageProps): ReactElement => {
                     <Image
                         isPreviewIcon
                         isPreviewTopRadius
+                        classNameCursor="is-cursor-zoom-in"
                         source={`${API_BASE_URI}${value.image}`}
                         title={props.text}
                         alt={props.text}
@@ -73,6 +74,7 @@ export const RenderImages = (props: TextItem): ReactElement => {
                 collection={items.map(items => items.image)}
                 posters={[]}
                 type="image"
+                background="rgba(0,0,0,0.8)"
                 onTrigger={presenter.onPresenterClick}
             />
         </>
