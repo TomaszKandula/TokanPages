@@ -253,7 +253,7 @@ Object {
             >
               <div>
                 <div
-                  class="preview-container preview-top-radius "
+                  class="preview-container preview-top-radius  is-cursor-pointer"
                 >
                   <div>
                     <svg
@@ -463,7 +463,7 @@ Object {
           >
             <div>
               <div
-                class="preview-container preview-top-radius "
+                class="preview-container preview-top-radius  is-cursor-pointer"
               >
                 <div>
                   <svg
