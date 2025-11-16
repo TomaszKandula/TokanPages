@@ -74,6 +74,7 @@ export const MediaPresenter = (props: MediaPresenterProps): ReactElement => {
         const clientHeight = headerRef.current?.getBoundingClientRect().height;
         if (clientHeight && clientHeight !== 0) {
             setMediaHeight(media.height - clientHeight * 4);
+            ToggleBodyScroll(false);
         }
     }, [headerRef.current?.clientHeight, media.hasLandscape, media.hasPortrait]);
 
