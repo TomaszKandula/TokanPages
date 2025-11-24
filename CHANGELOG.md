@@ -1,3 +1,10 @@
+# [0.182.0](https://github.com/TomaszKandula/TokanPages/compare/v0.181.0...v0.182.0) (2025-11-24)
+
+
+### Features
+
+* add header buffer size (same as HTTP config) ([99b0dd6](https://github.com/TomaszKandula/TokanPages/commit/99b0dd64dbec2d2140dcbd1e66b2aa1fecb46c6b))
+
 # [0.181.0](https://github.com/TomaszKandula/TokanPages/compare/v0.180.0...v0.181.0) (2025-11-16)
 
 
