@@ -63,6 +63,8 @@ export const useUnhead = (pageId: string): string => {
         titleTemplate: `%s | ${title?.title}`,
         htmlAttrs: {
             lang: language?.id ?? "",
+            translate: "no",
+            class: "notranslate",
         },
         base: {
             href: path,

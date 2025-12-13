@@ -77,10 +77,13 @@ public class Startup
         services.SetupRedisCache(_configuration);
         services.SetupSwaggerOptions(_environment, ApiName, DocVersion, XmlDocs);
         services.SetupDockerInternalNetwork();
+
+        var azureRedis = _configuration.GetValue<string>("AZ_Redis_ConnectionString") ?? "";
+        var sqlServer = _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
         services
             .AddHealthChecks()
-            .AddRedis(_configuration.GetValue<string>("AZ_Redis_ConnectionString") ?? "", name: "AzureRedisCache")
-            .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext") ?? "", name: "SQLServer");
+            .AddRedis(azureRedis, name: "AzureRedisCache")
+            .AddSqlServer(sqlServer, name: "SQLServer");
     }
 
     /// <summary>

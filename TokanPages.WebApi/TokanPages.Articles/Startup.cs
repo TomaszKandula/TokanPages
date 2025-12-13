@@ -1,4 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
+using Azure.Storage.Blobs;
+using HealthChecks.Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Newtonsoft.Json;
@@ -64,11 +66,19 @@ public class Startup
         services.SetupRedisCache(_configuration);
         services.SetupSwaggerOptions(_environment, ApiName, DocVersion, XmlDocs);
         services.SetupDockerInternalNetwork();
+
+        var azureRedis = _configuration.GetValue<string>("AZ_Redis_ConnectionString") ?? "";
+        var sqlServer = _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
+        var azureStorage = _configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "";
+        var azureStorageContainer = _configuration.GetValue<string>("AZ_Storage_ContainerName") ?? "";
         services
             .AddHealthChecks()
-            .AddRedis(_configuration.GetValue<string>("AZ_Redis_ConnectionString") ?? "", name: "AzureRedisCache")
-            .AddSqlServer(_configuration.GetValue<string>("Db_DatabaseContext") ?? "", name: "SQLServer")
-            .AddAzureBlobStorage(_configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "", name: "AzureStorage");
+            .AddRedis(azureRedis, name: "AzureRedisCache")
+            .AddSqlServer(sqlServer, name: "SQLServer")
+            .AddAzureBlobStorage(
+                name: "AzureStorage",
+                clientFactory: _ => new BlobServiceClient(azureStorage),
+                optionsFactory: _ => new AzureBlobStorageHealthCheckOptions { ContainerName = azureStorageContainer });
     }
 
     /// <summary>
