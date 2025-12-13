@@ -315,7 +315,7 @@ Object {
                   class="is-size-3 mt-5 mb-6"
                 />
                 <div
-                  class="bulma-fixed-grid"
+                  class="bulma-grid"
                 >
                   <div
                     class="bulma-grid is-gap-7"
@@ -639,7 +639,7 @@ Object {
                 class="is-size-3 mt-5 mb-6"
               />
               <div
-                class="bulma-fixed-grid"
+                class="bulma-grid"
               >
                 <div
                   class="bulma-grid is-gap-7"
