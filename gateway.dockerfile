@@ -26,5 +26,6 @@ COPY --from=projects "/app/TokanPages.WebApi/TokanPages.Gateway/bin/Release/net8
 ARG ENV_VALUE
 ENV ASPNETCORE_ENVIRONMENT=${ENV_VALUE}
 ENV ASPNETCORE_URLS=http://+:80
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 EXPOSE 80
 ENTRYPOINT ["dotnet", "TokanPages.Gateway.dll"]

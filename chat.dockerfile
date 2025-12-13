@@ -28,5 +28,6 @@ COPY --from=projects "/app/TokanPages.WebApi/TokanPages.Chat.Dto/bin/Release/net
 ARG ENV_VALUE
 ENV ASPNETCORE_ENVIRONMENT=${ENV_VALUE}
 ENV ASPNETCORE_URLS=http://+:80
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 EXPOSE 80
 ENTRYPOINT ["dotnet", "TokanPages.Chat.dll"]
