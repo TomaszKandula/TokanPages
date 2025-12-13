@@ -55,6 +55,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Deployment", "3. Deploym
 	ProjectSection(SolutionItems) = preProject
 		dev_build.yml = .github\workflows\dev_build.yml
 		master_build.yml = .github\workflows\master_build.yml
+		reinstall-all.sh = reinstall-all.sh
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Documentation", "1. Documentation", "{BAA4CC38-6421-46D8-816A-9684E08FABC5}"
