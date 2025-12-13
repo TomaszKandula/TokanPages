@@ -48,7 +48,7 @@ export const PresentationView = (props: PresentationViewProps) => (
             <Skeleton isLoading={props.isLoading} mode="Text" width={250} height={40} className="my-6">
                 <h3 className="is-size-3 mt-5 mb-6">{props.logos.title}</h3>
             </Skeleton>
-            <div className="bulma-fixed-grid">
+            <div className="bulma-grid">
                 <div className="bulma-grid is-gap-7">
                     {props.logos.images.map((value: ImageDto, _index: number) => (
                         <div
