@@ -1,3 +1,17 @@
+# [0.183.0](https://github.com/TomaszKandula/TokanPages/compare/v0.182.0...v0.183.0) (2025-12-13)
+
+
+### Bug Fixes
+
+* remove fixed grid ([60c6a89](https://github.com/TomaszKandula/TokanPages/commit/60c6a8962d5cabbf20d1a831f98c9422d489c2df))
+* upgrade HC config ([0a3b4ea](https://github.com/TomaszKandula/TokanPages/commit/0a3b4eadec57711595ed035a865e44aeb8574ea4))
+* upgrade libraries, remove deprecated lib ([1d5f524](https://github.com/TomaszKandula/TokanPages/commit/1d5f5240c698799d3fd62df748baa92523c85c2b))
+
+
+### Features
+
+* disallow external translators ([20df3df](https://github.com/TomaszKandula/TokanPages/commit/20df3df2af4d55ca278e8ec375e48057abc66428))
+
 # [0.182.0](https://github.com/TomaszKandula/TokanPages/compare/v0.181.0...v0.182.0) (2025-11-24)
 
 
