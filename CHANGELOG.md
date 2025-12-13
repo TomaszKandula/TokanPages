@@ -1,3 +1,10 @@
+## [0.183.1](https://github.com/TomaszKandula/TokanPages/compare/v0.183.0...v0.183.1) (2025-12-13)
+
+
+### Bug Fixes
+
+* disable globalization invariant ([cb8dba4](https://github.com/TomaszKandula/TokanPages/commit/cb8dba4e8a7e7f8c55d701b686b8fccc3e49b5fb))
+
 # [0.183.0](https://github.com/TomaszKandula/TokanPages/compare/v0.182.0...v0.183.0) (2025-12-13)
 
 
