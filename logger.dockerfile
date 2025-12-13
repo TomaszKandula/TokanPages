@@ -27,5 +27,6 @@ COPY --from=projects "/app/TokanPages.WebApi/TokanPages.Logger.Dto/bin/Release/n
 ARG ENV_VALUE
 ENV ASPNETCORE_ENVIRONMENT=${ENV_VALUE}
 ENV ASPNETCORE_URLS=http://+:80
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 EXPOSE 80
 ENTRYPOINT ["dotnet", "TokanPages.Logger.dll"]
