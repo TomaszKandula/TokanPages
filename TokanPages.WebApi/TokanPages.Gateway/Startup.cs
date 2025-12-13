@@ -1,4 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
+using Azure.Storage.Blobs;
+using HealthChecks.Azure.Storage.Blobs;
 using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Gateway.Extensions;
@@ -63,13 +65,17 @@ public class Startup
         var azureRedis = _configuration.GetValue<string>("AZ_Redis_ConnectionString") ?? "";
         var sqlServer = _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
         var azureStorage = _configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "";
+        var azureStorageContainer = _configuration.GetValue<string>("AZ_Storage_ContainerName") ?? "";
         var azureBusService = _configuration.GetValue<string>("AZ_Bus_ConnectionString") ?? "";
         services
             .AddHealthChecks()
             .AddUrlGroup(new Uri(emailHealthUrl), name: "EmailService")
             .AddRedis(azureRedis, name: "AzureRedisCache")
             .AddSqlServer(sqlServer, name: "SQLServer")
-            .AddAzureBlobStorage(azureStorage, name: "AzureStorage")
+            .AddAzureBlobStorage(
+                name: "AzureStorage",
+                clientFactory: _ => new BlobServiceClient(azureStorage),
+                optionsFactory: _ => new AzureBlobStorageHealthCheckOptions { ContainerName = azureStorageContainer })
             .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServiceEmail", queueName: "email_queue")
             .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServicePayment", queueName: "payment_queue")
             .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServiceVideo", queueName: "video_queue");
