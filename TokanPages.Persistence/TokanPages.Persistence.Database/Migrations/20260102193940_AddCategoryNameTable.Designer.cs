@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TokanPages.Persistence.Database;
 
@@ -11,9 +12,10 @@ using TokanPages.Persistence.Database;
 namespace TokanPages.Persistence.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20260102193940_AddCategoryNameTable")]
+    partial class AddCategoryNameTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1783,7 +1785,7 @@ namespace TokanPages.Persistence.Database.Migrations
                         .WithMany("CategoryNames")
                         .HasForeignKey("ArticleCategoryId")
                         .IsRequired()
-                        .HasConstraintName("FK_ArticleCategory_CategoryName");
+                        .HasConstraintName("FK_CategoryName_ArticleCategory");
 
                     b.HasOne("TokanPages.Backend.Domain.Entities.Language", "Language")
                         .WithMany("CategoryNames")

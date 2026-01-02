@@ -19,4 +19,7 @@ public class Language : Entity<Guid>
     public string Name { get; set; }
 
     public bool IsDefault { get; set; }
+
+    /* Navigation properties */
+    public ICollection<CategoryName> CategoryNames { get; set; } = new HashSet<CategoryName>();
 }

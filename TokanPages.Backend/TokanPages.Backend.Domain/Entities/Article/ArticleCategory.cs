@@ -17,4 +17,6 @@ public class ArticleCategory : Entity<Guid>, IAuditable
 
     /* Navigation properties */
     public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
+
+    public ICollection<CategoryName> CategoryNames { get; set; } = new HashSet<CategoryName>();
 }
