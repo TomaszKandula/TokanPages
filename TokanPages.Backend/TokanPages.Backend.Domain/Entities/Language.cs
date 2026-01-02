@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.Article;
 
 namespace TokanPages.Backend.Domain.Entities;
 
@@ -20,7 +19,4 @@ public class Language : Entity<Guid>
     public string Name { get; set; }
 
     public bool IsDefault { get; set; }
-
-    /* Navigation properties */
-    public ICollection<ArticleCategory> ArticleCategory { get; set; } = new HashSet<ArticleCategory>();
 }
