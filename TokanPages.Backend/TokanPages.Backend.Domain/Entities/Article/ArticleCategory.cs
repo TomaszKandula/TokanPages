@@ -19,6 +19,10 @@ public class ArticleCategory : Entity<Guid>, IAuditable
 
     public DateTime? ModifiedAt { get; set; }
 
+    public Guid? LanguageId { get; set; }
+
     /* Navigation properties */
+    public Language Language { get; set; }
+
     public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
 }
