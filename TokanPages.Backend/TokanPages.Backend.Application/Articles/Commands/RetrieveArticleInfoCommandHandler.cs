@@ -8,21 +8,37 @@ namespace TokanPages.Backend.Application.Articles.Commands;
 
 public class RetrieveArticleInfoCommandHandler : RequestHandler<RetrieveArticleInfoCommand, RetrieveArticleInfoCommandResult>
 {
+    private readonly IUserService _userService;
+
     public RetrieveArticleInfoCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService)
-        : base(databaseContext, loggerService) { }
+        : base(databaseContext, loggerService) => _userService = userService;
 
     public override async Task<RetrieveArticleInfoCommandResult> Handle(RetrieveArticleInfoCommand request, CancellationToken cancellationToken)
     {
+        var userLanguage = _userService.GetRequestUserLanguage();
         var articleIds = new HashSet<Guid>(request.ArticleIds);
-        var articleInfo = await DatabaseContext.Articles
-            .AsNoTracking()
-            .Include(articles => articles.ArticleCategory)
-            .Include(articles => articles.ArticleLikes)
-            .Where(articles => articleIds.Contains(articles.Id))
-            .Select(articles => new ArticleDataDto
+        var articleInfo = await (
+            from articles in DatabaseContext.Articles
+            join temp in 
+                (from articleCategory in DatabaseContext.ArticleCategory
+                    join categoryNames in DatabaseContext.CategoryNames
+                        on articleCategory.Id equals categoryNames.ArticleCategoryId
+                    join languages in DatabaseContext.Languages
+                        on categoryNames.LanguageId equals languages.Id
+                    select new
+                    {
+                        categoryNames.ArticleCategoryId,
+                        categoryNames.Name,
+                        languages.LangId
+                    }
+                )
+            on articles.CategoryId equals temp.ArticleCategoryId
+            where temp.LangId == userLanguage
+            where articleIds.Contains(articles.Id)
+            select new ArticleDataDto
             {
                 Id = articles.Id,
-                CategoryName = articles.ArticleCategory.CategoryName,
+                CategoryName = temp.Name,
                 Title = articles.Title,
                 Description = articles.Description,
                 IsPublished = articles.IsPublished,
@@ -34,8 +50,7 @@ public class RetrieveArticleInfoCommandHandler : RequestHandler<RetrieveArticleI
                 CreatedAt = articles.CreatedAt,
                 UpdatedAt = articles.UpdatedAt,
                 LanguageIso = articles.LanguageIso
-            })
-            .ToListAsync(cancellationToken);
+            }).ToListAsync(cancellationToken);
 
         return new RetrieveArticleInfoCommandResult
         {
