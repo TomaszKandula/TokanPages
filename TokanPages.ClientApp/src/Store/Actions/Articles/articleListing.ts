@@ -25,6 +25,7 @@ export const ArticleListingAction = {
         (dispatch, getState) => {
             dispatch({ type: REQUEST });
 
+            const languageid = getState().applicationLanguage.id;
             const actions = useApiAction();
             const url = GET_ARTICLES + ProcessQueryParams(request);
 
@@ -36,6 +37,7 @@ export const ArticleListingAction = {
                 configuration: {
                     method: "GET",
                     hasJsonResponse: true,
+                    headers: [{ key: "UserLanguage", value: languageid }]
                 },
             };
 
