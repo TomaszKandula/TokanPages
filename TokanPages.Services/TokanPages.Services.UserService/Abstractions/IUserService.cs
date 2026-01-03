@@ -12,6 +12,8 @@ public interface IUserService
 
     public int GetRequestUserTimezoneOffset();
 
+    public string GetRequestUserLanguage();
+
     Task LogHttpRequest(string handlerName);
 
     Guid GetLoggedUserId();
