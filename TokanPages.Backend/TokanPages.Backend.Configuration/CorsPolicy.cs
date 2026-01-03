@@ -29,6 +29,7 @@ public static class CorsPolicy
                 .WithHeaders(
                     "X-SignalR-User-Agent",
                     "UserTimezoneOffset",
+                    "UserLanguage",
                     HeaderNames.Accept,
                     HeaderNames.ContentType,
                     HeaderNames.Authorization,
