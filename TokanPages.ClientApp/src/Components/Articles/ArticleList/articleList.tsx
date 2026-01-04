@@ -22,7 +22,6 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const media = useDimensions();
     const dispatch = useDispatch();
     const hasSnapshot = HasSnapshotMode();
-    const languageId = useSelector((state: ApplicationState) => state.applicationLanguage.id);
     const article = useSelector((state: ApplicationState) => state.articleListing);
     const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageArticles);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
@@ -129,6 +128,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
 
         if (article.isLoading) {
+            setCategories(undefined);
             return;
         }
 
@@ -191,10 +191,11 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
     /* ADD 'SELECT ALL' TO CATEGORY LIST */
     React.useEffect(() => {
+        const hasNoCategories = !categories || categories.length === 0;
         const hasLabel = !Validate.isEmpty(content.labels.textSelectAll);
         const articleCategories = article.payload.articleCategories;
 
-        if (hasLabel && articleCategories.length > 0) {
+        if (hasLabel && hasNoCategories && articleCategories.length > 0) {
             const data: ArticleCategory[] = articleCategories.slice();
             data.unshift({
                 id: ARTICLES_SELECT_ALL_ID,
@@ -203,7 +204,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
             setCategories(data);
         }
-    }, [categories, article.payload.articleCategories, content.labels.textSelectAll, languageId]);
+    }, [categories, article.payload.articleCategories, content.labels.textSelectAll]);
 
     /* SORTING MECHANISM */
     React.useEffect(() => {
