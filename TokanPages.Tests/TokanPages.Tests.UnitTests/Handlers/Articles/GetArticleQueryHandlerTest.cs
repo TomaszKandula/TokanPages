@@ -53,16 +53,62 @@ public class GetArticleQueryHandlerTest : TestBase
             ModifiedAt = null
         };
 
-        var categories = new ArticleCategory
+        var languages = new List<Backend.Domain.Entities.Language>
         {
-            Id = Guid.NewGuid(),
-            CategoryName = DataUtilityService.GetRandomString()
+            new()
+            {
+                Id = Guid.NewGuid(),
+                LangId = "en",
+                HrefLang = "en-GB",
+                Name = "English",
+                IsDefault = true
+            },
+            new()
+            {
+                Id = Guid.NewGuid(),
+                LangId = "pl",
+                HrefLang = "pl-PL",
+                Name = "Polski",
+                IsDefault = false
+            }
+        };
+
+        var articleCategories = new List<ArticleCategory>
+        {
+            new()
+            {
+                Id = Guid.NewGuid(),
+                CreatedBy = Guid.Empty,
+                CreatedAt = DateTimeService.Now
+            },
+            new()
+            {
+                Id = Guid.NewGuid(),
+                CreatedBy = Guid.Empty,
+                CreatedAt = DateTimeService.Now
+            },
+        };
+        
+        var categoryNames = new List<Backend.Domain.Entities.CategoryName>
+        {
+            new()
+            {
+                ArticleCategoryId = articleCategories[0].Id,
+                LanguageId = languages[0].Id,
+                Name = DataUtilityService.GetRandomString()
+            },
+            new()
+            {
+                ArticleCategoryId = articleCategories[1].Id,
+                LanguageId = languages[1].Id,
+                Name = DataUtilityService.GetRandomString()
+            },
         };
 
         var articles = new Backend.Domain.Entities.Article.Articles
         {
             Id = Guid.NewGuid(),
-            CategoryId = categories.Id,
+            CategoryId = articleCategories[0].Id,
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = false,
@@ -94,9 +140,11 @@ public class GetArticleQueryHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddAsync(users);
         await databaseContext.UserInfo.AddAsync(userInfo);
+        await databaseContext.Languages.AddRangeAsync(languages);
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.ArticleLikes.AddRangeAsync(likes);
-        await databaseContext.ArticleCategory.AddAsync(categories);
+        await databaseContext.ArticleCategory.AddRangeAsync(articleCategories);
+        await databaseContext.CategoryNames.AddRangeAsync(categoryNames);
         await databaseContext.SaveChangesAsync();
 
         var mockedUserProvider = new Mock<IUserService>();
@@ -117,6 +165,10 @@ public class GetArticleQueryHandlerTest : TestBase
         mockedUserProvider
             .Setup(provider => provider.GetRequestIpAddress())
             .Returns(IpAddressFirst);
+
+        mockedUserProvider
+            .Setup(x => x.GetRequestUserLanguage())
+            .Returns("en");
 
         var query = new GetArticleQuery { Id = articles.Id };
         var handler = new GetArticleQueryHandler(
@@ -139,6 +191,7 @@ public class GetArticleQueryHandlerTest : TestBase
         result.UpdatedAt.Should().BeNull();
         result.CreatedAt.Should().Be(testDate);
         result.TotalLikes.Should().Be(25);
+        result.CategoryName.Should().Be(categoryNames[0].Name);
         result.Author.Should().NotBeNull();
         result.Author?.AliasName.Should().Be(UserAlias);
         result.Author?.AvatarName.Should().BeNull();
