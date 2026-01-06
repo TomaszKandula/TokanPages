@@ -45,16 +45,62 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
             ModifiedAt = null
         };
 
-        var categories = new ArticleCategory
+        var languages = new List<Backend.Domain.Entities.Language>
         {
-            Id = Guid.NewGuid(),
-            CategoryName = DataUtilityService.GetRandomString()
+            new()
+            {
+                Id = Guid.NewGuid(),
+                LangId = "en",
+                HrefLang = "en-GB",
+                Name = "English",
+                IsDefault = true
+            },
+            new()
+            {
+                Id = Guid.NewGuid(),
+                LangId = "pl",
+                HrefLang = "pl-PL",
+                Name = "Polski",
+                IsDefault = false
+            }
+        };
+
+        var articleCategories = new List<ArticleCategory>
+        {
+            new()
+            {
+                Id = Guid.NewGuid(),
+                CreatedBy = Guid.Empty,
+                CreatedAt = DateTimeService.Now
+            },
+            new()
+            {
+                Id = Guid.NewGuid(),
+                CreatedBy = Guid.Empty,
+                CreatedAt = DateTimeService.Now
+            },
+        };
+
+        var categoryNames = new List<Backend.Domain.Entities.CategoryName>
+        {
+            new()
+            {
+                ArticleCategoryId = articleCategories[0].Id,
+                LanguageId = languages[0].Id,
+                Name = DataUtilityService.GetRandomString()
+            },
+            new()
+            {
+                ArticleCategoryId = articleCategories[1].Id,
+                LanguageId = languages[1].Id,
+                Name = DataUtilityService.GetRandomString()
+            },
         };
 
         var articles = new Backend.Domain.Entities.Article.Articles
         {
             Id = Guid.NewGuid(),
-            CategoryId = categories.Id,
+            CategoryId = articleCategories[0].Id,
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = false,
@@ -86,17 +132,23 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddAsync(users);
         await databaseContext.UserInfo.AddAsync(userInfo);
+        await databaseContext.Languages.AddRangeAsync(languages);
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.ArticleLikes.AddRangeAsync(likes);
-        await databaseContext.ArticleCategory.AddAsync(categories);
+        await databaseContext.ArticleCategory.AddRangeAsync(articleCategories);
+        await databaseContext.CategoryNames.AddRangeAsync(categoryNames);
         await databaseContext.SaveChangesAsync();
 
         var mockedUserProvider = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserProvider
-            .Setup(provider => provider.GetRequestIpAddress())
+            .Setup(service => service.GetRequestIpAddress())
             .Returns(IpAddressFirst);
+
+        mockedUserProvider
+            .Setup(service => service.GetRequestUserLanguage())
+            .Returns("en");
 
         var query = new RetrieveArticleInfoCommand 
         { 
@@ -118,7 +170,7 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
         result.Should().NotBeNull();
         result.Articles.Should().NotBeNull();
         result.Articles.Count.Should().Be(1);
-        result.Articles[0].CategoryName.Should().Be(categories.CategoryName);
+        result.Articles[0].CategoryName.Should().Be(categoryNames[0].Name);
         result.Articles[0].Title.Should().Be(articles.Title);
         result.Articles[0].Description.Should().Be(articles.Description);
         result.Articles[0].IsPublished.Should().BeFalse();
