@@ -163,11 +163,11 @@ public class GetArticleQueryHandlerTest : TestBase
             .Returns(mockedAzureBlob.Object);
 
         mockedUserProvider
-            .Setup(provider => provider.GetRequestIpAddress())
+            .Setup(service => service.GetRequestIpAddress())
             .Returns(IpAddressFirst);
 
         mockedUserProvider
-            .Setup(x => x.GetRequestUserLanguage())
+            .Setup(service => service.GetRequestUserLanguage())
             .Returns("en");
 
         var query = new GetArticleQuery { Id = articles.Id };

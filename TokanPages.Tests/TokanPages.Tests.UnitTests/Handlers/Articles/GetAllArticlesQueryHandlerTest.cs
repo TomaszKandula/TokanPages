@@ -112,7 +112,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
         var mockedUserProvider = new Mock<IUserService>();
 
         mockedUserProvider
-            .Setup(x => x.GetRequestUserLanguage())
+            .Setup(service => service.GetRequestUserLanguage())
             .Returns("en");
 
         var query = new GetArticlesQuery
