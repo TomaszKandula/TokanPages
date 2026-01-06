@@ -1,6 +1,8 @@
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using TokanPages.Backend.Application.Content.Components.Models;
 using TokanPages.Persistence.Database;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
@@ -43,8 +45,22 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
  
         var bytes = memoryStream.ToArray();
         var strings = Encoding.UTF8.GetString(bytes);
- 
+
         var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
-        return _jsonSerializer.Deserialize<GetContentManifestQueryResult>(strings, settings);
+        var manifest = _jsonSerializer.Deserialize<GetContentManifestQueryResult>(strings, settings);
+
+        var languages = await DatabaseContext.Languages
+            .AsNoTracking()
+            .Select(language => new LanguageModel
+            {
+                Id = language.LangId,
+                Iso = language.HrefLang,
+                Name = language.Name,
+                IsDefault = language.IsDefault
+            })
+            .ToListAsync(cancellationToken);
+
+        manifest.Languages = languages;
+        return manifest;
     }
 }
