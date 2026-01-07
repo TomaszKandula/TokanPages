@@ -10,6 +10,7 @@ public static class CorsPolicy
     private static readonly string[] Headers = {
         "X-SignalR-User-Agent", 
         "UserTimezoneOffset",
+        "UserLanguage",
         HeaderNames.Accept,
         HeaderNames.ContentType,
         HeaderNames.Authorization,

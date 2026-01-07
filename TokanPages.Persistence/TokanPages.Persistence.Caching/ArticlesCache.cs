@@ -6,6 +6,7 @@ using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
+using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Persistence.Caching;
 
@@ -23,6 +24,8 @@ public class ArticlesCache : IArticlesCache
 
     private readonly IJsonSerializer _jsonSerializer;
 
+    private readonly IUserService _userService;
+
     /// <summary>
     /// Articles cache implementation
     /// </summary>
@@ -30,12 +33,15 @@ public class ArticlesCache : IArticlesCache
     /// <param name="environment">Host environment instance</param>
     /// <param name="mediator">Mediator instance</param>
     /// <param name="jsonSerializer">JSON Serializer instance</param>
-    public ArticlesCache(IRedisDistributedCache redisDistributedCache, IMediator mediator, IHostEnvironment environment, IJsonSerializer jsonSerializer)
+    /// <param name="userService">USer service instance</param>
+    public ArticlesCache(IRedisDistributedCache redisDistributedCache, IMediator mediator, IHostEnvironment environment, 
+        IJsonSerializer jsonSerializer, IUserService userService)
     {
         _redisDistributedCache = redisDistributedCache;
         _mediator = mediator;
         _environment = environment;
         _jsonSerializer = jsonSerializer;
+        _userService = userService;
     }
 
     /// <inheritdoc />
@@ -44,7 +50,8 @@ public class ArticlesCache : IArticlesCache
         if (noCache)
             return await _mediator.Send(query);
 
-        var uniqueKey = $"{query.IsPublished}:{query.CategoryId}:{query.SearchTerm}:{query.PageNumber}:{query.PageSize}:{query.OrderByAscending}:{query.OrderByColumn}";
+        var userLanguage = _userService.GetRequestUserLanguage();
+        var uniqueKey = $"{query.IsPublished}:{query.CategoryId}:{query.SearchTerm}:{query.PageNumber}:{query.PageSize}:{query.OrderByAscending}:{query.OrderByColumn}:{userLanguage}";
         var key = $"{_environment.EnvironmentName}:articles:{uniqueKey}";
         var value = await _redisDistributedCache.GetObjectAsync<GetArticlesQueryResult>(key);
         if (value is not null) return value;
@@ -61,7 +68,8 @@ public class ArticlesCache : IArticlesCache
         if (noCache)
             return await _mediator.Send(new GetArticleQuery { Id = id });
 
-        var key = $"{_environment.EnvironmentName}:article:{id}";
+        var userLanguage = _userService.GetRequestUserLanguage();
+        var key = $"{_environment.EnvironmentName}:article:{id}:{userLanguage}";
         var value = await _redisDistributedCache.GetObjectAsync<GetArticleQueryResult>(key);
         if (value is not null) return value;
 
@@ -77,7 +85,8 @@ public class ArticlesCache : IArticlesCache
         if (noCache)
             return await _mediator.Send(new GetArticleQuery { Title = title });
 
-        var key = $"{_environment.EnvironmentName}:article:{title}";
+        var userLanguage = _userService.GetRequestUserLanguage();
+        var key = $"{_environment.EnvironmentName}:article:{title}:{userLanguage}";
         var value = await _redisDistributedCache.GetObjectAsync<GetArticleQueryResult>(key);
         if (value is not null) return value;
 
@@ -94,7 +103,8 @@ public class ArticlesCache : IArticlesCache
             return await _mediator.Send(new RetrieveArticleInfoCommand { ArticleIds = articleIds });
 
         var list = _jsonSerializer.Serialize(articleIds);
-        var key = $"{_environment.EnvironmentName}:article:info:ids:{list}";
+        var userLanguage = _userService.GetRequestUserLanguage();
+        var key = $"{_environment.EnvironmentName}:article:info:ids:{list}:{userLanguage}";
         var value = await _redisDistributedCache.GetObjectAsync<RetrieveArticleInfoCommandResult>(key);
         if (value is not null) return value;
 

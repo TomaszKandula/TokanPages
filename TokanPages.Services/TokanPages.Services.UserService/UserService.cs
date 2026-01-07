@@ -25,6 +25,8 @@ public sealed class UserService : IUserService
 
     private const string UserTimezoneOffset = "UserTimezoneOffset";
 
+    private const string UserLanguage = "UserLanguage";
+
     private const string NewRefreshTokenText = "Replaced by new token";
 
     private readonly IHttpContextAccessor _httpContextAccessor;
@@ -84,6 +86,16 @@ public sealed class UserService : IUserService
         return string.IsNullOrEmpty(offset) 
             ? 0 
             : int.Parse(offset);
+    }
+
+    public string GetRequestUserLanguage()
+    {
+        var language = _httpContextAccessor.HttpContext?
+            .Request.Headers[UserLanguage].ToString();
+
+        return string.IsNullOrWhiteSpace(language) 
+            ? "en" 
+            : language;
     }
 
     public async Task LogHttpRequest(string handlerName)

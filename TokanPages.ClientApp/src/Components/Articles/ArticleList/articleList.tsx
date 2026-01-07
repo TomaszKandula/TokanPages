@@ -8,8 +8,9 @@ import { ReactChangeEvent, ReactKeyboardEvent } from "../../../Shared/Types";
 import { HasSnapshotMode } from "../../../Shared/Services/SpaCaching";
 import { ARTICLES_PAGE_SIZE, ARTICLES_SELECT_ALL_ID } from "../../../Shared/Constants";
 import { UpdatePageParam } from "../../../Shared/Services/Utilities";
-import { ArticleListProps, SearchInputProps } from "./Types";
+import { OperationStatus } from "../../../Shared/Enums";
 import { ArticleListView } from "./View/articleListView";
+import { ArticleListProps, SearchInputProps } from "./Types";
 import Validate from "validate.js";
 
 const BaseRequest = {
@@ -22,10 +23,13 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
     const media = useDimensions();
     const dispatch = useDispatch();
     const hasSnapshot = HasSnapshotMode();
+
     const article = useSelector((state: ApplicationState) => state.articleListing);
-    const content = useSelector((state: ApplicationState) => state.contentPageData.components.pageArticles);
     const data = useSelector((state: ApplicationState) => state.contentPageData);
-    const isContentLoading = data.isLoading;
+
+    const content = data.components.pageArticles;
+    const isContentLoading = data.status === OperationStatus.inProgress;
+    const isContentLoaded = data.status === OperationStatus.hasFinished;
 
     const [searchInputForm, setSearchInputForm] = React.useState<SearchInputProps>({ value: "" });
     const [categories, setCategories] = React.useState<ArticleCategory[] | undefined>(undefined);
@@ -128,6 +132,7 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
         }
 
         if (article.isLoading) {
+            setCategories(undefined);
             return;
         }
 
@@ -190,6 +195,10 @@ export const ArticleList = (props: ArticleListProps): React.ReactElement => {
 
     /* ADD 'SELECT ALL' TO CATEGORY LIST */
     React.useEffect(() => {
+        if (!isContentLoaded) {
+            return;
+        }
+
         const hasNoCategories = !categories || categories.length === 0;
         const hasLabel = !Validate.isEmpty(content.labels.textSelectAll);
         const articleCategories = article.payload.articleCategories;
