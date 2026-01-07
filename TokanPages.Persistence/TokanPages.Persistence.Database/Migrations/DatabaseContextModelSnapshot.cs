@@ -1783,7 +1783,7 @@ namespace TokanPages.Persistence.Database.Migrations
                         .WithMany("CategoryNames")
                         .HasForeignKey("ArticleCategoryId")
                         .IsRequired()
-                        .HasConstraintName("FK_ArticleCategory_CategoryName");
+                        .HasConstraintName("FK_CategoryName_ArticleCategory");
 
                     b.HasOne("TokanPages.Backend.Domain.Entities.Language", "Language")
                         .WithMany("CategoryNames")
