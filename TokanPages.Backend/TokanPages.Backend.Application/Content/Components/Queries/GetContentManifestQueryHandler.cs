@@ -51,6 +51,7 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
 
         var languages = await DatabaseContext.Languages
             .AsNoTracking()
+            .OrderBy(language => language.SortOrder)
             .Select(language => new LanguageModel
             {
                 Id = language.LangId,
