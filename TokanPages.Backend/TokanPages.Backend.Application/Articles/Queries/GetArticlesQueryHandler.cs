@@ -4,17 +4,22 @@ using TokanPages.Backend.Application.Articles.Models;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
+using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Articles.Queries;
 
 public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetArticlesQuery, GetArticlesQueryResult>
 {
-    public GetArticlesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    private readonly IUserService _userService;
+
+    public GetArticlesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService) 
+        : base(databaseContext, loggerService) => _userService = userService;
 
     public override IDictionary<string, Expression<Func<ArticleDataDto, object>>> GetOrderingExpressions() => GetSortingConfig();
 
     public override async Task<GetArticlesQueryResult> Handle(GetArticlesQuery request, CancellationToken cancellationToken)
     {
+        var userLanguage = _userService.GetRequestUserLanguage();
         var foundArticleIds = await GetSearchResult(request.SearchTerm, cancellationToken);
         var hasIds = foundArticleIds != null && foundArticleIds.Count != 0;
         var hasCategoryId = request.CategoryId != null && request.CategoryId != Guid.Empty;
@@ -28,7 +33,6 @@ public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetAr
             .Select(articles => new ArticleDataDto
             { 
                 Id = articles.Id,
-                CategoryName = articles.ArticleCategory.CategoryName,
                 Title = articles.Title,
                 Description = articles.Description,
                 IsPublished = articles.IsPublished,
@@ -45,14 +49,19 @@ public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetAr
             .ApplyPaging(request)
             .ToListAsync(cancellationToken);
 
-        var categories = await DatabaseContext.ArticleCategory
-            .AsNoTracking()
-            .Select(articleCategory => new ArticleCategoryDto
+        var categories = await (from articleCategory in DatabaseContext.ArticleCategory
+            join categoryNames in DatabaseContext.CategoryNames
+                on articleCategory.Id equals categoryNames.ArticleCategoryId into category 
+                    from categoryNames in category.DefaultIfEmpty() 
+            join languages in DatabaseContext.Languages
+                on categoryNames.LanguageId equals languages.Id into language
+                    from  languages in language.DefaultIfEmpty()
+            where languages.LangId == userLanguage
+            select new ArticleCategoryDto
             {
                 Id = articleCategory.Id,
-                CategoryName = articleCategory.CategoryName
-            })
-            .ToListAsync(cancellationToken);
+                CategoryName = categoryNames.Name
+            }).ToListAsync(cancellationToken);
 
         return new GetArticlesQueryResult
         {

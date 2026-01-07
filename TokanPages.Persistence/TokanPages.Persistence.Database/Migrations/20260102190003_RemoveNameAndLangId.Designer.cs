@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TokanPages.Persistence.Database;
 
@@ -11,9 +12,10 @@ using TokanPages.Persistence.Database;
 namespace TokanPages.Persistence.Database.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20260102190003_RemoveNameAndLangId")]
+    partial class RemoveNameAndLangId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,32 +247,6 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BusinessInquiry");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.CategoryName", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ArticleCategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("LanguageId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArticleCategoryId");
-
-                    b.HasIndex("LanguageId");
-
-                    b.ToTable("CategoryNames");
                 });
 
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.HttpRequests", b =>
@@ -667,9 +643,6 @@ namespace TokanPages.Persistence.Database.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("SortOrder")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -1780,25 +1753,6 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.Navigation("Articles");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.CategoryName", b =>
-                {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Article.ArticleCategory", "ArticleCategory")
-                        .WithMany("CategoryNames")
-                        .HasForeignKey("ArticleCategoryId")
-                        .IsRequired()
-                        .HasConstraintName("FK_CategoryName_ArticleCategory");
-
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Language", "Language")
-                        .WithMany("CategoryNames")
-                        .HasForeignKey("LanguageId")
-                        .IsRequired()
-                        .HasConstraintName("FK_CategoryName_Languages");
-
-                    b.Navigation("ArticleCategory");
-
-                    b.Navigation("Language");
-                });
-
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoiceItems", b =>
                 {
                     b.HasOne("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoices", "BatchInvoices")
@@ -2070,8 +2024,6 @@ namespace TokanPages.Persistence.Database.Migrations
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.ArticleCategory", b =>
                 {
                     b.Navigation("Articles");
-
-                    b.Navigation("CategoryNames");
                 });
 
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.Articles", b =>
@@ -2101,11 +2053,6 @@ namespace TokanPages.Persistence.Database.Migrations
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.UserCompanies", b =>
                 {
                     b.Navigation("BatchInvoices");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Language", b =>
-                {
-                    b.Navigation("CategoryNames");
                 });
 
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.PushNotification", b =>

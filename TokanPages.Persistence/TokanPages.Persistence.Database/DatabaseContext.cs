@@ -62,6 +62,8 @@ public class DatabaseContext : DbContext
     public virtual DbSet<UserNote> UserNotes { get; set; }
 
     /* Category: Other */
+    public virtual DbSet<Language> Languages { get; set; }
+    public virtual DbSet<CategoryName> CategoryNames { get; set; }
     public virtual DbSet<Newsletters> Newsletters { get; set; }
     public virtual DbSet<HttpRequests> HttpRequests { get; set; }
     public virtual DbSet<UploadedVideo> UploadedVideos { get; set; }

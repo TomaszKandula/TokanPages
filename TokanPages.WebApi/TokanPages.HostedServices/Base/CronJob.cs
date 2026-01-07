@@ -27,34 +27,47 @@ public class CronJob : IHostedService, IDisposable
     }
 
     /// <summary>
+    /// Disposing service.
+    /// </summary>
+    /// <param name="canDispose"></param>
+    protected void Dispose(bool canDispose)
+    {
+        if (canDispose && _timer != null)
+            _timer.Dispose();
+    }
+
+    /// <summary>
     /// Schedule CRON job.
     /// </summary>
     /// <param name="cancellationToken"></param>
     private async Task ScheduleJob(CancellationToken cancellationToken)
     {
         var offset = _expression.GetNextOccurrence(DateTimeOffset.Now, _timeZoneInfo);
-        if (offset.HasValue)
+        if (!offset.HasValue)
         {
-            var delay = offset.Value - DateTimeOffset.Now;
-            if (delay.TotalMilliseconds <= 0)
-                await ScheduleJob(cancellationToken);
-
-            async void Callback(object? _)
-            {
-                _timer?.Dispose();
-                _timer = null;
-
-                if (!cancellationToken.IsCancellationRequested)
-                    await DoWork(cancellationToken);
-
-                if (!cancellationToken.IsCancellationRequested)
-                    await ScheduleJob(cancellationToken);
-            }
-
-            _timer = new Timer(Callback, null, delay, new TimeSpan(0, 0, 0, 0, -1));            
+            return;
         }
 
+        var delay = offset.Value - DateTimeOffset.Now;
+        if (delay.TotalMilliseconds <= 0)
+            await ScheduleJob(cancellationToken);
+
+        _timer = new Timer(Callback, null, delay, Timeout.InfiniteTimeSpan);
+
         await Task.CompletedTask;
+        return;
+
+        void Callback(object? _)
+        {
+            _timer?.Dispose();
+            _timer = null;
+
+            if (!cancellationToken.IsCancellationRequested)
+                Task.Run(() => DoWork(cancellationToken), cancellationToken); 
+
+            if (!cancellationToken.IsCancellationRequested)
+                Task.Run(() => ScheduleJob(cancellationToken), cancellationToken);
+        }
     }
 
     /// <summary>
@@ -92,15 +105,5 @@ public class CronJob : IHostedService, IDisposable
     {
         Dispose(true);
         GC.SuppressFinalize(this);
-    }
-
-    /// <summary>
-    /// Disposing service.
-    /// </summary>
-    /// <param name="disposing"></param>
-    protected virtual async void Dispose(bool disposing)
-    {
-        if (disposing && _timer != null)
-            await _timer.DisposeAsync().ConfigureAwait(false);
     }
 }

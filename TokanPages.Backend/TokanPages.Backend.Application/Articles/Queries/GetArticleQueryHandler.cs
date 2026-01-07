@@ -33,6 +33,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
     public override async Task<GetArticleQueryResult> Handle(GetArticleQuery request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetUser(cancellationToken);
+        var userLanguage = _userService.GetRequestUserLanguage();
         var ipAddress = _userService.GetRequestIpAddress();
         var isAnonymousUser = user == null;
 
@@ -64,7 +65,12 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
         var article = await (from articles in DatabaseContext.Articles
             join articleCategory in DatabaseContext.ArticleCategory 
-            on articles.CategoryId equals articleCategory.Id
+                on articles.CategoryId equals articleCategory.Id
+            join categoryNames in DatabaseContext.CategoryNames
+                on articleCategory.Id equals categoryNames.ArticleCategoryId
+            join languages in DatabaseContext.Languages
+                on categoryNames.LanguageId equals languages.Id
+            where languages.LangId == userLanguage
             where articles.Id == requestId
             select new 
             {
@@ -77,7 +83,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
                 articles.UpdatedAt,
                 articles.ReadCount,
                 articles.LanguageIso,
-                articleCategory.CategoryName,
+                categoryNames.Name,
                 TotalLikes = totalLikes,
                 UserLikes = userLikes,
                 Text = textAsObject
@@ -117,7 +123,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         {
             Id = article.Id,
             Title = article.Title,
-            CategoryName = article.CategoryName,
+            CategoryName = article.Name,
             Description = article.Description,
             IsPublished = article.IsPublished,
             CreatedAt = article.CreatedAt,
