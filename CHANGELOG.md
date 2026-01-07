@@ -1,3 +1,30 @@
+# [0.184.0](https://github.com/TomaszKandula/TokanPages/compare/v0.183.1...v0.184.0) (2026-01-07)
+
+
+### Bug Fixes
+
+* add missing 'auto-generated' ([fbe6c31](https://github.com/TomaszKandula/TokanPages/commit/fbe6c319235d4331e4198f3c3928764a2d493932))
+* resolve issue w/query param ([73d1bd3](https://github.com/TomaszKandula/TokanPages/commit/73d1bd3550b112d15a425aca4adcaf7b9986681f))
+* snapshot name ([e8ac94c](https://github.com/TomaszKandula/TokanPages/commit/e8ac94c27de1e2a79ee07fd2de0cd6de8c50139a))
+* update categories when all the content is loaded ([82a0e40](https://github.com/TomaszKandula/TokanPages/commit/82a0e4093d79053ff74d990bbafa997df40ac517))
+
+
+### Features
+
+* add language ID to cache keys ([093365e](https://github.com/TomaszKandula/TokanPages/commit/093365e67f519692f4253574ef964074e2e86eda))
+* add language id to the article category table ([c57795e](https://github.com/TomaszKandula/TokanPages/commit/c57795e6ee0bcea2eee01431a010ad1b32a4ff99))
+* add language table ([5ad1314](https://github.com/TomaszKandula/TokanPages/commit/5ad1314547fb58c3674eea205c30637bbba9a706))
+* add sorting column to language table ([be18c71](https://github.com/TomaszKandula/TokanPages/commit/be18c718c848f5c60f85031022d9f77ecf5bdf83))
+* add table for separate category names by language id ([34fdcbd](https://github.com/TomaszKandula/TokanPages/commit/34fdcbd7c97909dc411903766e2893a2f2c60013))
+* allow user language header ([e575a6e](https://github.com/TomaszKandula/TokanPages/commit/e575a6e6ac773fdd7df95439983c83c50ebc6d13))
+* change getting category name for given language ([6f1c206](https://github.com/TomaszKandula/TokanPages/commit/6f1c206de2a40677530475bf04f0fd2b9e7284d1))
+* get languages from database ([b033941](https://github.com/TomaszKandula/TokanPages/commit/b033941e9cdd3306900d40438307f2fd6437980f))
+* get user language from header ([2597a01](https://github.com/TomaszKandula/TokanPages/commit/2597a015033ebd630c35c586d02efbaa7c52639b))
+* remove category name and language ID ([3cc8057](https://github.com/TomaszKandula/TokanPages/commit/3cc8057138ec810e7554987074b1d24b72ab68b0))
+* reset categories on loading diff language content ([49d9a32](https://github.com/TomaszKandula/TokanPages/commit/49d9a32d03538be6884764ec7fb5f4ba4267678e))
+* sort languages ([796efd1](https://github.com/TomaszKandula/TokanPages/commit/796efd1d8f4895e755ff50af6384d253d9ad6bd5))
+* update component on language change ([88c6e62](https://github.com/TomaszKandula/TokanPages/commit/88c6e62cb67dec83a81e18b4790d5c3b157fa683))
+
 ## [0.183.1](https://github.com/TomaszKandula/TokanPages/compare/v0.183.0...v0.183.1) (2025-12-13)
 
 
