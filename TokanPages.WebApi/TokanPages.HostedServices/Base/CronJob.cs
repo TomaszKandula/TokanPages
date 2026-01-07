@@ -27,6 +27,16 @@ public class CronJob : IHostedService, IDisposable
     }
 
     /// <summary>
+    /// Disposing service.
+    /// </summary>
+    /// <param name="canDispose"></param>
+    protected void Dispose(bool canDispose)
+    {
+        if (canDispose && _timer != null)
+            _timer.Dispose();
+    }
+
+    /// <summary>
     /// Schedule CRON job.
     /// </summary>
     /// <param name="cancellationToken"></param>
@@ -95,15 +105,5 @@ public class CronJob : IHostedService, IDisposable
     {
         Dispose(true);
         GC.SuppressFinalize(this);
-    }
-
-    /// <summary>
-    /// Disposing service.
-    /// </summary>
-    /// <param name="disposing"></param>
-    protected virtual async void Dispose(bool disposing)
-    {
-        if (disposing && _timer != null)
-            await _timer.DisposeAsync().ConfigureAwait(false);
     }
 }
