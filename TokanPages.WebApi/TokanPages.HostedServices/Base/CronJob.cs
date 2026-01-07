@@ -33,11 +33,14 @@ public class CronJob : IHostedService, IDisposable
     private async Task ScheduleJob(CancellationToken cancellationToken)
     {
         var offset = _expression.GetNextOccurrence(DateTimeOffset.Now, _timeZoneInfo);
-        if (offset.HasValue)
+        if (!offset.HasValue)
         {
-            var delay = offset.Value - DateTimeOffset.Now;
-            if (delay.TotalMilliseconds <= 0)
-                await ScheduleJob(cancellationToken);
+            return;
+        }
+
+        var delay = offset.Value - DateTimeOffset.Now;
+        if (delay.TotalMilliseconds <= 0)
+            await ScheduleJob(cancellationToken);
 
             async void Callback(object? _)
             {
