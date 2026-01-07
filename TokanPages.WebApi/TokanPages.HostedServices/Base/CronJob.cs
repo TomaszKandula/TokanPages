@@ -52,20 +52,7 @@ public class CronJob : IHostedService, IDisposable
         if (delay.TotalMilliseconds <= 0)
             await ScheduleJob(cancellationToken);
 
-            async void Callback(object? _)
-            {
-                _timer?.Dispose();
-                _timer = null;
-
-                if (!cancellationToken.IsCancellationRequested)
-                    await DoWork(cancellationToken);
-
-                if (!cancellationToken.IsCancellationRequested)
-                    await ScheduleJob(cancellationToken);
-            }
-
-            _timer = new Timer(Callback, null, delay, new TimeSpan(0, 0, 0, 0, -1));            
-        }
+        _timer = new Timer(Callback, null, delay, Timeout.InfiniteTimeSpan);
 
         await Task.CompletedTask;
     }
