@@ -57,16 +57,16 @@ public class CronJob : IHostedService, IDisposable
         await Task.CompletedTask;
         return;
 
-        void Callback(object? _)
+        async void Callback(object? _)
         {
             _timer?.Dispose();
             _timer = null;
 
-            if (!cancellationToken.IsCancellationRequested)
-                Task.Run(() => DoWork(cancellationToken), cancellationToken); 
+            if (cancellationToken.IsCancellationRequested)
+                return;
 
-            if (!cancellationToken.IsCancellationRequested)
-                Task.Run(() => ScheduleJob(cancellationToken), cancellationToken);
+            await DoWork(cancellationToken);
+            await ScheduleJob(cancellationToken);
         }
     }
 
