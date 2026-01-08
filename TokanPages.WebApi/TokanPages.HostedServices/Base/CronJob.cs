@@ -57,6 +57,7 @@ public class CronJob : IHostedService, IDisposable
         await Task.CompletedTask;
         return;
 
+        //TODO: consider change the entire implementation to avoid 'async void'
         async void Callback(object? _)
         {
             _timer?.Dispose();
