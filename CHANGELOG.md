@@ -1,3 +1,10 @@
+## [0.184.1](https://github.com/TomaszKandula/TokanPages/compare/v0.184.0...v0.184.1) (2026-01-08)
+
+
+### Bug Fixes
+
+* do not use Task inside callback ([c62a4b7](https://github.com/TomaszKandula/TokanPages/commit/c62a4b774a8e544e40b24162d5f81b03ce34671a))
+
 # [0.184.0](https://github.com/TomaszKandula/TokanPages/compare/v0.183.1...v0.184.0) (2026-01-07)
 
 
