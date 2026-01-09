@@ -24,6 +24,7 @@ import {
     TechnologiesContentDto,
     TemplatesContent,
     TestimonialsContentDto,
+    AccountUserFilesContentDto,
     AccountUserNotesContentDto,
     SocialsContentDto,
     FeatureShowcaseContentDto,
@@ -34,6 +35,7 @@ import {
 export interface ComponentsDto {
     accountActivate: AccountActivateContentDto;
     accountSettings: AccountSettingsContentDto;
+    accountUserFiles: AccountUserFilesContentDto;
     accountUserNotes: AccountUserNotesContentDto;
     accountUserSignin: AccountUserSigninContentDto;
     accountUserSignout: AccountUserSignoutContentDto;

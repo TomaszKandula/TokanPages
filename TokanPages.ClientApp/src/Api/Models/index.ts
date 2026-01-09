@@ -83,6 +83,7 @@ export type { RequestPageDataResultDto } from "./Content/requestPageDataResultDt
 
 /* COMPONENTS */
 export type { ComponentsDto } from "./Components/State";
+export type { AccountUserFilesContentDto } from "./Components/accountUserFilesContentDto";
 export type { AccountUserNotesContentDto } from "./Components/accountUserNotesContentDto";
 export type { AccountActivateContentDto } from "./Components/accountActivateContentDto";
 export type { AccountUserSigninContentDto } from "./Components/accountUserSigninContentDto";
