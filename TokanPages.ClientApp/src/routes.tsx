@@ -28,6 +28,7 @@ import {
     PhotographyPage,
     PdfViewerPage,
     BusinessPage,
+    UserFilesPage,
     UserNotesPage,
     ResumePage,
 } from "./Pages";
@@ -69,6 +70,7 @@ const pages: PageProps[] = [
     { path: "/account/password/reset", page: <PasswordResetPage /> },
     { path: "/account/settings", page: <SettingsPage /> },
     { path: "/account/user-notes", page: <UserNotesPage /> },
+    { path: "/account/user-files", page: <UserFilesPage /> },
     { path: "/account/activation", page: <ActivationPage /> },
 ];
 
