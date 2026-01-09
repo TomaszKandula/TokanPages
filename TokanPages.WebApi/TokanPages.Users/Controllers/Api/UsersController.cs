@@ -194,7 +194,7 @@ public class UsersController : ApiBaseController
     /// </remarks>
     /// <param name="payload">User data.</param>
     /// <returns>MediatR unit value.</returns>
-    [HttpPost]
+    [HttpDelete]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
@@ -322,7 +322,7 @@ public class UsersController : ApiBaseController
     /// </remarks>
     /// <param name="payload">Unique full blob name.</param>
     /// <returns>MediatR unit value.</returns>
-    [HttpPost]
+    [HttpDelete]
     [Route("[action]")]
     [AuthorizeUser(Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
