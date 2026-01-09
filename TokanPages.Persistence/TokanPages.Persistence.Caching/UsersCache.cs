@@ -71,6 +71,23 @@ public class UsersCache : IUsersCache
     }
 
     /// <inheritdoc />
+    public async Task<GetUserFileListResult> GetUserFileList(bool isVideoFile, bool noCache = false)
+    {
+        if (noCache)
+            return await _mediator.Send(new GetUserFileListQuery { IsVideoFile = isVideoFile });
+
+        var userId = _userService.GetLoggedUserId();
+        var key = $"{_environment.EnvironmentName}:user:files:{userId}:{isVideoFile}";
+        var value = await _redisDistributedCache.GetObjectAsync<GetUserFileListResult>(key);
+        if (value is not null) return value;
+
+        value = await _mediator.Send(new GetUserFileListQuery());
+        await _redisDistributedCache.SetObjectAsync(key, value);
+
+        return value;
+    }
+
+    /// <inheritdoc />
     public async Task<GetUserNotesQueryResult> GetUserNotes(bool noCache = false)
     {
         if (noCache)

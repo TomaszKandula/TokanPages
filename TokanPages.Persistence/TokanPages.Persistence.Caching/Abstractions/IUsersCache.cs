@@ -23,6 +23,14 @@ public interface IUsersCache
     Task<GetUserQueryResult> GetUser(Guid id, bool noCache = false);
 
     /// <summary>
+    /// Returns list of user files.
+    /// </summary>
+    /// <param name="isVideoFile">Tells if should search for videos</param>
+    /// <param name="noCache">Enable/disable REDIS cache</param>
+    /// <returns>List of blobs</returns>
+    Task<GetUserFileListResult> GetUserFileList(bool isVideoFile, bool noCache = false);
+
+    /// <summary>
     /// Returns user notes for given user ID (taken from authorization header).
     /// </summary>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
