@@ -202,6 +202,19 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToRemoveUserCommand(payload));
 
     /// <summary>
+    /// Returns user files.
+    /// </summary>
+    /// <param name="isVideoFile">Tells if should search for videos.</param>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route("[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(GetUserFileListResult), StatusCodes.Status200OK)]
+    public async Task<GetUserFileListResult> GetUserFileList([FromQuery] bool isVideoFile = false, bool noCache = false) 
+        => await _usersCache.GetUserFileList(isVideoFile, noCache);
+
+    /// <summary>
     /// Returns user notes for given user ID (taken from authorization header).
     /// </summary>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
