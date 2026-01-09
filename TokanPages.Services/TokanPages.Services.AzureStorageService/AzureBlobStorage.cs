@@ -88,22 +88,26 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
     }
 
-    public async Task<List<string>> GetBlobListing(string? filterByPath = default, int pageSize = 10, string? continuationToken = default,
+    public async Task<List<string>> GetBlobListing(string prefix, string? excludeByPath = null, string? includeByPath = null, int pageSize = 10, string? continuationToken = null,
         CancellationToken cancellationToken = default)
     {
         try
         {
             var blobPages = _container
-                .GetBlobsAsync(cancellationToken: cancellationToken)
+                .GetBlobsAsync(prefix: prefix, cancellationToken: cancellationToken)
                 .AsPages(continuationToken, pageSize);
 
             var result = new List<string>();
             await foreach (Azure.Page<BlobItem> blobPage in blobPages.WithCancellation(cancellationToken))
             {
                 var pageItems = blobPage.Values.Select(blobItem => blobItem.Name);
-                var shouldFilter = !string.IsNullOrEmpty(filterByPath);
-            
-                result.AddRange(pageItems.WhereIf(shouldFilter, item => item.Contains(filterByPath!)));
+                var canInclude = !string.IsNullOrEmpty(includeByPath);
+                var canExclude = !string.IsNullOrEmpty(excludeByPath);
+
+                result.AddRange(pageItems
+                    .WhereIf(canInclude, item => item.Contains(includeByPath!))
+                    .WhereIf(canExclude, item => !item.Contains(excludeByPath!))
+                );
             }
 
             return result;
