@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 
 namespace TokanPages.Users.Dto.Users;
@@ -6,6 +7,7 @@ namespace TokanPages.Users.Dto.Users;
 /// <summary>
 /// Use it when you want to upload user image.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class UploadImageDto
 {
     /// <summary>
