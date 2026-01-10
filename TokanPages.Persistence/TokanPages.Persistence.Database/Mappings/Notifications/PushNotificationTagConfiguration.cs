@@ -6,16 +6,16 @@ using TokanPages.Backend.Domain.Entities.Notifications;
 namespace TokanPages.Persistence.Database.Mappings.Notifications;
 
 [ExcludeFromCodeCoverage]
-public class PushNotificationTagsConfiguration : IEntityTypeConfiguration<PushNotificationTag>
+public class PushNotificationTagConfiguration : IEntityTypeConfiguration<PushNotificationTag>
 {
     public void Configure(EntityTypeBuilder<PushNotificationTag> builder)
     {
-        builder.Property(tags => tags.Id).ValueGeneratedOnAdd();
+        builder.Property(tag => tag.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(notificationTags => notificationTags.PushNotification)
-            .WithMany(notifications => notifications.PushNotificationTags)
-            .HasForeignKey(notificationTags => notificationTags.PushNotificationId)
+            .HasOne(tag => tag.PushNotification)
+            .WithMany(notification => notification.PushNotificationTags)
+            .HasForeignKey(tag => tag.PushNotificationId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_PushNotificationTags_PushNotifications");
     }

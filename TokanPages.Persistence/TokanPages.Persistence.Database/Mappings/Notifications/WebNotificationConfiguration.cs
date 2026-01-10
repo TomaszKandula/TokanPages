@@ -9,5 +9,5 @@ namespace TokanPages.Persistence.Database.Mappings.Notifications;
 public class WebNotificationConfiguration : IEntityTypeConfiguration<WebNotification>
 {
     public void Configure(EntityTypeBuilder<WebNotification> builder)
-        => builder.Property(messages => messages.Id).ValueGeneratedOnAdd();
+        => builder.Property(notification => notification.Id).ValueGeneratedOnAdd();
 }

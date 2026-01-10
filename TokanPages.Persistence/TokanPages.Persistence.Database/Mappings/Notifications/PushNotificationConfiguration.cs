@@ -6,8 +6,8 @@ using TokanPages.Backend.Domain.Entities.Notifications;
 namespace TokanPages.Persistence.Database.Mappings.Notifications;
 
 [ExcludeFromCodeCoverage]
-public class PushNotificationsConfiguration : IEntityTypeConfiguration<PushNotification>
+public class PushNotificationConfiguration : IEntityTypeConfiguration<PushNotification>
 {
     public void Configure(EntityTypeBuilder<PushNotification> builder)
-        => builder.Property(notifications => notifications.Id).ValueGeneratedOnAdd();
+        => builder.Property(notification => notification.Id).ValueGeneratedOnAdd();
 }
