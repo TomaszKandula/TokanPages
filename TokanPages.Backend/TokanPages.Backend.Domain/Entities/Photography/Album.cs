@@ -20,5 +20,5 @@ public class Album : Entity<Guid>, IAuditable
 
     /* Navigation properties */
     public Users Users { get; set; }
-    public UserPhotos UserPhotos { get; set; }
+    public UserPhoto UserPhoto { get; set; }
 }

@@ -26,5 +26,5 @@ public class PhotoGear : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public ICollection<UserPhotos> UserPhotos { get; set; } = new HashSet<UserPhotos>();
+    public ICollection<UserPhoto> UserPhotos { get; set; } = new HashSet<UserPhoto>();
 }

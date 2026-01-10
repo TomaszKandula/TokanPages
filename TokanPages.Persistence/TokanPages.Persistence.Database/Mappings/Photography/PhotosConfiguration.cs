@@ -6,9 +6,9 @@ using TokanPages.Backend.Domain.Entities.Photography;
 namespace TokanPages.Persistence.Database.Mappings.Photography;
 
 [ExcludeFromCodeCoverage]
-public class PhotosConfiguration : IEntityTypeConfiguration<UserPhotos>
+public class PhotosConfiguration : IEntityTypeConfiguration<UserPhoto>
 {
-    public void Configure(EntityTypeBuilder<UserPhotos> builder)
+    public void Configure(EntityTypeBuilder<UserPhoto> builder)
     {
         builder.Property(photos => photos.Id).ValueGeneratedOnAdd();
 

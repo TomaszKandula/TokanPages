@@ -40,7 +40,7 @@ public class DatabaseContext : DbContext
 
     /* Category: Photography */
     public virtual DbSet<Album> Albums { get; set; }
-    public virtual DbSet<UserPhotos> UserPhotos { get; set; }
+    public virtual DbSet<UserPhoto> UserPhotos { get; set; }
     public virtual DbSet<PhotoGear> PhotoGears { get; set; }
     public virtual DbSet<PhotoCategory> PhotoCategories { get; set; }
 

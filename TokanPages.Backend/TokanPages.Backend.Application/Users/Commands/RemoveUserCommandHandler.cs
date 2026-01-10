@@ -104,7 +104,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (userPhotos.Count > 0)
         {
             DatabaseContext.RemoveRange(userPhotos);
-            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserPhotos)}");
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserPhoto)}");
         }
 
         var userInfo = await DatabaseContext.UserInfo

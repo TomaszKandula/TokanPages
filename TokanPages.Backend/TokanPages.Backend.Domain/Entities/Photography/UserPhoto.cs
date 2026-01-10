@@ -6,7 +6,7 @@ using TokanPages.Backend.Domain.Entities.User;
 namespace TokanPages.Backend.Domain.Entities.Photography;
 
 [ExcludeFromCodeCoverage]
-public class UserPhotos : Entity<Guid>, IAuditable
+public class UserPhoto : Entity<Guid>, IAuditable
 {
     public Guid UserId { get; set; }
     public Guid PhotoGearId { get; set; }
