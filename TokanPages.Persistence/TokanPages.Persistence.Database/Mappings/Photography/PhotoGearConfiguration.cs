@@ -6,11 +6,11 @@ using TokanPages.Backend.Domain.Entities.Photography;
 namespace TokanPages.Persistence.Database.Mappings.Photography;
 
 [ExcludeFromCodeCoverage]
-public class PhotoGearsConfiguration : IEntityTypeConfiguration<PhotoGear>
+public class PhotoGearConfiguration : IEntityTypeConfiguration<PhotoGear>
 {
     public void Configure(EntityTypeBuilder<PhotoGear> builder)
     {
-        builder.Property(photoGears => photoGears.Id).ValueGeneratedOnAdd();
-        builder.Property(photoGears => photoGears.Aperture).HasColumnType("decimal(18,2)");
+        builder.Property(gear => gear.Id).ValueGeneratedOnAdd();
+        builder.Property(gear => gear.Aperture).HasColumnType("decimal(18,2)");
     }
 }
