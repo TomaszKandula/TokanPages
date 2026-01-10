@@ -5,17 +5,17 @@ namespace TokanPages.Backend.Domain.Enums;
 public enum UserFileToUpdate
 {
     [EnumMember(Value = "image")]
-    Image = 0,
+    Image = 101,
 
     [EnumMember(Value = "audio")]
-    Audio = 1,
+    Audio = 102,
 
     [EnumMember(Value = "video")]
-    Video = 2,
+    Video = 103,
 
     [EnumMember(Value = "document")]
-    Document = 3,
+    Document = 104,
 
     [EnumMember(Value = "application")]
-    Application = 4,
+    Application = 105,
 }

@@ -5,20 +5,20 @@ namespace TokanPages.Backend.Domain.Enums;
 public enum UserFileToReceive
 {
     [EnumMember(Value = "image")]
-    Image = 0,
+    Image = 201,
 
     [EnumMember(Value = "audio")]
-    Audio = 1,
+    Audio = 202,
 
     [EnumMember(Value = "video")]
-    Video = 2,
+    Video = 203,
 
     [EnumMember(Value = "document")]
-    Document = 3,
+    Document = 204,
 
     [EnumMember(Value = "application")]
-    Application = 4,
+    Application = 205,
 
     [EnumMember(Value = "any")]
-    Any = 5,
+    Any = 206,
 }
