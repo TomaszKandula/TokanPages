@@ -345,7 +345,7 @@ public class BatchService : IBatchService
         return (invoices, invoiceItemsList, invoiceTemplates);
     }
 
-    private async Task<(List<UserCompanies> userCompanies, List<UserBankAccount> userBankAccounts)> GetUserData(
+    private async Task<(List<UserCompany> userCompanies, List<UserBankAccount> userBankAccounts)> GetUserData(
         IEnumerable<BatchInvoice> invoices, CancellationToken cancellationToken)
     {
         var userIds = new HashSet<Guid>(invoices.Select(batchInvoices => batchInvoices.UserId));

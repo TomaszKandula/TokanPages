@@ -6,7 +6,7 @@ using TokanPages.Backend.Domain.Enums;
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class UserCompanies : Entity<Guid>
+public class UserCompany : Entity<Guid>
 {
     public Guid UserId { get; set; }
     [MaxLength(255)]

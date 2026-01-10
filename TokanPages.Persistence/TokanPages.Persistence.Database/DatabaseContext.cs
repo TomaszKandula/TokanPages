@@ -29,7 +29,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<InvoiceTemplate> InvoiceTemplates { get; set; }
     public virtual DbSet<IssuedInvoice> IssuedInvoices { get; set; }
     public virtual DbSet<UserBankAccount> UserBankAccounts { get; set; }
-    public virtual DbSet<UserCompanies> UserCompanies { get; set; }
+    public virtual DbSet<UserCompany> UserCompanies { get; set; }
     public virtual DbSet<VatNumberPatterns> VatNumberPatterns { get; set; }
 
     /* Category: Notification */

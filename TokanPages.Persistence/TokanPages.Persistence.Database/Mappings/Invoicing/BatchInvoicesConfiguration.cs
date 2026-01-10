@@ -27,7 +27,7 @@ public class BatchInvoicesConfiguration : IEntityTypeConfiguration<BatchInvoice>
             .HasConstraintName("FK_BatchInvoices_Users");
 
         builder
-            .HasOne(invoices => invoices.UserCompanies)
+            .HasOne(invoices => invoices.UserCompany)
             .WithMany(details => details.BatchInvoices)
             .HasForeignKey(invoices => invoices.UserCompanyId)
             .OnDelete(DeleteBehavior.ClientSetNull)

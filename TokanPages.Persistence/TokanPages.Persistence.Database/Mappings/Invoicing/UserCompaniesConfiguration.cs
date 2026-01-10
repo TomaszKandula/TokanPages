@@ -6,9 +6,9 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 namespace TokanPages.Persistence.Database.Mappings.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class UserCompaniesConfiguration : IEntityTypeConfiguration<UserCompanies>
+public class UserCompaniesConfiguration : IEntityTypeConfiguration<UserCompany>
 {
-    public void Configure(EntityTypeBuilder<UserCompanies> builder)
+    public void Configure(EntityTypeBuilder<UserCompany> builder)
     {
         builder.Property(userCompanies => userCompanies.Id).ValueGeneratedOnAdd();
 

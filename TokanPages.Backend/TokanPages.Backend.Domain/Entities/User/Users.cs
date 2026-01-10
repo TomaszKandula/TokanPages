@@ -33,7 +33,7 @@ public class Users : Entity<Guid>, IAuditable, ISoftDelete
     public bool HasBusinessLock { get; set; }
 
     /* Navigation properties */
-    public ICollection<UserCompanies> UserCompanies { get; set; } = new HashSet<UserCompanies>();
+    public ICollection<UserCompany> UserCompanies { get; set; } = new HashSet<UserCompany>();
     public ICollection<UserBankAccount> UserBankAccounts { get; set; } = new HashSet<UserBankAccount>();
     public ICollection<IssuedInvoice> IssuedInvoices { get; set; } = new HashSet<IssuedInvoice>();
     public ICollection<BatchInvoice> BatchInvoices { get; set; } = new HashSet<BatchInvoice>();

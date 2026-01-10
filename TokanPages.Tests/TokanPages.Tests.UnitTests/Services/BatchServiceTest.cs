@@ -138,7 +138,7 @@ public class BatchServiceTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var userCompany = new UserCompanies
+        var userCompany = new UserCompany
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
@@ -309,7 +309,7 @@ public class BatchServiceTest : TestBase
             CreatedAt = DateTimeService.Now
         };
 
-        var userCompany = new UserCompanies
+        var userCompany = new UserCompany
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
@@ -466,7 +466,7 @@ public class BatchServiceTest : TestBase
             CreatedAt = DateTimeService.Now
         };
 
-        var userCompany = new UserCompanies
+        var userCompany = new UserCompany
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
