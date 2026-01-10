@@ -12,7 +12,7 @@ public class OrderDetailBase<T>
 
     public int PaymentTerms { get; set; }
 
-    public PaymentTypes PaymentType { get; set; }
+    public PaymentType PaymentType { get; set; }
 
     public PaymentStatus PaymentStatus { get; set; }
 

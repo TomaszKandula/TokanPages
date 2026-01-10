@@ -27,7 +27,7 @@ public class OrderDetailBase<T>
     /// <summary>
     /// Payment Type.
     /// </summary>
-    public PaymentTypes PaymentType { get; set; }
+    public PaymentType PaymentType { get; set; }
 
     /// <summary>
     /// Payment Status.
