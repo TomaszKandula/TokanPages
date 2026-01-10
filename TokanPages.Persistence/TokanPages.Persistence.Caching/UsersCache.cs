@@ -72,7 +72,7 @@ public class UsersCache : IUsersCache
     }
 
     /// <inheritdoc />
-    public async Task<GetUserFileListQueryResult> GetUserFileList(UserFile type, bool noCache = false)
+    public async Task<GetUserFileListQueryResult> GetUserFileList(UserFileToReceive type, bool noCache = false)
     {
         if (noCache)
             return await _mediator.Send(new GetUserFileListQuery { Type = type });

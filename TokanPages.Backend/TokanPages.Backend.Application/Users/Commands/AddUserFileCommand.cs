@@ -6,7 +6,7 @@ namespace TokanPages.Backend.Application.Users.Commands;
 
 public class AddUserFileCommand : IRequest<AddUserFileCommandResult>
 {
-    public UserFile Type { get; set; }
+    public UserFileToReceive Type { get; set; }
 
     public IFormFile? BinaryData { get; set; }
 }

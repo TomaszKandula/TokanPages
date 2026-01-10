@@ -5,5 +5,5 @@ namespace TokanPages.Backend.Application.Users.Queries;
 
 public class GetUserFileListQuery : IRequest<GetUserFileListQueryResult>
 {
-    public UserFile Type { get; set; }
+    public UserFileToReceive Type { get; set; }
 }

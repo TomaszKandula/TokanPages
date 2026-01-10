@@ -26,11 +26,11 @@ public class RemoveUserFileCommandHandler : RequestHandler<RemoveUserFileCommand
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var folder = request.Type switch
         {
-            UserFile.Image => "images",
-            UserFile.Audio => "audio",
-            UserFile.Video => "videos",
-            UserFile.Document => "documents",
-            UserFile.Application => "applications",
+            UserFileToReceive.Image => "images",
+            UserFileToReceive.Audio => "audio",
+            UserFileToReceive.Video => "videos",
+            UserFileToReceive.Document => "documents",
+            UserFileToReceive.Application => "applications",
             _ => throw new ArgumentOutOfRangeException()
         };
 

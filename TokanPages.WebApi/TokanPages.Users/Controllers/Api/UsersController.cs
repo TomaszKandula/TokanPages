@@ -211,7 +211,7 @@ public class UsersController : ApiBaseController
     [Route("[action]")]
     [AuthorizeUser(Roles.EverydayUser)]
     [ProducesResponseType(typeof(GetUserFileListQueryResult), StatusCodes.Status200OK)]
-    public async Task<GetUserFileListQueryResult> GetUserFileList([FromQuery] UserFile type = UserFile.Any, bool noCache = false) 
+    public async Task<GetUserFileListQueryResult> GetUserFileList([FromQuery] UserFileToReceive type = UserFileToReceive.Any, bool noCache = false) 
         => await _usersCache.GetUserFileList(type, noCache);
 
     /// <summary>

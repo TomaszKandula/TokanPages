@@ -29,7 +29,7 @@ public interface IUsersCache
     /// <param name="type">Type of files to be returned</param>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>List of blobs</returns>
-    Task<GetUserFileListQueryResult> GetUserFileList(UserFile type, bool noCache = false);
+    Task<GetUserFileListQueryResult> GetUserFileList(UserFileToReceive type, bool noCache = false);
 
     /// <summary>
     /// Returns user notes for given user ID (taken from authorization header).

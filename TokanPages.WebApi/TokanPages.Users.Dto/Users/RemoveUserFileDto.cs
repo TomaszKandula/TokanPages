@@ -12,7 +12,7 @@ public class RemoveUserFileDto
     /// <summary>
     /// User file type (image, audio, video, document, application).
     /// </summary>
-    public UserFile Type { get; set; }
+    public UserFileToReceive Type { get; set; }
 
     /// <summary>
     /// File name.

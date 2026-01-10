@@ -33,18 +33,18 @@ public class GetUserFileListQueryHandler : RequestHandler<GetUserFileListQuery, 
         };
     }
 
-    private async Task<List<string>> GetBlobListing(UserFile type, string prefix, CancellationToken cancellationToken)
+    private async Task<List<string>> GetBlobListing(UserFileToReceive type, string prefix, CancellationToken cancellationToken)
     {
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var options = new StorageListingOptions { Prefix = prefix };
 
         options.IncludeByPath = type switch
         {
-            UserFile.Image => "images/",
-            UserFile.Audio => "audio/",
-            UserFile.Video => "videos/",
-            UserFile.Document => "documents/",
-            UserFile.Application => "applications/",
+            UserFileToReceive.Image => "images/",
+            UserFileToReceive.Audio => "audio/",
+            UserFileToReceive.Video => "videos/",
+            UserFileToReceive.Document => "documents/",
+            UserFileToReceive.Application => "applications/",
             _ => options.IncludeByPath
         };
 

@@ -2,7 +2,7 @@ using System.Runtime.Serialization;
 
 namespace TokanPages.Backend.Domain.Enums;
 
-public enum UserFile
+public enum UserFileToReceive
 {
     [EnumMember(Value = "image")]
     Image = 0,
