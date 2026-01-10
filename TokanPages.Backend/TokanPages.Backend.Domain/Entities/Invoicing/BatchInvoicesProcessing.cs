@@ -9,7 +9,7 @@ public class BatchInvoicesProcessing : Entity<Guid>
 {
     public TimeSpan? BatchProcessingTime { get; set; }
     [Required]
-    public ProcessingStatuses Status { get; set; }
+    public ProcessingStatus Status { get; set; }
     [Required]
     public DateTime CreatedAt { get; set; }
 

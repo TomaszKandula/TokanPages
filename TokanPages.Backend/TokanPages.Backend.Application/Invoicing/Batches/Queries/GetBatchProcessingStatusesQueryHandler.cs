@@ -12,7 +12,7 @@ public class GetBatchProcessingStatusesQueryHandler : RequestHandler<GetBatchPro
 
     public override async Task<IEnumerable<GetBatchProcessingStatusesQueryResult>> Handle(GetBatchProcessingStatusesQuery request, CancellationToken cancellationToken)
     {
-        var statuses = Enum.GetValues<ProcessingStatuses>();
+        var statuses = Enum.GetValues<ProcessingStatus>();
         var result = statuses
             .Select((processingStatuses, index) => new GetBatchProcessingStatusesQueryResult
             {

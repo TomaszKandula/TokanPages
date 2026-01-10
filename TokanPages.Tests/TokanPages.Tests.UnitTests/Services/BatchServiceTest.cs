@@ -11,6 +11,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.BatchService.Models;
 using CurrencyCode = TokanPages.Backend.Domain.Enums.CurrencyCode;
+using ProcessingStatus = TokanPages.Backend.Domain.Enums.ProcessingStatus;
 
 namespace TokanPages.Tests.UnitTests.Services;
 
@@ -304,7 +305,7 @@ public class BatchServiceTest : TestBase
         {
             Id = Guid.NewGuid(),
             BatchProcessingTime = null,
-            Status = ProcessingStatuses.New,
+            Status = ProcessingStatus.New,
             CreatedAt = DateTimeService.Now
         };
 
@@ -440,7 +441,7 @@ public class BatchServiceTest : TestBase
         var result = await service.GetBatchInvoiceProcessingStatus(processing.Id);
 
         // Assert
-        result.Status.Should().Be(ProcessingStatuses.New);
+        result.Status.Should().Be(ProcessingStatus.New);
         result.BatchProcessingTime.Should().Be(new TimeSpan(0));
     }
 
@@ -461,7 +462,7 @@ public class BatchServiceTest : TestBase
         {
             Id = Guid.NewGuid(),
             BatchProcessingTime = null,
-            Status = ProcessingStatuses.New,
+            Status = ProcessingStatus.New,
             CreatedAt = DateTimeService.Now
         };
 
