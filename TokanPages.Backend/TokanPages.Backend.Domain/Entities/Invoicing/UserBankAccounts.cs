@@ -23,5 +23,5 @@ public class UserBankAccounts : Entity<Guid>
 
     /* Navigation properties */
     public Users Users { get; set; }
-    public ICollection<BatchInvoices> BatchInvoices { get; set; } = new HashSet<BatchInvoices>();
+    public ICollection<BatchInvoice> BatchInvoices { get; set; } = new HashSet<BatchInvoice>();
 }

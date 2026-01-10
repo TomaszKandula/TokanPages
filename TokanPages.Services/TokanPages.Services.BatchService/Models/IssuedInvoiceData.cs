@@ -9,7 +9,7 @@ public class IssuedInvoiceData
 {
     public string InvoiceContent { get; set; } = "";
 
-    public BatchInvoices CurrentInvoice { get; set; } = new();
+    public BatchInvoice CurrentInvoice { get; set; } = new();
 
     public ICollection<IssuedInvoices> InvoiceCollection { get; set; } = new List<IssuedInvoices>();
 

@@ -7,7 +7,7 @@ using TokanPages.Backend.Domain.Enums;
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class BatchInvoices : Entity<Guid>, IAuditable
+public class BatchInvoice : Entity<Guid>, IAuditable
 {
     [Required]
     [MaxLength(255)]

@@ -14,5 +14,5 @@ public class BatchInvoicesProcessing : Entity<Guid>
     public DateTime CreatedAt { get; set; }
 
     /* Navigation properties */
-    public ICollection<BatchInvoices> BatchInvoices { get; set; } = new HashSet<BatchInvoices>();
+    public ICollection<BatchInvoice> BatchInvoices { get; set; } = new HashSet<BatchInvoice>();
 }

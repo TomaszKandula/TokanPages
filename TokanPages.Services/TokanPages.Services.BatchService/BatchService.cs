@@ -36,7 +36,7 @@ public class BatchService : IBatchService
     /// <returns>Process Batch Key.</returns>
     public async Task<Guid> OrderInvoiceBatchProcessing(IEnumerable<OrderDetail> orderDetails, CancellationToken cancellationToken = default)
     {
-        var invoices = new List<BatchInvoices>();
+        var invoices = new List<BatchInvoice>();
         var invoiceItems = new List<BatchInvoiceItem>();
 
         var processing = new BatchInvoicesProcessing
@@ -50,7 +50,7 @@ public class BatchService : IBatchService
         foreach (var order in orderDetails)
         {
             var batchInvoiceId = Guid.NewGuid();
-            invoices.Add(new BatchInvoices
+            invoices.Add(new BatchInvoice
             {
                 Id = batchInvoiceId,
                 InvoiceNumber = order.InvoiceNumber,
@@ -315,7 +315,7 @@ public class BatchService : IBatchService
             throw new BusinessException(nameof(ErrorCodes.PROCESSING_EXCEPTION), message);
     }
 
-    private async Task<(List<BatchInvoices> invoices, List<BatchInvoiceItem> invoiceItemsList, List<InvoiceTemplates> invoiceTemplates)> GetInvoiceData
+    private async Task<(List<BatchInvoice> invoices, List<BatchInvoiceItem> invoiceItemsList, List<InvoiceTemplates> invoiceTemplates)> GetInvoiceData
         (IEnumerable<Guid> processingList, CancellationToken cancellationToken)
     {
         var invoicesIds = new HashSet<Guid>(processingList);
@@ -346,7 +346,7 @@ public class BatchService : IBatchService
     }
 
     private async Task<(List<UserCompanies> userCompanies, List<UserBankAccounts> userBankAccounts)> GetUserData(
-        IEnumerable<BatchInvoices> invoices, CancellationToken cancellationToken)
+        IEnumerable<BatchInvoice> invoices, CancellationToken cancellationToken)
     {
         var userIds = new HashSet<Guid>(invoices.Select(batchInvoices => batchInvoices.UserId));
 
@@ -383,7 +383,7 @@ public class BatchService : IBatchService
         await _databaseContext.SaveChangesAsync(cancellationToken);
     }
 
-    private async Task LogProcessingStarted(BatchInvoices currentInvoice, BatchInvoicesProcessing processing, Stopwatch timer, CancellationToken cancellationToken)
+    private async Task LogProcessingStarted(BatchInvoice currentInvoice, BatchInvoicesProcessing processing, Stopwatch timer, CancellationToken cancellationToken)
     {
         timer.Start();
         _loggerService.LogInformation($"Start processing invoice number: {currentInvoice.InvoiceNumber}.");

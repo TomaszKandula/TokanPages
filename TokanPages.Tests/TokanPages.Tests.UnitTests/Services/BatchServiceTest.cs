@@ -334,7 +334,7 @@ public class BatchServiceTest : TestBase
             CurrencyCode = CurrencyCode.Dkk
         };
 
-        var invoices = new List<BatchInvoices>
+        var invoices = new List<BatchInvoice>
         {
             new()
             {
@@ -491,7 +491,7 @@ public class BatchServiceTest : TestBase
             CurrencyCode = CurrencyCode.Dkk
         };
 
-        var invoices = new List<BatchInvoices>
+        var invoices = new List<BatchInvoice>
         {
             new()
             {

@@ -34,5 +34,5 @@ public class BatchInvoiceItem : Entity<Guid>
     public CurrencyCode CurrencyCode { get; set; }
 
     /* Navigation properties */
-    public BatchInvoices BatchInvoices { get; set; }
+    public BatchInvoice BatchInvoice { get; set; }
 }
