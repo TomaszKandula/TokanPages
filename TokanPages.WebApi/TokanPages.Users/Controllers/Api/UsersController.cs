@@ -204,15 +204,15 @@ public class UsersController : ApiBaseController
     /// <summary>
     /// Returns user files.
     /// </summary>
-    /// <param name="isVideoFile">Tells if should search for videos.</param>
+    /// <param name="type">Type of files to be returned.</param>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns></returns>
     [HttpGet]
     [Route("[action]")]
     [AuthorizeUser(Roles.EverydayUser)]
     [ProducesResponseType(typeof(GetUserFileListResult), StatusCodes.Status200OK)]
-    public async Task<GetUserFileListResult> GetUserFileList([FromQuery] bool isVideoFile = false, bool noCache = false) 
-        => await _usersCache.GetUserFileList(isVideoFile, noCache);
+    public async Task<GetUserFileListResult> GetUserFileList([FromQuery] UserFile type = UserFile.Any, bool noCache = false) 
+        => await _usersCache.GetUserFileList(type, noCache);
 
     /// <summary>
     /// Returns user notes for given user ID (taken from authorization header).

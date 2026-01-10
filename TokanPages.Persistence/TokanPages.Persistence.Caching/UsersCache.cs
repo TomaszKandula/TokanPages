@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Application.Users.Queries;
+using TokanPages.Backend.Domain.Enums;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -71,13 +72,13 @@ public class UsersCache : IUsersCache
     }
 
     /// <inheritdoc />
-    public async Task<GetUserFileListResult> GetUserFileList(bool isVideoFile, bool noCache = false)
+    public async Task<GetUserFileListResult> GetUserFileList(UserFile type, bool noCache = false)
     {
         if (noCache)
-            return await _mediator.Send(new GetUserFileListQuery { IsVideoFile = isVideoFile });
+            return await _mediator.Send(new GetUserFileListQuery { Type = type });
 
         var userId = _userService.GetLoggedUserId();
-        var key = $"{_environment.EnvironmentName}:user:files:{userId}:{isVideoFile}";
+        var key = $"{_environment.EnvironmentName}:user:files:{userId}:{type}";
         var value = await _redisDistributedCache.GetObjectAsync<GetUserFileListResult>(key);
         if (value is not null) return value;
 

@@ -1,4 +1,5 @@
 using TokanPages.Backend.Application.Users.Queries;
+using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Persistence.Caching.Abstractions;
 
@@ -25,10 +26,10 @@ public interface IUsersCache
     /// <summary>
     /// Returns list of user files.
     /// </summary>
-    /// <param name="isVideoFile">Tells if should search for videos</param>
+    /// <param name="type">Type of files to be returned</param>
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>List of blobs</returns>
-    Task<GetUserFileListResult> GetUserFileList(bool isVideoFile, bool noCache = false);
+    Task<GetUserFileListResult> GetUserFileList(UserFile type, bool noCache = false);
 
     /// <summary>
     /// Returns user notes for given user ID (taken from authorization header).
