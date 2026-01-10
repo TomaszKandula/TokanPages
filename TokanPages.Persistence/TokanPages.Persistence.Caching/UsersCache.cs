@@ -72,14 +72,14 @@ public class UsersCache : IUsersCache
     }
 
     /// <inheritdoc />
-    public async Task<GetUserFileListResult> GetUserFileList(UserFile type, bool noCache = false)
+    public async Task<GetUserFileListQueryResult> GetUserFileList(UserFile type, bool noCache = false)
     {
         if (noCache)
             return await _mediator.Send(new GetUserFileListQuery { Type = type });
 
         var userId = _userService.GetLoggedUserId();
         var key = $"{_environment.EnvironmentName}:user:files:{userId}:{type}";
-        var value = await _redisDistributedCache.GetObjectAsync<GetUserFileListResult>(key);
+        var value = await _redisDistributedCache.GetObjectAsync<GetUserFileListQueryResult>(key);
         if (value is not null) return value;
 
         value = await _mediator.Send(new GetUserFileListQuery());
