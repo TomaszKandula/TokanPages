@@ -15,5 +15,5 @@ public class ProcessingError
 
     public Stopwatch Timer { get; set; } = new();
 
-    public BatchInvoicesProcessing ProcessingObject { get; set; } = new();
+    public BatchInvoiceProcessing ProcessingObject { get; set; } = new();
 }

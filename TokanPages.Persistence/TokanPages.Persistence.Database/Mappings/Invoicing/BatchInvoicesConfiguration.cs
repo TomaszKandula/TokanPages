@@ -13,7 +13,7 @@ public class BatchInvoicesConfiguration : IEntityTypeConfiguration<BatchInvoice>
         builder.Property(invoices => invoices.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(invoices => invoices.BatchInvoicesProcessing)
+            .HasOne(invoices => invoices.BatchInvoiceProcessing)
             .WithMany(processing => processing.BatchInvoices)
             .HasForeignKey(invoices => invoices.ProcessBatchKey)
             .OnDelete(DeleteBehavior.ClientSetNull)

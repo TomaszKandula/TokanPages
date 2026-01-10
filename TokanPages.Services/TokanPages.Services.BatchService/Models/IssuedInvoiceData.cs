@@ -13,7 +13,7 @@ public class IssuedInvoiceData
 
     public ICollection<IssuedInvoices> InvoiceCollection { get; set; } = new List<IssuedInvoices>();
 
-    public BatchInvoicesProcessing BatchInvoicesProcessing { get; set; } = new();
+    public BatchInvoiceProcessing BatchInvoiceProcessing { get; set; } = new();
 
     public Stopwatch ProcessingTimer { get; set; } = new();
 }

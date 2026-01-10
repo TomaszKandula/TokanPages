@@ -6,8 +6,8 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 namespace TokanPages.Persistence.Database.Mappings.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class BatchInvoicesProcessingConfiguration : IEntityTypeConfiguration<BatchInvoicesProcessing>
+public class BatchInvoicesProcessingConfiguration : IEntityTypeConfiguration<BatchInvoiceProcessing>
 {
-    public void Configure(EntityTypeBuilder<BatchInvoicesProcessing> builder)
+    public void Configure(EntityTypeBuilder<BatchInvoiceProcessing> builder)
         => builder.Property(processing => processing.Id).ValueGeneratedOnAdd();
 }

@@ -301,7 +301,7 @@ public class BatchServiceTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var processing = new BatchInvoicesProcessing
+        var processing = new BatchInvoiceProcessing
         {
             Id = Guid.NewGuid(),
             BatchProcessingTime = null,
@@ -458,7 +458,7 @@ public class BatchServiceTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var processing = new BatchInvoicesProcessing
+        var processing = new BatchInvoiceProcessing
         {
             Id = Guid.NewGuid(),
             BatchProcessingTime = null,

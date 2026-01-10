@@ -61,7 +61,7 @@ public class BatchInvoice : Entity<Guid>, IAuditable
     public Guid UserBankAccountId { get; set; }
 
     /* Navigation properties */
-    public BatchInvoicesProcessing BatchInvoicesProcessing { get; set; }
+    public BatchInvoiceProcessing BatchInvoiceProcessing { get; set; }
     public Users Users { get; set; }
     public UserCompanies UserCompanies { get; set; }
     public UserBankAccounts UserBankAccounts { get; set; }

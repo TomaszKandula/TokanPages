@@ -39,7 +39,7 @@ public class BatchService : IBatchService
         var invoices = new List<BatchInvoice>();
         var invoiceItems = new List<BatchInvoiceItem>();
 
-        var processing = new BatchInvoicesProcessing
+        var processing = new BatchInvoiceProcessing
         {
             Id = Guid.NewGuid(),
             BatchProcessingTime = null,
@@ -222,7 +222,7 @@ public class BatchService : IBatchService
                     InvoiceContent = newInvoice,
                     CurrentInvoice = invoice,
                     InvoiceCollection = issuedInvoices,
-                    BatchInvoicesProcessing = processing!,
+                    BatchInvoiceProcessing = processing!,
                     ProcessingTimer = timer
                 };
 
@@ -377,13 +377,13 @@ public class BatchService : IBatchService
         issuedInvoiceData.InvoiceCollection.Add(issuedInvoice);
         issuedInvoiceData.ProcessingTimer.Stop();
                     
-        issuedInvoiceData.BatchInvoicesProcessing.Status = ProcessingStatus.Finished;
-        issuedInvoiceData.BatchInvoicesProcessing.BatchProcessingTime = issuedInvoiceData.ProcessingTimer.Elapsed;
+        issuedInvoiceData.BatchInvoiceProcessing.Status = ProcessingStatus.Finished;
+        issuedInvoiceData.BatchInvoiceProcessing.BatchProcessingTime = issuedInvoiceData.ProcessingTimer.Elapsed;
                     
         await _databaseContext.SaveChangesAsync(cancellationToken);
     }
 
-    private async Task LogProcessingStarted(BatchInvoice currentInvoice, BatchInvoicesProcessing processing, Stopwatch timer, CancellationToken cancellationToken)
+    private async Task LogProcessingStarted(BatchInvoice currentInvoice, BatchInvoiceProcessing processing, Stopwatch timer, CancellationToken cancellationToken)
     {
         timer.Start();
         _loggerService.LogInformation($"Start processing invoice number: {currentInvoice.InvoiceNumber}.");

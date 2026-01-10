@@ -5,7 +5,7 @@ using TokanPages.Backend.Domain.Enums;
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class BatchInvoicesProcessing : Entity<Guid>
+public class BatchInvoiceProcessing : Entity<Guid>
 {
     public TimeSpan? BatchProcessingTime { get; set; }
     [Required]
