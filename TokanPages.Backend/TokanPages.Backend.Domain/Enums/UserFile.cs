@@ -7,9 +7,18 @@ public enum UserFile
     [EnumMember(Value = "image")]
     Image = 0,
 
-    [EnumMember(Value = "video")]
-    Video = 1,
+    [EnumMember(Value = "audio")]
+    Audio = 1,
 
-    [EnumMember(Value = "other")]
-    Other = 2,
+    [EnumMember(Value = "video")]
+    Video = 2,
+
+    [EnumMember(Value = "text")]
+    Text = 3,
+
+    [EnumMember(Value = "application")]
+    Application = 4,
+
+    [EnumMember(Value = "any")]
+    Any = 5,
 }
