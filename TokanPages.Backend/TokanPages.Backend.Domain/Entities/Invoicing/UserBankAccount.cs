@@ -6,7 +6,7 @@ using TokanPages.Backend.Domain.Enums;
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class UserBankAccounts : Entity<Guid>
+public class UserBankAccount : Entity<Guid>
 {
     public Guid UserId { get; set; }
     [Required]

@@ -6,9 +6,9 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 namespace TokanPages.Persistence.Database.Mappings.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class UserBankAccountsConfiguration : IEntityTypeConfiguration<UserBankAccounts>
+public class UserBankAccountsConfiguration : IEntityTypeConfiguration<UserBankAccount>
 {
-    public void Configure(EntityTypeBuilder<UserBankAccounts> builder)
+    public void Configure(EntityTypeBuilder<UserBankAccount> builder)
     { 
         builder.Property(accounts => accounts.Id).ValueGeneratedOnAdd();
 

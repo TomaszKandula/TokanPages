@@ -34,7 +34,7 @@ public class BatchInvoicesConfiguration : IEntityTypeConfiguration<BatchInvoice>
             .HasConstraintName("FK_BatchInvoices_UserCompanies");
 
         builder
-            .HasOne(invoices => invoices.UserBankAccounts)
+            .HasOne(invoices => invoices.UserBankAccount)
             .WithMany(bankData => bankData.BatchInvoices)
             .HasForeignKey(invoices => invoices.UserBankAccountId)
             .OnDelete(DeleteBehavior.ClientSetNull)

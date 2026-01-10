@@ -153,7 +153,7 @@ public class BatchServiceTest : TestBase
             CountryCode = CountryCode.Denmark
         };
 
-        var userBankAccount = new UserBankAccounts
+        var userBankAccount = new UserBankAccount
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
@@ -324,7 +324,7 @@ public class BatchServiceTest : TestBase
             CountryCode = CountryCode.Denmark
         };
 
-        var userBankAccount = new UserBankAccounts
+        var userBankAccount = new UserBankAccount
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
@@ -481,7 +481,7 @@ public class BatchServiceTest : TestBase
             CountryCode = CountryCode.Denmark
         };
 
-        var userBankAccount = new UserBankAccounts
+        var userBankAccount = new UserBankAccount
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
