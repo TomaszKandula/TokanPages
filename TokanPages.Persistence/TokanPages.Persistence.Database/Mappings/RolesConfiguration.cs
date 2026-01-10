@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TokanPages.Backend.Domain.Entities;
 
-namespace TokanPages.Persistence.Database.Mappings.User;
+namespace TokanPages.Persistence.Database.Mappings;
 
 [ExcludeFromCodeCoverage]
 public class RolesConfiguration : IEntityTypeConfiguration<Role>
