@@ -158,7 +158,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             LikeCount = DataUtilityService.GetRandomInteger()
         };
 
-        var articleCount = new ArticleCounts
+        var articleCount = new ArticleCount
         {
             Id = Guid.NewGuid(),
             UserId = userId,

@@ -41,7 +41,7 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
 
         if (articleCount is null)
         {
-            var newArticleCount = new ArticleCounts
+            var newArticleCount = new ArticleCount
             {
                 UserId = article.UserId,
                 ArticleId = article.Id,

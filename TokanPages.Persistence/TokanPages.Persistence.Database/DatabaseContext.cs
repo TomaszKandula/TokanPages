@@ -19,7 +19,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<Articles> Articles { get; set; }
     public virtual DbSet<ArticleCategory> ArticleCategory { get; set; }
     public virtual DbSet<ArticleLikes> ArticleLikes { get; set; }
-    public virtual DbSet<ArticleCounts> ArticleCounts { get; set; }
+    public virtual DbSet<ArticleCount> ArticleCounts { get; set; }
     public virtual DbSet<ArticleTags> ArticleTags { get; set; }
 
     /* Category: Invoicing */

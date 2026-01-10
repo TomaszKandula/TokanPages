@@ -123,7 +123,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-        var articleCount = new ArticleCounts
+        var articleCount = new ArticleCount
         {
             Id = Guid.NewGuid(),
             ArticleId = articleId,
@@ -218,7 +218,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-        var articleCount = new ArticleCounts
+        var articleCount = new ArticleCount
         {
             UserId = userId,
             ArticleId = articleId,

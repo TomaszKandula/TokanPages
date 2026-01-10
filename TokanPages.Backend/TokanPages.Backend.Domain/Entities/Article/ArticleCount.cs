@@ -6,7 +6,7 @@ using TokanPages.Backend.Domain.Entities.User;
 namespace TokanPages.Backend.Domain.Entities.Article;
 
 [ExcludeFromCodeCoverage]
-public class ArticleCounts : Entity<Guid>, IAuditable
+public class ArticleCount : Entity<Guid>, IAuditable
 {
     [Required]
     public Guid ArticleId { get; set; }

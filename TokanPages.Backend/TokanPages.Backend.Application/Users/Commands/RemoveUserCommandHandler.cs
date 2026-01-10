@@ -81,7 +81,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (articleCounts.Count > 0)
         {
             foreach (var item in articleCounts) { item.UserId = null; }
-            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(ArticleCounts)}");
+            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(ArticleCount)}");
         }
     }
 

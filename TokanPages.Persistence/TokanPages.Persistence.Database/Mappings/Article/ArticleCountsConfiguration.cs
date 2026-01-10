@@ -6,9 +6,9 @@ using TokanPages.Backend.Domain.Entities.Article;
 namespace TokanPages.Persistence.Database.Mappings.Article;
 
 [ExcludeFromCodeCoverage]
-public class ArticleCountsConfiguration : IEntityTypeConfiguration<ArticleCounts>
+public class ArticleCountsConfiguration : IEntityTypeConfiguration<ArticleCount>
 {
-    public void Configure(EntityTypeBuilder<ArticleCounts> builder)
+    public void Configure(EntityTypeBuilder<ArticleCount> builder)
     {
         builder.Property(articleCounts => articleCounts.Id).ValueGeneratedOnAdd();
             
