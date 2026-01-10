@@ -13,7 +13,6 @@ using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService.Abstractions;
 using TokanPages.Services.WebTokenService.Models;
-using Roles = TokanPages.Backend.Domain.Enums.Roles;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Services;
@@ -391,7 +390,7 @@ public class UserServiceTest : TestBase
             mockedConfig.Object);
 
         // Act
-        var result = await userProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
+        var result = await userProvider.HasRoleAssigned(nameof(Role.EverydayUser));
 
         // Assert
         result.Should().BeTrue();
@@ -427,7 +426,7 @@ public class UserServiceTest : TestBase
             mockedConfig.Object);
 
         // Act
-        var result = await userProvider.HasRoleAssigned(nameof(Roles.PhotoPublisher));
+        var result = await userProvider.HasRoleAssigned(nameof(Role.PhotoPublisher));
 
         // Assert
         result.Should().BeFalse();
@@ -464,7 +463,7 @@ public class UserServiceTest : TestBase
 
         // Act
         // Assert
-        var result = await userProvider.HasRoleAssigned(nameof(Roles.EverydayUser));
+        var result = await userProvider.HasRoleAssigned(nameof(Role.EverydayUser));
         result.Should().BeFalse();
     }
         
@@ -1287,14 +1286,14 @@ public class UserServiceTest : TestBase
         };
     }
 
-    private static List<Backend.Domain.Entities.User.Roles> GetRole()
+    private static List<Roles> GetRole()
     {
-        return new List<Backend.Domain.Entities.User.Roles> 
+        return new List<Roles> 
         {
             new()
             {
                 Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
-                Name = nameof(Roles.EverydayUser),
+                Name = nameof(Role.EverydayUser),
                 Description = "User"
             }
         };

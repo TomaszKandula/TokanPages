@@ -38,7 +38,7 @@ public class MailerController : ApiBaseController
     /// <param name="payload">Message data.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
-    [AuthorizeUser(Roles.GodOfAsgard)]
+    [AuthorizeUser(Role.GodOfAsgard)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> SendNewsletter([FromBody] SendNewsletterDto payload)
         => await Mediator.Send(MailerMapper.MapToSendNewsletterCommand(payload));

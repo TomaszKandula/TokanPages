@@ -96,7 +96,7 @@ public class AssetsController : ApiBaseController
     /// <param name="payload">Binary data to be uploaded.</param>
     /// <returns>Full blob name of uploaded asset.</returns>
     [HttpPost]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(AddImageAssetCommandResult), StatusCodes.Status200OK)]
     public async Task<AddImageAssetCommandResult> AddImageAsset([FromForm] AddImageAssetDto payload)
         => await Mediator.Send(AssetsMapper.MapToAddImageAssetCommand(payload));
@@ -132,7 +132,7 @@ public class AssetsController : ApiBaseController
     /// <returns>Processing details.</returns>
     [HttpGet]
     [Route("{id:guid}/[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(GetVideoStatusQueryResult), StatusCodes.Status200OK)]
     public async Task<GetVideoStatusQueryResult> GetProcessingStatus([FromRoute] Guid id)

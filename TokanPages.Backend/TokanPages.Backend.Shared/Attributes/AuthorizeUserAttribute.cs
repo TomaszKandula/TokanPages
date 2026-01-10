@@ -8,6 +8,6 @@ namespace TokanPages.Backend.Shared.Attributes;
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
 public class AuthorizeUserAttribute : AuthorizeAttribute
 {
-    public AuthorizeUserAttribute(params Roles[] roles)
+    public AuthorizeUserAttribute(params Role[] roles)
         => Roles = string.Join(",", roles);
 }

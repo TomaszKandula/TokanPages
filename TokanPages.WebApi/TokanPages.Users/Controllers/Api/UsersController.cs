@@ -102,7 +102,7 @@ public class UsersController : ApiBaseController
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RequestEmailVerification([FromBody] VerifyUserEmailDto payload) 
         => await Mediator.Send(UsersMapper.MapToVerifyUserEmailCommand(payload));
@@ -139,7 +139,7 @@ public class UsersController : ApiBaseController
     /// <returns>Object.</returns>
     [HttpGet]
     [Route("[action]")]
-    [AuthorizeUser(Roles.GodOfAsgard)]
+    [AuthorizeUser(Role.GodOfAsgard)]
     [ProducesResponseType(typeof(IEnumerable<GetUsersQueryResult>), StatusCodes.Status200OK)]
     public async Task<IEnumerable<GetUsersQueryResult>> GetAllUsers([FromQuery] bool noCache = false)
         => await _usersCache.GetUsers(noCache);
@@ -155,7 +155,7 @@ public class UsersController : ApiBaseController
     /// <returns>Object.</returns>
     [HttpGet]
     [Route("{id:guid}/[action]")]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(GetUserQueryResult), StatusCodes.Status200OK)]
     public async Task<GetUserQueryResult> GetUser([FromRoute] Guid id, [FromQuery] bool noCache = false)
         => await _usersCache.GetUser(id, noCache);
@@ -181,7 +181,7 @@ public class UsersController : ApiBaseController
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(UpdateUserCommandResult), StatusCodes.Status200OK)]
     public async Task<UpdateUserCommandResult> UpdateUser([FromBody] UpdateUserDto payload)
         => await Mediator.Send(UsersMapper.MapToUpdateUserCommand(payload));
@@ -196,7 +196,7 @@ public class UsersController : ApiBaseController
     /// <returns>MediatR unit value.</returns>
     [HttpDelete]
     [Route("[action]")]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveUser([FromBody] RemoveUserDto payload)
         => await Mediator.Send(UsersMapper.MapToRemoveUserCommand(payload));
@@ -209,7 +209,7 @@ public class UsersController : ApiBaseController
     /// <returns></returns>
     [HttpGet]
     [Route("[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(GetUserFileListQueryResult), StatusCodes.Status200OK)]
     public async Task<GetUserFileListQueryResult> GetUserFileList([FromQuery] UserFileToReceive type = UserFileToReceive.Any, bool noCache = false) 
         => await _usersCache.GetUserFileList(type, noCache);
@@ -224,7 +224,7 @@ public class UsersController : ApiBaseController
     /// <returns></returns>
     [HttpPost]
     [Route("[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(AddUserFileCommandResult), StatusCodes.Status200OK)]
     public async Task<AddUserFileCommandResult> AddUserFile([FromForm] AddUserFileDto payload) 
         => await Mediator.Send(UsersMapper.MapToAddUserFileCommand(payload));
@@ -236,7 +236,7 @@ public class UsersController : ApiBaseController
     /// <returns></returns>
     [HttpDelete]
     [Route("[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveUserFile([FromBody] RemoveUserFileDto payload) 
         => await Mediator.Send(UsersMapper.MapToRemoveUserFileCommand(payload));
@@ -251,7 +251,7 @@ public class UsersController : ApiBaseController
     /// <returns>Object with list of notes.</returns>
     [HttpGet]
     [Route("[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(GetUserNotesQueryResult), StatusCodes.Status200OK)]
     public async Task<GetUserNotesQueryResult> GetUserNotes([FromQuery] bool noCache = false) 
         => await _usersCache.GetUserNotes(noCache);
@@ -267,7 +267,7 @@ public class UsersController : ApiBaseController
     /// <returns>Object.</returns>
     [HttpGet]
     [Route("{id:guid}/[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(GetUserNoteQueryResult), StatusCodes.Status200OK)]
     public async Task<GetUserNoteQueryResult> GetUserNote([FromRoute] Guid id, [FromQuery] bool noCache = false) 
         => await _usersCache.GetUserNote(id, noCache);
@@ -279,7 +279,7 @@ public class UsersController : ApiBaseController
     /// <returns>Object with details.</returns>
     [HttpPost]
     [Route("[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(AddUserNoteCommandResult), StatusCodes.Status200OK)]
     public async Task<AddUserNoteCommandResult> AddUserNote([FromBody] AddUserNoteDto payload) 
         => await Mediator.Send(UsersMapper.MapToAddUserNoteCommand(payload));
@@ -291,7 +291,7 @@ public class UsersController : ApiBaseController
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> UpdateUserNote([FromBody] UpdateUserNoteDto payload) 
         => await Mediator.Send(UsersMapper.MapToUpdateUserNoteCommand(payload));
@@ -303,7 +303,7 @@ public class UsersController : ApiBaseController
     /// <returns>MediatR unit value.</returns>
     [HttpDelete]
     [Route("[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveUserNote([FromBody] RemoveUserNoteDto payload) 
         => await Mediator.Send(UsersMapper.MapToRemoveUserNoteCommand(payload));
@@ -336,7 +336,7 @@ public class UsersController : ApiBaseController
     /// <returns>Object with media name.</returns>
     [HttpPost]
     [Route("[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(UploadImageCommandResult), StatusCodes.Status200OK)]
     public async Task<UploadImageCommandResult> UploadImage([FromForm] UploadImageDto payload, [FromQuery] bool skipDb = false)
         => await Mediator.Send(UsersMapper.MapToUploadImageCommand(payload, skipDb));
@@ -351,7 +351,7 @@ public class UsersController : ApiBaseController
     /// <returns>MediatR unit value.</returns>
     [HttpDelete]
     [Route("[action]")]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveUserMedia([FromForm] RemoveUserMediaDto payload)
         => await Mediator.Send(UsersMapper.MapToRemoveUserMediaCommand(payload));

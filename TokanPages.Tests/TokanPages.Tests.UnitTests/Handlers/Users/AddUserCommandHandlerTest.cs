@@ -34,8 +34,8 @@ public class AddUserCommandHandlerTest : TestBase
         
         var roles = new Roles
         {
-            Name = Backend.Domain.Enums.Roles.EverydayUser.ToString(),
-            Description = Backend.Domain.Enums.Roles.EverydayUser.ToString()
+            Name = Backend.Domain.Enums.Role.EverydayUser.ToString(),
+            Description = Backend.Domain.Enums.Role.EverydayUser.ToString()
         };
 
         var permissions = new List<Permissions>

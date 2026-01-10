@@ -29,7 +29,7 @@ public class JwtUtilityServiceTest : TestBase
         var getValidClaims = new ClaimsIdentity(new[]
         {
             new Claim(ClaimTypes.Name, userAlias),
-            new Claim(ClaimTypes.Role, nameof(Roles.EverydayUser)),
+            new Claim(ClaimTypes.Role, nameof(Role.EverydayUser)),
             new Claim(ClaimTypes.NameIdentifier, User1.Id.ToString()),
             new Claim(ClaimTypes.GivenName, UserInfo1.FirstName),
             new Claim(ClaimTypes.Surname, UserInfo1.LastName),
@@ -50,7 +50,7 @@ public class JwtUtilityServiceTest : TestBase
         var securityToken = jsonToken as JwtSecurityToken;
         securityToken.Should().NotBeNull();
         securityToken?.Claims.First(claim => claim.Type == claimTypesName).Value.Should().Be(userAlias);
-        securityToken?.Claims.First(claim => claim.Type == claimTypesRole).Value.Should().Be(nameof(Roles.EverydayUser));
+        securityToken?.Claims.First(claim => claim.Type == claimTypesRole).Value.Should().Be(nameof(Role.EverydayUser));
         securityToken?.Claims.First(claim => claim.Type == claimTypesNameIdentifier).Value.Should().Be(User1.Id.ToString());
         securityToken?.Claims.First(claim => claim.Type == claimTypesGivenName).Value.Should().Be(UserInfo1.FirstName);
         securityToken?.Claims.First(claim => claim.Type == claimTypesSurname).Value.Should().Be(UserInfo1.LastName);

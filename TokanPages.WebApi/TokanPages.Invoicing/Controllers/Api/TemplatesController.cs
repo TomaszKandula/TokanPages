@@ -34,7 +34,7 @@ public class TemplatesController : ApiBaseController
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>List of templates.</returns>
     [HttpGet]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(IList<InvoiceTemplateInfo>), StatusCodes.Status200OK)]
     public async Task<IList<InvoiceTemplateInfo>> GetInvoiceTemplates([FromQuery] bool noCache = false) 
         => await _templatesCache.GetInvoiceTemplates(noCache);
@@ -45,7 +45,7 @@ public class TemplatesController : ApiBaseController
     /// <param name="id">Template ID.</param>
     /// <returns>File.</returns>
     [HttpGet("{id:guid}")]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
     public async Task<FileContentResult> GetInvoiceTemplate([FromRoute] Guid id) 
         => await Mediator.Send(new GetInvoiceTemplateQuery { Id = id});
@@ -56,7 +56,7 @@ public class TemplatesController : ApiBaseController
     /// <param name="payload">Invoice template.</param>
     /// <returns>Assigned template ID.</returns>
     [HttpPost]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(AddInvoiceTemplateCommandResult), StatusCodes.Status200OK)]
     public async Task<AddInvoiceTemplateCommandResult> AddInvoiceTemplate([FromForm] AddInvoiceTemplateDto payload)
         => await Mediator.Send(TemplatesMapper.MapToAddInvoiceTemplateCommandRequest(payload));
@@ -67,7 +67,7 @@ public class TemplatesController : ApiBaseController
     /// <param name="payload">Invoice template.</param>
     /// <returns>Empty object.</returns>
     [HttpPost]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> ReplaceInvoiceTemplate([FromForm] ReplaceInvoiceTemplateDto payload) 
         => await Mediator.Send(TemplatesMapper.MapToReplaceInvoiceTemplateCommandRequest(payload));
@@ -78,7 +78,7 @@ public class TemplatesController : ApiBaseController
     /// <param name="payload">Template ID.</param>
     /// <returns>Empty object.</returns>
     [HttpPost]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveInvoiceTemplate([FromBody] RemoveInvoiceTemplateDto payload) 
         => await Mediator.Send(TemplatesMapper.MapToRemoveInvoiceTemplateCommandRequest(payload));

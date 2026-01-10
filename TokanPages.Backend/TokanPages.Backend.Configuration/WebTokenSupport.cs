@@ -69,8 +69,8 @@ public static class WebTokenSupport
 				.RequireAuthenticatedUser()
 				.Build())
             .AddPolicy(nameof(Policy.AccessToTokanPages), policy => policy
-				.RequireRole(nameof(Roles.GodOfAsgard), nameof(Roles.EverydayUser), nameof(Roles.ArticlePublisher), 
-					nameof(Roles.PhotoPublisher), nameof(Roles.CommentPublisher)));
+				.RequireRole(nameof(Role.GodOfAsgard), nameof(Role.EverydayUser), nameof(Role.ArticlePublisher), 
+					nameof(Role.PhotoPublisher), nameof(Role.CommentPublisher)));
 	}
 
 	private static Task ValidateTokenClaims(TokenValidatedContext context)
