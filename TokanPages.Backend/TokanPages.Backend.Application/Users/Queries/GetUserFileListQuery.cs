@@ -3,7 +3,7 @@ using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Backend.Application.Users.Queries;
 
-public class GetUserFileListQuery : IRequest<GetUserFileListResult>
+public class GetUserFileListQuery : IRequest<GetUserFileListQueryResult>
 {
     public UserFile Type { get; set; }
 }

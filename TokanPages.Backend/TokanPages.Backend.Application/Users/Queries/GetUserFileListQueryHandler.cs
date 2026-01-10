@@ -7,13 +7,13 @@ using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Queries;
 
-public class GetUserFileListHandler : RequestHandler<GetUserFileListQuery, GetUserFileListResult>
+public class GetUserFileListQueryHandler : RequestHandler<GetUserFileListQuery, GetUserFileListQueryResult>
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
     private readonly IUserService _userService;
 
-    public GetUserFileListHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public GetUserFileListQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) 
         : base(databaseContext, loggerService)
     {
@@ -21,13 +21,13 @@ public class GetUserFileListHandler : RequestHandler<GetUserFileListQuery, GetUs
         _userService = userService;
     }
 
-    public override async Task<GetUserFileListResult> Handle(GetUserFileListQuery request, CancellationToken cancellationToken)
+    public override async Task<GetUserFileListQueryResult> Handle(GetUserFileListQuery request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId(); 
         var prefixPath = $"content/users/{userId}/files/";
         var result = await GetBlobListing(request.Type, prefixPath, cancellationToken);
 
-        return new GetUserFileListResult
+        return new GetUserFileListQueryResult
         {
             FileBlobs = result
         };
