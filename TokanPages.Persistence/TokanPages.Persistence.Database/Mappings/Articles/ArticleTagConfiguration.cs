@@ -6,16 +6,16 @@ using TokanPages.Backend.Domain.Entities.Articles;
 namespace TokanPages.Persistence.Database.Mappings.Articles;
 
 [ExcludeFromCodeCoverage]
-public class ArticleTagsConfiguration : IEntityTypeConfiguration<ArticleTag>
+public class ArticleTagConfiguration : IEntityTypeConfiguration<ArticleTag>
 {
     public void Configure(EntityTypeBuilder<ArticleTag> builder)
     {
-        builder.Property(articleCounts => articleCounts.Id).ValueGeneratedOnAdd();
+        builder.Property(tag => tag.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(articleTags => articleTags.Article)
-            .WithMany(articles => articles.ArticleTags)
-            .HasForeignKey(articleTags => articleTags.ArticleId)
+            .HasOne(tag => tag.Article)
+            .WithMany(article => article.ArticleTags)
+            .HasForeignKey(tag => tag.ArticleId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_ArticleTags_Articles");
     }
