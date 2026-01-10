@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace TokanPages.Persistence.Database.Mappings.Article;
+namespace TokanPages.Persistence.Database.Mappings.Articles;
 
 [ExcludeFromCodeCoverage]
 public class ArticlesConfiguration : IEntityTypeConfiguration<Backend.Domain.Entities.Articles.Article>
