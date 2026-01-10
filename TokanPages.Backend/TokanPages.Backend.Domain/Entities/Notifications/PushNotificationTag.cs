@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
 
-namespace TokanPages.Backend.Domain.Entities.Notification;
+namespace TokanPages.Backend.Domain.Entities.Notifications;
 
 [ExcludeFromCodeCoverage]
 public class PushNotificationTag : Entity<Guid>, IAuditable
