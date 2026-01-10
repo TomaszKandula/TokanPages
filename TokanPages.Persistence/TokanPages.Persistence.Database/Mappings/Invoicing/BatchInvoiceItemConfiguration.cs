@@ -6,16 +6,16 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 namespace TokanPages.Persistence.Database.Mappings.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class BatchInvoiceItemsConfiguration : IEntityTypeConfiguration<BatchInvoiceItem>
+public class BatchInvoiceItemConfiguration : IEntityTypeConfiguration<BatchInvoiceItem>
 {
     public void Configure(EntityTypeBuilder<BatchInvoiceItem> builder)
     {
-        builder.Property(items => items.Id).ValueGeneratedOnAdd();
+        builder.Property(item => item.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(items => items.BatchInvoice)
-            .WithMany(invoices => invoices.BatchInvoiceItems)
-            .HasForeignKey(items => items.BatchInvoiceId)
+            .HasOne(item => item.BatchInvoice)
+            .WithMany(invoice => invoice.BatchInvoiceItems)
+            .HasForeignKey(item => item.BatchInvoiceId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_BatchInvoiceItems_BatchInvoices");
     }

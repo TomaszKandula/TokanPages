@@ -10,12 +10,12 @@ public class IssuedInvoicesConfiguration : IEntityTypeConfiguration<IssuedInvoic
 {
     public void Configure(EntityTypeBuilder<IssuedInvoice> builder)
     { 
-        builder.Property(invoices => invoices.Id).ValueGeneratedOnAdd();
+        builder.Property(invoice => invoice.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(invoices => invoices.User)
-            .WithMany(users => users.IssuedInvoices)
-            .HasForeignKey(invoices => invoices.UserId)
+            .HasOne(invoice => invoice.User)
+            .WithMany(user => user.IssuedInvoices)
+            .HasForeignKey(invoice => invoice.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_IssuedInvoices_Users");
     }
