@@ -18,13 +18,13 @@ public class AddUserFileCommandValidator : AbstractValidator<AddUserFileCommand>
             .WithErrorCode(nameof(ValidationCodes.INVALID_ENUM_VALUE))
             .WithMessage(ValidationCodes.INVALID_ENUM_VALUE);
 
+        RuleFor(command => command.BinaryData)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED);
+
         When(command => command.BinaryData != null, () =>
         {
-            RuleFor(command => command.BinaryData)
-                .NotEmpty()
-                .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-                .WithMessage(ValidationCodes.REQUIRED);
-
             RuleFor(command => command.BinaryData)
                 .Must(bytes => bytes!.Length <= sizeLimit)
                 .WithErrorCode(nameof(ValidationCodes.INVALID_FILE_SIZE))
