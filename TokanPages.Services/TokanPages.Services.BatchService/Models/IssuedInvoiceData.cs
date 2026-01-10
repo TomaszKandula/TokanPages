@@ -11,7 +11,7 @@ public class IssuedInvoiceData
 
     public BatchInvoice CurrentInvoice { get; set; } = new();
 
-    public ICollection<IssuedInvoices> InvoiceCollection { get; set; } = new List<IssuedInvoices>();
+    public ICollection<IssuedInvoice> InvoiceCollection { get; set; } = new List<IssuedInvoice>();
 
     public BatchInvoiceProcessing BatchInvoiceProcessing { get; set; } = new();
 

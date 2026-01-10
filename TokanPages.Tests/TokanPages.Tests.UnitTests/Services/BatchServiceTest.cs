@@ -30,7 +30,7 @@ public class BatchServiceTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var invoices = new List<IssuedInvoices>
+        var invoices = new List<IssuedInvoice>
         {
             new()
             {
@@ -83,7 +83,7 @@ public class BatchServiceTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var invoices = new List<IssuedInvoices>
+        var invoices = new List<IssuedInvoice>
         {
             new()
             {

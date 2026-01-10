@@ -129,7 +129,7 @@ public class BatchService : IBatchService
 
         var (invoices, invoiceItemsList, invoiceTemplates) = await GetInvoiceData(processingList, cancellationToken);
         var (userCompaniesList, userBankAccountsList) = await GetUserData(invoices, cancellationToken);
-        var issuedInvoices = new List<IssuedInvoices>();
+        var issuedInvoices = new List<IssuedInvoice>();
 
         foreach (var invoice in invoices)
         {
@@ -365,7 +365,7 @@ public class BatchService : IBatchService
 
     private async Task LogIssuedInvoice(IssuedInvoiceData issuedInvoiceData, CancellationToken cancellationToken)
     {
-        var issuedInvoice = new IssuedInvoices
+        var issuedInvoice = new IssuedInvoice
         {
             UserId = issuedInvoiceData.CurrentInvoice.UserId,
             InvoiceNumber = issuedInvoiceData.CurrentInvoice.InvoiceNumber,

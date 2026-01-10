@@ -5,7 +5,7 @@ using TokanPages.Backend.Domain.Entities.User;
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class IssuedInvoices : Entity<Guid>
+public class IssuedInvoice : Entity<Guid>
 {
     [Required]
     public Guid UserId { get; set; }

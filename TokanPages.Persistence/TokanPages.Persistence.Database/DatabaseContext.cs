@@ -27,7 +27,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<BatchInvoice> BatchInvoices { get; set; }
     public virtual DbSet<BatchInvoiceProcessing> BatchInvoicesProcessing { get; set; }
     public virtual DbSet<InvoiceTemplate> InvoiceTemplates { get; set; }
-    public virtual DbSet<IssuedInvoices> IssuedInvoices { get; set; }
+    public virtual DbSet<IssuedInvoice> IssuedInvoices { get; set; }
     public virtual DbSet<UserBankAccounts> UserBankAccounts { get; set; }
     public virtual DbSet<UserCompanies> UserCompanies { get; set; }
     public virtual DbSet<VatNumberPatterns> VatNumberPatterns { get; set; }
