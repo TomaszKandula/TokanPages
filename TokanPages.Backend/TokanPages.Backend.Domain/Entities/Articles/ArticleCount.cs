@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
-using TokanPages.Backend.Domain.Entities.User;
 
-namespace TokanPages.Backend.Domain.Entities.Article;
+namespace TokanPages.Backend.Domain.Entities.Articles;
 
 [ExcludeFromCodeCoverage]
-public class ArticleLike : Entity<Guid>, IAuditable
+public class ArticleCount : Entity<Guid>, IAuditable
 {
     [Required]
     public Guid ArticleId { get; set; }
@@ -14,7 +13,7 @@ public class ArticleLike : Entity<Guid>, IAuditable
     [Required]
     [MaxLength(15)]
     public string IpAddress { get; set; }
-    public int LikeCount { get; set; }
+    public int ReadCount { get; set; }
     public Guid CreatedBy { get; set; }
     public DateTime CreatedAt { get; set; }
     public Guid? ModifiedBy { get; set; }

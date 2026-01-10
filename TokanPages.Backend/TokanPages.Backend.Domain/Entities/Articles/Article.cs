@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
-using TokanPages.Backend.Domain.Entities.User;
 
-namespace TokanPages.Backend.Domain.Entities.Article;
+namespace TokanPages.Backend.Domain.Entities.Articles;
 
 [ExcludeFromCodeCoverage]
 public class Article : Entity<Guid>, IAuditable

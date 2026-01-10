@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace TokanPages.Persistence.Database.Mappings.Article;
 
 [ExcludeFromCodeCoverage]
-public class ArticlesConfiguration : IEntityTypeConfiguration<Backend.Domain.Entities.Article.Article>
+public class ArticlesConfiguration : IEntityTypeConfiguration<Backend.Domain.Entities.Articles.Article>
 {
-    public void Configure(EntityTypeBuilder<Backend.Domain.Entities.Article.Article> builder)
+    public void Configure(EntityTypeBuilder<Backend.Domain.Entities.Articles.Article> builder)
     {
         builder.Property(articles => articles.Id).ValueGeneratedOnAdd();
 

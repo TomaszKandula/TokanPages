@@ -2,6 +2,7 @@
 using Moq;
 using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
@@ -22,7 +23,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new List<Backend.Domain.Entities.Article.Article>
+        var articles = new List<Article>
         {
             new()
             {
@@ -68,7 +69,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             }
         };
 
-        var articleCategories = new List<Backend.Domain.Entities.Article.ArticleCategory>
+        var articleCategories = new List<ArticleCategory>
         {
             new()
             {

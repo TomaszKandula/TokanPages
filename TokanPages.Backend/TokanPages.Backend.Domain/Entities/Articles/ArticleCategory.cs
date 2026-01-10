@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
 
-namespace TokanPages.Backend.Domain.Entities.Article;
+namespace TokanPages.Backend.Domain.Entities.Articles;
 
 [ExcludeFromCodeCoverage]
 public class ArticleCategory : Entity<Guid>, IAuditable

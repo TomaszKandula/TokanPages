@@ -5,6 +5,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
@@ -52,7 +53,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             PermissionId = permissionId
         };
 
-        var articles = new Backend.Domain.Entities.Article.Article
+        var articles = new Article
         {
             Id = articlesId,
             UserId = userId,
@@ -138,7 +139,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             PermissionId = permissionId
         };
 
-        var articles = new Backend.Domain.Entities.Article.Article
+        var articles = new Article
         {
             Id = articlesId,
             UserId = userId,
@@ -223,7 +224,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             PermissionId = permissionId
         };
 
-        var articles = new Backend.Domain.Entities.Article.Article
+        var articles = new Article
         {
             Id = articlesId,
             UserId = userId,

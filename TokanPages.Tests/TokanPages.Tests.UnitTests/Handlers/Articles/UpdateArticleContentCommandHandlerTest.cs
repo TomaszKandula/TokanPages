@@ -5,6 +5,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -38,7 +39,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Article.Article
+        var articles = new Article
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -125,7 +126,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Article.Article
+        var articles = new Article
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

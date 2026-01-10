@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
-using TokanPages.Backend.Domain.Entities.Article;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Domain.Entities.Photography;
 using TokanPages.Backend.Domain.Entities.Invoicing;
 
@@ -37,7 +37,7 @@ public class User : Entity<Guid>, IAuditable, ISoftDelete
     public ICollection<UserBankAccount> UserBankAccounts { get; set; } = new HashSet<UserBankAccount>();
     public ICollection<IssuedInvoice> IssuedInvoices { get; set; } = new HashSet<IssuedInvoice>();
     public ICollection<BatchInvoice> BatchInvoices { get; set; } = new HashSet<BatchInvoice>();
-    public ICollection<Article.Article> Articles { get; set; } = new HashSet<Article.Article>();
+    public ICollection<Article> Articles { get; set; } = new HashSet<Article>();
     public ICollection<ArticleLike> ArticleLikes { get; set; } = new HashSet<ArticleLike>();
     public ICollection<ArticleCount> ArticleCounts { get; set; } = new HashSet<ArticleCount>();
     public ICollection<Album> Albums { get; set; } = new HashSet<Album>();

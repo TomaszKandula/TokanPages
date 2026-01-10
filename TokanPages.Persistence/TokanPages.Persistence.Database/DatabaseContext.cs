@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Entities.Photography;
-using TokanPages.Backend.Domain.Entities.Article;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Domain.Entities.Invoicing;
 using TokanPages.Backend.Domain.Entities.Notification;
