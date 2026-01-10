@@ -52,7 +52,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<UserPermission> UserPermissions { get; set; }
     public virtual DbSet<UserRoles> UserRoles { get; set; }
     public virtual DbSet<UserTokens> UserTokens { get; set; }
-    public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }
+    public virtual DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
     public virtual DbSet<UserInfo> UserInfo { get; set; }
     public virtual DbSet<UserMessage> UserMessages { get; set; }
     public virtual DbSet<UserMessageCache> UserMessagesCache { get; set; }

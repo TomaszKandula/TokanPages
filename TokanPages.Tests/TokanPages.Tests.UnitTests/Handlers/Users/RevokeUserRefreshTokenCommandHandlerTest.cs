@@ -30,7 +30,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var userRefreshToken = new UserRefreshTokens
+        var userRefreshToken = new UserRefreshToken
         {
             UserId = userId,
             Token = token,

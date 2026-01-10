@@ -52,7 +52,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             ModifiedAt = null
         };
 
-        var userRefreshToken = new UserRefreshTokens
+        var userRefreshToken = new UserRefreshToken
         {
             UserId = user.Id,
             Token = refreshToken,
@@ -65,7 +65,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             ReasonRevoked = null
         };
 
-        var newRefreshToken = new UserRefreshTokens
+        var newRefreshToken = new UserRefreshToken
         {
             UserId = user.Id,
             Token = DataUtilityService.GetRandomString(255),
@@ -100,11 +100,11 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Returns(ipAddress);
 
         mockedUserService
-            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
+            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshToken>()))
             .Returns(false);
 
         mockedUserService
-            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
+            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshToken>()))
             .Returns(true);
 
         mockedUserService
@@ -203,7 +203,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             CryptedPassword = cryptedPassword
         };
 
-        var userRefreshToken = new UserRefreshTokens
+        var userRefreshToken = new UserRefreshToken
         {
             UserId = user.Id,
             Token = generateUserRefreshToken,
@@ -237,11 +237,11 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Returns(ipAddress);
 
         mockedUserService
-            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
+            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshToken>()))
             .Returns(false);
 
         mockedUserService
-            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
+            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshToken>()))
             .Returns(false);
 
         var mockedConfig = SetConfiguration();
@@ -296,11 +296,11 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Returns(ipAddress);
 
         mockedUserService
-            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
+            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshToken>()))
             .Returns(false);
 
         mockedUserService
-            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
+            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshToken>()))
             .Returns(false);
 
         var mockedConfig = SetConfiguration();

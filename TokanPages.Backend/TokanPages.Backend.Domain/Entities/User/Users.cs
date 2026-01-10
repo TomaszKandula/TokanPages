@@ -45,7 +45,7 @@ public class Users : Entity<Guid>, IAuditable, ISoftDelete
     public ICollection<UserPermission> UserPermissions { get; set; } = new HashSet<UserPermission>();
     public ICollection<UserRoles> UserRoles { get; set; } = new HashSet<UserRoles>();
     public ICollection<UserTokens> UserTokens { get; set; } = new HashSet<UserTokens>();
-    public ICollection<UserRefreshTokens> UserRefreshTokens { get; set; } = new HashSet<UserRefreshTokens>();
+    public ICollection<UserRefreshToken> UserRefreshTokens { get; set; } = new HashSet<UserRefreshToken>();
     public ICollection<UserInfo> UserInfo { get; set; } = new HashSet<UserInfo>();
     public ICollection<UserPayment> UserPayment { get; set; } = new HashSet<UserPayment>();
     public ICollection<UserPaymentHistory> UserPaymentHistory { get; set; } = new HashSet<UserPaymentHistory>();

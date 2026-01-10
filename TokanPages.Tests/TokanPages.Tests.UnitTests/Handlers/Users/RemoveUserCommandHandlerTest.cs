@@ -101,7 +101,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             ReasonRevoked = null,
         };
 
-        var userRefreshToken = new UserRefreshTokens
+        var userRefreshToken = new UserRefreshToken
         {
             Id = Guid.NewGuid(),
             UserId = userId,

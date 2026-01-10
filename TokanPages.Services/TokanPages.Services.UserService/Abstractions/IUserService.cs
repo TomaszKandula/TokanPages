@@ -40,15 +40,15 @@ public interface IUserService
 
     Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default);
 
-    Task<UserRefreshTokens> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default);
+    Task<UserRefreshToken> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default);
 
     Task RevokeDescendantRefreshTokens(RevokeRefreshTokensInput input, CancellationToken cancellationToken = default);
 
     Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default);
 
-    bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens);
+    bool IsRefreshTokenExpired(UserRefreshToken userRefreshToken);
 
-    bool IsRefreshTokenRevoked(UserRefreshTokens userRefreshTokens);
+    bool IsRefreshTokenRevoked(UserRefreshToken userRefreshToken);
 
-    bool IsRefreshTokenActive(UserRefreshTokens userRefreshTokens);
+    bool IsRefreshTokenActive(UserRefreshToken userRefreshToken);
 }

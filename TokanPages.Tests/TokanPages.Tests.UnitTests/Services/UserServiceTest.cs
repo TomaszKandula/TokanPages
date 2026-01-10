@@ -845,7 +845,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var userId = Guid.NewGuid();
         var users = GetUser(userId).ToList();
-        var userRefreshTokens = new List<UserRefreshTokens>
+        var userRefreshTokens = new List<UserRefreshToken>
         {
             new() // New token
             {
@@ -917,7 +917,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var userId = Guid.NewGuid();
         var users = GetUser(userId).ToList();
-        var userRefreshTokens = new List<UserRefreshTokens>
+        var userRefreshTokens = new List<UserRefreshToken>
         {
             new()
             {
@@ -988,7 +988,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var userId = Guid.NewGuid();
         var users = GetUser(userId).ToList();
-        var userRefreshTokens = new List<UserRefreshTokens>
+        var userRefreshTokens = new List<UserRefreshToken>
         {
             new()
             {
@@ -1101,7 +1101,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid();
         var users = GetUser(userId).ToList();
         var token = DataUtilityService.GetRandomString(255);
-        var userRefreshTokens = new List<UserRefreshTokens>
+        var userRefreshTokens = new List<UserRefreshToken>
         {
             new() // Already revoked
             {
@@ -1211,7 +1211,7 @@ public class UserServiceTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var userRefreshToken = new UserRefreshTokens
+        var userRefreshToken = new UserRefreshToken
         {
             UserId = userId,
             Token = token,

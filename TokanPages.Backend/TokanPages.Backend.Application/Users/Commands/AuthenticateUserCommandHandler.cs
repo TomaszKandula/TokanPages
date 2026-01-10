@@ -84,7 +84,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             Command = nameof(AuthenticateUserCommand)
         };
 
-        var newRefreshToken = new UserRefreshTokens
+        var newRefreshToken = new UserRefreshToken
         {
             UserId = user.Id,
             Token = refreshToken.Token,

@@ -6,7 +6,7 @@ namespace TokanPages.Services.UserService.Models;
 [ExcludeFromCodeCoverage]
 public class RevokeRefreshTokenInput
 {
-    public UserRefreshTokens? UserRefreshTokens { get; set; }
+    public UserRefreshToken? UserRefreshTokens { get; set; }
 
     public string? RequesterIpAddress { get; set; }
 

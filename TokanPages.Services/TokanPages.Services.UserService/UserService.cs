@@ -272,7 +272,7 @@ public sealed class UserService : IUserService
             await _databaseContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<UserRefreshTokens> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default)
+    public async Task<UserRefreshToken> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default)
     {
         var newRefreshToken = _webTokenUtility.GenerateRefreshToken(input.RequesterIpAddress, 
             _configuration.GetValue<int>("Ids_RefreshToken_Maturity"));
@@ -288,7 +288,7 @@ public sealed class UserService : IUserService
 
         await RevokeRefreshToken(tokenInput, cancellationToken);
 
-        return new UserRefreshTokens
+        return new UserRefreshToken
         {
             UserId = input.UserId,
             Token = newRefreshToken.Token,
@@ -354,19 +354,19 @@ public sealed class UserService : IUserService
             await _databaseContext.SaveChangesAsync(cancellationToken);
     }
 
-    public bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens)
+    public bool IsRefreshTokenExpired(UserRefreshToken userRefreshToken)
     {
-        return userRefreshTokens.Expires <= _dateTimeService.Now;
+        return userRefreshToken.Expires <= _dateTimeService.Now;
     }
 
-    public bool IsRefreshTokenRevoked(UserRefreshTokens userRefreshTokens)
+    public bool IsRefreshTokenRevoked(UserRefreshToken userRefreshToken)
     {
-        return userRefreshTokens.Revoked != null;
+        return userRefreshToken.Revoked != null;
     }
 
-    public bool IsRefreshTokenActive(UserRefreshTokens userRefreshTokens)
+    public bool IsRefreshTokenActive(UserRefreshToken userRefreshToken)
     {
-        return!IsRefreshTokenRevoked(userRefreshTokens) && !IsRefreshTokenExpired(userRefreshTokens);
+        return!IsRefreshTokenRevoked(userRefreshToken) && !IsRefreshTokenExpired(userRefreshToken);
     }
 
     private Guid? UserIdFromClaim()

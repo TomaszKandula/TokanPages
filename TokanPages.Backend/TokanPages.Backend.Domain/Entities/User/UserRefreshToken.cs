@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Backend.Domain.Entities.User;
 
 [ExcludeFromCodeCoverage]
-public class UserRefreshTokens : Entity<Guid>
+public class UserRefreshToken : Entity<Guid>
 {
     public Guid UserId { get; set; }
     [Required]

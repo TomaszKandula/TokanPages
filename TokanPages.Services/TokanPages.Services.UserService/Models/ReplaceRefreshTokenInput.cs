@@ -8,7 +8,7 @@ public class ReplaceRefreshTokenInput
 {
     public Guid UserId { get; set; }
 
-    public UserRefreshTokens? SavedUserRefreshTokens { get; set; }
+    public UserRefreshToken? SavedUserRefreshTokens { get; set; }
 
     public string? RequesterIpAddress { get; set; }
 
