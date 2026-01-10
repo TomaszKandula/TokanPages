@@ -17,7 +17,7 @@ public class DatabaseContext : DbContext
 
     /* Category: Article */
     public virtual DbSet<Article> Articles { get; set; }
-    public virtual DbSet<ArticleCategory> ArticleCategory { get; set; }
+    public virtual DbSet<ArticleCategory> ArticleCategory { get; set; }//TODO: rename => ArticleCategories
     public virtual DbSet<ArticleLike> ArticleLikes { get; set; }
     public virtual DbSet<ArticleCount> ArticleCounts { get; set; }
     public virtual DbSet<ArticleTag> ArticleTags { get; set; }
@@ -53,7 +53,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<UserRole> UserRoles { get; set; }
     public virtual DbSet<UserToken> UserTokens { get; set; }
     public virtual DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
-    public virtual DbSet<UserInfo> UserInfo { get; set; }
+    public virtual DbSet<UserInfo> UserInfo { get; set; }//TODO: rename => UserInformation
     public virtual DbSet<UserMessage> UserMessages { get; set; }
     public virtual DbSet<UserMessageCache> UserMessagesCache { get; set; }
     public virtual DbSet<UserPayment> UserPayments { get; set; }
@@ -68,8 +68,8 @@ public class DatabaseContext : DbContext
     public virtual DbSet<HttpRequest> HttpRequests { get; set; }
     public virtual DbSet<UploadedVideo> UploadedVideos { get; set; }
     public virtual DbSet<ServiceBusMessage> ServiceBusMessages { get; set; }
-    public virtual DbSet<SubscriptionPricing> SubscriptionPricing { get; set; }
-    public virtual DbSet<BusinessInquiry> BusinessInquiry { get; set; }
+    public virtual DbSet<SubscriptionPricing> SubscriptionPricing { get; set; }//TODO: rename => SubscriptionsPricing
+    public virtual DbSet<BusinessInquiry> BusinessInquiry { get; set; }//TODO: rename => BusinessInquiries
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
