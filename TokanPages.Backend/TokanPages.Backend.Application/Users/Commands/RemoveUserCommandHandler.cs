@@ -51,7 +51,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (albums.Count > 0)
         {
             foreach (var item in albums) { item.UserId = null; item.UserPhotoId = null; }
-            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(Albums)}");
+            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(Album)}");
         }
 
         var articles = await DatabaseContext.Articles

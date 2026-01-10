@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace TokanPages.Persistence.Database.Mappings.Photography;
 
 [ExcludeFromCodeCoverage]
-public class AlbumsConfiguration : IEntityTypeConfiguration<Albums>
+public class AlbumsConfiguration : IEntityTypeConfiguration<Album>
 {
-    public void Configure(EntityTypeBuilder<Albums> builder)
+    public void Configure(EntityTypeBuilder<Album> builder)
     {
         builder.Property(albums => albums.Id).ValueGeneratedOnAdd();
             

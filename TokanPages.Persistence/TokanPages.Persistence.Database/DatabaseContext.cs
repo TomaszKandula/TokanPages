@@ -39,7 +39,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<WebNotification> WebNotifications { get; set; }
 
     /* Category: Photography */
-    public virtual DbSet<Albums> Albums { get; set; }
+    public virtual DbSet<Album> Albums { get; set; }
     public virtual DbSet<UserPhotos> UserPhotos { get; set; }
     public virtual DbSet<PhotoGears> PhotoGears { get; set; }
     public virtual DbSet<PhotoCategories> PhotoCategories { get; set; }

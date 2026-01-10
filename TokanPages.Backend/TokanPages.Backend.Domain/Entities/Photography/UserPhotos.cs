@@ -30,5 +30,5 @@ public class UserPhotos : Entity<Guid>, IAuditable
     public Users Users { get; set; }
     public PhotoGears PhotoGears { get; set; }
     public PhotoCategories PhotoCategories { get; set; }
-    public ICollection<Albums> Albums { get; set; } = new HashSet<Albums>();
+    public ICollection<Album> Albums { get; set; } = new HashSet<Album>();
 }

@@ -128,7 +128,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             PermissionId = permission.Id
         };
 
-        var album = new Albums
+        var album = new Album
         {
             Id = Guid.NewGuid(),
             UserId = userId,
