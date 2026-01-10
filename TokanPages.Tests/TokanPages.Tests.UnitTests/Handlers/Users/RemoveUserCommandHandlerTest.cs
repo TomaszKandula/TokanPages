@@ -34,7 +34,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             Description = DataUtilityService.GetRandomString()
         };
 
-        var permission = new Permissions
+        var permission = new Permission
         {
             Id = Guid.NewGuid(),
             Name = DataUtilityService.GetRandomString(),

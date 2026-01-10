@@ -14,6 +14,7 @@ using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService.Abstractions;
 using TokanPages.Services.WebTokenService.Models;
 using Xunit;
+using Permission = TokanPages.Backend.Domain.Entities.User.Permission;
 
 namespace TokanPages.Tests.UnitTests.Services;
 
@@ -543,7 +544,7 @@ public class UserServiceTest : TestBase
 
         // Act
         // Assert
-        var result = await userProvider.HasPermissionAssigned(Permission.CanSelectArticles.ToString());
+        var result = await userProvider.HasPermissionAssigned(Backend.Domain.Enums.Permission.CanSelectArticles.ToString());
 
         // Assert
         result.Should().BeTrue();
@@ -588,7 +589,7 @@ public class UserServiceTest : TestBase
             mockedConfig.Object);
 
         // Act
-        var result = await userProvider.HasPermissionAssigned(Permission.CanAddLikes.ToString());
+        var result = await userProvider.HasPermissionAssigned(Backend.Domain.Enums.Permission.CanAddLikes.ToString());
 
         // Assert
         result.Should().BeFalse();
@@ -634,7 +635,7 @@ public class UserServiceTest : TestBase
 
         // Act
         // Assert
-        var result = await userProvider.HasPermissionAssigned(Permission.CanSelectArticles.ToString());
+        var result = await userProvider.HasPermissionAssigned(Backend.Domain.Enums.Permission.CanSelectArticles.ToString());
         result.Should().BeFalse();
     }
 
@@ -1299,19 +1300,19 @@ public class UserServiceTest : TestBase
         };
     }
 
-    private static List<Permissions> GetPermissions()
+    private static List<Permission> GetPermissions()
     {
-        return new List<Permissions>
+        return new List<Permission>
         {
             new()
             {
                 Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
-                Name = Permission.CanSelectArticles.ToString()
+                Name = Backend.Domain.Enums.Permission.CanSelectArticles.ToString()
             },
             new()
             {
                 Id = Guid.Parse("76fb3d47-f10d-467e-9e68-61d8a9fc5f6d"),
-                Name = Permission.CanInsertArticles.ToString()
+                Name = Backend.Domain.Enums.Permission.CanInsertArticles.ToString()
             }
         };   
     }

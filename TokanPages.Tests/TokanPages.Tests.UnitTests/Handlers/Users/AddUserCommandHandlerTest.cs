@@ -38,7 +38,7 @@ public class AddUserCommandHandlerTest : TestBase
             Description = Backend.Domain.Enums.Role.EverydayUser.ToString()
         };
 
-        var permissions = new List<Permissions>
+        var permissions = new List<Permission>
         {
             new()
             {
@@ -56,13 +56,13 @@ public class AddUserCommandHandlerTest : TestBase
             {
                 Id = Guid.NewGuid(),
                 Roles = roles,
-                Permissions = permissions[0]
+                Permission = permissions[0]
             },
             new()
             {
                 Id = Guid.NewGuid(),
                 Roles = roles,
-                Permissions = permissions[1]
+                Permission = permissions[1]
             }
         };
 

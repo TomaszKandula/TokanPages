@@ -38,7 +38,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var permission = new Permissions
+        var permission = new Permission
         {
             Id = permissionId,
             Name = DataUtilityService.GetRandomString()
@@ -124,7 +124,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var permission = new Permissions
+        var permission = new Permission
         {
             Id = permissionId,
             Name = DataUtilityService.GetRandomString()
@@ -209,7 +209,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var permission = new Permissions
+        var permission = new Permission
         {
             Id = permissionId,
             Name = DataUtilityService.GetRandomString()

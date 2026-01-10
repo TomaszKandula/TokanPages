@@ -194,8 +194,8 @@ public sealed class UserService : IUserService
 
         var givenPermissions = await _databaseContext.UserPermissions
             .AsNoTracking()
-            .Include(permissions => permissions.Permissions)
-            .Where(permissions => permissions.UserId == userId && permissions.Permissions.Name == userPermissionName)
+            .Include(permissions => permissions.Permission)
+            .Where(permissions => permissions.UserId == userId && permissions.Permission.Name == userPermissionName)
             .ToListAsync(cancellationToken);
 
         return givenPermissions.Count != 0;
@@ -207,8 +207,8 @@ public sealed class UserService : IUserService
 
         var givenPermissions = await _databaseContext.UserPermissions
             .AsNoTracking()
-            .Include(userPermissions => userPermissions.Permissions)
-            .Where(userPermissions => userPermissions.UserId == userId && userPermissions.Permissions.Id == permissionId)
+            .Include(userPermissions => userPermissions.Permission)
+            .Where(userPermissions => userPermissions.UserId == userId && userPermissions.Permission.Id == permissionId)
             .ToListAsync(cancellationToken);
 
         return givenPermissions.Count != 0;
@@ -421,7 +421,7 @@ public sealed class UserService : IUserService
         var getUserId = userId ?? UserIdFromClaim();
         var userPermissions = await _databaseContext.UserPermissions
             .AsNoTracking()
-            .Include(permissions => permissions.Permissions)
+            .Include(permissions => permissions.Permission)
             .Where(permissions => permissions.UserId == getUserId)
             .ToListAsync(cancellationToken);
 
@@ -433,7 +433,7 @@ public sealed class UserService : IUserService
         {
             _userPermissions.Add(new GetUserPermissionsOutput
             {
-                Name = userPermission.Permissions.Name
+                Name = userPermission.Permission.Name
             });
         }
     }

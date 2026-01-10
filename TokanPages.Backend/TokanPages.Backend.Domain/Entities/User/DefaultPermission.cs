@@ -15,5 +15,5 @@ public class DefaultPermission : Entity<Guid>, IAuditable
 
     /* Navigation properties */
     public Roles Roles { get; set; } 
-    public Permissions Permissions { get; set; }
+    public Permission Permission { get; set; }
 }

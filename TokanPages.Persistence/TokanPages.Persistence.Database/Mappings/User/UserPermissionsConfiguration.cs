@@ -20,7 +20,7 @@ public class UserPermissionsConfiguration : IEntityTypeConfiguration<UserPermiss
             .HasConstraintName("FK_UserPermissions_Users");
             
         builder
-            .HasOne(userPermissions => userPermissions.Permissions)
+            .HasOne(userPermissions => userPermissions.Permission)
             .WithMany(permissions => permissions.UserPermissions)
             .HasForeignKey(userPermissions => userPermissions.PermissionId)
             .OnDelete(DeleteBehavior.ClientSetNull)

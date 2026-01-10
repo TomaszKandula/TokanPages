@@ -13,7 +13,7 @@ public class DefaultPermissionsConfiguration : IEntityTypeConfiguration<DefaultP
         builder.Property(defaultPermissions => defaultPermissions.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(defaultPermissions => defaultPermissions.Permissions)
+            .HasOne(defaultPermissions => defaultPermissions.Permission)
             .WithMany(permissions => permissions.DefaultPermissions)
             .HasForeignKey(defaultPermissions => defaultPermissions.PermissionId)
             .OnDelete(DeleteBehavior.ClientSetNull)

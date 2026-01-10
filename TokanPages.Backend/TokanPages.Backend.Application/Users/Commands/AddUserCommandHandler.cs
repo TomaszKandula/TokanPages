@@ -175,7 +175,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var defaultPermissions = await DatabaseContext.DefaultPermissions
             .AsNoTracking()
             .Include(permissions => permissions.Roles)
-            .Include(permissions => permissions.Permissions)
+            .Include(permissions => permissions.Permission)
             .Where(permissions => permissions.Roles.Name == userRoleName)
             .Select(permissions => new DefaultPermission
             {
@@ -183,7 +183,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
                 RoleId = permissions.RoleId,
                 Roles = permissions.Roles,
                 PermissionId = permissions.PermissionId,
-                Permissions = permissions.Permissions
+                Permission = permissions.Permission
             })
             .ToListAsync(cancellationToken);
 

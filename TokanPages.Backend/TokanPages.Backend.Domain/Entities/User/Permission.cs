@@ -5,7 +5,7 @@ using TokanPages.Backend.Domain.Contracts;
 namespace TokanPages.Backend.Domain.Entities.User;
 
 [ExcludeFromCodeCoverage]
-public class Permissions : Entity<Guid>, IAuditable
+public class Permission : Entity<Guid>, IAuditable
 {
     [MaxLength(100)]
     public string Name { get; set; }

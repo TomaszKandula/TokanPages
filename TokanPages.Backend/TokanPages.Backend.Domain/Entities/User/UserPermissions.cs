@@ -15,5 +15,5 @@ public class UserPermissions : Entity<Guid>, IAuditable
 
     /* Navigation properties */
     public Users Users { get; set; }
-    public Permissions Permissions { get; set; }
+    public Permission Permission { get; set; }
 }
