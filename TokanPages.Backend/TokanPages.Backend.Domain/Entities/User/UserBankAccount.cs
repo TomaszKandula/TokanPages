@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Invoicing;
 using TokanPages.Backend.Domain.Enums;
 
-namespace TokanPages.Backend.Domain.Entities.Invoicing;
+namespace TokanPages.Backend.Domain.Entities.User;
 
 [ExcludeFromCodeCoverage]
 public class UserBankAccount : Entity<Guid>
@@ -22,6 +22,6 @@ public class UserBankAccount : Entity<Guid>
     public CurrencyCode CurrencyCode { get; set; }
 
     /* Navigation properties */
-    public User.User User { get; set; }
+    public User User { get; set; }
     public ICollection<BatchInvoice> BatchInvoices { get; set; } = new HashSet<BatchInvoice>();
 }
