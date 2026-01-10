@@ -8,11 +8,11 @@ public class VatValidationRequest
 {
     public string VatNumber { get; set; }
 
-    public IEnumerable<VatNumberPatterns> VatNumberPatterns { get; set; }
+    public IEnumerable<VatNumberPattern> VatNumberPatterns { get; set; }
 
     public PolishVatNumberOptions Options { get; set; }
 
-    public VatValidationRequest(string vatNumber, IEnumerable<VatNumberPatterns> vatNumberPatterns, PolishVatNumberOptions options)
+    public VatValidationRequest(string vatNumber, IEnumerable<VatNumberPattern> vatNumberPatterns, PolishVatNumberOptions options)
     {
         VatNumber = vatNumber;
         VatNumberPatterns = vatNumberPatterns;

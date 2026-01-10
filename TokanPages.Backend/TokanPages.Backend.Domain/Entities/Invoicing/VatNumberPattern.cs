@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class VatNumberPatterns : Entity<Guid>
+public class VatNumberPattern : Entity<Guid>
 {
     [Required]
     [MaxLength(2)]

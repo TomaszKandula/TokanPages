@@ -6,8 +6,8 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 namespace TokanPages.Persistence.Database.Mappings.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class VatNumberPatternsConfiguration : IEntityTypeConfiguration<VatNumberPatterns>
+public class VatNumberPatternsConfiguration : IEntityTypeConfiguration<VatNumberPattern>
 {
-    public void Configure(EntityTypeBuilder<VatNumberPatterns> builder) 
+    public void Configure(EntityTypeBuilder<VatNumberPattern> builder) 
         => builder.Property(patterns => patterns.Id).ValueGeneratedOnAdd();
 }

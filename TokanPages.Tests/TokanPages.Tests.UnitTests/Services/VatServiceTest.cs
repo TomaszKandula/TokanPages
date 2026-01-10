@@ -277,9 +277,9 @@ public class VatServiceTest : TestBase
 		result.Errors[0].ErrorCode.Should().Be(nameof(ErrorCodes.VAT_NUM_LENGTH_NINE));
 	}
 	    
-	private static List<VatNumberPatterns> GetPatternList()
+	private static List<VatNumberPattern> GetPatternList()
 	{
-		return new List<VatNumberPatterns>
+		return new List<VatNumberPattern>
 		{
 			new() { CountryCode = "PL", Pattern = @"^PL[ ]?\d{10}$|^\d{3}-\d{3}-\d{2}-\d{2}$|^\d{3}-\d{2}-\d{2}-\d{3}$" },
 			new() { CountryCode = "AT", Pattern = @"^AT[ ]?U\d{8}$" },

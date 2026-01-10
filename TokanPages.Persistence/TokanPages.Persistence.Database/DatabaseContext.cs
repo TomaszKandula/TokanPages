@@ -30,7 +30,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<IssuedInvoice> IssuedInvoices { get; set; }
     public virtual DbSet<UserBankAccount> UserBankAccounts { get; set; }
     public virtual DbSet<UserCompany> UserCompanies { get; set; }
-    public virtual DbSet<VatNumberPatterns> VatNumberPatterns { get; set; }
+    public virtual DbSet<VatNumberPattern> VatNumberPatterns { get; set; }
 
     /* Category: Notification */
     public virtual DbSet<PushNotification> PushNotifications { get; set; }
