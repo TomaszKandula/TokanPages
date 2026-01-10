@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TokanPages.Backend.Domain.Entities.Users;
 
-namespace TokanPages.Persistence.Database.Mappings.Invoicing;
+namespace TokanPages.Persistence.Database.Mappings.User;
 
 [ExcludeFromCodeCoverage]
 public class UserCompaniesConfiguration : IEntityTypeConfiguration<UserCompany>
