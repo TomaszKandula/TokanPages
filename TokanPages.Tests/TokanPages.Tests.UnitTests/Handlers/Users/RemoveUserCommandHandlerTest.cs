@@ -136,7 +136,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             Title = DataUtilityService.GetRandomString()
         };
 
-        var article = new Backend.Domain.Entities.Article.Articles
+        var article = new Article
         {
             Id = Guid.NewGuid(),
             UserId = userId,

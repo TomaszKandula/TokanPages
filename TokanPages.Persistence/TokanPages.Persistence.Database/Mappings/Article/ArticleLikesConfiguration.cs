@@ -13,7 +13,7 @@ public class ArticleLikesConfiguration : IEntityTypeConfiguration<ArticleLike>
         builder.Property(articleLikes => articleLikes.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(articleLikes => articleLikes.Articles)
+            .HasOne(articleLikes => articleLikes.Article)
             .WithMany(articles => articles.ArticleLikes)
             .HasForeignKey(articleLikes => articleLikes.ArticleId)
             .OnDelete(DeleteBehavior.ClientSetNull)

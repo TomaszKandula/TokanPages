@@ -30,7 +30,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var articleId = Guid.NewGuid();
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Article
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -109,7 +109,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var articleId = Guid.NewGuid();
-        var article = new Backend.Domain.Entities.Article.Articles
+        var article = new Article
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -204,7 +204,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         };
 
         var articleId = Guid.NewGuid();
-        var article = new Backend.Domain.Entities.Article.Articles
+        var article = new Article
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -304,7 +304,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Article
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

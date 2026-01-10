@@ -97,7 +97,7 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
             },
         };
 
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Article
         {
             Id = Guid.NewGuid(),
             CategoryId = articleCategories[0].Id,

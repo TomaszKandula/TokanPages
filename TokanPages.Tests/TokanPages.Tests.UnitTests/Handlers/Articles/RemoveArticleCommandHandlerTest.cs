@@ -28,7 +28,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Article
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -107,7 +107,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Article
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

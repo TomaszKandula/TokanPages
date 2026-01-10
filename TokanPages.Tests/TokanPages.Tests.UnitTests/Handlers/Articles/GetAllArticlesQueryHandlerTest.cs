@@ -22,7 +22,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new List<Backend.Domain.Entities.Article.Articles>
+        var articles = new List<Backend.Domain.Entities.Article.Article>
         {
             new()
             {

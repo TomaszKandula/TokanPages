@@ -6,7 +6,7 @@ using TokanPages.Backend.Domain.Entities.User;
 namespace TokanPages.Backend.Domain.Entities.Article;
 
 [ExcludeFromCodeCoverage]
-public class Articles : Entity<Guid>, IAuditable
+public class Article : Entity<Guid>, IAuditable
 {
     [Required]
     [MaxLength(255)]

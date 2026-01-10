@@ -16,7 +16,7 @@ public class DatabaseContext : DbContext
     public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
     /* Category: Article */
-    public virtual DbSet<Articles> Articles { get; set; }
+    public virtual DbSet<Article> Articles { get; set; }
     public virtual DbSet<ArticleCategory> ArticleCategory { get; set; }
     public virtual DbSet<ArticleLike> ArticleLikes { get; set; }
     public virtual DbSet<ArticleCount> ArticleCounts { get; set; }

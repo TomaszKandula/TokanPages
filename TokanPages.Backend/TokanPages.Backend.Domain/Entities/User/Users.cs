@@ -37,7 +37,7 @@ public class Users : Entity<Guid>, IAuditable, ISoftDelete
     public ICollection<UserBankAccounts> UserBankAccounts { get; set; } = new HashSet<UserBankAccounts>();
     public ICollection<IssuedInvoices> IssuedInvoices { get; set; } = new HashSet<IssuedInvoices>();
     public ICollection<BatchInvoices> BatchInvoices { get; set; } = new HashSet<BatchInvoices>();
-    public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
+    public ICollection<Article.Article> Articles { get; set; } = new HashSet<Article.Article>();
     public ICollection<ArticleLike> ArticleLikes { get; set; } = new HashSet<ArticleLike>();
     public ICollection<ArticleCount> ArticleCounts { get; set; } = new HashSet<ArticleCount>();
     public ICollection<Albums> Albums { get; set; } = new HashSet<Albums>();

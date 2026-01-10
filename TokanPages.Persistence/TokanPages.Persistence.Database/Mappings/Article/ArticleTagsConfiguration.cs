@@ -13,7 +13,7 @@ public class ArticleTagsConfiguration : IEntityTypeConfiguration<ArticleTags>
         builder.Property(articleCounts => articleCounts.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(articleTags => articleTags.Articles)
+            .HasOne(articleTags => articleTags.Article)
             .WithMany(articles => articles.ArticleTags)
             .HasForeignKey(articleTags => articleTags.ArticleId)
             .OnDelete(DeleteBehavior.ClientSetNull)

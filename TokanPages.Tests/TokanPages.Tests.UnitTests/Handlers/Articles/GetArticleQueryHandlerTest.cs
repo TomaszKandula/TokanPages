@@ -105,7 +105,7 @@ public class GetArticleQueryHandlerTest : TestBase
             },
         };
 
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Article
         {
             Id = Guid.NewGuid(),
             CategoryId = articleCategories[0].Id,
@@ -210,7 +210,7 @@ public class GetArticleQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Article
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

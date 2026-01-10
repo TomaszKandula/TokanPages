@@ -7,9 +7,9 @@ namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seede
 [ExcludeFromCodeCoverage]
 public static class ArticlesSeeder
 {
-    public static IEnumerable<Articles> SeedArticles()
+    public static IEnumerable<Article> SeedArticles()
     {
-        return new List<Articles>
+        return new List<Article>
         {
             new()
             {

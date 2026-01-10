@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
 
@@ -16,7 +15,7 @@ public class ArticleCategory : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public ICollection<Articles> Articles { get; set; } = new HashSet<Articles>();
+    public ICollection<Article> Articles { get; set; } = new HashSet<Article>();
 
     public ICollection<CategoryName> CategoryNames { get; set; } = new HashSet<CategoryName>();
 }

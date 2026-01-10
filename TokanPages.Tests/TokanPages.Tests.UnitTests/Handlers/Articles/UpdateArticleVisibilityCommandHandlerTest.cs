@@ -51,7 +51,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             PermissionId = permissionId
         };
 
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Backend.Domain.Entities.Article.Article
         {
             Id = articlesId,
             UserId = userId,
@@ -137,7 +137,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             PermissionId = permissionId
         };
 
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Backend.Domain.Entities.Article.Article
         {
             Id = articlesId,
             UserId = userId,
@@ -222,7 +222,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             PermissionId = permissionId
         };
 
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Backend.Domain.Entities.Article.Article
         {
             Id = articlesId,
             UserId = userId,
