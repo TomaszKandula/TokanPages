@@ -7,9 +7,9 @@ namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seede
 [ExcludeFromCodeCoverage]
 public static class UserRolesSeeder
 {
-    public static IEnumerable<UserRoles> SeedUserRoles()
+    public static IEnumerable<UserRole> SeedUserRoles()
     {
-        return new List<UserRoles>
+        return new List<UserRole>
         {
             new()
             {

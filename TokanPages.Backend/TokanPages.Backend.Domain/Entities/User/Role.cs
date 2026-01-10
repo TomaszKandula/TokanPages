@@ -18,5 +18,5 @@ public class Role : Entity<Guid>, IAuditable
 
     /* Navigation properties */
     public ICollection<DefaultPermission> DefaultPermissions { get; set; } = new HashSet<DefaultPermission>();
-    public ICollection<UserRoles> UserRoles { get; set; } = new HashSet<UserRoles>();
+    public ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
 }

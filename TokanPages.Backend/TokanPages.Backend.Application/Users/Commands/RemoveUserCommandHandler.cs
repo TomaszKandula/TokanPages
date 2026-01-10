@@ -144,7 +144,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (userRoles.Count > 0)
         {
             DatabaseContext.RemoveRange(userRoles);
-            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserRoles)}");
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserRole)}");
         }
 
         var userPermissions = await DatabaseContext.UserPermissions

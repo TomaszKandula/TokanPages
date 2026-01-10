@@ -119,7 +119,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -158,7 +158,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -193,7 +193,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -366,7 +366,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -403,7 +403,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -439,7 +439,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -474,7 +474,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -752,7 +752,7 @@ public class UserServiceTest : TestBase
         var users = GetUser(userId).ToList();
         var userInfo = GetUserInfo(userId).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -798,7 +798,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid();
         var users = GetUser(userId).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id

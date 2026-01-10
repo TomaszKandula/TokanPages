@@ -195,7 +195,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             .Select(permissions => permissions.PermissionId)
             .ToList();
 
-        var newRole = new UserRoles
+        var newRole = new UserRole
         {
             UserId = userId,
             RoleId = everydayUserRoleId,

@@ -114,7 +114,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             ReasonRevoked = null,
         };
 
-        var userRole = new UserRoles
+        var userRole = new UserRole
         {
             Id = Guid.NewGuid(),
             UserId = userId,
