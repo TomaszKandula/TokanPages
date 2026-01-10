@@ -125,7 +125,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             LanguageIso = "ENG"
         };
 
-        var likes = new ArticleLikes 
+        var likes = new ArticleLike 
         { 
             Id = Guid.NewGuid(),
             ArticleId = articles.Id,
@@ -306,7 +306,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             LanguageIso = "ENG"
         };
             
-        var likes = new ArticleLikes 
+        var likes = new ArticleLike 
         { 
             Id = Guid.NewGuid(),
             ArticleId = articles.Id,

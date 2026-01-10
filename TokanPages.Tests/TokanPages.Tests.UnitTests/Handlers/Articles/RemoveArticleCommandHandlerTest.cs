@@ -41,7 +41,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             LanguageIso = "ENG"
         };
 
-        var articleLikes = new ArticleLikes
+        var articleLikes = new ArticleLike
         {
             ArticleId = articleId,
             UserId = userId,

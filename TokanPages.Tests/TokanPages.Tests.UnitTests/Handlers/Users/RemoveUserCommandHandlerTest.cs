@@ -149,7 +149,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             LanguageIso = "ENG"
         };
 
-        var articleLike = new ArticleLikes
+        var articleLike = new ArticleLike
         {
             Id = Guid.NewGuid(),
             UserId = userId,

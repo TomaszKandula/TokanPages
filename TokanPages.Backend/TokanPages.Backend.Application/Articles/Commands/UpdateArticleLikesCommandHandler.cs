@@ -84,7 +84,7 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
             : _configuration.GetValue<int>("Limit_Likes_User");
 
         var likes = request.AddToLikes > likesLimit ? likesLimit : request.AddToLikes;
-        var entity = new ArticleLikes
+        var entity = new ArticleLike
         {
             ArticleId = request.Id,
             UserId = userId,
@@ -102,20 +102,20 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
         await DatabaseContext.ArticleLikes.AddAsync(entity, cancellationToken);
     }
 
-    private void UpdateLikes(Guid? userId, Domain.Entities.Article.Articles articles, ArticleLikes articleLikes, int likesToBeAdded)
+    private void UpdateLikes(Guid? userId, Domain.Entities.Article.Articles articles, ArticleLike articleLike, int likesToBeAdded)
     {
         var likesLimit = userId == null 
             ? _configuration.GetValue<int>("Limit_Likes_Anonymous") 
             : _configuration.GetValue<int>("Limit_Likes_User");
 
         var likes = likesToBeAdded > likesLimit ? likesLimit : likesToBeAdded;
-        articleLikes.LikeCount += likes;
-        articleLikes.ModifiedAt = _dateTimeService.Now;
-        articleLikes.ModifiedBy = userId ?? Guid.Empty;
+        articleLike.LikeCount += likes;
+        articleLike.ModifiedAt = _dateTimeService.Now;
+        articleLike.ModifiedBy = userId ?? Guid.Empty;
 
         articles.TotalLikes += likes;
         articles.ModifiedAt = _dateTimeService.Now;
         articles.ModifiedBy = userId ?? Guid.Empty;
-        DatabaseContext.ArticleLikes.Update(articleLikes);
+        DatabaseContext.ArticleLikes.Update(articleLike);
     }
 }

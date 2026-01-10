@@ -111,7 +111,7 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
             LanguageIso = "ENG"
         };
 
-        var likes = new List<ArticleLikes> 
+        var likes = new List<ArticleLike> 
         { 
             new()
             {

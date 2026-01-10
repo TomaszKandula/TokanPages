@@ -71,7 +71,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (articleLikes.Count > 0)
         {
             foreach (var item in articleLikes) { item.UserId = null; }
-            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(ArticleLikes)}");
+            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(ArticleLike)}");
         }
 
         var articleCounts = await DatabaseContext.ArticleCounts

@@ -6,9 +6,9 @@ using TokanPages.Backend.Domain.Entities.Article;
 namespace TokanPages.Persistence.Database.Mappings.Article;
 
 [ExcludeFromCodeCoverage]
-public class ArticleLikesConfiguration : IEntityTypeConfiguration<ArticleLikes>
+public class ArticleLikesConfiguration : IEntityTypeConfiguration<ArticleLike>
 {
-    public void Configure(EntityTypeBuilder<ArticleLikes> builder)
+    public void Configure(EntityTypeBuilder<ArticleLike> builder)
     {
         builder.Property(articleLikes => articleLikes.Id).ValueGeneratedOnAdd();
             

@@ -6,7 +6,7 @@ using TokanPages.Backend.Domain.Entities.User;
 namespace TokanPages.Backend.Domain.Entities.Article;
 
 [ExcludeFromCodeCoverage]
-public class ArticleLikes : Entity<Guid>, IAuditable
+public class ArticleLike : Entity<Guid>, IAuditable
 {
     [Required]
     public Guid ArticleId { get; set; }

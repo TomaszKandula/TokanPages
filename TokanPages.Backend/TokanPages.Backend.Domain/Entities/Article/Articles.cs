@@ -32,6 +32,6 @@ public class Articles : Entity<Guid>, IAuditable
     public Users Users { get; set; }
     public ArticleCategory ArticleCategory { get; set; }
     public ICollection<ArticleTags> ArticleTags { get; set; } =  new HashSet<ArticleTags>();
-    public ICollection<ArticleLikes> ArticleLikes { get; set; } = new HashSet<ArticleLikes>();
+    public ICollection<ArticleLike> ArticleLikes { get; set; } = new HashSet<ArticleLike>();
     public ICollection<ArticleCount> ArticleCounts { get; set; } = new HashSet<ArticleCount>();
 }

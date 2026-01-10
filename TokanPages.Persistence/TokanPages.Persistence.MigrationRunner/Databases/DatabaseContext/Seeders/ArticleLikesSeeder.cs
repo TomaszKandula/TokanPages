@@ -7,9 +7,9 @@ namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seede
 [ExcludeFromCodeCoverage]
 public static class ArticleLikesSeeder
 {
-    public static IEnumerable<ArticleLikes> SeedArticleLikes() 
+    public static IEnumerable<ArticleLike> SeedArticleLikes() 
     {
-        return new List<ArticleLikes>
+        return new List<ArticleLike>
         {
             new()
             {
