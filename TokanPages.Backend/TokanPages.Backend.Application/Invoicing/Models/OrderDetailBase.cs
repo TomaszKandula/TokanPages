@@ -20,7 +20,7 @@ public class OrderDetailBase<T>
 
     public string CompanyVatNumber { get; set; } = "";
 
-    public CountryCodes CountryCode { get; set; }
+    public CountryCode CountryCode { get; set; }
 
     public string City { get; set; } = "";
 

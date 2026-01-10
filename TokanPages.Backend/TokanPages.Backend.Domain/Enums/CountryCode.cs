@@ -9,7 +9,7 @@ namespace TokanPages.Backend.Domain.Enums;
 /// This is a incomplete list of country ISO codes as described in the ISO 3166 international standard.
 /// In case of extending this list, please keep the correct numeric value.
 /// </remarks>
-public enum CountryCodes
+public enum CountryCode
 {
     [EnumMember(Value = "unknown")]
     Unknown = 0,

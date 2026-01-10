@@ -148,7 +148,7 @@ public class BatchServiceTest : TestBase
             PostalCode = DataUtilityService.GetRandomString(6),
             City = DataUtilityService.GetRandomString(7),
             CurrencyCode = CurrencyCodes.Dkk,
-            CountryCode = CountryCodes.Denmark
+            CountryCode = CountryCode.Denmark
         };
 
         var userBankAccount = new UserBankAccounts
@@ -176,7 +176,7 @@ public class BatchServiceTest : TestBase
                 PaymentType = PaymentTypes.CreditCard,
                 CompanyName = DataUtilityService.GetRandomString(),
                 CompanyVatNumber = DataUtilityService.GetRandomString(),
-                CountryCode = CountryCodes.Poland,
+                CountryCode = CountryCode.Poland,
                 CurrencyCode = CurrencyCodes.Eur,
                 City = DataUtilityService.GetRandomString(),
                 StreetAddress = DataUtilityService.GetRandomString(),
@@ -224,7 +224,7 @@ public class BatchServiceTest : TestBase
                 PaymentType = PaymentTypes.CreditCard,
                 CompanyName = DataUtilityService.GetRandomString(),
                 CompanyVatNumber = DataUtilityService.GetRandomString(),
-                CountryCode = CountryCodes.Poland,
+                CountryCode = CountryCode.Poland,
                 CurrencyCode = CurrencyCodes.Eur,
                 City = DataUtilityService.GetRandomString(),
                 StreetAddress = DataUtilityService.GetRandomString(),
@@ -319,7 +319,7 @@ public class BatchServiceTest : TestBase
             PostalCode = DataUtilityService.GetRandomString(6),
             City = DataUtilityService.GetRandomString(7),
             CurrencyCode = CurrencyCodes.Dkk,
-            CountryCode = CountryCodes.Denmark
+            CountryCode = CountryCode.Denmark
         };
 
         var userBankAccount = new UserBankAccounts
@@ -348,7 +348,7 @@ public class BatchServiceTest : TestBase
                 PaymentType = PaymentTypes.CreditCard,
                 CustomerName = DataUtilityService.GetRandomString(),
                 CustomerVatNumber = DataUtilityService.GetRandomString(),
-                CountryCode = CountryCodes.Poland,
+                CountryCode = CountryCode.Poland,
                 City = DataUtilityService.GetRandomString(),
                 StreetAddress = DataUtilityService.GetRandomString(),
                 PostalCode = DataUtilityService.GetRandomString(),
@@ -374,7 +374,7 @@ public class BatchServiceTest : TestBase
                 PaymentType = PaymentTypes.CreditCard,
                 CustomerName = DataUtilityService.GetRandomString(),
                 CustomerVatNumber = DataUtilityService.GetRandomString(),
-                CountryCode = CountryCodes.Poland,
+                CountryCode = CountryCode.Poland,
                 City = DataUtilityService.GetRandomString(),
                 StreetAddress = DataUtilityService.GetRandomString(),
                 PostalCode = DataUtilityService.GetRandomString(),
@@ -476,7 +476,7 @@ public class BatchServiceTest : TestBase
             PostalCode = DataUtilityService.GetRandomString(6),
             City = DataUtilityService.GetRandomString(7),
             CurrencyCode = CurrencyCodes.Dkk,
-            CountryCode = CountryCodes.Denmark
+            CountryCode = CountryCode.Denmark
         };
 
         var userBankAccount = new UserBankAccounts
@@ -505,7 +505,7 @@ public class BatchServiceTest : TestBase
                 PaymentType = PaymentTypes.CreditCard,
                 CustomerName = DataUtilityService.GetRandomString(),
                 CustomerVatNumber = DataUtilityService.GetRandomString(),
-                CountryCode = CountryCodes.Poland,
+                CountryCode = CountryCode.Poland,
                 City = DataUtilityService.GetRandomString(),
                 StreetAddress = DataUtilityService.GetRandomString(),
                 PostalCode = DataUtilityService.GetRandomString(),
@@ -531,7 +531,7 @@ public class BatchServiceTest : TestBase
                 PaymentType = PaymentTypes.CreditCard,
                 CustomerName = DataUtilityService.GetRandomString(),
                 CustomerVatNumber = DataUtilityService.GetRandomString(),
-                CountryCode = CountryCodes.Poland,
+                CountryCode = CountryCode.Poland,
                 City = DataUtilityService.GetRandomString(),
                 StreetAddress = DataUtilityService.GetRandomString(),
                 PostalCode = DataUtilityService.GetRandomString(),

@@ -12,7 +12,7 @@ public class GetCountryCodesQueryHandler : RequestHandler<GetCountryCodesQuery, 
 
     public override async Task<IList<GetCountryCodesQueryResult>> Handle(GetCountryCodesQuery request, CancellationToken cancellationToken)
     {
-        var codes = Enum.GetValues<CountryCodes>();
+        var codes = Enum.GetValues<CountryCode>();
         var result = codes
             .Select((countryCodes, index) => new GetCountryCodesQueryResult
             {

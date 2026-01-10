@@ -29,7 +29,7 @@ public class BatchInvoices : Entity<Guid>, IAuditable
     [MaxLength(25)]
     public string CustomerVatNumber { get; set; }
     [Required]
-    public CountryCodes CountryCode { get; set; }
+    public CountryCode CountryCode { get; set; }
     [Required]
     [MaxLength(255)]
     public string City { get; set; }

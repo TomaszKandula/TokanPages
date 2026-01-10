@@ -29,7 +29,7 @@ public class UserCompanies : Entity<Guid>
     [Required]
     public CurrencyCodes CurrencyCode { get; set; }
     [Required]
-    public CountryCodes CountryCode { get; set; }
+    public CountryCode CountryCode { get; set; }
 
     /* Navigation properties */
     public Users Users { get; set; }

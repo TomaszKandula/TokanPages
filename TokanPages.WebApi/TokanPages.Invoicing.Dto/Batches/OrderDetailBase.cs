@@ -47,7 +47,7 @@ public class OrderDetailBase<T>
     /// <summary>
     /// Country Code.
     /// </summary>
-    public CountryCodes CountryCode { get; set; }
+    public CountryCode CountryCode { get; set; }
 
     /// <summary>
     /// City.
