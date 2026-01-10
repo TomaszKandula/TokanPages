@@ -23,7 +23,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<ArticleTag> ArticleTags { get; set; }
 
     /* Category: Invoicing */
-    public virtual DbSet<BatchInvoiceItems> BatchInvoiceItems { get; set; }
+    public virtual DbSet<BatchInvoiceItem> BatchInvoiceItems { get; set; }
     public virtual DbSet<BatchInvoices> BatchInvoices { get; set; }
     public virtual DbSet<BatchInvoicesProcessing> BatchInvoicesProcessing { get; set; }
     public virtual DbSet<InvoiceTemplates> InvoiceTemplates { get; set; }

@@ -37,7 +37,7 @@ public class BatchService : IBatchService
     public async Task<Guid> OrderInvoiceBatchProcessing(IEnumerable<OrderDetail> orderDetails, CancellationToken cancellationToken = default)
     {
         var invoices = new List<BatchInvoices>();
-        var invoiceItems = new List<BatchInvoiceItems>();
+        var invoiceItems = new List<BatchInvoiceItem>();
 
         var processing = new BatchInvoicesProcessing
         {
@@ -80,7 +80,7 @@ public class BatchService : IBatchService
 
             foreach (var item in order.InvoiceItems)
             {
-                invoiceItems.Add(new BatchInvoiceItems
+                invoiceItems.Add(new BatchInvoiceItem
                 {
                     Id = Guid.NewGuid(),
                     BatchInvoiceId = batchInvoiceId,
@@ -315,7 +315,7 @@ public class BatchService : IBatchService
             throw new BusinessException(nameof(ErrorCodes.PROCESSING_EXCEPTION), message);
     }
 
-    private async Task<(List<BatchInvoices> invoices, List<BatchInvoiceItems> invoiceItemsList, List<InvoiceTemplates> invoiceTemplates)> GetInvoiceData
+    private async Task<(List<BatchInvoices> invoices, List<BatchInvoiceItem> invoiceItemsList, List<InvoiceTemplates> invoiceTemplates)> GetInvoiceData
         (IEnumerable<Guid> processingList, CancellationToken cancellationToken)
     {
         var invoicesIds = new HashSet<Guid>(processingList);

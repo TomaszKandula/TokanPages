@@ -390,7 +390,7 @@ public class BatchServiceTest : TestBase
             }
         };
 
-        var invoiceItems = new List<BatchInvoiceItems>
+        var invoiceItems = new List<BatchInvoiceItem>
         {
             new()
             {
@@ -547,7 +547,7 @@ public class BatchServiceTest : TestBase
             }
         };
 
-        var invoiceItems = new List<BatchInvoiceItems>
+        var invoiceItems = new List<BatchInvoiceItem>
         {
             new()
             {

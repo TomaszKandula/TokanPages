@@ -6,9 +6,9 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 namespace TokanPages.Persistence.Database.Mappings.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class BatchInvoiceItemsConfiguration : IEntityTypeConfiguration<BatchInvoiceItems>
+public class BatchInvoiceItemsConfiguration : IEntityTypeConfiguration<BatchInvoiceItem>
 {
-    public void Configure(EntityTypeBuilder<BatchInvoiceItems> builder)
+    public void Configure(EntityTypeBuilder<BatchInvoiceItem> builder)
     {
         builder.Property(items => items.Id).ValueGeneratedOnAdd();
 

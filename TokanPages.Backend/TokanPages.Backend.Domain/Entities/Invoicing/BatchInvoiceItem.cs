@@ -6,7 +6,7 @@ using TokanPages.Backend.Domain.Enums;
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class BatchInvoiceItems : Entity<Guid>
+public class BatchInvoiceItem : Entity<Guid>
 {
     public Guid BatchInvoiceId { get; set; }
     [Required]

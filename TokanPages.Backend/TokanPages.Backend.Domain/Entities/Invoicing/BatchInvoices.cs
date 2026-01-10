@@ -65,5 +65,5 @@ public class BatchInvoices : Entity<Guid>, IAuditable
     public Users Users { get; set; }
     public UserCompanies UserCompanies { get; set; }
     public UserBankAccounts UserBankAccounts { get; set; }
-    public ICollection<BatchInvoiceItems> BatchInvoiceItems { get; set; } = new HashSet<BatchInvoiceItems>();
+    public ICollection<BatchInvoiceItem> BatchInvoiceItems { get; set; } = new HashSet<BatchInvoiceItem>();
 }
