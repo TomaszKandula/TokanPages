@@ -168,8 +168,8 @@ public sealed class UserService : IUserService
 
         var givenRoles = await _databaseContext.UserRoles
             .AsNoTracking()
-            .Include(roles => roles.Roles)
-            .Where(roles => roles.UserId == userId && roles.Roles.Name == userRoleName)
+            .Include(roles => roles.Role)
+            .Where(roles => roles.UserId == userId && roles.Role.Name == userRoleName)
             .ToListAsync(cancellationToken);
 
         return givenRoles.Count != 0;
@@ -181,8 +181,8 @@ public sealed class UserService : IUserService
             
         var givenRoles = await _databaseContext.UserRoles
             .AsNoTracking()
-            .Include(userRoles => userRoles.Roles)
-            .Where(userRoles => userRoles.UserId == userId && userRoles.Roles.Id == roleId)
+            .Include(userRoles => userRoles.Role)
+            .Where(userRoles => userRoles.UserId == userId && userRoles.Role.Id == roleId)
             .ToListAsync(cancellationToken);
 
         return givenRoles.Count != 0;
@@ -219,7 +219,7 @@ public sealed class UserService : IUserService
         var userRoles = await _databaseContext.UserRoles
             .AsNoTracking()
             .Include(roles => roles.Users)
-            .Include(roles => roles.Roles)
+            .Include(roles => roles.Role)
             .Where(roles => roles.UserId == users.Id)
             .ToListAsync(cancellationToken);
 
@@ -238,7 +238,7 @@ public sealed class UserService : IUserService
         });
 
         claimsIdentity.AddClaims(userRoles
-            .Select(roles => new Claim(ClaimTypes.Role, roles.Roles.Name)));
+            .Select(roles => new Claim(ClaimTypes.Role, roles.Role.Name)));
 
         return claimsIdentity;
     }
@@ -395,7 +395,7 @@ public sealed class UserService : IUserService
         var getUserId = userId ?? UserIdFromClaim();
         var userRoles = await _databaseContext.UserRoles
             .AsNoTracking()
-            .Include(roles => roles.Roles)
+            .Include(roles => roles.Role)
             .Where(roles => roles.UserId == getUserId)
             .ToListAsync(cancellationToken);
 
@@ -407,8 +407,8 @@ public sealed class UserService : IUserService
         {
             _userRoles.Add(new GetUserRolesOutput
             {
-                Name = userRole.Roles.Name,
-                Description = userRole.Roles.Description
+                Name = userRole.Role.Name,
+                Description = userRole.Role.Description
             });
         }
     }

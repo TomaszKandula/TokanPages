@@ -46,7 +46,7 @@ public class DatabaseContext : DbContext
 
     /* Category: User */
     public virtual DbSet<Users> Users { get; set; }
-    public virtual DbSet<Roles> Roles { get; set; }
+    public virtual DbSet<Role> Roles { get; set; }
     public virtual DbSet<Permission> Permissions { get; set; }
     public virtual DbSet<DefaultPermission> DefaultPermissions { get; set; }
     public virtual DbSet<UserPermissions> UserPermissions { get; set; }

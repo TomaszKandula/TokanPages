@@ -15,5 +15,5 @@ public class UserRoles : Entity<Guid>, IAuditable
 
     /* Navigation properties */
     public Users Users { get; set; }
-    public Roles Roles { get; set; }
+    public Role Role { get; set; }
 }

@@ -20,7 +20,7 @@ public class DefaultPermissionsConfiguration : IEntityTypeConfiguration<DefaultP
             .HasConstraintName("FK_DefaultPermissions_Permissions");
 
         builder
-            .HasOne(defaultPermissions => defaultPermissions.Roles)
+            .HasOne(defaultPermissions => defaultPermissions.Role)
             .WithMany(roles => roles.DefaultPermissions)
             .HasForeignKey(defaultPermissions => defaultPermissions.RoleId)
             .OnDelete(DeleteBehavior.ClientSetNull)

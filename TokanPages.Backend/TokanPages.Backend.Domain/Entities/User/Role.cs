@@ -5,7 +5,7 @@ using TokanPages.Backend.Domain.Contracts;
 namespace TokanPages.Backend.Domain.Entities.User;
 
 [ExcludeFromCodeCoverage]
-public class Roles : Entity<Guid>, IAuditable
+public class Role : Entity<Guid>, IAuditable
 {
     [MaxLength(60)]
     public string Name { get; set; }

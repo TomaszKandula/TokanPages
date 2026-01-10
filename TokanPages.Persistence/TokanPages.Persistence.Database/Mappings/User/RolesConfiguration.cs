@@ -6,8 +6,8 @@ using TokanPages.Backend.Domain.Entities.User;
 namespace TokanPages.Persistence.Database.Mappings.User;
 
 [ExcludeFromCodeCoverage]
-public class RolesConfiguration : IEntityTypeConfiguration<Roles>
+public class RolesConfiguration : IEntityTypeConfiguration<Role>
 {
-    public void Configure(EntityTypeBuilder<Roles> builder)
+    public void Configure(EntityTypeBuilder<Role> builder)
         => builder.Property(roles => roles.Id).ValueGeneratedOnAdd();
 }

@@ -27,7 +27,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var role = new Roles
+        var role = new Role
         {
             Id = Guid.NewGuid(),
             Name = DataUtilityService.GetRandomString(),

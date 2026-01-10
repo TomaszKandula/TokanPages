@@ -14,6 +14,6 @@ public class DefaultPermission : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public Roles Roles { get; set; } 
+    public Role Role { get; set; } 
     public Permission Permission { get; set; }
 }

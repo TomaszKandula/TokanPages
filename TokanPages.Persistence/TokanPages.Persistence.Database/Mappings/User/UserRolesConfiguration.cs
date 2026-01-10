@@ -20,7 +20,7 @@ public class UserRolesConfiguration : IEntityTypeConfiguration<UserRoles>
             .HasConstraintName("FK_UserRoles_Users");
 
         builder
-            .HasOne(userRoles => userRoles.Roles)
+            .HasOne(userRoles => userRoles.Role)
             .WithMany(roles => roles.UserRoles)
             .HasForeignKey(userRoles => userRoles.RoleId)
             .OnDelete(DeleteBehavior.ClientSetNull)

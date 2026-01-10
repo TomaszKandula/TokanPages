@@ -32,7 +32,7 @@ public class AddUserCommandHandlerTest : TestBase
 
         var expectedUserAlias = $"{command.FirstName[..2]}{command.LastName[..3]}".ToLower();
         
-        var roles = new Roles
+        var roles = new Role
         {
             Name = Backend.Domain.Enums.Role.EverydayUser.ToString(),
             Description = Backend.Domain.Enums.Role.EverydayUser.ToString()
@@ -55,13 +55,13 @@ public class AddUserCommandHandlerTest : TestBase
             new()
             {
                 Id = Guid.NewGuid(),
-                Roles = roles,
+                Role = roles,
                 Permission = permissions[0]
             },
             new()
             {
                 Id = Guid.NewGuid(),
-                Roles = roles,
+                Role = roles,
                 Permission = permissions[1]
             }
         };
