@@ -3,7 +3,7 @@ using Moq;
 using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 

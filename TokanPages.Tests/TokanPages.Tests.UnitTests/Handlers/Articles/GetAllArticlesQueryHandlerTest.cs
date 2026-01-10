@@ -3,6 +3,7 @@ using Moq;
 using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
@@ -14,7 +15,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
     public async Task WhenGetAllArticles_ShouldReturnCollection() 
     {
         // Arrange
-        var user = new Backend.Domain.Entities.User.User
+        var user = new User
         {
             Id = Guid.NewGuid(),
             UserAlias  = DataUtilityService.GetRandomString(),

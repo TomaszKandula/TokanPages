@@ -28,7 +28,7 @@ public class Article : Entity<Guid>, IAuditable
     public string LanguageIso { get; set; }
 
     /* Navigation properties */
-    public User.User User { get; set; }
+    public Users.User User { get; set; }
     public ArticleCategory ArticleCategory { get; set; }
     public ICollection<ArticleTag> ArticleTags { get; set; } =  new HashSet<ArticleTag>();
     public ICollection<ArticleLike> ArticleLikes { get; set; } = new HashSet<ArticleLike>();

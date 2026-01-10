@@ -5,8 +5,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace TokanPages.Persistence.Database.Mappings.User;
 
 [ExcludeFromCodeCoverage]
-public class UsersConfiguration : IEntityTypeConfiguration<Backend.Domain.Entities.User.User>
+public class UsersConfiguration : IEntityTypeConfiguration<Backend.Domain.Entities.Users.User>
 {
-    public void Configure(EntityTypeBuilder<Backend.Domain.Entities.User.User> builder) 
+    public void Configure(EntityTypeBuilder<Backend.Domain.Entities.Users.User> builder) 
         => builder.Property(users => users.Id).ValueGeneratedOnAdd();
 }

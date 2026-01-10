@@ -4,6 +4,7 @@ using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
@@ -15,7 +16,7 @@ public class UpdateUserCommandHandlerTest : TestBase
     public async Task GivenCorrectId_WhenUpdateUser_ShouldUpdateEntity()
     {
         // Arrange
-        var user = new Backend.Domain.Entities.User.User
+        var user = new User
         {
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
@@ -71,7 +72,7 @@ public class UpdateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var user = new List<Backend.Domain.Entities.User.User>
+        var user = new List<User>
         {
             new()
             {

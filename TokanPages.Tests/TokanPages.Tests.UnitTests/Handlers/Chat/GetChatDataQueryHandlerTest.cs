@@ -5,6 +5,7 @@ using TokanPages.Backend.Application.Chat.Queries;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities.Users;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Chat;
@@ -20,7 +21,7 @@ public class GetChatDataQueryHandlerTest : TestBase
         var chatKey = $"{userId1}:{userId2}".ToBase64Encode();
         var query = new GetChatDataQuery { ChatKey = chatKey };
 
-        var users1 = new Backend.Domain.Entities.User.User
+        var users1 = new User
         {
             Id = userId1,
             IsActivated = true,
@@ -29,7 +30,7 @@ public class GetChatDataQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var users2 = new Backend.Domain.Entities.User.User
+        var users2 = new User
         {
             Id = userId2,
             IsActivated = true,
@@ -38,7 +39,7 @@ public class GetChatDataQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var userInfo1 = new Backend.Domain.Entities.User.UserInfo
+        var userInfo1 = new UserInfo
         {
             UserId = userId1,
             FirstName = DataUtilityService.GetRandomString(),
@@ -49,7 +50,7 @@ public class GetChatDataQueryHandlerTest : TestBase
             CreatedBy = Guid.NewGuid()
         };
 
-        var userInfo2 = new Backend.Domain.Entities.User.UserInfo
+        var userInfo2 = new UserInfo
         {
             UserId = userId2,
             FirstName = DataUtilityService.GetRandomString(),
@@ -71,7 +72,7 @@ public class GetChatDataQueryHandlerTest : TestBase
         var jsonSerializer = new JsonSerializer();
         var serialized = jsonSerializer.Serialize(chatData);
 
-        var userMessage = new Backend.Domain.Entities.User.UserMessage
+        var userMessage = new UserMessage
         {
             Id = Guid.NewGuid(),
             ChatKey = chatKey,
@@ -81,13 +82,13 @@ public class GetChatDataQueryHandlerTest : TestBase
             CreatedBy = Guid.NewGuid()
         };
 
-        var users = new List<Backend.Domain.Entities.User.User>
+        var users = new List<User>
         {
             users1,
             users2
         };
 
-        var userInfos = new List<Backend.Domain.Entities.User.UserInfo>
+        var userInfos = new List<UserInfo>
         {
             userInfo1,
             userInfo2
@@ -135,7 +136,7 @@ public class GetChatDataQueryHandlerTest : TestBase
         var chatKey = $"{userId1}:{userId2}".ToBase64Encode();
         var query = new GetChatDataQuery { ChatKey = chatKey };
 
-        var users1 = new Backend.Domain.Entities.User.User
+        var users1 = new User
         {
             Id = userId1,
             IsActivated = true,
@@ -144,7 +145,7 @@ public class GetChatDataQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var users2 = new Backend.Domain.Entities.User.User
+        var users2 = new User
         {
             Id = userId2,
             IsActivated = true,
@@ -164,7 +165,7 @@ public class GetChatDataQueryHandlerTest : TestBase
         var jsonSerializer = new JsonSerializer();
         var serialized = jsonSerializer.Serialize(chatData);
 
-        var userMessage = new Backend.Domain.Entities.User.UserMessage
+        var userMessage = new UserMessage
         {
             Id = Guid.NewGuid(),
             ChatKey = chatKey,
@@ -174,7 +175,7 @@ public class GetChatDataQueryHandlerTest : TestBase
             CreatedBy = Guid.NewGuid()
         };
 
-        var users = new List<Backend.Domain.Entities.User.User>
+        var users = new List<User>
         {
             users1,
             users2

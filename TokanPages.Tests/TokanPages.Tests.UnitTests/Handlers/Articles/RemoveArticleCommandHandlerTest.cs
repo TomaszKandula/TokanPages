@@ -5,6 +5,7 @@ using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
@@ -19,7 +20,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
         // Arrange
         var articleId = Guid.NewGuid();
         var userId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.User.User
+        var users = new User
         {
             Id = userId,
             IsActivated = true,
@@ -98,7 +99,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.User.User
+        var users = new User
         {
             Id = userId,
             IsActivated = true,

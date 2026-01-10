@@ -4,9 +4,9 @@ using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Domain.Entities.Photography;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 

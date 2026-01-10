@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
 using TokanPages.Backend.Domain.Enums;
 
-namespace TokanPages.Backend.Domain.Entities.User;
+namespace TokanPages.Backend.Domain.Entities.Users;
 
 [ExcludeFromCodeCoverage]
 public class UserSubscription : Entity<Guid>, IAuditable

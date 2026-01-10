@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -30,7 +31,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var users = new Backend.Domain.Entities.User.User
+        var users = new User
         {
             Id = userId,
             IsActivated = true,
@@ -117,7 +118,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var users = new Backend.Domain.Entities.User.User
+        var users = new User
         {
             Id = userId,
             IsActivated = true,

@@ -1,6 +1,5 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.User;
 
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 
@@ -21,5 +20,5 @@ public class IssuedInvoice : Entity<Guid>
     public DateTime GeneratedAt { get; set; }
 
     /* Navigation properties */
-    public User.User User { get; set; }
+    public Users.User User { get; set; }
 }

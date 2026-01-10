@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Domain.Entities.Notifications;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 
 namespace TokanPages.Backend.Application.Notifications.Web.Command;
 

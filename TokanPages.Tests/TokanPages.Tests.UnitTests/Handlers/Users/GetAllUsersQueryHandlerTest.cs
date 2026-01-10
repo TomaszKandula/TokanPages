@@ -2,6 +2,7 @@
 using Moq;
 using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities.Users;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Users;
@@ -12,7 +13,7 @@ public class GetAllUsersQueryHandlerTest : TestBase
     public async Task WhenGetAllArticles_ShouldReturnCollection()
     {
         // Arrange
-        var users = new List<Backend.Domain.Entities.User.User>
+        var users = new List<User>
         {
             new()
             {

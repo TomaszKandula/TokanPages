@@ -1,26 +1,17 @@
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.PayUService.Models;
 using TokanPages.Services.UserService.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-
+using TokanPages.Backend.Domain.Entities.Users;
 using BuyerInput = TokanPages.Services.PayUService.Models.Sections.Buyer;
 using CardInput = TokanPages.Services.PayUService.Models.Sections.Card;
 using PayMethodInput = TokanPages.Services.PayUService.Models.Sections.PayMethod;
 using PayMethodsInput = TokanPages.Services.PayUService.Models.Sections.PayMethods;
 using ProductInput = TokanPages.Services.PayUService.Models.Sections.Product;
-using StatusInput = TokanPages.Services.PayUService.Models.Sections.Status;
-using AuthenticationInput = TokanPages.Services.PayUService.Models.Sections.Authentication;
-using RecurringInput = TokanPages.Services.PayUService.Models.Sections.Recurring;
-
-using CardOutput = TokanPages.Backend.Application.Revenue.Models.Sections.Card;
-using PayMethodOutput = TokanPages.Backend.Application.Revenue.Models.Sections.PayMethod;
-using PayMethodsOutput = TokanPages.Backend.Application.Revenue.Models.Sections.PayMethods;
-using StatusOutput = TokanPages.Backend.Application.Revenue.Models.Sections.Status;
 
 namespace TokanPages.Backend.Application.Revenue.Commands;
 

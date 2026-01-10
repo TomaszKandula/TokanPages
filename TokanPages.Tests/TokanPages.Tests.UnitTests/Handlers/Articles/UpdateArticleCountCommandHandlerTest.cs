@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
@@ -20,7 +21,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.User
+        var user = new User
         {
             Id = userId,
             IsActivated = true,
@@ -99,7 +100,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.User
+        var user = new User
         {
             Id = userId,
             IsActivated = true,
@@ -194,7 +195,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.User
+        var user = new User
         {
             Id = userId,
             IsActivated = true,
@@ -295,7 +296,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     public async Task GivenExistingArticleAndIncorrectArticleId_WhenUpdateArticleCount_ShouldThrowError()
     {
         // Arrange
-        var user = new Backend.Domain.Entities.User.User
+        var user = new User
         {
             Id = Guid.NewGuid(),
             IsActivated = true,

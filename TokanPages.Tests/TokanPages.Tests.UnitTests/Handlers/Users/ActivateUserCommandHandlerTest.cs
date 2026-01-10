@@ -4,6 +4,7 @@ using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using Xunit;
 
@@ -17,7 +18,7 @@ public class ActivateUserCommandHandlerTest : TestBase
         // Arrange
         var activationId = Guid.NewGuid();
         var userId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.User.User
+        var users = new User
         { 
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -56,7 +57,7 @@ public class ActivateUserCommandHandlerTest : TestBase
     public async Task GivenInvalidActivationId_WhenActivateUser_ShouldThrowError()
     {
         // Arrange
-        var users = new Backend.Domain.Entities.User.User
+        var users = new User
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),
@@ -94,7 +95,7 @@ public class ActivateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var activationId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.User.User
+        var users = new User
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),

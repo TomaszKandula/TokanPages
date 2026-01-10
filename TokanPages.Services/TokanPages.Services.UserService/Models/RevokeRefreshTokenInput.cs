@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 
 namespace TokanPages.Services.UserService.Models;
 

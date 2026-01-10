@@ -6,7 +6,7 @@ using Microsoft.Extensions.Primitives;
 using Moq;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Models;

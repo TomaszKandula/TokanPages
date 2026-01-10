@@ -2,10 +2,10 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
 using TokanPages.Backend.Domain.Entities.Articles;
-using TokanPages.Backend.Domain.Entities.Photography;
 using TokanPages.Backend.Domain.Entities.Invoicing;
+using TokanPages.Backend.Domain.Entities.Photography;
 
-namespace TokanPages.Backend.Domain.Entities.User;
+namespace TokanPages.Backend.Domain.Entities.Users;
 
 [ExcludeFromCodeCoverage]
 public class User : Entity<Guid>, IAuditable, ISoftDelete

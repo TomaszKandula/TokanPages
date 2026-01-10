@@ -21,5 +21,5 @@ public class ArticleCount : Entity<Guid>, IAuditable
 
     /* Navigation properties */
     public Article Article { get; set; }
-    public User.User User { get; set; }
+    public Users.User User { get; set; }
 }

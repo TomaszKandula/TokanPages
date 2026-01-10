@@ -4,6 +4,7 @@ using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using Xunit;
@@ -21,7 +22,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenNewLikesAddedAsAnonymousUser_WhenUpdateArticleLikes_ShouldAddLikes(int likes, int expectedLikes)
     {
         // Arrange
-        var user = new Backend.Domain.Entities.User.User
+        var user = new User
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -103,7 +104,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenExistingLikesUpdatedAsAnonymousUser_WhenUpdateArticleLikes_ShouldModifyLikes(int existingLikes, int newLikes, int expectedLikes)
     {
         // Arrange
-        var users = new Backend.Domain.Entities.User.User
+        var users = new User
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -191,7 +192,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenNewLikesAddedAsLoggedUser_WhenUpdateArticleLikes_ShouldAddLikes(int likes, int expectedLikes)
     {
         // Arrange
-        var user = new Backend.Domain.Entities.User.User
+        var user = new User
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -284,7 +285,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenExistingLikesUpdatedAsLoggedUser_WhenUpdateArticleLikes_ShouldModifyLikes(int existingLikes, int newLikes, int expectedLikes)
     {
         // Arrange
-        var user = new Backend.Domain.Entities.User.User
+        var user = new User
         {
             Id = Guid.NewGuid(),
             IsActivated = true,

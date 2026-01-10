@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.UserService.Models;
 
 namespace TokanPages.Services.UserService.Abstractions;

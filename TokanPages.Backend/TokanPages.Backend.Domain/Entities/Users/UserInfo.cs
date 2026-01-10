@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
 
-namespace TokanPages.Backend.Domain.Entities.User;
+namespace TokanPages.Backend.Domain.Entities.Users;
 
 [ExcludeFromCodeCoverage]
 public class UserInfo : Entity<Guid>, IAuditable

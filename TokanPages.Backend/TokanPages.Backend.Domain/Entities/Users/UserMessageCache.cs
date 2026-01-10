@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.Domain.Entities.User;
+namespace TokanPages.Backend.Domain.Entities.Users;
 
 [ExcludeFromCodeCoverage]
 public class UserMessageCache : Entity<Guid>
