@@ -88,7 +88,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRolesOutput>();
         var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionsOutput>();
 
-        var newUserToken = new UserTokens
+        var newUserToken = new UserToken
         {
             UserId = user.Id,
             Token = userToken,

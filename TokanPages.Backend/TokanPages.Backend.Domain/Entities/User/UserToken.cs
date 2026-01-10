@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Backend.Domain.Entities.User;
 
 [ExcludeFromCodeCoverage]
-public class UserTokens : Entity<Guid>
+public class UserToken : Entity<Guid>
 {
     public Guid UserId { get; set; }
     [Required]

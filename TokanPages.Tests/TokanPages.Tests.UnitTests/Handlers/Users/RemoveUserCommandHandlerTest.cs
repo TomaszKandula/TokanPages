@@ -87,7 +87,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             ModifiedAt = null,
         };
 
-        var userToken = new UserTokens
+        var userToken = new UserToken
         {
             Id = Guid.NewGuid(),
             UserId = userId,

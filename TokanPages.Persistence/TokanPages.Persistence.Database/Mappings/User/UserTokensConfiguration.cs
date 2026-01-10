@@ -6,9 +6,9 @@ using TokanPages.Backend.Domain.Entities.User;
 namespace TokanPages.Persistence.Database.Mappings.User;
 
 [ExcludeFromCodeCoverage]
-public class UserTokensConfiguration : IEntityTypeConfiguration<UserTokens>
+public class UserTokensConfiguration : IEntityTypeConfiguration<UserToken>
 {
-    public void Configure(EntityTypeBuilder<UserTokens> builder)
+    public void Configure(EntityTypeBuilder<UserToken> builder)
     {
         builder.Property(userTokens => userTokens.Id).ValueGeneratedOnAdd();
             

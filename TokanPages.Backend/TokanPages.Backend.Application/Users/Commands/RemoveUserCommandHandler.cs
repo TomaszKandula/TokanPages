@@ -124,7 +124,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (userTokens.Count > 0)
         {
             DatabaseContext.RemoveRange(userTokens);
-            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserTokens)}");
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserToken)}");
         }
 
         var userRefreshTokens = await DatabaseContext.UserRefreshTokens
