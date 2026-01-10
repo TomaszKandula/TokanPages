@@ -1,6 +1,6 @@
 namespace TokanPages.Backend.Domain.Enums;
 
-public enum Policies
+public enum Policy
 {
     AccessToTokanPages
 }
