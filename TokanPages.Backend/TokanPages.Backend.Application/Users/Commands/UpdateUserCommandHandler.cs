@@ -60,7 +60,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
 
     private async Task UpdateUserInfoUncommitted(Guid userId, UpdateUserCommand request, CancellationToken cancellationToken = default)
     {
-        var userInfo = await DatabaseContext.UserInfo
+        var userInfo = await DatabaseContext.UserInformation
             .Where(info => info.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -78,7 +78,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
                 CreatedAt = _dateTimeService.Now
             };
 
-            await DatabaseContext.UserInfo.AddAsync(newUserInfo, cancellationToken);
+            await DatabaseContext.UserInformation.AddAsync(newUserInfo, cancellationToken);
         }
         else
         {

@@ -20,7 +20,7 @@ public class RetrieveArticleInfoCommandHandler : RequestHandler<RetrieveArticleI
         var articleInfo = await (
             from articles in DatabaseContext.Articles
             join temp in 
-                (from articleCategory in DatabaseContext.ArticleCategory
+                (from articleCategory in DatabaseContext.ArticleCategories
                     join categoryNames in DatabaseContext.CategoryNames
                         on articleCategory.Id equals categoryNames.ArticleCategoryId
                     join languages in DatabaseContext.Languages

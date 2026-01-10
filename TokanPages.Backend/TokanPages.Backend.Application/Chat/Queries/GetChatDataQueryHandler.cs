@@ -64,7 +64,7 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
     private async Task<string> GetUserInitials(Guid userId, CancellationToken cancellationToken)
     {
         var initials = "A";
-        var userInfo = await DatabaseContext.UserInfo
+        var userInfo = await DatabaseContext.UserInformation
             .AsNoTracking()
             .Where(users => users.UserId == userId)
             .Select(users => new
@@ -85,7 +85,7 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
 
     private async Task<string> GetUserAvatarName(Guid userId, CancellationToken cancellationToken)
     {
-        var blobName = await DatabaseContext.UserInfo
+        var blobName = await DatabaseContext.UserInformation
             .AsNoTracking()
             .Where(users => users.UserId == userId)
             .Select(users => users.UserImageName)

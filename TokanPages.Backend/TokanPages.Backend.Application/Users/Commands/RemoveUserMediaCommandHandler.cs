@@ -29,7 +29,7 @@ public class RemoveUserMediaCommandHandler : RequestHandler<RemoveUserMediaComma
 
         var destinationPath = $"content/users/{userId}/{request.UniqueBlobName}";
 
-        var userInfo = await DatabaseContext.UserInfo
+        var userInfo = await DatabaseContext.UserInformation
             .Where(userInfo => userInfo.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);
 

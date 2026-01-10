@@ -107,7 +107,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
             LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserPhoto)}");
         }
 
-        var userInfo = await DatabaseContext.UserInfo
+        var userInfo = await DatabaseContext.UserInformation
             .Where(userInfo => userInfo.UserId == userId)
             .ToListAsync(cancellationToken);
 

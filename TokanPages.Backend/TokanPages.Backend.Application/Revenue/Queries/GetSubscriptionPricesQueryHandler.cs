@@ -12,7 +12,7 @@ public class GetSubscriptionPricesQueryHandler : RequestHandler<GetSubscriptionP
 
     public override async Task<GetSubscriptionPricesQueryResult> Handle(GetSubscriptionPricesQuery request, CancellationToken cancellationToken)
     {
-        var prices = await DatabaseContext.SubscriptionPricing
+        var prices = await DatabaseContext.SubscriptionsPricing
             .AsNoTracking()
             .Where(pricing => pricing.LanguageIso == request.LanguageIso)
             .Select(pricing => new PriceItem

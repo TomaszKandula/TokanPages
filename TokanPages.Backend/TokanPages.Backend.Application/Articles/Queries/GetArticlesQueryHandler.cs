@@ -49,7 +49,7 @@ public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetAr
             .ApplyPaging(request)
             .ToListAsync(cancellationToken);
 
-        var categories = await (from articleCategory in DatabaseContext.ArticleCategory
+        var categories = await (from articleCategory in DatabaseContext.ArticleCategories
             join categoryNames in DatabaseContext.CategoryNames
                 on articleCategory.Id equals categoryNames.ArticleCategoryId into category 
                     from categoryNames in category.DefaultIfEmpty() 

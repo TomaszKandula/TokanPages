@@ -41,7 +41,7 @@ public class GetUserQueryHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddAsync(users);
-        await databaseContext.UserInfo.AddAsync(userInfo);
+        await databaseContext.UserInformation.AddAsync(userInfo);
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();

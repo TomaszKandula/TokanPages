@@ -114,7 +114,7 @@ public class PostChatMessageCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddRangeAsync(users);
-        await databaseContext.UserInfo.AddRangeAsync(userInfos);
+        await databaseContext.UserInformation.AddRangeAsync(userInfos);
         await databaseContext.UserMessages.AddAsync(userMessage);
         await databaseContext.SaveChangesAsync();
 

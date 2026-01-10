@@ -83,7 +83,7 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
                 CreatedBy = Guid.Empty
             };
 
-            await DatabaseContext.BusinessInquiry.AddAsync(businessInquiry, cancellationToken);
+            await DatabaseContext.BusinessInquiries.AddAsync(businessInquiry, cancellationToken);
         }
         else
         {

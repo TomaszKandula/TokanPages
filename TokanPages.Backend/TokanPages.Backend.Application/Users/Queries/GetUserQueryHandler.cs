@@ -13,7 +13,7 @@ public class GetUserQueryHandler : RequestHandler<GetUserQuery, GetUserQueryResu
     public override async Task<GetUserQueryResult> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
         var query = await (from users in DatabaseContext.Users
-            join userInfo in DatabaseContext.UserInfo
+            join userInfo in DatabaseContext.UserInformation
             on users.Id equals userInfo.UserId
             where users.Id == request.Id
             select new GetUserQueryResult

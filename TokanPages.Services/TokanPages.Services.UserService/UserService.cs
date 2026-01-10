@@ -223,7 +223,7 @@ public sealed class UserService : IUserService
             .Where(roles => roles.UserId == user.Id)
             .ToListAsync(cancellationToken);
 
-        var userInfo = await _databaseContext.UserInfo
+        var userInfo = await _databaseContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == user.Id)
             .SingleOrDefaultAsync(cancellationToken);
@@ -460,7 +460,7 @@ public sealed class UserService : IUserService
             return;
         }
 
-        var userInfo = await _databaseContext.UserInfo
+        var userInfo = await _databaseContext.UserInformation
             .AsNoTracking()
             .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
 

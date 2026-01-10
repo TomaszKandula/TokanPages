@@ -166,7 +166,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             ModifiedBy = null
         };
 
-        await DatabaseContext.UserInfo.AddAsync(newUserInfo, cancellationToken);
+        await DatabaseContext.UserInformation.AddAsync(newUserInfo, cancellationToken);
     }
 
     private async Task SetupDefaultPermissionsUncommitted(Guid userId, Guid? adminUserId, CancellationToken cancellationToken)

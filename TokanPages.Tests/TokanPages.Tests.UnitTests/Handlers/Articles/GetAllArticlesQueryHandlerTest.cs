@@ -106,7 +106,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
         await databaseContext.Users.AddAsync(user);
         await databaseContext.Languages.AddRangeAsync(languages);
         await databaseContext.Articles.AddRangeAsync(articles);
-        await databaseContext.ArticleCategory.AddRangeAsync(articleCategories);
+        await databaseContext.ArticleCategories.AddRangeAsync(articleCategories);
         await databaseContext.CategoryNames.AddRangeAsync(categoryNames);
         await databaseContext.SaveChangesAsync();
 
