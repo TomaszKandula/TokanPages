@@ -113,24 +113,14 @@ public class VideoProcessor : IVideoProcessor
 
     private static async Task UploadAndDelete(RequestVideoProcessing request, ConverterOutput converterOutput, UploadedVideo uploadedVideo, IAzureBlobStorage azureBlob)
     {
-        var basePath = "content/uncategorized/";
-        var basePathAssets = "content/assets/";
-
-        basePath = request.Details?.Target switch
-        {
-            ProcessingTarget.PresentationVideo => basePathAssets,
-            ProcessingTarget.LearningVideo => basePathAssets,
-            _ => basePath
-        };
-
         var videoToUpload = await File.ReadAllBytesAsync(converterOutput.OutputVideoPath);
         using var videoStream = new MemoryStream(videoToUpload);
-        await azureBlob.UploadFile(videoStream, $"{basePath}{uploadedVideo.TargetVideoUri}", "video/mp4");
+        await azureBlob.UploadFile(videoStream, $"{uploadedVideo.TargetVideoUri}", "video/mp4");
         File.Delete(converterOutput.OutputVideoPath);
 
         var thumbnailToUpload = await File.ReadAllBytesAsync(converterOutput.OutputThumbnailPath);
         using var thumbnailStream = new MemoryStream(thumbnailToUpload);
-        await azureBlob.UploadFile(thumbnailStream, $"{basePath}{uploadedVideo.TargetThumbnailUri}", "image/jpeg");
+        await azureBlob.UploadFile(thumbnailStream, $"{uploadedVideo.TargetThumbnailUri}", "image/jpeg");
         File.Delete(converterOutput.OutputThumbnailPath);
 
         await azureBlob.DeleteFile(uploadedVideo.SourceBlobUri);

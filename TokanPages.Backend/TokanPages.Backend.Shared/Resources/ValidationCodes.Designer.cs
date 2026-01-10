@@ -248,5 +248,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("LENGTH_TOO_LONG_4096", resourceCulture);
             }
         }
+        
+        public static string INVALID_ENUM_VALUE {
+            get {
+                return ResourceManager.GetString("INVALID_ENUM_VALUE", resourceCulture);
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 using TokanPages.Backend.Application.Users.Queries;
+using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Persistence.Caching.Abstractions;
 
@@ -21,6 +22,14 @@ public interface IUsersCache
     /// <param name="noCache">Enable/disable REDIS cache</param>
     /// <returns>Object</returns>
     Task<GetUserQueryResult> GetUser(Guid id, bool noCache = false);
+
+    /// <summary>
+    /// Returns list of user files.
+    /// </summary>
+    /// <param name="type">Type of files to be returned</param>
+    /// <param name="noCache">Enable/disable REDIS cache</param>
+    /// <returns>List of blobs</returns>
+    Task<GetUserFileListQueryResult> GetUserFileList(UserFileToReceive type, bool noCache = false);
 
     /// <summary>
     /// Returns user notes for given user ID (taken from authorization header).

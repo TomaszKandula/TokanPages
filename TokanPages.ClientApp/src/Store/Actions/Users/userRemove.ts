@@ -33,7 +33,7 @@ export const UserRemoveAction = {
                 state: getState,
                 responseType: RESPONSE,
                 configuration: {
-                    method: "POST",
+                    method: "DELETE",
                     body: payload,
                     hasJsonResponse: true,
                 },

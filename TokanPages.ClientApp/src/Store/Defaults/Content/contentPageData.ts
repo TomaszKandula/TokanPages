@@ -23,6 +23,17 @@ export const ContentPageData: ContentPageDataState = {
                 href: "",
             },
         },
+        accountUserFiles: {
+            language: "",
+            caption: "",
+            description: "",
+            listLabel: "",
+            buttons: {
+                removeText: "",
+                clearText: "",
+                saveText: "",
+            },
+        },
         accountUserNotes: {
             language: "",
             caption: "",

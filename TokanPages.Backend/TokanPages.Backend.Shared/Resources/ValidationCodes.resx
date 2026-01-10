@@ -219,4 +219,7 @@
   <data name="LENGTH_TOO_LONG_4096" xml:space="preserve">
     <value>The length cannot be longer than 4096 characters</value>
   </data>
+  <data name="INVALID_ENUM_VALUE" xml:space="preserve">
+    <value>Incorrect ENUM value</value>
+  </data>
 </root>

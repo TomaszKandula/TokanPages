@@ -136,6 +136,8 @@ public class VideoConverter : IVideoConverter
         {
             FileName = "ffmpeg",
             WorkingDirectory = "/usr/bin",
+            //DEBUG: use this line for local testing on MacOS
+            //FileName = "/Users/tomkandula/Downloads/Projects/Tokan/__Video-Tests/ffmpeg",
             Arguments = string.Join(" ", arguments),
             RedirectStandardOutput = false,
             RedirectStandardError = false,

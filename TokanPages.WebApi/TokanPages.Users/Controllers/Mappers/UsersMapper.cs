@@ -112,6 +112,28 @@ public static class UsersMapper
     /// </summary>
     /// <param name="model">Payload object.</param>
     /// <returns>Command object.</returns>
+    public static AddUserFileCommand MapToAddUserFileCommand(AddUserFileDto model) => new()
+    {
+        Type = model.Type,
+        BinaryData = model.BinaryData
+    };
+
+    /// <summary>
+    /// Maps request DTO to given command.
+    /// </summary>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
+    public static RemoveUserFileCommand MapToRemoveUserFileCommand(RemoveUserFileDto model) => new()
+    {
+        Type = model.Type,
+        UniqueBlobName = model.UniqueBlobName
+    };
+
+    /// <summary>
+    /// Maps request DTO to given command.
+    /// </summary>
+    /// <param name="model">Payload object.</param>
+    /// <returns>Command object.</returns>
     public static AddUserNoteCommand MapToAddUserNoteCommand(AddUserNoteDto model) => new()
     {
         Note = model.Note

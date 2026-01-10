@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Application.Users.Queries;
+using TokanPages.Backend.Domain.Enums;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -65,6 +66,23 @@ public class UsersCache : IUsersCache
         if (value is not null) return value;
 
         value = await _mediator.Send(new GetUserQuery { Id = id });
+        await _redisDistributedCache.SetObjectAsync(key, value);
+
+        return value;
+    }
+
+    /// <inheritdoc />
+    public async Task<GetUserFileListQueryResult> GetUserFileList(UserFileToReceive type, bool noCache = false)
+    {
+        if (noCache)
+            return await _mediator.Send(new GetUserFileListQuery { Type = type });
+
+        var userId = _userService.GetLoggedUserId();
+        var key = $"{_environment.EnvironmentName}:user:files:{userId}:{type}";
+        var value = await _redisDistributedCache.GetObjectAsync<GetUserFileListQueryResult>(key);
+        if (value is not null) return value;
+
+        value = await _mediator.Send(new GetUserFileListQuery());
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;

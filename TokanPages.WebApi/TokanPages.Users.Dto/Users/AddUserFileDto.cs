@@ -1,19 +1,20 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
+using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Users.Dto.Users;
 
 /// <summary>
-/// Use it when you want to upload user image.
+/// Use it when you want to upload user file.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class UploadImageDto
+public class AddUserFileDto
 {
     /// <summary>
-    /// File encoded in Base64.
+    /// User file type (image, audio, video, document, application).
     /// </summary>
-    public string? Base64Data { get; set; }
+    public UserFileToUpdate Type { get; set; }
 
     /// <summary>
     /// Binary data.

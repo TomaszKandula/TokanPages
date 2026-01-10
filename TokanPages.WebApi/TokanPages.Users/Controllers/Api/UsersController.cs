@@ -194,12 +194,52 @@ public class UsersController : ApiBaseController
     /// </remarks>
     /// <param name="payload">User data.</param>
     /// <returns>MediatR unit value.</returns>
-    [HttpPost]
+    [HttpDelete]
     [Route("[action]")]
     [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveUser([FromBody] RemoveUserDto payload)
         => await Mediator.Send(UsersMapper.MapToRemoveUserCommand(payload));
+
+    /// <summary>
+    /// Returns user files.
+    /// </summary>
+    /// <param name="type">Type of files to be returned.</param>
+    /// <param name="noCache">Enable/disable REDIS cache.</param>
+    /// <returns></returns>
+    [HttpGet]
+    [Route("[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(GetUserFileListQueryResult), StatusCodes.Status200OK)]
+    public async Task<GetUserFileListQueryResult> GetUserFileList([FromQuery] UserFileToReceive type = UserFileToReceive.Any, bool noCache = false) 
+        => await _usersCache.GetUserFileList(type, noCache);
+
+    /// <summary>
+    /// Adds user file for given type.
+    /// </summary>
+    /// <param name="payload">File details.</param>
+    /// <remarks>
+    /// Requires: Roles.EverydayUser.
+    /// </remarks>
+    /// <returns></returns>
+    [HttpPost]
+    [Route("[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(AddUserFileCommandResult), StatusCodes.Status200OK)]
+    public async Task<AddUserFileCommandResult> AddUserFile([FromForm] AddUserFileDto payload) 
+        => await Mediator.Send(UsersMapper.MapToAddUserFileCommand(payload));
+
+    /// <summary>
+    /// Removes given user file.
+    /// </summary>
+    /// <param name="payload">File details.</param>
+    /// <returns></returns>
+    [HttpDelete]
+    [Route("[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
+    public async Task<Unit> RemoveUserFile([FromBody] RemoveUserFileDto payload) 
+        => await Mediator.Send(UsersMapper.MapToRemoveUserFileCommand(payload));
 
     /// <summary>
     /// Returns user notes for given user ID (taken from authorization header).
@@ -309,7 +349,7 @@ public class UsersController : ApiBaseController
     /// </remarks>
     /// <param name="payload">Unique full blob name.</param>
     /// <returns>MediatR unit value.</returns>
-    [HttpPost]
+    [HttpDelete]
     [Route("[action]")]
     [AuthorizeUser(Roles.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]

@@ -1,8 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TokanPages.Users.Dto.Users;
 
 /// <summary>
 /// Use it when you want to update existing user note.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public class UpdateUserNoteDto
 {
     /// <summary>
