@@ -10,6 +10,7 @@ using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.BatchService.Models;
+using CurrencyCode = TokanPages.Backend.Domain.Enums.CurrencyCode;
 
 namespace TokanPages.Tests.UnitTests.Services;
 
@@ -147,7 +148,7 @@ public class BatchServiceTest : TestBase
             StreetAddress = DataUtilityService.GetRandomString(25),
             PostalCode = DataUtilityService.GetRandomString(6),
             City = DataUtilityService.GetRandomString(7),
-            CurrencyCode = CurrencyCodes.Dkk,
+            CurrencyCode = CurrencyCode.Dkk,
             CountryCode = CountryCode.Denmark
         };
 
@@ -158,7 +159,7 @@ public class BatchServiceTest : TestBase
             BankName = DataUtilityService.GetRandomString(10),
             SwiftNumber = DataUtilityService.GetRandomString(11),
             AccountNumber = DataUtilityService.GetRandomString(28),
-            CurrencyCode = CurrencyCodes.Dkk
+            CurrencyCode = CurrencyCode.Dkk
         };
 
         var orders = new List<OrderDetail>
@@ -177,7 +178,7 @@ public class BatchServiceTest : TestBase
                 CompanyName = DataUtilityService.GetRandomString(),
                 CompanyVatNumber = DataUtilityService.GetRandomString(),
                 CountryCode = CountryCode.Poland,
-                CurrencyCode = CurrencyCodes.Eur,
+                CurrencyCode = CurrencyCode.Eur,
                 City = DataUtilityService.GetRandomString(),
                 StreetAddress = DataUtilityService.GetRandomString(),
                 PostalCode = DataUtilityService.GetRandomString(),
@@ -195,7 +196,7 @@ public class BatchServiceTest : TestBase
                         ValueAmount = DataUtilityService.GetRandomDecimal(),
                         VatRate = 0,
                         GrossAmount = DataUtilityService.GetRandomDecimal(),
-                        CurrencyCode = CurrencyCodes.Gbp
+                        CurrencyCode = CurrencyCode.Gbp
                     },
                     new()
                     {
@@ -207,7 +208,7 @@ public class BatchServiceTest : TestBase
                         ValueAmount = DataUtilityService.GetRandomDecimal(),
                         VatRate = 0,
                         GrossAmount = DataUtilityService.GetRandomDecimal(),
-                        CurrencyCode = CurrencyCodes.Gbp
+                        CurrencyCode = CurrencyCode.Gbp
                     }
                 }
             },                
@@ -225,7 +226,7 @@ public class BatchServiceTest : TestBase
                 CompanyName = DataUtilityService.GetRandomString(),
                 CompanyVatNumber = DataUtilityService.GetRandomString(),
                 CountryCode = CountryCode.Poland,
-                CurrencyCode = CurrencyCodes.Eur,
+                CurrencyCode = CurrencyCode.Eur,
                 City = DataUtilityService.GetRandomString(),
                 StreetAddress = DataUtilityService.GetRandomString(),
                 PostalCode = DataUtilityService.GetRandomString(),
@@ -243,7 +244,7 @@ public class BatchServiceTest : TestBase
                         ValueAmount = DataUtilityService.GetRandomDecimal(),
                         VatRate = 0,
                         GrossAmount = DataUtilityService.GetRandomDecimal(),
-                        CurrencyCode = CurrencyCodes.Gbp
+                        CurrencyCode = CurrencyCode.Gbp
                     },
                     new()
                     {
@@ -255,7 +256,7 @@ public class BatchServiceTest : TestBase
                         ValueAmount = DataUtilityService.GetRandomDecimal(),
                         VatRate = 0,
                         GrossAmount = DataUtilityService.GetRandomDecimal(),
-                        CurrencyCode = CurrencyCodes.Gbp
+                        CurrencyCode = CurrencyCode.Gbp
                     }
                 }
             }                
@@ -318,7 +319,7 @@ public class BatchServiceTest : TestBase
             StreetAddress = DataUtilityService.GetRandomString(25),
             PostalCode = DataUtilityService.GetRandomString(6),
             City = DataUtilityService.GetRandomString(7),
-            CurrencyCode = CurrencyCodes.Dkk,
+            CurrencyCode = CurrencyCode.Dkk,
             CountryCode = CountryCode.Denmark
         };
 
@@ -329,7 +330,7 @@ public class BatchServiceTest : TestBase
             BankName = DataUtilityService.GetRandomString(10),
             SwiftNumber = DataUtilityService.GetRandomString(11),
             AccountNumber = DataUtilityService.GetRandomString(28),
-            CurrencyCode = CurrencyCodes.Dkk
+            CurrencyCode = CurrencyCode.Dkk
         };
 
         var invoices = new List<BatchInvoices>
@@ -401,7 +402,7 @@ public class BatchServiceTest : TestBase
                 ValueAmount = DataUtilityService.GetRandomDecimal(),
                 VatRate = null,
                 GrossAmount = DataUtilityService.GetRandomDecimal(),
-                CurrencyCode = CurrencyCodes.Gbp
+                CurrencyCode = CurrencyCode.Gbp
             },
             new()
             {
@@ -414,7 +415,7 @@ public class BatchServiceTest : TestBase
                 ValueAmount = DataUtilityService.GetRandomDecimal(),
                 VatRate = null,
                 GrossAmount = DataUtilityService.GetRandomDecimal(),
-                CurrencyCode = CurrencyCodes.Gbp
+                CurrencyCode = CurrencyCode.Gbp
             }
         };
 
@@ -475,7 +476,7 @@ public class BatchServiceTest : TestBase
             StreetAddress = DataUtilityService.GetRandomString(25),
             PostalCode = DataUtilityService.GetRandomString(6),
             City = DataUtilityService.GetRandomString(7),
-            CurrencyCode = CurrencyCodes.Dkk,
+            CurrencyCode = CurrencyCode.Dkk,
             CountryCode = CountryCode.Denmark
         };
 
@@ -486,7 +487,7 @@ public class BatchServiceTest : TestBase
             BankName = DataUtilityService.GetRandomString(10),
             SwiftNumber = DataUtilityService.GetRandomString(11),
             AccountNumber = DataUtilityService.GetRandomString(28),
-            CurrencyCode = CurrencyCodes.Dkk
+            CurrencyCode = CurrencyCode.Dkk
         };
 
         var invoices = new List<BatchInvoices>
@@ -558,7 +559,7 @@ public class BatchServiceTest : TestBase
                 ValueAmount = DataUtilityService.GetRandomDecimal(),
                 VatRate = null,
                 GrossAmount = DataUtilityService.GetRandomDecimal(),
-                CurrencyCode = CurrencyCodes.Gbp
+                CurrencyCode = CurrencyCode.Gbp
             },
             new()
             {
@@ -571,7 +572,7 @@ public class BatchServiceTest : TestBase
                 ValueAmount = DataUtilityService.GetRandomDecimal(),
                 VatRate = null,
                 GrossAmount = DataUtilityService.GetRandomDecimal(),
-                CurrencyCode = CurrencyCodes.Gbp
+                CurrencyCode = CurrencyCode.Gbp
             }
         };
 

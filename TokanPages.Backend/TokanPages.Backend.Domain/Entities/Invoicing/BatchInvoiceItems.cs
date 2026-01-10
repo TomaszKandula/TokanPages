@@ -31,7 +31,7 @@ public class BatchInvoiceItems : Entity<Guid>
     [Column(TypeName = "decimal(18,2)")]
     public decimal GrossAmount { get; set; }
     [Required]
-    public CurrencyCodes CurrencyCode { get; set; }
+    public CurrencyCode CurrencyCode { get; set; }
 
     /* Navigation properties */
     public BatchInvoices BatchInvoices { get; set; }

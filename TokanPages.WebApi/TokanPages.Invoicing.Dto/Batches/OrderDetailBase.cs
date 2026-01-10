@@ -77,7 +77,7 @@ public class OrderDetailBase<T>
     /// <summary>
     /// Currency Code.
     /// </summary>
-    public CurrencyCodes CurrencyCode { get; set; }
+    public CurrencyCode CurrencyCode { get; set; }
 
     /// <summary>
     /// Invoice Items.

@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Services.BatchService.Models;
 
@@ -18,5 +17,5 @@ public class InvoiceItemBase
 
     public decimal? VatRate { get; set; }
 
-    public CurrencyCodes CurrencyCode { get; set; }
+    public Backend.Domain.Enums.CurrencyCode CurrencyCode { get; set; }
 }

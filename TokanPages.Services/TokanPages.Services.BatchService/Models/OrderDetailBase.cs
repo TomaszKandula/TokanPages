@@ -32,7 +32,7 @@ public class OrderDetailBase<T>
 
     public string InvoiceTemplateName { get; set; } = "";
 
-    public CurrencyCodes CurrencyCode { get; set; }
+    public Backend.Domain.Enums.CurrencyCode CurrencyCode { get; set; }
 
     public IEnumerable<T> InvoiceItems { get; set; } = new List<T>();
 }

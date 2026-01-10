@@ -19,7 +19,7 @@ public class UserBankAccounts : Entity<Guid>
     [MaxLength(28)]
     public string AccountNumber { get; set; }
     [Required]
-    public CurrencyCodes CurrencyCode { get; set; }
+    public CurrencyCode CurrencyCode { get; set; }
 
     /* Navigation properties */
     public Users Users { get; set; }
