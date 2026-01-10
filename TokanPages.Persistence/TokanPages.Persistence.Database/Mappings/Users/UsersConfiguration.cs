@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace TokanPages.Persistence.Database.Mappings.User;
+namespace TokanPages.Persistence.Database.Mappings.Users;
 
 [ExcludeFromCodeCoverage]
 public class UsersConfiguration : IEntityTypeConfiguration<Backend.Domain.Entities.Users.User>

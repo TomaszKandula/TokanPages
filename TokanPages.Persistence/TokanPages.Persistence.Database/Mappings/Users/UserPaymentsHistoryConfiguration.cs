@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TokanPages.Backend.Domain.Entities.Users;
 
-namespace TokanPages.Persistence.Database.Mappings.User;
+namespace TokanPages.Persistence.Database.Mappings.Users;
 
 [ExcludeFromCodeCoverage]
 public class UserPaymentsHistoryConfiguration : IEntityTypeConfiguration<UserPaymentHistory>
