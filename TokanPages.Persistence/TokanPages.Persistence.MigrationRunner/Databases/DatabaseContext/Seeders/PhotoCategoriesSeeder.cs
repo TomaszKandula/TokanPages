@@ -6,14 +6,14 @@ namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seede
 [ExcludeFromCodeCoverage]
 public static class PhotoCategoriesSeeder
 {
-    public static IEnumerable<PhotoCategories> SeedPhotoCategories()
+    public static IEnumerable<PhotoCategory> SeedPhotoCategories()
     {
         var categories = Data.PhotoCategories.PhotoCategories.Categories;
-        var output = new List<PhotoCategories>(categories.Count);
+        var output = new List<PhotoCategory>(categories.Count);
 
         foreach (var item in categories)
         {
-            output.Add(new PhotoCategories
+            output.Add(new PhotoCategory
             {
                 Id = Guid.Parse(item.Key),
                 CategoryName = item.Value,

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.Article;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
@@ -77,14 +77,14 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
         return Unit.Value;
     }
 
-    private async Task AddLikes(Guid? userId, Domain.Entities.Article.Articles articles, UpdateArticleLikesCommand request, string ipAddress, CancellationToken cancellationToken)
+    private async Task AddLikes(Guid? userId, Article article, UpdateArticleLikesCommand request, string ipAddress, CancellationToken cancellationToken)
     {
         var likesLimit = userId == null
             ? _configuration.GetValue<int>("Limit_Likes_Anonymous")
             : _configuration.GetValue<int>("Limit_Likes_User");
 
         var likes = request.AddToLikes > likesLimit ? likesLimit : request.AddToLikes;
-        var entity = new ArticleLikes
+        var entity = new ArticleLike
         {
             ArticleId = request.Id,
             UserId = userId,
@@ -96,26 +96,26 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
             ModifiedBy = null
         };
 
-        articles.TotalLikes += likes;
-        articles.ModifiedAt = _dateTimeService.Now;
-        articles.ModifiedBy = userId ?? Guid.Empty;
+        article.TotalLikes += likes;
+        article.ModifiedAt = _dateTimeService.Now;
+        article.ModifiedBy = userId ?? Guid.Empty;
         await DatabaseContext.ArticleLikes.AddAsync(entity, cancellationToken);
     }
 
-    private void UpdateLikes(Guid? userId, Domain.Entities.Article.Articles articles, ArticleLikes articleLikes, int likesToBeAdded)
+    private void UpdateLikes(Guid? userId, Article article, ArticleLike articleLike, int likesToBeAdded)
     {
         var likesLimit = userId == null 
             ? _configuration.GetValue<int>("Limit_Likes_Anonymous") 
             : _configuration.GetValue<int>("Limit_Likes_User");
 
         var likes = likesToBeAdded > likesLimit ? likesLimit : likesToBeAdded;
-        articleLikes.LikeCount += likes;
-        articleLikes.ModifiedAt = _dateTimeService.Now;
-        articleLikes.ModifiedBy = userId ?? Guid.Empty;
+        articleLike.LikeCount += likes;
+        articleLike.ModifiedAt = _dateTimeService.Now;
+        articleLike.ModifiedBy = userId ?? Guid.Empty;
 
-        articles.TotalLikes += likes;
-        articles.ModifiedAt = _dateTimeService.Now;
-        articles.ModifiedBy = userId ?? Guid.Empty;
-        DatabaseContext.ArticleLikes.Update(articleLikes);
+        article.TotalLikes += likes;
+        article.ModifiedAt = _dateTimeService.Now;
+        article.ModifiedBy = userId ?? Guid.Empty;
+        DatabaseContext.ArticleLikes.Update(articleLike);
     }
 }

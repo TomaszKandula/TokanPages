@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Users;
 
 namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;
@@ -7,9 +7,9 @@ namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seede
 [ExcludeFromCodeCoverage]
 public static class UsersSeeder
 {       
-    public static IEnumerable<Users> SeedUsers()
+    public static IEnumerable<User> SeedUsers()
     {
-        return new List<Users>
+        return new List<User>
         {
             new()
             {

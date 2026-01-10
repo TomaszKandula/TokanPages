@@ -6,16 +6,16 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 namespace TokanPages.Persistence.Database.Mappings.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class IssuedInvoicesConfiguration : IEntityTypeConfiguration<IssuedInvoices>
+public class IssuedInvoicesConfiguration : IEntityTypeConfiguration<IssuedInvoice>
 {
-    public void Configure(EntityTypeBuilder<IssuedInvoices> builder)
+    public void Configure(EntityTypeBuilder<IssuedInvoice> builder)
     { 
-        builder.Property(invoices => invoices.Id).ValueGeneratedOnAdd();
+        builder.Property(invoice => invoice.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(invoices => invoices.Users)
-            .WithMany(users => users.IssuedInvoices)
-            .HasForeignKey(invoices => invoices.UserId)
+            .HasOne(invoice => invoice.User)
+            .WithMany(user => user.IssuedInvoices)
+            .HasForeignKey(invoice => invoice.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_IssuedInvoices_Users");
     }

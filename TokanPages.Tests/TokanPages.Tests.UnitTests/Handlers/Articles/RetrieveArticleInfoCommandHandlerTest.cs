@@ -2,8 +2,8 @@ using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.Article;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Articles;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
@@ -22,7 +22,7 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
     {
         // Arrange
         var testDate = DateTime.Now;
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new User
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -97,7 +97,7 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
             },
         };
 
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Article
         {
             Id = Guid.NewGuid(),
             CategoryId = articleCategories[0].Id,
@@ -111,7 +111,7 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
             LanguageIso = "ENG"
         };
 
-        var likes = new List<ArticleLikes> 
+        var likes = new List<ArticleLike> 
         { 
             new()
             {

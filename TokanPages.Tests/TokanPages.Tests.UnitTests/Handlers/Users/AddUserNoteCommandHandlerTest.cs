@@ -5,9 +5,10 @@ using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
+using UserNote = TokanPages.Backend.Domain.Entities.Users.UserNote;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Users;
 
@@ -22,7 +23,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
         var compressedNote = currentNote.CompressToBase64();
         var userId = Guid.NewGuid();
 
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -31,7 +32,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var note = new Backend.Domain.Entities.User.UserNote
+        var note = new UserNote
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -82,7 +83,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
 
         // Assert
         result.CurrentNotes.Should().Be(2);
-        result.Result.Should().Be(UserNote.NoteAdded);
+        result.Result.Should().Be(TokanPages.Backend.Domain.Enums.UserNote.NoteAdded);
     }
 
     [Fact]
@@ -94,7 +95,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
         var compressedNote = currentNote.CompressToBase64();
         var userId = Guid.NewGuid();
 
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -103,7 +104,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var note = new Backend.Domain.Entities.User.UserNote
+        var note = new UserNote
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -154,6 +155,6 @@ public class AddUserNoteCommandHandlerTest : TestBase
 
         // Assert
         result.CurrentNotes.Should().Be(1);
-        result.Result.Should().Be(UserNote.NoteRejected);
+        result.Result.Should().Be(TokanPages.Backend.Domain.Enums.UserNote.NoteRejected);
     }
 }

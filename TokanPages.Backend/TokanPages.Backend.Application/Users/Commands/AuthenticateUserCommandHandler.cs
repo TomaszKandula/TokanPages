@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.CipheringService.Abstractions;
@@ -74,7 +74,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         var expiresIn = _configuration.GetValue<int>("Ids_RefreshToken_Maturity");
         var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, expiresIn);
 
-        var newUserToken = new UserTokens
+        var newUserToken = new UserToken
         {
             UserId = user.Id,
             Token = userToken,
@@ -84,7 +84,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             Command = nameof(AuthenticateUserCommand)
         };
 
-        var newRefreshToken = new UserRefreshTokens
+        var newRefreshToken = new UserRefreshToken
         {
             UserId = user.Id,
             Token = refreshToken.Token,

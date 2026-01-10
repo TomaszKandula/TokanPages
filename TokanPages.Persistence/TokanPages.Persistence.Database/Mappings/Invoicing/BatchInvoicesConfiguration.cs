@@ -6,37 +6,37 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 namespace TokanPages.Persistence.Database.Mappings.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class BatchInvoicesConfiguration : IEntityTypeConfiguration<BatchInvoices>
+public class BatchInvoicesConfiguration : IEntityTypeConfiguration<BatchInvoice>
 {
-    public void Configure(EntityTypeBuilder<BatchInvoices> builder)
+    public void Configure(EntityTypeBuilder<BatchInvoice> builder)
     {
-        builder.Property(invoices => invoices.Id).ValueGeneratedOnAdd();
+        builder.Property(invoice => invoice.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(invoices => invoices.BatchInvoicesProcessing)
+            .HasOne(invoice => invoice.BatchInvoiceProcessing)
             .WithMany(processing => processing.BatchInvoices)
-            .HasForeignKey(invoices => invoices.ProcessBatchKey)
+            .HasForeignKey(invoice => invoice.ProcessBatchKey)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_BatchInvoices_BatchInvoicesProcessing");
 
         builder
-            .HasOne(invoices => invoices.Users)
-            .WithMany(users => users.BatchInvoices)
-            .HasForeignKey(invoices => invoices.UserId)
+            .HasOne(invoice => invoice.User)
+            .WithMany(user => user.BatchInvoices)
+            .HasForeignKey(invoice => invoice.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_BatchInvoices_Users");
 
         builder
-            .HasOne(invoices => invoices.UserCompanies)
-            .WithMany(details => details.BatchInvoices)
-            .HasForeignKey(invoices => invoices.UserCompanyId)
+            .HasOne(invoice => invoice.UserCompany)
+            .WithMany(company => company.BatchInvoices)
+            .HasForeignKey(invoice => invoice.UserCompanyId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_BatchInvoices_UserCompanies");
 
         builder
-            .HasOne(invoices => invoices.UserBankAccounts)
-            .WithMany(bankData => bankData.BatchInvoices)
-            .HasForeignKey(invoices => invoices.UserBankAccountId)
+            .HasOne(invoice => invoice.UserBankAccount)
+            .WithMany(data => data.BatchInvoices)
+            .HasForeignKey(invoice => invoice.UserBankAccountId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_BatchInvoices_UserBankAccount");
     }

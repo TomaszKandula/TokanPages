@@ -6,7 +6,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Invoicing;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.BatchService.Models;
@@ -21,7 +21,7 @@ public class BatchServiceTest : TestBase
     public async Task GivenValidInvoiceNUmber_WhenGetIssuedInvoice_ShouldSucceed()
     {
         // Arrange
-        var user = new Users
+        var user = new User
         {
             Id = Guid.NewGuid(),
             UserAlias = DataUtilityService.GetRandomString(5),
@@ -30,7 +30,7 @@ public class BatchServiceTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var invoices = new List<IssuedInvoices>
+        var invoices = new List<IssuedInvoice>
         {
             new()
             {
@@ -74,7 +74,7 @@ public class BatchServiceTest : TestBase
     public async Task GivenInvalidInvoiceNUmber_WhenGetIssuedInvoice_ShouldThrowError()
     {
         // Arrange
-        var user = new Users
+        var user = new User
         {
             Id = Guid.NewGuid(),
             UserAlias = DataUtilityService.GetRandomString(5),
@@ -83,7 +83,7 @@ public class BatchServiceTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var invoices = new List<IssuedInvoices>
+        var invoices = new List<IssuedInvoice>
         {
             new()
             {
@@ -129,7 +129,7 @@ public class BatchServiceTest : TestBase
     public async Task GivenOrderList_WhenOrderInvoiceBatchProcessing_ShouldSucceed()
     {
         // Arrange
-        var user = new Users
+        var user = new User
         {
             Id = Guid.NewGuid(),
             UserAlias = DataUtilityService.GetRandomString(5),
@@ -138,7 +138,7 @@ public class BatchServiceTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var userCompany = new UserCompanies
+        var userCompany = new UserCompany
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
@@ -153,7 +153,7 @@ public class BatchServiceTest : TestBase
             CountryCode = CountryCode.Denmark
         };
 
-        var userBankAccount = new UserBankAccounts
+        var userBankAccount = new UserBankAccount
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
@@ -292,7 +292,7 @@ public class BatchServiceTest : TestBase
     public async Task GivenValidBatchProcessingKey_WhenGetBatchInvoiceProcessingStatus_ShouldSucceed()
     {
         // Arrange
-        var user = new Users
+        var user = new User
         {
             Id = Guid.NewGuid(),
             UserAlias = DataUtilityService.GetRandomString(5),
@@ -301,7 +301,7 @@ public class BatchServiceTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var processing = new BatchInvoicesProcessing
+        var processing = new BatchInvoiceProcessing
         {
             Id = Guid.NewGuid(),
             BatchProcessingTime = null,
@@ -309,7 +309,7 @@ public class BatchServiceTest : TestBase
             CreatedAt = DateTimeService.Now
         };
 
-        var userCompany = new UserCompanies
+        var userCompany = new UserCompany
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
@@ -324,7 +324,7 @@ public class BatchServiceTest : TestBase
             CountryCode = CountryCode.Denmark
         };
 
-        var userBankAccount = new UserBankAccounts
+        var userBankAccount = new UserBankAccount
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
@@ -334,7 +334,7 @@ public class BatchServiceTest : TestBase
             CurrencyCode = CurrencyCode.Dkk
         };
 
-        var invoices = new List<BatchInvoices>
+        var invoices = new List<BatchInvoice>
         {
             new()
             {
@@ -390,7 +390,7 @@ public class BatchServiceTest : TestBase
             }
         };
 
-        var invoiceItems = new List<BatchInvoiceItems>
+        var invoiceItems = new List<BatchInvoiceItem>
         {
             new()
             {
@@ -449,7 +449,7 @@ public class BatchServiceTest : TestBase
     public async Task GivenInvalidBatchProcessingKey_WhenGetBatchInvoiceProcessingStatus_ShouldThrowError()
     {
         // Arrange
-        var user = new Users
+        var user = new User
         {
             Id = Guid.NewGuid(),
             UserAlias = DataUtilityService.GetRandomString(5),
@@ -458,7 +458,7 @@ public class BatchServiceTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var processing = new BatchInvoicesProcessing
+        var processing = new BatchInvoiceProcessing
         {
             Id = Guid.NewGuid(),
             BatchProcessingTime = null,
@@ -466,7 +466,7 @@ public class BatchServiceTest : TestBase
             CreatedAt = DateTimeService.Now
         };
 
-        var userCompany = new UserCompanies
+        var userCompany = new UserCompany
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
@@ -481,7 +481,7 @@ public class BatchServiceTest : TestBase
             CountryCode = CountryCode.Denmark
         };
 
-        var userBankAccount = new UserBankAccounts
+        var userBankAccount = new UserBankAccount
         {
             Id = Guid.NewGuid(),
             UserId = user.Id,
@@ -491,7 +491,7 @@ public class BatchServiceTest : TestBase
             CurrencyCode = CurrencyCode.Dkk
         };
 
-        var invoices = new List<BatchInvoices>
+        var invoices = new List<BatchInvoice>
         {
             new()
             {
@@ -547,7 +547,7 @@ public class BatchServiceTest : TestBase
             }
         };
 
-        var invoiceItems = new List<BatchInvoiceItems>
+        var invoiceItems = new List<BatchInvoiceItem>
         {
             new()
             {

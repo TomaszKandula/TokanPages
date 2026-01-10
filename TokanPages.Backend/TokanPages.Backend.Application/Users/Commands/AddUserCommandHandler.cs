@@ -5,7 +5,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Abstractions;
@@ -131,7 +131,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         DateTime? activationIdEnds,
         CancellationToken cancellationToken = default)
     {
-        var newUser = new Domain.Entities.User.Users
+        var newUser = new User
         {
             Id = input.UserId,
             EmailAddress = input.Command.EmailAddress,
@@ -174,16 +174,16 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var userRoleName = Domain.Enums.Role.EverydayUser.ToString();
         var defaultPermissions = await DatabaseContext.DefaultPermissions
             .AsNoTracking()
-            .Include(permissions => permissions.Roles)
-            .Include(permissions => permissions.Permissions)
-            .Where(permissions => permissions.Roles.Name == userRoleName)
-            .Select(permissions => new DefaultPermissions
+            .Include(permissions => permissions.Role)
+            .Include(permissions => permissions.Permission)
+            .Where(permissions => permissions.Role.Name == userRoleName)
+            .Select(permissions => new DefaultPermission
             {
                 Id = permissions.Id,
                 RoleId = permissions.RoleId,
-                Roles = permissions.Roles,
+                Role = permissions.Role,
                 PermissionId = permissions.PermissionId,
-                Permissions = permissions.Permissions
+                Permission = permissions.Permission
             })
             .ToListAsync(cancellationToken);
 
@@ -195,7 +195,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             .Select(permissions => permissions.PermissionId)
             .ToList();
 
-        var newRole = new UserRoles
+        var newRole = new UserRole
         {
             UserId = userId,
             RoleId = everydayUserRoleId,
@@ -205,7 +205,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             ModifiedBy = null
         };
 
-        var newPermissions = userPermissions.Select(item => new UserPermissions
+        var newPermissions = userPermissions.Select(item => new UserPermission
         {
             UserId = userId, 
             PermissionId = item,

@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.Article;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Articles;
 
 namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;
@@ -7,9 +7,9 @@ namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seede
 [ExcludeFromCodeCoverage]
 public static class ArticlesSeeder
 {
-    public static IEnumerable<Articles> SeedArticles()
+    public static IEnumerable<Article> SeedArticles()
     {
-        return new List<Articles>
+        return new List<Article>
         {
             new()
             {

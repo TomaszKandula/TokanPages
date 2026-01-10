@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebSocketService.Abstractions;
 using Xunit;
@@ -28,7 +29,7 @@ public class PostChatMessageCommandHandlerTest : TestBase
             Message = DataUtilityService.GetRandomString()
         };
 
-        var users0 = new Backend.Domain.Entities.User.Users
+        var users0 = new User
         {
             Id = userId0,
             IsActivated = true,
@@ -37,7 +38,7 @@ public class PostChatMessageCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var users1 = new Backend.Domain.Entities.User.Users
+        var users1 = new User
         {
             Id = userId1,
             IsActivated = true,
@@ -46,7 +47,7 @@ public class PostChatMessageCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var users2 = new Backend.Domain.Entities.User.Users
+        var users2 = new User
         {
             Id = userId2,
             IsActivated = true,
@@ -55,7 +56,7 @@ public class PostChatMessageCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var userInfo1 = new Backend.Domain.Entities.User.UserInfo
+        var userInfo1 = new UserInfo
         {
             UserId = userId1,
             FirstName = DataUtilityService.GetRandomString(),
@@ -66,7 +67,7 @@ public class PostChatMessageCommandHandlerTest : TestBase
             CreatedBy = Guid.NewGuid()
         };
 
-        var userInfo2 = new Backend.Domain.Entities.User.UserInfo
+        var userInfo2 = new UserInfo
         {
             UserId = userId2,
             FirstName = DataUtilityService.GetRandomString(),
@@ -88,7 +89,7 @@ public class PostChatMessageCommandHandlerTest : TestBase
         var jsonSerializer = new JsonSerializer();
         var serialized = jsonSerializer.Serialize(chatData);
 
-        var userMessage = new Backend.Domain.Entities.User.UserMessage
+        var userMessage = new UserMessage
         {
             Id = Guid.NewGuid(),
             ChatKey = chatKey,
@@ -98,14 +99,14 @@ public class PostChatMessageCommandHandlerTest : TestBase
             CreatedBy = Guid.NewGuid()
         };
 
-        var users = new List<Backend.Domain.Entities.User.Users>
+        var users = new List<User>
         {
             users0,
             users1,
             users2
         };
 
-        var userInfos = new List<Backend.Domain.Entities.User.UserInfo>
+        var userInfos = new List<UserInfo>
         {
             userInfo1,
             userInfo2

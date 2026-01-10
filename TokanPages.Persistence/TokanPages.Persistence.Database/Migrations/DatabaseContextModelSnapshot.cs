@@ -22,112 +22,7 @@ namespace TokanPages.Persistence.Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.ArticleCategory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ArticleCategory");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.ArticleCounts", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ArticleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IpAddress")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ReadCount")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArticleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ArticleCounts");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.ArticleLikes", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ArticleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IpAddress")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<int>("LikeCount")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArticleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ArticleLikes");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.Articles", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles.Article", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -187,7 +82,112 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.ArticleTags", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles.ArticleCategory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ArticleCategory");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles.ArticleCount", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ArticleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IpAddress")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ReadCount")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ArticleCounts");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles.ArticleLike", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ArticleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IpAddress")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<int>("LikeCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ArticleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ArticleLikes");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles.ArticleTag", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -273,7 +273,40 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("CategoryNames");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.HttpRequests", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.DefaultPermission", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PermissionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("DefaultPermissions");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.HttpRequest", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -297,54 +330,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("HttpRequests");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoiceItems", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("BatchInvoiceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("CurrencyCode")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("GrossAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("ItemAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("ItemDiscountRate")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ItemQuantity")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ItemQuantityUnit")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<string>("ItemText")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<decimal>("ValueAmount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal?>("VatRate")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BatchInvoiceId");
-
-                    b.ToTable("BatchInvoiceItems");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoices", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoice", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -447,7 +433,54 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("BatchInvoices");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoicesProcessing", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoiceItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("BatchInvoiceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("CurrencyCode")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("GrossAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("ItemAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("ItemDiscountRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ItemQuantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ItemQuantityUnit")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("ItemText")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<decimal>("ValueAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal?>("VatRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BatchInvoiceId");
+
+                    b.ToTable("BatchInvoiceItems");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoiceProcessing", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -467,7 +500,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("BatchInvoicesProcessing");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.InvoiceTemplates", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.InvoiceTemplate", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -503,7 +536,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("InvoiceTemplates");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.IssuedInvoices", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.IssuedInvoice", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -536,94 +569,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("IssuedInvoices");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.UserBankAccounts", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AccountNumber")
-                        .IsRequired()
-                        .HasMaxLength(28)
-                        .HasColumnType("nvarchar(28)");
-
-                    b.Property<string>("BankName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("CurrencyCode")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SwiftNumber")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserBankAccounts");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.UserCompanies", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("CompanyName")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("CountryCode")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CurrencyCode")
-                        .HasColumnType("int");
-
-                    b.Property<string>("EmailAddress")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
-
-                    b.Property<string>("StreetAddress")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("VatNumber")
-                        .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserCompanies");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.VatNumberPatterns", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.VatNumberPattern", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -676,7 +622,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("Languages");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Newsletters", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Newsletter", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -710,7 +656,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("Newsletters");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.PushNotification", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notifications.PushNotification", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -755,7 +701,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("PushNotifications");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.PushNotificationLog", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notifications.PushNotificationLog", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -798,7 +744,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("PushNotificationLogs");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.PushNotificationTag", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notifications.PushNotificationTag", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -829,7 +775,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("PushNotificationTags");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.WebNotification", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notifications.WebNotification", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -844,7 +790,34 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("WebNotifications");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.Albums", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Permission", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Permissions");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.Album", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -882,7 +855,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("Albums");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.PhotoCategories", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.PhotoCategory", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -910,7 +883,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("PhotoCategories");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.PhotoGears", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.PhotoGear", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -962,7 +935,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("PhotoGears");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.UserPhotos", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Role", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -974,16 +947,9 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DateTaken")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Keywords")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
@@ -991,33 +957,13 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.Property<Guid?>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("PhotoCategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PhotoGearId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("PhotoUrl")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Name")
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PhotoCategoryId");
-
-                    b.HasIndex("PhotoGearId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserPhotos");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.ServiceBusMessage", b =>
@@ -1127,428 +1073,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("UploadedVideos");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.DefaultPermissions", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PermissionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PermissionId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("DefaultPermissions");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.Permissions", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Permissions");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.Roles", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(60)
-                        .HasColumnType("nvarchar(60)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserInfo", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("UserAboutText")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("UserImageName")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("UserVideoName")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserInfo");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserMessage", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ChatData")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ChatKey")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsArchived")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserMessages");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserMessageCache", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ChatKey")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Notification")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserMessagesCache");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserNote", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Note")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserNotes");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserPayment", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("ExtOrderId")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("PmtOrderId")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PmtStatus")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("PmtToken")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PmtType")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserPayments");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserPaymentHistory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CurrencyIso")
-                        .IsRequired()
-                        .HasMaxLength(3)
-                        .HasColumnType("nvarchar(3)");
-
-                    b.Property<int>("Term")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserPaymentsHistory");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserPermissions", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PermissionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PermissionId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserPermissions");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserRefreshTokens", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("Created")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedByIp")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<DateTime>("Expires")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ReasonRevoked")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("ReplacedByToken")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<DateTime?>("Revoked")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("RevokedByIp")
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserRefreshTokens");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserRoles", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("ModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserRoles");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.Users", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -1610,7 +1135,482 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserSubscription", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserBankAccount", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AccountNumber")
+                        .IsRequired()
+                        .HasMaxLength(28)
+                        .HasColumnType("nvarchar(28)");
+
+                    b.Property<string>("BankName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("CurrencyCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SwiftNumber")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserBankAccounts");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserCompany", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("CompanyName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("CountryCode")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CurrencyCode")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmailAddress")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.Property<string>("StreetAddress")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("VatNumber")
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserCompanies");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserInfo", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserAboutText")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserImageName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("UserVideoName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserInfo");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserMessage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ChatData")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ChatKey")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsArchived")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserMessages");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserMessageCache", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ChatKey")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notification")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserMessagesCache");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserNote", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserNotes");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserPayment", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ExtOrderId")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PmtOrderId")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PmtStatus")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("PmtToken")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PmtType")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserPayments");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserPaymentHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CurrencyIso")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
+
+                    b.Property<int>("Term")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserPaymentsHistory");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserPermission", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PermissionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PermissionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserPermissions");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserPhoto", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateTaken")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Keywords")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PhotoCategoryId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PhotoGearId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PhotoUrl")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PhotoCategoryId");
+
+                    b.HasIndex("PhotoGearId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserPhotos");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserRefreshToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedByIp")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<DateTime>("Expires")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ReasonRevoked")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("ReplacedByToken")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime?>("Revoked")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RevokedByIp")
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRefreshTokens");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserRole", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("ModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserSubscription", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -1669,7 +1669,7 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("UserSubscriptions");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserTokens", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserToken", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -1716,73 +1716,73 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.ToTable("UserTokens");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.ArticleCounts", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles.Article", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Article.Articles", "Articles")
-                        .WithMany("ArticleCounts")
-                        .HasForeignKey("ArticleId")
-                        .IsRequired()
-                        .HasConstraintName("FK_ArticleCounts_Articles");
-
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
-                        .WithMany("ArticleCounts")
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("FK_ArticleCounts_Users");
-
-                    b.Navigation("Articles");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.ArticleLikes", b =>
-                {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Article.Articles", "Articles")
-                        .WithMany("ArticleLikes")
-                        .HasForeignKey("ArticleId")
-                        .IsRequired()
-                        .HasConstraintName("FK_ArticleLikes_Articles");
-
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
-                        .WithMany("ArticleLikes")
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("FK_ArticleLikes_Users");
-
-                    b.Navigation("Articles");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.Articles", b =>
-                {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Article.ArticleCategory", "ArticleCategory")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Articles.ArticleCategory", "ArticleCategory")
                         .WithMany("Articles")
                         .HasForeignKey("CategoryId")
                         .HasConstraintName("FK_Articles_ArticleCategory");
 
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
                         .WithMany("Articles")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_Articles_Users");
 
                     b.Navigation("ArticleCategory");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.ArticleTags", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles.ArticleCount", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Article.Articles", "Articles")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Articles.Article", "Article")
+                        .WithMany("ArticleCounts")
+                        .HasForeignKey("ArticleId")
+                        .IsRequired()
+                        .HasConstraintName("FK_ArticleCounts_Articles");
+
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
+                        .WithMany("ArticleCounts")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_ArticleCounts_Users");
+
+                    b.Navigation("Article");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles.ArticleLike", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Articles.Article", "Article")
+                        .WithMany("ArticleLikes")
+                        .HasForeignKey("ArticleId")
+                        .IsRequired()
+                        .HasConstraintName("FK_ArticleLikes_Articles");
+
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
+                        .WithMany("ArticleLikes")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_ArticleLikes_Users");
+
+                    b.Navigation("Article");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles.ArticleTag", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Articles.Article", "Article")
                         .WithMany("ArticleTags")
                         .HasForeignKey("ArticleId")
                         .IsRequired()
                         .HasConstraintName("FK_ArticleTags_Articles");
 
-                    b.Navigation("Articles");
+                    b.Navigation("Article");
                 });
 
             modelBuilder.Entity("TokanPages.Backend.Domain.Entities.CategoryName", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Article.ArticleCategory", "ArticleCategory")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Articles.ArticleCategory", "ArticleCategory")
                         .WithMany("CategoryNames")
                         .HasForeignKey("ArticleCategoryId")
                         .IsRequired()
@@ -1799,88 +1799,85 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.Navigation("Language");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoiceItems", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.DefaultPermission", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoices", "BatchInvoices")
-                        .WithMany("BatchInvoiceItems")
-                        .HasForeignKey("BatchInvoiceId")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Permission", "Permission")
+                        .WithMany("DefaultPermissions")
+                        .HasForeignKey("PermissionId")
                         .IsRequired()
-                        .HasConstraintName("FK_BatchInvoiceItems_BatchInvoices");
+                        .HasConstraintName("FK_DefaultPermissions_Permissions");
 
-                    b.Navigation("BatchInvoices");
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Role", "Role")
+                        .WithMany("DefaultPermissions")
+                        .HasForeignKey("RoleId")
+                        .IsRequired()
+                        .HasConstraintName("FK_DefaultPermissions_Roles");
+
+                    b.Navigation("Permission");
+
+                    b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoices", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoice", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoicesProcessing", "BatchInvoicesProcessing")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoiceProcessing", "BatchInvoiceProcessing")
                         .WithMany("BatchInvoices")
                         .HasForeignKey("ProcessBatchKey")
                         .IsRequired()
                         .HasConstraintName("FK_BatchInvoices_BatchInvoicesProcessing");
 
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Invoicing.UserBankAccounts", "UserBankAccounts")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.UserBankAccount", "UserBankAccount")
                         .WithMany("BatchInvoices")
                         .HasForeignKey("UserBankAccountId")
                         .IsRequired()
                         .HasConstraintName("FK_BatchInvoices_UserBankAccount");
 
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Invoicing.UserCompanies", "UserCompanies")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.UserCompany", "UserCompany")
                         .WithMany("BatchInvoices")
                         .HasForeignKey("UserCompanyId")
                         .IsRequired()
                         .HasConstraintName("FK_BatchInvoices_UserCompanies");
 
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
                         .WithMany("BatchInvoices")
                         .HasForeignKey("UserId")
                         .IsRequired()
                         .HasConstraintName("FK_BatchInvoices_Users");
 
-                    b.Navigation("BatchInvoicesProcessing");
+                    b.Navigation("BatchInvoiceProcessing");
 
-                    b.Navigation("UserBankAccounts");
+                    b.Navigation("User");
 
-                    b.Navigation("UserCompanies");
+                    b.Navigation("UserBankAccount");
 
-                    b.Navigation("Users");
+                    b.Navigation("UserCompany");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.IssuedInvoices", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoiceItem", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoice", "BatchInvoice")
+                        .WithMany("BatchInvoiceItems")
+                        .HasForeignKey("BatchInvoiceId")
+                        .IsRequired()
+                        .HasConstraintName("FK_BatchInvoiceItems_BatchInvoices");
+
+                    b.Navigation("BatchInvoice");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.IssuedInvoice", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
                         .WithMany("IssuedInvoices")
                         .HasForeignKey("UserId")
                         .IsRequired()
                         .HasConstraintName("FK_IssuedInvoices_Users");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.UserBankAccounts", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notifications.PushNotificationTag", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
-                        .WithMany("UserBankAccounts")
-                        .HasForeignKey("UserId")
-                        .IsRequired()
-                        .HasConstraintName("FK_UserBankAccounts_Users");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.UserCompanies", b =>
-                {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
-                        .WithMany("UserCompanies")
-                        .HasForeignKey("UserId")
-                        .IsRequired()
-                        .HasConstraintName("FK_UserCompanies_Users");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.PushNotificationTag", b =>
-                {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Notification.PushNotification", "PushNotification")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Notifications.PushNotification", "PushNotification")
                         .WithMany("PushNotificationTags")
                         .HasForeignKey("PushNotificationId")
                         .IsRequired()
@@ -1889,192 +1886,188 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.Navigation("PushNotification");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.Albums", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.Album", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
                         .WithMany("Albums")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_Albums_Users");
 
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Photography.UserPhotos", "UserPhotos")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.UserPhoto", "UserPhoto")
                         .WithMany("Albums")
                         .HasForeignKey("UserPhotoId")
                         .HasConstraintName("FK_Albums_UserPhotos");
 
-                    b.Navigation("UserPhotos");
+                    b.Navigation("User");
 
-                    b.Navigation("Users");
+                    b.Navigation("UserPhoto");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.UserPhotos", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserBankAccount", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Photography.PhotoCategories", "PhotoCategories")
-                        .WithMany("UserPhotos")
-                        .HasForeignKey("PhotoCategoryId")
-                        .IsRequired()
-                        .HasConstraintName("FK_UserPhotos_PhotoCategories");
-
-                    b.HasOne("TokanPages.Backend.Domain.Entities.Photography.PhotoGears", "PhotoGears")
-                        .WithMany("UserPhotos")
-                        .HasForeignKey("PhotoGearId")
-                        .IsRequired()
-                        .HasConstraintName("FK_UserPhotos_PhotoGears");
-
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
-                        .WithMany("UserPhotos")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
+                        .WithMany("UserBankAccounts")
                         .HasForeignKey("UserId")
                         .IsRequired()
-                        .HasConstraintName("FK_UserPhotos_Users");
+                        .HasConstraintName("FK_UserBankAccounts_Users");
 
-                    b.Navigation("PhotoCategories");
-
-                    b.Navigation("PhotoGears");
-
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.DefaultPermissions", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserCompany", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Permissions", "Permissions")
-                        .WithMany("DefaultPermissions")
-                        .HasForeignKey("PermissionId")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
+                        .WithMany("UserCompanies")
+                        .HasForeignKey("UserId")
                         .IsRequired()
-                        .HasConstraintName("FK_DefaultPermissions_Permissions");
+                        .HasConstraintName("FK_UserCompanies_Users");
 
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Roles", "Roles")
-                        .WithMany("DefaultPermissions")
-                        .HasForeignKey("RoleId")
-                        .IsRequired()
-                        .HasConstraintName("FK_DefaultPermissions_Roles");
-
-                    b.Navigation("Permissions");
-
-                    b.Navigation("Roles");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserInfo", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserInfo", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
-                        .WithMany("UserInfo")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
+                        .WithMany("UserInformation")
                         .HasForeignKey("UserId")
                         .IsRequired()
                         .HasConstraintName("FK_UserInfo_Users");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserNote", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserNote", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
-                        .WithMany("UserNote")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
+                        .WithMany("UserNotes")
                         .HasForeignKey("UserId")
                         .IsRequired()
                         .HasConstraintName("FK_UserNote_Users");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserPayment", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserPayment", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
-                        .WithMany("UserPayment")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
+                        .WithMany("UserPayments")
                         .HasForeignKey("UserId")
                         .IsRequired()
                         .HasConstraintName("FK_UserPayments_Users");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserPaymentHistory", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserPaymentHistory", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
-                        .WithMany("UserPaymentHistory")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
+                        .WithMany("UserPaymentsHistory")
                         .HasForeignKey("UserId")
                         .IsRequired()
                         .HasConstraintName("FK_UserPaymentsHistory_Users");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserPermissions", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserPermission", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Permissions", "Permissions")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Permission", "Permission")
                         .WithMany("UserPermissions")
                         .HasForeignKey("PermissionId")
                         .IsRequired()
                         .HasConstraintName("FK_UserPermissions_Permissions");
 
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
                         .WithMany("UserPermissions")
                         .HasForeignKey("UserId")
                         .IsRequired()
                         .HasConstraintName("FK_UserPermissions_Users");
 
-                    b.Navigation("Permissions");
+                    b.Navigation("Permission");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserRefreshTokens", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserPhoto", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Photography.PhotoCategory", "PhotoCategory")
+                        .WithMany("UserPhotos")
+                        .HasForeignKey("PhotoCategoryId")
+                        .IsRequired()
+                        .HasConstraintName("FK_UserPhotos_PhotoCategories");
+
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Photography.PhotoGear", "PhotoGear")
+                        .WithMany("UserPhotos")
+                        .HasForeignKey("PhotoGearId")
+                        .IsRequired()
+                        .HasConstraintName("FK_UserPhotos_PhotoGears");
+
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
+                        .WithMany("UserPhotos")
+                        .HasForeignKey("UserId")
+                        .IsRequired()
+                        .HasConstraintName("FK_UserPhotos_Users");
+
+                    b.Navigation("PhotoCategory");
+
+                    b.Navigation("PhotoGear");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserRefreshToken", b =>
+                {
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
                         .WithMany("UserRefreshTokens")
                         .HasForeignKey("UserId")
                         .IsRequired()
                         .HasConstraintName("FK_UserRefreshTokens_Users");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserRoles", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserRole", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Roles", "Roles")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .IsRequired()
                         .HasConstraintName("FK_UserRoles_Roles");
 
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .IsRequired()
                         .HasConstraintName("FK_UserRoles_Users");
 
-                    b.Navigation("Roles");
+                    b.Navigation("Role");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserSubscription", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserSubscription", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
-                        .WithMany("UserSubscription")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
+                        .WithMany("UserSubscriptions")
                         .HasForeignKey("UserId")
                         .IsRequired()
                         .HasConstraintName("FK_UserSubscriptions_Users");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.UserTokens", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserToken", b =>
                 {
-                    b.HasOne("TokanPages.Backend.Domain.Entities.User.Users", "Users")
+                    b.HasOne("TokanPages.Backend.Domain.Entities.Users.User", "User")
                         .WithMany("UserTokens")
                         .HasForeignKey("UserId")
                         .IsRequired()
                         .HasConstraintName("FK_UserTokens_Users");
 
-                    b.Navigation("Users");
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.ArticleCategory", b =>
-                {
-                    b.Navigation("Articles");
-
-                    b.Navigation("CategoryNames");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Article.Articles", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles.Article", b =>
                 {
                     b.Navigation("ArticleCounts");
 
@@ -2083,22 +2076,19 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.Navigation("ArticleTags");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoices", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Articles.ArticleCategory", b =>
+                {
+                    b.Navigation("Articles");
+
+                    b.Navigation("CategoryNames");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoice", b =>
                 {
                     b.Navigation("BatchInvoiceItems");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoicesProcessing", b =>
-                {
-                    b.Navigation("BatchInvoices");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.UserBankAccounts", b =>
-                {
-                    b.Navigation("BatchInvoices");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.UserCompanies", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Invoicing.BatchInvoiceProcessing", b =>
                 {
                     b.Navigation("BatchInvoices");
                 });
@@ -2108,41 +2098,36 @@ namespace TokanPages.Persistence.Database.Migrations
                     b.Navigation("CategoryNames");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notification.PushNotification", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Notifications.PushNotification", b =>
                 {
                     b.Navigation("PushNotificationTags");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.PhotoCategories", b =>
-                {
-                    b.Navigation("UserPhotos");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.PhotoGears", b =>
-                {
-                    b.Navigation("UserPhotos");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.UserPhotos", b =>
-                {
-                    b.Navigation("Albums");
-                });
-
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.Permissions", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Permission", b =>
                 {
                     b.Navigation("DefaultPermissions");
 
                     b.Navigation("UserPermissions");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.Roles", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.PhotoCategory", b =>
+                {
+                    b.Navigation("UserPhotos");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Photography.PhotoGear", b =>
+                {
+                    b.Navigation("UserPhotos");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Role", b =>
                 {
                     b.Navigation("DefaultPermissions");
 
                     b.Navigation("UserRoles");
                 });
 
-            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.User.Users", b =>
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.User", b =>
                 {
                     b.Navigation("Albums");
 
@@ -2160,13 +2145,13 @@ namespace TokanPages.Persistence.Database.Migrations
 
                     b.Navigation("UserCompanies");
 
-                    b.Navigation("UserInfo");
+                    b.Navigation("UserInformation");
 
-                    b.Navigation("UserNote");
+                    b.Navigation("UserNotes");
 
-                    b.Navigation("UserPayment");
+                    b.Navigation("UserPayments");
 
-                    b.Navigation("UserPaymentHistory");
+                    b.Navigation("UserPaymentsHistory");
 
                     b.Navigation("UserPermissions");
 
@@ -2176,9 +2161,24 @@ namespace TokanPages.Persistence.Database.Migrations
 
                     b.Navigation("UserRoles");
 
-                    b.Navigation("UserSubscription");
+                    b.Navigation("UserSubscriptions");
 
                     b.Navigation("UserTokens");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserBankAccount", b =>
+                {
+                    b.Navigation("BatchInvoices");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserCompany", b =>
+                {
+                    b.Navigation("BatchInvoices");
+                });
+
+            modelBuilder.Entity("TokanPages.Backend.Domain.Entities.Users.UserPhoto", b =>
+                {
+                    b.Navigation("Albums");
                 });
 #pragma warning restore 612, 618
         }

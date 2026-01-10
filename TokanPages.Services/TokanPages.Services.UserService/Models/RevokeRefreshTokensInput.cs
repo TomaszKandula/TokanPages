@@ -1,14 +1,14 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 
 namespace TokanPages.Services.UserService.Models;
 
 [ExcludeFromCodeCoverage]
 public class RevokeRefreshTokensInput
 {
-    public IEnumerable<UserRefreshTokens>? UserRefreshTokens { get; set; }
+    public IEnumerable<UserRefreshToken>? UserRefreshTokens { get; set; }
 
-    public UserRefreshTokens? SavedUserRefreshTokens { get; set; }
+    public UserRefreshToken? SavedUserRefreshTokens { get; set; }
 
     public string? RequesterIpAddress { get; set; }
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.Article;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
@@ -41,7 +41,7 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
 
         if (articleCount is null)
         {
-            var newArticleCount = new ArticleCounts
+            var newArticleCount = new ArticleCount
             {
                 UserId = article.UserId,
                 ArticleId = article.Id,

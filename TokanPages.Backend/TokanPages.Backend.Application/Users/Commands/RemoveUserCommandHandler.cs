@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.User;
-using TokanPages.Backend.Domain.Entities.Article;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Domain.Entities.Photography;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -51,7 +51,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (albums.Count > 0)
         {
             foreach (var item in albums) { item.UserId = null; item.UserPhotoId = null; }
-            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(Albums)}");
+            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(Album)}");
         }
 
         var articles = await DatabaseContext.Articles
@@ -71,7 +71,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (articleLikes.Count > 0)
         {
             foreach (var item in articleLikes) { item.UserId = null; }
-            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(ArticleLikes)}");
+            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(ArticleLike)}");
         }
 
         var articleCounts = await DatabaseContext.ArticleCounts
@@ -81,7 +81,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (articleCounts.Count > 0)
         {
             foreach (var item in articleCounts) { item.UserId = null; }
-            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(ArticleCounts)}");
+            LoggerService.LogInformation($"User (ID: {userId}) detached from {nameof(ArticleCount)}");
         }
     }
 
@@ -104,7 +104,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (userPhotos.Count > 0)
         {
             DatabaseContext.RemoveRange(userPhotos);
-            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserPhotos)}");
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserPhoto)}");
         }
 
         var userInfo = await DatabaseContext.UserInfo
@@ -124,7 +124,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (userTokens.Count > 0)
         {
             DatabaseContext.RemoveRange(userTokens);
-            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserTokens)}");
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserToken)}");
         }
 
         var userRefreshTokens = await DatabaseContext.UserRefreshTokens
@@ -134,7 +134,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (userRefreshTokens.Count > 0)
         {
             DatabaseContext.RemoveRange(userRefreshTokens);
-            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserRefreshTokens)}");
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserRefreshToken)}");
         }
 
         var userRoles = await DatabaseContext.UserRoles
@@ -144,7 +144,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (userRoles.Count > 0)
         {
             DatabaseContext.RemoveRange(userRoles);
-            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserRoles)}");
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserRole)}");
         }
 
         var userPermissions = await DatabaseContext.UserPermissions
@@ -154,7 +154,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (userPermissions.Count > 0)
         {
             DatabaseContext.RemoveRange(userPermissions);
-            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserPermissions)}");
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserPermission)}");
         }
 
         var users = await DatabaseContext.Users

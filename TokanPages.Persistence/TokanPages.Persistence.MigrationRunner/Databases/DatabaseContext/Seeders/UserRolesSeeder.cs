@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.UserRoles;
 
 namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;
@@ -7,9 +7,9 @@ namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seede
 [ExcludeFromCodeCoverage]
 public static class UserRolesSeeder
 {
-    public static IEnumerable<UserRoles> SeedUserRoles()
+    public static IEnumerable<UserRole> SeedUserRoles()
     {
-        return new List<UserRoles>
+        return new List<UserRole>
         {
             new()
             {

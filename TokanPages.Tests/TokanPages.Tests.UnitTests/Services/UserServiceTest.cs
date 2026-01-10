@@ -6,14 +6,15 @@ using Microsoft.Extensions.Primitives;
 using Moq;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Domain.Entities.User;
-using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService.Abstractions;
 using TokanPages.Services.WebTokenService.Models;
 using Xunit;
+using Permission = TokanPages.Backend.Domain.Entities.Permission;
+using Role = TokanPages.Backend.Domain.Entities.Role;
 
 namespace TokanPages.Tests.UnitTests.Services;
 
@@ -118,7 +119,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -157,7 +158,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -192,7 +193,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -228,7 +229,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId);
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -278,7 +279,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId);
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -322,7 +323,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId);
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -365,7 +366,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -390,7 +391,7 @@ public class UserServiceTest : TestBase
             mockedConfig.Object);
 
         // Act
-        var result = await userProvider.HasRoleAssigned(nameof(Role.EverydayUser));
+        var result = await userProvider.HasRoleAssigned(nameof(Backend.Domain.Enums.Role.EverydayUser));
 
         // Assert
         result.Should().BeTrue();
@@ -402,7 +403,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -426,7 +427,7 @@ public class UserServiceTest : TestBase
             mockedConfig.Object);
 
         // Act
-        var result = await userProvider.HasRoleAssigned(nameof(Role.PhotoPublisher));
+        var result = await userProvider.HasRoleAssigned(nameof(Backend.Domain.Enums.Role.PhotoPublisher));
 
         // Assert
         result.Should().BeFalse();
@@ -438,7 +439,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -463,7 +464,7 @@ public class UserServiceTest : TestBase
 
         // Act
         // Assert
-        var result = await userProvider.HasRoleAssigned(nameof(Role.EverydayUser));
+        var result = await userProvider.HasRoleAssigned(nameof(Backend.Domain.Enums.Role.EverydayUser));
         result.Should().BeFalse();
     }
         
@@ -473,7 +474,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var users = GetUser(Guid.NewGuid()).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -510,7 +511,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId).ToList();
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -543,7 +544,7 @@ public class UserServiceTest : TestBase
 
         // Act
         // Assert
-        var result = await userProvider.HasPermissionAssigned(Permission.CanSelectArticles.ToString());
+        var result = await userProvider.HasPermissionAssigned(Backend.Domain.Enums.Permission.CanSelectArticles.ToString());
 
         // Assert
         result.Should().BeTrue();
@@ -556,7 +557,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId).ToList();
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -588,7 +589,7 @@ public class UserServiceTest : TestBase
             mockedConfig.Object);
 
         // Act
-        var result = await userProvider.HasPermissionAssigned(Permission.CanAddLikes.ToString());
+        var result = await userProvider.HasPermissionAssigned(Backend.Domain.Enums.Permission.CanAddLikes.ToString());
 
         // Assert
         result.Should().BeFalse();
@@ -601,7 +602,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId).ToList();
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -634,7 +635,7 @@ public class UserServiceTest : TestBase
 
         // Act
         // Assert
-        var result = await userProvider.HasPermissionAssigned(Permission.CanSelectArticles.ToString());
+        var result = await userProvider.HasPermissionAssigned(Backend.Domain.Enums.Permission.CanSelectArticles.ToString());
         result.Should().BeFalse();
     }
 
@@ -645,7 +646,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId).ToList();
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -751,7 +752,7 @@ public class UserServiceTest : TestBase
         var users = GetUser(userId).ToList();
         var userInfo = GetUserInfo(userId).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -797,7 +798,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid();
         var users = GetUser(userId).ToList();
         var roles = GetRole().ToList();
-        var userRoles = new UserRoles
+        var userRoles = new UserRole
         {
             UserId = users[0].Id,
             RoleId = roles[0].Id
@@ -844,7 +845,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var userId = Guid.NewGuid();
         var users = GetUser(userId).ToList();
-        var userRefreshTokens = new List<UserRefreshTokens>
+        var userRefreshTokens = new List<UserRefreshToken>
         {
             new() // New token
             {
@@ -916,7 +917,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var userId = Guid.NewGuid();
         var users = GetUser(userId).ToList();
-        var userRefreshTokens = new List<UserRefreshTokens>
+        var userRefreshTokens = new List<UserRefreshToken>
         {
             new()
             {
@@ -987,7 +988,7 @@ public class UserServiceTest : TestBase
         // Arrange
         var userId = Guid.NewGuid();
         var users = GetUser(userId).ToList();
-        var userRefreshTokens = new List<UserRefreshTokens>
+        var userRefreshTokens = new List<UserRefreshToken>
         {
             new()
             {
@@ -1100,7 +1101,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid();
         var users = GetUser(userId).ToList();
         var token = DataUtilityService.GetRandomString(255);
-        var userRefreshTokens = new List<UserRefreshTokens>
+        var userRefreshTokens = new List<UserRefreshToken>
         {
             new() // Already revoked
             {
@@ -1201,7 +1202,7 @@ public class UserServiceTest : TestBase
         var token = DataUtilityService.GetRandomString(100);
         const string reasonRevoked = "Revoked by Admin";
 
-        var user = new Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -1210,7 +1211,7 @@ public class UserServiceTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var userRefreshToken = new UserRefreshTokens
+        var userRefreshToken = new UserRefreshToken
         {
             UserId = userId,
             Token = token,
@@ -1256,9 +1257,9 @@ public class UserServiceTest : TestBase
         getRefreshTokens[0].ReplacedByToken.Should().BeNull();
     }
 
-    private List<Users> GetUser(Guid userId)
+    private List<User> GetUser(Guid userId)
     {
-        return new List<Users>
+        return new List<User>
         {
             new()
             {
@@ -1286,32 +1287,32 @@ public class UserServiceTest : TestBase
         };
     }
 
-    private static List<Roles> GetRole()
+    private static List<Role> GetRole()
     {
-        return new List<Roles> 
+        return new List<Role> 
         {
             new()
             {
                 Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
-                Name = nameof(Role.EverydayUser),
+                Name = nameof(Backend.Domain.Enums.Role.EverydayUser),
                 Description = "User"
             }
         };
     }
 
-    private static List<Permissions> GetPermissions()
+    private static List<Permission> GetPermissions()
     {
-        return new List<Permissions>
+        return new List<Permission>
         {
             new()
             {
                 Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
-                Name = Permission.CanSelectArticles.ToString()
+                Name = Backend.Domain.Enums.Permission.CanSelectArticles.ToString()
             },
             new()
             {
                 Id = Guid.Parse("76fb3d47-f10d-467e-9e68-61d8a9fc5f6d"),
-                Name = Permission.CanInsertArticles.ToString()
+                Name = Backend.Domain.Enums.Permission.CanInsertArticles.ToString()
             }
         };   
     }

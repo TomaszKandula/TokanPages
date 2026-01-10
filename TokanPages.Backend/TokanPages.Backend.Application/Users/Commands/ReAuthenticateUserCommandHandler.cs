@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.CookieAccessorService;
@@ -88,7 +88,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRolesOutput>();
         var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionsOutput>();
 
-        var newUserToken = new UserTokens
+        var newUserToken = new UserToken
         {
             UserId = user.Id,
             Token = userToken,

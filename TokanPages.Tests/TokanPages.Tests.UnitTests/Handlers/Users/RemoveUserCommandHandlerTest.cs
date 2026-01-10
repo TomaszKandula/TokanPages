@@ -3,9 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.User;
-using TokanPages.Backend.Domain.Entities.Article;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Domain.Entities.Photography;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
@@ -18,7 +19,7 @@ public class RemoveUserCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.Users 
+        var user = new User 
         { 
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -27,20 +28,20 @@ public class RemoveUserCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var role = new Roles
+        var role = new Role
         {
             Id = Guid.NewGuid(),
             Name = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString()
         };
 
-        var permission = new Permissions
+        var permission = new Permission
         {
             Id = Guid.NewGuid(),
             Name = DataUtilityService.GetRandomString(),
         };
 
-        var photoGear = new PhotoGears
+        var photoGear = new PhotoGear
         { 
             Id = Guid.NewGuid(),
             Aperture = DataUtilityService.GetRandomDecimal(),
@@ -53,13 +54,13 @@ public class RemoveUserCommandHandlerTest : TestBase
             ShutterSpeed = DataUtilityService.GetRandomString()
         };
 
-        var photoCategory = new PhotoCategories
+        var photoCategory = new PhotoCategory
         {
             Id = Guid.NewGuid(),
             CategoryName = DataUtilityService.GetRandomString()
         };
         
-        var userPhoto = new UserPhotos
+        var userPhoto = new UserPhoto
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -87,7 +88,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             ModifiedAt = null,
         };
 
-        var userToken = new UserTokens
+        var userToken = new UserToken
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -101,7 +102,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             ReasonRevoked = null,
         };
 
-        var userRefreshToken = new UserRefreshTokens
+        var userRefreshToken = new UserRefreshToken
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -114,21 +115,21 @@ public class RemoveUserCommandHandlerTest : TestBase
             ReasonRevoked = null,
         };
 
-        var userRole = new UserRoles
+        var userRole = new UserRole
         {
             Id = Guid.NewGuid(),
             UserId = userId,
             RoleId = role.Id
         };
 
-        var userPermission = new UserPermissions
+        var userPermission = new UserPermission
         {
             Id = Guid.NewGuid(),
             UserId = userId,
             PermissionId = permission.Id
         };
 
-        var album = new Albums
+        var album = new Album
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -136,7 +137,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             Title = DataUtilityService.GetRandomString()
         };
 
-        var article = new Backend.Domain.Entities.Article.Articles
+        var article = new Article
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -149,7 +150,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             LanguageIso = "ENG"
         };
 
-        var articleLike = new ArticleLikes
+        var articleLike = new ArticleLike
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -158,7 +159,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             LikeCount = DataUtilityService.GetRandomInteger()
         };
 
-        var articleCount = new ArticleCounts
+        var articleCount = new ArticleCount
         {
             Id = Guid.NewGuid(),
             UserId = userId,

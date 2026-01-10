@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Permissions;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Users;
 
@@ -8,9 +8,9 @@ namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seede
 [ExcludeFromCodeCoverage]
 public static class UserPermissionsSeeder
 {
-    public static IEnumerable<UserPermissions> SeedUserPermissions()
+    public static IEnumerable<UserPermission> SeedUserPermissions()
     {
-        return new List<UserPermissions>
+        return new List<UserPermission>
         {
             // User1
             new()

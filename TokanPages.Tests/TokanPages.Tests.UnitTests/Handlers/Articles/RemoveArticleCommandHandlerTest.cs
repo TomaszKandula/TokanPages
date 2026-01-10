@@ -4,7 +4,8 @@ using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.Article;
+using TokanPages.Backend.Domain.Entities.Articles;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
@@ -19,7 +20,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
         // Arrange
         var articleId = Guid.NewGuid();
         var userId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new User
         {
             Id = userId,
             IsActivated = true,
@@ -28,7 +29,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Article
         {
             Id = articleId,
             Title = DataUtilityService.GetRandomString(),
@@ -41,7 +42,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             LanguageIso = "ENG"
         };
 
-        var articleLikes = new ArticleLikes
+        var articleLikes = new ArticleLike
         {
             ArticleId = articleId,
             UserId = userId,
@@ -49,7 +50,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             LikeCount = DataUtilityService.GetRandomInteger()
         };
 
-        var articleCounts = new ArticleCounts
+        var articleCounts = new ArticleCount
         {
             ArticleId = articleId,
             UserId = userId,
@@ -98,7 +99,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new User
         {
             Id = userId,
             IsActivated = true,
@@ -107,7 +108,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var articles = new Backend.Domain.Entities.Article.Articles
+        var articles = new Article
         {
             Id = Guid.NewGuid(),
             Title = DataUtilityService.GetRandomString(),

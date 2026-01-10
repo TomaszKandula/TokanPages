@@ -3,7 +3,7 @@ using MediatR;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
@@ -20,7 +20,7 @@ public class RemoveUserMediaCommandHandlerTest : TestBase
         var blobName = DataUtilityService.GetRandomString();
         var command = new RemoveUserMediaCommand { UniqueBlobName = blobName };
 
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             UserAlias = DataUtilityService.GetRandomString(5),

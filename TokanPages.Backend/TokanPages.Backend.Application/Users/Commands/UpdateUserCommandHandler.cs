@@ -2,7 +2,7 @@
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
@@ -39,7 +39,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
 
     private async Task CommitAllChanges(CancellationToken cancellationToken) => await DatabaseContext.SaveChangesAsync(cancellationToken);
 
-    private async Task UpdateUserUncommitted(Domain.Entities.User.Users user, UpdateUserCommand request, bool shouldVerify, CancellationToken cancellationToken = default)
+    private async Task UpdateUserUncommitted(User user, UpdateUserCommand request, bool shouldVerify, CancellationToken cancellationToken = default)
     {
         var emails = await DatabaseContext.Users
             .AsNoTracking()

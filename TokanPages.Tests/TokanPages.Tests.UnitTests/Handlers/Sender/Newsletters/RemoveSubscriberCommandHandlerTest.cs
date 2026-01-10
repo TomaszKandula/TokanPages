@@ -13,7 +13,7 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
     public async Task GivenCorrectId_WhenRemoveSubscriber_ShouldRemoveEntity() 
     {
         // Arrange
-        var subscribers = new Backend.Domain.Entities.Newsletters 
+        var subscribers = new Backend.Domain.Entities.Newsletter 
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,

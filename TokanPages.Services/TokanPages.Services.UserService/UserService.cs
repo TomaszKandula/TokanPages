@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService.Abstractions;
+using HttpRequest = TokanPages.Backend.Domain.Entities.HttpRequest;
 
 namespace TokanPages.Services.UserService;
 
@@ -101,7 +101,7 @@ public sealed class UserService : IUserService
     public async Task LogHttpRequest(string handlerName)
     {
         var ipAddress = GetRequestIpAddress();
-        var httpRequest = new HttpRequests
+        var httpRequest = new HttpRequest
         {
             SourceAddress = ipAddress,
             RequestedAt = _dateTimeService.Now,
@@ -127,7 +127,7 @@ public sealed class UserService : IUserService
         return _user;
     }
 
-    public async Task<Users> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default)
+    public async Task<User> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default)
     {
         var id = userId ?? UserIdFromClaim();
         var entity = isTracking ? _databaseContext.Users : _databaseContext.Users.AsNoTracking();
@@ -168,8 +168,8 @@ public sealed class UserService : IUserService
 
         var givenRoles = await _databaseContext.UserRoles
             .AsNoTracking()
-            .Include(roles => roles.Roles)
-            .Where(roles => roles.UserId == userId && roles.Roles.Name == userRoleName)
+            .Include(roles => roles.Role)
+            .Where(roles => roles.UserId == userId && roles.Role.Name == userRoleName)
             .ToListAsync(cancellationToken);
 
         return givenRoles.Count != 0;
@@ -181,8 +181,8 @@ public sealed class UserService : IUserService
             
         var givenRoles = await _databaseContext.UserRoles
             .AsNoTracking()
-            .Include(userRoles => userRoles.Roles)
-            .Where(userRoles => userRoles.UserId == userId && userRoles.Roles.Id == roleId)
+            .Include(userRoles => userRoles.Role)
+            .Where(userRoles => userRoles.UserId == userId && userRoles.Role.Id == roleId)
             .ToListAsync(cancellationToken);
 
         return givenRoles.Count != 0;
@@ -194,8 +194,8 @@ public sealed class UserService : IUserService
 
         var givenPermissions = await _databaseContext.UserPermissions
             .AsNoTracking()
-            .Include(permissions => permissions.Permissions)
-            .Where(permissions => permissions.UserId == userId && permissions.Permissions.Name == userPermissionName)
+            .Include(permissions => permissions.Permission)
+            .Where(permissions => permissions.UserId == userId && permissions.Permission.Name == userPermissionName)
             .ToListAsync(cancellationToken);
 
         return givenPermissions.Count != 0;
@@ -207,45 +207,45 @@ public sealed class UserService : IUserService
 
         var givenPermissions = await _databaseContext.UserPermissions
             .AsNoTracking()
-            .Include(userPermissions => userPermissions.Permissions)
-            .Where(userPermissions => userPermissions.UserId == userId && userPermissions.Permissions.Id == permissionId)
+            .Include(userPermissions => userPermissions.Permission)
+            .Where(userPermissions => userPermissions.UserId == userId && userPermissions.Permission.Id == permissionId)
             .ToListAsync(cancellationToken);
 
         return givenPermissions.Count != 0;
     }
 
-    public async Task<ClaimsIdentity> MakeClaimsIdentity(Users users, CancellationToken cancellationToken = default)
+    public async Task<ClaimsIdentity> MakeClaimsIdentity(User user, CancellationToken cancellationToken = default)
     {
         var userRoles = await _databaseContext.UserRoles
             .AsNoTracking()
-            .Include(roles => roles.Users)
-            .Include(roles => roles.Roles)
-            .Where(roles => roles.UserId == users.Id)
+            .Include(roles => roles.User)
+            .Include(roles => roles.Role)
+            .Where(roles => roles.UserId == user.Id)
             .ToListAsync(cancellationToken);
 
         var userInfo = await _databaseContext.UserInfo
             .AsNoTracking()
-            .Where(info => info.UserId == users.Id)
+            .Where(info => info.UserId == user.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
         var claimsIdentity = new ClaimsIdentity(new[]
         {
-            new Claim(ClaimTypes.Name, users.UserAlias),
-            new Claim(ClaimTypes.NameIdentifier, users.Id.ToString()),
+            new Claim(ClaimTypes.Name, user.UserAlias),
+            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(ClaimTypes.GivenName,  userInfo is null ? string.Empty : userInfo.FirstName),
             new Claim(ClaimTypes.Surname, userInfo is null ? string.Empty : userInfo.LastName),
-            new Claim(ClaimTypes.Email, users.EmailAddress)
+            new Claim(ClaimTypes.Email, user.EmailAddress)
         });
 
         claimsIdentity.AddClaims(userRoles
-            .Select(roles => new Claim(ClaimTypes.Role, roles.Roles.Name)));
+            .Select(roles => new Claim(ClaimTypes.Role, roles.Role.Name)));
 
         return claimsIdentity;
     }
 
-    public async Task<string> GenerateUserToken(Users users, DateTime tokenExpires, CancellationToken cancellationToken = default)
+    public async Task<string> GenerateUserToken(User user, DateTime tokenExpires, CancellationToken cancellationToken = default)
     {
-        var claimsIdentity = await MakeClaimsIdentity(users, cancellationToken);
+        var claimsIdentity = await MakeClaimsIdentity(user, cancellationToken);
 
         return _webTokenUtility.GenerateJwt(
             tokenExpires,
@@ -272,7 +272,7 @@ public sealed class UserService : IUserService
             await _databaseContext.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<UserRefreshTokens> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default)
+    public async Task<UserRefreshToken> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default)
     {
         var newRefreshToken = _webTokenUtility.GenerateRefreshToken(input.RequesterIpAddress, 
             _configuration.GetValue<int>("Ids_RefreshToken_Maturity"));
@@ -288,7 +288,7 @@ public sealed class UserService : IUserService
 
         await RevokeRefreshToken(tokenInput, cancellationToken);
 
-        return new UserRefreshTokens
+        return new UserRefreshToken
         {
             UserId = input.UserId,
             Token = newRefreshToken.Token,
@@ -354,19 +354,19 @@ public sealed class UserService : IUserService
             await _databaseContext.SaveChangesAsync(cancellationToken);
     }
 
-    public bool IsRefreshTokenExpired(UserRefreshTokens userRefreshTokens)
+    public bool IsRefreshTokenExpired(UserRefreshToken userRefreshToken)
     {
-        return userRefreshTokens.Expires <= _dateTimeService.Now;
+        return userRefreshToken.Expires <= _dateTimeService.Now;
     }
 
-    public bool IsRefreshTokenRevoked(UserRefreshTokens userRefreshTokens)
+    public bool IsRefreshTokenRevoked(UserRefreshToken userRefreshToken)
     {
-        return userRefreshTokens.Revoked != null;
+        return userRefreshToken.Revoked != null;
     }
 
-    public bool IsRefreshTokenActive(UserRefreshTokens userRefreshTokens)
+    public bool IsRefreshTokenActive(UserRefreshToken userRefreshToken)
     {
-        return!IsRefreshTokenRevoked(userRefreshTokens) && !IsRefreshTokenExpired(userRefreshTokens);
+        return!IsRefreshTokenRevoked(userRefreshToken) && !IsRefreshTokenExpired(userRefreshToken);
     }
 
     private Guid? UserIdFromClaim()
@@ -395,7 +395,7 @@ public sealed class UserService : IUserService
         var getUserId = userId ?? UserIdFromClaim();
         var userRoles = await _databaseContext.UserRoles
             .AsNoTracking()
-            .Include(roles => roles.Roles)
+            .Include(roles => roles.Role)
             .Where(roles => roles.UserId == getUserId)
             .ToListAsync(cancellationToken);
 
@@ -407,8 +407,8 @@ public sealed class UserService : IUserService
         {
             _userRoles.Add(new GetUserRolesOutput
             {
-                Name = userRole.Roles.Name,
-                Description = userRole.Roles.Description
+                Name = userRole.Role.Name,
+                Description = userRole.Role.Description
             });
         }
     }
@@ -421,7 +421,7 @@ public sealed class UserService : IUserService
         var getUserId = userId ?? UserIdFromClaim();
         var userPermissions = await _databaseContext.UserPermissions
             .AsNoTracking()
-            .Include(permissions => permissions.Permissions)
+            .Include(permissions => permissions.Permission)
             .Where(permissions => permissions.UserId == getUserId)
             .ToListAsync(cancellationToken);
 
@@ -433,7 +433,7 @@ public sealed class UserService : IUserService
         {
             _userPermissions.Add(new GetUserPermissionsOutput
             {
-                Name = userPermission.Permissions.Name
+                Name = userPermission.Permission.Name
             });
         }
     }

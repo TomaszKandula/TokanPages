@@ -9,11 +9,11 @@ public class IssuedInvoiceData
 {
     public string InvoiceContent { get; set; } = "";
 
-    public BatchInvoices CurrentInvoice { get; set; } = new();
+    public BatchInvoice CurrentInvoice { get; set; } = new();
 
-    public ICollection<IssuedInvoices> InvoiceCollection { get; set; } = new List<IssuedInvoices>();
+    public ICollection<IssuedInvoice> InvoiceCollection { get; set; } = new List<IssuedInvoice>();
 
-    public BatchInvoicesProcessing BatchInvoicesProcessing { get; set; } = new();
+    public BatchInvoiceProcessing BatchInvoiceProcessing { get; set; } = new();
 
     public Stopwatch ProcessingTimer { get; set; } = new();
 }

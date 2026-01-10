@@ -3,7 +3,7 @@ using MediatR;
 using Moq;
 using TokanPages.Backend.Application.Chat.Commands;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Chat;

@@ -5,7 +5,7 @@ using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.CookieAccessorService;
 using TokanPages.Services.UserService.Abstractions;
@@ -29,7 +29,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var refreshToken = DataUtilityService.GetRandomString(255);
 
         var command = new ReAuthenticateUserCommand();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = emailAddress,
@@ -52,7 +52,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             ModifiedAt = null
         };
 
-        var userRefreshToken = new UserRefreshTokens
+        var userRefreshToken = new UserRefreshToken
         {
             UserId = user.Id,
             Token = refreshToken,
@@ -65,7 +65,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             ReasonRevoked = null
         };
 
-        var newRefreshToken = new UserRefreshTokens
+        var newRefreshToken = new UserRefreshToken
         {
             UserId = user.Id,
             Token = DataUtilityService.GetRandomString(255),
@@ -100,11 +100,11 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Returns(ipAddress);
 
         mockedUserService
-            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
+            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshToken>()))
             .Returns(false);
 
         mockedUserService
-            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
+            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshToken>()))
             .Returns(true);
 
         mockedUserService
@@ -124,7 +124,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var newUserToken = DataUtilityService.GetRandomString();
         mockedUserService
             .Setup(service => service.GenerateUserToken(
-                It.IsAny<Backend.Domain.Entities.User.Users>(), 
+                It.IsAny<User>(), 
                 It.IsAny<DateTime>(), 
                 CancellationToken.None))
             .ReturnsAsync(newUserToken);
@@ -194,7 +194,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var created = DateTimeService.Now.AddDays(-5);
             
         var command = new ReAuthenticateUserCommand();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = emailAddress,
@@ -203,7 +203,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             CryptedPassword = cryptedPassword
         };
 
-        var userRefreshToken = new UserRefreshTokens
+        var userRefreshToken = new UserRefreshToken
         {
             UserId = user.Id,
             Token = generateUserRefreshToken,
@@ -237,11 +237,11 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Returns(ipAddress);
 
         mockedUserService
-            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
+            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshToken>()))
             .Returns(false);
 
         mockedUserService
-            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
+            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshToken>()))
             .Returns(false);
 
         var mockedConfig = SetConfiguration();
@@ -266,7 +266,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var command = new ReAuthenticateUserCommand();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = Guid.NewGuid(),
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -296,11 +296,11 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Returns(ipAddress);
 
         mockedUserService
-            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshTokens>()))
+            .Setup(service => service.IsRefreshTokenRevoked(It.IsAny<UserRefreshToken>()))
             .Returns(false);
 
         mockedUserService
-            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshTokens>()))
+            .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshToken>()))
             .Returns(false);
 
         var mockedConfig = SetConfiguration();

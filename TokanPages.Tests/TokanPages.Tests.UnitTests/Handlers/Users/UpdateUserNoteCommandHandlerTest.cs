@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
@@ -22,7 +23,7 @@ public class UpdateUserNoteCommandHandlerTest : TestBase
         var compressedNote = currentNote.CompressToBase64();
 
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -32,7 +33,7 @@ public class UpdateUserNoteCommandHandlerTest : TestBase
         };
 
         var userNoteId = Guid.NewGuid();
-        var note = new Backend.Domain.Entities.User.UserNote
+        var note = new UserNote
         {
             Id = userNoteId,
             UserId = userId,
@@ -81,7 +82,7 @@ public class UpdateUserNoteCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),

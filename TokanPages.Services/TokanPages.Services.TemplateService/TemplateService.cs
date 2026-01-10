@@ -3,8 +3,8 @@ using TokanPages.Services.TemplateService.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Domain.Entities.Invoicing;
 using TokanPages.Persistence.Database;
+using InvoiceTemplate = TokanPages.Backend.Domain.Entities.Invoicing.InvoiceTemplate;
 
 namespace TokanPages.Services.TemplateService;
 
@@ -113,12 +113,12 @@ public class TemplateService : ITemplateService
     /// <param name="invoiceTemplate">Invoice template data.</param>
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>Invoice template ID.</returns>
-    public async Task<Guid> AddInvoiceTemplate(InvoiceTemplate invoiceTemplate, CancellationToken cancellationToken = default)
+    public async Task<Guid> AddInvoiceTemplate(Models.InvoiceTemplate invoiceTemplate, CancellationToken cancellationToken = default)
     {
         if (string.IsNullOrEmpty(invoiceTemplate.InvoiceTemplateData.ContentType))
             throw new BusinessException(nameof(ErrorCodes.INVALID_CONTENT_TYPE), ErrorCodes.INVALID_CONTENT_TYPE);
 
-        var template = new InvoiceTemplates
+        var template = new InvoiceTemplate
         {
             Name = invoiceTemplate.TemplateName,
             Data = invoiceTemplate.InvoiceTemplateData.ContentData,

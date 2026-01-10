@@ -3,6 +3,7 @@ using Moq;
 using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
@@ -18,7 +19,7 @@ public class GetUserNoteQueryHandlerTest : TestBase
         var compressedNote = plainNote.CompressToBase64();
 
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -27,7 +28,7 @@ public class GetUserNoteQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var note = new Backend.Domain.Entities.User.UserNote
+        var note = new UserNote
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -78,7 +79,7 @@ public class GetUserNoteQueryHandlerTest : TestBase
         var compressedNote = plainNote.CompressToBase64();
 
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -87,7 +88,7 @@ public class GetUserNoteQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var note = new Backend.Domain.Entities.User.UserNote
+        var note = new UserNote
         {
             Id = Guid.NewGuid(),
             UserId = userId,

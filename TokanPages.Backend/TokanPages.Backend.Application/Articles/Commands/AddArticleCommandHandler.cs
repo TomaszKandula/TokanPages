@@ -1,5 +1,6 @@
 ﻿using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -25,7 +26,7 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
     public override async Task<Guid> Handle(AddArticleCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(null, false, cancellationToken);
-        var newArticle = new Domain.Entities.Article.Articles
+        var newArticle = new Article
         {
             Title = request.Title,
             Description = request.Description,

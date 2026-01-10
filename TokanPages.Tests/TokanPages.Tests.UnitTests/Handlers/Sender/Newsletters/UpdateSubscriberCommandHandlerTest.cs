@@ -16,7 +16,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     public async Task GivenCorrectId_WhenUpdateSubscriber_ShouldUpdateEntity()
     {
         // Arrange
-        var subscribers = new Backend.Domain.Entities.Newsletters 
+        var subscribers = new Backend.Domain.Entities.Newsletter 
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -58,18 +58,18 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var entity = await databaseContext.Newsletters.FindAsync(command.Id);
 
         entity.Should().NotBeNull();
-        entity?.IsActivated.Should().BeTrue();
-        entity?.Email.Should().Be(command.Email);
-        entity?.Count.Should().Be(command.Count);
-        entity?.ModifiedAt.Should().NotBeNull();
-        entity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        entity.IsActivated.Should().BeTrue();
+        entity.Email.Should().Be(command.Email);
+        entity.Count.Should().Be(command.Count);
+        entity.ModifiedAt.Should().NotBeNull();
+        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]
     public async Task GivenCorrectIdAndCountIsNullAndIsActivatedIsNull_WhenUpdateSubscriber_ShouldUpdateEntity()
     {
         // Arrange
-        var subscribers = new Backend.Domain.Entities.Newsletters
+        var subscribers = new Backend.Domain.Entities.Newsletter
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -107,11 +107,11 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var entity = await databaseContext.Newsletters.FindAsync(command.Id);
 
         entity.Should().NotBeNull();
-        entity?.IsActivated.Should().BeTrue();
-        entity?.Email.Should().Be(command.Email);
-        entity?.Count.Should().Be(subscribers.Count);
-        entity?.ModifiedAt.Should().NotBeNull();
-        entity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        entity.IsActivated.Should().BeTrue();
+        entity.Email.Should().Be(command.Email);
+        entity.Count.Should().Be(subscribers.Count);
+        entity.ModifiedAt.Should().NotBeNull();
+        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]
@@ -126,7 +126,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = 10
         };
 
-        var subscribers = new Backend.Domain.Entities.Newsletters
+        var subscribers = new Backend.Domain.Entities.Newsletter
         {
             Id = Guid.NewGuid(),
             Email = DataUtilityService.GetRandomEmail(),
@@ -160,7 +160,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var subscribers = new Backend.Domain.Entities.Newsletters
+        var subscribers = new Backend.Domain.Entities.Newsletter
         {
             Email = testEmail,
             IsActivated = true,

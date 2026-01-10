@@ -4,6 +4,7 @@ using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
@@ -44,7 +45,7 @@ public class AddArticleCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString().ToBase64Encode()
         };
 
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             UserAlias  = DataUtilityService.GetRandomString(),
             IsActivated = true,

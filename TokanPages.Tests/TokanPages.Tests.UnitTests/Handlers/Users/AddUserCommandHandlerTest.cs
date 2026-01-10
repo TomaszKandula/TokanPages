@@ -5,7 +5,8 @@ using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.AzureStorageService.Models;
@@ -32,13 +33,13 @@ public class AddUserCommandHandlerTest : TestBase
 
         var expectedUserAlias = $"{command.FirstName[..2]}{command.LastName[..3]}".ToLower();
         
-        var roles = new Roles
+        var roles = new Role
         {
             Name = Backend.Domain.Enums.Role.EverydayUser.ToString(),
             Description = Backend.Domain.Enums.Role.EverydayUser.ToString()
         };
 
-        var permissions = new List<Permissions>
+        var permissions = new List<Permission>
         {
             new()
             {
@@ -50,19 +51,19 @@ public class AddUserCommandHandlerTest : TestBase
             }
         };
 
-        var defaultPermissions = new List<DefaultPermissions>
+        var defaultPermissions = new List<DefaultPermission>
         {
             new()
             {
                 Id = Guid.NewGuid(),
-                Roles = roles,
-                Permissions = permissions[0]
+                Role = roles,
+                Permission = permissions[0]
             },
             new()
             {
                 Id = Guid.NewGuid(),
-                Roles = roles,
-                Permissions = permissions[1]
+                Role = roles,
+                Permission = permissions[1]
             }
         };
 
@@ -145,7 +146,7 @@ public class AddUserCommandHandlerTest : TestBase
 
         var userAlias = $"{command.FirstName[..2]}{command.LastName[..3]}".ToLower();
         var oldActivationIdEnds = DateTimeService.Now.AddMinutes(-30);
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new User
         { 
             EmailAddress = testEmail,
             UserAlias = userAlias,
@@ -224,7 +225,7 @@ public class AddUserCommandHandlerTest : TestBase
             LastName = DataUtilityService.GetRandomString(),
         };
 
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new User
         { 
             EmailAddress = testEmail,
             UserAlias = DataUtilityService.GetRandomString(),

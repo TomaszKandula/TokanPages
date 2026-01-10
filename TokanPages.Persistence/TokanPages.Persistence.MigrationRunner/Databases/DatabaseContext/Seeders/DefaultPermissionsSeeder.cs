@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.DefaultPermission;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Permissions;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Data.Roles;
@@ -9,9 +9,9 @@ namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seede
 [ExcludeFromCodeCoverage]
 public static class DefaultPermissionsSeeder
 {
-    public static IEnumerable<DefaultPermissions> SeedDefaultPermissions()
+    public static IEnumerable<DefaultPermission> SeedDefaultPermissions()
     {
-        return new List<DefaultPermissions>
+        return new List<DefaultPermission>
         {
             // GodOfAsgard role has all the permissions
             new()
