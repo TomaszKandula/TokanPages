@@ -47,23 +47,36 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
     public override async Task<AddUserFileCommandResult> Handle(AddUserFileCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var prefixPath = $"content/users/{userId}/{request.Type}";
+        var basePath = $"content/users/{userId}";
 
         var binaryData = request.BinaryData;
         var contentType = request.BinaryData!.ContentType;
 
         Guid? ticketId = null;
         var isBeingProcessed = false;
+        string prefixPath;
+
         switch (request.Type)
         {
             case UserFile.Video:
+                prefixPath = $"{basePath}/videos";
                 ticketId = await AddVideoFile(binaryData!, contentType, prefixPath, userId, cancellationToken);
                 isBeingProcessed = true;
                 break;
             case UserFile.Image:
+                prefixPath = $"{basePath}/images";
+                await AddNonVideoFile(binaryData!, contentType, prefixPath, cancellationToken);
+                break;
             case UserFile.Audio:
+                prefixPath = $"{basePath}/audio";
+                await AddNonVideoFile(binaryData!, contentType, prefixPath, cancellationToken);
+                break;
             case UserFile.Document:
+                prefixPath = $"{basePath}/documents";
+                await AddNonVideoFile(binaryData!, contentType, prefixPath, cancellationToken);
+                break;
             case UserFile.Application:
+                prefixPath = $"{basePath}/applications";
                 await AddNonVideoFile(binaryData!, contentType, prefixPath, cancellationToken);
                 break;
         }
