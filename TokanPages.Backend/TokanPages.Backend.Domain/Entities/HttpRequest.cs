@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
-public class HttpRequests : Entity<Guid>
+public class HttpRequest : Entity<Guid>
 {
     [Required]
     [MaxLength(15)]

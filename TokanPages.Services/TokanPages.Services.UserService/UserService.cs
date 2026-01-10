@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService.Abstractions;
+using HttpRequest = TokanPages.Backend.Domain.Entities.HttpRequest;
 
 namespace TokanPages.Services.UserService;
 
@@ -101,7 +101,7 @@ public sealed class UserService : IUserService
     public async Task LogHttpRequest(string handlerName)
     {
         var ipAddress = GetRequestIpAddress();
-        var httpRequest = new HttpRequests
+        var httpRequest = new HttpRequest
         {
             SourceAddress = ipAddress,
             RequestedAt = _dateTimeService.Now,
