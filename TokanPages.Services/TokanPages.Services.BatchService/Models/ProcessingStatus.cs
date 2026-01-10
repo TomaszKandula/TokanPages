@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Services.BatchService.Models;
 
@@ -8,7 +7,7 @@ public class ProcessingStatus
 {
     public TimeSpan BatchProcessingTime { get; set; }
 
-    public ProcessingStatuses Status { get; set; }
+    public Backend.Domain.Enums.ProcessingStatus Status { get; set; }
 
     public DateTime CreatedAt { get; set; }
 }

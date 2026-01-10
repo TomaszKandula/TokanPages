@@ -28,7 +28,7 @@ public class BatchesController : ApiBaseController
     /// <param name="payload">Invoice details.</param>
     /// <returns>Process batch key.</returns>
     [HttpPost]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(OrderInvoiceBatchCommandResult), StatusCodes.Status200OK)]
     public async Task<OrderInvoiceBatchCommandResult> OrderInvoiceBatch([FromBody] OrderInvoiceBatchDto payload) 
         => await Mediator.Send(BatchMapper.MapToOrderInvoiceBatchCommandRequest(payload));
@@ -38,7 +38,7 @@ public class BatchesController : ApiBaseController
     /// </summary>
     /// <returns>Empty object.</returns>
     [HttpPost]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> OrderBatchProcessing() 
         => await Mediator.Send(new OrderBatchProcessingCommand());
@@ -59,7 +59,7 @@ public class BatchesController : ApiBaseController
     /// <param name="invoiceNumber">Invoice number.</param>
     /// <returns>File.</returns>
     [HttpGet]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(FileContentResult), StatusCodes.Status200OK)]
     public async Task<FileContentResult> GetIssuedBatchInvoice([FromQuery] string invoiceNumber) 
         => await Mediator.Send(new GetIssuedBatchInvoiceQuery { InvoiceNumber = invoiceNumber });

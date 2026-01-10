@@ -171,7 +171,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private async Task SetupDefaultPermissionsUncommitted(Guid userId, Guid? adminUserId, CancellationToken cancellationToken)
     {
-        var userRoleName = Domain.Enums.Roles.EverydayUser.ToString();
+        var userRoleName = Domain.Enums.Role.EverydayUser.ToString();
         var defaultPermissions = await DatabaseContext.DefaultPermissions
             .AsNoTracking()
             .Include(permissions => permissions.Roles)

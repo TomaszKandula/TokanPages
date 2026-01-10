@@ -13,7 +13,7 @@ namespace TokanPages.Backend.Domain.Enums;
 /// that do not use Latin scripts and for computerized systems. Where possible,
 /// the three-digit numeric code is the same as the numeric country code.
 /// </remarks>
-public enum CurrencyCodes
+public enum CurrencyCode
 {
     [EnumMember(Value = "unknown")]
     Unknown = 0,

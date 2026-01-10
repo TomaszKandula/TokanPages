@@ -95,7 +95,7 @@ public class ArticlesController : ApiBaseController
     /// <returns>Guid.</returns>
     [HttpPost]
     [Route("[action]")]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
     public async Task<Guid> AddArticle([FromBody] AddArticleDto payload) 
         => await Mediator.Send(ArticlesMapper.MapToAddArticleCommand(payload));
@@ -107,7 +107,7 @@ public class ArticlesController : ApiBaseController
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> UpdateArticleContent([FromBody] UpdateArticleContentDto payload)
         => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payload));
@@ -141,7 +141,7 @@ public class ArticlesController : ApiBaseController
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> UpdateArticleVisibility([FromBody] UpdateArticleVisibilityDto payload)
         => await Mediator.Send(ArticlesMapper.MapToUpdateArticleCommand(payload));
@@ -164,7 +164,7 @@ public class ArticlesController : ApiBaseController
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
     [Route("[action]")]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveArticle([FromBody] RemoveArticleDto payload)
         => await Mediator.Send(ArticlesMapper.MapToRemoveArticleCommand(payload));

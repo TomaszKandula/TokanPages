@@ -44,7 +44,7 @@ public class SubscriptionsController : ApiBaseController
     /// <param name="userId">User ID.</param>
     /// <returns>Subscription details.</returns>
     [HttpGet]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(GetSubscriptionQueryResult), StatusCodes.Status200OK)]
     public async Task<GetSubscriptionQueryResult> GetSubscription([FromQuery] Guid? userId)
         => await Mediator.Send(new GetSubscriptionQuery { UserId = userId });
@@ -65,7 +65,7 @@ public class SubscriptionsController : ApiBaseController
     /// <param name="payload">Optional properties for modification.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpPost]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit),StatusCodes.Status200OK)]
     public async Task<Unit> UpdateSubscription([FromBody] UpdateSubscriptionDto payload)
         => await Mediator.Send(SubscriptionsMapper.MapToUpdateSubscriptionCommand(payload));
@@ -79,7 +79,7 @@ public class SubscriptionsController : ApiBaseController
     /// <param name="payload">Optional user ID and mandatory subscription ID.</param>
     /// <returns>MediatR unit value.</returns>
     [HttpDelete]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit),StatusCodes.Status200OK)]
     public async Task<Unit> RemoveSubscription([FromBody] RemoveSubscriptionDto payload)
         => await Mediator.Send(SubscriptionsMapper.MapToRemoveSubscriptionCommand(payload));

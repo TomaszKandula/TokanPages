@@ -27,7 +27,7 @@ public class UserCompanies : Entity<Guid>
     [MaxLength(255)]
     public string City { get; set; }
     [Required]
-    public CurrencyCodes CurrencyCode { get; set; }
+    public CurrencyCode CurrencyCode { get; set; }
     [Required]
     public CountryCode CountryCode { get; set; }
 

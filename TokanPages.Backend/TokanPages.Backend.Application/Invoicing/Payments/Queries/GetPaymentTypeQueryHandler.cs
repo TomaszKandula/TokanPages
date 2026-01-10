@@ -12,7 +12,7 @@ public class GetPaymentTypeQueryHandler : RequestHandler<GetPaymentTypeQuery, IL
 
     public override async Task<IList<GetPaymentTypeQueryResult>> Handle(GetPaymentTypeQuery request, CancellationToken cancellationToken)
     {
-        var types = Enum.GetValues<PaymentTypes>();
+        var types = Enum.GetValues<PaymentType>();
         var result = types
             .Select((paymentTypes, index) => new GetPaymentTypeQueryResult
             {

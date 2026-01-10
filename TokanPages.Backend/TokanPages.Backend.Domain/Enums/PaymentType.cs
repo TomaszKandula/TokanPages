@@ -2,7 +2,7 @@ using System.Runtime.Serialization;
 
 namespace TokanPages.Backend.Domain.Enums;
 
-public enum PaymentTypes
+public enum PaymentType
 {
     [EnumMember(Value = "unknown")]
     Unknown = 0,

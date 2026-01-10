@@ -1,6 +1,6 @@
 namespace TokanPages.Backend.Domain.Enums;
 
-public enum Permissions
+public enum Permission
 {
     CanSelectArticles,
     CanInsertArticles,

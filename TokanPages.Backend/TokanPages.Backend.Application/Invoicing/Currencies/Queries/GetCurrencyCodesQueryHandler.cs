@@ -12,7 +12,7 @@ public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQuery
 
     public override async Task<IList<GetCurrencyCodesQueryResult>> Handle(GetCurrencyCodesQuery request, CancellationToken cancellationToken)
     {
-        var codes = Enum.GetValues<CurrencyCodes>();
+        var codes = Enum.GetValues<CurrencyCode>();
         var result = codes
             .Select((currencyCodes, index) => new GetCurrencyCodesQueryResult
             {

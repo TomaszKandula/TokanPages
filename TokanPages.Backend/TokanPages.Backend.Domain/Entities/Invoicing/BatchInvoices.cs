@@ -20,9 +20,9 @@ public class BatchInvoices : Entity<Guid>, IAuditable
     public DateTime DueDate { get; set; }
     public int PaymentTerms { get; set; }
     [Required]
-    public PaymentTypes PaymentType { get; set; }
+    public PaymentType PaymentType { get; set; }
     [Required]
-    public PaymentStatuses PaymentStatus { get; set; }
+    public PaymentStatus PaymentStatus { get; set; }
     [Required]
     [MaxLength(255)]
     public string CustomerName { get; set; }

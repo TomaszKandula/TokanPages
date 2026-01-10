@@ -27,7 +27,7 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
     {
         var user = await _userService.GetActiveUser(null, false, cancellationToken);
         var canPublishArticles = await _userService
-            .HasPermissionAssigned(nameof(Permissions.CanPublishArticles), cancellationToken: cancellationToken) ?? false;
+            .HasPermissionAssigned(nameof(Permission.CanPublishArticles), cancellationToken: cancellationToken) ?? false;
 
         if (!canPublishArticles)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);

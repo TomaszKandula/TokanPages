@@ -1,6 +1,6 @@
 namespace TokanPages.Backend.Domain.Enums;
 
-public enum Roles
+public enum Role
 {
     GodOfAsgard,
     EverydayUser,

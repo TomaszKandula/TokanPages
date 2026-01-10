@@ -18,5 +18,5 @@ public class InvoiceItemBase
 
     public decimal? VatRate { get; set; }
 
-    public CurrencyCodes CurrencyCode { get; set; }
+    public CurrencyCode CurrencyCode { get; set; }
 }

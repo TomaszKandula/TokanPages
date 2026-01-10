@@ -12,9 +12,9 @@ public class OrderDetailBase<T>
 
     public int PaymentTerms { get; set; }
 
-    public PaymentTypes PaymentType { get; set; }
+    public PaymentType PaymentType { get; set; }
 
-    public PaymentStatuses PaymentStatus { get; set; }
+    public PaymentStatus PaymentStatus { get; set; }
 
     public string CompanyName { get; set; } = "";
 
@@ -32,7 +32,7 @@ public class OrderDetailBase<T>
 
     public string InvoiceTemplateName { get; set; } = "";
 
-    public CurrencyCodes CurrencyCode { get; set; }
+    public Backend.Domain.Enums.CurrencyCode CurrencyCode { get; set; }
 
     public IEnumerable<T> InvoiceItems { get; set; } = new List<T>();
 }

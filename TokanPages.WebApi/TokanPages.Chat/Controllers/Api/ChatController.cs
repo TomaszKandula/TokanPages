@@ -24,7 +24,7 @@ public class ChatController : ApiBaseController
     /// <param name="payload">Contains of Sender ID, Receiver ID and message.</param>
     /// <returns>Empty object.</returns>
     [HttpPost]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(PostChatMessageCommandResult), StatusCodes.Status200OK)]
     public async Task<PostChatMessageCommandResult> PostChatMessage([FromBody] PostChatMessageDto payload) 
         => await Mediator.Send(Mappers.ChatMapper.MapToPostNotificationCommand(payload));
@@ -38,7 +38,7 @@ public class ChatController : ApiBaseController
     /// </remarks>
     /// <returns>Chat data.</returns>
     [HttpGet]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(GetChatDataQueryResult), StatusCodes.Status200OK)]
     public async Task<GetChatDataQueryResult> GetChatData([FromQuery] string chatKey) 
         => await Mediator.Send(new GetChatDataQuery { ChatKey = chatKey});
@@ -52,7 +52,7 @@ public class ChatController : ApiBaseController
     /// </remarks>
     /// <returns>Cached user messages.</returns>
     [HttpPost]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(RetrieveChatCacheCommandResult), StatusCodes.Status200OK)]
     public async Task<RetrieveChatCacheCommandResult> RetrieveChatCache([FromBody] RetrieveChatCacheDto payload) 
         => await Mediator.Send(Mappers.ChatMapper.MapToRetrieveChatCacheCommand(payload));
@@ -66,7 +66,7 @@ public class ChatController : ApiBaseController
     /// </remarks>
     /// <returns>Empty object.</returns>
     [HttpDelete]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
     public async Task<Unit> RemoveChatCache([FromBody] RemoveChatCacheDto payload) 
         => await Mediator.Send(Mappers.ChatMapper.MapToRemoveChatCacheCommand(payload));

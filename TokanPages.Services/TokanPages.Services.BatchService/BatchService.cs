@@ -6,10 +6,10 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Invoicing;
-using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.BatchService.Models;
+using ProcessingStatus = TokanPages.Backend.Domain.Enums.ProcessingStatus;
 
 namespace TokanPages.Services.BatchService;
 
@@ -43,7 +43,7 @@ public class BatchService : IBatchService
         {
             Id = Guid.NewGuid(),
             BatchProcessingTime = null,
-            Status = ProcessingStatuses.New,
+            Status = ProcessingStatus.New,
             CreatedAt = _dateTimeService.Now
         };
 
@@ -117,7 +117,7 @@ public class BatchService : IBatchService
     {
         var processingList = await _databaseContext.BatchInvoicesProcessing
             .AsNoTracking()
-            .Where(processing => processing.Status == ProcessingStatuses.New)
+            .Where(processing => processing.Status == ProcessingStatus.New)
             .Select(processing => processing.Id)
             .ToListAsync(cancellationToken);
 
@@ -259,7 +259,7 @@ public class BatchService : IBatchService
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>Processing Status object.</returns>
     /// <exception cref="BusinessException">Throws an error code INVALID_PROCESSING_BATCH_KEY.</exception>
-    public async Task<ProcessingStatus> GetBatchInvoiceProcessingStatus(Guid processBatchKey, CancellationToken cancellationToken = default)
+    public async Task<Models.ProcessingStatus> GetBatchInvoiceProcessingStatus(Guid processBatchKey, CancellationToken cancellationToken = default)
     {
         var processing = await _databaseContext.BatchInvoicesProcessing
             .AsNoTracking()
@@ -268,7 +268,7 @@ public class BatchService : IBatchService
 
         ThrowIfNull(processing, ErrorCodes.INVALID_PROCESSING_BATCH_KEY);
 
-        return new ProcessingStatus
+        return new Models.ProcessingStatus
         {
             Status = processing!.Status,
             CreatedAt = processing.CreatedAt,
@@ -377,7 +377,7 @@ public class BatchService : IBatchService
         issuedInvoiceData.InvoiceCollection.Add(issuedInvoice);
         issuedInvoiceData.ProcessingTimer.Stop();
                     
-        issuedInvoiceData.BatchInvoicesProcessing.Status = ProcessingStatuses.Finished;
+        issuedInvoiceData.BatchInvoicesProcessing.Status = ProcessingStatus.Finished;
         issuedInvoiceData.BatchInvoicesProcessing.BatchProcessingTime = issuedInvoiceData.ProcessingTimer.Elapsed;
                     
         await _databaseContext.SaveChangesAsync(cancellationToken);
@@ -387,7 +387,7 @@ public class BatchService : IBatchService
     {
         timer.Start();
         _loggerService.LogInformation($"Start processing invoice number: {currentInvoice.InvoiceNumber}.");
-        processing.Status = ProcessingStatuses.Started;
+        processing.Status = ProcessingStatus.Started;
         await _databaseContext.SaveChangesAsync(cancellationToken);
     }
 
@@ -395,7 +395,7 @@ public class BatchService : IBatchService
     {
         error.Timer.Stop();
         _loggerService.LogError($"Invoice processing has failed. Invoice number: {error.InvoiceNumber}.");
-        error.ProcessingObject.Status = ProcessingStatuses.Failed;
+        error.ProcessingObject.Status = ProcessingStatus.Failed;
         error.ProcessingObject.BatchProcessingTime = error.Timer.Elapsed;
         await _databaseContext.SaveChangesAsync(cancellationToken);
     }

@@ -27,12 +27,12 @@ public class OrderDetailBase<T>
     /// <summary>
     /// Payment Type.
     /// </summary>
-    public PaymentTypes PaymentType { get; set; }
+    public PaymentType PaymentType { get; set; }
 
     /// <summary>
     /// Payment Status.
     /// </summary>
-    public PaymentStatuses PaymentStatus { get; set; }
+    public PaymentStatus PaymentStatus { get; set; }
 
     /// <summary>
     /// Company Name.
@@ -77,7 +77,7 @@ public class OrderDetailBase<T>
     /// <summary>
     /// Currency Code.
     /// </summary>
-    public CurrencyCodes CurrencyCode { get; set; }
+    public CurrencyCode CurrencyCode { get; set; }
 
     /// <summary>
     /// Invoice Items.

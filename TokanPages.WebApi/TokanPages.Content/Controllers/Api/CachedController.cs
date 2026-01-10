@@ -53,7 +53,7 @@ public class CachedController : ApiBaseController
     /// <returns>Empty object.</returns>
     [HttpPost]
     [Route("[action]")]
-    [AuthorizeUser(Roles.GodOfAsgard, Roles.EverydayUser)]
+    [AuthorizeUser(Role.GodOfAsgard, Role.EverydayUser)]
     [ProducesResponseType(typeof(Unit), StatusCodes.Status201Created)]
     public async Task<Unit> OrderCache([FromBody] RequestProcessingDto payload) 
         => await Mediator.Send(CachedMapper.MapToOrderSpaCachingCommand(payload));

@@ -26,7 +26,7 @@ public class PaymentsController : ApiBaseController
     /// </summary>
     /// <returns>Access token details.</returns>
     [HttpGet]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(GetAuthorizationQueryResult), StatusCodes.Status200OK)]
     public async Task<GetAuthorizationQueryResult> GetAuthorization()
         => await Mediator.Send(new GetAuthorizationQuery());
@@ -36,7 +36,7 @@ public class PaymentsController : ApiBaseController
     /// </summary>
     /// <returns>List of available payment methods.</returns>
     [HttpGet]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(GetPaymentMethodsQueryResults), StatusCodes.Status200OK)]
     public async Task<GetPaymentMethodsQueryResults> GetPaymentMethods()
         => await Mediator.Send(new GetPaymentMethodsQuery());
@@ -47,7 +47,7 @@ public class PaymentsController : ApiBaseController
     /// <param name="orderId">Order ID created when requesting new payment.</param>
     /// <returns>Order details.</returns>
     [HttpGet]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(GetOrderDetailsQueryResult), StatusCodes.Status200OK)]
     public async Task<GetOrderDetailsQueryResult> GetOrderDetails([FromQuery] string orderId)
         => await Mediator.Send(new GetOrderDetailsQuery { OrderId = orderId });
@@ -58,7 +58,7 @@ public class PaymentsController : ApiBaseController
     /// <param name="orderId">Order ID created when requesting new payment.</param>
     /// <returns>Transaction details.</returns>
     [HttpGet]
-    [AuthorizeUser(Roles.EverydayUser)]
+    [AuthorizeUser(Role.EverydayUser)]
     [ProducesResponseType(typeof(GetOrderTransactionsQueryResult), StatusCodes.Status200OK)]
     public async Task<GetOrderTransactionsQueryResult> GetOrderTransactions([FromQuery] string orderId)
         => await Mediator.Send(new GetOrderTransactionsQuery { OrderId = orderId });
