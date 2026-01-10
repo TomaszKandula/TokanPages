@@ -34,7 +34,8 @@ public class RemoveUserFileCommandHandler : RequestHandler<RemoveUserFileCommand
             _ => throw new ArgumentOutOfRangeException()
         };
 
-        var destinationPath = $"content/users/{userId}/{folder}/{request.UniqueBlobName}";
+        var destinationPath = $"content/users/{userId}/files/{folder}/{request.UniqueBlobName}";
+        LoggerService.LogInformation($"Removing user file, path: {destinationPath}");
         await azureBlob.DeleteFile(destinationPath, cancellationToken);
 
         return Unit.Value;
