@@ -8,9 +8,12 @@ public class RemoveUserFileCommandValidator : AbstractValidator<RemoveUserFileCo
     public RemoveUserFileCommandValidator()
     {
         RuleFor(command => command.Type)
-            .IsInEnum()
+            .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED);
+            .WithMessage(ValidationCodes.REQUIRED)
+            .IsInEnum()
+            .WithErrorCode(nameof(ValidationCodes.INVALID_ENUM_VALUE))
+            .WithMessage(ValidationCodes.INVALID_ENUM_VALUE);
 
         RuleFor(command => command.UniqueBlobName)
             .NotEmpty()

@@ -8,8 +8,11 @@ public class GetUserFileListQueryValidator : AbstractValidator<GetUserFileListQu
     public GetUserFileListQueryValidator()
     {
         RuleFor(query => query.Type)
-            .IsInEnum()
+            .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED);
+            .WithMessage(ValidationCodes.REQUIRED)
+            .IsInEnum()
+            .WithErrorCode(nameof(ValidationCodes.INVALID_ENUM_VALUE))
+            .WithMessage(ValidationCodes.INVALID_ENUM_VALUE);
     }
 }

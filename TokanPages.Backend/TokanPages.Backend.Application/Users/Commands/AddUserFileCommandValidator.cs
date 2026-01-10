@@ -11,9 +11,12 @@ public class AddUserFileCommandValidator : AbstractValidator<AddUserFileCommand>
         var sizeLimit = configuration.GetValue<int>("AZ_Storage_MaxFileSizeUserMedia");
 
         RuleFor(command => command.Type)
-            .IsInEnum()
+            .NotEmpty()
             .WithErrorCode(nameof(ValidationCodes.REQUIRED))
-            .WithMessage(ValidationCodes.REQUIRED);
+            .WithMessage(ValidationCodes.REQUIRED)
+            .IsInEnum()
+            .WithErrorCode(nameof(ValidationCodes.INVALID_ENUM_VALUE))
+            .WithMessage(ValidationCodes.INVALID_ENUM_VALUE);
 
         When(command => command.BinaryData != null, () =>
         {
