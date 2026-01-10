@@ -6,9 +6,9 @@ using TokanPages.Backend.Domain.Entities.Photography;
 namespace TokanPages.Persistence.Database.Mappings.Photography;
 
 [ExcludeFromCodeCoverage]
-public class PhotoGearsConfiguration : IEntityTypeConfiguration<PhotoGears>
+public class PhotoGearsConfiguration : IEntityTypeConfiguration<PhotoGear>
 {
-    public void Configure(EntityTypeBuilder<PhotoGears> builder)
+    public void Configure(EntityTypeBuilder<PhotoGear> builder)
     {
         builder.Property(photoGears => photoGears.Id).ValueGeneratedOnAdd();
         builder.Property(photoGears => photoGears.Aperture).HasColumnType("decimal(18,2)");

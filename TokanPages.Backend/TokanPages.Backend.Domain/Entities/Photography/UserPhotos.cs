@@ -28,7 +28,7 @@ public class UserPhotos : Entity<Guid>, IAuditable
 
     /* Navigation properties */
     public Users Users { get; set; }
-    public PhotoGears PhotoGears { get; set; }
+    public PhotoGear PhotoGear { get; set; }
     public PhotoCategory PhotoCategory { get; set; }
     public ICollection<Album> Albums { get; set; } = new HashSet<Album>();
 }

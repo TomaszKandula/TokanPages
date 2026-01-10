@@ -5,7 +5,7 @@ using TokanPages.Backend.Domain.Contracts;
 namespace TokanPages.Backend.Domain.Entities.Photography;
 
 [ExcludeFromCodeCoverage]
-public class PhotoGears : Entity<Guid>, IAuditable
+public class PhotoGear : Entity<Guid>, IAuditable
 {
     [MaxLength(100)]
     public string BodyVendor { get; set; }

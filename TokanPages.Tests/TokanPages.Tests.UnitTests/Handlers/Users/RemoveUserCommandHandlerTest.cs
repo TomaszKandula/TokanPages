@@ -40,7 +40,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             Name = DataUtilityService.GetRandomString(),
         };
 
-        var photoGear = new PhotoGears
+        var photoGear = new PhotoGear
         { 
             Id = Guid.NewGuid(),
             Aperture = DataUtilityService.GetRandomDecimal(),

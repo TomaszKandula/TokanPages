@@ -20,7 +20,7 @@ public class PhotosConfiguration : IEntityTypeConfiguration<UserPhotos>
             .HasConstraintName("FK_UserPhotos_Users");
             
         builder
-            .HasOne(photos => photos.PhotoGears)
+            .HasOne(photos => photos.PhotoGear)
             .WithMany(photoGears => photoGears.UserPhotos)
             .HasForeignKey(photos => photos.PhotoGearId)
             .OnDelete(DeleteBehavior.ClientSetNull)
