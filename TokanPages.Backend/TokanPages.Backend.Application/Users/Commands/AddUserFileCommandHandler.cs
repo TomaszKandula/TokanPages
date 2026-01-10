@@ -94,7 +94,7 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
         var binary = binaryData.GetByteArray();
 
         var extension = Path.GetExtension(fileName);
-        var mediaName = $"{Guid.NewGuid():N}.{extension}".ToLower();
+        var mediaName = $"{Guid.NewGuid():N}{extension}".ToLower();
 
         var destinationPath = $"{prefix}/{mediaName}";
 
