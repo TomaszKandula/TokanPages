@@ -13,8 +13,8 @@ public enum UserFile
     [EnumMember(Value = "video")]
     Video = 2,
 
-    [EnumMember(Value = "text")]
-    Text = 3,
+    [EnumMember(Value = "document")]
+    Document = 3,
 
     [EnumMember(Value = "application")]
     Application = 4,
