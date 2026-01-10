@@ -205,7 +205,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             ModifiedBy = null
         };
 
-        var newPermissions = userPermissions.Select(item => new UserPermissions
+        var newPermissions = userPermissions.Select(item => new UserPermission
         {
             UserId = userId, 
             PermissionId = item,

@@ -42,7 +42,7 @@ public class Users : Entity<Guid>, IAuditable, ISoftDelete
     public ICollection<ArticleCount> ArticleCounts { get; set; } = new HashSet<ArticleCount>();
     public ICollection<Album> Albums { get; set; } = new HashSet<Album>();
     public ICollection<UserPhoto> UserPhotos { get; set; } = new HashSet<UserPhoto>();
-    public ICollection<UserPermissions> UserPermissions { get; set; } = new HashSet<UserPermissions>();
+    public ICollection<UserPermission> UserPermissions { get; set; } = new HashSet<UserPermission>();
     public ICollection<UserRoles> UserRoles { get; set; } = new HashSet<UserRoles>();
     public ICollection<UserTokens> UserTokens { get; set; } = new HashSet<UserTokens>();
     public ICollection<UserRefreshTokens> UserRefreshTokens { get; set; } = new HashSet<UserRefreshTokens>();

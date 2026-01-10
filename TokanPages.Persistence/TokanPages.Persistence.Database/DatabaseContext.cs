@@ -49,7 +49,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<Role> Roles { get; set; }
     public virtual DbSet<Permission> Permissions { get; set; }
     public virtual DbSet<DefaultPermission> DefaultPermissions { get; set; }
-    public virtual DbSet<UserPermissions> UserPermissions { get; set; }
+    public virtual DbSet<UserPermission> UserPermissions { get; set; }
     public virtual DbSet<UserRoles> UserRoles { get; set; }
     public virtual DbSet<UserTokens> UserTokens { get; set; }
     public virtual DbSet<UserRefreshTokens> UserRefreshTokens { get; set; }

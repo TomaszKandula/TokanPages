@@ -6,9 +6,9 @@ using TokanPages.Backend.Domain.Entities.User;
 namespace TokanPages.Persistence.Database.Mappings.User;
 
 [ExcludeFromCodeCoverage]
-public class UserPermissionsConfiguration : IEntityTypeConfiguration<UserPermissions>
+public class UserPermissionsConfiguration : IEntityTypeConfiguration<UserPermission>
 {
-    public void Configure(EntityTypeBuilder<UserPermissions> builder)
+    public void Configure(EntityTypeBuilder<UserPermission> builder)
     {
         builder.Property(userPermissions => userPermissions.Id).ValueGeneratedOnAdd();
             

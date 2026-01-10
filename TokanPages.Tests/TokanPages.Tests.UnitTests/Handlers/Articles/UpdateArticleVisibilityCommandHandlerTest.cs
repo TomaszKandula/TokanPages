@@ -44,7 +44,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             Name = DataUtilityService.GetRandomString()
         };
 
-        var userPermission = new UserPermissions
+        var userPermission = new UserPermission
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -130,7 +130,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             Name = DataUtilityService.GetRandomString()
         };
 
-        var userPermission = new UserPermissions
+        var userPermission = new UserPermission
         {
             Id = Guid.NewGuid(),
             UserId = userId,
@@ -215,7 +215,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             Name = DataUtilityService.GetRandomString()
         };
 
-        var userPermission = new UserPermissions
+        var userPermission = new UserPermission
         {
             Id = Guid.NewGuid(),
             UserId = userId,

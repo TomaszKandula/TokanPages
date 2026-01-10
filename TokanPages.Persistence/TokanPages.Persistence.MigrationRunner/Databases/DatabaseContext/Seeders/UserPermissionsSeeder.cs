@@ -8,9 +8,9 @@ namespace TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seede
 [ExcludeFromCodeCoverage]
 public static class UserPermissionsSeeder
 {
-    public static IEnumerable<UserPermissions> SeedUserPermissions()
+    public static IEnumerable<UserPermission> SeedUserPermissions()
     {
-        return new List<UserPermissions>
+        return new List<UserPermission>
         {
             // User1
             new()

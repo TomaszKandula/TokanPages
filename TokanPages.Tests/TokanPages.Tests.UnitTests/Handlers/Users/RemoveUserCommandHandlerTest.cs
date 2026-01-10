@@ -121,7 +121,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             RoleId = role.Id
         };
 
-        var userPermission = new UserPermissions
+        var userPermission = new UserPermission
         {
             Id = Guid.NewGuid(),
             UserId = userId,

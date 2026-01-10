@@ -229,7 +229,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId);
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -279,7 +279,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId);
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -323,7 +323,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId);
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -511,7 +511,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId).ToList();
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -557,7 +557,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId).ToList();
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -602,7 +602,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId).ToList();
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {
@@ -646,7 +646,7 @@ public class UserServiceTest : TestBase
         var userId = Guid.NewGuid(); 
         var users = GetUser(userId).ToList();
         var permissions = GetPermissions().ToList();
-        var userPermissions = new List<UserPermissions>
+        var userPermissions = new List<UserPermission>
         {
             new()
             {

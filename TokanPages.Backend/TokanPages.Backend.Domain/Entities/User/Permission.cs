@@ -16,5 +16,5 @@ public class Permission : Entity<Guid>, IAuditable
 
     /* Navigation properties */
     public ICollection<DefaultPermission> DefaultPermissions { get; set; } = new HashSet<DefaultPermission>();
-    public ICollection<UserPermissions> UserPermissions { get; set; } = new HashSet<UserPermissions>();
+    public ICollection<UserPermission> UserPermissions { get; set; } = new HashSet<UserPermission>();
 }
