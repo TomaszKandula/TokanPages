@@ -24,7 +24,7 @@ public class AddNewsletterCommandHandler : RequestHandler<AddNewsletterCommand, 
         if (emailCollection.Count == 1)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        var newSubscriber = new Domain.Entities.Newsletters
+        var newSubscriber = new Domain.Entities.Newsletter
         {
             Email = request.Email,
             Count = 0,

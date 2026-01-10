@@ -16,7 +16,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     public async Task GivenCorrectId_WhenUpdateSubscriber_ShouldUpdateEntity()
     {
         // Arrange
-        var subscribers = new Backend.Domain.Entities.Newsletters 
+        var subscribers = new Backend.Domain.Entities.Newsletter 
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -69,7 +69,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     public async Task GivenCorrectIdAndCountIsNullAndIsActivatedIsNull_WhenUpdateSubscriber_ShouldUpdateEntity()
     {
         // Arrange
-        var subscribers = new Backend.Domain.Entities.Newsletters
+        var subscribers = new Backend.Domain.Entities.Newsletter
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -126,7 +126,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = 10
         };
 
-        var subscribers = new Backend.Domain.Entities.Newsletters
+        var subscribers = new Backend.Domain.Entities.Newsletter
         {
             Id = Guid.NewGuid(),
             Email = DataUtilityService.GetRandomEmail(),
@@ -160,7 +160,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var subscribers = new Backend.Domain.Entities.Newsletters
+        var subscribers = new Backend.Domain.Entities.Newsletter
         {
             Email = testEmail,
             IsActivated = true,

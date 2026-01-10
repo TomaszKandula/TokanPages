@@ -64,7 +64,7 @@ public class DatabaseContext : DbContext
     /* Category: Other */
     public virtual DbSet<Language> Languages { get; set; }
     public virtual DbSet<CategoryName> CategoryNames { get; set; }
-    public virtual DbSet<Newsletters> Newsletters { get; set; }
+    public virtual DbSet<Newsletter> Newsletters { get; set; }
     public virtual DbSet<HttpRequest> HttpRequests { get; set; }
     public virtual DbSet<UploadedVideo> UploadedVideos { get; set; }
     public virtual DbSet<ServiceBusMessage> ServiceBusMessages { get; set; }

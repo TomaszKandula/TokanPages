@@ -14,7 +14,7 @@ public class GetSubscriberQueryHandlerTest : TestBase
     {
         // Arrange
         var testDate = DateTime.Now;
-        var subscribers = new TokanPages.Backend.Domain.Entities.Newsletters
+        var subscribers = new Backend.Domain.Entities.Newsletter
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -47,7 +47,7 @@ public class GetSubscriberQueryHandlerTest : TestBase
     public async Task GivenIncorrectId_WhenGetSubscriber_ShouldThrowError()
     {
         // Arrange
-        var subscribers = new TokanPages.Backend.Domain.Entities.Newsletters
+        var subscribers = new TokanPages.Backend.Domain.Entities.Newsletter
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,

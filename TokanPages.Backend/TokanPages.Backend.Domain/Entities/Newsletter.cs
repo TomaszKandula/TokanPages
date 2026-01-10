@@ -5,7 +5,7 @@ using TokanPages.Backend.Domain.Contracts;
 namespace TokanPages.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
-public class Newsletters : Entity<Guid>, IAuditable
+public class Newsletter : Entity<Guid>, IAuditable
 {
     [Required]
     [MaxLength(255)]

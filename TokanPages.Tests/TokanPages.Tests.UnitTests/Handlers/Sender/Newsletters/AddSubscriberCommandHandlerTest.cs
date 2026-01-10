@@ -43,7 +43,7 @@ public class AddSubscriberCommandHandlerTest : TestBase
     {
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var subscribers = new TokanPages.Backend.Domain.Entities.Newsletters 
+        var subscribers = new Backend.Domain.Entities.Newsletter 
         { 
             Email = testEmail,
             IsActivated = true,
