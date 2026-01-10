@@ -226,7 +226,7 @@ public class UsersController : ApiBaseController
     [Route("[action]")]
     [AuthorizeUser(Roles.EverydayUser)]
     [ProducesResponseType(typeof(AddUserFileCommandResult), StatusCodes.Status200OK)]
-    public async Task<AddUserFileCommandResult> AddUserFile([FromBody] AddUserFileDto payload) 
+    public async Task<AddUserFileCommandResult> AddUserFile([FromForm] AddUserFileDto payload) 
         => await Mediator.Send(UsersMapper.MapToAddUserFileCommand(payload));
 
     /// <summary>
