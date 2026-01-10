@@ -230,6 +230,18 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToAddUserFileCommand(payload));
 
     /// <summary>
+    /// Removes given user file.
+    /// </summary>
+    /// <param name="payload">File details.</param>
+    /// <returns></returns>
+    [HttpDelete]
+    [Route("[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(Unit), StatusCodes.Status200OK)]
+    public async Task<Unit> RemoveUserFile([FromBody] RemoveUserFileDto payload) 
+        => await Mediator.Send(UsersMapper.MapToRemoveUserFileCommand(payload));
+
+    /// <summary>
     /// Returns user notes for given user ID (taken from authorization header).
     /// </summary>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
