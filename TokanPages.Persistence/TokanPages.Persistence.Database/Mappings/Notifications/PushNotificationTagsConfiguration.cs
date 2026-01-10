@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TokanPages.Backend.Domain.Entities.Notifications;
 
-namespace TokanPages.Persistence.Database.Mappings.Notification;
+namespace TokanPages.Persistence.Database.Mappings.Notifications;
 
 [ExcludeFromCodeCoverage]
 public class PushNotificationTagsConfiguration : IEntityTypeConfiguration<PushNotificationTag>
