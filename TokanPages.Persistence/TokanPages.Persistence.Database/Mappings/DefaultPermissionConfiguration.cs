@@ -6,23 +6,23 @@ using TokanPages.Backend.Domain.Entities;
 namespace TokanPages.Persistence.Database.Mappings;
 
 [ExcludeFromCodeCoverage]
-public class DefaultPermissionsConfiguration : IEntityTypeConfiguration<DefaultPermission>
+public class DefaultPermissionConfiguration : IEntityTypeConfiguration<DefaultPermission>
 {
     public void Configure(EntityTypeBuilder<DefaultPermission> builder)
     {
-        builder.Property(defaultPermissions => defaultPermissions.Id).ValueGeneratedOnAdd();
+        builder.Property(permission => permission.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(defaultPermissions => defaultPermissions.Permission)
-            .WithMany(permissions => permissions.DefaultPermissions)
-            .HasForeignKey(defaultPermissions => defaultPermissions.PermissionId)
+            .HasOne(permission => permission.Permission)
+            .WithMany(permission => permission.DefaultPermissions)
+            .HasForeignKey(permission => permission.PermissionId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_DefaultPermissions_Permissions");
 
         builder
-            .HasOne(defaultPermissions => defaultPermissions.Role)
-            .WithMany(roles => roles.DefaultPermissions)
-            .HasForeignKey(defaultPermissions => defaultPermissions.RoleId)
+            .HasOne(permission => permission.Role)
+            .WithMany(role => role.DefaultPermissions)
+            .HasForeignKey(permission => permission.RoleId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_DefaultPermissions_Roles");
     }

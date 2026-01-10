@@ -6,8 +6,8 @@ using TokanPages.Backend.Domain.Entities;
 namespace TokanPages.Persistence.Database.Mappings;
 
 [ExcludeFromCodeCoverage]
-public class HttpRequestsConfiguration : IEntityTypeConfiguration<HttpRequest>
+public class RoleConfiguration : IEntityTypeConfiguration<Role>
 {
-    public void Configure(EntityTypeBuilder<HttpRequest> builder) 
-        => builder.Property(httpRequests => httpRequests.Id).ValueGeneratedOnAdd();
+    public void Configure(EntityTypeBuilder<Role> builder)
+        => builder.Property(role => role.Id).ValueGeneratedOnAdd();
 }

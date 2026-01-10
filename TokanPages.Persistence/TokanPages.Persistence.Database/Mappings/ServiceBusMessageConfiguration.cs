@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace TokanPages.Persistence.Database.Mappings;
 
 [ExcludeFromCodeCoverage]
-public class UploadedVideosConfiguration : IEntityTypeConfiguration<UploadedVideo>
+public class ServiceBusMessageConfiguration : IEntityTypeConfiguration<ServiceBusMessage>
 {
-    public void Configure(EntityTypeBuilder<UploadedVideo> builder)
-        => builder.Property(uploadedVideos => uploadedVideos.Id).ValueGeneratedOnAdd();
+    public void Configure(EntityTypeBuilder<ServiceBusMessage> builder) 
+        => builder.Property(message => message.Id).ValueGeneratedOnAdd();
 }
