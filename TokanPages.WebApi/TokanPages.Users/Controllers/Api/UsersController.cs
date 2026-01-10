@@ -215,6 +215,21 @@ public class UsersController : ApiBaseController
         => await _usersCache.GetUserFileList(type, noCache);
 
     /// <summary>
+    /// Adds user file for given type.
+    /// </summary>
+    /// <param name="payload">File details.</param>
+    /// <remarks>
+    /// Requires: Roles.EverydayUser.
+    /// </remarks>
+    /// <returns></returns>
+    [HttpPost]
+    [Route("[action]")]
+    [AuthorizeUser(Roles.EverydayUser)]
+    [ProducesResponseType(typeof(AddUserFileCommandResult), StatusCodes.Status200OK)]
+    public async Task<AddUserFileCommandResult> AddUserFile([FromBody] AddUserFileDto payload) 
+        => await Mediator.Send(UsersMapper.MapToAddUserFileCommand(payload));
+
+    /// <summary>
     /// Returns user notes for given user ID (taken from authorization header).
     /// </summary>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
