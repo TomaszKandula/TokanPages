@@ -58,24 +58,24 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
 
         switch (request.Type)
         {
-            case UserFileToReceive.Video:
+            case UserFileToUpdate.Video:
                 prefixPath = $"{basePath}/videos";
                 ticketId = await AddVideoFile(binaryData!, contentType, prefixPath, userId, cancellationToken);
                 isBeingProcessed = true;
                 break;
-            case UserFileToReceive.Image:
+            case UserFileToUpdate.Image:
                 prefixPath = $"{basePath}/images";
                 await AddNonVideoFile(binaryData!, contentType, prefixPath, cancellationToken);
                 break;
-            case UserFileToReceive.Audio:
+            case UserFileToUpdate.Audio:
                 prefixPath = $"{basePath}/audio";
                 await AddNonVideoFile(binaryData!, contentType, prefixPath, cancellationToken);
                 break;
-            case UserFileToReceive.Document:
+            case UserFileToUpdate.Document:
                 prefixPath = $"{basePath}/documents";
                 await AddNonVideoFile(binaryData!, contentType, prefixPath, cancellationToken);
                 break;
-            case UserFileToReceive.Application:
+            case UserFileToUpdate.Application:
                 prefixPath = $"{basePath}/applications";
                 await AddNonVideoFile(binaryData!, contentType, prefixPath, cancellationToken);
                 break;

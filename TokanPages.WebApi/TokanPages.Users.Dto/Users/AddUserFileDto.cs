@@ -14,7 +14,7 @@ public class AddUserFileDto
     /// <summary>
     /// User file type (image, audio, video, document, application).
     /// </summary>
-    public UserFileToReceive Type { get; set; }
+    public UserFileToUpdate Type { get; set; }
 
     /// <summary>
     /// Binary data.
