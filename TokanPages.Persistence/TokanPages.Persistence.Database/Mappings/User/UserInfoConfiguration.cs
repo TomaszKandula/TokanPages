@@ -14,7 +14,7 @@ public class UserInfoConfiguration : IEntityTypeConfiguration<UserInfo>
 
         builder
             .HasOne(userInfo => userInfo.User)
-            .WithMany(users => users.UserInfo)
+            .WithMany(users => users.UserInformation)
             .HasForeignKey(userInfo => userInfo.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserInfo_Users");
