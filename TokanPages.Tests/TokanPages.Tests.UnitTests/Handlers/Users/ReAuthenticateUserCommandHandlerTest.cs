@@ -29,7 +29,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var refreshToken = DataUtilityService.GetRandomString(255);
 
         var command = new ReAuthenticateUserCommand();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = emailAddress,
@@ -124,7 +124,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var newUserToken = DataUtilityService.GetRandomString();
         mockedUserService
             .Setup(service => service.GenerateUserToken(
-                It.IsAny<Backend.Domain.Entities.User.Users>(), 
+                It.IsAny<User>(), 
                 It.IsAny<DateTime>(), 
                 CancellationToken.None))
             .ReturnsAsync(newUserToken);
@@ -194,7 +194,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
         var created = DateTimeService.Now.AddDays(-5);
             
         var command = new ReAuthenticateUserCommand();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = emailAddress,
@@ -266,7 +266,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var command = new ReAuthenticateUserCommand();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = Guid.NewGuid(),
             EmailAddress = DataUtilityService.GetRandomEmail(),

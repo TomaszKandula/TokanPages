@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
-using TokanPages.Backend.Domain.Entities.User;
 
 namespace TokanPages.Backend.Domain.Entities.Article;
 
@@ -22,5 +21,5 @@ public class ArticleCount : Entity<Guid>, IAuditable
 
     /* Navigation properties */
     public Article Article { get; set; }
-    public Users Users { get; set; }
+    public User.User User { get; set; }
 }

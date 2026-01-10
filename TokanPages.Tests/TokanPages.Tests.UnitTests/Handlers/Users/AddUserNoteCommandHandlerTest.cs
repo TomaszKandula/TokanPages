@@ -22,7 +22,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
         var compressedNote = currentNote.CompressToBase64();
         var userId = Guid.NewGuid();
 
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -94,7 +94,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
         var compressedNote = currentNote.CompressToBase64();
         var userId = Guid.NewGuid();
 
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),

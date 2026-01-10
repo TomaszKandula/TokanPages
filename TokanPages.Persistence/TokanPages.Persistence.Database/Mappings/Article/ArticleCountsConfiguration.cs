@@ -20,7 +20,7 @@ public class ArticleCountsConfiguration : IEntityTypeConfiguration<ArticleCount>
             .HasConstraintName("FK_ArticleCounts_Articles");
 
         builder
-            .HasOne(articleCounts => articleCounts.Users)
+            .HasOne(articleCounts => articleCounts.User)
             .WithMany(users => users.ArticleCounts)
             .HasForeignKey(articleCounts => articleCounts.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

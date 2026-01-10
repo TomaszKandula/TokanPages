@@ -44,7 +44,7 @@ public class AddArticleCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString().ToBase64Encode()
         };
 
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             UserAlias  = DataUtilityService.GetRandomString(),
             IsActivated = true,

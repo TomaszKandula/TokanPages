@@ -18,7 +18,7 @@ public class GetUserNoteQueryHandlerTest : TestBase
         var compressedNote = plainNote.CompressToBase64();
 
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -78,7 +78,7 @@ public class GetUserNoteQueryHandlerTest : TestBase
         var compressedNote = plainNote.CompressToBase64();
 
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),

@@ -21,7 +21,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
         // Arrange
         var userId = Guid.NewGuid();
         var token = DataUtilityService.GetRandomString(100);
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -89,7 +89,7 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
         // Arrange
         var userId = Guid.NewGuid();
         var token = DataUtilityService.GetRandomString(100);
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),

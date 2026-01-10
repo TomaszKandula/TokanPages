@@ -27,7 +27,7 @@ public class UserPhoto : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public Users Users { get; set; }
+    public User.User User { get; set; }
     public PhotoGear PhotoGear { get; set; }
     public PhotoCategory PhotoCategory { get; set; }
     public ICollection<Album> Albums { get; set; } = new HashSet<Album>();

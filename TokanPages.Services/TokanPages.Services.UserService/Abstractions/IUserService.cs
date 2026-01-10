@@ -20,7 +20,7 @@ public interface IUserService
 
     Task<GetUserOutput?> GetUser(CancellationToken cancellationToken = default);
 
-    Task<Users> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default);
+    Task<User> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default);
 
     Task<List<GetUserRolesOutput>?> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default);
 
@@ -34,9 +34,9 @@ public interface IUserService
 
     Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId = default, CancellationToken cancellationToken = default);
 
-    Task<ClaimsIdentity> MakeClaimsIdentity(Users users, CancellationToken cancellationToken = default);
+    Task<ClaimsIdentity> MakeClaimsIdentity(User user, CancellationToken cancellationToken = default);
         
-    Task<string> GenerateUserToken(Users users, DateTime tokenExpires, CancellationToken cancellationToken = default);
+    Task<string> GenerateUserToken(User user, DateTime tokenExpires, CancellationToken cancellationToken = default);
 
     Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default);
 

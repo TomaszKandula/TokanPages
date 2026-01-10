@@ -14,6 +14,6 @@ public class UserRole : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public Users Users { get; set; }
+    public User User { get; set; }
     public Role Role { get; set; }
 }

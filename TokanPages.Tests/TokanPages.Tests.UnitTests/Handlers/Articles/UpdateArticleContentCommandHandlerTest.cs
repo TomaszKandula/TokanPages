@@ -29,7 +29,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new Backend.Domain.Entities.User.User
         {
             Id = userId,
             IsActivated = true,
@@ -116,7 +116,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new Backend.Domain.Entities.User.User
         {
             Id = userId,
             IsActivated = true,

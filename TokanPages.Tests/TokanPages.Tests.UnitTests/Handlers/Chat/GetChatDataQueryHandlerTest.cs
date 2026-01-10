@@ -20,7 +20,7 @@ public class GetChatDataQueryHandlerTest : TestBase
         var chatKey = $"{userId1}:{userId2}".ToBase64Encode();
         var query = new GetChatDataQuery { ChatKey = chatKey };
 
-        var users1 = new Backend.Domain.Entities.User.Users
+        var users1 = new Backend.Domain.Entities.User.User
         {
             Id = userId1,
             IsActivated = true,
@@ -29,7 +29,7 @@ public class GetChatDataQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var users2 = new Backend.Domain.Entities.User.Users
+        var users2 = new Backend.Domain.Entities.User.User
         {
             Id = userId2,
             IsActivated = true,
@@ -81,7 +81,7 @@ public class GetChatDataQueryHandlerTest : TestBase
             CreatedBy = Guid.NewGuid()
         };
 
-        var users = new List<Backend.Domain.Entities.User.Users>
+        var users = new List<Backend.Domain.Entities.User.User>
         {
             users1,
             users2
@@ -135,7 +135,7 @@ public class GetChatDataQueryHandlerTest : TestBase
         var chatKey = $"{userId1}:{userId2}".ToBase64Encode();
         var query = new GetChatDataQuery { ChatKey = chatKey };
 
-        var users1 = new Backend.Domain.Entities.User.Users
+        var users1 = new Backend.Domain.Entities.User.User
         {
             Id = userId1,
             IsActivated = true,
@@ -144,7 +144,7 @@ public class GetChatDataQueryHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString()
         };
 
-        var users2 = new Backend.Domain.Entities.User.Users
+        var users2 = new Backend.Domain.Entities.User.User
         {
             Id = userId2,
             IsActivated = true,
@@ -174,7 +174,7 @@ public class GetChatDataQueryHandlerTest : TestBase
             CreatedBy = Guid.NewGuid()
         };
 
-        var users = new List<Backend.Domain.Entities.User.Users>
+        var users = new List<Backend.Domain.Entities.User.User>
         {
             users1,
             users2

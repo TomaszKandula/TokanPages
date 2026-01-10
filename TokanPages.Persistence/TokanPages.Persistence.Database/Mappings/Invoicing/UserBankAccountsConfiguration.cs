@@ -13,7 +13,7 @@ public class UserBankAccountsConfiguration : IEntityTypeConfiguration<UserBankAc
         builder.Property(accounts => accounts.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(invoices => invoices.Users)
+            .HasOne(invoices => invoices.User)
             .WithMany(users => users.UserBankAccounts)
             .HasForeignKey(invoices => invoices.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

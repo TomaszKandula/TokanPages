@@ -1,5 +1,4 @@
 using FluentAssertions;
-using MediatR;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
@@ -18,7 +17,7 @@ public class ActivateUserCommandHandlerTest : TestBase
         // Arrange
         var activationId = Guid.NewGuid();
         var userId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new Backend.Domain.Entities.User.User
         { 
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -57,7 +56,7 @@ public class ActivateUserCommandHandlerTest : TestBase
     public async Task GivenInvalidActivationId_WhenActivateUser_ShouldThrowError()
     {
         // Arrange
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new Backend.Domain.Entities.User.User
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),
@@ -95,7 +94,7 @@ public class ActivateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var activationId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new Backend.Domain.Entities.User.User
         { 
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString().ToLower(),

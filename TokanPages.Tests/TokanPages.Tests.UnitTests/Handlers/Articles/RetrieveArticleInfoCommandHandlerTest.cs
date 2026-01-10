@@ -22,7 +22,7 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
     {
         // Arrange
         var testDate = DateTime.Now;
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new User
         {
             Id = Guid.NewGuid(),
             IsActivated = true,

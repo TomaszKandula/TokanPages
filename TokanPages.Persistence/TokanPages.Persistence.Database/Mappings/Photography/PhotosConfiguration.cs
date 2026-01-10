@@ -13,7 +13,7 @@ public class PhotosConfiguration : IEntityTypeConfiguration<UserPhoto>
         builder.Property(photos => photos.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(photos => photos.Users)
+            .HasOne(photos => photos.User)
             .WithMany(users => users.UserPhotos)
             .HasForeignKey(photos => photos.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

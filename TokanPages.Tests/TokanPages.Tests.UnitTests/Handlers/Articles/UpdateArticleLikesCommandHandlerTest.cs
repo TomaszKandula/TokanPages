@@ -21,7 +21,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenNewLikesAddedAsAnonymousUser_WhenUpdateArticleLikes_ShouldAddLikes(int likes, int expectedLikes)
     {
         // Arrange
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -103,7 +103,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenExistingLikesUpdatedAsAnonymousUser_WhenUpdateArticleLikes_ShouldModifyLikes(int existingLikes, int newLikes, int expectedLikes)
     {
         // Arrange
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new Backend.Domain.Entities.User.User
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -191,7 +191,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenNewLikesAddedAsLoggedUser_WhenUpdateArticleLikes_ShouldAddLikes(int likes, int expectedLikes)
     {
         // Arrange
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             Id = Guid.NewGuid(),
             IsActivated = true,
@@ -284,7 +284,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenExistingLikesUpdatedAsLoggedUser_WhenUpdateArticleLikes_ShouldModifyLikes(int existingLikes, int newLikes, int expectedLikes)
     {
         // Arrange
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             Id = Guid.NewGuid(),
             IsActivated = true,

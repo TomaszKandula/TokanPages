@@ -45,7 +45,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<PhotoCategory> PhotoCategories { get; set; }
 
     /* Category: User */
-    public virtual DbSet<Users> Users { get; set; }
+    public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<Role> Roles { get; set; }
     public virtual DbSet<Permission> Permissions { get; set; }
     public virtual DbSet<DefaultPermission> DefaultPermissions { get; set; }

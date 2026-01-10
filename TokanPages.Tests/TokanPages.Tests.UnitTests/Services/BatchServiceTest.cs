@@ -21,7 +21,7 @@ public class BatchServiceTest : TestBase
     public async Task GivenValidInvoiceNUmber_WhenGetIssuedInvoice_ShouldSucceed()
     {
         // Arrange
-        var user = new Users
+        var user = new User
         {
             Id = Guid.NewGuid(),
             UserAlias = DataUtilityService.GetRandomString(5),
@@ -74,7 +74,7 @@ public class BatchServiceTest : TestBase
     public async Task GivenInvalidInvoiceNUmber_WhenGetIssuedInvoice_ShouldThrowError()
     {
         // Arrange
-        var user = new Users
+        var user = new User
         {
             Id = Guid.NewGuid(),
             UserAlias = DataUtilityService.GetRandomString(5),
@@ -129,7 +129,7 @@ public class BatchServiceTest : TestBase
     public async Task GivenOrderList_WhenOrderInvoiceBatchProcessing_ShouldSucceed()
     {
         // Arrange
-        var user = new Users
+        var user = new User
         {
             Id = Guid.NewGuid(),
             UserAlias = DataUtilityService.GetRandomString(5),
@@ -292,7 +292,7 @@ public class BatchServiceTest : TestBase
     public async Task GivenValidBatchProcessingKey_WhenGetBatchInvoiceProcessingStatus_ShouldSucceed()
     {
         // Arrange
-        var user = new Users
+        var user = new User
         {
             Id = Guid.NewGuid(),
             UserAlias = DataUtilityService.GetRandomString(5),
@@ -449,7 +449,7 @@ public class BatchServiceTest : TestBase
     public async Task GivenInvalidBatchProcessingKey_WhenGetBatchInvoiceProcessingStatus_ShouldThrowError()
     {
         // Arrange
-        var user = new Users
+        var user = new User
         {
             Id = Guid.NewGuid(),
             UserAlias = DataUtilityService.GetRandomString(5),

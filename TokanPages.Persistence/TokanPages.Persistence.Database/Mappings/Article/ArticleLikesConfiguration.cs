@@ -20,7 +20,7 @@ public class ArticleLikesConfiguration : IEntityTypeConfiguration<ArticleLike>
             .HasConstraintName("FK_ArticleLikes_Articles");
 
         builder
-            .HasOne(articleLikes => articleLikes.Users)
+            .HasOne(articleLikes => articleLikes.User)
             .WithMany(users => users.ArticleLikes)
             .HasForeignKey(articleLikes => articleLikes.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

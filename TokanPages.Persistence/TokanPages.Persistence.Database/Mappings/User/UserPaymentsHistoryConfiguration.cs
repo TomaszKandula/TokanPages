@@ -13,7 +13,7 @@ public class UserPaymentsHistoryConfiguration : IEntityTypeConfiguration<UserPay
         builder.Property(payments => payments.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(payments => payments.Users)
+            .HasOne(payments => payments.User)
             .WithMany(users => users.UserPaymentHistory)
             .HasForeignKey(payments => payments.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

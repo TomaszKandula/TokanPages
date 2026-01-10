@@ -20,7 +20,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             Id = userId,
             IsActivated = true,
@@ -99,7 +99,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             Id = userId,
             IsActivated = true,
@@ -194,7 +194,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             Id = userId,
             IsActivated = true,
@@ -295,7 +295,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     public async Task GivenExistingArticleAndIncorrectArticleId_WhenUpdateArticleCount_ShouldThrowError()
     {
         // Arrange
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             Id = Guid.NewGuid(),
             IsActivated = true,

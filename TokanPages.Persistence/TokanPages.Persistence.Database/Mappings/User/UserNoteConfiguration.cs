@@ -13,7 +13,7 @@ public class UserNoteConfiguration : IEntityTypeConfiguration<UserNote>
         builder.Property(userNote => userNote.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(userNote => userNote.Users)
+            .HasOne(userNote => userNote.User)
             .WithMany(users => users.UserNote)
             .HasForeignKey(userNote => userNote.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

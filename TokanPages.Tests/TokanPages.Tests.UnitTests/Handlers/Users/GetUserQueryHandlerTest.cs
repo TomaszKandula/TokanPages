@@ -14,7 +14,7 @@ public class GetUserQueryHandlerTest : TestBase
     public async Task GivenCorrectId_WhenGetUser_ShouldReturnEntity() 
     {
         // Arrange
-        var users = new Backend.Domain.Entities.User.Users 
+        var users = new User 
         { 
             Id = Guid.NewGuid(),
             EmailAddress = DataUtilityService.GetRandomEmail(),

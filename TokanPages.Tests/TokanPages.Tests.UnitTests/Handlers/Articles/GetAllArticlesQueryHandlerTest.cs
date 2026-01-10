@@ -13,7 +13,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
     public async Task WhenGetAllArticles_ShouldReturnCollection() 
     {
         // Arrange
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new Backend.Domain.Entities.User.User
         {
             Id = Guid.NewGuid(),
             UserAlias  = DataUtilityService.GetRandomString(),

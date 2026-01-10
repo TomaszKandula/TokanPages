@@ -145,7 +145,7 @@ public class AddUserCommandHandlerTest : TestBase
 
         var userAlias = $"{command.FirstName[..2]}{command.LastName[..3]}".ToLower();
         var oldActivationIdEnds = DateTimeService.Now.AddMinutes(-30);
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new User
         { 
             EmailAddress = testEmail,
             UserAlias = userAlias,
@@ -224,7 +224,7 @@ public class AddUserCommandHandlerTest : TestBase
             LastName = DataUtilityService.GetRandomString(),
         };
 
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new User
         { 
             EmailAddress = testEmail,
             UserAlias = DataUtilityService.GetRandomString(),

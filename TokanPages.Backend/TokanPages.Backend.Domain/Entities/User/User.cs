@@ -8,7 +8,7 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 namespace TokanPages.Backend.Domain.Entities.User;
 
 [ExcludeFromCodeCoverage]
-public class Users : Entity<Guid>, IAuditable, ISoftDelete
+public class User : Entity<Guid>, IAuditable, ISoftDelete
 {
     [Required]
     [MaxLength(255)]

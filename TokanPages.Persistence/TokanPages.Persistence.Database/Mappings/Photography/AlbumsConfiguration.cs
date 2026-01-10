@@ -13,7 +13,7 @@ public class AlbumsConfiguration : IEntityTypeConfiguration<Album>
         builder.Property(albums => albums.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(albums => albums.Users)
+            .HasOne(albums => albums.User)
             .WithMany(users => users.Albums)
             .HasForeignKey(albums => albums.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

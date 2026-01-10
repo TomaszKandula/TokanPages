@@ -13,7 +13,7 @@ public class UserRolesConfiguration : IEntityTypeConfiguration<UserRole>
         builder.Property(userRoles => userRoles.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(userRoles => userRoles.Users)
+            .HasOne(userRoles => userRoles.User)
             .WithMany(users => users.UserRoles)
             .HasForeignKey(userRoles => userRoles.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

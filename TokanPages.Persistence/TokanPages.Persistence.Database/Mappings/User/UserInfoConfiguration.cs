@@ -13,7 +13,7 @@ public class UserInfoConfiguration : IEntityTypeConfiguration<UserInfo>
         builder.Property(userInfo => userInfo.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(userInfo => userInfo.Users)
+            .HasOne(userInfo => userInfo.User)
             .WithMany(users => users.UserInfo)
             .HasForeignKey(userInfo => userInfo.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

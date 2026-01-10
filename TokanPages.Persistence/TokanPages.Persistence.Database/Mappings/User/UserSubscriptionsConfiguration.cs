@@ -13,7 +13,7 @@ public class UserSubscriptionsConfiguration : IEntityTypeConfiguration<UserSubsc
         builder.Property(subscriptions => subscriptions.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(subscriptions => subscriptions.Users)
+            .HasOne(subscriptions => subscriptions.User)
             .WithMany(users => users.UserSubscription)
             .HasForeignKey(subscriptions => subscriptions.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

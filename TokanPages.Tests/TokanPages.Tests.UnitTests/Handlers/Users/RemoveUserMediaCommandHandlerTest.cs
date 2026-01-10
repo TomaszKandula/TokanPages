@@ -20,7 +20,7 @@ public class RemoveUserMediaCommandHandlerTest : TestBase
         var blobName = DataUtilityService.GetRandomString();
         var command = new RemoveUserMediaCommand { UniqueBlobName = blobName };
 
-        var user = new Backend.Domain.Entities.User.Users
+        var user = new User
         {
             Id = userId,
             UserAlias = DataUtilityService.GetRandomString(5),

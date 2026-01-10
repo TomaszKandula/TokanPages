@@ -131,7 +131,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         DateTime? activationIdEnds,
         CancellationToken cancellationToken = default)
     {
-        var newUser = new Domain.Entities.User.Users
+        var newUser = new User
         {
             Id = input.UserId,
             EmailAddress = input.Command.EmailAddress,

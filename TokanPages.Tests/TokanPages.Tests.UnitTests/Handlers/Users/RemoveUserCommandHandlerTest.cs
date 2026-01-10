@@ -18,7 +18,7 @@ public class RemoveUserCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new Backend.Domain.Entities.User.Users 
+        var user = new User 
         { 
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),

@@ -1202,7 +1202,7 @@ public class UserServiceTest : TestBase
         var token = DataUtilityService.GetRandomString(100);
         const string reasonRevoked = "Revoked by Admin";
 
-        var user = new Users
+        var user = new User
         {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -1257,9 +1257,9 @@ public class UserServiceTest : TestBase
         getRefreshTokens[0].ReplacedByToken.Should().BeNull();
     }
 
-    private List<Users> GetUser(Guid userId)
+    private List<User> GetUser(Guid userId)
     {
-        return new List<Users>
+        return new List<User>
         {
             new()
             {

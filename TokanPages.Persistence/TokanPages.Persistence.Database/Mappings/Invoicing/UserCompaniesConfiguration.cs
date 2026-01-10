@@ -13,7 +13,7 @@ public class UserCompaniesConfiguration : IEntityTypeConfiguration<UserCompany>
         builder.Property(userCompanies => userCompanies.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(invoices => invoices.Users)
+            .HasOne(invoices => invoices.User)
             .WithMany(users => users.UserCompanies)
             .HasForeignKey(invoices => invoices.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

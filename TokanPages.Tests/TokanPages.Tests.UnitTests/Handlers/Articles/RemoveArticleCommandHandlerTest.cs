@@ -19,7 +19,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
         // Arrange
         var articleId = Guid.NewGuid();
         var userId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new Backend.Domain.Entities.User.User
         {
             Id = userId,
             IsActivated = true,
@@ -98,7 +98,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new Backend.Domain.Entities.User.User
         {
             Id = userId,
             IsActivated = true,

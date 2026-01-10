@@ -22,6 +22,6 @@ public class UserBankAccount : Entity<Guid>
     public CurrencyCode CurrencyCode { get; set; }
 
     /* Navigation properties */
-    public Users Users { get; set; }
+    public User.User User { get; set; }
     public ICollection<BatchInvoice> BatchInvoices { get; set; } = new HashSet<BatchInvoice>();
 }

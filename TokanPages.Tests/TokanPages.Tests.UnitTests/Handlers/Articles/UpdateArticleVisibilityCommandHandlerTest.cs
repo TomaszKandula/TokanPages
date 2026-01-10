@@ -29,7 +29,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             IsPublished = shouldBeVisible
         };
 
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new User
         {
             Id = userId,
             IsActivated = true,
@@ -115,7 +115,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var articlesId = Guid.NewGuid();
         var permissionId = Guid.NewGuid();
 
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new User
         {
             Id = userId,
             IsActivated = true,
@@ -200,7 +200,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var articlesId = Guid.NewGuid();
         var permissionId = Guid.NewGuid();
 
-        var users = new Backend.Domain.Entities.User.Users
+        var users = new User
         {
             Id = userId,
             IsActivated = true,

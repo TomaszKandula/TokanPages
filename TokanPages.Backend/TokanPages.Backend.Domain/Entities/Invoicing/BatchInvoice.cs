@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
-using TokanPages.Backend.Domain.Entities.User;
 using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
@@ -62,7 +61,7 @@ public class BatchInvoice : Entity<Guid>, IAuditable
 
     /* Navigation properties */
     public BatchInvoiceProcessing BatchInvoiceProcessing { get; set; }
-    public Users Users { get; set; }
+    public User.User User { get; set; }
     public UserCompany UserCompany { get; set; }
     public UserBankAccount UserBankAccount { get; set; }
     public ICollection<BatchInvoiceItem> BatchInvoiceItems { get; set; } = new HashSet<BatchInvoiceItem>();

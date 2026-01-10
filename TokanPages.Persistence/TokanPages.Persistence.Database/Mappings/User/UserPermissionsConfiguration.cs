@@ -13,7 +13,7 @@ public class UserPermissionsConfiguration : IEntityTypeConfiguration<UserPermiss
         builder.Property(userPermissions => userPermissions.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(userPermissions => userPermissions.Users)
+            .HasOne(userPermissions => userPermissions.User)
             .WithMany(users => users.UserPermissions)
             .HasForeignKey(userPermissions => userPermissions.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

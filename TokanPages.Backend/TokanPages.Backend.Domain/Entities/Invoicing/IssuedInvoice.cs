@@ -21,5 +21,5 @@ public class IssuedInvoice : Entity<Guid>
     public DateTime GeneratedAt { get; set; }
 
     /* Navigation properties */
-    public Users Users { get; set; }
+    public User.User User { get; set; }
 }

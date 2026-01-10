@@ -13,7 +13,7 @@ public class IssuedInvoicesConfiguration : IEntityTypeConfiguration<IssuedInvoic
         builder.Property(invoices => invoices.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(invoices => invoices.Users)
+            .HasOne(invoices => invoices.User)
             .WithMany(users => users.IssuedInvoices)
             .HasForeignKey(invoices => invoices.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)

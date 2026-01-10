@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
-using TokanPages.Backend.Domain.Entities.User;
 
 namespace TokanPages.Backend.Domain.Entities.Photography;
 
@@ -19,6 +18,6 @@ public class Album : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public Users Users { get; set; }
+    public User.User User { get; set; }
     public UserPhoto UserPhoto { get; set; }
 }
