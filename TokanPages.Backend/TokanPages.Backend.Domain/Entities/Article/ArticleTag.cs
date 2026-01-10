@@ -5,7 +5,7 @@ using TokanPages.Backend.Domain.Contracts;
 namespace TokanPages.Backend.Domain.Entities.Article;
 
 [ExcludeFromCodeCoverage]
-public class ArticleTags : Entity<Guid>, IAuditable
+public class ArticleTag : Entity<Guid>, IAuditable
 {
     public Guid ArticleId { get; set; }
 
