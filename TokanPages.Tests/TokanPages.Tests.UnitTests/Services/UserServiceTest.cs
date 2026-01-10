@@ -13,8 +13,8 @@ using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService.Abstractions;
 using TokanPages.Services.WebTokenService.Models;
 using Xunit;
-using Permission = TokanPages.Backend.Domain.Entities.User.Permission;
-using Role = TokanPages.Backend.Domain.Entities.User.Role;
+using Permission = TokanPages.Backend.Domain.Entities.Permission;
+using Role = TokanPages.Backend.Domain.Entities.Role;
 
 namespace TokanPages.Tests.UnitTests.Services;
 
