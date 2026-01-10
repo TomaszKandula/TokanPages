@@ -12,7 +12,7 @@ public class GetPaymentStatusQueryHandler : RequestHandler<GetPaymentStatusQuery
 
     public override async Task<IList<GetPaymentStatusQueryResult>> Handle(GetPaymentStatusQuery request, CancellationToken cancellationToken)
     {
-        var statuses = Enum.GetValues<PaymentStatuses>();
+        var statuses = Enum.GetValues<PaymentStatus>();
         var result = statuses
             .Select((paymentStatuses, index) => new GetPaymentStatusQueryResult
             {

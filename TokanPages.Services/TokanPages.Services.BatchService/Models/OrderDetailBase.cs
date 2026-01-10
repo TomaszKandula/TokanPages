@@ -14,7 +14,7 @@ public class OrderDetailBase<T>
 
     public PaymentTypes PaymentType { get; set; }
 
-    public PaymentStatuses PaymentStatus { get; set; }
+    public PaymentStatus PaymentStatus { get; set; }
 
     public string CompanyName { get; set; } = "";
 

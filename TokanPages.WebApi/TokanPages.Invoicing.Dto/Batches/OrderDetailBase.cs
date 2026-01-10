@@ -32,7 +32,7 @@ public class OrderDetailBase<T>
     /// <summary>
     /// Payment Status.
     /// </summary>
-    public PaymentStatuses PaymentStatus { get; set; }
+    public PaymentStatus PaymentStatus { get; set; }
 
     /// <summary>
     /// Company Name.

@@ -22,7 +22,7 @@ public class BatchInvoices : Entity<Guid>, IAuditable
     [Required]
     public PaymentTypes PaymentType { get; set; }
     [Required]
-    public PaymentStatuses PaymentStatus { get; set; }
+    public PaymentStatus PaymentStatus { get; set; }
     [Required]
     [MaxLength(255)]
     public string CustomerName { get; set; }
