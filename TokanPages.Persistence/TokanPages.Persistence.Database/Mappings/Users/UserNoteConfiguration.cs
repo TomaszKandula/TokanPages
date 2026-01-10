@@ -10,12 +10,12 @@ public class UserNoteConfiguration : IEntityTypeConfiguration<UserNote>
 {
     public void Configure(EntityTypeBuilder<UserNote> builder)
     {
-        builder.Property(userNote => userNote.Id).ValueGeneratedOnAdd();
+        builder.Property(note => note.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(userNote => userNote.User)
-            .WithMany(users => users.UserNotes)
-            .HasForeignKey(userNote => userNote.UserId)
+            .HasOne(note => note.User)
+            .WithMany(user => user.UserNotes)
+            .HasForeignKey(note => note.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserNote_Users");
     }

@@ -10,19 +10,19 @@ public class UserPermissionsConfiguration : IEntityTypeConfiguration<UserPermiss
 {
     public void Configure(EntityTypeBuilder<UserPermission> builder)
     {
-        builder.Property(userPermissions => userPermissions.Id).ValueGeneratedOnAdd();
+        builder.Property(permission => permission.Id).ValueGeneratedOnAdd();
             
         builder
-            .HasOne(userPermissions => userPermissions.User)
-            .WithMany(users => users.UserPermissions)
-            .HasForeignKey(userPermissions => userPermissions.UserId)
+            .HasOne(permission => permission.User)
+            .WithMany(user => user.UserPermissions)
+            .HasForeignKey(permission => permission.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserPermissions_Users");
             
         builder
-            .HasOne(userPermissions => userPermissions.Permission)
-            .WithMany(permissions => permissions.UserPermissions)
-            .HasForeignKey(userPermissions => userPermissions.PermissionId)
+            .HasOne(permission => permission.Permission)
+            .WithMany(permission => permission.UserPermissions)
+            .HasForeignKey(permission => permission.PermissionId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserPermissions_Permissions");
     }

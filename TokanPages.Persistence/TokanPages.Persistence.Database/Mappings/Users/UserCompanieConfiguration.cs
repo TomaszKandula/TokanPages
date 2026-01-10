@@ -6,16 +6,16 @@ using TokanPages.Backend.Domain.Entities.Users;
 namespace TokanPages.Persistence.Database.Mappings.Users;
 
 [ExcludeFromCodeCoverage]
-public class UserCompaniesConfiguration : IEntityTypeConfiguration<UserCompany>
+public class UserCompanieConfiguration : IEntityTypeConfiguration<UserCompany>
 {
     public void Configure(EntityTypeBuilder<UserCompany> builder)
     {
-        builder.Property(userCompanies => userCompanies.Id).ValueGeneratedOnAdd();
+        builder.Property(company => company.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(invoices => invoices.User)
-            .WithMany(users => users.UserCompanies)
-            .HasForeignKey(invoices => invoices.UserId)
+            .HasOne(company => company.User)
+            .WithMany(user => user.UserCompanies)
+            .HasForeignKey(company => company.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserCompanies_Users");
     }

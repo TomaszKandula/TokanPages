@@ -6,16 +6,16 @@ using TokanPages.Backend.Domain.Entities.Users;
 namespace TokanPages.Persistence.Database.Mappings.Users;
 
 [ExcludeFromCodeCoverage]
-public class UserPaymentsHistoryConfiguration : IEntityTypeConfiguration<UserPaymentHistory>
+public class UserPaymentHistoryConfiguration : IEntityTypeConfiguration<UserPaymentHistory>
 {
     public void Configure(EntityTypeBuilder<UserPaymentHistory> builder)
     {
-        builder.Property(payments => payments.Id).ValueGeneratedOnAdd();
+        builder.Property(history => history.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(payments => payments.User)
-            .WithMany(users => users.UserPaymentsHistory)
-            .HasForeignKey(payments => payments.UserId)
+            .HasOne(history => history.User)
+            .WithMany(user => user.UserPaymentsHistory)
+            .HasForeignKey(history => history.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserPaymentsHistory_Users");
     }

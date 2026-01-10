@@ -10,12 +10,12 @@ public class UserInfoConfiguration : IEntityTypeConfiguration<UserInfo>
 {
     public void Configure(EntityTypeBuilder<UserInfo> builder)
     {
-        builder.Property(userInfo => userInfo.Id).ValueGeneratedOnAdd();
+        builder.Property(info => info.Id).ValueGeneratedOnAdd();
 
         builder
-            .HasOne(userInfo => userInfo.User)
-            .WithMany(users => users.UserInformation)
-            .HasForeignKey(userInfo => userInfo.UserId)
+            .HasOne(info => info.User)
+            .WithMany(user => user.UserInformation)
+            .HasForeignKey(info => info.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK_UserInfo_Users");
     }
