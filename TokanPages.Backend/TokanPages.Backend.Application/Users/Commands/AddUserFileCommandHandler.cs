@@ -79,6 +79,8 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
                 prefixPath = $"{basePath}/applications";
                 await AddNonVideoFile(binaryData!, contentType, prefixPath, cancellationToken);
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
         return new AddUserFileCommandResult
