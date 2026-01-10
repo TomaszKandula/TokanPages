@@ -88,25 +88,25 @@ public class AzureBlobStorage : IAzureBlobStorage
         }
     }
 
-    public async Task<List<string>> GetBlobListing(string prefix, string? excludeByPath = null, string? includeByPath = null, int pageSize = 10, string? continuationToken = null,
+    public async Task<List<string>> GetBlobListing(StorageListingOptions options, string? continuationToken = null,
         CancellationToken cancellationToken = default)
     {
         try
         {
             var blobPages = _container
-                .GetBlobsAsync(prefix: prefix, cancellationToken: cancellationToken)
-                .AsPages(continuationToken, pageSize);
+                .GetBlobsAsync(prefix: options.Prefix, cancellationToken: cancellationToken)
+                .AsPages(continuationToken, options.PageSize);
 
             var result = new List<string>();
             await foreach (Azure.Page<BlobItem> blobPage in blobPages.WithCancellation(cancellationToken))
             {
                 var pageItems = blobPage.Values.Select(blobItem => blobItem.Name);
-                var canInclude = !string.IsNullOrEmpty(includeByPath);
-                var canExclude = !string.IsNullOrEmpty(excludeByPath);
+                var canInclude = !string.IsNullOrEmpty(options.IncludeByPath);
+                var canExclude = !string.IsNullOrEmpty(options.ExcludeByPath);
 
                 result.AddRange(pageItems
-                    .WhereIf(canInclude, item => item.Contains(includeByPath!))
-                    .WhereIf(canExclude, item => !item.Contains(excludeByPath!))
+                    .WhereIf(canInclude, item => item.Contains(options.IncludeByPath!))
+                    .WhereIf(canExclude, item => !item.Contains(options.ExcludeByPath!))
                 );
             }
 

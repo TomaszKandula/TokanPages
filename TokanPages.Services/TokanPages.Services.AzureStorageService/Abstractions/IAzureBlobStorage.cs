@@ -9,7 +9,7 @@ public interface IAzureBlobStorage
 
     Task<StorageStreamContent?> OpenRead(string sourceFilePath, CancellationToken cancellationToken = default);
 
-    Task<List<string>> GetBlobListing(string prefix, string? excludeByPath = null, string? includeByPath = null, int pageSize = 10, string? continuationToken = null, CancellationToken cancellationToken = default);
+    Task<List<string>> GetBlobListing(StorageListingOptions options, string? continuationToken = null, CancellationToken cancellationToken = default);
 
     Task<string> GetFileContentType(string sourceFilePath, CancellationToken cancellationToken = default);
 
