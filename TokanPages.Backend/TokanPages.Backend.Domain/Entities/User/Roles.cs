@@ -17,6 +17,6 @@ public class Roles : Entity<Guid>, IAuditable
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */
-    public ICollection<DefaultPermissions> DefaultPermissions { get; set; } = new HashSet<DefaultPermissions>();
+    public ICollection<DefaultPermission> DefaultPermissions { get; set; } = new HashSet<DefaultPermission>();
     public ICollection<UserRoles> UserRoles { get; set; } = new HashSet<UserRoles>();
 }

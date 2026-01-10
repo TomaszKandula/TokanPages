@@ -50,7 +50,7 @@ public class AddUserCommandHandlerTest : TestBase
             }
         };
 
-        var defaultPermissions = new List<DefaultPermissions>
+        var defaultPermissions = new List<DefaultPermission>
         {
             new()
             {

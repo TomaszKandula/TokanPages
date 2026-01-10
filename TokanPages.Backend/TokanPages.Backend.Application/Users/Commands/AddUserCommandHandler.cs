@@ -177,7 +177,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             .Include(permissions => permissions.Roles)
             .Include(permissions => permissions.Permissions)
             .Where(permissions => permissions.Roles.Name == userRoleName)
-            .Select(permissions => new DefaultPermissions
+            .Select(permissions => new DefaultPermission
             {
                 Id = permissions.Id,
                 RoleId = permissions.RoleId,

@@ -4,7 +4,7 @@ using TokanPages.Backend.Domain.Contracts;
 namespace TokanPages.Backend.Domain.Entities.User;
 
 [ExcludeFromCodeCoverage]
-public class DefaultPermissions : Entity<Guid>, IAuditable
+public class DefaultPermission : Entity<Guid>, IAuditable
 {
     public Guid RoleId { get; set; }
     public Guid PermissionId { get; set; }
