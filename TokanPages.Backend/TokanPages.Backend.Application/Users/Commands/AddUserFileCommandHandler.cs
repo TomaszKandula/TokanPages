@@ -47,7 +47,7 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
     public override async Task<AddUserFileCommandResult> Handle(AddUserFileCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var basePath = $"content/users/{userId}";
+        var basePath = $"content/users/{userId}/files";
 
         var binaryData = request.BinaryData;
         var contentType = request.BinaryData!.ContentType;
