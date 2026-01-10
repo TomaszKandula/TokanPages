@@ -27,7 +27,7 @@ public class PhotosConfiguration : IEntityTypeConfiguration<UserPhotos>
             .HasConstraintName("FK_UserPhotos_PhotoGears");
             
         builder
-            .HasOne(photos => photos.PhotoCategories)
+            .HasOne(photos => photos.PhotoCategory)
             .WithMany(photoCategories => photoCategories.UserPhotos)
             .HasForeignKey(photos => photos.PhotoCategoryId)
             .OnDelete(DeleteBehavior.ClientSetNull)

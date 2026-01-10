@@ -53,7 +53,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             ShutterSpeed = DataUtilityService.GetRandomString()
         };
 
-        var photoCategory = new PhotoCategories
+        var photoCategory = new PhotoCategory
         {
             Id = Guid.NewGuid(),
             CategoryName = DataUtilityService.GetRandomString()

@@ -5,7 +5,7 @@ using TokanPages.Backend.Domain.Contracts;
 namespace TokanPages.Backend.Domain.Entities.Photography;
 
 [ExcludeFromCodeCoverage]
-public class PhotoCategories : Entity<Guid>, IAuditable
+public class PhotoCategory : Entity<Guid>, IAuditable
 {
     [Required]
     [MaxLength(60)]

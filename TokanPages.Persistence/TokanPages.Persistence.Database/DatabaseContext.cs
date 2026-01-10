@@ -42,7 +42,7 @@ public class DatabaseContext : DbContext
     public virtual DbSet<Album> Albums { get; set; }
     public virtual DbSet<UserPhotos> UserPhotos { get; set; }
     public virtual DbSet<PhotoGears> PhotoGears { get; set; }
-    public virtual DbSet<PhotoCategories> PhotoCategories { get; set; }
+    public virtual DbSet<PhotoCategory> PhotoCategories { get; set; }
 
     /* Category: User */
     public virtual DbSet<Users> Users { get; set; }
