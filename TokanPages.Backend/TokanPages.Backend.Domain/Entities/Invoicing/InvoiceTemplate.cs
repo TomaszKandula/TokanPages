@@ -5,7 +5,7 @@ using TokanPages.Backend.Domain.Contracts;
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class InvoiceTemplates : Entity<Guid>, ISoftDelete
+public class InvoiceTemplate : Entity<Guid>, ISoftDelete
 {
     [Required]
     [MaxLength(255)]

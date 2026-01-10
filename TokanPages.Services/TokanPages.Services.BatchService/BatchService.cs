@@ -315,7 +315,7 @@ public class BatchService : IBatchService
             throw new BusinessException(nameof(ErrorCodes.PROCESSING_EXCEPTION), message);
     }
 
-    private async Task<(List<BatchInvoice> invoices, List<BatchInvoiceItem> invoiceItemsList, List<InvoiceTemplates> invoiceTemplates)> GetInvoiceData
+    private async Task<(List<BatchInvoice> invoices, List<BatchInvoiceItem> invoiceItemsList, List<InvoiceTemplate> invoiceTemplates)> GetInvoiceData
         (IEnumerable<Guid> processingList, CancellationToken cancellationToken)
     {
         var invoicesIds = new HashSet<Guid>(processingList);

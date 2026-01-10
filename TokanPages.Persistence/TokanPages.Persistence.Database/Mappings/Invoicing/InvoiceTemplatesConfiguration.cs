@@ -6,8 +6,8 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 namespace TokanPages.Persistence.Database.Mappings.Invoicing;
 
 [ExcludeFromCodeCoverage]
-public class InvoiceTemplatesConfiguration : IEntityTypeConfiguration<InvoiceTemplates>
+public class InvoiceTemplatesConfiguration : IEntityTypeConfiguration<InvoiceTemplate>
 {
-    public void Configure(EntityTypeBuilder<InvoiceTemplates> builder) 
+    public void Configure(EntityTypeBuilder<InvoiceTemplate> builder) 
         => builder.Property(templates => templates.Id).ValueGeneratedOnAdd();
 }

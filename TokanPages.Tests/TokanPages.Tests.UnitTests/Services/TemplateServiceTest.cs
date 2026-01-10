@@ -2,11 +2,11 @@ using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Domain.Entities.Invoicing;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.TemplateService;
 using TokanPages.Services.TemplateService.Models;
 using Xunit;
+using InvoiceTemplate = TokanPages.Backend.Domain.Entities.Invoicing.InvoiceTemplate;
 
 namespace TokanPages.Tests.UnitTests.Services;
 
@@ -17,7 +17,7 @@ public class TemplateServiceTest : TestBase
     {
         // Arrange
         const int templateDataLength = 2048;
-        var templates = new List<InvoiceTemplates>
+        var templates = new List<InvoiceTemplate>
         {
             new()
             {
@@ -60,7 +60,7 @@ public class TemplateServiceTest : TestBase
     {
         // Arrange
         const int templateDataLength = 1024;
-        var templates = new List<InvoiceTemplates>
+        var templates = new List<InvoiceTemplate>
         {
             new()
             {
@@ -103,7 +103,7 @@ public class TemplateServiceTest : TestBase
     {
         // Arrange
         const int templateDataLength = 1024;
-        var templates = new List<InvoiceTemplates>
+        var templates = new List<InvoiceTemplate>
         {
             new()
             {
@@ -146,7 +146,7 @@ public class TemplateServiceTest : TestBase
     {
         // Arrange
         const int templateDataLength = 2048;
-        var templates = new List<InvoiceTemplates>
+        var templates = new List<InvoiceTemplate>
         {
             new()
             {
@@ -194,7 +194,7 @@ public class TemplateServiceTest : TestBase
     {
         // Arrange
         const int templateDataLength = 2048;
-        var templates = new List<InvoiceTemplates>
+        var templates = new List<InvoiceTemplate>
         {
             new()
             {
@@ -236,7 +236,7 @@ public class TemplateServiceTest : TestBase
     public async Task GivenInvoiceTemplateData_WhenAddInvoiceTemplate_ShouldSucceed()
     {
         // Arrange
-        var template = new InvoiceTemplate
+        var template = new TokanPages.Services.TemplateService.Models.InvoiceTemplate
         {
             TemplateName = DataUtilityService.GetRandomString(),
             InvoiceTemplateData = new InvoiceTemplateData
@@ -272,7 +272,7 @@ public class TemplateServiceTest : TestBase
             Description = DataUtilityService.GetRandomString(useAlphabetOnly: true)
         };
 
-        var templates = new List<InvoiceTemplates>
+        var templates = new List<InvoiceTemplate>
         {
             new()
             {
@@ -325,7 +325,7 @@ public class TemplateServiceTest : TestBase
             ContentType = DataUtilityService.GetRandomString()
         };
 
-        var templates = new List<InvoiceTemplates>
+        var templates = new List<InvoiceTemplate>
         {
             new()
             {
