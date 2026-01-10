@@ -42,11 +42,11 @@ public class AddUserCommandHandlerTest : TestBase
         {
             new()
             {
-                Name = Backend.Domain.Enums.Permissions.CanSelectArticles.ToString()
+                Name = Backend.Domain.Enums.Permission.CanSelectArticles.ToString()
             },
             new()
             {
-                Name = Backend.Domain.Enums.Permissions.CanSelectComments.ToString()
+                Name = Backend.Domain.Enums.Permission.CanSelectComments.ToString()
             }
         };
 

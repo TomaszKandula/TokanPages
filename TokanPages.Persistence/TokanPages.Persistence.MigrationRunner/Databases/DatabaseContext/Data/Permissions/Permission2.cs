@@ -7,7 +7,7 @@ public static class Permission2
 {
     public static readonly Guid Id = Guid.Parse("070483c4-98cb-4b2a-be47-6c85c96854ba");
 
-    public static string Name => nameof(Backend.Domain.Enums.Permissions.CanInsertArticles);
+    public static string Name => nameof(Backend.Domain.Enums.Permission.CanInsertArticles);
 
     public static readonly DateTime CreatedAt = DateTime.Parse("2020-09-01 21:11:01");
 

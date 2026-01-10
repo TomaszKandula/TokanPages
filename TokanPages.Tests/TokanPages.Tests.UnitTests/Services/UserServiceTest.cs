@@ -7,13 +7,13 @@ using Moq;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities.User;
+using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService.Abstractions;
 using TokanPages.Services.WebTokenService.Models;
 using Roles = TokanPages.Backend.Domain.Enums.Roles;
-using Permissions = TokanPages.Backend.Domain.Enums.Permissions;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Services;
@@ -544,7 +544,7 @@ public class UserServiceTest : TestBase
 
         // Act
         // Assert
-        var result = await userProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
+        var result = await userProvider.HasPermissionAssigned(Permission.CanSelectArticles.ToString());
 
         // Assert
         result.Should().BeTrue();
@@ -589,7 +589,7 @@ public class UserServiceTest : TestBase
             mockedConfig.Object);
 
         // Act
-        var result = await userProvider.HasPermissionAssigned(Permissions.CanAddLikes.ToString());
+        var result = await userProvider.HasPermissionAssigned(Permission.CanAddLikes.ToString());
 
         // Assert
         result.Should().BeFalse();
@@ -635,7 +635,7 @@ public class UserServiceTest : TestBase
 
         // Act
         // Assert
-        var result = await userProvider.HasPermissionAssigned(Permissions.CanSelectArticles.ToString());
+        var result = await userProvider.HasPermissionAssigned(Permission.CanSelectArticles.ToString());
         result.Should().BeFalse();
     }
 
@@ -1300,19 +1300,19 @@ public class UserServiceTest : TestBase
         };
     }
 
-    private static List<Backend.Domain.Entities.User.Permissions> GetPermissions()
+    private static List<Permissions> GetPermissions()
     {
-        return new List<Backend.Domain.Entities.User.Permissions>
+        return new List<Permissions>
         {
             new()
             {
                 Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
-                Name = Permissions.CanSelectArticles.ToString()
+                Name = Permission.CanSelectArticles.ToString()
             },
             new()
             {
                 Id = Guid.Parse("76fb3d47-f10d-467e-9e68-61d8a9fc5f6d"),
-                Name = Permissions.CanInsertArticles.ToString()
+                Name = Permission.CanInsertArticles.ToString()
             }
         };   
     }
