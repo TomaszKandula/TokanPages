@@ -8,12 +8,12 @@ namespace TokanPages.Backend.Application.Revenue.Queries;
 
 public class GetSubscriptionPricesQueryHandler : RequestHandler<GetSubscriptionPricesQuery, GetSubscriptionPricesQueryResult>
 {
-    public GetSubscriptionPricesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) 
-        : base(databaseContext, loggerService) { }
+    public GetSubscriptionPricesQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService) 
+        : base(operationsDbContext, loggerService) { }
 
     public override async Task<GetSubscriptionPricesQueryResult> Handle(GetSubscriptionPricesQuery request, CancellationToken cancellationToken)
     {
-        var prices = await DatabaseContext.SubscriptionsPricing
+        var prices = await OperationsDbContext.SubscriptionsPricing
             .AsNoTracking()
             .Where(pricing => pricing.LanguageIso == request.LanguageIso)
             .Select(pricing => new PriceItem

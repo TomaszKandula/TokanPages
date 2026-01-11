@@ -10,7 +10,7 @@ using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Persistence.Database.Migrations
 {
-    [DbContext(typeof(DatabaseContext))]
+    [DbContext(typeof(OperationsDbContext))]
     [Migration("20220515075830_AllowNullableUserId")]
     partial class AllowNullableUserId
     {

@@ -17,8 +17,8 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public UploadImageCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) : base(databaseContext, loggerService)
+    public UploadImageCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) : base(operationsDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;
@@ -105,13 +105,13 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
 
     private async Task DatabaseUpdate(string blobName, Guid userId, CancellationToken cancellationToken)
     {
-        var userInfo = await DatabaseContext.UserInformation
+        var userInfo = await OperationsDbContext.UserInformation
             .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
 
         if (userInfo is not null)
         {
             userInfo.UserImageName = blobName;
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            await OperationsDbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

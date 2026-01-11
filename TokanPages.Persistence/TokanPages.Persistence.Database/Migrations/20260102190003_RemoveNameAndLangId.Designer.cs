@@ -12,7 +12,7 @@ using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Persistence.Database.Migrations
 {
-    [DbContext(typeof(DatabaseContext))]
+    [DbContext(typeof(OperationsDbContext))]
     [Migration("20260102190003_RemoveNameAndLangId")]
     partial class RemoveNameAndLangId
     {

@@ -64,9 +64,9 @@ public static class Dependencies
         const int maxRetryCount = 10;
         var maxRetryDelay = TimeSpan.FromSeconds(5);
 
-        services.AddDbContext<DatabaseContext>(options =>
+        services.AddDbContext<OperationsDbContext>(options =>
         {
-            var connectionString = configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}") ?? string.Empty;
+            var connectionString = configuration.GetValue<string>($"Db_{nameof(OperationsDbContext)}") ?? string.Empty;
             options.UseSqlServer(connectionString, addOptions 
                 => addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
         });

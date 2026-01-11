@@ -27,9 +27,9 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
 
     private readonly IConfiguration _configuration;
 
-    public CreatePaymentCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public CreatePaymentCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
         IUserService userService, IDateTimeService dateTimeService, IPayUService payUService, 
-        IConfiguration configuration) : base(databaseContext, loggerService)
+        IConfiguration configuration) : base(operationsDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -93,7 +93,7 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
         };
 
         var postOrderResponse = await _payUService.PostOrder(input, cancellationToken);
-        var userPayments = await DatabaseContext.UserPayments
+        var userPayments = await OperationsDbContext.UserPayments
             .Where(payments => payments.UserId == request.UserId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -122,10 +122,10 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
                 ExtOrderId = order.ExtOrderId
             };
 
-            await DatabaseContext.UserPayments.AddAsync(userPayment, cancellationToken);
+            await OperationsDbContext.UserPayments.AddAsync(userPayment, cancellationToken);
         }
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation("New user payment has been registered within the system.");
 
         return new CreatePaymentCommandResult

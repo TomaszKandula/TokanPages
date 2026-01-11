@@ -32,9 +32,9 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private readonly IUserService _userService;
 
-    public AddUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService,
+    public AddUserCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IDateTimeService dateTimeService,
         ICipheringService cipheringService, IEmailSenderService emailSenderService, IConfiguration configuration, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) : base(databaseContext, loggerService)
+        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) : base(operationsDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _cipheringService = cipheringService;
@@ -47,7 +47,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
     public override async Task<Guid> Handle(AddUserCommand request, CancellationToken cancellationToken)
     {
         var adminUser = await _userService.GetUser(cancellationToken);
-        var users = await DatabaseContext.Users
+        var users = await OperationsDbContext.Users
             .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
             .SingleOrDefaultAsync(cancellationToken);
@@ -105,7 +105,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
     }
 
     private async Task CommitAllChanges(CancellationToken cancellationToken = default) 
-        => await DatabaseContext.SaveChangesAsync(cancellationToken);
+        => await OperationsDbContext.SaveChangesAsync(cancellationToken);
 
     private async Task<string?> UploadDefaultAvatar(Guid newUserId, CancellationToken cancellationToken = default)
     {
@@ -146,7 +146,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             ModifiedBy = null
         };
 
-        await DatabaseContext.Users.AddAsync(newUser, cancellationToken);
+        await OperationsDbContext.Users.AddAsync(newUser, cancellationToken);
     }
 
     private async Task CreateUserInfoUncommitted(
@@ -167,13 +167,13 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             ModifiedBy = null
         };
 
-        await DatabaseContext.UserInformation.AddAsync(newUserInfo, cancellationToken);
+        await OperationsDbContext.UserInformation.AddAsync(newUserInfo, cancellationToken);
     }
 
     private async Task SetupDefaultPermissionsUncommitted(Guid userId, Guid? adminUserId, CancellationToken cancellationToken)
     {
         var userRoleName = Domain.Enums.Role.EverydayUser.ToString();
-        var defaultPermissions = await DatabaseContext.DefaultPermissions
+        var defaultPermissions = await OperationsDbContext.DefaultPermissions
             .AsNoTracking()
             .Include(permissions => permissions.Role)
             .Include(permissions => permissions.Permission)
@@ -216,8 +216,8 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             ModifiedBy = null
         }).ToList();
 
-        await DatabaseContext.UserRoles.AddAsync(newRole, cancellationToken);
-        await DatabaseContext.UserPermissions.AddRangeAsync(newPermissions, cancellationToken);
+        await OperationsDbContext.UserRoles.AddAsync(newRole, cancellationToken);
+        await OperationsDbContext.UserPermissions.AddRangeAsync(newPermissions, cancellationToken);
     }
 
     private async Task<Guid> PrepareNotificationUncommitted(CancellationToken cancellationToken)
@@ -229,7 +229,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             IsConsumed = false
         };
 
-        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await OperationsDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
         return messageId;
     }
 

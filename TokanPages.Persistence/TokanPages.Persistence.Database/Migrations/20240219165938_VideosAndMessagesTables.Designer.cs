@@ -12,7 +12,7 @@ using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Persistence.Database.Migrations
 {
-    [DbContext(typeof(DatabaseContext))]
+    [DbContext(typeof(OperationsDbContext))]
     [Migration("20240219165938_VideosAndMessagesTables")]
     partial class VideosAndMessagesTables
     {

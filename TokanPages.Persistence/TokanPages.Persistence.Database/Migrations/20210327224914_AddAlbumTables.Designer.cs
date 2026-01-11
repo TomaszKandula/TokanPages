@@ -10,7 +10,7 @@ using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Persistence.Database.Migrations
 {
-    [DbContext(typeof(DatabaseContext))]
+    [DbContext(typeof(OperationsDbContext))]
     [Migration("20210327224914_AddAlbumTables")]
     partial class AddAlbumTables
     {

@@ -23,8 +23,8 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
 
     private readonly IDateTimeService _dateTimeService;
 
-    public OrderInvoiceBatchCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IBatchService batchService, 
-        IVatService vatService, IUserService userService, IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+    public OrderInvoiceBatchCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IBatchService batchService, 
+        IVatService vatService, IUserService userService, IDateTimeService dateTimeService) : base(operationsDbContext, loggerService)
     {
         _batchService = batchService;
         _vatService = vatService;
@@ -38,13 +38,13 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
         LoggerService.LogInformation($"Request to process {request.OrderDetails.Count()} orders. User ID: {userId}");
 
         var vatOptions = new PolishVatNumberOptions(true, true);
-        var vatPatterns = await DatabaseContext.VatNumberPatterns
+        var vatPatterns = await OperationsDbContext.VatNumberPatterns
             .AsNoTracking()
             .ToListAsync(cancellationToken);
 
         LoggerService.LogInformation($"Found {vatPatterns.Count} VAT patterns");
 
-        var availableTemplates = await DatabaseContext.InvoiceTemplates
+        var availableTemplates = await OperationsDbContext.InvoiceTemplates
             .AsNoTracking()
             .Where(templates => !templates.IsDeleted)
             .ToListAsync(cancellationToken);

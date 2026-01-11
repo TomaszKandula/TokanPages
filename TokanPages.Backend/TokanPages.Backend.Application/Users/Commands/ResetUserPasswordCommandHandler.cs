@@ -24,9 +24,9 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
 
     private readonly IUserService _userService;
 
-    public ResetUserPasswordCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public ResetUserPasswordCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
         IEmailSenderService emailSenderService, IDateTimeService dateTimeService, IConfiguration configuration, 
-        IUserService userService) : base(databaseContext, loggerService)
+        IUserService userService) : base(operationsDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;
@@ -36,7 +36,7 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
 
     public override async Task<Unit> Handle(ResetUserPasswordCommand request, CancellationToken cancellationToken)
     {
-        var user = await DatabaseContext.Users
+        var user = await OperationsDbContext.Users
             .Where(users => users.IsActivated)
             .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
@@ -66,7 +66,7 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
     }
 
     private async Task CommitAllChanges(CancellationToken cancellationToken = default) 
-        => await DatabaseContext.SaveChangesAsync(cancellationToken);
+        => await OperationsDbContext.SaveChangesAsync(cancellationToken);
 
     private async Task<Guid> PrepareNotificationUncommitted(CancellationToken cancellationToken)
     {
@@ -77,7 +77,7 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
             IsConsumed = false
         };
 
-        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await OperationsDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
         return messageId;
     }
 

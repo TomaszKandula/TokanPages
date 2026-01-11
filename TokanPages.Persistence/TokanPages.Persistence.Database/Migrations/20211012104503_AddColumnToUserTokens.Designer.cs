@@ -10,7 +10,7 @@ using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Persistence.Database.Migrations
 {
-    [DbContext(typeof(DatabaseContext))]
+    [DbContext(typeof(OperationsDbContext))]
     [Migration("20211012104503_AddColumnToUserTokens")]
     partial class AddColumnToUserTokens
     {

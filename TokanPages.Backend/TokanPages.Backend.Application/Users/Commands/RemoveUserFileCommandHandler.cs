@@ -14,8 +14,8 @@ public class RemoveUserFileCommandHandler : RequestHandler<RemoveUserFileCommand
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public RemoveUserFileCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
+    public RemoveUserFileCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IUserService userService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationsDbContext, loggerService)
     {
         _userService = userService;
         _azureBlobStorageFactory = azureBlobStorageFactory;

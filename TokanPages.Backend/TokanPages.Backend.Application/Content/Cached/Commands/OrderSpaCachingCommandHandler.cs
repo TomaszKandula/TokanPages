@@ -23,8 +23,8 @@ public class OrderSpaCachingCommandHandler : RequestHandler<OrderSpaCachingComma
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public OrderSpaCachingCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer) : base(databaseContext, loggerService)
+    public OrderSpaCachingCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer) : base(operationsDbContext, loggerService)
     {
         _azureBusFactory = azureBusFactory;
         _jsonSerializer = jsonSerializer;
@@ -49,8 +49,8 @@ public class OrderSpaCachingCommandHandler : RequestHandler<OrderSpaCachingComma
             Paths = request.Paths
         };
 
-        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationsDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
 
         var serialized = _jsonSerializer.Serialize(requestBody, Formatting.None, Settings);
         var messages = new List<string> { serialized };

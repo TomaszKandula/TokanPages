@@ -13,8 +13,8 @@ public class GetOrderTransactionsQueryHandler : RequestHandler<GetOrderTransacti
 
     private readonly IPayUService _payUService;
 
-    public GetOrderTransactionsQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IPayUService payUService) : base(databaseContext, loggerService)
+    public GetOrderTransactionsQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IUserService userService, IPayUService payUService) : base(operationsDbContext, loggerService)
     {
         _userService = userService;
         _payUService = payUService;

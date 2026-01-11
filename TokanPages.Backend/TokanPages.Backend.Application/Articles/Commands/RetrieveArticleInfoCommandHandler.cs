@@ -11,20 +11,20 @@ public class RetrieveArticleInfoCommandHandler : RequestHandler<RetrieveArticleI
 {
     private readonly IUserService _userService;
 
-    public RetrieveArticleInfoCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService)
-        : base(databaseContext, loggerService) => _userService = userService;
+    public RetrieveArticleInfoCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IUserService userService)
+        : base(operationsDbContext, loggerService) => _userService = userService;
 
     public override async Task<RetrieveArticleInfoCommandResult> Handle(RetrieveArticleInfoCommand request, CancellationToken cancellationToken)
     {
         var userLanguage = _userService.GetRequestUserLanguage();
         var articleIds = new HashSet<Guid>(request.ArticleIds);
         var articleInfoList = await (
-            from article in DatabaseContext.Articles
+            from article in OperationsDbContext.Articles
             join table in 
-                (from articleCategory in DatabaseContext.ArticleCategories
-                    join categoryName in DatabaseContext.CategoryNames
+                (from articleCategory in OperationsDbContext.ArticleCategories
+                    join categoryName in OperationsDbContext.CategoryNames
                         on articleCategory.Id equals categoryName.ArticleCategoryId
-                    join language in DatabaseContext.Languages
+                    join language in OperationsDbContext.Languages
                         on categoryName.LanguageId equals language.Id
                     select new
                     {

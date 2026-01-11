@@ -10,7 +10,7 @@ public class GetQualityGateQueryHandler : RequestHandler<GetQualityGateQuery, IA
 {
     private readonly IMetricsService _metricsService;
 
-    public GetQualityGateQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IMetricsService metricsService) : base(databaseContext, loggerService)
+    public GetQualityGateQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IMetricsService metricsService) : base(operationsDbContext, loggerService)
         => _metricsService = metricsService;
 
     public override async Task<IActionResult> Handle(GetQualityGateQuery request, CancellationToken cancellationToken)

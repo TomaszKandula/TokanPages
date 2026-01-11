@@ -20,8 +20,8 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
 
     private readonly IConfiguration _configuration;
 
-    public UpdateArticleLikesCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService, 
-    IDateTimeService dateTimeService, IConfiguration configuration) : base(databaseContext, loggerService)
+    public UpdateArticleLikesCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IUserService userService, 
+    IDateTimeService dateTimeService, IConfiguration configuration) : base(operationsDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -30,7 +30,7 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
 
     public override async Task<Unit> Handle(UpdateArticleLikesCommand request, CancellationToken cancellationToken)
     {
-        var articleData = await DatabaseContext.Articles
+        var articleData = await OperationsDbContext.Articles
             .Where(article => article.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -43,7 +43,7 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
 
         if (isAnonymousUser)
         {
-            var articleLike = await DatabaseContext.ArticleLikes
+            var articleLike = await OperationsDbContext.ArticleLikes
                 .Where(like => like.ArticleId == request.Id)
                 .Where(like => like.IpAddress == ipAddress)
                 .SingleOrDefaultAsync(cancellationToken);
@@ -59,7 +59,7 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
         }
         else
         {
-            var articleLike = await DatabaseContext.ArticleLikes
+            var articleLike = await OperationsDbContext.ArticleLikes
                 .Where(like => like.ArticleId == request.Id)
                 .Where(like => like.UserId == userId)
                 .SingleOrDefaultAsync(cancellationToken);
@@ -74,7 +74,7 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
             }
         }
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 
@@ -100,7 +100,7 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
         article.TotalLikes += likes;
         article.ModifiedAt = _dateTimeService.Now;
         article.ModifiedBy = userId == Guid.Empty ? null : userId;
-        await DatabaseContext.ArticleLikes.AddAsync(entity, cancellationToken);
+        await OperationsDbContext.ArticleLikes.AddAsync(entity, cancellationToken);
     }
 
     private void UpdateLikes(Guid? userId, Article article, ArticleLike articleLike, int likesToBeAdded)
@@ -117,6 +117,6 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
         article.TotalLikes += likes;
         article.ModifiedAt = _dateTimeService.Now;
         article.ModifiedBy = userId == Guid.Empty ? null : userId;
-        DatabaseContext.ArticleLikes.Update(articleLike);
+        OperationsDbContext.ArticleLikes.Update(articleLike);
     }
 }

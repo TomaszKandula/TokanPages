@@ -12,8 +12,8 @@ public class GetAuthorizationQueryHandler : RequestHandler<GetAuthorizationQuery
     
     private readonly IPayUService _payUService;
     
-    public GetAuthorizationQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IPayUService payUService, IUserService userService) : base(databaseContext, loggerService)
+    public GetAuthorizationQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IPayUService payUService, IUserService userService) : base(operationsDbContext, loggerService)
     {
         _payUService = payUService;
         _userService = userService;

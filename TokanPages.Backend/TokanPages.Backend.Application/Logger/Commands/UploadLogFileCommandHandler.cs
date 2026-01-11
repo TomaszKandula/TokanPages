@@ -11,8 +11,8 @@ public class UploadLogFileCommandHandler : RequestHandler<UploadLogFileCommand, 
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public UploadLogFileCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService) 
+    public UploadLogFileCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationsDbContext, loggerService) 
         => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<Unit> Handle(UploadLogFileCommand request, CancellationToken cancellationToken)

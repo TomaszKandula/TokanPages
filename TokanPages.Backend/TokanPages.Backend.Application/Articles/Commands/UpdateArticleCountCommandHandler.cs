@@ -17,8 +17,8 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
 
     private readonly IDateTimeService _dateTimeService;
 
-    public UpdateArticleCountCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+    public UpdateArticleCountCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IUserService userService, IDateTimeService dateTimeService) : base(operationsDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -26,7 +26,7 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
 
     public override async Task<Unit> Handle(UpdateArticleCountCommand request, CancellationToken cancellationToken)
     {
-        var articleData = await DatabaseContext.Articles
+        var articleData = await OperationsDbContext.Articles
             .Where(article => article.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -35,7 +35,7 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
 
         var userId = _userService.GetLoggedUserId();
         var ipAddress = _userService.GetRequestIpAddress();
-        var articleCount = await DatabaseContext.ArticleCounts
+        var articleCount = await OperationsDbContext.ArticleCounts
             .Where(count => count.ArticleId == request.Id)
             .Where(count => count.IpAddress == ipAddress)
             .SingleOrDefaultAsync(cancellationToken);
@@ -54,7 +54,7 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
                 ModifiedBy = null
             };
 
-            await DatabaseContext.ArticleCounts.AddAsync(newArticleCount, cancellationToken);
+            await OperationsDbContext.ArticleCounts.AddAsync(newArticleCount, cancellationToken);
         }
         else
         {
@@ -62,14 +62,14 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
             articleCount.ModifiedAt = _dateTimeService.Now;
             articleCount.ModifiedBy = userId;
 
-            DatabaseContext.ArticleCounts.Update(articleCount);
+            OperationsDbContext.ArticleCounts.Update(articleCount);
         }
 
         articleData.ReadCount += 1;
         articleData.ModifiedAt = _dateTimeService.Now;
         articleData.ModifiedBy = userId;
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

@@ -13,8 +13,8 @@ public class AddImageAssetCommandHandler : RequestHandler<AddImageAssetCommand, 
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public AddImageAssetCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
+    public AddImageAssetCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationsDbContext, loggerService)
         => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<AddImageAssetCommandResult> Handle(AddImageAssetCommand request, CancellationToken cancellationToken)

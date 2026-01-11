@@ -18,8 +18,8 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public SendNewsletterCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IConfiguration configuration) : base(databaseContext, loggerService)
+    public SendNewsletterCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IEmailSenderService emailSenderService, IConfiguration configuration) : base(operationsDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _configuration = configuration;
@@ -82,8 +82,8 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
                 Body = template.MakeBody(newValues)
             };
 
-            await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            await OperationsDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+            await OperationsDbContext.SaveChangesAsync(cancellationToken);
             await _emailSenderService.SendToServiceBus(payload, cancellationToken);
         }
 

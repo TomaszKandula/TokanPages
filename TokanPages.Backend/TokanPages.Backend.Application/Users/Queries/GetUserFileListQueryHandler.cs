@@ -14,9 +14,9 @@ public class GetUserFileListQueryHandler : RequestHandler<GetUserFileListQuery, 
 
     private readonly IUserService _userService;
 
-    public GetUserFileListQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public GetUserFileListQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) 
-        : base(databaseContext, loggerService)
+        : base(operationsDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;

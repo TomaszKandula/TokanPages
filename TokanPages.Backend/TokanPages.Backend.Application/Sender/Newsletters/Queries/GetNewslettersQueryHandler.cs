@@ -7,11 +7,11 @@ namespace TokanPages.Backend.Application.Sender.Newsletters.Queries;
 
 public class GetNewslettersQueryHandler : RequestHandler<GetNewslettersQuery, List<GetNewslettersQueryResult>>
 {
-    public GetNewslettersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    public GetNewslettersQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService) : base(operationsDbContext, loggerService) { }
 
     public override async Task<List<GetNewslettersQueryResult>> Handle(GetNewslettersQuery request, CancellationToken cancellationToken) 
     {
-        return await DatabaseContext.Newsletters
+        return await OperationsDbContext.Newsletters
             .AsNoTracking()
             .Select(newsletter => new GetNewslettersQueryResult 
             { 

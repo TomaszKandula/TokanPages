@@ -10,8 +10,8 @@ public class GetInvoiceTemplateQueryHandler : RequestHandler<GetInvoiceTemplateQ
 {
     private readonly ITemplateService _templateService;
 
-    public GetInvoiceTemplateQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        ITemplateService templateService) : base(databaseContext, loggerService) => _templateService = templateService;
+    public GetInvoiceTemplateQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        ITemplateService templateService) : base(operationsDbContext, loggerService) => _templateService = templateService;
 
     public override async Task<FileContentResult> Handle(GetInvoiceTemplateQuery request, CancellationToken cancellationToken)
     {

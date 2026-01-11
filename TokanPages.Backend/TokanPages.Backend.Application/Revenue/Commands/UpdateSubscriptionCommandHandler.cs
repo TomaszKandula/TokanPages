@@ -16,8 +16,8 @@ public class UpdateSubscriptionCommandHandler : RequestHandler<UpdateSubscriptio
 
     private readonly IDateTimeService _dateTimeService;
 
-    public UpdateSubscriptionCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+    public UpdateSubscriptionCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IUserService userService, IDateTimeService dateTimeService) : base(operationsDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -26,7 +26,7 @@ public class UpdateSubscriptionCommandHandler : RequestHandler<UpdateSubscriptio
     public override async Task<Unit> Handle(UpdateSubscriptionCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
-        var userSubscription = await DatabaseContext.UserSubscriptions
+        var userSubscription = await OperationsDbContext.UserSubscriptions
             .Where(subscriptions => subscriptions.UserId == user.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -41,7 +41,7 @@ public class UpdateSubscriptionCommandHandler : RequestHandler<UpdateSubscriptio
         userSubscription.ModifiedBy = user.Id;
         userSubscription.ModifiedAt = _dateTimeService.Now;
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation("Existing subscription has been updated.");
         return Unit.Value;
     }

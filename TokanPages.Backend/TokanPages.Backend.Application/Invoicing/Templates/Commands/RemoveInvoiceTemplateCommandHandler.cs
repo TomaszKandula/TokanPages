@@ -10,8 +10,8 @@ public class RemoveInvoiceTemplateCommandHandler : RequestHandler<RemoveInvoiceT
 {
     private readonly ITemplateService _templateService;
 
-    public RemoveInvoiceTemplateCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        ITemplateService templateService) : base(databaseContext, loggerService) => _templateService = templateService;
+    public RemoveInvoiceTemplateCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        ITemplateService templateService) : base(operationsDbContext, loggerService) => _templateService = templateService;
 
     public override async Task<Unit> Handle(RemoveInvoiceTemplateCommand request, CancellationToken cancellationToken)
     {

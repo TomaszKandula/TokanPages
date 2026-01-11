@@ -19,8 +19,8 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    public GetContentManifestQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IJsonSerializer jsonSerializer) : base(databaseContext, loggerService)
+    public GetContentManifestQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory, IJsonSerializer jsonSerializer) : base(operationsDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _jsonSerializer = jsonSerializer;
@@ -47,7 +47,7 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
         var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
         var manifest = _jsonSerializer.Deserialize<GetContentManifestQueryResult>(strings, settings);
 
-        var languageList = await DatabaseContext.Languages
+        var languageList = await OperationsDbContext.Languages
             .AsNoTracking()
             .OrderBy(language => language.SortOrder)
             .Select(language => new LanguageModel

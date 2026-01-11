@@ -29,9 +29,9 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
     private readonly IConfiguration _configuration;
         
-    public AuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public AuthenticateUserCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
         ICipheringService cipheringService, IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, 
-        IUserService userService, IConfiguration configuration, ICookieAccessor cookieAccessor) : base(databaseContext, loggerService)
+        IUserService userService, IConfiguration configuration, ICookieAccessor cookieAccessor) : base(operationsDbContext, loggerService)
     {
         _cipheringService = cipheringService;
         _webTokenUtility = webTokenUtility;
@@ -43,7 +43,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
     public override async Task<AuthenticateUserCommandResult> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await DatabaseContext.Users
+        var user = await OperationsDbContext.Users
             .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
             .SingleOrDefaultAsync(cancellationToken);
@@ -95,9 +95,9 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         };
 
         await _userService.DeleteOutdatedRefreshTokens(user.Id, false, cancellationToken);
-        await DatabaseContext.UserTokens.AddAsync(newUserToken, cancellationToken);
-        await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationsDbContext.UserTokens.AddAsync(newUserToken, cancellationToken);
+        await OperationsDbContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
 
         var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRolesOutput>();
         var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionsOutput>();
@@ -128,7 +128,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
     private async Task<UserInfo> TryGetUserInfo(Guid userId, CancellationToken cancellationToken = default)
     {
-        var userInfo = await DatabaseContext.UserInformation
+        var userInfo = await OperationsDbContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);

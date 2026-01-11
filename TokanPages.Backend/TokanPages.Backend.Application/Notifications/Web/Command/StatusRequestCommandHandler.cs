@@ -11,12 +11,12 @@ public class StatusRequestCommandHandler : RequestHandler<StatusRequestCommand, 
 {
     private readonly IJsonSerializer _jsonSerializer;
 
-    public StatusRequestCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IJsonSerializer jsonSerializer) : base(databaseContext, loggerService) => _jsonSerializer = jsonSerializer;
+    public StatusRequestCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IJsonSerializer jsonSerializer) : base(operationsDbContext, loggerService) => _jsonSerializer = jsonSerializer;
 
     public override async Task<StatusRequestCommandResult> Handle(StatusRequestCommand request, CancellationToken cancellationToken)
     {
-        var webNotification = await DatabaseContext.WebNotifications
+        var webNotification = await OperationsDbContext.WebNotifications
             .Where(notifications => notifications.Id == request.StatusId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -31,8 +31,8 @@ public class StatusRequestCommandHandler : RequestHandler<StatusRequestCommand, 
             Payload = data.Payload
         };
 
-        DatabaseContext.Remove(webNotification);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        OperationsDbContext.Remove(webNotification);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
         return result;
     }
 }

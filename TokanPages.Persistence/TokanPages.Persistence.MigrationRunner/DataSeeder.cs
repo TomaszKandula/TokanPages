@@ -47,7 +47,7 @@ public class DataSeeder : IDataSeeder
 
         switch (context)
         {
-            case DatabaseContext databaseContext:
+            case OperationsDbContext databaseContext:
                 DatabaseContextUpdater.RemoveTestData(databaseContext);
                 DatabaseContextUpdater.PopulateTestData(databaseContext);
                 break;

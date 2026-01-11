@@ -11,13 +11,13 @@ public class GetUserNotesQueryHandler : RequestHandler<GetUserNotesQuery, GetUse
 {
     private readonly IUserService _userService;
 
-    public GetUserNotesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService) 
-        : base(databaseContext, loggerService) => _userService = userService;
+    public GetUserNotesQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IUserService userService) 
+        : base(operationsDbContext, loggerService) => _userService = userService;
 
     public override async Task<GetUserNotesQueryResult> Handle(GetUserNotesQuery request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var notes = await DatabaseContext.UserNotes
+        var notes = await OperationsDbContext.UserNotes
             .AsNoTracking()
             .Where(note => note.UserId == userId)
             .ToListAsync(cancellationToken);

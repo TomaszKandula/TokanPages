@@ -11,8 +11,8 @@ public class DeleteInstallationCommandHandler : RequestHandler<DeleteInstallatio
 {
     private readonly IAzureNotificationHubFactory _azureNotificationHubFactory;
 
-    public DeleteInstallationCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureNotificationHubFactory azureNotificationHubFactory) : base(databaseContext, loggerService)
+    public DeleteInstallationCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IAzureNotificationHubFactory azureNotificationHubFactory) : base(operationsDbContext, loggerService)
     {
         _azureNotificationHubFactory = azureNotificationHubFactory;
     }
@@ -23,27 +23,27 @@ public class DeleteInstallationCommandHandler : RequestHandler<DeleteInstallatio
         await hub.DeleteInstallationById(request.Id.ToString(), cancellationToken);
         LoggerService.LogInformation($"Installation ({request.Id}) has been removed from Azure Notification Hub.");
 
-        var notificationTags = await DatabaseContext.PushNotificationTags
+        var notificationTags = await OperationsDbContext.PushNotificationTags
             .Where(tags => tags.PushNotificationId == request.Id)
             .ToListAsync(cancellationToken);
 
         if (notificationTags.Count > 0)
         {
-            DatabaseContext.RemoveRange(notificationTags);
+            OperationsDbContext.RemoveRange(notificationTags);
             LoggerService.LogInformation("Related push notification tags have been removed.");
         }
 
-        var notification = await DatabaseContext.PushNotifications
+        var notification = await OperationsDbContext.PushNotifications
             .Where(notifications => notifications.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (notification is not null)
         {
-            DatabaseContext.Remove(notification);
+            OperationsDbContext.Remove(notification);
             LoggerService.LogInformation("Installation record has been removed from database.");
         }
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

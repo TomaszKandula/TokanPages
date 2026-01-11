@@ -12,7 +12,7 @@ using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Persistence.Database.Migrations
 {
-    [DbContext(typeof(DatabaseContext))]
+    [DbContext(typeof(OperationsDbContext))]
     [Migration("20260107122622_AddSortingColumnToLanguages")]
     partial class AddSortingColumnToLanguages
     {

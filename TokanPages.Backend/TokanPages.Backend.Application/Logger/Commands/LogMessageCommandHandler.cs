@@ -10,7 +10,7 @@ namespace TokanPages.Backend.Application.Logger.Commands;
 
 public class LogMessageCommandHandler :  RequestHandler<LogMessageCommand, Unit>
 {
-    public LogMessageCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    public LogMessageCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService) : base(operationsDbContext, loggerService) { }
 
     public override async Task<Unit> Handle(LogMessageCommand request, CancellationToken cancellationToken)
     {

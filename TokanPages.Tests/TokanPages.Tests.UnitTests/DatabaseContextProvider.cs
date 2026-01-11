@@ -6,10 +6,10 @@ namespace TokanPages.Tests.UnitTests;
 
 internal static class DatabaseContextProvider
 {
-    public static DbContextOptions<DatabaseContext> GetTestDatabaseOptions()
+    public static DbContextOptions<OperationsDbContext> GetTestDatabaseOptions()
     {
         const string connectionString = "Data Source=InMemoryDatabase;Mode=Memory";
-        var options = new DbContextOptionsBuilder<DatabaseContext>()
+        var options = new DbContextOptionsBuilder<OperationsDbContext>()
             .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
             .EnableSensitiveDataLogging()
             .UseSqlite(connectionString);
@@ -17,9 +17,9 @@ internal static class DatabaseContextProvider
         return options.Options;
     }
 
-    public static DatabaseContext CreateDatabaseContext(DbContextOptions<DatabaseContext> options)
+    public static OperationsDbContext CreateDatabaseContext(DbContextOptions<OperationsDbContext> options)
     {
-        var databaseContext = new DatabaseContext(options);
+        var databaseContext = new OperationsDbContext(options);
         databaseContext.Database.OpenConnection();
         databaseContext.Database.EnsureCreated();
         return databaseContext;

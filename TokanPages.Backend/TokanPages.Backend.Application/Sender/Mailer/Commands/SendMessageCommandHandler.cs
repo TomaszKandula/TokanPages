@@ -23,9 +23,9 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
 
     private readonly IUserService _userService;
 
-    public SendMessageCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public SendMessageCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
         IEmailSenderService emailSenderService, IDateTimeService dateTimeService, 
-        IConfiguration configuration, IUserService userService) : base(databaseContext, loggerService)
+        IConfiguration configuration, IUserService userService) : base(operationsDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;
@@ -84,7 +84,7 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
                 CreatedBy = Guid.Empty
             };
 
-            await DatabaseContext.BusinessInquiries.AddAsync(businessInquiry, cancellationToken);
+            await OperationsDbContext.BusinessInquiries.AddAsync(businessInquiry, cancellationToken);
         }
         else
         {
@@ -93,8 +93,8 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
 
         message.Body = template.MakeBody(templateValues);
 
-        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationsDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
         await _emailSenderService.SendToServiceBus(message, cancellationToken);
 
         return Unit.Value;

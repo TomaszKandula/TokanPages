@@ -13,8 +13,8 @@ public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetAr
 {
     private readonly IUserService _userService;
 
-    public GetArticlesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService) 
-        : base(databaseContext, loggerService) => _userService = userService;
+    public GetArticlesQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IUserService userService) 
+        : base(operationsDbContext, loggerService) => _userService = userService;
 
     public override IDictionary<string, Expression<Func<ArticleDataDto, object>>> GetOrderingExpressions() => GetSortingConfig();
 
@@ -25,7 +25,7 @@ public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetAr
         var hasIds = foundArticleIds != null && foundArticleIds.Count != 0;
         var hasCategoryId = request.CategoryId != null && request.CategoryId != Guid.Empty;
 
-        var articleList = DatabaseContext.Articles
+        var articleList = OperationsDbContext.Articles
             .AsNoTracking()
             .Include(article => article.ArticleCategory)
             .Where(article => article.IsPublished == request.IsPublished)
@@ -50,11 +50,11 @@ public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetAr
             .ApplyPaging(request)
             .ToListAsync(cancellationToken);
 
-        var categories = await (from articleCategory in DatabaseContext.ArticleCategories
-            join categoryName in DatabaseContext.CategoryNames
+        var categories = await (from articleCategory in OperationsDbContext.ArticleCategories
+            join categoryName in OperationsDbContext.CategoryNames
                 on articleCategory.Id equals categoryName.ArticleCategoryId into category 
                     from categoryName in category.DefaultIfEmpty() 
-            join language in DatabaseContext.Languages
+            join language in OperationsDbContext.Languages
                 on categoryName.LanguageId equals language.Id into languageTable
                     from  language in languageTable.DefaultIfEmpty()
             where language.LangId == userLanguage
@@ -80,13 +80,13 @@ public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetAr
             return null;
         }
 
-        var searchTitleAndDescription = await DatabaseContext.Articles
+        var searchTitleAndDescription = await OperationsDbContext.Articles
             .AsNoTracking()
             .Where(articles => articles.Title.Contains(searchTerm) || articles.Description.Contains(searchTerm))
             .Select(articles => articles.Id)
             .ToListAsync(cancellationToken);
 
-        var searchTags = await DatabaseContext.ArticleTags
+        var searchTags = await OperationsDbContext.ArticleTags
             .AsNoTracking()
             .Where(articleTags => articleTags.TagName.Contains(searchTerm))
             .Select(articleTags => articleTags.ArticleId)

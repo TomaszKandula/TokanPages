@@ -20,9 +20,9 @@ public class SendNotificationCommandHandler : RequestHandler<SendNotificationCom
 
     private readonly IDateTimeService _dateTimeService;
     
-    public SendNotificationCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public SendNotificationCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
         IAzureNotificationHubFactory azureNotificationHubFactory, IAzureNotificationHubUtility azureNotificationHubUtility, 
-        IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+        IDateTimeService dateTimeService) : base(operationsDbContext, loggerService)
     {
         _azureNotificationHubFactory = azureNotificationHubFactory;
         _azureNotificationHubUtility = azureNotificationHubUtility;
@@ -75,8 +75,8 @@ public class SendNotificationCommandHandler : RequestHandler<SendNotificationCom
                     AffectedRegistrations = affected
                 };
 
-            await DatabaseContext.PushNotificationLogs.AddRangeAsync(logs, cancellationToken);
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            await OperationsDbContext.PushNotificationLogs.AddRangeAsync(logs, cancellationToken);
+            await OperationsDbContext.SaveChangesAsync(cancellationToken);
         }
 
         return new SendNotificationCommandResult

@@ -12,8 +12,8 @@ public class ReplaceInvoiceTemplateCommandHandler : RequestHandler<ReplaceInvoic
 {
     private readonly ITemplateService _templateService;
 
-    public ReplaceInvoiceTemplateCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        ITemplateService templateService) : base(databaseContext, loggerService) => _templateService = templateService;
+    public ReplaceInvoiceTemplateCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        ITemplateService templateService) : base(operationsDbContext, loggerService) => _templateService = templateService;
 
     public override async Task<Unit> Handle(ReplaceInvoiceTemplateCommand request, CancellationToken cancellationToken)
     {

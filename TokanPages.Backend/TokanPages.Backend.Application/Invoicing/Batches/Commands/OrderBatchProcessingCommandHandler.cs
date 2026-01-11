@@ -11,8 +11,8 @@ public class OrderBatchProcessingCommandHandler : RequestHandler<OrderBatchProce
 {
     private readonly IBatchService _batchService;
 
-    public OrderBatchProcessingCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IBatchService batchService) 
-        : base(databaseContext, loggerService) => _batchService = batchService;
+    public OrderBatchProcessingCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IBatchService batchService) 
+        : base(operationsDbContext, loggerService) => _batchService = batchService;
 
     public override async Task<Unit> Handle(OrderBatchProcessingCommand request, CancellationToken cancellationToken)
     {

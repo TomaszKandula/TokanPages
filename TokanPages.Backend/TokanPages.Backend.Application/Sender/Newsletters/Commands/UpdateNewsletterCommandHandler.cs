@@ -16,8 +16,8 @@ public class UpdateNewsletterCommandHandler : RequestHandler<UpdateNewsletterCom
 
     private readonly IUserService _userService;
 
-    public UpdateNewsletterCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService, IUserService userService) : base(databaseContext, loggerService)
+    public UpdateNewsletterCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IDateTimeService dateTimeService, IUserService userService) : base(operationsDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _userService = userService;
@@ -25,14 +25,14 @@ public class UpdateNewsletterCommandHandler : RequestHandler<UpdateNewsletterCom
 
     public override async Task<Unit> Handle(UpdateNewsletterCommand request, CancellationToken cancellationToken) 
     {
-        var newsletterData = await DatabaseContext.Newsletters
+        var newsletterData = await OperationsDbContext.Newsletters
             .Where(newsletter => newsletter.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (newsletterData is null) 
             throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
 
-        var emailCollection = await DatabaseContext.Newsletters
+        var emailCollection = await OperationsDbContext.Newsletters
             .AsNoTracking()
             .Where(newsletter => newsletter.Email == request.Email)
             .ToListAsync(cancellationToken);
@@ -47,7 +47,7 @@ public class UpdateNewsletterCommandHandler : RequestHandler<UpdateNewsletterCom
         newsletterData.ModifiedAt = _dateTimeService.Now;
         newsletterData.ModifiedBy = user?.UserId ?? Guid.Empty;
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

@@ -7,11 +7,11 @@ namespace TokanPages.Backend.Application.Users.Queries;
 
 public class GetUsersQueryHandler : RequestHandler<GetUsersQuery, List<GetUsersQueryResult>>
 {
-    public GetUsersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    public GetUsersQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService) : base(operationsDbContext, loggerService) { }
 
     public override async Task<List<GetUsersQueryResult>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
     {
-        return await DatabaseContext.Users
+        return await OperationsDbContext.Users
             .AsNoTracking()
             .Select(user => new GetUsersQueryResult 
             { 

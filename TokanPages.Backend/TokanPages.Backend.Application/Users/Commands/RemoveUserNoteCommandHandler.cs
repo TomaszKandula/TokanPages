@@ -13,13 +13,13 @@ public class RemoveUserNoteCommandHandler : RequestHandler<RemoveUserNoteCommand
 {
     private readonly IUserService _userService;
 
-    public RemoveUserNoteCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService) 
-        : base(databaseContext, loggerService) => _userService = userService;
+    public RemoveUserNoteCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IUserService userService) 
+        : base(operationsDbContext, loggerService) => _userService = userService;
 
     public override async Task<Unit> Handle(RemoveUserNoteCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var userNote = await DatabaseContext.UserNotes
+        var userNote = await OperationsDbContext.UserNotes
             .Where(note => note.Id == request.Id)
             .Where(note => note.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);
@@ -27,8 +27,8 @@ public class RemoveUserNoteCommandHandler : RequestHandler<RemoveUserNoteCommand
         if (userNote is null)
             throw new BusinessException(nameof(ErrorCodes.CANNOT_FIND_USER_NOTE), ErrorCodes.CANNOT_FIND_USER_NOTE);
 
-        DatabaseContext.UserNotes.Remove(userNote);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        OperationsDbContext.UserNotes.Remove(userNote);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
 
         return Unit.Value;
     }

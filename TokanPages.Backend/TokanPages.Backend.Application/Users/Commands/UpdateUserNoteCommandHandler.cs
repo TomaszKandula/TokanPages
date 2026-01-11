@@ -17,8 +17,8 @@ public class UpdateUserNoteCommandHandler : RequestHandler<UpdateUserNoteCommand
 
     private readonly IDateTimeService _dateTimeService;
 
-    public UpdateUserNoteCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+    public UpdateUserNoteCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IUserService userService, IDateTimeService dateTimeService) : base(operationsDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -27,7 +27,7 @@ public class UpdateUserNoteCommandHandler : RequestHandler<UpdateUserNoteCommand
     public override async Task<Unit> Handle(UpdateUserNoteCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var note = await DatabaseContext.UserNotes
+        var note = await OperationsDbContext.UserNotes
             .Where(userNote => userNote.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -38,7 +38,7 @@ public class UpdateUserNoteCommandHandler : RequestHandler<UpdateUserNoteCommand
         note.ModifiedAt = _dateTimeService.Now;
         note.ModifiedBy = userId;
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

@@ -19,8 +19,8 @@ public static class DatabaseContextUpdater
         var sourceDatabase = DatabaseConnection.GetDatabaseName(sourceConnection);
         var targetDatabase = DatabaseConnection.GetDatabaseName(targetConnection);
 
-        var options = DatabaseOptions.GetOptions<Database.Contexts.DatabaseContext>(targetConnection);
-        var context = new Database.Contexts.DatabaseContext(options);
+        var options = DatabaseOptions.GetOptions<Database.Contexts.OperationsDbContext>(targetConnection);
+        var context = new Database.Contexts.OperationsDbContext(options);
         await context.Database.OpenConnectionAsync();
         var command = context.Database.GetDbConnection().CreateCommand();
 
@@ -31,7 +31,7 @@ public static class DatabaseContextUpdater
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Default user created. Returned: {createResult}.");
 
         var version = DatabaseConnection.GetNextVersion(new SqlConnectionStringBuilder(sourceConnection));
-        var scriptName = DatabaseUpdate.BuildMigrationScriptName(version.number, nameof(Database.Contexts.DatabaseContext));
+        var scriptName = DatabaseUpdate.BuildMigrationScriptName(version.number, nameof(Database.Contexts.OperationsDbContext));
         var scriptContent = DatabaseUpdate.GetSqlScript(scriptName);
 
         scriptContent = scriptContent.Replace("{{SOURCE_TABLE}}", sourceDatabase);
@@ -44,122 +44,122 @@ public static class DatabaseContextUpdater
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Database copied. Returned: {copyResult}.");
     }
 
-    public static void PopulateTestData(Database.Contexts.DatabaseContext databaseContext)
+    public static void PopulateTestData(Database.Contexts.OperationsDbContext operationsDbContext)
     {
-        if (!databaseContext.Users.Any())
+        if (!operationsDbContext.Users.Any())
         {
-            databaseContext.Users.AddRange(UsersSeeder.SeedUsers());
-            PrintInfo(UsersSeeder.SeedUsers().Count(), nameof(databaseContext.Users));
+            operationsDbContext.Users.AddRange(UsersSeeder.SeedUsers());
+            PrintInfo(UsersSeeder.SeedUsers().Count(), nameof(operationsDbContext.Users));
         }
 
-        if (!databaseContext.UserInformation.Any())
+        if (!operationsDbContext.UserInformation.Any())
         {
-            databaseContext.UserInformation.AddRange(UserInfoSeeder.SeedUserInfo());
-            PrintInfo(UserInfoSeeder.SeedUserInfo().Count(), nameof(databaseContext.UserInformation));
+            operationsDbContext.UserInformation.AddRange(UserInfoSeeder.SeedUserInfo());
+            PrintInfo(UserInfoSeeder.SeedUserInfo().Count(), nameof(operationsDbContext.UserInformation));
         }
 
-        if (!databaseContext.Articles.Any())
+        if (!operationsDbContext.Articles.Any())
         {
-            databaseContext.Articles.AddRange(ArticlesSeeder.SeedArticles());
-            PrintInfo(ArticlesSeeder.SeedArticles().Count(), nameof(databaseContext.Articles));
+            operationsDbContext.Articles.AddRange(ArticlesSeeder.SeedArticles());
+            PrintInfo(ArticlesSeeder.SeedArticles().Count(), nameof(operationsDbContext.Articles));
         }
 
-        if (!databaseContext.Newsletters.Any())
+        if (!operationsDbContext.Newsletters.Any())
         {
-            databaseContext.Newsletters.AddRange(SubscribersSeeder.SeedSubscribers());
-            PrintInfo(SubscribersSeeder.SeedSubscribers().Count(), nameof(databaseContext.Newsletters));
+            operationsDbContext.Newsletters.AddRange(SubscribersSeeder.SeedSubscribers());
+            PrintInfo(SubscribersSeeder.SeedSubscribers().Count(), nameof(operationsDbContext.Newsletters));
         }
 
-        if (!databaseContext.ArticleLikes.Any())
+        if (!operationsDbContext.ArticleLikes.Any())
         {
-            databaseContext.ArticleLikes.AddRange(ArticleLikesSeeder.SeedArticleLikes());
-            PrintInfo(ArticleLikesSeeder.SeedArticleLikes().Count(), nameof(databaseContext.ArticleLikes));
+            operationsDbContext.ArticleLikes.AddRange(ArticleLikesSeeder.SeedArticleLikes());
+            PrintInfo(ArticleLikesSeeder.SeedArticleLikes().Count(), nameof(operationsDbContext.ArticleLikes));
         }
 
-        if (!databaseContext.PhotoCategories.Any())
+        if (!operationsDbContext.PhotoCategories.Any())
         {
-            databaseContext.PhotoCategories.AddRange(PhotoCategoriesSeeder.SeedPhotoCategories());
-            PrintInfo(PhotoCategoriesSeeder.SeedPhotoCategories().Count(), nameof(databaseContext.PhotoCategories));
+            operationsDbContext.PhotoCategories.AddRange(PhotoCategoriesSeeder.SeedPhotoCategories());
+            PrintInfo(PhotoCategoriesSeeder.SeedPhotoCategories().Count(), nameof(operationsDbContext.PhotoCategories));
         }
 
-        if (!databaseContext.Roles.Any())
+        if (!operationsDbContext.Roles.Any())
         {
-            databaseContext.Roles.AddRange(RolesSeeder.SeedRoles());
-            PrintInfo(RolesSeeder.SeedRoles().Count(), nameof(databaseContext.Roles));
+            operationsDbContext.Roles.AddRange(RolesSeeder.SeedRoles());
+            PrintInfo(RolesSeeder.SeedRoles().Count(), nameof(operationsDbContext.Roles));
         }
 
-        if (!databaseContext.Permissions.Any())
+        if (!operationsDbContext.Permissions.Any())
         {
-            databaseContext.Permissions.AddRange(PermissionsSeeder.SeedPermissions());
-            PrintInfo(PermissionsSeeder.SeedPermissions().Count(), nameof(databaseContext.Permissions));
+            operationsDbContext.Permissions.AddRange(PermissionsSeeder.SeedPermissions());
+            PrintInfo(PermissionsSeeder.SeedPermissions().Count(), nameof(operationsDbContext.Permissions));
         }
 
-        if (!databaseContext.DefaultPermissions.Any())
+        if (!operationsDbContext.DefaultPermissions.Any())
         {
-            databaseContext.DefaultPermissions.AddRange(DefaultPermissionsSeeder.SeedDefaultPermissions());
-            PrintInfo(DefaultPermissionsSeeder.SeedDefaultPermissions().Count(), nameof(databaseContext.DefaultPermissions));
+            operationsDbContext.DefaultPermissions.AddRange(DefaultPermissionsSeeder.SeedDefaultPermissions());
+            PrintInfo(DefaultPermissionsSeeder.SeedDefaultPermissions().Count(), nameof(operationsDbContext.DefaultPermissions));
         }
 
-        if (!databaseContext.UserPermissions.Any())
+        if (!operationsDbContext.UserPermissions.Any())
         {
-            databaseContext.UserPermissions.AddRange(UserPermissionsSeeder.SeedUserPermissions());
-            PrintInfo(UserPermissionsSeeder.SeedUserPermissions().Count(), nameof(databaseContext.UserPermissions));
+            operationsDbContext.UserPermissions.AddRange(UserPermissionsSeeder.SeedUserPermissions());
+            PrintInfo(UserPermissionsSeeder.SeedUserPermissions().Count(), nameof(operationsDbContext.UserPermissions));
         }
 
-        if (!databaseContext.UserRoles.Any())
+        if (!operationsDbContext.UserRoles.Any())
         {
-            databaseContext.UserRoles.AddRange(UserRolesSeeder.SeedUserRoles());
-            PrintInfo(UserRolesSeeder.SeedUserRoles().Count(), nameof(databaseContext.UserRoles));
+            operationsDbContext.UserRoles.AddRange(UserRolesSeeder.SeedUserRoles());
+            PrintInfo(UserRolesSeeder.SeedUserRoles().Count(), nameof(operationsDbContext.UserRoles));
         }
 
-        databaseContext.SaveChanges();
+        operationsDbContext.SaveChanges();
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Changes saved!");
     }
 
-    public static void RemoveTestData(Database.Contexts.DatabaseContext databaseContext)
+    public static void RemoveTestData(Database.Contexts.OperationsDbContext operationsDbContext)
     {
-        databaseContext.RemoveRange(databaseContext.Albums);
-        PrintWarning(nameof(databaseContext.Albums));
-        databaseContext.RemoveRange(databaseContext.HttpRequests);
-        PrintWarning(nameof(databaseContext.HttpRequests));
-        databaseContext.RemoveRange(databaseContext.Newsletters);
-        PrintWarning(nameof(databaseContext.Newsletters));
-        databaseContext.RemoveRange(databaseContext.DefaultPermissions);
-        PrintWarning(nameof(databaseContext.DefaultPermissions));
+        operationsDbContext.RemoveRange(operationsDbContext.Albums);
+        PrintWarning(nameof(operationsDbContext.Albums));
+        operationsDbContext.RemoveRange(operationsDbContext.HttpRequests);
+        PrintWarning(nameof(operationsDbContext.HttpRequests));
+        operationsDbContext.RemoveRange(operationsDbContext.Newsletters);
+        PrintWarning(nameof(operationsDbContext.Newsletters));
+        operationsDbContext.RemoveRange(operationsDbContext.DefaultPermissions);
+        PrintWarning(nameof(operationsDbContext.DefaultPermissions));
 
-        databaseContext.RemoveRange(databaseContext.ArticleCounts);
-        PrintWarning(nameof(databaseContext.ArticleCounts));
-        databaseContext.RemoveRange(databaseContext.ArticleLikes);
-        PrintWarning(nameof(databaseContext.ArticleLikes));
-        databaseContext.RemoveRange(databaseContext.Articles);
-        PrintWarning(nameof(databaseContext.Articles));
+        operationsDbContext.RemoveRange(operationsDbContext.ArticleCounts);
+        PrintWarning(nameof(operationsDbContext.ArticleCounts));
+        operationsDbContext.RemoveRange(operationsDbContext.ArticleLikes);
+        PrintWarning(nameof(operationsDbContext.ArticleLikes));
+        operationsDbContext.RemoveRange(operationsDbContext.Articles);
+        PrintWarning(nameof(operationsDbContext.Articles));
 
-        databaseContext.RemoveRange(databaseContext.PhotoCategories);
-        PrintWarning(nameof(databaseContext.PhotoCategories));
-        databaseContext.RemoveRange(databaseContext.PhotoGears);
-        PrintWarning(nameof(databaseContext.PhotoGears));
-        databaseContext.RemoveRange(databaseContext.UserPhotos);
-        PrintWarning(nameof(databaseContext.UserPhotos));
+        operationsDbContext.RemoveRange(operationsDbContext.PhotoCategories);
+        PrintWarning(nameof(operationsDbContext.PhotoCategories));
+        operationsDbContext.RemoveRange(operationsDbContext.PhotoGears);
+        PrintWarning(nameof(operationsDbContext.PhotoGears));
+        operationsDbContext.RemoveRange(operationsDbContext.UserPhotos);
+        PrintWarning(nameof(operationsDbContext.UserPhotos));
 
-        databaseContext.RemoveRange(databaseContext.UserPermissions);
-        PrintWarning(nameof(databaseContext.UserPermissions));
-        databaseContext.RemoveRange(databaseContext.UserRoles);
-        PrintWarning(nameof(databaseContext.UserRoles));
-        databaseContext.RemoveRange(databaseContext.UserRefreshTokens);
-        PrintWarning(nameof(databaseContext.UserRefreshTokens));
-        databaseContext.RemoveRange(databaseContext.UserTokens);
-        PrintWarning(nameof(databaseContext.UserTokens));
-        databaseContext.RemoveRange(databaseContext.UserInformation);
-        PrintWarning(nameof(databaseContext.UserInformation));
-        databaseContext.RemoveRange(databaseContext.Users);
-        PrintWarning(nameof(databaseContext.Users));
+        operationsDbContext.RemoveRange(operationsDbContext.UserPermissions);
+        PrintWarning(nameof(operationsDbContext.UserPermissions));
+        operationsDbContext.RemoveRange(operationsDbContext.UserRoles);
+        PrintWarning(nameof(operationsDbContext.UserRoles));
+        operationsDbContext.RemoveRange(operationsDbContext.UserRefreshTokens);
+        PrintWarning(nameof(operationsDbContext.UserRefreshTokens));
+        operationsDbContext.RemoveRange(operationsDbContext.UserTokens);
+        PrintWarning(nameof(operationsDbContext.UserTokens));
+        operationsDbContext.RemoveRange(operationsDbContext.UserInformation);
+        PrintWarning(nameof(operationsDbContext.UserInformation));
+        operationsDbContext.RemoveRange(operationsDbContext.Users);
+        PrintWarning(nameof(operationsDbContext.Users));
 
-        databaseContext.RemoveRange(databaseContext.Permissions);
-        PrintWarning(nameof(databaseContext.Permissions));
-        databaseContext.RemoveRange(databaseContext.Roles);
-        PrintWarning(nameof(databaseContext.Roles));
+        operationsDbContext.RemoveRange(operationsDbContext.Permissions);
+        PrintWarning(nameof(operationsDbContext.Permissions));
+        operationsDbContext.RemoveRange(operationsDbContext.Roles);
+        PrintWarning(nameof(operationsDbContext.Roles));
 
-        databaseContext.SaveChanges();
+        operationsDbContext.SaveChanges();
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Changes saved!");
     }
 

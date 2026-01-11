@@ -16,12 +16,12 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
 
     private static JsonSerializerSettings Settings => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
-    public GetChatDataQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IJsonSerializer jsonSerializer) : base(databaseContext, loggerService) => _jsonSerializer = jsonSerializer;
+    public GetChatDataQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IJsonSerializer jsonSerializer) : base(operationsDbContext, loggerService) => _jsonSerializer = jsonSerializer;
 
     public override async Task<GetChatDataQueryResult> Handle(GetChatDataQuery request, CancellationToken cancellationToken)
     {
-        var chatData = await DatabaseContext.UserMessages
+        var chatData = await OperationsDbContext.UserMessages
             .AsNoTracking()
             .Where(message => message.ChatKey == request.ChatKey)
             .Where(message => !message.IsArchived)
@@ -65,7 +65,7 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
     private async Task<string> GetUserInitials(Guid userId, CancellationToken cancellationToken)
     {
         var initials = "A";
-        var userInfo = await DatabaseContext.UserInformation
+        var userInfo = await OperationsDbContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == userId)
             .Select(info => new
@@ -86,7 +86,7 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
 
     private async Task<string> GetUserAvatarName(Guid userId, CancellationToken cancellationToken)
     {
-        var blobName = await DatabaseContext.UserInformation
+        var blobName = await OperationsDbContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == userId)
             .Select(info => info.UserImageName)

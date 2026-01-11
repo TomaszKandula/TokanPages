@@ -11,9 +11,9 @@ using TokanPages.Backend.Domain.Entities.Users;
 namespace TokanPages.Persistence.Database.Contexts;
 
 [ExcludeFromCodeCoverage]
-public class DatabaseContext : DbContext
+public class OperationsDbContext : DbContext
 {
-    public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
+    public OperationsDbContext(DbContextOptions<OperationsDbContext> options) : base(options) { }
 
     /* Category: Article */
     public virtual DbSet<Article> Articles { get; set; }
@@ -77,6 +77,9 @@ public class DatabaseContext : DbContext
         ApplyConfiguration(modelBuilder);
     }
 
-    private static void ApplyConfiguration(ModelBuilder modelBuilder) 
-        => modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    private static void ApplyConfiguration(ModelBuilder modelBuilder)
+    {
+        //modelBuilder.HasDefaultSchema("operation");//TODO: change schema
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
 }

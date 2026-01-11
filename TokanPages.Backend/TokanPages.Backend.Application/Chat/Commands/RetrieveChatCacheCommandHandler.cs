@@ -7,13 +7,13 @@ namespace TokanPages.Backend.Application.Chat.Commands;
 
 public class RetrieveChatCacheCommandHandler : RequestHandler<RetrieveChatCacheCommand, RetrieveChatCacheCommandResult>
 {
-    public RetrieveChatCacheCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService)
-        : base(databaseContext, loggerService) { }
+    public RetrieveChatCacheCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService)
+        : base(operationsDbContext, loggerService) { }
 
     public override async Task<RetrieveChatCacheCommandResult> Handle(RetrieveChatCacheCommand request, CancellationToken cancellationToken)
     {
         var keys = new HashSet<string>(request.ChatKey);
-        var notifications = await DatabaseContext.UserMessagesCache
+        var notifications = await OperationsDbContext.UserMessagesCache
             .AsNoTracking()
             .Where(cache => keys.Contains(cache.ChatKey))
             .Select(cache => cache.Notification)

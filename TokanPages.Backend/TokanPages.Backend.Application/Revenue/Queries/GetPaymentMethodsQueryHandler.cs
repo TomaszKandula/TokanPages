@@ -13,8 +13,8 @@ public class GetPaymentMethodsQueryHandler : RequestHandler<GetPaymentMethodsQue
     
     private readonly IPayUService _payUService;
 
-    public GetPaymentMethodsQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IPayUService payUService) : base(databaseContext, loggerService)
+    public GetPaymentMethodsQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+        IUserService userService, IPayUService payUService) : base(operationsDbContext, loggerService)
     {
         _userService = userService;
         _payUService = payUService;

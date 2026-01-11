@@ -29,7 +29,7 @@ public class EmailProcessing : Processing
 
     private readonly IEmailSenderService _emailSenderService;
 
-    private readonly DatabaseContext _databaseContext;
+    private readonly OperationsDbContext _operationsDbContext;
 
     /// <summary>
     /// Implementation of email processing hosted service.
@@ -37,12 +37,12 @@ public class EmailProcessing : Processing
     /// <param name="loggerService">Logger Service instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
     /// <param name="emailSenderService">Email Sender Service instance.</param>
-    /// <param name="databaseContext">Database instance.</param>
+    /// <param name="operationsDbContext">Database instance.</param>
     public EmailProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        IEmailSenderService emailSenderService, DatabaseContext databaseContext) : base(loggerService, azureBusFactory)
+        IEmailSenderService emailSenderService, OperationsDbContext operationsDbContext) : base(loggerService, azureBusFactory)
     {
         _emailSenderService = emailSenderService;
-        _databaseContext = databaseContext;
+        _operationsDbContext = operationsDbContext;
     }
 
     /// <summary>
@@ -100,7 +100,7 @@ public class EmailProcessing : Processing
 
     private async Task<bool> CanContinue(Guid messageId, CancellationToken cancellationToken)
     {
-        var busMessages = await _databaseContext.ServiceBusMessages
+        var busMessages = await _operationsDbContext.ServiceBusMessages
             .Where(messages => messages.Id == messageId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -108,7 +108,7 @@ public class EmailProcessing : Processing
             return false;
 
         busMessages.IsConsumed = true;
-        await _databaseContext.SaveChangesAsync(cancellationToken);
+        await _operationsDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
 

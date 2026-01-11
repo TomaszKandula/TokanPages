@@ -19,9 +19,9 @@ public class RevokeUserTokenCommandHandler : RequestHandler<RevokeUserTokenComma
 
     private readonly IDateTimeService _dateTimeService;
 
-    public RevokeUserTokenCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public RevokeUserTokenCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
         IUserService userService, IWebTokenValidation webTokenValidation, IDateTimeService dateTimeService) 
-        : base(databaseContext, loggerService)
+        : base(operationsDbContext, loggerService)
     {
         _userService = userService;
         _webTokenValidation = webTokenValidation;
@@ -32,7 +32,7 @@ public class RevokeUserTokenCommandHandler : RequestHandler<RevokeUserTokenComma
     {
         var token = _webTokenValidation.GetWebTokenFromHeader();
         var userId = _userService.GetLoggedUserId();
-        var tokens = await DatabaseContext.UserTokens
+        var tokens = await OperationsDbContext.UserTokens
             .Where(userTokens => userTokens.Token == token)
             .FirstOrDefaultAsync(cancellationToken);
 
@@ -46,7 +46,7 @@ public class RevokeUserTokenCommandHandler : RequestHandler<RevokeUserTokenComma
         tokens.RevokedByIp = requestIpAddress; 
         tokens.ReasonRevoked = reason;
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationsDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }
