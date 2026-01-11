@@ -127,7 +127,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
     private async Task<UserInfo> TryGetUserInfo(Guid userId, CancellationToken cancellationToken = default)
     {
-        var userInfo = await DatabaseContext.UserInfo
+        var userInfo = await DatabaseContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);

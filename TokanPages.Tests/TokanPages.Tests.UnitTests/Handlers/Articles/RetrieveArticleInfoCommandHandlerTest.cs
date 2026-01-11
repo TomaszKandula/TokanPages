@@ -131,11 +131,11 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddAsync(users);
-        await databaseContext.UserInfo.AddAsync(userInfo);
+        await databaseContext.UserInformation.AddAsync(userInfo);
         await databaseContext.Languages.AddRangeAsync(languages);
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.ArticleLikes.AddRangeAsync(likes);
-        await databaseContext.ArticleCategory.AddRangeAsync(articleCategories);
+        await databaseContext.ArticleCategories.AddRangeAsync(articleCategories);
         await databaseContext.CategoryNames.AddRangeAsync(categoryNames);
         await databaseContext.SaveChangesAsync();
 

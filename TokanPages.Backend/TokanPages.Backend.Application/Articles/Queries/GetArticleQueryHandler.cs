@@ -64,7 +64,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             .SumAsync(cancellationToken);
 
         var article = await (from articles in DatabaseContext.Articles
-            join articleCategory in DatabaseContext.ArticleCategory 
+            join articleCategory in DatabaseContext.ArticleCategories 
                 on articles.CategoryId equals articleCategory.Id
             join categoryNames in DatabaseContext.CategoryNames
                 on articleCategory.Id equals categoryNames.ArticleCategoryId
@@ -95,7 +95,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         var author = await (from users in DatabaseContext.Users
-            join userInfo in DatabaseContext.UserInfo 
+            join userInfo in DatabaseContext.UserInformation 
             on users.Id equals userInfo.UserId
             where users.Id == article.UserId
             select new GetUserDto

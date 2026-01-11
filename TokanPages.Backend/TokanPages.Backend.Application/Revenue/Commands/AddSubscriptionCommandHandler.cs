@@ -28,7 +28,7 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
         var language = request.UserLanguage ?? "pol";
 
         var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
-        var price = await DatabaseContext.SubscriptionPricing
+        var price = await DatabaseContext.SubscriptionsPricing
             .Where(pricing => pricing.Term == request.SelectedTerm)
             .Where(pricing => pricing.CurrencyIso.Equals(currency, StringComparison.InvariantCultureIgnoreCase))
             .Where(pricing => pricing.LanguageIso.Equals(language, StringComparison.InvariantCultureIgnoreCase))
@@ -43,7 +43,7 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
 
         var extCustomerId = Guid.NewGuid().ToString("N");
         var extOrderId = Guid.NewGuid().ToString("N");
-        var userInfo = await DatabaseContext.UserInfo
+        var userInfo = await DatabaseContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == user.Id)
             .Select(info => new

@@ -52,10 +52,10 @@ public static class DatabaseContextUpdater
             PrintInfo(UsersSeeder.SeedUsers().Count(), nameof(databaseContext.Users));
         }
 
-        if (!databaseContext.UserInfo.Any())
+        if (!databaseContext.UserInformation.Any())
         {
-            databaseContext.UserInfo.AddRange(UserInfoSeeder.SeedUserInfo());
-            PrintInfo(UserInfoSeeder.SeedUserInfo().Count(), nameof(databaseContext.UserInfo));
+            databaseContext.UserInformation.AddRange(UserInfoSeeder.SeedUserInfo());
+            PrintInfo(UserInfoSeeder.SeedUserInfo().Count(), nameof(databaseContext.UserInformation));
         }
 
         if (!databaseContext.Articles.Any())
@@ -149,8 +149,8 @@ public static class DatabaseContextUpdater
         PrintWarning(nameof(databaseContext.UserRefreshTokens));
         databaseContext.RemoveRange(databaseContext.UserTokens);
         PrintWarning(nameof(databaseContext.UserTokens));
-        databaseContext.RemoveRange(databaseContext.UserInfo);
-        PrintWarning(nameof(databaseContext.UserInfo));
+        databaseContext.RemoveRange(databaseContext.UserInformation);
+        PrintWarning(nameof(databaseContext.UserInformation));
         databaseContext.RemoveRange(databaseContext.Users);
         PrintWarning(nameof(databaseContext.Users));
 

@@ -31,7 +31,7 @@ public class UserServiceTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddRangeAsync(users);
-        await databaseContext.UserInfo.AddRangeAsync(userInfo);
+        await databaseContext.UserInformation.AddRangeAsync(userInfo);
         await databaseContext.SaveChangesAsync();
 
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
@@ -762,7 +762,7 @@ public class UserServiceTest : TestBase
         await databaseContext.Users.AddRangeAsync(users);
         await databaseContext.Roles.AddRangeAsync(roles);
         await databaseContext.UserRoles.AddRangeAsync(userRoles);
-        await databaseContext.UserInfo.AddRangeAsync(userInfo);
+        await databaseContext.UserInformation.AddRangeAsync(userInfo);
         await databaseContext.SaveChangesAsync();
             
         var ipAddress = DataUtilityService.GetRandomIpAddress();

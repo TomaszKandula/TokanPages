@@ -54,7 +54,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
 
         var databaseContext = GetTestDatabaseContext();
         await databaseContext.Users.AddAsync(user);
-        await databaseContext.UserInfo.AddAsync(userInfo);
+        await databaseContext.UserInformation.AddAsync(userInfo);
         await databaseContext.SaveChangesAsync();
 
         var command = new AuthenticateUserCommand
