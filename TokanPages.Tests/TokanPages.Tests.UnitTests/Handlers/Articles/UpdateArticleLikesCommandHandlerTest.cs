@@ -55,8 +55,8 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var mockedConfig = SetConfiguration();
 
         mockedUserService
-            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
-            .ReturnsAsync((GetUserOutput)null!);
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(Guid.Empty);
 
         mockedUserService
             .Setup(service => service.GetRequestIpAddress())
@@ -87,9 +87,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             .FindAsync(command.Id);
 
         articlesEntity.Should().NotBeNull();
-        articlesEntity?.UpdatedAt.Should().BeNull();
-        articlesEntity?.ModifiedBy.Should().NotBeNull();
-        articlesEntity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        articlesEntity.UpdatedAt.Should().BeNull();
+        articlesEntity.ModifiedBy.Should().BeNull();
+        articlesEntity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
 
         articleLikesEntity.Should().HaveCount(1);
         articleLikesEntity[0].IpAddress.Should().Be(IpAddress);
@@ -175,9 +175,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             .FindAsync(command.Id);
 
         articlesEntity.Should().NotBeNull();
-        articlesEntity?.UpdatedAt.Should().BeNull();
-        articlesEntity?.ModifiedBy.Should().NotBeNull();
-        articlesEntity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        articlesEntity.UpdatedAt.Should().BeNull();
+        articlesEntity.ModifiedBy.Should().BeNull();
+        articlesEntity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
 
         articleLikesEntity.Should().HaveCount(1);
         articleLikesEntity[0].IpAddress.Should().Be(IpAddress);
@@ -219,26 +219,14 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(article);
         await databaseContext.SaveChangesAsync();
 
-        var getUserDto = new GetUserOutput
-        {
-            UserId = user.Id,
-            AliasName = DataUtilityService.GetRandomString(),
-            AvatarName = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Email = DataUtilityService.GetRandomEmail(),
-            ShortBio = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime()
-        };
-
         var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedConfig = SetConfiguration();
 
         mockedUserService
-            .Setup(provider => provider.GetUser(It.IsAny<CancellationToken>()))
-            .ReturnsAsync(getUserDto);
+            .Setup(provider => provider.GetLoggedUserId())
+            .Returns(user.Id);
 
         mockedUserService
             .Setup(provider => provider.GetRequestIpAddress())
@@ -322,26 +310,14 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         await databaseContext.ArticleLikes.AddAsync(likes);
         await databaseContext.SaveChangesAsync();
 
-        var getUserDto = new GetUserOutput
-        {
-            UserId = user.Id,
-            AliasName = DataUtilityService.GetRandomString(),
-            AvatarName = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Email = DataUtilityService.GetRandomEmail(),
-            ShortBio = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime()
-        };
-
         var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedConfig = SetConfiguration();
 
         mockedUserService
-            .Setup(provider => provider.GetUser(It.IsAny<CancellationToken>()))
-            .ReturnsAsync(getUserDto);
+            .Setup(provider => provider.GetLoggedUserId())
+            .Returns(user.Id);
 
         mockedUserService
             .Setup(provider => provider.GetRequestIpAddress())
@@ -372,9 +348,9 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             .FindAsync(command.Id);
 
         articlesEntity.Should().NotBeNull();
-        articlesEntity?.UpdatedAt.Should().BeNull();
-        articlesEntity?.ModifiedBy.Should().NotBeNull();
-        articlesEntity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        articlesEntity.UpdatedAt.Should().BeNull();
+        articlesEntity.ModifiedBy.Should().NotBeNull();
+        articlesEntity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
 
         articleLikes.Should().HaveCount(1);
         articleLikes[0].UserId.Should().NotBeNull();

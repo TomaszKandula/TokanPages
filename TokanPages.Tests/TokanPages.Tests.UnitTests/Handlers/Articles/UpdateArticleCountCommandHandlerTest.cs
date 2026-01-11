@@ -79,9 +79,9 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         // Assert
         var entity = await databaseContext.Articles.FindAsync(command.Id);
         entity.Should().NotBeNull();
-        entity?.ModifiedBy.Should().NotBeNull();
-        entity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
-        entity?.ReadCount.Should().Be(expectedTotalReadCount);
+        entity.ModifiedBy.Should().NotBeNull();
+        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        entity.ReadCount.Should().Be(expectedTotalReadCount);
 
         var counts = await databaseContext.ArticleCounts.SingleOrDefaultAsync(x => x.ArticleId == articleId);
         counts.Should().NotBeNull();
@@ -151,9 +151,8 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserService
-            .Setup(service => service.GetUser(
-                It.IsAny<CancellationToken>()))
-            .ReturnsAsync((GetUserOutput)null!);
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(Guid.Empty);
 
         mockedUserService
             .Setup(service => service.GetRequestIpAddress())
@@ -173,21 +172,21 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         // Assert
         var entity = await databaseContext.Articles.FindAsync(command.Id);
         entity.Should().NotBeNull();
-        entity?.UpdatedAt.Should().BeNull();
-        entity?.ModifiedBy.Should().NotBeNull();
-        entity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
-        entity?.ReadCount.Should().Be(expectedTotalReadCount);
+        entity.UpdatedAt.Should().BeNull();
+        entity.ModifiedBy.Should().NotBeNull();
+        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        entity.ReadCount.Should().Be(expectedTotalReadCount);
 
         var counts = await databaseContext.ArticleCounts.SingleOrDefaultAsync(x => x.ArticleId == articleId);
         counts.Should().NotBeNull();
-        counts?.ArticleId.Should().Be(articleId);
-        counts?.UserId.Should().Be(userId);
-        counts?.IpAddress.Should().Be(mockedIpAddress);
-        counts?.ReadCount.Should().Be(expectedReadCount);
-        counts?.CreatedBy.Should().Be(articleCount.CreatedBy);
-        counts?.CreatedAt.Should().Be(articleCount.CreatedAt);
-        counts?.ModifiedBy.Should().BeNull();
-        counts?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        counts.ArticleId.Should().Be(articleId);
+        counts.UserId.Should().Be(userId);
+        counts.IpAddress.Should().Be(mockedIpAddress);
+        counts.ReadCount.Should().Be(expectedReadCount);
+        counts.CreatedBy.Should().Be(articleCount.CreatedBy);
+        counts.CreatedAt.Should().Be(articleCount.CreatedAt);
+        counts.ModifiedBy.Should().Be(Guid.Empty);
+        counts.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]
@@ -240,22 +239,9 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
-        var getUserDto = new GetUserOutput
-        {
-            UserId = userId,
-            AliasName = DataUtilityService.GetRandomString(),
-            AvatarName = DataUtilityService.GetRandomString(),
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            Email = DataUtilityService.GetRandomEmail(),
-            ShortBio = DataUtilityService.GetRandomString(),
-            Registered = DataUtilityService.GetRandomDateTime()
-        };
-
         mockedUserService
-            .Setup(service => service.GetUser(
-                It.IsAny<CancellationToken>()))
-            .ReturnsAsync(getUserDto);
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(userId);
 
         mockedUserService
             .Setup(service => service.GetRequestIpAddress())
@@ -275,21 +261,21 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         // Assert
         var entity = await databaseContext.Articles.FindAsync(command.Id);
         entity.Should().NotBeNull();
-        entity?.UpdatedAt.Should().BeNull();
-        entity?.ModifiedBy.Should().NotBeNull();
-        entity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
-        entity?.ReadCount.Should().Be(expectedTotalReadCount);
+        entity.UpdatedAt.Should().BeNull();
+        entity.ModifiedBy.Should().NotBeNull();
+        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        entity.ReadCount.Should().Be(expectedTotalReadCount);
 
         var count = await databaseContext.ArticleCounts.SingleOrDefaultAsync(counts => counts.ArticleId == article.Id);
         count.Should().NotBeNull();
-        count?.ArticleId.Should().Be(articleId);
-        count?.UserId.Should().Be(userId);
-        count?.IpAddress.Should().Be(mockedIpAddress);
-        count?.ReadCount.Should().Be(expectedUserReadCount);
-        count?.CreatedBy.Should().Be(articleCount.CreatedBy);
-        count?.CreatedAt.Should().Be(articleCount.CreatedAt);
-        count?.ModifiedBy.Should().Be(articleCount.UserId);
-        count?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        count.ArticleId.Should().Be(articleId);
+        count.UserId.Should().Be(userId);
+        count.IpAddress.Should().Be(mockedIpAddress);
+        count.ReadCount.Should().Be(expectedUserReadCount);
+        count.CreatedBy.Should().Be(articleCount.CreatedBy);
+        count.CreatedAt.Should().Be(articleCount.CreatedAt);
+        count.ModifiedBy.Should().Be(articleCount.UserId);
+        count.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
     }
 
     [Fact]

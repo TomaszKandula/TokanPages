@@ -65,11 +65,8 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(), 
-                It.IsAny<bool>(), 
-                It.IsAny<CancellationToken>()))
-            .ReturnsAsync(users);
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(users.Id);
 
         mockedAzureBlobStorage
             .Setup(storage => storage.UploadFile(
