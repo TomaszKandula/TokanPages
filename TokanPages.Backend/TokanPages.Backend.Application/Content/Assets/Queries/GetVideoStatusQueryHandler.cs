@@ -12,7 +12,7 @@ public class GetVideoStatusQueryHandler : RequestHandler<GetVideoStatusQuery, Ge
     public override async Task<GetVideoStatusQueryResult> Handle(GetVideoStatusQuery request, CancellationToken cancellationToken)
     {
         var videoData = await DatabaseContext.UploadedVideos
-            .Where(videos => videos.TicketId == request.TicketId)
+            .Where(video => video.TicketId == request.TicketId)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (videoData is null)
