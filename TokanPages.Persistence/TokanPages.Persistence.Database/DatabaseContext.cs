@@ -28,8 +28,6 @@ public class DatabaseContext : DbContext
     public virtual DbSet<BatchInvoiceProcessing> BatchInvoicesProcessing { get; set; }
     public virtual DbSet<InvoiceTemplate> InvoiceTemplates { get; set; }
     public virtual DbSet<IssuedInvoice> IssuedInvoices { get; set; }
-    public virtual DbSet<UserBankAccount> UserBankAccounts { get; set; }
-    public virtual DbSet<UserCompany> UserCompanies { get; set; }
     public virtual DbSet<VatNumberPattern> VatNumberPatterns { get; set; }
 
     /* Category: Notification */
@@ -40,15 +38,14 @@ public class DatabaseContext : DbContext
 
     /* Category: Photography */
     public virtual DbSet<Album> Albums { get; set; }
-    public virtual DbSet<UserPhoto> UserPhotos { get; set; }
     public virtual DbSet<PhotoGear> PhotoGears { get; set; }
     public virtual DbSet<PhotoCategory> PhotoCategories { get; set; }
 
     /* Category: User */
     public virtual DbSet<User> Users { get; set; }
-    public virtual DbSet<Role> Roles { get; set; }
-    public virtual DbSet<Permission> Permissions { get; set; }
-    public virtual DbSet<DefaultPermission> DefaultPermissions { get; set; }
+    public virtual DbSet<UserBankAccount> UserBankAccounts { get; set; }
+    public virtual DbSet<UserCompany> UserCompanies { get; set; }
+    public virtual DbSet<UserPhoto> UserPhotos { get; set; }
     public virtual DbSet<UserPermission> UserPermissions { get; set; }
     public virtual DbSet<UserRole> UserRoles { get; set; }
     public virtual DbSet<UserToken> UserTokens { get; set; }
@@ -62,6 +59,9 @@ public class DatabaseContext : DbContext
     public virtual DbSet<UserNote> UserNotes { get; set; }
 
     /* Category: Other */
+    public virtual DbSet<Role> Roles { get; set; }
+    public virtual DbSet<Permission> Permissions { get; set; }
+    public virtual DbSet<DefaultPermission> DefaultPermissions { get; set; }
     public virtual DbSet<Language> Languages { get; set; }
     public virtual DbSet<CategoryName> CategoryNames { get; set; }
     public virtual DbSet<Newsletter> Newsletters { get; set; }
