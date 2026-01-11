@@ -46,7 +46,7 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
         var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
         var manifest = _jsonSerializer.Deserialize<GetContentManifestQueryResult>(strings, settings);
 
-        var languages = await DatabaseContext.Languages
+        var languageList = await DatabaseContext.Languages
             .AsNoTracking()
             .OrderBy(language => language.SortOrder)
             .Select(language => new LanguageModel
@@ -58,7 +58,7 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
             })
             .ToListAsync(cancellationToken);
 
-        manifest.Languages = languages;
+        manifest.Languages = languageList;
         return manifest;
     }
 }
