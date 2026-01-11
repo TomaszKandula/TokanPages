@@ -50,40 +50,40 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
         var userLikes = await DatabaseContext.ArticleLikes
             .AsNoTracking()
-            .Where(likes => likes.ArticleId == requestId)
+            .Where(like => like.ArticleId == requestId)
             .WhereIfElse(isAnonymousUser, 
-                likes => likes.IpAddress == ipAddress && likes.UserId == null, 
-                likes => likes.UserId == userId)
-            .Select(likes => likes.LikeCount)
+                like => like.IpAddress == ipAddress && like.UserId == null, 
+                like => like.UserId == userId)
+            .Select(like => like.LikeCount)
             .SumAsync(cancellationToken);
 
         var totalLikes = await DatabaseContext.ArticleLikes
             .AsNoTracking()
-            .Where(likes => likes.ArticleId == requestId)
-            .Select(likes => likes.LikeCount)
+            .Where(like => like.ArticleId == requestId)
+            .Select(like => like.LikeCount)
             .SumAsync(cancellationToken);
 
-        var article = await (from articles in DatabaseContext.Articles
+        var articleData = await (from article in DatabaseContext.Articles
             join articleCategory in DatabaseContext.ArticleCategories 
-                on articles.CategoryId equals articleCategory.Id
-            join categoryNames in DatabaseContext.CategoryNames
-                on articleCategory.Id equals categoryNames.ArticleCategoryId
-            join languages in DatabaseContext.Languages
-                on categoryNames.LanguageId equals languages.Id
-            where languages.LangId == userLanguage
-            where articles.Id == requestId
+                on article.CategoryId equals articleCategory.Id
+            join categoryName in DatabaseContext.CategoryNames
+                on articleCategory.Id equals categoryName.ArticleCategoryId
+            join language in DatabaseContext.Languages
+                on categoryName.LanguageId equals language.Id
+            where language.LangId == userLanguage
+            where article.Id == requestId
             select new 
             {
-                articles.Id,
-                articles.UserId,
-                articles.Title,
-                articles.Description,
-                articles.IsPublished,
-                articles.CreatedAt,
-                articles.UpdatedAt,
-                articles.ReadCount,
-                articles.LanguageIso,
-                categoryNames.Name,
+                article.Id,
+                article.UserId,
+                article.Title,
+                article.Description,
+                article.IsPublished,
+                article.CreatedAt,
+                article.UpdatedAt,
+                article.ReadCount,
+                article.LanguageIso,
+                categoryName.Name,
                 TotalLikes = totalLikes,
                 UserLikes = userLikes,
                 Text = textAsObject
@@ -91,17 +91,17 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             .AsNoTracking()
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (article is null)
+        if (articleData is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        var author = await (from users in DatabaseContext.Users
+        var userDto = await (from user in DatabaseContext.Users
             join userInfo in DatabaseContext.UserInformation 
-            on users.Id equals userInfo.UserId
-            where users.Id == article.UserId
+            on user.Id equals userInfo.UserId
+            where user.Id == articleData.UserId
             select new GetUserDto
             {
-                UserId = users.Id,
-                AliasName = users.UserAlias,
+                UserId = user.Id,
+                AliasName = user.UserAlias,
                 AvatarName = userInfo.UserImageName,
                 FirstName = userInfo.FirstName,
                 LastName = userInfo.LastName,
@@ -121,18 +121,18 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
         return new GetArticleQueryResult
         {
-            Id = article.Id,
-            Title = article.Title,
-            CategoryName = article.Name,
-            Description = article.Description,
-            IsPublished = article.IsPublished,
-            CreatedAt = article.CreatedAt,
-            UpdatedAt = article.UpdatedAt,
-            ReadCount = article.ReadCount,
-            LanguageIso = article.LanguageIso,
+            Id = articleData.Id,
+            Title = articleData.Title,
+            CategoryName = articleData.Name,
+            Description = articleData.Description,
+            IsPublished = articleData.IsPublished,
+            CreatedAt = articleData.CreatedAt,
+            UpdatedAt = articleData.UpdatedAt,
+            ReadCount = articleData.ReadCount,
+            LanguageIso = articleData.LanguageIso,
             TotalLikes = totalLikes,
             UserLikes = userLikes,
-            Author = author,
+            Author = userDto,
             Tags = tags,
             Text = textAsObject
         };
@@ -143,8 +143,8 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var comparableTitle = title.Replace("-", " ").ToLower();
         return await DatabaseContext.Articles
             .AsNoTracking()
-            .Where(articles => articles.Title.ToLower() == comparableTitle)
-            .Select(articles => articles.Id)
+            .Where(article => article.Title.ToLower() == comparableTitle)
+            .Select(article => article.Id)
             .SingleOrDefaultAsync(cancellationToken);
     }
 

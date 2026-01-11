@@ -24,43 +24,43 @@ public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetAr
         var hasIds = foundArticleIds != null && foundArticleIds.Count != 0;
         var hasCategoryId = request.CategoryId != null && request.CategoryId != Guid.Empty;
 
-        var articles = DatabaseContext.Articles
+        var articleList = DatabaseContext.Articles
             .AsNoTracking()
-            .Include(articles => articles.ArticleCategory)
-            .Where(articles => articles.IsPublished == request.IsPublished)
-            .WhereIf(hasIds, articles => foundArticleIds!.Contains(articles.Id))
-            .WhereIf(hasCategoryId, articles => articles.ArticleCategory.Id == request.CategoryId)
-            .Select(articles => new ArticleDataDto
+            .Include(article => article.ArticleCategory)
+            .Where(article => article.IsPublished == request.IsPublished)
+            .WhereIf(hasIds, article => foundArticleIds!.Contains(article.Id))
+            .WhereIf(hasCategoryId, article => article.ArticleCategory.Id == request.CategoryId)
+            .Select(article => new ArticleDataDto
             { 
-                Id = articles.Id,
-                Title = articles.Title,
-                Description = articles.Description,
-                IsPublished = articles.IsPublished,
-                ReadCount = articles.ReadCount,
-                TotalLikes = articles.TotalLikes, 
-                CreatedAt = articles.CreatedAt,
-                UpdatedAt = articles.UpdatedAt,
-                LanguageIso = articles.LanguageIso
+                Id = article.Id,
+                Title = article.Title,
+                Description = article.Description,
+                IsPublished = article.IsPublished,
+                ReadCount = article.ReadCount,
+                TotalLikes = article.TotalLikes, 
+                CreatedAt = article.CreatedAt,
+                UpdatedAt = article.UpdatedAt,
+                LanguageIso = article.LanguageIso
             });
 
-        var totalSize = await articles.CountAsync(cancellationToken);
-        var result = await articles
+        var totalSize = await articleList.CountAsync(cancellationToken);
+        var result = await articleList
             .ApplyOrdering(request, GetOrderingExpressions())
             .ApplyPaging(request)
             .ToListAsync(cancellationToken);
 
         var categories = await (from articleCategory in DatabaseContext.ArticleCategories
-            join categoryNames in DatabaseContext.CategoryNames
-                on articleCategory.Id equals categoryNames.ArticleCategoryId into category 
-                    from categoryNames in category.DefaultIfEmpty() 
-            join languages in DatabaseContext.Languages
-                on categoryNames.LanguageId equals languages.Id into language
-                    from  languages in language.DefaultIfEmpty()
-            where languages.LangId == userLanguage
+            join categoryName in DatabaseContext.CategoryNames
+                on articleCategory.Id equals categoryName.ArticleCategoryId into category 
+                    from categoryName in category.DefaultIfEmpty() 
+            join language in DatabaseContext.Languages
+                on categoryName.LanguageId equals language.Id into languageTable
+                    from  language in languageTable.DefaultIfEmpty()
+            where language.LangId == userLanguage
             select new ArticleCategoryDto
             {
                 Id = articleCategory.Id,
-                CategoryName = categoryNames.Name
+                CategoryName = categoryName.Name
             }).ToListAsync(cancellationToken);
 
         return new GetArticlesQueryResult

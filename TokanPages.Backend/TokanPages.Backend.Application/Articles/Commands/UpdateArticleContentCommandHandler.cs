@@ -30,12 +30,12 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
     public override async Task<Unit> Handle(UpdateArticleContentCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var article = await DatabaseContext.Articles
-            .Where(articles => articles.UserId == userId)
-            .Where(articles => articles.Id == request.Id)
+        var articleData = await DatabaseContext.Articles
+            .Where(article => article.UserId == userId)
+            .Where(article => article.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (article is null)
+        if (articleData is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
@@ -51,15 +51,15 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
             await azureBlob.UploadContent(request.ImageToUpload, imageDestinationPath, cancellationToken);
         }
 
-        article.Title = request.Title ?? article.Title;
-        article.Description = request.Description ?? article.Description;
-        article.LanguageIso = request.LanguageIso ?? article.LanguageIso;
-        article.UpdatedAt = request is { Title: not null, Description: not null }
+        articleData.Title = request.Title ?? articleData.Title;
+        articleData.Description = request.Description ?? articleData.Description;
+        articleData.LanguageIso = request.LanguageIso ?? articleData.LanguageIso;
+        articleData.UpdatedAt = request is { Title: not null, Description: not null }
             ? _dateTimeService.Now
-            : article.UpdatedAt;
+            : articleData.UpdatedAt;
 
-        article.ModifiedAt = _dateTimeService.Now;
-        article.ModifiedBy = userId;
+        articleData.ModifiedAt = _dateTimeService.Now;
+        articleData.ModifiedBy = userId;
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;

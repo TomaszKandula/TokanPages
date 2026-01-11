@@ -29,11 +29,11 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
 
     public override async Task<Unit> Handle(UpdateArticleLikesCommand request, CancellationToken cancellationToken)
     {
-        var articles = await DatabaseContext.Articles
-            .Where(articles => articles.Id == request.Id)
+        var articleData = await DatabaseContext.Articles
+            .Where(article => article.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (articles is null)
+        if (articleData is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         var userId = _userService.GetLoggedUserId();
@@ -42,34 +42,34 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
 
         if (isAnonymousUser)
         {
-            var articleLikes = await DatabaseContext.ArticleLikes
-                .Where(likes => likes.ArticleId == request.Id)
-                .Where(likes => likes.IpAddress == ipAddress)
+            var articleLike = await DatabaseContext.ArticleLikes
+                .Where(like => like.ArticleId == request.Id)
+                .Where(like => like.IpAddress == ipAddress)
                 .SingleOrDefaultAsync(cancellationToken);
 
-            if (articleLikes is null)
+            if (articleLike is null)
             {
-                await AddLikes(userId, articles, request, ipAddress, cancellationToken);
+                await AddLikes(userId, articleData, request, ipAddress, cancellationToken);
             }
             else
             {
-                UpdateLikes(userId, articles, articleLikes, request.AddToLikes);
+                UpdateLikes(userId, articleData, articleLike, request.AddToLikes);
             }
         }
         else
         {
-            var articleLikes = await DatabaseContext.ArticleLikes
-                .Where(likes => likes.ArticleId == request.Id)
-                .Where(likes => likes.UserId == userId)
+            var articleLike = await DatabaseContext.ArticleLikes
+                .Where(like => like.ArticleId == request.Id)
+                .Where(like => like.UserId == userId)
                 .SingleOrDefaultAsync(cancellationToken);
 
-            if (articleLikes is null)
+            if (articleLike is null)
             {
-                await AddLikes(userId, articles, request, ipAddress, cancellationToken);
+                await AddLikes(userId, articleData, request, ipAddress, cancellationToken);
             }
             else
             {
-                UpdateLikes(userId, articles, articleLikes, request.AddToLikes);
+                UpdateLikes(userId, articleData, articleLike, request.AddToLikes);
             }
         }
 

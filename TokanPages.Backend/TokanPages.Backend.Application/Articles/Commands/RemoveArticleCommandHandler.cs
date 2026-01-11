@@ -18,37 +18,37 @@ public class RemoveArticleCommandHandler : RequestHandler<RemoveArticleCommand, 
     public override async Task<Unit> Handle(RemoveArticleCommand request, CancellationToken cancellationToken) 
     {
         var userId = _userService.GetLoggedUserId();
-        var article = await DatabaseContext.Articles
-            .Where(articles => articles.UserId == userId)
-            .Where(articles => articles.Id == request.Id)
+        var articleData = await DatabaseContext.Articles
+            .Where(article => article.UserId == userId)
+            .Where(article => article.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (article is null)
+        if (articleData is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        var articleLikes = await DatabaseContext.ArticleLikes
-            .Where(likes => likes.UserId == userId)
-            .Where(likes => likes.ArticleId == request.Id)
+        var articleLike = await DatabaseContext.ArticleLikes
+            .Where(like => like.UserId == userId)
+            .Where(like => like.ArticleId == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
-        var articleCounts = await DatabaseContext.ArticleCounts
-            .Where(counts => counts.UserId == userId)
-            .Where(counts => counts.ArticleId == request.Id)
+        var articleCount = await DatabaseContext.ArticleCounts
+            .Where(count => count.UserId == userId)
+            .Where(count => count.ArticleId == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (articleLikes is not null)
+        if (articleLike is not null)
         {
-            DatabaseContext.ArticleLikes.Remove(articleLikes);
-            LoggerService.LogInformation($"Article likes has been removed for User (ID: {userId}) and Article (ID: {article.Id})");
+            DatabaseContext.ArticleLikes.Remove(articleLike);
+            LoggerService.LogInformation($"Article likes has been removed for User (ID: {userId}) and Article (ID: {articleData.Id})");
         }
 
-        if (articleCounts is not null)
+        if (articleCount is not null)
         {
-            DatabaseContext.ArticleCounts.Remove(articleCounts);
-            LoggerService.LogInformation($"Article counts has been removed for User (ID: {userId}) and Article (ID: {article.Id})");
+            DatabaseContext.ArticleCounts.Remove(articleCount);
+            LoggerService.LogInformation($"Article counts has been removed for User (ID: {userId}) and Article (ID: {articleData.Id})");
         }
 
-        DatabaseContext.Articles.Remove(article);
+        DatabaseContext.Articles.Remove(articleData);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
 
         return Unit.Value;
