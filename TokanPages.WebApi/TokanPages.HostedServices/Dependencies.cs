@@ -76,17 +76,17 @@ public static class Dependencies
 		services.AddHttpContextAccessor();
 		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
 
-        services.AddScoped<IJsonSerializer, JsonSerializer>();
-		services.AddScoped<IDateTimeService, DateTimeService>();
-		services.AddScoped<IVideoConverter, VideoConverter>();
-		services.AddScoped<IVideoProcessor, VideoProcessor>();
-        services.AddScoped<IBatchService, BatchService>();
-        services.AddScoped<IEmailSenderService, EmailSenderService>();
-        services.AddScoped<ICachingService, CachingService>();
+        services.AddSingleton<IJsonSerializer, JsonSerializer>();
+		services.AddSingleton<IDateTimeService, DateTimeService>();
+		services.AddSingleton<IVideoConverter, VideoConverter>();
+		services.AddSingleton<IVideoProcessor, VideoProcessor>();
+        services.AddSingleton<IBatchService, BatchService>();
+        services.AddSingleton<IEmailSenderService, EmailSenderService>();
+        services.AddSingleton<ICachingService, CachingService>();
 
-        services.AddScoped<CacheProcessing>();
-        services.AddScoped<VideoProcessing>();
-        services.AddScoped<EmailProcessing>();
+        services.AddSingleton<CacheProcessing>();
+        services.AddSingleton<VideoProcessing>();
+        services.AddSingleton<EmailProcessing>();
         services.AddHostedService<CacheProcessingWorker>();
         services.AddHostedService<VideoProcessingWorker>();
         services.AddHostedService<EmailProcessingWorker>();
