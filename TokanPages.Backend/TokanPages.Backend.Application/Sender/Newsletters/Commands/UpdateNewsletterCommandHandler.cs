@@ -24,27 +24,27 @@ public class UpdateNewsletterCommandHandler : RequestHandler<UpdateNewsletterCom
 
     public override async Task<Unit> Handle(UpdateNewsletterCommand request, CancellationToken cancellationToken) 
     {
-        var subscriber = await DatabaseContext.Newsletters
-            .Where(subscribers => subscribers.Id == request.Id)
+        var newsletterData = await DatabaseContext.Newsletters
+            .Where(newsletter => newsletter.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (subscriber is null) 
+        if (newsletterData is null) 
             throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
 
         var emailCollection = await DatabaseContext.Newsletters
             .AsNoTracking()
-            .Where(subscribers => subscribers.Email == request.Email)
+            .Where(newsletter => newsletter.Email == request.Email)
             .ToListAsync(cancellationToken);
 
         if (emailCollection.Count == 1)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
         var user = await _userService.GetUser(cancellationToken);
-        subscriber.Email = request.Email ?? subscriber.Email;
-        subscriber.Count = request.Count ?? subscriber.Count;
-        subscriber.IsActivated = request.IsActivated ?? subscriber.IsActivated;
-        subscriber.ModifiedAt = _dateTimeService.Now;
-        subscriber.ModifiedBy = user?.UserId ?? Guid.Empty;
+        newsletterData.Email = request.Email ?? newsletterData.Email;
+        newsletterData.Count = request.Count ?? newsletterData.Count;
+        newsletterData.IsActivated = request.IsActivated ?? newsletterData.IsActivated;
+        newsletterData.ModifiedAt = _dateTimeService.Now;
+        newsletterData.ModifiedBy = user?.UserId ?? Guid.Empty;
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;

@@ -12,23 +12,20 @@ public class GetNewsletterQueryHandler : RequestHandler<GetNewsletterQuery, GetN
 
     public override async Task<GetNewsletterQueryResult> Handle(GetNewsletterQuery request, CancellationToken cancellationToken) 
     {
-        var subscriber = await DatabaseContext.Newsletters
+        var newsletterData = await DatabaseContext.Newsletters
             .AsNoTracking()
-            .Where(subscribers => subscribers.Id == request.Id)
-            .Select(subscribers => new GetNewsletterQueryResult 
+            .Where(newsletter => newsletter.Id == request.Id)
+            .Select(newsletter => new GetNewsletterQueryResult 
             { 
-                Id = subscribers.Id,
-                Email = subscribers.Email,
-                IsActivated = subscribers.IsActivated,
-                NewsletterCount = subscribers.Count,
-                CreatedAt = subscribers.CreatedAt,
-                ModifiedAt = subscribers.ModifiedAt
+                Id = newsletter.Id,
+                Email = newsletter.Email,
+                IsActivated = newsletter.IsActivated,
+                NewsletterCount = newsletter.Count,
+                CreatedAt = newsletter.CreatedAt,
+                ModifiedAt = newsletter.ModifiedAt
             })
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (subscriber is null) 
-            throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
-
-        return subscriber;
+        return newsletterData ?? throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
     }
 }

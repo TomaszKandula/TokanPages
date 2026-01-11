@@ -77,11 +77,8 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
 
-        mockedUserService.Setup(service => service.GetActiveUser(
-            It.IsAny<Guid?>(), 
-            It.IsAny<bool>(), 
-            It.IsAny<CancellationToken>()))
-            .ReturnsAsync(users);
+        mockedUserService.Setup(service => service.GetLoggedUserId())
+            .Returns(users.Id);
 
         mockedUserService
             .Setup(service => service.HasPermissionAssigned(

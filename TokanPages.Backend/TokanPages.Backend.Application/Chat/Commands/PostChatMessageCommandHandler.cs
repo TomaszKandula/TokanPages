@@ -38,17 +38,17 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
     public override async Task<PostChatMessageCommandResult> Handle(PostChatMessageCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var chat = await DatabaseContext.UserMessages
-            .Where(messages => messages.ChatKey == request.ChatKey)
-            .Where(messages => !messages.IsArchived)
+        var userMessage = await DatabaseContext.UserMessages
+            .Where(message => message.ChatKey == request.ChatKey)
+            .Where(message => !message.IsArchived)
             .SingleOrDefaultAsync(cancellationToken);
 
         var chatDateTime = _dateTimeService.Now;
         var chatItemId = Guid.NewGuid();
 
-        if (chat is not null)
+        if (userMessage is not null)
         {
-            var data = _jsonSerializer.Deserialize<List<AddChatItem>>(chat.ChatData);
+            var data = _jsonSerializer.Deserialize<List<AddChatItem>>(userMessage.ChatData);
             data.Add(new AddChatItem
             {
                 Id = chatItemId,
@@ -58,9 +58,9 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
                 ChatKey = request.ChatKey
             });
 
-            chat.ModifiedAt = chatDateTime;
-            chat.ModifiedBy = userId;
-            chat.ChatData = _jsonSerializer.Serialize(data, Formatting.None, Settings);
+            userMessage.ModifiedAt = chatDateTime;
+            userMessage.ModifiedBy = userId;
+            userMessage.ChatData = _jsonSerializer.Serialize(data, Formatting.None, Settings);
         }
         else
         {
@@ -129,11 +129,11 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
         var initials = "A";
         var userInfo = await DatabaseContext.UserInformation
             .AsNoTracking()
-            .Where(users => users.UserId == userId)
-            .Select(users => new
+            .Where(info => info.UserId == userId)
+            .Select(info => new
             {
-                users.FirstName,
-                users.LastName
+                info.FirstName,
+                info.LastName
             })
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -150,8 +150,8 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
     {
         var blobName = await DatabaseContext.UserInformation
             .AsNoTracking()
-            .Where(users => users.UserId == userId)
-            .Select(users => users.UserImageName)
+            .Where(info => info.UserId == userId)
+            .Select(info => info.UserImageName)
             .SingleOrDefaultAsync(cancellationToken);
 
         return blobName ?? string.Empty;

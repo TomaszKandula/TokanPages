@@ -69,11 +69,8 @@ public class RemoveArticleCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(), 
-                It.IsAny<bool>(), 
-                It.IsAny<CancellationToken>()))
-            .ReturnsAsync(users);
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(userId);
 
         var command = new RemoveArticleCommand { Id = articleId };
         var handler = new RemoveArticleCommandHandler(
@@ -130,11 +127,8 @@ public class RemoveArticleCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(), 
-                It.IsAny<bool>(), 
-                It.IsAny<CancellationToken>()))
-            .ReturnsAsync(users);
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(Guid.NewGuid());
 
         var command = new RemoveArticleCommand { Id = Guid.NewGuid() };
         var handler = new RemoveArticleCommandHandler(

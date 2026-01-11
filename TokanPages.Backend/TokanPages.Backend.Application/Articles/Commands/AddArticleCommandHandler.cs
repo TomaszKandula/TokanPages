@@ -25,16 +25,16 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 
     public override async Task<Guid> Handle(AddArticleCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(null, false, cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var newArticle = new Article
         {
             Title = request.Title,
             Description = request.Description,
             IsPublished = false,
             ReadCount = 0,
-            CreatedBy = user.Id,
+            CreatedBy = userId,
             CreatedAt = _dateTimeService.Now,
-            UserId = user.Id,
+            UserId = userId,
             LanguageIso = "ENG"
         };
 

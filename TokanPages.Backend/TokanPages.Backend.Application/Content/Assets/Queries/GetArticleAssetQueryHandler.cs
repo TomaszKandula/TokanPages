@@ -20,10 +20,7 @@ public class GetArticleAssetQueryHandler : RequestHandler<GetArticleAssetQuery, 
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
 
         var streamContent = await azureBlob.OpenRead(requestUrl, cancellationToken);
-        if (streamContent is null)
-            throw new BusinessException(nameof(ErrorCodes.ASSET_NOT_FOUND), ErrorCodes.ASSET_NOT_FOUND);
-
-        if (streamContent.Content is null)
+        if (streamContent?.Content is null)
             throw new BusinessException(nameof(ErrorCodes.ASSET_NOT_FOUND), ErrorCodes.ASSET_NOT_FOUND);
 
         if (streamContent.ContentType is null)

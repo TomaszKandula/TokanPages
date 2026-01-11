@@ -33,10 +33,7 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
         var azureBob = _azureBlobStorageFactory.Create(LoggerService);
         var contentStream = await azureBob.OpenRead(componentRequestUrl, cancellationToken);
 
-        if (contentStream is null)
-            throw new BusinessException(nameof(ErrorCodes.COMPONENT_NOT_FOUND), ErrorCodes.COMPONENT_NOT_FOUND);
-
-        if (contentStream.Content is null)
+        if (contentStream?.Content is null)
             throw new BusinessException(nameof(ErrorCodes.COMPONENT_NOT_FOUND), ErrorCodes.COMPONENT_NOT_FOUND);
 
         var memoryStream = new MemoryStream();

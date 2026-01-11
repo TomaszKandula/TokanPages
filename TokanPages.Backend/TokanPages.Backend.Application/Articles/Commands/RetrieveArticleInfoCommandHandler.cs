@@ -17,44 +17,44 @@ public class RetrieveArticleInfoCommandHandler : RequestHandler<RetrieveArticleI
     {
         var userLanguage = _userService.GetRequestUserLanguage();
         var articleIds = new HashSet<Guid>(request.ArticleIds);
-        var articleInfo = await (
-            from articles in DatabaseContext.Articles
-            join temp in 
+        var articleInfoList = await (
+            from article in DatabaseContext.Articles
+            join table in 
                 (from articleCategory in DatabaseContext.ArticleCategories
-                    join categoryNames in DatabaseContext.CategoryNames
-                        on articleCategory.Id equals categoryNames.ArticleCategoryId
-                    join languages in DatabaseContext.Languages
-                        on categoryNames.LanguageId equals languages.Id
+                    join categoryName in DatabaseContext.CategoryNames
+                        on articleCategory.Id equals categoryName.ArticleCategoryId
+                    join language in DatabaseContext.Languages
+                        on categoryName.LanguageId equals language.Id
                     select new
                     {
-                        categoryNames.ArticleCategoryId,
-                        categoryNames.Name,
-                        languages.LangId
+                        categoryName.ArticleCategoryId,
+                        categoryName.Name,
+                        language.LangId
                     }
                 )
-            on articles.CategoryId equals temp.ArticleCategoryId
-            where temp.LangId == userLanguage
-            where articleIds.Contains(articles.Id)
+            on article.CategoryId equals table.ArticleCategoryId
+            where table.LangId == userLanguage
+            where articleIds.Contains(article.Id)
             select new ArticleDataDto
             {
-                Id = articles.Id,
-                CategoryName = temp.Name,
-                Title = articles.Title,
-                Description = articles.Description,
-                IsPublished = articles.IsPublished,
-                ReadCount = articles.ReadCount,
-                TotalLikes = articles.ArticleLikes
-                    .Where(likes => likes.ArticleId == articles.Id)
+                Id = article.Id,
+                CategoryName = table.Name,
+                Title = article.Title,
+                Description = article.Description,
+                IsPublished = article.IsPublished,
+                ReadCount = article.ReadCount,
+                TotalLikes = article.ArticleLikes
+                    .Where(likes => likes.ArticleId == article.Id)
                     .Select(likes => likes.LikeCount)
                     .Sum(),
-                CreatedAt = articles.CreatedAt,
-                UpdatedAt = articles.UpdatedAt,
-                LanguageIso = articles.LanguageIso
+                CreatedAt = article.CreatedAt,
+                UpdatedAt = article.UpdatedAt,
+                LanguageIso = article.LanguageIso
             }).ToListAsync(cancellationToken);
 
         return new RetrieveArticleInfoCommandResult
         {
-            Articles = articleInfo
+            Articles = articleInfoList
         };
     }
 }

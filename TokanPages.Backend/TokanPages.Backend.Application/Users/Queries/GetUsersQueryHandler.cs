@@ -12,12 +12,12 @@ public class GetUsersQueryHandler : RequestHandler<GetUsersQuery, List<GetUsersQ
     {
         return await DatabaseContext.Users
             .AsNoTracking()
-            .Select(users => new GetUsersQueryResult 
+            .Select(user => new GetUsersQueryResult 
             { 
-                Id = users.Id,
-                AliasName = users.UserAlias,
-                Email = users.EmailAddress,
-                IsActivated = users.IsActivated
+                Id = user.Id,
+                AliasName = user.UserAlias,
+                Email = user.EmailAddress,
+                IsActivated = user.IsActivated
             })
             .ToListAsync(cancellationToken);
     }

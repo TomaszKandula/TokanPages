@@ -29,10 +29,7 @@ public class GetNonVideoAssetQueryHandler : RequestHandler<GetNonVideoAssetQuery
         if (streamContent.Content is null)
             throw new BusinessException(nameof(ErrorCodes.ASSET_NOT_FOUND), ErrorCodes.ASSET_NOT_FOUND);
 
-        if (streamContent.ContentType is null)
-            throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
-
-        if (streamContent.ContentType.Contains("video"))
+        if (streamContent.ContentType is null || streamContent.ContentType.Contains("video"))
             throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
         await streamContent.Content.CopyToAsync(memoryStream, cancellationToken);

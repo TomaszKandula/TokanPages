@@ -18,7 +18,7 @@ public class GetVideoAssetQueryHandler : RangeRequestHandler<GetVideoAssetQuery,
     public override async Task<Unit> Handle(GetVideoAssetQuery request, CancellationToken cancellationToken)
     {
         var baseAddress = _configuration.GetValue<string>("AZ_Storage_BaseUrl");
-        var url = baseAddress + "/content/assets/" + request.BlobName;
+        var url = $"{baseAddress}/content/assets/{request.BlobName}";
 
         var range = HttpContextAccessor.HttpContext?.Request.Headers.Range;
         var response = HttpContextAccessor.HttpContext!.Response;

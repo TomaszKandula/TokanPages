@@ -31,10 +31,7 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var contentStream = await azureBlob.OpenRead(requestUrl, cancellationToken);
 
-        if (contentStream is null)
-            throw new BusinessException(nameof(ErrorCodes.ASSET_NOT_FOUND), ErrorCodes.ASSET_NOT_FOUND);
-
-        if (contentStream.Content is null)
+        if (contentStream?.Content is null)
             throw new BusinessException(nameof(ErrorCodes.ASSET_NOT_FOUND), ErrorCodes.ASSET_NOT_FOUND);
 
         if (contentStream.ContentType is null)
@@ -49,7 +46,7 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
         var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
         var manifest = _jsonSerializer.Deserialize<GetContentManifestQueryResult>(strings, settings);
 
-        var languages = await DatabaseContext.Languages
+        var languageList = await DatabaseContext.Languages
             .AsNoTracking()
             .OrderBy(language => language.SortOrder)
             .Select(language => new LanguageModel
@@ -61,7 +58,7 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
             })
             .ToListAsync(cancellationToken);
 
-        manifest.Languages = languages;
+        manifest.Languages = languageList;
         return manifest;
     }
 }

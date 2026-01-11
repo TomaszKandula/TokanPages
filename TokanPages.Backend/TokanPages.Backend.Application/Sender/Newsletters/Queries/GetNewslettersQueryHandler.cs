@@ -12,12 +12,12 @@ public class GetNewslettersQueryHandler : RequestHandler<GetNewslettersQuery, Li
     {
         return await DatabaseContext.Newsletters
             .AsNoTracking()
-            .Select(subscribers => new GetNewslettersQueryResult 
+            .Select(newsletter => new GetNewslettersQueryResult 
             { 
-                Id = subscribers.Id,
-                Email = subscribers.Email,
-                IsActivated = subscribers.IsActivated,
-                NewsletterCount = subscribers.Count
+                Id = newsletter.Id,
+                Email = newsletter.Email,
+                IsActivated = newsletter.IsActivated,
+                NewsletterCount = newsletter.Count
             })
             .ToListAsync(cancellationToken);
     }

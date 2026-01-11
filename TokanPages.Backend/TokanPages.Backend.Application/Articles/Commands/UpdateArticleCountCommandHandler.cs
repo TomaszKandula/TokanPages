@@ -25,30 +25,30 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
 
     public override async Task<Unit> Handle(UpdateArticleCountCommand request, CancellationToken cancellationToken)
     {
-        var article = await DatabaseContext.Articles
-            .Where(articles => articles.Id == request.Id)
+        var articleData = await DatabaseContext.Articles
+            .Where(article => article.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
-        if (article is null)
+        if (articleData is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        var user = await _userService.GetUser(cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var ipAddress = _userService.GetRequestIpAddress();
         var articleCount = await DatabaseContext.ArticleCounts
-            .Where(counts => counts.ArticleId == request.Id)
-            .Where(counts => counts.IpAddress == ipAddress)
+            .Where(count => count.ArticleId == request.Id)
+            .Where(count => count.IpAddress == ipAddress)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (articleCount is null)
         {
             var newArticleCount = new ArticleCount
             {
-                UserId = article.UserId,
-                ArticleId = article.Id,
+                UserId = articleData.UserId,
+                ArticleId = articleData.Id,
                 IpAddress = ipAddress,
                 ReadCount = 1,
                 CreatedAt = _dateTimeService.Now,
-                CreatedBy = user?.UserId ?? Guid.Empty,
+                CreatedBy = userId,
                 ModifiedAt = null,
                 ModifiedBy = null
             };
@@ -59,14 +59,14 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
         {
             articleCount.ReadCount += 1;
             articleCount.ModifiedAt = _dateTimeService.Now;
-            articleCount.ModifiedBy = user?.UserId;
+            articleCount.ModifiedBy = userId;
 
             DatabaseContext.ArticleCounts.Update(articleCount);
         }
 
-        article.ReadCount += 1;
-        article.ModifiedAt = _dateTimeService.Now;
-        article.ModifiedBy = user?.UserId ?? Guid.Empty;
+        articleData.ReadCount += 1;
+        articleData.ModifiedAt = _dateTimeService.Now;
+        articleData.ModifiedBy = userId;
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;

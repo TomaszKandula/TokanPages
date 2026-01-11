@@ -22,9 +22,9 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
     {
         var chatData = await DatabaseContext.UserMessages
             .AsNoTracking()
-            .Where(messages => messages.ChatKey == request.ChatKey)
-            .Where(messages => !messages.IsArchived)
-            .Select(messages => messages.ChatData)
+            .Where(message => message.ChatKey == request.ChatKey)
+            .Where(message => !message.IsArchived)
+            .Select(message => message.ChatData)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (string.IsNullOrWhiteSpace(chatData))
@@ -66,11 +66,11 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
         var initials = "A";
         var userInfo = await DatabaseContext.UserInformation
             .AsNoTracking()
-            .Where(users => users.UserId == userId)
-            .Select(users => new
+            .Where(info => info.UserId == userId)
+            .Select(info => new
             {
-                users.FirstName,
-                users.LastName
+                info.FirstName,
+                info.LastName
             })
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -87,8 +87,8 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
     {
         var blobName = await DatabaseContext.UserInformation
             .AsNoTracking()
-            .Where(users => users.UserId == userId)
-            .Select(users => users.UserImageName)
+            .Where(info => info.UserId == userId)
+            .Select(info => info.UserImageName)
             .SingleOrDefaultAsync(cancellationToken);
 
         return blobName ?? string.Empty;

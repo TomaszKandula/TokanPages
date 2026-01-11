@@ -24,8 +24,6 @@ public class GetSubscriptionPricesQueryHandler : RequestHandler<GetSubscriptionP
             })
             .ToListAsync(cancellationToken);
 
-        return prices is null 
-            ? new GetSubscriptionPricesQueryResult() 
-            : new GetSubscriptionPricesQueryResult { Prices = prices };
+        return new GetSubscriptionPricesQueryResult { Prices = prices };
     }
 }

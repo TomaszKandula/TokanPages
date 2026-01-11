@@ -82,7 +82,7 @@ public class UsersCache : IUsersCache
         var value = await _redisDistributedCache.GetObjectAsync<GetUserFileListQueryResult>(key);
         if (value is not null) return value;
 
-        value = await _mediator.Send(new GetUserFileListQuery());
+        value = await _mediator.Send(new GetUserFileListQuery { Type = type });
         await _redisDistributedCache.SetObjectAsync(key, value);
 
         return value;

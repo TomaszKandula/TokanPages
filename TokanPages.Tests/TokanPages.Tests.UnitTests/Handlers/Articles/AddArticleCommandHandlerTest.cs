@@ -47,6 +47,7 @@ public class AddArticleCommandHandlerTest : TestBase
 
         var user = new User
         {
+            Id = Guid.NewGuid(),
             UserAlias  = DataUtilityService.GetRandomString(),
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
@@ -62,11 +63,8 @@ public class AddArticleCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(), 
-                It.IsAny<bool>(),
-                It.IsAny<CancellationToken>()))
-            .ReturnsAsync(user);
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(user.Id);
 
         var handler = new AddArticleCommandHandler(
             databaseContext, 

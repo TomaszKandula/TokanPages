@@ -312,7 +312,7 @@ public class UsersController : ApiBaseController
     /// Returns user image file by its name.
     /// </summary>
     /// <param name="id">User ID.</param>
-    /// <param name="blobName">Full blob name (case sensitive).</param>
+    /// <param name="blobName">Full blob name (case-sensitive).</param>
     /// <returns>File.</returns>
     [HttpGet]
     [ETagFilter]

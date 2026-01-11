@@ -14,14 +14,14 @@ public class RemoveNewsletterCommandHandler : RequestHandler<RemoveNewsletterCom
 
     public override async Task<Unit> Handle(RemoveNewsletterCommand request, CancellationToken cancellationToken) 
     {
-        var subscriber = await DatabaseContext.Newsletters
-            .Where(subscribers => subscribers.Id == request.Id)
+        var newsletterData = await DatabaseContext.Newsletters
+            .Where(newsletter => newsletter.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
             
-        if (subscriber is null)
+        if (newsletterData is null)
             throw new BusinessException(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS);
 
-        DatabaseContext.Newsletters.Remove(subscriber);
+        DatabaseContext.Newsletters.Remove(newsletterData);
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }

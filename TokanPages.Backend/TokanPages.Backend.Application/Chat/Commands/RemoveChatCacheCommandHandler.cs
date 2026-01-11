@@ -25,14 +25,14 @@ public class RemoveChatCacheCommandHandler : RequestHandler<RemoveChatCacheComma
         }
         else if (request.ChatKey is not null)
         {
-            var cache = await DatabaseContext.UserMessagesCache
+            var cacheList = await DatabaseContext.UserMessagesCache
                 .Where(cache => cache.ChatKey == request.ChatKey)
                 .ToListAsync(cancellationToken);
 
-            if (cache.Count == 0)
+            if (cacheList.Count == 0)
                 return Unit.Value;
 
-            DatabaseContext.RemoveRange(cache);
+            DatabaseContext.RemoveRange(cacheList);
             await DatabaseContext.SaveChangesAsync(cancellationToken);
         }
 
