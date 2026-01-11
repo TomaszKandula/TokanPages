@@ -11,8 +11,8 @@ public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplat
 {
     private readonly ITemplateService _templateService;
 
-    public AddInvoiceTemplateCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
-        ITemplateService templateService) : base(operationsDbContext, loggerService) => _templateService = templateService;
+    public AddInvoiceTemplateCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        ITemplateService templateService) : base(operationDbContext, loggerService) => _templateService = templateService;
 
     public override async Task<AddInvoiceTemplateCommandResult> Handle(AddInvoiceTemplateCommand request, CancellationToken cancellationToken)
     {

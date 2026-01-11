@@ -17,8 +17,8 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
 
     private readonly IDateTimeService _dateTimeService;
 
-    public UpdateArticleVisibilityCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService) : base(operationsDbContext, loggerService)
+    public UpdateArticleVisibilityCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IUserService userService, IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -33,7 +33,7 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
         if (!canPublishArticles)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-        var articleData = await OperationsDbContext.Articles
+        var articleData = await OperationDbContext.Articles
             .Where(article => article.UserId == userId)
             .Where(article => article.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
@@ -45,7 +45,7 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
         articleData.ModifiedAt = _dateTimeService.Now;
         articleData.ModifiedBy = userId;
 
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

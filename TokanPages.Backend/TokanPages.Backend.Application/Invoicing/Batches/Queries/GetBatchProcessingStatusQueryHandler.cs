@@ -9,8 +9,8 @@ public class GetBatchProcessingStatusQueryHandler : RequestHandler<GetBatchProce
 {
     private readonly IBatchService _batchService;
 
-    public GetBatchProcessingStatusQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IBatchService batchService) 
-        : base(operationsDbContext, loggerService) => _batchService = batchService;
+    public GetBatchProcessingStatusQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IBatchService batchService) 
+        : base(operationDbContext, loggerService) => _batchService = batchService;
         
     public override async Task<GetBatchProcessingStatusQueryResult> Handle(GetBatchProcessingStatusQuery request, CancellationToken cancellationToken)
     {

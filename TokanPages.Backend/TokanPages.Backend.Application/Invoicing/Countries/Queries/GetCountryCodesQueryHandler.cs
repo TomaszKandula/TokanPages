@@ -8,8 +8,8 @@ namespace TokanPages.Backend.Application.Invoicing.Countries.Queries;
 
 public class GetCountryCodesQueryHandler : RequestHandler<GetCountryCodesQuery, IList<GetCountryCodesQueryResult>>
 {
-    public GetCountryCodesQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService)
-        : base(operationsDbContext, loggerService) { }
+    public GetCountryCodesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService)
+        : base(operationDbContext, loggerService) { }
 
     public override async Task<IList<GetCountryCodesQueryResult>> Handle(GetCountryCodesQuery request, CancellationToken cancellationToken)
     {

@@ -17,8 +17,8 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    public GetContentQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
-        IJsonSerializer jsonSerializer, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationsDbContext, loggerService)
+    public GetContentQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IJsonSerializer jsonSerializer, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
     {
         _jsonSerializer = jsonSerializer;
         _azureBlobStorageFactory = azureBlobStorageFactory;

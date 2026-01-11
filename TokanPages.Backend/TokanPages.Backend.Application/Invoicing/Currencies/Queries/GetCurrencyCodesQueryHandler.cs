@@ -8,8 +8,8 @@ namespace TokanPages.Backend.Application.Invoicing.Currencies.Queries;
 
 public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQuery, IList<GetCurrencyCodesQueryResult>>
 {
-    public GetCurrencyCodesQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService) 
-        : base(operationsDbContext, loggerService) { }
+    public GetCurrencyCodesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService) 
+        : base(operationDbContext, loggerService) { }
 
     public override async Task<IList<GetCurrencyCodesQueryResult>> Handle(GetCurrencyCodesQuery request, CancellationToken cancellationToken)
     {

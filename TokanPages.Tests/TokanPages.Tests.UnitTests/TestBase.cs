@@ -33,7 +33,7 @@ public abstract class TestBase
         DateTimeService = serviceProvider.GetRequiredService<IDateTimeService>();
     }
 
-    protected static OperationsDbContext GetTestDatabaseContext()
+    protected static OperationDbContext GetTestDatabaseContext()
     {
         var options = DatabaseContextProvider.GetTestDatabaseOptions();
         return DatabaseContextProvider.CreateDatabaseContext(options);

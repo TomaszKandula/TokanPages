@@ -9,8 +9,8 @@ public class GetInstallationsQueryHandler : RequestHandler<GetInstallationsQuery
 {
     private readonly IAzureNotificationHubFactory _azureNotificationHubFactory;
 
-    public GetInstallationsQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
-        IAzureNotificationHubFactory azureNotificationHubFactory) : base(operationsDbContext, loggerService)
+    public GetInstallationsQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IAzureNotificationHubFactory azureNotificationHubFactory) : base(operationDbContext, loggerService)
         => _azureNotificationHubFactory = azureNotificationHubFactory;
 
     public override async Task<GetInstallationsQueryResult> Handle(GetInstallationsQuery request, CancellationToken cancellationToken)

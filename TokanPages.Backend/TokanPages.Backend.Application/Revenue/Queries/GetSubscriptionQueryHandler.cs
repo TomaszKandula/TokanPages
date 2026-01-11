@@ -10,13 +10,13 @@ public class GetSubscriptionQueryHandler : RequestHandler<GetSubscriptionQuery, 
 {
     private readonly IUserService _userService;
 
-    public GetSubscriptionQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IUserService userService) 
-        : base(operationsDbContext, loggerService) => _userService = userService;
+    public GetSubscriptionQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService) 
+        : base(operationDbContext, loggerService) => _userService = userService;
 
     public override async Task<GetSubscriptionQueryResult> Handle(GetSubscriptionQuery request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var query = await OperationsDbContext.UserSubscriptions
+        var query = await OperationDbContext.UserSubscriptions
             .AsNoTracking()
             .Where(subscriptions => subscriptions.UserId == userId)
             .Select(subscriptions => new GetSubscriptionQueryResult

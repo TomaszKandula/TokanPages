@@ -12,7 +12,7 @@ using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Persistence.Database.Migrations
 {
-    [DbContext(typeof(OperationsDbContext))]
+    [DbContext(typeof(OperationDbContext))]
     [Migration("20260102193940_AddCategoryNameTable")]
     partial class AddCategoryNameTable
     {

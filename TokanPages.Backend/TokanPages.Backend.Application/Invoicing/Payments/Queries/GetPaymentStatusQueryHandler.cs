@@ -8,8 +8,8 @@ namespace TokanPages.Backend.Application.Invoicing.Payments.Queries;
 
 public class GetPaymentStatusQueryHandler : RequestHandler<GetPaymentStatusQuery, IList<GetPaymentStatusQueryResult>>
 {
-    public GetPaymentStatusQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService) 
-        : base(operationsDbContext, loggerService) { }
+    public GetPaymentStatusQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService) 
+        : base(operationDbContext, loggerService) { }
 
     public override async Task<IList<GetPaymentStatusQueryResult>> Handle(GetPaymentStatusQuery request, CancellationToken cancellationToken)
     {

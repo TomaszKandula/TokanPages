@@ -16,8 +16,8 @@ public class RemoveUserMediaCommandHandler : RequestHandler<RemoveUserMediaComma
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public RemoveUserMediaCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
-        IUserService userService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationsDbContext, loggerService)
+    public RemoveUserMediaCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IUserService userService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
@@ -30,7 +30,7 @@ public class RemoveUserMediaCommandHandler : RequestHandler<RemoveUserMediaComma
 
         var destinationPath = $"content/users/{userId}/{request.UniqueBlobName}";
 
-        var userInfo = await OperationsDbContext.UserInformation
+        var userInfo = await OperationDbContext.UserInformation
             .Where(userInfo => userInfo.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -40,7 +40,7 @@ public class RemoveUserMediaCommandHandler : RequestHandler<RemoveUserMediaComma
         userInfo.UserImageName = userInfo.UserImageName == request.UniqueBlobName ? null : userInfo.UserImageName;
         userInfo.UserVideoName = userInfo.UserVideoName == request.UniqueBlobName ? null : userInfo.UserVideoName;
 
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         await azureBlob.DeleteFile(destinationPath, cancellationToken);
 
         return Unit.Value;

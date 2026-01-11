@@ -18,8 +18,8 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
 
     private readonly IConfiguration _configuration;
 
-    public AddUserNoteCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService, IConfiguration configuration) : base(operationsDbContext, loggerService)
+    public AddUserNoteCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IUserService userService, IDateTimeService dateTimeService, IConfiguration configuration) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -29,7 +29,7 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
     public override async Task<AddUserNoteCommandResult> Handle(AddUserNoteCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var notesCount = await OperationsDbContext.UserNotes
+        var notesCount = await OperationDbContext.UserNotes
             .AsNoTracking()
             .Where(note => note.UserId == userId)
             .CountAsync(cancellationToken);
@@ -53,8 +53,8 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
             CreatedBy = userId
         };
 
-        await OperationsDbContext.UserNotes.AddAsync(userNote, cancellationToken);
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.UserNotes.AddAsync(userNote, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         return new AddUserNoteCommandResult
         {

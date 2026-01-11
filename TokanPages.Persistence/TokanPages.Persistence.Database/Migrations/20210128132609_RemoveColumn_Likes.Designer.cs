@@ -10,7 +10,7 @@ using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Persistence.Database.Migrations
 {
-    [DbContext(typeof(OperationsDbContext))]
+    [DbContext(typeof(OperationDbContext))]
     [Migration("20210128132609_RemoveColumn_Likes")]
     partial class RemoveColumn_Likes
     {

@@ -12,8 +12,8 @@ public class GetArticleAssetQueryHandler : RequestHandler<GetArticleAssetQuery, 
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
     
-    public GetArticleAssetQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
-        : base(operationsDbContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
+    public GetArticleAssetQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
+        : base(operationDbContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<FileContentResult> Handle(GetArticleAssetQuery request, CancellationToken cancellationToken)
     {

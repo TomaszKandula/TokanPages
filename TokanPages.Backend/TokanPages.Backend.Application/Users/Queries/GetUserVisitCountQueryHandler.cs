@@ -7,12 +7,12 @@ namespace TokanPages.Backend.Application.Users.Queries;
 
 public class GetUserVisitCountQueryHandler : RequestHandler<GetUserVisitCountQuery, GetUserVisitCountQueryResult>
 {
-    public GetUserVisitCountQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService) 
-        : base(operationsDbContext, loggerService) { }
+    public GetUserVisitCountQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService) 
+        : base(operationDbContext, loggerService) { }
 
     public override async Task<GetUserVisitCountQueryResult> Handle(GetUserVisitCountQuery request, CancellationToken cancellationToken)
     {
-        var uniqueCount = await (from httpRequest in OperationsDbContext.HttpRequests
+        var uniqueCount = await (from httpRequest in OperationDbContext.HttpRequests
             select new { httpRequest.SourceAddress })
             .Distinct()
             .CountAsync(cancellationToken);

@@ -35,10 +35,10 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public AddVideoAssetCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+    public AddVideoAssetCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IAzureBusFactory azureBusFactory, 
         IJsonSerializer jsonSerializer, IDateTimeService dateTimeService, 
-        IUserService userService) : base(operationsDbContext, loggerService)
+        IUserService userService) : base(operationDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _azureBusFactory = azureBusFactory;
@@ -90,8 +90,8 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
         using var stream = new MemoryStream(buffer);
 
         await azureBlob.UploadFile(stream, tempPathFile, contentType, cancellationToken);
-        await OperationsDbContext.UploadedVideos.AddAsync(upload, cancellationToken);
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.UploadedVideos.AddAsync(upload, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation($"New video has been uploaded for processing. Ticket ID: {ticketId}.");
 
         var details = new TargetDetails
@@ -122,8 +122,8 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
             Details = details
         };
 
-        await OperationsDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         var serialized = _jsonSerializer.Serialize(requestBody, Formatting.None, Settings);
         var messages = new List<string> { serialized };

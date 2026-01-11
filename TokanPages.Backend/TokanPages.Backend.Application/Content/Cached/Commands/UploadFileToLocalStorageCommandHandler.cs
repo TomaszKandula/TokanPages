@@ -11,8 +11,8 @@ public class UploadFileToLocalStorageCommandHandler : RequestHandler<UploadFileT
 {
     private const decimal MaxDirectorySizeKb = 102400;
 
-    public UploadFileToLocalStorageCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService) 
-        : base(operationsDbContext, loggerService) { }
+    public UploadFileToLocalStorageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService) 
+        : base(operationDbContext, loggerService) { }
 
     public override async Task<UploadFileToLocalStorageCommandResult> Handle(UploadFileToLocalStorageCommand request, CancellationToken cancellationToken)
     {

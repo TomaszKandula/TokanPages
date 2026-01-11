@@ -8,8 +8,8 @@ namespace TokanPages.Backend.Application.Invoicing.Batches.Queries;
 
 public class GetBatchProcessingStatusesQueryHandler : RequestHandler<GetBatchProcessingStatusesQuery, IEnumerable<GetBatchProcessingStatusesQueryResult>>
 {
-    public GetBatchProcessingStatusesQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService)
-        : base(operationsDbContext, loggerService) { }
+    public GetBatchProcessingStatusesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService)
+        : base(operationDbContext, loggerService) { }
 
     public override async Task<IEnumerable<GetBatchProcessingStatusesQueryResult>> Handle(GetBatchProcessingStatusesQuery request, CancellationToken cancellationToken)
     {

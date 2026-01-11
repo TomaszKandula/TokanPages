@@ -13,8 +13,8 @@ public class GetNonVideoAssetQueryHandler : RequestHandler<GetNonVideoAssetQuery
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public GetNonVideoAssetQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationsDbContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
+    public GetNonVideoAssetQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<ContentOutput> Handle(GetNonVideoAssetQuery request, CancellationToken cancellationToken)
     {

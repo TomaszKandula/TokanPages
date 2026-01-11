@@ -27,9 +27,9 @@ internal static class Program
             return;
         }
 
-        var configuration = DatabaseConnection.GetConfiguration<OperationsDbContext>();
-        var source = DatabaseConnection.GetConnectionString<OperationsDbContext>(configuration);
-        DatabaseConnection.ValidateConnectionString<OperationsDbContext>(source);
+        var configuration = DatabaseConnection.GetConfiguration<OperationDbContext>();
+        var source = DatabaseConnection.GetConnectionString<OperationDbContext>(configuration);
+        DatabaseConnection.ValidateConnectionString<OperationDbContext>(source);
 
         var migrator = new DatabaseMigrator();
         var seeder = new DataSeeder();
@@ -39,31 +39,31 @@ internal static class Program
             switch (option)
             {
                 case "--migrate":
-                    migrator.RunAndMigrate<OperationsDbContext>(source);
+                    migrator.RunAndMigrate<OperationDbContext>(source);
                     ConsolePrints.PrintOnInfo("All done!");
                     break;
 
                 case "--seed":
-                    seeder.Seed<OperationsDbContext>(source);
+                    seeder.Seed<OperationDbContext>(source);
                     ConsolePrints.PrintOnInfo("All done!");
                     break;
 
                 case "--migrate-seed":
-                    migrator.RunAndMigrate<OperationsDbContext>(source);
-                    seeder.Seed<OperationsDbContext>(source);
+                    migrator.RunAndMigrate<OperationDbContext>(source);
+                    seeder.Seed<OperationDbContext>(source);
                     ConsolePrints.PrintOnInfo("All done!");
                     break;
 
                 case "--next-prod":
                     var nextVersion = DatabaseConnection.GetNextVersion(new SqlConnectionStringBuilder(source));
-                    var nextConnection = DatabaseConnection.GetNextDatabaseConnectionString<OperationsDbContext>(source);
-                    var migrationScript = DatabaseUpdate.BuildMigrationScriptName(nextVersion.number, nameof(OperationsDbContext));
+                    var nextConnection = DatabaseConnection.GetNextDatabaseConnectionString<OperationDbContext>(source);
+                    var migrationScript = DatabaseUpdate.BuildMigrationScriptName(nextVersion.number, nameof(OperationDbContext));
                     var hasMigrationScript = DatabaseUpdate.HasSqlScript(migrationScript);
                     if (hasMigrationScript)
                     {
                         var copier = new DatabaseCopier();
-                        migrator.RunAndMigrate<OperationsDbContext>(nextConnection);
-                        await copier.RunAndCopy<OperationsDbContext>(source, nextConnection);
+                        migrator.RunAndMigrate<OperationDbContext>(nextConnection);
+                        await copier.RunAndCopy<OperationDbContext>(source, nextConnection);
                         ConsolePrints.PrintOnInfo("All done!");
                     }
                     else

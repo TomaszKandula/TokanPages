@@ -8,33 +8,33 @@ namespace TokanPages.Backend.Application.Chat.Commands;
 
 public class RemoveChatCacheCommandHandler : RequestHandler<RemoveChatCacheCommand, Unit>
 {
-    public RemoveChatCacheCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService) : base(operationsDbContext, loggerService) { }
+    public RemoveChatCacheCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService) : base(operationDbContext, loggerService) { }
 
     public override async Task<Unit> Handle(RemoveChatCacheCommand request, CancellationToken cancellationToken)
     {
         if (request.ChatId is not null)
         {
-            var cache = await OperationsDbContext.UserMessagesCache
+            var cache = await OperationDbContext.UserMessagesCache
                 .Where(cache => cache.Id == request.ChatId)
                 .SingleOrDefaultAsync(cancellationToken);
 
             if (cache is null)
                 return Unit.Value;
 
-            OperationsDbContext.Remove(cache);
-            await OperationsDbContext.SaveChangesAsync(cancellationToken);
+            OperationDbContext.Remove(cache);
+            await OperationDbContext.SaveChangesAsync(cancellationToken);
         }
         else if (request.ChatKey is not null)
         {
-            var cacheList = await OperationsDbContext.UserMessagesCache
+            var cacheList = await OperationDbContext.UserMessagesCache
                 .Where(cache => cache.ChatKey == request.ChatKey)
                 .ToListAsync(cancellationToken);
 
             if (cacheList.Count == 0)
                 return Unit.Value;
 
-            OperationsDbContext.RemoveRange(cacheList);
-            await OperationsDbContext.SaveChangesAsync(cancellationToken);
+            OperationDbContext.RemoveRange(cacheList);
+            await OperationDbContext.SaveChangesAsync(cancellationToken);
         }
 
         return Unit.Value;        

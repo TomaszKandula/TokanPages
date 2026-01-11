@@ -10,13 +10,13 @@ namespace TokanPages.Backend.Application;
 [ExcludeFromCodeCoverage]
 public abstract class TableRequestHandler<TEntity, TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>
 {
-    protected readonly OperationsDbContext OperationsDbContext;
+    protected readonly OperationDbContext OperationDbContext;
 
     protected readonly ILoggerService LoggerService;
 
-    protected TableRequestHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService)
+    protected TableRequestHandler(OperationDbContext operationDbContext, ILoggerService loggerService)
     {
-        OperationsDbContext = operationsDbContext;
+        OperationDbContext = operationDbContext;
         LoggerService = loggerService;
     }
 

@@ -10,8 +10,8 @@ namespace TokanPages.Backend.Application.Content.Cached.Queries;
 
 public class GetFileByNameQueryHandler : RequestHandler<GetFileByNameQuery, FileContentResult>
 {
-    public GetFileByNameQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService) 
-        : base(operationsDbContext, loggerService) { }
+    public GetFileByNameQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService) 
+        : base(operationDbContext, loggerService) { }
 
     public override async Task<FileContentResult> Handle(GetFileByNameQuery request, CancellationToken cancellationToken)
     {

@@ -14,12 +14,12 @@ public class WebTokenValidation : IWebTokenValidation
     
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    private readonly OperationsDbContext _operationsDbContext;
+    private readonly OperationDbContext _operationDbContext;
 
-    public WebTokenValidation(IHttpContextAccessor httpContextAccessor, OperationsDbContext operationsDbContext)
+    public WebTokenValidation(IHttpContextAccessor httpContextAccessor, OperationDbContext operationDbContext)
     {
         _httpContextAccessor = httpContextAccessor;
-        _operationsDbContext = operationsDbContext;
+        _operationDbContext = operationDbContext;
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ public class WebTokenValidation : IWebTokenValidation
     public async Task VerifyUserToken()
     {
         var token = GetWebTokenFromHeader();
-        var userToken = await _operationsDbContext.UserTokens
+        var userToken = await _operationDbContext.UserTokens
             .AsNoTracking()
             .Where(userTokens => userTokens.Token == token)
             .FirstOrDefaultAsync();

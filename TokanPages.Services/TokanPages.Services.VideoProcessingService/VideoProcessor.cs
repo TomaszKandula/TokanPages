@@ -28,13 +28,13 @@ public class VideoProcessor : IVideoProcessor
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    private readonly OperationsDbContext _operationsDbContext;
+    private readonly OperationDbContext _operationDbContext;
 
-    public VideoProcessor(OperationsDbContext operationsDbContext, IDateTimeService dateTimeService, 
+    public VideoProcessor(OperationDbContext operationDbContext, IDateTimeService dateTimeService, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IVideoConverter videoConverter, 
         ILoggerService loggerService)
     {
-        _operationsDbContext = operationsDbContext;
+        _operationDbContext = operationDbContext;
         _dateTimeService = dateTimeService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _videoConverter = videoConverter;
@@ -46,7 +46,7 @@ public class VideoProcessor : IVideoProcessor
         _loggerService.LogInformation("Getting video info from database...");
         var uploadedVideo = await GetUploadedVideoInfo(request.TicketId);
         uploadedVideo.Status = VideoStatus.ProcessingStarted;
-        await _operationsDbContext.SaveChangesAsync();
+        await _operationDbContext.SaveChangesAsync();
 
         _loggerService.LogInformation("Getting video file from Azure Storage...");
         var azureBlob = _azureBlobStorageFactory.Create(_loggerService);
@@ -82,13 +82,13 @@ public class VideoProcessor : IVideoProcessor
         uploadedVideo.InputSizeInBytes = converterOutput.InputSizeInBytes;
         uploadedVideo.OutputSizeInBytes = converterOutput.OutputSizeInBytes;
 
-        await _operationsDbContext.SaveChangesAsync();
+        await _operationDbContext.SaveChangesAsync();
         _loggerService.LogInformation("Data processed and saved!");
     }
 
     private async Task<UploadedVideo> GetUploadedVideoInfo(Guid ticketId, CancellationToken cancellationToken = default)
     {
-        var uploadedVideo = await _operationsDbContext.UploadedVideos
+        var uploadedVideo = await _operationDbContext.UploadedVideos
             .Where(uploadedVideos => uploadedVideos.TicketId == ticketId)
             .Where(uploadedVideos => uploadedVideos.Status == VideoStatus.New)
             .SingleOrDefaultAsync(cancellationToken);
@@ -106,7 +106,7 @@ public class VideoProcessor : IVideoProcessor
         if (content?.Content is null || content.ContentType is null)
         {
             uploadedVideo.Status = VideoStatus.Failed;
-            await _operationsDbContext.SaveChangesAsync(cancellationToken);
+            await _operationDbContext.SaveChangesAsync(cancellationToken);
             _loggerService.LogError(Errors.ErrorNoStreamContent);
             throw new GeneralException(Errors.ErrorNoStreamContent);
         }

@@ -11,9 +11,9 @@ using TokanPages.Backend.Domain.Entities.Users;
 namespace TokanPages.Persistence.Database.Contexts;
 
 [ExcludeFromCodeCoverage]
-public class OperationsDbContext : DbContext
+public class OperationDbContext : DbContext
 {
-    public OperationsDbContext(DbContextOptions<OperationsDbContext> options) : base(options) { }
+    public OperationDbContext(DbContextOptions<OperationDbContext> options) : base(options) { }
 
     /* Category: Article */
     public virtual DbSet<Article> Articles { get; set; }

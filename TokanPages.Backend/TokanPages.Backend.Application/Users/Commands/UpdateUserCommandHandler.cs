@@ -16,8 +16,8 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
 
     private readonly IDateTimeService _dateTimeService;
         
-    public UpdateUserCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService, IUserService userService) : base(operationsDbContext, loggerService)
+    public UpdateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IDateTimeService dateTimeService, IUserService userService) : base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _userService = userService;
@@ -38,11 +38,11 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
         };
     }
 
-    private async Task CommitAllChanges(CancellationToken cancellationToken) => await OperationsDbContext.SaveChangesAsync(cancellationToken);
+    private async Task CommitAllChanges(CancellationToken cancellationToken) => await OperationDbContext.SaveChangesAsync(cancellationToken);
 
     private async Task UpdateUserUncommitted(User user, UpdateUserCommand request, bool shouldVerify, CancellationToken cancellationToken = default)
     {
-        var emails = await OperationsDbContext.Users
+        var emails = await OperationDbContext.Users
             .AsNoTracking()
             .Where(users => users.Id != user.Id)
             .Where(users => users.EmailAddress == request.EmailAddress)
@@ -61,7 +61,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
 
     private async Task UpdateUserInfoUncommitted(Guid userId, UpdateUserCommand request, CancellationToken cancellationToken = default)
     {
-        var userInfo = await OperationsDbContext.UserInformation
+        var userInfo = await OperationDbContext.UserInformation
             .Where(info => info.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -79,7 +79,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
                 CreatedAt = _dateTimeService.Now
             };
 
-            await OperationsDbContext.UserInformation.AddAsync(newUserInfo, cancellationToken);
+            await OperationDbContext.UserInformation.AddAsync(newUserInfo, cancellationToken);
         }
         else
         {

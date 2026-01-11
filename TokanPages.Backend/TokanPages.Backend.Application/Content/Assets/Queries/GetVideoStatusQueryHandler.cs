@@ -7,12 +7,12 @@ namespace TokanPages.Backend.Application.Content.Assets.Queries;
 
 public class GetVideoStatusQueryHandler : RequestHandler<GetVideoStatusQuery, GetVideoStatusQueryResult>
 {
-    public GetVideoStatusQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService) 
-        : base(operationsDbContext, loggerService) { }
+    public GetVideoStatusQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService) 
+        : base(operationDbContext, loggerService) { }
 
     public override async Task<GetVideoStatusQueryResult> Handle(GetVideoStatusQuery request, CancellationToken cancellationToken)
     {
-        var videoData = await OperationsDbContext.UploadedVideos
+        var videoData = await OperationDbContext.UploadedVideos
             .Where(video => video.TicketId == request.TicketId)
             .SingleOrDefaultAsync(cancellationToken);
 

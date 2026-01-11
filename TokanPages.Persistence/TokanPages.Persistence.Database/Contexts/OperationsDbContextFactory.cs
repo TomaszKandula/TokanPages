@@ -11,7 +11,7 @@ namespace TokanPages.Persistence.Database.Contexts;
 /// <see href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.design.idesigntimedbcontextfactory-1?view=efcore-5.0"/>
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class OperationsDbContextFactory : IDesignTimeDbContextFactory<OperationsDbContext>
+public class OperationsDbContextFactory : IDesignTimeDbContextFactory<OperationDbContext>
 {
     /// <summary>
     /// This method requires connection string defined in either AppSettings.json (linked)
@@ -19,21 +19,21 @@ public class OperationsDbContextFactory : IDesignTimeDbContextFactory<Operations
     /// </summary>
     /// <param name="args"></param>
     /// <returns></returns>
-    public OperationsDbContext CreateDbContext(string[] args)
+    public OperationDbContext CreateDbContext(string[] args)
     {
         var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
         var appSettingsEnv = $"appsettings.{environment}.json";
         var builder = new ConfigurationBuilder()
             .AddJsonFile(appSettingsEnv, true, true)
-            .AddUserSecrets<OperationsDbContext>()
+            .AddUserSecrets<OperationDbContext>()
             .AddEnvironmentVariables()
             .Build();
 
-        var connectionString = builder.GetValue<string>($"Db_{nameof(OperationsDbContext)}_Migrator");
+        var connectionString = builder.GetValue<string>($"Db_{nameof(OperationDbContext)}_Migrator");
 
-        var optionsBuilder = new DbContextOptionsBuilder<OperationsDbContext>();
+        var optionsBuilder = new DbContextOptionsBuilder<OperationDbContext>();
         optionsBuilder.UseSqlServer(connectionString);
 
-        return new OperationsDbContext(optionsBuilder.Options);
+        return new OperationDbContext(optionsBuilder.Options);
     }
 }

@@ -21,9 +21,9 @@ public class UpdateUserPasswordCommandHandler : RequestHandler<UpdateUserPasswor
 
     private readonly IDateTimeService _dateTimeService;
         
-    public UpdateUserPasswordCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+    public UpdateUserPasswordCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IUserService userService, ICipheringService cipheringService, 
-        IDateTimeService dateTimeService) : base(operationsDbContext, loggerService)
+        IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _cipheringService = cipheringService;
@@ -40,7 +40,7 @@ public class UpdateUserPasswordCommandHandler : RequestHandler<UpdateUserPasswor
         }
 
         var hasResetId = request.ResetId != null;
-        var user = await OperationsDbContext.Users
+        var user = await OperationDbContext.Users
             .Where(users => users.IsActivated)
             .Where(users => !users.IsDeleted)
             .WhereIfElse(!hasResetId, 
@@ -84,7 +84,7 @@ public class UpdateUserPasswordCommandHandler : RequestHandler<UpdateUserPasswor
         user.CryptedPassword = getHashedPassword;
         user.ModifiedAt = _dateTimeService.Now;
         user.ModifiedBy = user.Id;
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         LoggerService.LogInformation($"User password has been updated successfully (UserId: {user.Id}).");
         return Unit.Value;

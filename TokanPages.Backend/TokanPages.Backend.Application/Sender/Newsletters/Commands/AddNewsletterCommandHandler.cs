@@ -12,12 +12,12 @@ public class AddNewsletterCommandHandler : RequestHandler<AddNewsletterCommand, 
 {
     private readonly IDateTimeService _dateTimeService;
 
-    public AddNewsletterCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService) : base(operationsDbContext, loggerService) => _dateTimeService = dateTimeService;
+    public AddNewsletterCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IDateTimeService dateTimeService) : base(operationDbContext, loggerService) => _dateTimeService = dateTimeService;
 
     public override async Task<Guid> Handle(AddNewsletterCommand request, CancellationToken cancellationToken) 
     {
-        var emailCollection = await OperationsDbContext.Newsletters
+        var emailCollection = await OperationDbContext.Newsletters
             .AsNoTracking()
             .Where(subscribers => subscribers.Email == request.Email)
             .ToListAsync(cancellationToken);
@@ -36,8 +36,8 @@ public class AddNewsletterCommandHandler : RequestHandler<AddNewsletterCommand, 
             ModifiedBy = null
         };
 
-        await OperationsDbContext.Newsletters.AddAsync(newSubscriber, cancellationToken);
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.Newsletters.AddAsync(newSubscriber, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         return newSubscriber.Id;
     }
 }

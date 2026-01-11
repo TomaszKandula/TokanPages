@@ -13,12 +13,12 @@ public class GetUserImageQueryHandler : RequestHandler<GetUserImageQuery, FileCo
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public GetUserImageQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
-        : base(operationsDbContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
+    public GetUserImageQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
+        : base(operationDbContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<FileContentResult> Handle(GetUserImageQuery request, CancellationToken cancellationToken)
     {
-        var user = await OperationsDbContext.Users
+        var user = await OperationDbContext.Users
             .AsNoTracking()
             .SingleOrDefaultAsync(users => users.Id == request.Id, cancellationToken);
 

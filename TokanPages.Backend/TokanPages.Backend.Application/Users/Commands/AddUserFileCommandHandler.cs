@@ -34,9 +34,9 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public AddUserFileCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+    public AddUserFileCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService, IAzureBusFactory azureBusFactory, 
-        IJsonSerializer jsonSerializer, IDateTimeService dateTimeService) : base(operationsDbContext, loggerService)
+        IJsonSerializer jsonSerializer, IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;
@@ -137,8 +137,8 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
         using var stream = new MemoryStream(buffer);
 
         await azureBlob.UploadFile(stream, tempPathFile, contentType, cancellationToken);
-        await OperationsDbContext.UploadedVideos.AddAsync(upload, cancellationToken);
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.UploadedVideos.AddAsync(upload, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation($"New user video has been uploaded for processing. Ticket ID: {ticketId}.");
 
         var details = new TargetDetails
@@ -169,8 +169,8 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
             Details = details
         };
 
-        await OperationsDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         var serialized = _jsonSerializer.Serialize(requestBody, Formatting.None, Settings);
         var messages = new List<string> { serialized };

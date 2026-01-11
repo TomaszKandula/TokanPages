@@ -29,7 +29,7 @@ public class CacheProcessing : Processing
 
     private readonly ICachingService _cachingService;
 
-    private readonly OperationsDbContext _operationsDbContext;
+    private readonly OperationDbContext _operationDbContext;
 
     /// <summary>
     /// Implementation of cache processing hosted service.
@@ -37,12 +37,12 @@ public class CacheProcessing : Processing
     /// <param name="loggerService">Logger Service instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
     /// <param name="cachingService">SPA Cache Processor instance.</param>
-    /// <param name="operationsDbContext">Database instance.</param>
+    /// <param name="operationDbContext">Database instance.</param>
     public CacheProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        ICachingService cachingService, OperationsDbContext operationsDbContext) : base(loggerService, azureBusFactory)
+        ICachingService cachingService, OperationDbContext operationDbContext) : base(loggerService, azureBusFactory)
     {
         _cachingService = cachingService;
-        _operationsDbContext = operationsDbContext;
+        _operationDbContext = operationDbContext;
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ public class CacheProcessing : Processing
 
     private async Task<bool> CanContinue(Guid messageId, CancellationToken cancellationToken)
     {
-        var busMessages = await _operationsDbContext.ServiceBusMessages
+        var busMessages = await _operationDbContext.ServiceBusMessages
             .Where(messages => messages.Id == messageId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -109,7 +109,7 @@ public class CacheProcessing : Processing
             return false;
 
         busMessages.IsConsumed = true;
-        await _operationsDbContext.SaveChangesAsync(cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
 }

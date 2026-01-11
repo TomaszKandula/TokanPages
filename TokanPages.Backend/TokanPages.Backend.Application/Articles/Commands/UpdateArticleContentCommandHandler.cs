@@ -19,9 +19,9 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public UpdateArticleContentCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService,
+    public UpdateArticleContentCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService,
         IUserService userService, IDateTimeService dateTimeService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationsDbContext, loggerService)
+        IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -31,7 +31,7 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
     public override async Task<Unit> Handle(UpdateArticleContentCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var articleData = await OperationsDbContext.Articles
+        var articleData = await OperationDbContext.Articles
             .Where(article => article.UserId == userId)
             .Where(article => article.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
@@ -62,7 +62,7 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
         articleData.ModifiedAt = _dateTimeService.Now;
         articleData.ModifiedBy = userId;
 
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

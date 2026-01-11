@@ -10,7 +10,7 @@ public class GetMetricsQueryHandler : RequestHandler<GetMetricsQuery, IActionRes
 {
     private readonly IMetricsService _metricsService;
 
-    public GetMetricsQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IMetricsService metricsService) : base(operationsDbContext, loggerService) 
+    public GetMetricsQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IMetricsService metricsService) : base(operationDbContext, loggerService) 
         => _metricsService = metricsService;
 
     public override async Task<IActionResult> Handle(GetMetricsQuery request, CancellationToken cancellationToken)

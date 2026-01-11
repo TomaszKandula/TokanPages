@@ -9,12 +9,12 @@ namespace TokanPages.Backend.Application.Users.Queries;
 
 public class GetUserQueryHandler : RequestHandler<GetUserQuery, GetUserQueryResult>
 {
-    public GetUserQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService) : base(operationsDbContext, loggerService) { }
+    public GetUserQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService) : base(operationDbContext, loggerService) { }
 
     public override async Task<GetUserQueryResult> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
-        var query = await (from user in OperationsDbContext.Users
-            join userInfo in OperationsDbContext.UserInformation
+        var query = await (from user in OperationDbContext.Users
+            join userInfo in OperationDbContext.UserInformation
             on user.Id equals userInfo.UserId
             where user.Id == request.Id
             select new GetUserQueryResult

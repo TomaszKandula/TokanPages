@@ -16,8 +16,8 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public AddArticleCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IUserService userService, 
-        IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationsDbContext, loggerService)
+    public AddArticleCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService, 
+        IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -39,8 +39,8 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
             LanguageIso = "ENG"
         };
 
-        await OperationsDbContext.Articles.AddAsync(newArticle, cancellationToken);
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.Articles.AddAsync(newArticle, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var textDestinationPath = $"content\\articles\\{newArticle.Id}\\text.json";

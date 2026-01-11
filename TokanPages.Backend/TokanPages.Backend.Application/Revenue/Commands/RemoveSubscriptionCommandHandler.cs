@@ -13,21 +13,21 @@ public class RemoveSubscriptionCommandHandler : RequestHandler<RemoveSubscriptio
 {
     private readonly IUserService _userService;
 
-    public RemoveSubscriptionCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
-        IUserService userService) : base(operationsDbContext, loggerService) => _userService = userService;
+    public RemoveSubscriptionCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IUserService userService) : base(operationDbContext, loggerService) => _userService = userService;
 
     public override async Task<Unit> Handle(RemoveSubscriptionCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
-        var userSubscription = await OperationsDbContext.UserSubscriptions
+        var userSubscription = await OperationDbContext.UserSubscriptions
             .Where(subscriptions => subscriptions.UserId == user.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (userSubscription is null)
             throw new BusinessException(nameof(ErrorCodes.SUBSCRIPTION_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIPTION_DOES_NOT_EXISTS);
 
-        OperationsDbContext.Remove(userSubscription);
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        OperationDbContext.Remove(userSubscription);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         LoggerService.LogInformation($"Subscription for user ID '{user.Id}' has been removed.");
         return Unit.Value;

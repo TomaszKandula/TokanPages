@@ -12,12 +12,12 @@ public class ActivateUserCommandHandler : RequestHandler<ActivateUserCommand, Ac
 {
     private readonly IDateTimeService _dateTimeService;
 
-    public ActivateUserCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService) : base(operationsDbContext, loggerService) => _dateTimeService = dateTimeService;
+    public ActivateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IDateTimeService dateTimeService) : base(operationDbContext, loggerService) => _dateTimeService = dateTimeService;
 
     public override async Task<ActivateUserCommandResult> Handle(ActivateUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await OperationsDbContext.Users
+        var user = await OperationDbContext.Users
             .Where(users => users.ActivationId == request.ActivationId)
             .Where(users => !users.IsDeleted)
             .SingleOrDefaultAsync(cancellationToken);
@@ -37,7 +37,7 @@ public class ActivateUserCommandHandler : RequestHandler<ActivateUserCommand, Ac
             LoggerService.LogWarning("The user is activated but has the business lock and thus will require administrator action.");
 
         LoggerService.LogInformation($"User account has been activated, user ID: {user.Id}");
-        await OperationsDbContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         return new ActivateUserCommandResult
         {

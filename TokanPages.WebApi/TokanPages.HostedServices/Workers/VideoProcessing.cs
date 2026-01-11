@@ -29,7 +29,7 @@ public class VideoProcessing : Processing
 
     private readonly IVideoProcessor _videoProcessor;
 
-    private readonly OperationsDbContext _operationsDbContext;
+    private readonly OperationDbContext _operationDbContext;
 
     /// <summary>
     /// Implementation of video processing hosted service.
@@ -37,12 +37,12 @@ public class VideoProcessing : Processing
     /// <param name="loggerService">Logger Service instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
     /// <param name="videoProcessor">Video Processor instance.</param>
-    /// <param name="operationsDbContext">Database instance.</param>
+    /// <param name="operationDbContext">Database instance.</param>
     public VideoProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        IVideoProcessor videoProcessor, OperationsDbContext operationsDbContext) : base(loggerService, azureBusFactory)
+        IVideoProcessor videoProcessor, OperationDbContext operationDbContext) : base(loggerService, azureBusFactory)
     {
         _videoProcessor = videoProcessor;
-        _operationsDbContext = operationsDbContext;
+        _operationDbContext = operationDbContext;
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public class VideoProcessing : Processing
 
     private async Task<bool> CanContinue(Guid messageId, CancellationToken cancellationToken)
     {
-        var busMessages = await _operationsDbContext.ServiceBusMessages
+        var busMessages = await _operationDbContext.ServiceBusMessages
             .Where(messages => messages.Id == messageId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -95,7 +95,7 @@ public class VideoProcessing : Processing
             return false;
 
         busMessages.IsConsumed = true;
-        await _operationsDbContext.SaveChangesAsync(cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
 }

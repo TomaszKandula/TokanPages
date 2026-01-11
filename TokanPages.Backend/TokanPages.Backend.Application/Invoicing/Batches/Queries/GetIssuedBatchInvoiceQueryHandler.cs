@@ -10,8 +10,8 @@ public class GetIssuedBatchInvoiceQueryHandler : RequestHandler<GetIssuedBatchIn
 {
     private readonly IBatchService _batchService;
 
-    public GetIssuedBatchInvoiceQueryHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, IBatchService batchService) 
-        : base(operationsDbContext, loggerService) => _batchService = batchService;
+    public GetIssuedBatchInvoiceQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IBatchService batchService) 
+        : base(operationDbContext, loggerService) => _batchService = batchService;
 
     public override async Task<FileContentResult> Handle(GetIssuedBatchInvoiceQuery request, CancellationToken cancellationToken)
     {

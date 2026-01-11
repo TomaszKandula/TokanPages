@@ -16,9 +16,9 @@ public class RequestPageDataCommandHandler : RequestHandler<RequestPageDataComma
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    public RequestPageDataCommandHandler(OperationsDbContext operationsDbContext, ILoggerService loggerService, 
+    public RequestPageDataCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IJsonSerializer jsonSerializer) 
-        : base(operationsDbContext, loggerService)
+        : base(operationDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _jsonSerializer = jsonSerializer;
@@ -59,7 +59,7 @@ public class RequestPageDataCommandHandler : RequestHandler<RequestPageDataComma
         };
 
         var handler = new GetContentQueryHandler(
-            OperationsDbContext, 
+            OperationDbContext, 
             LoggerService, 
             _jsonSerializer, 
             _azureBlobStorageFactory);
