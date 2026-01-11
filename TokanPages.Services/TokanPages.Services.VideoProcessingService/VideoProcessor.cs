@@ -12,6 +12,7 @@ using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.VideoProcessingService.Models;
 using TokanPages.Services.VideoProcessingService.Utilities;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Services.VideoProcessingService;

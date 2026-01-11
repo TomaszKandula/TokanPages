@@ -1,14 +1,14 @@
-﻿using System.Reflection;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Domain.Entities.Photography;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Domain.Entities.Invoicing;
 using TokanPages.Backend.Domain.Entities.Notifications;
+using TokanPages.Backend.Domain.Entities.Photography;
 using TokanPages.Backend.Domain.Entities.Users;
 
-namespace TokanPages.Persistence.Database;
+namespace TokanPages.Persistence.Database.Contexts;
 
 [ExcludeFromCodeCoverage]
 public class DatabaseContext : DbContext

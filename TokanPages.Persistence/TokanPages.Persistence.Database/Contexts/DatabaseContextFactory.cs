@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace TokanPages.Persistence.Database;
+namespace TokanPages.Persistence.Database.Contexts;
 
 /// <summary>
 /// A factory for creating derived DbContext instances when performing

@@ -10,6 +10,7 @@ using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.VideoProcessingService.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.HostedServices.Workers;
 

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Persistence.Database.Migrations
 {

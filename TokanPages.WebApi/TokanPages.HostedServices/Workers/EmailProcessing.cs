@@ -10,6 +10,7 @@ using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.HostedServices.Workers;
 

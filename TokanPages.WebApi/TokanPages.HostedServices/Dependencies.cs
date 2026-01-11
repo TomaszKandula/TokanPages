@@ -19,6 +19,7 @@ using TokanPages.HostedServices.CronJobs;
 using TokanPages.HostedServices.CronJobs.Abstractions;
 using TokanPages.HostedServices.Models;
 using TokanPages.HostedServices.Workers;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Abstractions;

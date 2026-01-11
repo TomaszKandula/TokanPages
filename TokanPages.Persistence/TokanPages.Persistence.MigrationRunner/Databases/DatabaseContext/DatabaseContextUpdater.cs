@@ -19,8 +19,8 @@ public static class DatabaseContextUpdater
         var sourceDatabase = DatabaseConnection.GetDatabaseName(sourceConnection);
         var targetDatabase = DatabaseConnection.GetDatabaseName(targetConnection);
 
-        var options = DatabaseOptions.GetOptions<Database.DatabaseContext>(targetConnection);
-        var context = new Database.DatabaseContext(options);
+        var options = DatabaseOptions.GetOptions<Database.Contexts.DatabaseContext>(targetConnection);
+        var context = new Database.Contexts.DatabaseContext(options);
         await context.Database.OpenConnectionAsync();
         var command = context.Database.GetDbConnection().CreateCommand();
 
@@ -31,7 +31,7 @@ public static class DatabaseContextUpdater
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Default user created. Returned: {createResult}.");
 
         var version = DatabaseConnection.GetNextVersion(new SqlConnectionStringBuilder(sourceConnection));
-        var scriptName = DatabaseUpdate.BuildMigrationScriptName(version.number, nameof(Database.DatabaseContext));
+        var scriptName = DatabaseUpdate.BuildMigrationScriptName(version.number, nameof(Database.Contexts.DatabaseContext));
         var scriptContent = DatabaseUpdate.GetSqlScript(scriptName);
 
         scriptContent = scriptContent.Replace("{{SOURCE_TABLE}}", sourceDatabase);
@@ -44,7 +44,7 @@ public static class DatabaseContextUpdater
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Database copied. Returned: {copyResult}.");
     }
 
-    public static void PopulateTestData(Database.DatabaseContext databaseContext)
+    public static void PopulateTestData(Database.Contexts.DatabaseContext databaseContext)
     {
         if (!databaseContext.Users.Any())
         {
@@ -116,7 +116,7 @@ public static class DatabaseContextUpdater
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Changes saved!");
     }
 
-    public static void RemoveTestData(Database.DatabaseContext databaseContext)
+    public static void RemoveTestData(Database.Contexts.DatabaseContext databaseContext)
     {
         databaseContext.RemoveRange(databaseContext.Albums);
         PrintWarning(nameof(databaseContext.Albums));

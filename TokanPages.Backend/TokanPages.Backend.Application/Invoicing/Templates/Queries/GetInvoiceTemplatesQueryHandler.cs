@@ -1,6 +1,7 @@
 using TokanPages.Backend.Application.Invoicing.Models;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.TemplateService;
 
 namespace TokanPages.Backend.Application.Invoicing.Templates.Queries;
