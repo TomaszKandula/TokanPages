@@ -114,11 +114,8 @@ public sealed class UserService : IUserService
 
     public Guid GetLoggedUserId()
     {
-        var userId = UserIdFromClaim();
-        if (userId is null)
-            throw new AccessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
-
-        return (Guid)userId;
+        var userId = UserIdFromClaim() ?? Guid.Empty;
+        return userId;
     }
 
     public async Task<GetUserOutput?> GetUser(CancellationToken cancellationToken = default)
