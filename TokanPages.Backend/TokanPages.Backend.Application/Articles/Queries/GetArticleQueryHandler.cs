@@ -32,10 +32,10 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
     public override async Task<GetArticleQueryResult> Handle(GetArticleQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetUser(cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var userLanguage = _userService.GetRequestUserLanguage();
         var ipAddress = _userService.GetRequestIpAddress();
-        var isAnonymousUser = user == null;
+        var isAnonymousUser = userId == Guid.Empty;
 
         var requestId = Guid.Empty;
         if (request.Id is not null)
@@ -53,7 +53,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             .Where(likes => likes.ArticleId == requestId)
             .WhereIfElse(isAnonymousUser, 
                 likes => likes.IpAddress == ipAddress && likes.UserId == null, 
-                likes => likes.UserId == user!.UserId)
+                likes => likes.UserId == userId)
             .Select(likes => likes.LikeCount)
             .SumAsync(cancellationToken);
 

@@ -17,9 +17,9 @@ public class RemoveArticleCommandHandler : RequestHandler<RemoveArticleCommand, 
 
     public override async Task<Unit> Handle(RemoveArticleCommand request, CancellationToken cancellationToken) 
     {
-        var user = await _userService.GetActiveUser(null, false, cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var article = await DatabaseContext.Articles
-            .Where(articles => articles.UserId == user.Id)
+            .Where(articles => articles.UserId == userId)
             .Where(articles => articles.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -27,25 +27,25 @@ public class RemoveArticleCommandHandler : RequestHandler<RemoveArticleCommand, 
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         var articleLikes = await DatabaseContext.ArticleLikes
-            .Where(likes => likes.UserId == user.Id)
+            .Where(likes => likes.UserId == userId)
             .Where(likes => likes.ArticleId == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
         var articleCounts = await DatabaseContext.ArticleCounts
-            .Where(counts => counts.UserId == user.Id)
+            .Where(counts => counts.UserId == userId)
             .Where(counts => counts.ArticleId == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (articleLikes is not null)
         {
             DatabaseContext.ArticleLikes.Remove(articleLikes);
-            LoggerService.LogInformation($"Article likes has been removed for User (ID: {user.Id}) and Article (ID: {article.Id})");
+            LoggerService.LogInformation($"Article likes has been removed for User (ID: {userId}) and Article (ID: {article.Id})");
         }
 
         if (articleCounts is not null)
         {
             DatabaseContext.ArticleCounts.Remove(articleCounts);
-            LoggerService.LogInformation($"Article counts has been removed for User (ID: {user.Id}) and Article (ID: {article.Id})");
+            LoggerService.LogInformation($"Article counts has been removed for User (ID: {userId}) and Article (ID: {article.Id})");
         }
 
         DatabaseContext.Articles.Remove(article);

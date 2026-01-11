@@ -56,7 +56,7 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
 
     private async Task<AddVideoAssetCommandResult> ProcessBinaryData(AddVideoAssetCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(null, false, cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var binaryData = request.BinaryData;
 
@@ -81,7 +81,7 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
             TargetThumbnailUri = targetThumbnailUri,
             Status = VideoStatus.New,
             CreatedAt = _dateTimeService.Now,
-            CreatedBy = user.Id,
+            CreatedBy = userId,
             IsSourceDeleted = false
         };
 
@@ -99,7 +99,7 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
             ShouldCompactVideo = hasCompactVideo
         };
 
-        await RequestVideoProcessing(ticketId, user.Id, details, cancellationToken);
+        await RequestVideoProcessing(ticketId, userId, details, cancellationToken);
         return new AddVideoAssetCommandResult { TicketId = ticketId };
     }
 

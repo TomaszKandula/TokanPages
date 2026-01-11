@@ -32,7 +32,7 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
         if (article is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        var user = await _userService.GetUser(cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var ipAddress = _userService.GetRequestIpAddress();
         var articleCount = await DatabaseContext.ArticleCounts
             .Where(counts => counts.ArticleId == request.Id)
@@ -48,7 +48,7 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
                 IpAddress = ipAddress,
                 ReadCount = 1,
                 CreatedAt = _dateTimeService.Now,
-                CreatedBy = user?.UserId ?? Guid.Empty,
+                CreatedBy = userId,
                 ModifiedAt = null,
                 ModifiedBy = null
             };
@@ -59,14 +59,14 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
         {
             articleCount.ReadCount += 1;
             articleCount.ModifiedAt = _dateTimeService.Now;
-            articleCount.ModifiedBy = user?.UserId;
+            articleCount.ModifiedBy = userId;
 
             DatabaseContext.ArticleCounts.Update(articleCount);
         }
 
         article.ReadCount += 1;
         article.ModifiedAt = _dateTimeService.Now;
-        article.ModifiedBy = user?.UserId ?? Guid.Empty;
+        article.ModifiedBy = userId;
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;

@@ -25,7 +25,7 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
 
     public override async Task<Unit> Handle(UpdateArticleVisibilityCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(null, false, cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var canPublishArticles = await _userService
             .HasPermissionAssigned(nameof(Permission.CanPublishArticles), cancellationToken: cancellationToken) ?? false;
 
@@ -33,7 +33,7 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
         var articles = await DatabaseContext.Articles
-            .Where(articles => articles.UserId == user.Id)
+            .Where(articles => articles.UserId == userId)
             .Where(articles => articles.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -42,7 +42,7 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
 
         articles.IsPublished = request.IsPublished;
         articles.ModifiedAt = _dateTimeService.Now;
-        articles.ModifiedBy = user.Id;
+        articles.ModifiedBy = userId;
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;

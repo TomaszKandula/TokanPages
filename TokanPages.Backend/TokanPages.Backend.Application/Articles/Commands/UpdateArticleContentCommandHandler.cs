@@ -13,11 +13,11 @@ namespace TokanPages.Backend.Application.Articles.Commands;
 public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleContentCommand, Unit>
 {
     private readonly IUserService _userService;
-        
+
     private readonly IDateTimeService _dateTimeService;
-        
+
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
-        
+
     public UpdateArticleContentCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService,
         IUserService userService, IDateTimeService dateTimeService, 
         IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
@@ -29,9 +29,9 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
 
     public override async Task<Unit> Handle(UpdateArticleContentCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(null, false, cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var article = await DatabaseContext.Articles
-            .Where(articles => articles.UserId == user.Id)
+            .Where(articles => articles.UserId == userId)
             .Where(articles => articles.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -59,7 +59,7 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
             : article.UpdatedAt;
 
         article.ModifiedAt = _dateTimeService.Now;
-        article.ModifiedBy = user.Id;
+        article.ModifiedBy = userId;
 
         await DatabaseContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;

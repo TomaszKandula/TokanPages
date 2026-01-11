@@ -14,10 +14,10 @@ public class GetSubscriptionQueryHandler : RequestHandler<GetSubscriptionQuery, 
 
     public override async Task<GetSubscriptionQueryResult> Handle(GetSubscriptionQuery request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
+        var userId = _userService.GetLoggedUserId();
         var query = await DatabaseContext.UserSubscriptions
             .AsNoTracking()
-            .Where(subscriptions => subscriptions.UserId == user.Id)
+            .Where(subscriptions => subscriptions.UserId == userId)
             .Select(subscriptions => new GetSubscriptionQueryResult
             {
                 UserId = subscriptions.UserId,
