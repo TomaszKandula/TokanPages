@@ -11,7 +11,7 @@ namespace TokanPages.Persistence.Database.Contexts;
 /// <see href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.entityframeworkcore.design.idesigntimedbcontextfactory-1?view=efcore-5.0"/>
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class OperationsDbContextFactory : IDesignTimeDbContextFactory<OperationDbContext>
+public class OperationDbContextFactory : IDesignTimeDbContextFactory<OperationDbContext>
 {
     /// <summary>
     /// This method requires connection string defined in either AppSettings.json (linked)
