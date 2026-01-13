@@ -29,7 +29,7 @@ public class OperationDbContextFactory : IDesignTimeDbContextFactory<OperationDb
             .AddEnvironmentVariables()
             .Build();
 
-        var connectionString = builder.GetValue<string>($"Db_{nameof(OperationDbContext)}_Migrator");
+        var connectionString = builder.GetValue<string>($"Db_DatabaseContext_Migrator");
 
         var optionsBuilder = new DbContextOptionsBuilder<OperationDbContext>();
         optionsBuilder.UseSqlServer(connectionString);

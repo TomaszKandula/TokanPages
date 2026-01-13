@@ -79,7 +79,7 @@ public class OperationDbContext : DbContext
 
     private static void ApplyConfiguration(ModelBuilder modelBuilder)
     {
-        //modelBuilder.HasDefaultSchema("operation");//TODO: change schema
+        modelBuilder.HasDefaultSchema("operation");
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
