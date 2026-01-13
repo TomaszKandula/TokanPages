@@ -2,14 +2,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using FluentValidation;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
-using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.BehaviourService;
@@ -35,7 +33,7 @@ public static class Dependencies
     public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment = default)
     {
         services.CommonServices(configuration);
-        SetupDatabase(services, configuration);
+        services.SetupDatabase(configuration);
         if (environment != null)
             PollySupport.SetupRetryPolicyWithPolly(services, configuration, environment);
     }
@@ -56,18 +54,6 @@ public static class Dependencies
 
     private static void SetupLogger(IServiceCollection services) 
         => services.AddSingleton<ILoggerService, LoggerService>();
-
-    private static void SetupDatabase(IServiceCollection services, IConfiguration configuration) 
-    {
-        const int maxRetryCount = 10;
-        var maxRetryDelay = TimeSpan.FromSeconds(5);
-
-        services.AddDbContext<OperationDbContext>(options =>
-        {
-            options.UseSqlServer(configuration.GetValue<string>($"Db_{nameof(OperationDbContext)}") ?? "", addOptions 
-                => addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
-        });
-    }
 
     private static void SetupServices(IServiceCollection services, IConfiguration configuration) 
     {
