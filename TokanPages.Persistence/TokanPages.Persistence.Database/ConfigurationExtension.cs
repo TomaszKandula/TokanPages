@@ -10,6 +10,7 @@ public static class ConfigurationExtension
     public static void SetupDatabase(this IServiceCollection services, IConfiguration configuration)
     {
         services.SetupDatabase<OperationDbContext>(configuration);
+        services.SetupDatabase<SoccerDbContext>(configuration);
     }
 
     private static void SetupDatabase<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
