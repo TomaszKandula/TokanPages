@@ -9,4 +9,7 @@ public class Position : Entity<Guid>
     [Required]
     [MaxLength(255)]
     public string Name { get; set; }
+
+    [Required]
+    public int TraditionalNumber { get; set; }
 }
