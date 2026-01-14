@@ -16,14 +16,12 @@ public class ArticleLikeConfiguration : IEntityTypeConfiguration<ArticleLike>
             .HasOne(like => like.Article)
             .WithMany(article => article.ArticleLikes)
             .HasForeignKey(like => like.ArticleId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_ArticleLikes_Articles");
+            .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder
             .HasOne(like => like.User)
             .WithMany(user => user.ArticleLikes)
             .HasForeignKey(like => like.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_ArticleLikes_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

@@ -16,7 +16,6 @@ public class IssuedInvoicesConfiguration : IEntityTypeConfiguration<IssuedInvoic
             .HasOne(invoice => invoice.User)
             .WithMany(user => user.IssuedInvoices)
             .HasForeignKey(invoice => invoice.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_IssuedInvoices_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

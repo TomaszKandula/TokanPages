@@ -16,14 +16,12 @@ public class ArticleCountConfiguration : IEntityTypeConfiguration<ArticleCount>
             .HasOne(count => count.Article)
             .WithMany(article => article.ArticleCounts)
             .HasForeignKey(count => count.ArticleId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_ArticleCounts_Articles");
+            .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder
             .HasOne(count => count.User)
             .WithMany(user => user.ArticleCounts)
             .HasForeignKey(count => count.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_ArticleCounts_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

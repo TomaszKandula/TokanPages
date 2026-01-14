@@ -16,14 +16,12 @@ public class UserPermissionsConfiguration : IEntityTypeConfiguration<UserPermiss
             .HasOne(permission => permission.User)
             .WithMany(user => user.UserPermissions)
             .HasForeignKey(permission => permission.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_UserPermissions_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
             
         builder
             .HasOne(permission => permission.Permission)
             .WithMany(permission => permission.UserPermissions)
             .HasForeignKey(permission => permission.PermissionId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_UserPermissions_Permissions");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

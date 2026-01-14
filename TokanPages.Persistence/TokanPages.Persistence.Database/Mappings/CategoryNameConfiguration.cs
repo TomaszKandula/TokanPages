@@ -16,14 +16,12 @@ public class CategoryNameConfiguration : IEntityTypeConfiguration<CategoryName>
             .HasOne(categoryName => categoryName.Language)
             .WithMany(language => language.CategoryNames)
             .HasForeignKey(categoryName => categoryName.LanguageId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_CategoryName_Languages");
+            .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder
             .HasOne(categoryName => categoryName.ArticleCategory)
             .WithMany(articleCategory => articleCategory.CategoryNames)
             .HasForeignKey(categoryName => categoryName.ArticleCategoryId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_CategoryName_ArticleCategory");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

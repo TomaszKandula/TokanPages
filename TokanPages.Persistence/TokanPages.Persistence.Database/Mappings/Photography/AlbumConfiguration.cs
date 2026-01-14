@@ -16,14 +16,12 @@ public class AlbumConfiguration : IEntityTypeConfiguration<Album>
             .HasOne(album => album.User)
             .WithMany(user => user.Albums)
             .HasForeignKey(album => album.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Albums_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder
             .HasOne(album => album.UserPhoto)
             .WithMany(photo => photo.Albums)
             .HasForeignKey(album => album.UserPhotoId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Albums_UserPhotos");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

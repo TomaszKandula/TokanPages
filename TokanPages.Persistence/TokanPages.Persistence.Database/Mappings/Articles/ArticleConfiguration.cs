@@ -15,14 +15,12 @@ public class ArticleConfiguration : IEntityTypeConfiguration<Backend.Domain.Enti
             .HasOne(article => article.User)
             .WithMany(user => user.Articles)
             .HasForeignKey(article => article.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Articles_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder
             .HasOne(article => article.ArticleCategory)
             .WithMany(category => category.Articles)
             .HasForeignKey(article => article.CategoryId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_Articles_ArticleCategory");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

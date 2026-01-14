@@ -16,7 +16,6 @@ public class UserCompanieConfiguration : IEntityTypeConfiguration<UserCompany>
             .HasOne(company => company.User)
             .WithMany(user => user.UserCompanies)
             .HasForeignKey(company => company.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_UserCompanies_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

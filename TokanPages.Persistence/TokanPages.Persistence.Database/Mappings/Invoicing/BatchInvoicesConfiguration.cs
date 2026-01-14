@@ -16,28 +16,24 @@ public class BatchInvoicesConfiguration : IEntityTypeConfiguration<BatchInvoice>
             .HasOne(invoice => invoice.BatchInvoiceProcessing)
             .WithMany(processing => processing.BatchInvoices)
             .HasForeignKey(invoice => invoice.ProcessBatchKey)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_BatchInvoices_BatchInvoicesProcessing");
+            .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder
             .HasOne(invoice => invoice.User)
             .WithMany(user => user.BatchInvoices)
             .HasForeignKey(invoice => invoice.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_BatchInvoices_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder
             .HasOne(invoice => invoice.UserCompany)
             .WithMany(company => company.BatchInvoices)
             .HasForeignKey(invoice => invoice.UserCompanyId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_BatchInvoices_UserCompanies");
+            .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder
             .HasOne(invoice => invoice.UserBankAccount)
             .WithMany(data => data.BatchInvoices)
             .HasForeignKey(invoice => invoice.UserBankAccountId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_BatchInvoices_UserBankAccount");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

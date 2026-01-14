@@ -16,7 +16,6 @@ public class UserTokenConfiguration : IEntityTypeConfiguration<UserToken>
             .HasOne(token => token.User)
             .WithMany(user => user.UserTokens)
             .HasForeignKey(token => token.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_UserTokens_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

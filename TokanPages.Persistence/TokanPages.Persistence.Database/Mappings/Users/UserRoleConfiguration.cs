@@ -16,14 +16,12 @@ public class UserRoleConfiguration : IEntityTypeConfiguration<UserRole>
             .HasOne(role => role.User)
             .WithMany(user => user.UserRoles)
             .HasForeignKey(role => role.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_UserRoles_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder
             .HasOne(role => role.Role)
             .WithMany(role => role.UserRoles)
             .HasForeignKey(role => role.RoleId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_UserRoles_Roles");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

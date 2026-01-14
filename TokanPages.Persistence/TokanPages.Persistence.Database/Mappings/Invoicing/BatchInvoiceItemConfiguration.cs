@@ -16,7 +16,6 @@ public class BatchInvoiceItemConfiguration : IEntityTypeConfiguration<BatchInvoi
             .HasOne(item => item.BatchInvoice)
             .WithMany(invoice => invoice.BatchInvoiceItems)
             .HasForeignKey(item => item.BatchInvoiceId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_BatchInvoiceItems_BatchInvoices");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }
