@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Domain.Entities.Soccer;
 [ExcludeFromCodeCoverage]
 public class Feed : Entity<Guid>, ISoftDelete
 {
-    public Guid UserId { get; set; }
+    public Guid PlayerId { get; set; }
 
     public Guid ImageCollectionId { get; set; }
 
