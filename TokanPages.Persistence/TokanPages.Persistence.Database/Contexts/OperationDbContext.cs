@@ -17,6 +17,7 @@ public class OperationDbContext : DbContext
 
     /* Category: Article */
     public virtual DbSet<Article> Articles { get; set; }
+    public virtual DbSet<ArticleCategoryName> ArticleCategoryNames { get; set; }
     public virtual DbSet<ArticleCategory> ArticleCategories { get; set; }
     public virtual DbSet<ArticleLike> ArticleLikes { get; set; }
     public virtual DbSet<ArticleCount> ArticleCounts { get; set; }
@@ -45,7 +46,7 @@ public class OperationDbContext : DbContext
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<UserBankAccount> UserBankAccounts { get; set; }
     public virtual DbSet<UserCompany> UserCompanies { get; set; }
-    public virtual DbSet<Photo> UserPhotos { get; set; }
+    public virtual DbSet<Photo> Photos { get; set; }
     public virtual DbSet<UserPermission> UserPermissions { get; set; }
     public virtual DbSet<UserRole> UserRoles { get; set; }
     public virtual DbSet<UserToken> UserTokens { get; set; }
@@ -63,7 +64,6 @@ public class OperationDbContext : DbContext
     public virtual DbSet<Permission> Permissions { get; set; }
     public virtual DbSet<DefaultPermission> DefaultPermissions { get; set; }
     public virtual DbSet<Language> Languages { get; set; }
-    public virtual DbSet<CategoryName> CategoryNames { get; set; }
     public virtual DbSet<Newsletter> Newsletters { get; set; }
     public virtual DbSet<HttpRequest> HttpRequests { get; set; }
     public virtual DbSet<UploadedVideo> UploadedVideos { get; set; }

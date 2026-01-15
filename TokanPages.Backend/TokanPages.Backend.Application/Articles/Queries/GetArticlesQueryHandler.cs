@@ -51,7 +51,7 @@ public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetAr
             .ToListAsync(cancellationToken);
 
         var categories = await (from articleCategory in OperationDbContext.ArticleCategories
-            join categoryName in OperationDbContext.CategoryNames
+            join categoryName in OperationDbContext.ArticleCategoryNames
                 on articleCategory.Id equals categoryName.ArticleCategoryId into category 
                     from categoryName in category.DefaultIfEmpty() 
             join language in OperationDbContext.Languages

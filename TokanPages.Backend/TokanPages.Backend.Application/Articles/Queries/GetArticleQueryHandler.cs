@@ -67,7 +67,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var articleData = await (from article in OperationDbContext.Articles
             join articleCategory in OperationDbContext.ArticleCategories 
                 on article.CategoryId equals articleCategory.Id
-            join categoryName in OperationDbContext.CategoryNames
+            join categoryName in OperationDbContext.ArticleCategoryNames
                 on articleCategory.Id equals categoryName.ArticleCategoryId
             join language in OperationDbContext.Languages
                 on categoryName.LanguageId equals language.Id

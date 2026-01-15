@@ -174,7 +174,7 @@ public class RemoveUserCommandHandlerTest : TestBase
         await databaseContext.PhotoGears.AddAsync(photoGear);
         await databaseContext.PhotoCategories.AddAsync(photoCategory);
         await databaseContext.Users.AddAsync(user);
-        await databaseContext.UserPhotos.AddAsync(userPhoto);
+        await databaseContext.Photos.AddAsync(userPhoto);
         await databaseContext.UserInformation.AddAsync(userInfo);
         await databaseContext.UserTokens.AddAsync(userToken);
         await databaseContext.UserRefreshTokens.AddAsync(userRefreshToken);
@@ -211,7 +211,7 @@ public class RemoveUserCommandHandlerTest : TestBase
         var articles = await databaseContext.Articles.Where(x => x.UserId == userId).ToListAsync();
         var articleLikes = await databaseContext.ArticleLikes.Where(x => x.UserId == userId).ToListAsync();
         var articleCounts = await databaseContext.ArticleCounts.Where(x => x.UserId == userId).ToListAsync();
-        var userPhotos = await databaseContext.UserPhotos.Where(x => x.UserId == userId).ToListAsync();
+        var userPhotos = await databaseContext.Photos.Where(x => x.UserId == userId).ToListAsync();
         var userInfos = await databaseContext.UserInformation.Where(x => x.UserId == userId).ToListAsync();
         var userTokens = await databaseContext.UserTokens.Where(x => x.UserId == userId).ToListAsync();
         var userRefreshTokens = await databaseContext.UserRefreshTokens.Where(x => x.UserId == userId).ToListAsync();

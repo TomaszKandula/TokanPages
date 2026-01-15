@@ -138,8 +138,8 @@ public static class DatabaseContextUpdater
         PrintWarning(nameof(operationDbContext.PhotoCategories));
         operationDbContext.RemoveRange(operationDbContext.PhotoGears);
         PrintWarning(nameof(operationDbContext.PhotoGears));
-        operationDbContext.RemoveRange(operationDbContext.UserPhotos);
-        PrintWarning(nameof(operationDbContext.UserPhotos));
+        operationDbContext.RemoveRange(operationDbContext.Photos);
+        PrintWarning(nameof(operationDbContext.Photos));
 
         operationDbContext.RemoveRange(operationDbContext.UserPermissions);
         PrintWarning(nameof(operationDbContext.UserPermissions));

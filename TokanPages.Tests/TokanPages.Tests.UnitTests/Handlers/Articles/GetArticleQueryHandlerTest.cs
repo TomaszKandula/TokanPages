@@ -89,7 +89,7 @@ public class GetArticleQueryHandlerTest : TestBase
             },
         };
         
-        var categoryNames = new List<CategoryName>
+        var categoryNames = new List<ArticleCategoryName>
         {
             new()
             {
@@ -144,7 +144,7 @@ public class GetArticleQueryHandlerTest : TestBase
         await databaseContext.Articles.AddAsync(articles);
         await databaseContext.ArticleLikes.AddRangeAsync(likes);
         await databaseContext.ArticleCategories.AddRangeAsync(articleCategories);
-        await databaseContext.CategoryNames.AddRangeAsync(categoryNames);
+        await databaseContext.ArticleCategoryNames.AddRangeAsync(categoryNames);
         await databaseContext.SaveChangesAsync();
 
         var mockedUserProvider = new Mock<IUserService>();

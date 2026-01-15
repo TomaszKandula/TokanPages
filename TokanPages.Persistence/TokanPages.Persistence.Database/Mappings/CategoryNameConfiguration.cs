@@ -6,21 +6,21 @@ using TokanPages.Backend.Domain.Entities.Articles;
 namespace TokanPages.Persistence.Database.Mappings;
 
 [ExcludeFromCodeCoverage]
-public class CategoryNameConfiguration : IEntityTypeConfiguration<CategoryName>
+public class CategoryNameConfiguration : IEntityTypeConfiguration<ArticleCategoryName>
 {
-    public void Configure(EntityTypeBuilder<CategoryName> builder)
+    public void Configure(EntityTypeBuilder<ArticleCategoryName> builder)
     {
         builder.Property(categoryName => categoryName.Id).ValueGeneratedOnAdd();
 
         builder
             .HasOne(categoryName => categoryName.Language)
-            .WithMany(language => language.CategoryNames)
+            .WithMany(language => language.ArticleCategoryNames)
             .HasForeignKey(categoryName => categoryName.LanguageId)
             .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder
             .HasOne(categoryName => categoryName.ArticleCategory)
-            .WithMany(articleCategory => articleCategory.CategoryNames)
+            .WithMany(articleCategory => articleCategory.ArticleCategoryNames)
             .HasForeignKey(categoryName => categoryName.ArticleCategoryId)
             .OnDelete(DeleteBehavior.ClientSetNull);
     }

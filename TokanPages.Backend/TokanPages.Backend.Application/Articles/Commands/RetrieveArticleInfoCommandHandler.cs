@@ -22,7 +22,7 @@ public class RetrieveArticleInfoCommandHandler : RequestHandler<RetrieveArticleI
             from article in OperationDbContext.Articles
             join table in 
                 (from articleCategory in OperationDbContext.ArticleCategories
-                    join categoryName in OperationDbContext.CategoryNames
+                    join categoryName in OperationDbContext.ArticleCategoryNames
                         on articleCategory.Id equals categoryName.ArticleCategoryId
                     join language in OperationDbContext.Languages
                         on categoryName.LanguageId equals language.Id
