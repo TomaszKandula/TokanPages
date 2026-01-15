@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Domain.Entities.Soccer;
 using Attribute = TokanPages.Backend.Domain.Entities.Soccer.Attribute;
@@ -38,16 +37,4 @@ public class SoccerDbContext : DbContext
     public virtual DbSet<TeamInfo> TeamInfo { get; set; }
 
     public virtual DbSet<View> Views { get; set; }
-
-    protected override void OnModelCreating(ModelBuilder modelBuilder)
-    {
-        base.OnModelCreating(modelBuilder);
-        ApplyConfiguration(modelBuilder);
-    }
-
-    private static void ApplyConfiguration(ModelBuilder modelBuilder)
-    {
-        modelBuilder.HasDefaultSchema("soccer");
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-    }
 }
