@@ -20,7 +20,4 @@ public class TeamInfo : Entity<Guid>
 
     [MaxLength(255)]
     public string ImageBlobName { get; set; }
-
-    /* Navigation properties */
-    public Team Team { get; set; }
 }

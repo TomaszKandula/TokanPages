@@ -11,7 +11,4 @@ public class View : Entity<Guid>
 
     [Required]
     public int Count { get; set; }
-
-    /* Navigation properties */
-    public Player Player { get; set; }
 }

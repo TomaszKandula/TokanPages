@@ -15,7 +15,4 @@ public class Position : Entity<Guid>
 
     [Required]
     public int TraditionalNumber { get; set; }
-
-    /* Navigation properties */
-    public ICollection<Player> Players { get; set; } = new HashSet<Player>();
 }
