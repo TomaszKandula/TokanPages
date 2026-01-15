@@ -81,7 +81,7 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
             },
         };
 
-        var categoryNames = new List<Backend.Domain.Entities.CategoryName>
+        var categoryNames = new List<CategoryName>
         {
             new()
             {
