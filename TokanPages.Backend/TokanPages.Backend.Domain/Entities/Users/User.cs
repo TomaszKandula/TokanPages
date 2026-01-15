@@ -41,7 +41,7 @@ public class User : Entity<Guid>, IAuditable, ISoftDelete
     public ICollection<ArticleLike> ArticleLikes { get; set; } = new HashSet<ArticleLike>();
     public ICollection<ArticleCount> ArticleCounts { get; set; } = new HashSet<ArticleCount>();
     public ICollection<Album> Albums { get; set; } = new HashSet<Album>();
-    public ICollection<UserPhoto> UserPhotos { get; set; } = new HashSet<UserPhoto>();
+    public ICollection<Photo> Photos { get; set; } = new HashSet<Photo>();
     public ICollection<UserPermission> UserPermissions { get; set; } = new HashSet<UserPermission>();
     public ICollection<UserRole> UserRoles { get; set; } = new HashSet<UserRole>();
     public ICollection<UserToken> UserTokens { get; set; } = new HashSet<UserToken>();

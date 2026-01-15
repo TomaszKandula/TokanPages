@@ -60,7 +60,7 @@ public class RemoveUserCommandHandlerTest : TestBase
             CategoryName = DataUtilityService.GetRandomString()
         };
         
-        var userPhoto = new UserPhoto
+        var userPhoto = new Photo
         {
             Id = Guid.NewGuid(),
             UserId = userId,

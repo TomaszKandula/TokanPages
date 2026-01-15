@@ -19,7 +19,7 @@ public class AlbumConfiguration : IEntityTypeConfiguration<Album>
             .OnDelete(DeleteBehavior.ClientSetNull);
 
         builder
-            .HasOne(album => album.UserPhoto)
+            .HasOne(album => album.Photo)
             .WithMany(photo => photo.Albums)
             .HasForeignKey(album => album.UserPhotoId)
             .OnDelete(DeleteBehavior.ClientSetNull);

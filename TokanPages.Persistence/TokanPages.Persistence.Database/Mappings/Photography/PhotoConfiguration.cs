@@ -6,15 +6,15 @@ using TokanPages.Backend.Domain.Entities.Photography;
 namespace TokanPages.Persistence.Database.Mappings.Photography;
 
 [ExcludeFromCodeCoverage]
-public class PhotoConfiguration : IEntityTypeConfiguration<UserPhoto>
+public class PhotoConfiguration : IEntityTypeConfiguration<Photo>
 {
-    public void Configure(EntityTypeBuilder<UserPhoto> builder)
+    public void Configure(EntityTypeBuilder<Photo> builder)
     {
         builder.Property(photo => photo.Id).ValueGeneratedOnAdd();
 
         builder
             .HasOne(photo => photo.User)
-            .WithMany(user => user.UserPhotos)
+            .WithMany(user => user.Photos)
             .HasForeignKey(photo => photo.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull);
             

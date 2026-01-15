@@ -45,7 +45,7 @@ public class OperationDbContext : DbContext
     public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<UserBankAccount> UserBankAccounts { get; set; }
     public virtual DbSet<UserCompany> UserCompanies { get; set; }
-    public virtual DbSet<UserPhoto> UserPhotos { get; set; }
+    public virtual DbSet<Photo> UserPhotos { get; set; }
     public virtual DbSet<UserPermission> UserPermissions { get; set; }
     public virtual DbSet<UserRole> UserRoles { get; set; }
     public virtual DbSet<UserToken> UserTokens { get; set; }

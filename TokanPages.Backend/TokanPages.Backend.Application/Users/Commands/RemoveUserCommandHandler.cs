@@ -4,7 +4,6 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Domain.Entities.Photography;
 using TokanPages.Backend.Domain.Entities.Users;
-using TokanPages.Persistence.Database;
 using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -105,7 +104,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
         if (userPhotos.Count > 0)
         {
             OperationDbContext.RemoveRange(userPhotos);
-            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(UserPhoto)}");
+            LoggerService.LogInformation($"User (ID: {userId}) removed from {nameof(Photo)}");
         }
 
         var userInfo = await OperationDbContext.UserInformation
