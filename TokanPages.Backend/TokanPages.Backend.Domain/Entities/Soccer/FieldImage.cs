@@ -14,4 +14,7 @@ public class FieldImage : Entity<Guid>, ISoftDelete
     public string ImageBlobName { get; set; }
 
     public bool IsDeleted { get; set; }
+
+    /* Navigation properties */
+    public Field Field { get; set; }
 }

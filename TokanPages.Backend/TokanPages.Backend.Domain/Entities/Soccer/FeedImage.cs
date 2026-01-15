@@ -14,4 +14,7 @@ public class FeedImage : Entity<Guid>, ISoftDelete
     public string ImageBlobName { get; set; }
 
     public bool IsDeleted { get; set; }
+
+    /* Navigation properties */
+    public Feed Feed { get; set; }
 }

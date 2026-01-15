@@ -24,4 +24,9 @@ public class Field : Entity<Guid>, ISoftDelete
     public DateTime Published { get; set; }
 
     public bool IsDeleted { get; set; }
+
+    /* Navigation properties */
+    public FieldImage FieldImage { get; set; }
+
+    public ICollection<FieldImage> FieldImages { get; set; } = new HashSet<FieldImage>();
 }

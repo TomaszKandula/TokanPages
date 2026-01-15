@@ -20,4 +20,11 @@ public class Feed : Entity<Guid>, ISoftDelete
     public bool IsVisible { get; set; }
 
     public bool IsDeleted { get; set; }
+
+    /* Navigation properties */
+    public Player Player { get; set; }
+
+    public FeedImage FeedImage { get; set; }
+
+    public ICollection<FeedImage> FeedImages { get; set; } = new HashSet<FeedImage>();
 }

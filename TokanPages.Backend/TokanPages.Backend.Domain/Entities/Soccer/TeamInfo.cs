@@ -19,4 +19,7 @@ public class TeamInfo : Entity<Guid>
     public string Avatar { get; set; }
 
     public Guid ImageId { get; set; }
+
+    /* Navigation properties */
+    public Team Team { get; set; }
 }

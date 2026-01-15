@@ -18,4 +18,11 @@ public class Match : Entity<Guid>
     public int GoalsGuest { get; set; }
     
     public bool IsInternalGame { get; set; }
+
+    /* Navigation properties */
+    public Team Team { get; set; }
+
+    public Field Field { get; set; }
+
+    public ICollection<Lineup> Lineups { get; set; } = new HashSet<Lineup>();
 }
