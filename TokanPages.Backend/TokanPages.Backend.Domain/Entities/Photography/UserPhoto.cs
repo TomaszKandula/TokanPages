@@ -1,9 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
-using TokanPages.Backend.Domain.Entities.Photography;
+using TokanPages.Backend.Domain.Entities.Users;
 
-namespace TokanPages.Backend.Domain.Entities.Users;
+namespace TokanPages.Backend.Domain.Entities.Photography;
 
 [ExcludeFromCodeCoverage]
 public class UserPhoto : Entity<Guid>, IAuditable
