@@ -19,8 +19,6 @@ public class Field : Entity<Guid>, ISoftDelete
 
     public double GpsLongitude { get; set; }
 
-    public Guid ImageCollectionId { get; set; }
-
     public DateTime Published { get; set; }
 
     public bool IsDeleted { get; set; }

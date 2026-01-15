@@ -9,8 +9,6 @@ public class Feed : Entity<Guid>, ISoftDelete
 {
     public Guid PlayerId { get; set; }
 
-    public Guid ImageCollectionId { get; set; }
-
     [Required]
     [MaxLength(500)]
     public string Text { get; set; }
