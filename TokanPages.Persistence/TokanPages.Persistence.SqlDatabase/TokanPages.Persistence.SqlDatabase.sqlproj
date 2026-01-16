@@ -7,4 +7,24 @@
         <ModelCollation>1033, CI</ModelCollation>
         <RootNamespace>TokanPages.Persistance.Database</RootNamespace>
     </PropertyGroup>
+    <ItemGroup>
+      <None Include="soccer\Tables\Attributes.sql" />
+      <None Include="soccer\Tables\FeedImages.sql" />
+      <None Include="soccer\Tables\Feeds.sql" />
+      <None Include="soccer\Tables\FieldImages.sql" />
+      <None Include="soccer\Tables\Fields.sql" />
+      <None Include="soccer\Tables\Lineups.sql" />
+      <None Include="soccer\Tables\Matches.sql" />
+      <None Include="soccer\Tables\Players.sql" />
+      <None Include="soccer\Tables\PlayerAttributes.sql" />
+      <None Include="soccer\Tables\Positions.sql" />
+      <None Include="soccer\Tables\Qualities.sql" />
+      <None Include="soccer\Tables\TeamInfo.sql" />
+      <None Include="soccer\Tables\Teams.sql" />
+      <None Include="soccer\Tables\Views.sql" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="dbo\" />
+      <Folder Include="Scripts\" />
+    </ItemGroup>
 </Project>
