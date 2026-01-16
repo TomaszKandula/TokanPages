@@ -169,6 +169,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Logger.Dto", "To
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TokanPages.Services.CookieAccessorService", "TokanPages.Services\TokanPages.Services.CookieAccessorService\TokanPages.Services.CookieAccessorService.csproj", "{A8B4670D-B731-4ED3-87A9-168EF14A4A7F}"
 EndProject
+Project("{42EA0DBD-9CF1-443E-919E-BE9C484E4577}") = "TokanPages.Persistence.SqlDatabase", "TokanPages.Persistence\TokanPages.Persistence.SqlDatabase\TokanPages.Persistence.SqlDatabase.sqlproj", "{99704827-2878-421F-9CDD-36E94E9029FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -371,6 +373,10 @@ Global
 		{A8B4670D-B731-4ED3-87A9-168EF14A4A7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8B4670D-B731-4ED3-87A9-168EF14A4A7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8B4670D-B731-4ED3-87A9-168EF14A4A7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99704827-2878-421F-9CDD-36E94E9029FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99704827-2878-421F-9CDD-36E94E9029FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99704827-2878-421F-9CDD-36E94E9029FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99704827-2878-421F-9CDD-36E94E9029FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -425,6 +431,7 @@ Global
 		{54963F76-E292-47F0-B73F-8F85A566E6FF} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
 		{13526651-6841-4A21-80F1-1F758CE5776E} = {32D5033E-6D95-4045-9B90-E8EE7A0644CC}
 		{A8B4670D-B731-4ED3-87A9-168EF14A4A7F} = {7B457C82-AEA6-49F3-8F9F-A7F0798166FF}
+		{99704827-2878-421F-9CDD-36E94E9029FC} = {49EAB969-487E-44FD-85B1-041D4836A8DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4A63A58-F64E-4EB2-92DD-70486490D8CE}
