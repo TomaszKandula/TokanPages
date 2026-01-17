@@ -8,6 +8,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService.Abstractions;
@@ -31,7 +32,7 @@ public sealed class UserService : IUserService
 
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    private readonly DatabaseContext _databaseContext;
+    private readonly OperationDbContext _operationDbContext;
 
     private readonly IWebTokenUtility _webTokenUtility;
 
@@ -45,11 +46,11 @@ public sealed class UserService : IUserService
 
     private GetUserOutput? _user;
 
-    public UserService(IHttpContextAccessor httpContextAccessor, DatabaseContext databaseContext, 
+    public UserService(IHttpContextAccessor httpContextAccessor, OperationDbContext operationDbContext, 
         IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IConfiguration configuration)
     {
         _httpContextAccessor = httpContextAccessor;
-        _databaseContext = databaseContext;
+        _operationDbContext = operationDbContext;
         _webTokenUtility = webTokenUtility;
         _dateTimeService = dateTimeService;
         _configuration = configuration;
@@ -108,8 +109,8 @@ public sealed class UserService : IUserService
             RequestedHandlerName = handlerName
         };
 
-        await _databaseContext.HttpRequests.AddAsync(httpRequest);
-        await _databaseContext.SaveChangesAsync();
+        await _operationDbContext.HttpRequests.AddAsync(httpRequest);
+        await _operationDbContext.SaveChangesAsync();
     }
 
     public Guid GetLoggedUserId()
@@ -127,7 +128,7 @@ public sealed class UserService : IUserService
     public async Task<User> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default)
     {
         var id = userId ?? UserIdFromClaim();
-        var entity = isTracking ? _databaseContext.Users : _databaseContext.Users.AsNoTracking();
+        var entity = isTracking ? _operationDbContext.Users : _operationDbContext.Users.AsNoTracking();
         var user = await entity
             .Where(users => !users.HasBusinessLock)
             .Where(users => users.IsActivated)
@@ -163,7 +164,7 @@ public sealed class UserService : IUserService
     {
         userId ??= UserIdFromClaim();
 
-        var givenRoles = await _databaseContext.UserRoles
+        var givenRoles = await _operationDbContext.UserRoles
             .AsNoTracking()
             .Include(roles => roles.Role)
             .Where(roles => roles.UserId == userId && roles.Role.Name == userRoleName)
@@ -176,7 +177,7 @@ public sealed class UserService : IUserService
     {
         userId ??= UserIdFromClaim();
             
-        var givenRoles = await _databaseContext.UserRoles
+        var givenRoles = await _operationDbContext.UserRoles
             .AsNoTracking()
             .Include(userRoles => userRoles.Role)
             .Where(userRoles => userRoles.UserId == userId && userRoles.Role.Id == roleId)
@@ -189,7 +190,7 @@ public sealed class UserService : IUserService
     {
         userId ??= UserIdFromClaim();
 
-        var givenPermissions = await _databaseContext.UserPermissions
+        var givenPermissions = await _operationDbContext.UserPermissions
             .AsNoTracking()
             .Include(permissions => permissions.Permission)
             .Where(permissions => permissions.UserId == userId && permissions.Permission.Name == userPermissionName)
@@ -202,7 +203,7 @@ public sealed class UserService : IUserService
     {
         userId ??= UserIdFromClaim();
 
-        var givenPermissions = await _databaseContext.UserPermissions
+        var givenPermissions = await _operationDbContext.UserPermissions
             .AsNoTracking()
             .Include(userPermissions => userPermissions.Permission)
             .Where(userPermissions => userPermissions.UserId == userId && userPermissions.Permission.Id == permissionId)
@@ -213,14 +214,14 @@ public sealed class UserService : IUserService
 
     public async Task<ClaimsIdentity> MakeClaimsIdentity(User user, CancellationToken cancellationToken = default)
     {
-        var userRoles = await _databaseContext.UserRoles
+        var userRoles = await _operationDbContext.UserRoles
             .AsNoTracking()
             .Include(roles => roles.User)
             .Include(roles => roles.Role)
             .Where(roles => roles.UserId == user.Id)
             .ToListAsync(cancellationToken);
 
-        var userInfo = await _databaseContext.UserInformation
+        var userInfo = await _operationDbContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == user.Id)
             .SingleOrDefaultAsync(cancellationToken);
@@ -255,7 +256,7 @@ public sealed class UserService : IUserService
     public async Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default)
     {
         var tokenMaturity = _configuration.GetValue<int>("Ids_RefreshToken_Maturity");
-        var refreshTokens = await _databaseContext.UserRefreshTokens
+        var refreshTokens = await _operationDbContext.UserRefreshTokens
             .Where(tokens => tokens.UserId == userId 
                              && tokens.Expires <= _dateTimeService.Now 
                              && tokens.Created.AddMinutes(tokenMaturity) <= _dateTimeService.Now
@@ -263,10 +264,10 @@ public sealed class UserService : IUserService
             .ToListAsync(cancellationToken);
 
         if (refreshTokens.Count != 0)
-            _databaseContext.UserRefreshTokens.RemoveRange(refreshTokens);
+            _operationDbContext.UserRefreshTokens.RemoveRange(refreshTokens);
             
         if (saveImmediately && refreshTokens.Count != 0)
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await _operationDbContext.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<UserRefreshToken> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default)
@@ -345,10 +346,10 @@ public sealed class UserService : IUserService
         input.UserRefreshTokens.ReasonRevoked = input.Reason;
         input.UserRefreshTokens.ReplacedByToken = input.ReplacedByToken;
 
-        _databaseContext.UserRefreshTokens.Update(input.UserRefreshTokens);
+        _operationDbContext.UserRefreshTokens.Update(input.UserRefreshTokens);
 
         if (input.SaveImmediately)
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await _operationDbContext.SaveChangesAsync(cancellationToken);
     }
 
     public bool IsRefreshTokenExpired(UserRefreshToken userRefreshToken)
@@ -390,7 +391,7 @@ public sealed class UserService : IUserService
             return;
             
         var getUserId = userId ?? UserIdFromClaim();
-        var userRoles = await _databaseContext.UserRoles
+        var userRoles = await _operationDbContext.UserRoles
             .AsNoTracking()
             .Include(roles => roles.Role)
             .Where(roles => roles.UserId == getUserId)
@@ -416,7 +417,7 @@ public sealed class UserService : IUserService
             return;
             
         var getUserId = userId ?? UserIdFromClaim();
-        var userPermissions = await _databaseContext.UserPermissions
+        var userPermissions = await _operationDbContext.UserPermissions
             .AsNoTracking()
             .Include(permissions => permissions.Permission)
             .Where(permissions => permissions.UserId == getUserId)
@@ -447,7 +448,7 @@ public sealed class UserService : IUserService
             return;
         }
 
-        var user = await _databaseContext.Users
+        var user = await _operationDbContext.Users
             .AsNoTracking()
             .SingleOrDefaultAsync(users => users.Id == userId, cancellationToken);
 
@@ -457,7 +458,7 @@ public sealed class UserService : IUserService
             return;
         }
 
-        var userInfo = await _databaseContext.UserInformation
+        var userInfo = await _operationDbContext.UserInformation
             .AsNoTracking()
             .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
 

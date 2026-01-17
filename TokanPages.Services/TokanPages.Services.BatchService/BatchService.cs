@@ -9,6 +9,7 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.BatchService.Models;
 using ProcessingStatus = TokanPages.Backend.Domain.Enums.ProcessingStatus;
 
@@ -16,15 +17,15 @@ namespace TokanPages.Services.BatchService;
 
 public class BatchService : IBatchService
 {
-    private readonly DatabaseContext _databaseContext;
+    private readonly OperationDbContext _operationDbContext;
 
     private readonly IDateTimeService _dateTimeService;
 
     private readonly ILoggerService _loggerService;
 
-    public BatchService(DatabaseContext databaseContext, IDateTimeService dateTimeService, ILoggerService loggerService)
+    public BatchService(OperationDbContext operationDbContext, IDateTimeService dateTimeService, ILoggerService loggerService)
     {
-        _databaseContext = databaseContext;
+        _operationDbContext = operationDbContext;
         _dateTimeService = dateTimeService;
         _loggerService = loggerService;
     }
@@ -98,10 +99,10 @@ public class BatchService : IBatchService
             }
         }
 
-        await _databaseContext.AddAsync(processing, cancellationToken);
-        await _databaseContext.AddRangeAsync(invoices, cancellationToken);
-        await _databaseContext.AddRangeAsync(invoiceItems, cancellationToken);
-        await _databaseContext.SaveChangesAsync(cancellationToken);
+        await _operationDbContext.AddAsync(processing, cancellationToken);
+        await _operationDbContext.AddRangeAsync(invoices, cancellationToken);
+        await _operationDbContext.AddRangeAsync(invoiceItems, cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
 
         var messageText1 = $"Invoice batch processing has been ordered (ProcessBatchKey: {processing.Id}).";
         var messageText2 = $"Total invoices: {invoices.Count}.";
@@ -116,7 +117,7 @@ public class BatchService : IBatchService
     /// <param name="cancellationToken"></param>
     public async Task ProcessOutstandingInvoices(CancellationToken cancellationToken = default)
     {
-        var processingList = await _databaseContext.BatchInvoicesProcessing
+        var processingList = await _operationDbContext.BatchInvoicesProcessing
             .AsNoTracking()
             .Where(processing => processing.Status == ProcessingStatus.New)
             .Select(processing => processing.Id)
@@ -135,7 +136,7 @@ public class BatchService : IBatchService
         foreach (var invoice in invoices)
         {
             var timer = new Stopwatch();
-            var processing = await _databaseContext.BatchInvoicesProcessing
+            var processing = await _operationDbContext.BatchInvoicesProcessing
                 .Where(processing => processing.Id == invoice.ProcessBatchKey)
                 .SingleOrDefaultAsync(cancellationToken);
 
@@ -246,8 +247,8 @@ public class BatchService : IBatchService
 
         if (issuedInvoices.Count != 0)
         {
-            await _databaseContext.IssuedInvoices.AddRangeAsync(issuedInvoices, cancellationToken);
-            await _databaseContext.SaveChangesAsync(cancellationToken);
+            await _operationDbContext.IssuedInvoices.AddRangeAsync(issuedInvoices, cancellationToken);
+            await _operationDbContext.SaveChangesAsync(cancellationToken);
         }
 
         _loggerService.LogInformation($"Issued invoices: {issuedInvoices.Count}.");
@@ -262,7 +263,7 @@ public class BatchService : IBatchService
     /// <exception cref="BusinessException">Throws an error code INVALID_PROCESSING_BATCH_KEY.</exception>
     public async Task<Models.ProcessingStatus> GetBatchInvoiceProcessingStatus(Guid processBatchKey, CancellationToken cancellationToken = default)
     {
-        var processing = await _databaseContext.BatchInvoicesProcessing
+        var processing = await _operationDbContext.BatchInvoicesProcessing
             .AsNoTracking()
             .Where(processing => processing.Id == processBatchKey)
             .SingleOrDefaultAsync(cancellationToken);
@@ -286,7 +287,7 @@ public class BatchService : IBatchService
     /// <exception cref="BusinessException"></exception>
     public async Task<InvoiceData> GetIssuedInvoice(string invoiceNumber, CancellationToken cancellationToken = default)
     {
-        var invoice = await _databaseContext.IssuedInvoices
+        var invoice = await _operationDbContext.IssuedInvoices
             .AsNoTracking()
             .Where(invoices => invoices.InvoiceNumber == invoiceNumber)
             .SingleOrDefaultAsync(cancellationToken);
@@ -321,14 +322,14 @@ public class BatchService : IBatchService
     {
         var invoicesIds = new HashSet<Guid>(processingList);
 
-        var invoices = await _databaseContext.BatchInvoices
+        var invoices = await _operationDbContext.BatchInvoices
             .AsNoTracking()
             .Where(batchInvoices => invoicesIds.Contains(batchInvoices.ProcessBatchKey))
             .ToListAsync(cancellationToken);
 
         var invoiceItemsIds = new HashSet<Guid>(invoices.Select(batchInvoices => batchInvoices.Id));
 
-        var invoiceItemsList = await _databaseContext.BatchInvoiceItems
+        var invoiceItemsList = await _operationDbContext.BatchInvoiceItems
             .AsNoTracking()
             .Where(batchInvoiceItems => invoiceItemsIds.Contains(batchInvoiceItems.BatchInvoiceId))
             .ToListAsync(cancellationToken);
@@ -337,7 +338,7 @@ public class BatchService : IBatchService
             .Select(batchInvoices => batchInvoices.InvoiceTemplateName)
             .ToList();
 
-        var invoiceTemplates = await _databaseContext.InvoiceTemplates
+        var invoiceTemplates = await _operationDbContext.InvoiceTemplates
             .AsNoTracking()
             .Where(templates => templateNames.Contains(templates.Name))
             .Where(templates => !templates.IsDeleted)
@@ -351,12 +352,12 @@ public class BatchService : IBatchService
     {
         var userIds = new HashSet<Guid>(invoices.Select(batchInvoices => batchInvoices.UserId));
 
-        var userCompanies = await _databaseContext.UserCompanies
+        var userCompanies = await _operationDbContext.UserCompanies
             .AsNoTracking()
             .Where(details => userIds.Contains(details.UserId))
             .ToListAsync(cancellationToken);
 
-        var userBankAccounts = await _databaseContext.UserBankAccounts
+        var userBankAccounts = await _operationDbContext.UserBankAccounts
             .AsNoTracking()
             .Where(bankData => userIds.Contains(bankData.UserId))
             .ToListAsync(cancellationToken);
@@ -381,7 +382,7 @@ public class BatchService : IBatchService
         issuedInvoiceData.BatchInvoiceProcessing.Status = ProcessingStatus.Finished;
         issuedInvoiceData.BatchInvoiceProcessing.BatchProcessingTime = issuedInvoiceData.ProcessingTimer.Elapsed;
                     
-        await _databaseContext.SaveChangesAsync(cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
     }
 
     private async Task LogProcessingStarted(BatchInvoice currentInvoice, BatchInvoiceProcessing processing, Stopwatch timer, CancellationToken cancellationToken)
@@ -389,7 +390,7 @@ public class BatchService : IBatchService
         timer.Start();
         _loggerService.LogInformation($"Start processing invoice number: {currentInvoice.InvoiceNumber}.");
         processing.Status = ProcessingStatus.Started;
-        await _databaseContext.SaveChangesAsync(cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
     }
 
     private async Task LogProcessingFailed(ProcessingError error, CancellationToken cancellationToken)
@@ -398,6 +399,6 @@ public class BatchService : IBatchService
         _loggerService.LogError($"Invoice processing has failed. Invoice number: {error.InvoiceNumber}.");
         error.ProcessingObject.Status = ProcessingStatus.Failed;
         error.ProcessingObject.BatchProcessingTime = error.Timer.Elapsed;
-        await _databaseContext.SaveChangesAsync(cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
     }
 }

@@ -4,6 +4,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Sender.Newsletters.Commands;
 
@@ -11,12 +12,12 @@ public class AddNewsletterCommandHandler : RequestHandler<AddNewsletterCommand, 
 {
     private readonly IDateTimeService _dateTimeService;
 
-    public AddNewsletterCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService) : base(databaseContext, loggerService) => _dateTimeService = dateTimeService;
+    public AddNewsletterCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IDateTimeService dateTimeService) : base(operationDbContext, loggerService) => _dateTimeService = dateTimeService;
 
     public override async Task<Guid> Handle(AddNewsletterCommand request, CancellationToken cancellationToken) 
     {
-        var emailCollection = await DatabaseContext.Newsletters
+        var emailCollection = await OperationDbContext.Newsletters
             .AsNoTracking()
             .Where(subscribers => subscribers.Email == request.Email)
             .ToListAsync(cancellationToken);
@@ -35,8 +36,8 @@ public class AddNewsletterCommandHandler : RequestHandler<AddNewsletterCommand, 
             ModifiedBy = null
         };
 
-        await DatabaseContext.Newsletters.AddAsync(newSubscriber, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.Newsletters.AddAsync(newSubscriber, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         return newSubscriber.Id;
     }
 }

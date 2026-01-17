@@ -1,5 +1,6 @@
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -11,8 +12,8 @@ public class GetAuthorizationQueryHandler : RequestHandler<GetAuthorizationQuery
     
     private readonly IPayUService _payUService;
     
-    public GetAuthorizationQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IPayUService payUService, IUserService userService) : base(databaseContext, loggerService)
+    public GetAuthorizationQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IPayUService payUService, IUserService userService) : base(operationDbContext, loggerService)
     {
         _payUService = payUService;
         _userService = userService;

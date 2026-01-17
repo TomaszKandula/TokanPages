@@ -9,6 +9,7 @@ using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -22,8 +23,8 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
         
-    public GetArticleQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService, 
-        IJsonSerializer jsonSerializer, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
+    public GetArticleQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService, 
+        IJsonSerializer jsonSerializer, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _jsonSerializer = jsonSerializer;
@@ -48,7 +49,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var textAsString = await GetArticleTextContent(requestId, cancellationToken);
         var textAsObject = _jsonSerializer.Deserialize<List<ArticleSectionDto>>(textAsString, settings);
 
-        var userLikes = await DatabaseContext.ArticleLikes
+        var userLikes = await OperationDbContext.ArticleLikes
             .AsNoTracking()
             .Where(like => like.ArticleId == requestId)
             .WhereIfElse(isAnonymousUser, 
@@ -57,18 +58,18 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             .Select(like => like.LikeCount)
             .SumAsync(cancellationToken);
 
-        var totalLikes = await DatabaseContext.ArticleLikes
+        var totalLikes = await OperationDbContext.ArticleLikes
             .AsNoTracking()
             .Where(like => like.ArticleId == requestId)
             .Select(like => like.LikeCount)
             .SumAsync(cancellationToken);
 
-        var articleData = await (from article in DatabaseContext.Articles
-            join articleCategory in DatabaseContext.ArticleCategories 
+        var articleData = await (from article in OperationDbContext.Articles
+            join articleCategory in OperationDbContext.ArticleCategories 
                 on article.CategoryId equals articleCategory.Id
-            join categoryName in DatabaseContext.CategoryNames
+            join categoryName in OperationDbContext.ArticleCategoryNames
                 on articleCategory.Id equals categoryName.ArticleCategoryId
-            join language in DatabaseContext.Languages
+            join language in OperationDbContext.Languages
                 on categoryName.LanguageId equals language.Id
             where language.LangId == userLanguage
             where article.Id == requestId
@@ -94,8 +95,8 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         if (articleData is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-        var userDto = await (from user in DatabaseContext.Users
-            join userInfo in DatabaseContext.UserInformation 
+        var userDto = await (from user in OperationDbContext.Users
+            join userInfo in OperationDbContext.UserInformation 
             on user.Id equals userInfo.UserId
             where user.Id == articleData.UserId
             select new GetUserDto
@@ -111,8 +112,8 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             .AsNoTracking()
             .SingleOrDefaultAsync(cancellationToken);
 
-        var tags = await (from articleTags in DatabaseContext.ArticleTags
-            join articles in DatabaseContext.Articles
+        var tags = await (from articleTags in OperationDbContext.ArticleTags
+            join articles in OperationDbContext.Articles
             on articleTags.ArticleId equals articles.Id
             where articles.Id == requestId
             select articleTags.TagName)
@@ -141,7 +142,7 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
     private async Task<Guid> GetArticleIdByTitle(string title, CancellationToken cancellationToken = default)
     {
         var comparableTitle = title.Replace("-", " ").ToLower();
-        return await DatabaseContext.Articles
+        return await OperationDbContext.Articles
             .AsNoTracking()
             .Where(article => article.Title.ToLower() == comparableTitle)
             .Select(article => article.Id)

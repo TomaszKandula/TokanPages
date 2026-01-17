@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Chat.Commands;
 
@@ -25,9 +26,9 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
 
     private static JsonSerializerSettings Settings => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
-    public PostChatMessageCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public PostChatMessageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IDateTimeService dateTimeService, IJsonSerializer jsonSerializer, IUserService userService, 
-        INotificationService notificationService) : base(databaseContext, loggerService)
+        INotificationService notificationService) : base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _jsonSerializer = jsonSerializer;
@@ -38,7 +39,7 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
     public override async Task<PostChatMessageCommandResult> Handle(PostChatMessageCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var userMessage = await DatabaseContext.UserMessages
+        var userMessage = await OperationDbContext.UserMessages
             .Where(message => message.ChatKey == request.ChatKey)
             .Where(message => !message.IsArchived)
             .SingleOrDefaultAsync(cancellationToken);
@@ -84,7 +85,7 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
                 ChatData = _jsonSerializer.Serialize(items, Formatting.None, Settings)
             };
 
-            await DatabaseContext.UserMessages.AddAsync(newChat, cancellationToken);
+            await OperationDbContext.UserMessages.AddAsync(newChat, cancellationToken);
         }
 
         var initials = await GetUserInitials(userId, cancellationToken);
@@ -100,7 +101,7 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
             ChatKey = request.ChatKey
         };
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         await Notify(chatData, cancellationToken);
 
         return new PostChatMessageCommandResult
@@ -120,14 +121,14 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
             CanSkipPreservation = true
         };
 
-        var handler = new NotifyRequestCommandHandler(DatabaseContext, LoggerService, _notificationService, _jsonSerializer);
+        var handler = new NotifyRequestCommandHandler(OperationDbContext, LoggerService, _notificationService, _jsonSerializer);
         await handler.Handle(notify, cancellationToken);
     }
 
     private async Task<string> GetUserInitials(Guid userId, CancellationToken cancellationToken)
     {
         var initials = "A";
-        var userInfo = await DatabaseContext.UserInformation
+        var userInfo = await OperationDbContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == userId)
             .Select(info => new
@@ -148,7 +149,7 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
 
     private async Task<string> GetUserAvatarName(Guid userId, CancellationToken cancellationToken)
     {
-        var blobName = await DatabaseContext.UserInformation
+        var blobName = await OperationDbContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == userId)
             .Select(info => info.UserImageName)

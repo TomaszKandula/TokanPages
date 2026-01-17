@@ -13,6 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Scripts\*.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="..\..\TokanPages.Configuration\appsettings.Testing.json">
       <Link>appsettings.Testing.json</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

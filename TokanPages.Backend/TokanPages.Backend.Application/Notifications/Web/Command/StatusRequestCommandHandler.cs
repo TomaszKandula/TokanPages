@@ -3,6 +3,7 @@ using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Notifications.Web.Command;
 
@@ -10,12 +11,12 @@ public class StatusRequestCommandHandler : RequestHandler<StatusRequestCommand, 
 {
     private readonly IJsonSerializer _jsonSerializer;
 
-    public StatusRequestCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IJsonSerializer jsonSerializer) : base(databaseContext, loggerService) => _jsonSerializer = jsonSerializer;
+    public StatusRequestCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IJsonSerializer jsonSerializer) : base(operationDbContext, loggerService) => _jsonSerializer = jsonSerializer;
 
     public override async Task<StatusRequestCommandResult> Handle(StatusRequestCommand request, CancellationToken cancellationToken)
     {
-        var webNotification = await DatabaseContext.WebNotifications
+        var webNotification = await OperationDbContext.WebNotifications
             .Where(notifications => notifications.Id == request.StatusId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -30,8 +31,8 @@ public class StatusRequestCommandHandler : RequestHandler<StatusRequestCommand, 
             Payload = data.Payload
         };
 
-        DatabaseContext.Remove(webNotification);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        OperationDbContext.Remove(webNotification);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         return result;
     }
 }

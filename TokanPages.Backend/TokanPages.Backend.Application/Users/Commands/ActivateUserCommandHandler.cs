@@ -4,6 +4,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
@@ -11,12 +12,12 @@ public class ActivateUserCommandHandler : RequestHandler<ActivateUserCommand, Ac
 {
     private readonly IDateTimeService _dateTimeService;
 
-    public ActivateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService) : base(databaseContext, loggerService) => _dateTimeService = dateTimeService;
+    public ActivateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IDateTimeService dateTimeService) : base(operationDbContext, loggerService) => _dateTimeService = dateTimeService;
 
     public override async Task<ActivateUserCommandResult> Handle(ActivateUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await DatabaseContext.Users
+        var user = await OperationDbContext.Users
             .Where(users => users.ActivationId == request.ActivationId)
             .Where(users => !users.IsDeleted)
             .SingleOrDefaultAsync(cancellationToken);
@@ -36,7 +37,7 @@ public class ActivateUserCommandHandler : RequestHandler<ActivateUserCommand, Ac
             LoggerService.LogWarning("The user is activated but has the business lock and thus will require administrator action.");
 
         LoggerService.LogInformation($"User account has been activated, user ID: {user.Id}");
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         return new ActivateUserCommandResult
         {

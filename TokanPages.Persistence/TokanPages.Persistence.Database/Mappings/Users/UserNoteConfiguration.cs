@@ -16,7 +16,6 @@ public class UserNoteConfiguration : IEntityTypeConfiguration<UserNote>
             .HasOne(note => note.User)
             .WithMany(user => user.UserNotes)
             .HasForeignKey(note => note.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_UserNote_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

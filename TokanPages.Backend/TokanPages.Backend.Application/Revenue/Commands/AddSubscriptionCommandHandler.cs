@@ -6,6 +6,7 @@ using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Revenue.Commands;
 
@@ -15,8 +16,8 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
 
     private readonly IUserService _userService;
 
-    public AddSubscriptionCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService, IUserService userService) : base(databaseContext, loggerService)
+    public AddSubscriptionCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IDateTimeService dateTimeService, IUserService userService) : base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _userService = userService;
@@ -28,7 +29,7 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
         var language = request.UserLanguage ?? "pol";
 
         var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
-        var price = await DatabaseContext.SubscriptionsPricing
+        var price = await OperationDbContext.SubscriptionsPricing
             .Where(pricing => pricing.Term == request.SelectedTerm)
             .Where(pricing => pricing.CurrencyIso.Equals(currency, StringComparison.InvariantCultureIgnoreCase))
             .Where(pricing => pricing.LanguageIso.Equals(language, StringComparison.InvariantCultureIgnoreCase))
@@ -37,13 +38,13 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
         if (price is null)
             throw new BusinessException(nameof(ErrorCodes.PRICE_NOT_FOUND), ErrorCodes.PRICE_NOT_FOUND);
 
-        var userSubscription = await DatabaseContext.UserSubscriptions
+        var userSubscription = await OperationDbContext.UserSubscriptions
             .Where(subscriptions => subscriptions.UserId == user.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
         var extCustomerId = Guid.NewGuid().ToString("N");
         var extOrderId = Guid.NewGuid().ToString("N");
-        var userInfo = await DatabaseContext.UserInformation
+        var userInfo = await OperationDbContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == user.Id)
             .Select(info => new
@@ -104,10 +105,10 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
                 LastName = userInfo.LastName
             };
 
-            await DatabaseContext.UserSubscriptions.AddAsync(subscription, cancellationToken);
+            await OperationDbContext.UserSubscriptions.AddAsync(subscription, cancellationToken);
         }
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation("New user subscription has been registered.");
 
         return result;

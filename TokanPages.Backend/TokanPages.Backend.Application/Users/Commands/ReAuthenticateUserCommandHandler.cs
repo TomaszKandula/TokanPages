@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.CookieAccessorService;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
@@ -22,8 +23,8 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
     private readonly IConfiguration _configuration;
 
-    public ReAuthenticateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
-        IUserService userService, IConfiguration configuration, ICookieAccessor cookieAccessor) : base(databaseContext, loggerService)
+    public ReAuthenticateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
+        IUserService userService, IConfiguration configuration, ICookieAccessor cookieAccessor) : base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _userService = userService;
@@ -38,7 +39,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         if (csrfToken is null)
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
-        var userRefreshTokens = await DatabaseContext.UserRefreshTokens
+        var userRefreshTokens = await OperationDbContext.UserRefreshTokens
             .AsNoTracking()
             .Where(tokens => tokens.Token == csrfToken)
             .ToListAsync(cancellationToken);
@@ -61,8 +62,8 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             };
 
             await _userService.RevokeDescendantRefreshTokens(tokensInput, cancellationToken);
-            DatabaseContext.UserRefreshTokens.Update(savedRefreshToken);
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            OperationDbContext.UserRefreshTokens.Update(savedRefreshToken);
+            await OperationDbContext.SaveChangesAsync(cancellationToken);
         }
 
         if (!_userService.IsRefreshTokenActive(savedRefreshToken)) 
@@ -78,7 +79,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         
         var newRefreshToken = await _userService.ReplaceRefreshToken(tokenInput, cancellationToken);
         await _userService.DeleteOutdatedRefreshTokens(user.Id, false, cancellationToken);
-        await DatabaseContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
+        await OperationDbContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
 
         var currentDateTime = _dateTimeService.Now;
         var ipAddress = _userService.GetRequestIpAddress();
@@ -98,8 +99,8 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             Command = nameof(ReAuthenticateUserCommand)
         };
 
-        await DatabaseContext.UserTokens.AddAsync(newUserToken, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.UserTokens.AddAsync(newUserToken, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         var userInfo = await TryGetUserInfo(user.Id, cancellationToken);
         var expiresIn = _configuration.GetValue<int>("Ids_RefreshToken_Maturity");
@@ -129,7 +130,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
     private async Task<UserInfo> TryGetUserInfo(Guid userId, CancellationToken cancellationToken = default)
     {
-        var userInfo = await DatabaseContext.UserInformation
+        var userInfo = await OperationDbContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);

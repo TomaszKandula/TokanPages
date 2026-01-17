@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
@@ -43,7 +42,7 @@ public static class Dependencies
 	public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment = default)
 	{
 		services.CommonServices(configuration);
-		SetupDatabase(services, configuration);
+		services.SetupDatabase(configuration);
 		if (environment != null)
 			PollySupport.SetupRetryPolicyWithPolly(services, configuration, environment);
 	}
@@ -64,18 +63,6 @@ public static class Dependencies
 
 	private static void SetupLogger(IServiceCollection services) 
 		=> services.AddSingleton<ILoggerService, LoggerService>();
-
-	private static void SetupDatabase(IServiceCollection services, IConfiguration configuration) 
-	{
-		const int maxRetryCount = 10;
-		var maxRetryDelay = TimeSpan.FromSeconds(5);
-
-		services.AddDbContext<DatabaseContext>(options =>
-		{
-			options.UseSqlServer(configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}") ?? "", addOptions 
-				=> addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
-		});
-	}
 
 	private static void SetupServices(IServiceCollection services, IConfiguration configuration) 
 	{

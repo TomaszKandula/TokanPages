@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.TemplateService;
 
 namespace TokanPages.Backend.Application.Invoicing.Templates.Queries;
@@ -9,8 +10,8 @@ public class GetInvoiceTemplateQueryHandler : RequestHandler<GetInvoiceTemplateQ
 {
     private readonly ITemplateService _templateService;
 
-    public GetInvoiceTemplateQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        ITemplateService templateService) : base(databaseContext, loggerService) => _templateService = templateService;
+    public GetInvoiceTemplateQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        ITemplateService templateService) : base(operationDbContext, loggerService) => _templateService = templateService;
 
     public override async Task<FileContentResult> Handle(GetInvoiceTemplateQuery request, CancellationToken cancellationToken)
     {

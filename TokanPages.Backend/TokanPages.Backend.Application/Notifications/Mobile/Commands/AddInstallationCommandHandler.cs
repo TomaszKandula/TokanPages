@@ -6,6 +6,7 @@ using TokanPages.Services.PushNotificationService.Exceptions;
 using TokanPages.Services.PushNotificationService.Models;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Domain.Entities.Notifications;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Notifications.Mobile.Commands;
 
@@ -19,9 +20,9 @@ public class AddInstallationCommandHandler : RequestHandler<AddInstallationComma
 
     private readonly IAzureNotificationHubFactory _azureNotificationHubFactory;
 
-    public AddInstallationCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public AddInstallationCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IAzureNotificationHubFactory azureNotificationHubFactory, IDateTimeService dateTimeService) 
-        : base(databaseContext, loggerService)
+        : base(operationDbContext, loggerService)
     {
         _azureNotificationHubFactory = azureNotificationHubFactory;
         _dateTimeService = dateTimeService;
@@ -63,7 +64,7 @@ public class AddInstallationCommandHandler : RequestHandler<AddInstallationComma
             };
 
             await RegisterInstallation(installationId, pushNotification, tags, cancellationToken);
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            await OperationDbContext.SaveChangesAsync(cancellationToken);
             LoggerService.LogInformation("The new PNS handle installation has been saved within the system database");
         }
         else
@@ -89,7 +90,7 @@ public class AddInstallationCommandHandler : RequestHandler<AddInstallationComma
             notification.IsVerified = status.isVerified;
             notification.RegistrationId = status.registrationId;
 
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            await OperationDbContext.SaveChangesAsync(cancellationToken);
             LoggerService.LogInformation("The existing PNS handle installation has been saved within the system database");
         }
 
@@ -103,7 +104,7 @@ public class AddInstallationCommandHandler : RequestHandler<AddInstallationComma
 
     private async Task<PushNotification?> GetInstallationByHandle(string pnsHandle, CancellationToken cancellationToken)
     {
-        return await DatabaseContext.PushNotifications
+        return await OperationDbContext.PushNotifications
             .SingleOrDefaultAsync(notifications => notifications.Handle == pnsHandle, cancellationToken);
     }
 
@@ -144,13 +145,13 @@ public class AddInstallationCommandHandler : RequestHandler<AddInstallationComma
             });
         }
 
-        await DatabaseContext.PushNotifications.AddAsync(pushNotification, cancellationToken);
-        await DatabaseContext.PushNotificationTags.AddRangeAsync(notificationTags, cancellationToken);
+        await OperationDbContext.PushNotifications.AddAsync(pushNotification, cancellationToken);
+        await OperationDbContext.PushNotificationTags.AddRangeAsync(notificationTags, cancellationToken);
     }
 
     private async Task ReplaceExistingTags(Guid installationId, IEnumerable<string> newTags, CancellationToken cancellationToken)
     {
-        var existingTags = await DatabaseContext.PushNotificationTags
+        var existingTags = await OperationDbContext.PushNotificationTags
             .Where(tags => tags.PushNotificationId == installationId)
             .ToListAsync(cancellationToken);
 
@@ -170,7 +171,7 @@ public class AddInstallationCommandHandler : RequestHandler<AddInstallationComma
             });
         }
 
-        DatabaseContext.PushNotificationTags.RemoveRange(existingTags);
-        await DatabaseContext.PushNotificationTags.AddRangeAsync(notificationTags, cancellationToken);
+        OperationDbContext.PushNotificationTags.RemoveRange(existingTags);
+        await OperationDbContext.PushNotificationTags.AddRangeAsync(notificationTags, cancellationToken);
     }
 }

@@ -4,13 +4,14 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Content.Cached.Queries;
 
 public class GetFileByNameQueryHandler : RequestHandler<GetFileByNameQuery, FileContentResult>
 {
-    public GetFileByNameQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) 
-        : base(databaseContext, loggerService) { }
+    public GetFileByNameQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService) 
+        : base(operationDbContext, loggerService) { }
 
     public override async Task<FileContentResult> Handle(GetFileByNameQuery request, CancellationToken cancellationToken)
     {

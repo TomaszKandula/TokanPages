@@ -3,17 +3,18 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Users.Queries;
 
 public class GetUserQueryHandler : RequestHandler<GetUserQuery, GetUserQueryResult>
 {
-    public GetUserQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    public GetUserQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService) : base(operationDbContext, loggerService) { }
 
     public override async Task<GetUserQueryResult> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
-        var query = await (from user in DatabaseContext.Users
-            join userInfo in DatabaseContext.UserInformation
+        var query = await (from user in OperationDbContext.Users
+            join userInfo in OperationDbContext.UserInformation
             on user.Id equals userInfo.UserId
             where user.Id == request.Id
             select new GetUserQueryResult

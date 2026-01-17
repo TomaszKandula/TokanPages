@@ -6,6 +6,7 @@ using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Revenue.Commands;
 
@@ -15,8 +16,8 @@ public class UpdateSubscriptionCommandHandler : RequestHandler<UpdateSubscriptio
 
     private readonly IDateTimeService _dateTimeService;
 
-    public UpdateSubscriptionCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+    public UpdateSubscriptionCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IUserService userService, IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -25,7 +26,7 @@ public class UpdateSubscriptionCommandHandler : RequestHandler<UpdateSubscriptio
     public override async Task<Unit> Handle(UpdateSubscriptionCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
-        var userSubscription = await DatabaseContext.UserSubscriptions
+        var userSubscription = await OperationDbContext.UserSubscriptions
             .Where(subscriptions => subscriptions.UserId == user.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -40,7 +41,7 @@ public class UpdateSubscriptionCommandHandler : RequestHandler<UpdateSubscriptio
         userSubscription.ModifiedBy = user.Id;
         userSubscription.ModifiedAt = _dateTimeService.Now;
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation("Existing subscription has been updated.");
         return Unit.Value;
     }

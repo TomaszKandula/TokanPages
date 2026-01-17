@@ -4,6 +4,7 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 
@@ -17,8 +18,8 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public SendNewsletterCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IConfiguration configuration) : base(databaseContext, loggerService)
+    public SendNewsletterCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IEmailSenderService emailSenderService, IConfiguration configuration) : base(operationDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _configuration = configuration;
@@ -81,8 +82,8 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
                 Body = template.MakeBody(newValues)
             };
 
-            await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+            await OperationDbContext.SaveChangesAsync(cancellationToken);
             await _emailSenderService.SendToServiceBus(payload, cancellationToken);
         }
 

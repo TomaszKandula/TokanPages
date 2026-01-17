@@ -4,6 +4,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.BatchService.Models;
 using TokanPages.Services.UserService.Abstractions;
@@ -22,8 +23,8 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
 
     private readonly IDateTimeService _dateTimeService;
 
-    public OrderInvoiceBatchCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IBatchService batchService, 
-        IVatService vatService, IUserService userService, IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+    public OrderInvoiceBatchCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IBatchService batchService, 
+        IVatService vatService, IUserService userService, IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
     {
         _batchService = batchService;
         _vatService = vatService;
@@ -37,13 +38,13 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
         LoggerService.LogInformation($"Request to process {request.OrderDetails.Count()} orders. User ID: {userId}");
 
         var vatOptions = new PolishVatNumberOptions(true, true);
-        var vatPatterns = await DatabaseContext.VatNumberPatterns
+        var vatPatterns = await OperationDbContext.VatNumberPatterns
             .AsNoTracking()
             .ToListAsync(cancellationToken);
 
         LoggerService.LogInformation($"Found {vatPatterns.Count} VAT patterns");
 
-        var availableTemplates = await DatabaseContext.InvoiceTemplates
+        var availableTemplates = await OperationDbContext.InvoiceTemplates
             .AsNoTracking()
             .Where(templates => !templates.IsDeleted)
             .ToListAsync(cancellationToken);

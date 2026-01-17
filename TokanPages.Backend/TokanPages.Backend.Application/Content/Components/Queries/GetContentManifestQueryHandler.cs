@@ -8,6 +8,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Components.Queries;
@@ -18,8 +19,8 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    public GetContentManifestQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IJsonSerializer jsonSerializer) : base(databaseContext, loggerService)
+    public GetContentManifestQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory, IJsonSerializer jsonSerializer) : base(operationDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _jsonSerializer = jsonSerializer;
@@ -46,7 +47,7 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
         var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
         var manifest = _jsonSerializer.Deserialize<GetContentManifestQueryResult>(strings, settings);
 
-        var languageList = await DatabaseContext.Languages
+        var languageList = await OperationDbContext.Languages
             .AsNoTracking()
             .OrderBy(language => language.SortOrder)
             .Select(language => new LanguageModel

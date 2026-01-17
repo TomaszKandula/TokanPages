@@ -1,6 +1,7 @@
 using TokanPages.Backend.Application.Invoicing.Models;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.TemplateService;
 
 namespace TokanPages.Backend.Application.Invoicing.Templates.Queries;
@@ -9,8 +10,8 @@ public class GetInvoiceTemplatesQueryHandler : RequestHandler<GetInvoiceTemplate
 {
     private readonly ITemplateService _templateService;
 
-    public GetInvoiceTemplatesQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        ITemplateService templateService) : base(databaseContext, loggerService) => _templateService = templateService;
+    public GetInvoiceTemplatesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        ITemplateService templateService) : base(operationDbContext, loggerService) => _templateService = templateService;
 
     public override async Task<IList<InvoiceTemplateInfo>> Handle(GetInvoiceTemplatesQuery request, CancellationToken cancellationToken)
     {

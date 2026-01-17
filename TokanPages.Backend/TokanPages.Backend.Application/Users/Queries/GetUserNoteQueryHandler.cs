@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Queries;
@@ -10,13 +11,13 @@ public class GetUserNoteQueryHandler : RequestHandler<GetUserNoteQuery, GetUserN
 {
     private readonly IUserService _userService;
 
-    public GetUserNoteQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService) 
-        : base(databaseContext, loggerService) => _userService = userService;
+    public GetUserNoteQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService) 
+        : base(operationDbContext, loggerService) => _userService = userService;
 
     public override async Task<GetUserNoteQueryResult> Handle(GetUserNoteQuery request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var note = await DatabaseContext.UserNotes
+        var note = await OperationDbContext.UserNotes
             .AsNoTracking()
             .Where(userNote => userNote.UserId == userId)
             .Where(userNote => userNote.Id == request.UserNoteId)

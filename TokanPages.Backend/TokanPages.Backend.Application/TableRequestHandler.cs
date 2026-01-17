@@ -3,19 +3,20 @@ using System.Linq.Expressions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using MediatR;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application;
 
 [ExcludeFromCodeCoverage]
 public abstract class TableRequestHandler<TEntity, TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>
 {
-    protected readonly DatabaseContext DatabaseContext;
+    protected readonly OperationDbContext OperationDbContext;
 
     protected readonly ILoggerService LoggerService;
 
-    protected TableRequestHandler(DatabaseContext databaseContext, ILoggerService loggerService)
+    protected TableRequestHandler(OperationDbContext operationDbContext, ILoggerService loggerService)
     {
-        DatabaseContext = databaseContext;
+        OperationDbContext = operationDbContext;
         LoggerService = loggerService;
     }
 

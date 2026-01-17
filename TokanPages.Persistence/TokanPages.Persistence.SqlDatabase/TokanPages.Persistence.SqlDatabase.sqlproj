@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+    <!-- DO NOT USE SDK -->
+    <!-- <Sdk Name="Microsoft.Build.Sql" Version="2.0.0" />-->
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <Name>TokanPages.Persistance.Database</Name>
+        <SchemaVersion>2.0</SchemaVersion>
+        <ProjectVersion>4.1</ProjectVersion>
+        <ProjectGuid>{9680bc89-d3ff-4052-9078-e9e8ece8bd8d}</ProjectGuid>
+        <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+        <ModelCollation>1033, CI</ModelCollation>
+        <OutputType>Database</OutputType>
+        <RootPath>
+        </RootPath>
+        <RootNamespace>TokanPages.Persistance.Database</RootNamespace>
+        <AssemblyName>TokanPages.Persistance.Database</AssemblyName>
+        <ModelCollation>1033, CI</ModelCollation>
+        <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+        <DeployToDatabase>True</DeployToDatabase>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <TargetLanguage>CS</TargetLanguage>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <SqlServerVerification>False</SqlServerVerification>
+        <IncludeCompositeObjects>True</IncludeCompositeObjects>
+        <TargetDatabaseSet>True</TargetDatabaseSet>
+        <TargetFrameworkProfile />
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <OutputPath>bin\Release\</OutputPath>
+        <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+        <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <DefineDebug>false</DefineDebug>
+        <DefineTrace>true</DefineTrace>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <OutputPath>bin\Debug\</OutputPath>
+        <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <DefineDebug>true</DefineDebug>
+        <DefineTrace>true</DefineTrace>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+    <ItemGroup>
+        <PreDeploy Include="Scripts\PreDeployment.sql" />
+    </ItemGroup>
+    <ItemGroup>
+        <PostDeploy Include="Scripts\PostDeployment.sql" />
+    </ItemGroup>
+    <!-- OPERATION -->
+    <ItemGroup>
+        <!-- SCHEMA -->
+        <Build Include="Operation\Schema.sql" />
+        <!-- TABLES -->
+        <Build Include="Operation\Tables\Albums.sql" />
+        <Build Include="Operation\Tables\ArticleCategories.sql" />
+        <Build Include="Operation\Tables\ArticleCounts.sql" />
+        <Build Include="Operation\Tables\ArticleLikes.sql" />
+        <Build Include="Operation\Tables\Articles.sql" />
+        <Build Include="Operation\Tables\ArticleTags.sql" />
+        <Build Include="Operation\Tables\BatchInvoiceItems.sql" />
+        <Build Include="Operation\Tables\BatchInvoices.sql" />
+        <Build Include="Operation\Tables\BatchInvoicesProcessing.sql" />
+        <Build Include="Operation\Tables\BusinessInquiries.sql" />
+        <Build Include="Operation\Tables\CategoryNames.sql" />
+        <Build Include="Operation\Tables\DefaultPermissions.sql" />
+        <Build Include="Operation\Tables\HttpRequests.sql" />
+        <Build Include="Operation\Tables\InvoiceTemplates.sql" />
+        <Build Include="Operation\Tables\IssuedInvoices.sql" />
+        <Build Include="Operation\Tables\Languages.sql" />
+        <Build Include="Operation\Tables\Newsletters.sql" />
+        <Build Include="Operation\Tables\Permissions.sql" />
+        <Build Include="Operation\Tables\PhotoCategories.sql" />
+        <Build Include="Operation\Tables\PhotoGears.sql" />
+        <Build Include="Operation\Tables\PushNotificationLogs.sql" />
+        <Build Include="Operation\Tables\PushNotifications.sql" />
+        <Build Include="Operation\Tables\PushNotificationTags.sql" />
+        <Build Include="Operation\Tables\Roles.sql" />
+        <Build Include="Operation\Tables\ServiceBusMessages.sql" />
+        <Build Include="Operation\Tables\SubscriptionsPricing.sql" />
+        <Build Include="Operation\Tables\UploadedVideos.sql" />
+        <Build Include="Operation\Tables\UserBankAccounts.sql" />
+        <Build Include="Operation\Tables\UserCompanies.sql" />
+        <Build Include="Operation\Tables\UserInformation.sql" />
+        <Build Include="Operation\Tables\UserMessages.sql" />
+        <Build Include="Operation\Tables\UserMessagesCache.sql" />
+        <Build Include="Operation\Tables\UserNotes.sql" />
+        <Build Include="Operation\Tables\UserPayments.sql" />
+        <Build Include="Operation\Tables\UserPaymentsHistory.sql" />
+        <Build Include="Operation\Tables\UserPermissions.sql" />
+        <Build Include="Operation\Tables\UserPhotos.sql" />
+        <Build Include="Operation\Tables\UserRefreshTokens.sql" />
+        <Build Include="Operation\Tables\UserRoles.sql" />
+        <Build Include="Operation\Tables\Users.sql" />
+        <Build Include="Operation\Tables\UserSubscriptions.sql" />
+        <Build Include="Operation\Tables\UserTokens.sql" />
+        <Build Include="Operation\Tables\VatNumberPatterns.sql" />
+        <Build Include="Operation\Tables\WebNotifications.sql" />
+        <!-- INDEXES -->
+        <Build Include="Operation\Indexes\Albums.sql" />
+        <Build Include="Operation\Indexes\ArticleCounts.sql" />
+        <Build Include="Operation\Indexes\ArticleLikes.sql" />
+        <Build Include="Operation\Indexes\Articles.sql" />
+        <Build Include="Operation\Indexes\ArticleTags.sql" />
+        <Build Include="Operation\Indexes\BatchInvoiceItems.sql" />
+        <Build Include="Operation\Indexes\BatchInvoices.sql" />
+        <Build Include="Operation\Indexes\CategoryNames.sql" />
+        <Build Include="Operation\Indexes\DefaultPermissions.sql" />
+        <Build Include="Operation\Indexes\IssuedInvoices.sql" />
+        <Build Include="Operation\Indexes\PushNotificationTags.sql" />
+        <Build Include="Operation\Indexes\UserBankAccounts.sql" />
+        <Build Include="Operation\Indexes\UserCompanies.sql" />
+        <Build Include="Operation\Indexes\UserInformation.sql" />
+        <Build Include="Operation\Indexes\UserNotes.sql" />
+        <Build Include="Operation\Indexes\UserPayments.sql" />
+        <Build Include="Operation\Indexes\UserPaymentsHistory.sql" />
+        <Build Include="Operation\Indexes\UserPermissions.sql" />
+        <Build Include="Operation\Indexes\UserPhotos.sql" />
+        <Build Include="Operation\Indexes\UserRefreshTokens.sql" />
+        <Build Include="Operation\Indexes\UserRoles.sql" />
+        <Build Include="Operation\Indexes\UserSubscriptions.sql" />
+        <Build Include="Operation\Indexes\UserTokens.sql" />
+        <!-- KEYS -->
+        <Build Include="Operation\Keys\Albums.sql" />
+        <Build Include="Operation\Keys\ArticleCounts.sql" />
+        <Build Include="Operation\Keys\ArticleLikes.sql" />
+        <Build Include="Operation\Keys\Articles.sql" />
+        <Build Include="Operation\Keys\ArticleTags.sql" />
+        <Build Include="Operation\Keys\BatchInvoiceItems.sql" />
+        <Build Include="Operation\Keys\BatchInvoices.sql" />
+        <Build Include="Operation\Keys\CategoryNames.sql" />
+        <Build Include="Operation\Keys\DefaultPermissions.sql" />
+        <Build Include="Operation\Keys\IssuedInvoices.sql" />
+        <Build Include="Operation\Keys\PushNotificationTags.sql" />
+        <Build Include="Operation\Keys\UserBankAccounts.sql" />
+        <Build Include="Operation\Keys\UserCompanies.sql" />
+        <Build Include="Operation\Keys\UserInformation.sql" />
+        <Build Include="Operation\Keys\UserNotes.sql" />
+        <Build Include="Operation\Keys\UserPayments.sql" />
+        <Build Include="Operation\Keys\UserPaymentsHistory.sql" />
+        <Build Include="Operation\Keys\UserPermissions.sql" />
+        <Build Include="Operation\Keys\UserPhotos.sql" />
+        <Build Include="Operation\Keys\UserRefreshTokens.sql" />
+        <Build Include="Operation\Keys\UserRoles.sql" />
+        <Build Include="Operation\Keys\UserSubscriptions.sql" />
+        <Build Include="Operation\Keys\UserTokens.sql" />
+    </ItemGroup>
+    <!-- SOCCER -->
+    <ItemGroup>
+        <Build Include="Soccer\Schema.sql" />
+        <!-- STANDALONE TABLES -->
+        <Build Include="Soccer\Tables\Attributes.sql" />
+        <Build Include="Soccer\Tables\Positions.sql" />
+        <Build Include="Soccer\Tables\Qualities.sql" />
+        <!-- TABLES WITH FK -->
+        <Build Include="Soccer\Tables\Players.sql" />
+        <Build Include="Soccer\Tables\PlayerAttributes.sql" />
+        <Build Include="Soccer\Tables\Feeds.sql" />
+        <Build Include="Soccer\Tables\FeedImages.sql" />
+        <Build Include="Soccer\Tables\Fields.sql" />
+        <Build Include="Soccer\Tables\FieldImages.sql" />
+        <Build Include="Soccer\Tables\Teams.sql" />
+        <Build Include="Soccer\Tables\TeamInfo.sql" />
+        <Build Include="Soccer\Tables\Matches.sql" />
+        <Build Include="Soccer\Tables\Lineups.sql" />
+        <Build Include="Soccer\Tables\Views.sql" />
+    </ItemGroup>
+</Project>

@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureBusService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Cached.Commands;
@@ -22,8 +23,8 @@ public class OrderSpaCachingCommandHandler : RequestHandler<OrderSpaCachingComma
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public OrderSpaCachingCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer) : base(databaseContext, loggerService)
+    public OrderSpaCachingCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer) : base(operationDbContext, loggerService)
     {
         _azureBusFactory = azureBusFactory;
         _jsonSerializer = jsonSerializer;
@@ -48,8 +49,8 @@ public class OrderSpaCachingCommandHandler : RequestHandler<OrderSpaCachingComma
             Paths = request.Paths
         };
 
-        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         var serialized = _jsonSerializer.Serialize(requestBody, Formatting.None, Settings);
         var messages = new List<string> { serialized };

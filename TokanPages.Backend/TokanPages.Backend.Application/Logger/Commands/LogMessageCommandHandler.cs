@@ -4,12 +4,13 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Logger.Commands;
 
 public class LogMessageCommandHandler :  RequestHandler<LogMessageCommand, Unit>
 {
-    public LogMessageCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    public LogMessageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService) : base(operationDbContext, loggerService) { }
 
     public override async Task<Unit> Handle(LogMessageCommand request, CancellationToken cancellationToken)
     {

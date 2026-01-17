@@ -16,7 +16,6 @@ public class UserBankAccountConfiguration : IEntityTypeConfiguration<UserBankAcc
             .HasOne(account => account.User)
             .WithMany(user => user.UserBankAccounts)
             .HasForeignKey(account => account.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_UserBankAccounts_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

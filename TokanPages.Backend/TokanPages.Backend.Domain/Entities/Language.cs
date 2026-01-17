@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Contracts;
+using TokanPages.Backend.Domain.Entities.Articles;
 
 namespace TokanPages.Backend.Domain.Entities;
 
@@ -24,5 +25,5 @@ public class Language : Entity<Guid>, IHasSortOrder
     public int SortOrder { get; set; }
 
     /* Navigation properties */
-    public ICollection<CategoryName> CategoryNames { get; set; } = new HashSet<CategoryName>();
+    public ICollection<ArticleCategoryName> ArticleCategoryNames { get; set; } = new HashSet<ArticleCategoryName>();
 }

@@ -13,7 +13,6 @@ using TokanPages.Services.VideoProcessingService;
 using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Abstractions;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using TokanPages.HostedServices.CronJobs;
 using TokanPages.HostedServices.CronJobs.Abstractions;
@@ -41,7 +40,7 @@ public static class Dependencies
     public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration)
     {
         services.RegisterCommonServices(configuration);
-        SetupDatabase(services, configuration);
+        services.SetupDatabase(configuration);
     }
 
     /// <summary>
@@ -57,19 +56,6 @@ public static class Dependencies
 
     private static void SetupLogger(IServiceCollection services) 
         => services.AddSingleton<ILoggerService, LoggerService>();
-
-    private static void SetupDatabase(IServiceCollection services, IConfiguration configuration) 
-    {
-        const int maxRetryCount = 10;
-        var maxRetryDelay = TimeSpan.FromSeconds(5);
-
-        services.AddDbContext<DatabaseContext>(options =>
-        {
-            var connectionString = configuration.GetValue<string>($"Db_{nameof(DatabaseContext)}") ?? string.Empty;
-            options.UseSqlServer(connectionString, addOptions 
-                => addOptions.EnableRetryOnFailure(maxRetryCount, maxRetryDelay, null));
-        });
-    }
 
     private static void SetupServices(IServiceCollection services, IConfiguration configuration) 
 	{

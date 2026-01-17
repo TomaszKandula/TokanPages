@@ -3,6 +3,7 @@ using TokanPages.Persistence.Database;
 using TokanPages.Services.PushNotificationService.Abstractions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Notifications.Mobile.Commands;
 
@@ -10,8 +11,8 @@ public class DeleteInstallationCommandHandler : RequestHandler<DeleteInstallatio
 {
     private readonly IAzureNotificationHubFactory _azureNotificationHubFactory;
 
-    public DeleteInstallationCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureNotificationHubFactory azureNotificationHubFactory) : base(databaseContext, loggerService)
+    public DeleteInstallationCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IAzureNotificationHubFactory azureNotificationHubFactory) : base(operationDbContext, loggerService)
     {
         _azureNotificationHubFactory = azureNotificationHubFactory;
     }
@@ -22,27 +23,27 @@ public class DeleteInstallationCommandHandler : RequestHandler<DeleteInstallatio
         await hub.DeleteInstallationById(request.Id.ToString(), cancellationToken);
         LoggerService.LogInformation($"Installation ({request.Id}) has been removed from Azure Notification Hub.");
 
-        var notificationTags = await DatabaseContext.PushNotificationTags
+        var notificationTags = await OperationDbContext.PushNotificationTags
             .Where(tags => tags.PushNotificationId == request.Id)
             .ToListAsync(cancellationToken);
 
         if (notificationTags.Count > 0)
         {
-            DatabaseContext.RemoveRange(notificationTags);
+            OperationDbContext.RemoveRange(notificationTags);
             LoggerService.LogInformation("Related push notification tags have been removed.");
         }
 
-        var notification = await DatabaseContext.PushNotifications
+        var notification = await OperationDbContext.PushNotifications
             .Where(notifications => notifications.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (notification is not null)
         {
-            DatabaseContext.Remove(notification);
+            OperationDbContext.Remove(notification);
             LoggerService.LogInformation("Installation record has been removed from database.");
         }
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

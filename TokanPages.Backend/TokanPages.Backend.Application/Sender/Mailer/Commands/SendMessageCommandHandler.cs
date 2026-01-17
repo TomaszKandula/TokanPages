@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.UserService.Abstractions;
@@ -22,9 +23,9 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
 
     private readonly IUserService _userService;
 
-    public SendMessageCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public SendMessageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IEmailSenderService emailSenderService, IDateTimeService dateTimeService, 
-        IConfiguration configuration, IUserService userService) : base(databaseContext, loggerService)
+        IConfiguration configuration, IUserService userService) : base(operationDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;
@@ -83,7 +84,7 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
                 CreatedBy = Guid.Empty
             };
 
-            await DatabaseContext.BusinessInquiries.AddAsync(businessInquiry, cancellationToken);
+            await OperationDbContext.BusinessInquiries.AddAsync(businessInquiry, cancellationToken);
         }
         else
         {
@@ -92,8 +93,8 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
 
         message.Body = template.MakeBody(templateValues);
 
-        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         await _emailSenderService.SendToServiceBus(message, cancellationToken);
 
         return Unit.Value;

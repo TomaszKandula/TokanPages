@@ -16,7 +16,6 @@ public class UserPaymentHistoryConfiguration : IEntityTypeConfiguration<UserPaym
             .HasOne(history => history.User)
             .WithMany(user => user.UserPaymentsHistory)
             .HasForeignKey(history => history.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_UserPaymentsHistory_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

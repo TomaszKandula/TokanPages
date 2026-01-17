@@ -16,7 +16,6 @@ public class UserRefreshTokenConfiguration : IEntityTypeConfiguration<UserRefres
             .HasOne(token => token.User)
             .WithMany(user => user.UserRefreshTokens)
             .HasForeignKey(token => token.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_UserRefreshTokens_Users");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

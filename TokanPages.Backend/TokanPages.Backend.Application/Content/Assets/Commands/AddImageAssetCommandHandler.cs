@@ -4,6 +4,7 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Assets.Commands;
@@ -12,8 +13,8 @@ public class AddImageAssetCommandHandler : RequestHandler<AddImageAssetCommand, 
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public AddImageAssetCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
+    public AddImageAssetCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
         => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<AddImageAssetCommandResult> Handle(AddImageAssetCommand request, CancellationToken cancellationToken)

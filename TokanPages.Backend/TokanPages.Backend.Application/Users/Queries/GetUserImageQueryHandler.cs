@@ -4,6 +4,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Queries;
@@ -12,12 +13,12 @@ public class GetUserImageQueryHandler : RequestHandler<GetUserImageQuery, FileCo
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public GetUserImageQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
-        : base(databaseContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
+    public GetUserImageQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
+        : base(operationDbContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<FileContentResult> Handle(GetUserImageQuery request, CancellationToken cancellationToken)
     {
-        var user = await DatabaseContext.Users
+        var user = await OperationDbContext.Users
             .AsNoTracking()
             .SingleOrDefaultAsync(users => users.Id == request.Id, cancellationToken);
 

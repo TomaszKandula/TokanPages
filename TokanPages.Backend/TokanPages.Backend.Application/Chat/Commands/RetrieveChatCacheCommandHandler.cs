@@ -1,18 +1,19 @@
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Chat.Commands;
 
 public class RetrieveChatCacheCommandHandler : RequestHandler<RetrieveChatCacheCommand, RetrieveChatCacheCommandResult>
 {
-    public RetrieveChatCacheCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService)
-        : base(databaseContext, loggerService) { }
+    public RetrieveChatCacheCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService)
+        : base(operationDbContext, loggerService) { }
 
     public override async Task<RetrieveChatCacheCommandResult> Handle(RetrieveChatCacheCommand request, CancellationToken cancellationToken)
     {
         var keys = new HashSet<string>(request.ChatKey);
-        var notifications = await DatabaseContext.UserMessagesCache
+        var notifications = await OperationDbContext.UserMessagesCache
             .AsNoTracking()
             .Where(cache => keys.Contains(cache.ChatKey))
             .Select(cache => cache.Notification)

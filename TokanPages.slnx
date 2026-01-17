@@ -1,0 +1,112 @@
+<Solution>
+  <Folder Name="/1. Documentation/">
+    <File Path="CHANGELOG.md" />
+    <File Path="LICENSE" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/2. Configuration/">
+    <File Path="TokanPages.Configuration/appsettings.Production.json" />
+    <File Path="TokanPages.Configuration/appsettings.Testing.json" />
+  </Folder>
+  <Folder Name="/3. Deployment/">
+    <File Path=".github/workflows/dev_build.yml" />
+    <File Path=".github/workflows/master_build.yml" />
+    <File Path="reinstall-all.sh" />
+  </Folder>
+  <Folder Name="/4. Docker/">
+    <File Path="articles.dockerfile" />
+    <File Path="chat.dockerfile" />
+    <File Path="content.dockerfile" />
+    <File Path="docker-compose-prod.yml" />
+    <File Path="docker-compose-test-linux.yml" />
+    <File Path="docker-compose-test-macos.yml" />
+    <File Path="docker-compose-up-prod.sh" />
+    <File Path="docker-compose-up-test-linux.sh" />
+    <File Path="docker-compose-up-test-macos.sh" />
+    <File Path="gateway.dockerfile" />
+    <File Path="hosted.dockerfile" />
+    <File Path="invoicing.dockerfile" />
+    <File Path="logger.dockerfile" />
+    <File Path="notifications.dockerfile" />
+    <File Path="revenue.dockerfile" />
+    <File Path="sender.dockerfile" />
+    <File Path="TokanPages.ClientApp/clientapp.dockerfile" />
+    <File Path="users.dockerfile" />
+  </Folder>
+  <Folder Name="/5. Nginx/">
+    <File Path="TokanPages.ClientApp/nginx/nginx-base.conf" />
+    <File Path="TokanPages.ClientApp/nginx/nginx-http.conf" />
+    <File Path="TokanPages.ClientApp/nginx/nginx-https.conf" />
+    <File Path="TokanPages.ClientApp/nginx/nginx-paths-de.conf" />
+    <File Path="TokanPages.ClientApp/nginx/nginx-paths-en.conf" />
+    <File Path="TokanPages.ClientApp/nginx/nginx-paths-es.conf" />
+    <File Path="TokanPages.ClientApp/nginx/nginx-paths-fr.conf" />
+    <File Path="TokanPages.ClientApp/nginx/nginx-paths-pl.conf" />
+    <File Path="TokanPages.ClientApp/nginx/nginx-paths-uk.conf" />
+    <File Path="TokanPages.ClientApp/nginx/nginx-paths.conf" />
+    <File Path="TokanPages.ClientApp/nginx/nginx-proxy.conf" />
+    <File Path="TokanPages.ClientApp/nginx/nginx-ssl.conf" />
+  </Folder>
+  <Folder Name="/6. Backend/">
+    <Project Path="TokanPages.Backend/TokanPages.Backend.Application/TokanPages.Backend.Application.csproj" />
+    <Project Path="TokanPages.Backend/TokanPages.Backend.Configuration/TokanPages.Backend.Configuration.csproj" />
+    <Project Path="TokanPages.Backend/TokanPages.Backend.Core/TokanPages.Backend.Core.csproj" />
+    <Project Path="TokanPages.Backend/TokanPages.Backend.Domain/TokanPages.Backend.Domain.csproj" />
+    <Project Path="TokanPages.Backend/TokanPages.Backend.Shared/TokanPages.Backend.Shared.csproj" />
+  </Folder>
+  <Folder Name="/7. Persistence/">
+    <Project Path="TokanPages.Persistence/TokanPages.Persistence.Caching/TokanPages.Persistence.Caching.csproj" />
+    <Project Path="TokanPages.Persistence/TokanPages.Persistence.Database/TokanPages.Persistence.Database.csproj" />
+    <Project Path="TokanPages.Persistence/TokanPages.Persistence.MigrationRunner/TokanPages.Persistence.MigrationRunner.csproj" />
+    <Project Path="TokanPages.Persistence/TokanPages.Persistence.SqlDatabase/TokanPages.Persistence.SqlDatabase.sqlproj" Type="42ea0dbd-9cf1-443e-919e-be9c484e4577">
+      <Build Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/8. Services/">
+    <Project Path="TokanPages.Services/TokanPages.Services.AzureBusService/TokanPages.Services.AzureBusService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.AzureStorageService/TokanPages.Services.AzureStorageService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.BatchService/TokanPages.Services.BatchService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.BehaviourService/TokanPages.Services.BehaviourService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.CipheringService/TokanPages.Services.CipheringService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.CookieAccessorService/TokanPages.Services.CookieAccessorService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.EmailSenderService/TokanPages.Services.EmailSenderService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.HttpClientService/TokanPages.Services.HttpClientService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.MetricsService/TokanPages.Services.MetricsService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.PayUService/TokanPages.Services.PayUService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.PushNotificationService/TokanPages.Services.PushNotificationService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.RedisCacheService/TokanPages.Services.RedisCacheService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.SpaCachingService/TokanPages.Services.SpaCachingService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.TemplateService/TokanPages.Services.TemplateService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.UserService/TokanPages.Services.UserService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.VatService/TokanPages.Services.VatService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.VideoConverterService/TokanPages.Services.VideoConverterService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.VideoProcessingService/TokanPages.Services.VideoProcessingService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.WebSocketService/TokanPages.Services.WebSocketService.csproj" />
+    <Project Path="TokanPages.Services/TokanPages.Services.WebTokenService/TokanPages.Services.WebTokenService.csproj" />
+  </Folder>
+  <Folder Name="/9. WebApi/">
+    <Project Path="TokanPages.WebApi/TokanPages.Articles.Dto/TokanPages.Articles.Dto.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Articles/TokanPages.Articles.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Chat.Dto/TokanPages.Chat.Dto.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Chat/TokanPages.Chat.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Content.Dto/TokanPages.Content.Dto.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Content/TokanPages.Content.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Gateway/TokanPages.Gateway.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.HostedServices/TokanPages.HostedServices.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Invoicing.Dto/TokanPages.Invoicing.Dto.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Invoicing/TokanPages.Invoicing.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Logger.Dto/TokanPages.Logger.Dto.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Logger/TokanPages.Logger.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Notifications.Dto/TokanPages.Notifications.Dto.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Notifications/TokanPages.Notifications.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Revenue.Dto/TokanPages.Revenue.Dto.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Revenue/TokanPages.Revenue.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Sender.Dto/TokanPages.Sender.Dto.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Sender/TokanPages.Sender.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Users.Dto/TokanPages.Users.Dto.csproj" />
+    <Project Path="TokanPages.WebApi/TokanPages.Users/TokanPages.Users.csproj" />
+  </Folder>
+  <Folder Name="/10. Tests/">
+    <Project Path="TokanPages.Tests/TokanPages.Tests.UnitTests/TokanPages.Tests.UnitTests.csproj" />
+  </Folder>
+</Solution>

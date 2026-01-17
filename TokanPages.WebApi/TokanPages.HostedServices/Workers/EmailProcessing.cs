@@ -10,6 +10,7 @@ using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.HostedServices.Workers;
 
@@ -28,7 +29,7 @@ public class EmailProcessing : Processing
 
     private readonly IEmailSenderService _emailSenderService;
 
-    private readonly DatabaseContext _databaseContext;
+    private readonly OperationDbContext _operationDbContext;
 
     /// <summary>
     /// Implementation of email processing hosted service.
@@ -36,12 +37,12 @@ public class EmailProcessing : Processing
     /// <param name="loggerService">Logger Service instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
     /// <param name="emailSenderService">Email Sender Service instance.</param>
-    /// <param name="databaseContext">Database instance.</param>
+    /// <param name="operationDbContext">Database instance.</param>
     public EmailProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        IEmailSenderService emailSenderService, DatabaseContext databaseContext) : base(loggerService, azureBusFactory)
+        IEmailSenderService emailSenderService, OperationDbContext operationDbContext) : base(loggerService, azureBusFactory)
     {
         _emailSenderService = emailSenderService;
-        _databaseContext = databaseContext;
+        _operationDbContext = operationDbContext;
     }
 
     /// <summary>
@@ -99,7 +100,7 @@ public class EmailProcessing : Processing
 
     private async Task<bool> CanContinue(Guid messageId, CancellationToken cancellationToken)
     {
-        var busMessages = await _databaseContext.ServiceBusMessages
+        var busMessages = await _operationDbContext.ServiceBusMessages
             .Where(messages => messages.Id == messageId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -107,7 +108,7 @@ public class EmailProcessing : Processing
             return false;
 
         busMessages.IsConsumed = true;
-        await _databaseContext.SaveChangesAsync(cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
 

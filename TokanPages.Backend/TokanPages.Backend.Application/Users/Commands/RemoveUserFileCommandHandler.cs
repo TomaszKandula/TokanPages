@@ -2,6 +2,7 @@ using MediatR;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -13,8 +14,8 @@ public class RemoveUserFileCommandHandler : RequestHandler<RemoveUserFileCommand
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public RemoveUserFileCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
+    public RemoveUserFileCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IUserService userService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _azureBlobStorageFactory = azureBlobStorageFactory;

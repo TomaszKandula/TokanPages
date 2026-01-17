@@ -7,6 +7,7 @@ using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.UserService.Abstractions;
 using MediatR;
 using Microsoft.Extensions.Configuration;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
@@ -20,9 +21,9 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
 
     private readonly IEmailSenderService _emailSenderService;
 
-    public VerifyUserEmailCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public VerifyUserEmailCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IConfiguration configuration, IUserService userService, IDateTimeService dateTimeService, 
-        IEmailSenderService emailSenderService) : base(databaseContext, loggerService)
+        IEmailSenderService emailSenderService) : base(operationDbContext, loggerService)
     {
         _configuration = configuration;
         _userService = userService;
@@ -50,7 +51,7 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
     }
 
     private async Task CommitAllChanges(CancellationToken cancellationToken = default) 
-        => await DatabaseContext.SaveChangesAsync(cancellationToken);
+        => await OperationDbContext.SaveChangesAsync(cancellationToken);
 
     private async Task<Guid> PrepareNotificationUncommitted(CancellationToken cancellationToken)
     {
@@ -61,7 +62,7 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
             IsConsumed = false
         };
 
-        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
         return messageId;
     }
 

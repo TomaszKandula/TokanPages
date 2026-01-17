@@ -7,6 +7,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.HostedServices.Base;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.SpaCachingService;
 using TokanPages.Services.SpaCachingService.Models;
@@ -28,7 +29,7 @@ public class CacheProcessing : Processing
 
     private readonly ICachingService _cachingService;
 
-    private readonly DatabaseContext _databaseContext;
+    private readonly OperationDbContext _operationDbContext;
 
     /// <summary>
     /// Implementation of cache processing hosted service.
@@ -36,12 +37,12 @@ public class CacheProcessing : Processing
     /// <param name="loggerService">Logger Service instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
     /// <param name="cachingService">SPA Cache Processor instance.</param>
-    /// <param name="databaseContext">Database instance.</param>
+    /// <param name="operationDbContext">Database instance.</param>
     public CacheProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        ICachingService cachingService, DatabaseContext databaseContext) : base(loggerService, azureBusFactory)
+        ICachingService cachingService, OperationDbContext operationDbContext) : base(loggerService, azureBusFactory)
     {
         _cachingService = cachingService;
-        _databaseContext = databaseContext;
+        _operationDbContext = operationDbContext;
     }
 
     /// <summary>
@@ -100,7 +101,7 @@ public class CacheProcessing : Processing
 
     private async Task<bool> CanContinue(Guid messageId, CancellationToken cancellationToken)
     {
-        var busMessages = await _databaseContext.ServiceBusMessages
+        var busMessages = await _operationDbContext.ServiceBusMessages
             .Where(messages => messages.Id == messageId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -108,7 +109,7 @@ public class CacheProcessing : Processing
             return false;
 
         busMessages.IsConsumed = true;
-        await _databaseContext.SaveChangesAsync(cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
 }

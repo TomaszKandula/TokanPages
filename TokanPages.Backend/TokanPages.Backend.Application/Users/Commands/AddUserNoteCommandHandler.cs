@@ -5,6 +5,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
@@ -17,8 +18,8 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
 
     private readonly IConfiguration _configuration;
 
-    public AddUserNoteCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService, IConfiguration configuration) : base(databaseContext, loggerService)
+    public AddUserNoteCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IUserService userService, IDateTimeService dateTimeService, IConfiguration configuration) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -28,7 +29,7 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
     public override async Task<AddUserNoteCommandResult> Handle(AddUserNoteCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var notesCount = await DatabaseContext.UserNotes
+        var notesCount = await OperationDbContext.UserNotes
             .AsNoTracking()
             .Where(note => note.UserId == userId)
             .CountAsync(cancellationToken);
@@ -52,8 +53,8 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
             CreatedBy = userId
         };
 
-        await DatabaseContext.UserNotes.AddAsync(userNote, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.UserNotes.AddAsync(userNote, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         return new AddUserNoteCommandResult
         {

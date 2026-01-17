@@ -2,38 +2,39 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Chat.Commands;
 
 public class RemoveChatCacheCommandHandler : RequestHandler<RemoveChatCacheCommand, Unit>
 {
-    public RemoveChatCacheCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    public RemoveChatCacheCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService) : base(operationDbContext, loggerService) { }
 
     public override async Task<Unit> Handle(RemoveChatCacheCommand request, CancellationToken cancellationToken)
     {
         if (request.ChatId is not null)
         {
-            var cache = await DatabaseContext.UserMessagesCache
+            var cache = await OperationDbContext.UserMessagesCache
                 .Where(cache => cache.Id == request.ChatId)
                 .SingleOrDefaultAsync(cancellationToken);
 
             if (cache is null)
                 return Unit.Value;
 
-            DatabaseContext.Remove(cache);
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            OperationDbContext.Remove(cache);
+            await OperationDbContext.SaveChangesAsync(cancellationToken);
         }
         else if (request.ChatKey is not null)
         {
-            var cacheList = await DatabaseContext.UserMessagesCache
+            var cacheList = await OperationDbContext.UserMessagesCache
                 .Where(cache => cache.ChatKey == request.ChatKey)
                 .ToListAsync(cancellationToken);
 
             if (cacheList.Count == 0)
                 return Unit.Value;
 
-            DatabaseContext.RemoveRange(cacheList);
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            OperationDbContext.RemoveRange(cacheList);
+            await OperationDbContext.SaveChangesAsync(cancellationToken);
         }
 
         return Unit.Value;        

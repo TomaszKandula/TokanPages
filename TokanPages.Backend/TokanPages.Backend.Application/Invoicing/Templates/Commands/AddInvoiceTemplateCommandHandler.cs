@@ -1,6 +1,7 @@
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.TemplateService;
 using TokanPages.Services.TemplateService.Models;
 
@@ -10,8 +11,8 @@ public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplat
 {
     private readonly ITemplateService _templateService;
 
-    public AddInvoiceTemplateCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        ITemplateService templateService) : base(databaseContext, loggerService) => _templateService = templateService;
+    public AddInvoiceTemplateCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        ITemplateService templateService) : base(operationDbContext, loggerService) => _templateService = templateService;
 
     public override async Task<AddInvoiceTemplateCommandResult> Handle(AddInvoiceTemplateCommand request, CancellationToken cancellationToken)
     {

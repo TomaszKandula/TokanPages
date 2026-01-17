@@ -8,6 +8,7 @@ using TokanPages.Services.PushNotificationService.Abstractions;
 using TokanPages.Services.PushNotificationService.Models;
 using Microsoft.Azure.NotificationHubs;
 using TokanPages.Backend.Domain.Entities.Notifications;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Notifications.Mobile.Commands;
 
@@ -19,9 +20,9 @@ public class SendNotificationCommandHandler : RequestHandler<SendNotificationCom
 
     private readonly IDateTimeService _dateTimeService;
     
-    public SendNotificationCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public SendNotificationCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IAzureNotificationHubFactory azureNotificationHubFactory, IAzureNotificationHubUtility azureNotificationHubUtility, 
-        IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+        IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
     {
         _azureNotificationHubFactory = azureNotificationHubFactory;
         _azureNotificationHubUtility = azureNotificationHubUtility;
@@ -74,8 +75,8 @@ public class SendNotificationCommandHandler : RequestHandler<SendNotificationCom
                     AffectedRegistrations = affected
                 };
 
-            await DatabaseContext.PushNotificationLogs.AddRangeAsync(logs, cancellationToken);
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            await OperationDbContext.PushNotificationLogs.AddRangeAsync(logs, cancellationToken);
+            await OperationDbContext.SaveChangesAsync(cancellationToken);
         }
 
         return new SendNotificationCommandResult

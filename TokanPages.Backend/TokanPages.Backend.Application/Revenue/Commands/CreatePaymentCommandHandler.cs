@@ -7,6 +7,7 @@ using TokanPages.Services.UserService.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Persistence.Database.Contexts;
 using BuyerInput = TokanPages.Services.PayUService.Models.Sections.Buyer;
 using CardInput = TokanPages.Services.PayUService.Models.Sections.Card;
 using PayMethodInput = TokanPages.Services.PayUService.Models.Sections.PayMethod;
@@ -26,9 +27,9 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
 
     private readonly IConfiguration _configuration;
 
-    public CreatePaymentCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public CreatePaymentCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IUserService userService, IDateTimeService dateTimeService, IPayUService payUService, 
-        IConfiguration configuration) : base(databaseContext, loggerService)
+        IConfiguration configuration) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -92,7 +93,7 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
         };
 
         var postOrderResponse = await _payUService.PostOrder(input, cancellationToken);
-        var userPayments = await DatabaseContext.UserPayments
+        var userPayments = await OperationDbContext.UserPayments
             .Where(payments => payments.UserId == request.UserId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -121,10 +122,10 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
                 ExtOrderId = order.ExtOrderId
             };
 
-            await DatabaseContext.UserPayments.AddAsync(userPayment, cancellationToken);
+            await OperationDbContext.UserPayments.AddAsync(userPayment, cancellationToken);
         }
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation("New user payment has been registered within the system.");
 
         return new CreatePaymentCommandResult

@@ -4,6 +4,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -15,8 +16,8 @@ public class RemoveUserMediaCommandHandler : RequestHandler<RemoveUserMediaComma
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public RemoveUserMediaCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
+    public RemoveUserMediaCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IUserService userService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
@@ -29,7 +30,7 @@ public class RemoveUserMediaCommandHandler : RequestHandler<RemoveUserMediaComma
 
         var destinationPath = $"content/users/{userId}/{request.UniqueBlobName}";
 
-        var userInfo = await DatabaseContext.UserInformation
+        var userInfo = await OperationDbContext.UserInformation
             .Where(userInfo => userInfo.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -39,7 +40,7 @@ public class RemoveUserMediaCommandHandler : RequestHandler<RemoveUserMediaComma
         userInfo.UserImageName = userInfo.UserImageName == request.UniqueBlobName ? null : userInfo.UserImageName;
         userInfo.UserVideoName = userInfo.UserVideoName == request.UniqueBlobName ? null : userInfo.UserVideoName;
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         await azureBlob.DeleteFile(destinationPath, cancellationToken);
 
         return Unit.Value;

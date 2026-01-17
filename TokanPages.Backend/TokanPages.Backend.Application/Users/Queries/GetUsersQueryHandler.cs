@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Users.Queries;
 
 public class GetUsersQueryHandler : RequestHandler<GetUsersQuery, List<GetUsersQueryResult>>
 {
-    public GetUsersQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService) : base(databaseContext, loggerService) { }
+    public GetUsersQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService) : base(operationDbContext, loggerService) { }
 
     public override async Task<List<GetUsersQueryResult>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
     {
-        return await DatabaseContext.Users
+        return await OperationDbContext.Users
             .AsNoTracking()
             .Select(user => new GetUsersQueryResult 
             { 

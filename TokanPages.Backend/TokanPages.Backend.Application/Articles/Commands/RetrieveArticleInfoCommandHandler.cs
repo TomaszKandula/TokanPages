@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Application.Articles.Models;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Articles.Commands;
@@ -10,20 +11,20 @@ public class RetrieveArticleInfoCommandHandler : RequestHandler<RetrieveArticleI
 {
     private readonly IUserService _userService;
 
-    public RetrieveArticleInfoCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService)
-        : base(databaseContext, loggerService) => _userService = userService;
+    public RetrieveArticleInfoCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService)
+        : base(operationDbContext, loggerService) => _userService = userService;
 
     public override async Task<RetrieveArticleInfoCommandResult> Handle(RetrieveArticleInfoCommand request, CancellationToken cancellationToken)
     {
         var userLanguage = _userService.GetRequestUserLanguage();
         var articleIds = new HashSet<Guid>(request.ArticleIds);
         var articleInfoList = await (
-            from article in DatabaseContext.Articles
+            from article in OperationDbContext.Articles
             join table in 
-                (from articleCategory in DatabaseContext.ArticleCategories
-                    join categoryName in DatabaseContext.CategoryNames
+                (from articleCategory in OperationDbContext.ArticleCategories
+                    join categoryName in OperationDbContext.ArticleCategoryNames
                         on articleCategory.Id equals categoryName.ArticleCategoryId
-                    join language in DatabaseContext.Languages
+                    join language in OperationDbContext.Languages
                         on categoryName.LanguageId equals language.Id
                     select new
                     {

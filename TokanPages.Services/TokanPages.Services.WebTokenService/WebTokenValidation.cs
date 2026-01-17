@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Services.WebTokenService;
@@ -13,12 +14,12 @@ public class WebTokenValidation : IWebTokenValidation
     
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    private readonly DatabaseContext _databaseContext;
+    private readonly OperationDbContext _operationDbContext;
 
-    public WebTokenValidation(IHttpContextAccessor httpContextAccessor, DatabaseContext databaseContext)
+    public WebTokenValidation(IHttpContextAccessor httpContextAccessor, OperationDbContext operationDbContext)
     {
         _httpContextAccessor = httpContextAccessor;
-        _databaseContext = databaseContext;
+        _operationDbContext = operationDbContext;
     }
 
     /// <summary>
@@ -48,7 +49,7 @@ public class WebTokenValidation : IWebTokenValidation
     public async Task VerifyUserToken()
     {
         var token = GetWebTokenFromHeader();
-        var userToken = await _databaseContext.UserTokens
+        var userToken = await _operationDbContext.UserTokens
             .AsNoTracking()
             .Where(userTokens => userTokens.Token == token)
             .FirstOrDefaultAsync();

@@ -4,19 +4,20 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using InvoiceTemplate = TokanPages.Backend.Domain.Entities.Invoicing.InvoiceTemplate;
 
 namespace TokanPages.Services.TemplateService;
 
 public class TemplateService : ITemplateService
 {
-    private readonly DatabaseContext _databaseContext;
+    private readonly OperationDbContext _operationDbContext;
 
     private readonly IDateTimeService _dateTimeService;
 
-    public TemplateService(DatabaseContext databaseContext, IDateTimeService dateTimeService)
+    public TemplateService(OperationDbContext operationDbContext, IDateTimeService dateTimeService)
     {
-        _databaseContext = databaseContext;
+        _operationDbContext = operationDbContext;
         _dateTimeService = dateTimeService;
     }
 
@@ -26,7 +27,7 @@ public class TemplateService : ITemplateService
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns></returns>
     public async Task<IEnumerable<InvoiceTemplateInfo>> GetInvoiceTemplates(CancellationToken cancellationToken = default)
-        => await _databaseContext.InvoiceTemplates
+        => await _operationDbContext.InvoiceTemplates
             .Where(templates => !templates.IsDeleted)
             .Select(templates => new InvoiceTemplateInfo
             {
@@ -44,7 +45,7 @@ public class TemplateService : ITemplateService
     /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
     public async Task<InvoiceTemplateData> GetInvoiceTemplate(Guid templateId, CancellationToken cancellationToken = default)
     {
-        var template = await _databaseContext.InvoiceTemplates
+        var template = await _operationDbContext.InvoiceTemplates
             .AsNoTracking()
             .Where(templates => templates.Id == templateId)
             .Where(templates => !templates.IsDeleted)
@@ -69,7 +70,7 @@ public class TemplateService : ITemplateService
     /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
     public async Task RemoveInvoiceTemplate(Guid templateId, CancellationToken cancellationToken = default)
     {
-        var template = await _databaseContext.InvoiceTemplates
+        var template = await _operationDbContext.InvoiceTemplates
             .Where(templates => templates.Id == templateId)
             .Where(templates => !templates.IsDeleted)
             .FirstOrDefaultAsync(cancellationToken);
@@ -78,7 +79,7 @@ public class TemplateService : ITemplateService
             throw new BusinessException(nameof(ErrorCodes.INVALID_TEMPLATE_ID), ErrorCodes.INVALID_TEMPLATE_ID);
 
         template.IsDeleted = true;
-        await _databaseContext.SaveChangesAsync(cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
     }
 
     /// <summary>
@@ -93,7 +94,7 @@ public class TemplateService : ITemplateService
         if (string.IsNullOrEmpty(invoiceTemplateData.ContentType))
             throw new BusinessException(nameof(ErrorCodes.INVALID_CONTENT_TYPE), ErrorCodes.INVALID_CONTENT_TYPE);
 
-        var template = await _databaseContext.InvoiceTemplates
+        var template = await _operationDbContext.InvoiceTemplates
             .Where(templates => templates.Id == templateId)
             .Where(templates => !templates.IsDeleted)
             .FirstOrDefaultAsync(cancellationToken);
@@ -104,7 +105,7 @@ public class TemplateService : ITemplateService
         template.Data = invoiceTemplateData.ContentData;
         template.ContentType = invoiceTemplateData.ContentType;
         template.ShortDescription = invoiceTemplateData.Description;
-        await _databaseContext.SaveChangesAsync(cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
     }
 
     /// <summary>
@@ -128,8 +129,8 @@ public class TemplateService : ITemplateService
             IsDeleted = false
         };
 
-        await _databaseContext.AddAsync(template, cancellationToken);
-        await _databaseContext.SaveChangesAsync(cancellationToken);
+        await _operationDbContext.AddAsync(template, cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
 
         return template.Id;
     }

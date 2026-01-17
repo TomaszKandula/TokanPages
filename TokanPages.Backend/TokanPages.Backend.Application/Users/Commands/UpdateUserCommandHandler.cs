@@ -5,6 +5,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
@@ -15,8 +16,8 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
 
     private readonly IDateTimeService _dateTimeService;
         
-    public UpdateUserCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService, IUserService userService) : base(databaseContext, loggerService)
+    public UpdateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IDateTimeService dateTimeService, IUserService userService) : base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _userService = userService;
@@ -37,11 +38,11 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
         };
     }
 
-    private async Task CommitAllChanges(CancellationToken cancellationToken) => await DatabaseContext.SaveChangesAsync(cancellationToken);
+    private async Task CommitAllChanges(CancellationToken cancellationToken) => await OperationDbContext.SaveChangesAsync(cancellationToken);
 
     private async Task UpdateUserUncommitted(User user, UpdateUserCommand request, bool shouldVerify, CancellationToken cancellationToken = default)
     {
-        var emails = await DatabaseContext.Users
+        var emails = await OperationDbContext.Users
             .AsNoTracking()
             .Where(users => users.Id != user.Id)
             .Where(users => users.EmailAddress == request.EmailAddress)
@@ -60,7 +61,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
 
     private async Task UpdateUserInfoUncommitted(Guid userId, UpdateUserCommand request, CancellationToken cancellationToken = default)
     {
-        var userInfo = await DatabaseContext.UserInformation
+        var userInfo = await OperationDbContext.UserInformation
             .Where(info => info.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -78,7 +79,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
                 CreatedAt = _dateTimeService.Now
             };
 
-            await DatabaseContext.UserInformation.AddAsync(newUserInfo, cancellationToken);
+            await OperationDbContext.UserInformation.AddAsync(newUserInfo, cancellationToken);
         }
         else
         {

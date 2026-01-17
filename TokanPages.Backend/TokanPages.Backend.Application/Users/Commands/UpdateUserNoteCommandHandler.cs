@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
@@ -16,8 +17,8 @@ public class UpdateUserNoteCommandHandler : RequestHandler<UpdateUserNoteCommand
 
     private readonly IDateTimeService _dateTimeService;
 
-    public UpdateUserNoteCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+    public UpdateUserNoteCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IUserService userService, IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -26,7 +27,7 @@ public class UpdateUserNoteCommandHandler : RequestHandler<UpdateUserNoteCommand
     public override async Task<Unit> Handle(UpdateUserNoteCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var note = await DatabaseContext.UserNotes
+        var note = await OperationDbContext.UserNotes
             .Where(userNote => userNote.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -37,7 +38,7 @@ public class UpdateUserNoteCommandHandler : RequestHandler<UpdateUserNoteCommand
         note.ModifiedAt = _dateTimeService.Now;
         note.ModifiedBy = userId;
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

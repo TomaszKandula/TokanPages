@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Revenue.Commands;
 
@@ -21,8 +22,8 @@ public class PostNotificationCommandHandler : RequestHandler<PostNotificationCom
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    public PostNotificationCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
-        INotificationService notificationService, IJsonSerializer jsonSerializer): base(databaseContext, loggerService)
+    public PostNotificationCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
+        INotificationService notificationService, IJsonSerializer jsonSerializer): base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _notificationService = notificationService;
@@ -36,7 +37,7 @@ public class PostNotificationCommandHandler : RequestHandler<PostNotificationCom
         var extOrderId = order?.ExtOrderId;
         var status = order?.Status;
 
-        var userPayment = await DatabaseContext.UserPayments
+        var userPayment = await OperationDbContext.UserPayments
             .Where(payments => payments.ExtOrderId == extOrderId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -49,7 +50,7 @@ public class PostNotificationCommandHandler : RequestHandler<PostNotificationCom
         userPayment.ModifiedBy = Guid.Empty;
 
         var userId = userPayment.UserId;
-        var userSubscription = await DatabaseContext.UserSubscriptions
+        var userSubscription = await OperationDbContext.UserSubscriptions
             .Where(subscriptions => subscriptions.UserId == userId)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -78,8 +79,8 @@ public class PostNotificationCommandHandler : RequestHandler<PostNotificationCom
                     CreatedAt = _dateTimeService.Now
                 };
 
-                await DatabaseContext.UserPaymentsHistory.AddAsync(history, cancellationToken);
-                await DatabaseContext.SaveChangesAsync(cancellationToken);
+                await OperationDbContext.UserPaymentsHistory.AddAsync(history, cancellationToken);
+                await OperationDbContext.SaveChangesAsync(cancellationToken);
 
                 var payload = new SubscriptionNotification
                 {
@@ -105,7 +106,7 @@ public class PostNotificationCommandHandler : RequestHandler<PostNotificationCom
             }
         }
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation($"Subscription updated upon received payment notification. {details}.");
         return Unit.Value;
     }
@@ -119,7 +120,7 @@ public class PostNotificationCommandHandler : RequestHandler<PostNotificationCom
             Handler = "payment_status"
         };
 
-        var handler = new NotifyRequestCommandHandler(DatabaseContext, LoggerService, _notificationService, _jsonSerializer);
+        var handler = new NotifyRequestCommandHandler(OperationDbContext, LoggerService, _notificationService, _jsonSerializer);
         await handler.Handle(notify, cancellationToken);
         LoggerService.LogInformation("Payment completed. Web application notified.");
     }

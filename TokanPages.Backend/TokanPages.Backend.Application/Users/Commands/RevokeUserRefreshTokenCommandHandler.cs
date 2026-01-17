@@ -4,6 +4,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.CookieAccessorService;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
@@ -16,8 +17,8 @@ public class RevokeUserRefreshTokenCommandHandler : RequestHandler<RevokeUserRef
 
     private readonly ICookieAccessor _cookieAccessor;
 
-    public RevokeUserRefreshTokenCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, ICookieAccessor cookieAccessor) : base(databaseContext, loggerService)
+    public RevokeUserRefreshTokenCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IUserService userService, ICookieAccessor cookieAccessor) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _cookieAccessor = cookieAccessor;
@@ -30,7 +31,7 @@ public class RevokeUserRefreshTokenCommandHandler : RequestHandler<RevokeUserRef
         if (csrfToken is null)
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
-        var refreshTokens = await DatabaseContext.UserRefreshTokens
+        var refreshTokens = await OperationDbContext.UserRefreshTokens
             .Where(tokens => tokens.UserId == user.Id)
             .Where(tokens => tokens.Token == csrfToken)
             .SingleOrDefaultAsync(cancellationToken);

@@ -2,19 +2,20 @@
 using MediatR;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application;
 
 [ExcludeFromCodeCoverage]
 public abstract class RequestHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>
 {
-    protected readonly DatabaseContext DatabaseContext;
+    protected readonly OperationDbContext OperationDbContext;
 
     protected readonly ILoggerService LoggerService;
 
-    protected RequestHandler(DatabaseContext databaseContext, ILoggerService loggerService)
+    protected RequestHandler(OperationDbContext operationDbContext, ILoggerService loggerService)
     {
-        DatabaseContext = databaseContext;
+        OperationDbContext = operationDbContext;
         LoggerService = loggerService;
     }
 

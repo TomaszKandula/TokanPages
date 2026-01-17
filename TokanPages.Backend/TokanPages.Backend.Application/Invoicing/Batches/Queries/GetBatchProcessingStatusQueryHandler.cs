@@ -1,5 +1,6 @@
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.BatchService;
 
 namespace TokanPages.Backend.Application.Invoicing.Batches.Queries;
@@ -8,8 +9,8 @@ public class GetBatchProcessingStatusQueryHandler : RequestHandler<GetBatchProce
 {
     private readonly IBatchService _batchService;
 
-    public GetBatchProcessingStatusQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, IBatchService batchService) 
-        : base(databaseContext, loggerService) => _batchService = batchService;
+    public GetBatchProcessingStatusQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IBatchService batchService) 
+        : base(operationDbContext, loggerService) => _batchService = batchService;
         
     public override async Task<GetBatchProcessingStatusQueryResult> Handle(GetBatchProcessingStatusQuery request, CancellationToken cancellationToken)
     {

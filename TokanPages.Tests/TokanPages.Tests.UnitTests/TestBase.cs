@@ -4,6 +4,7 @@ using Moq;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Abstractions;
 
@@ -32,7 +33,7 @@ public abstract class TestBase
         DateTimeService = serviceProvider.GetRequiredService<IDateTimeService>();
     }
 
-    protected static DatabaseContext GetTestDatabaseContext()
+    protected static OperationDbContext GetTestDatabaseContext()
     {
         var options = DatabaseContextProvider.GetTestDatabaseOptions();
         return DatabaseContextProvider.CreateDatabaseContext(options);

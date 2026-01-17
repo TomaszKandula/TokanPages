@@ -16,7 +16,6 @@ public class ArticleTagConfiguration : IEntityTypeConfiguration<ArticleTag>
             .HasOne(tag => tag.Article)
             .WithMany(article => article.ArticleTags)
             .HasForeignKey(tag => tag.ArticleId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK_ArticleTags_Articles");
+            .OnDelete(DeleteBehavior.ClientSetNull);
     }
 }

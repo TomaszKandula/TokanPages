@@ -6,6 +6,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
@@ -16,8 +17,8 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public UploadImageCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) : base(databaseContext, loggerService)
+    public UploadImageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) : base(operationDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;
@@ -104,13 +105,13 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
 
     private async Task DatabaseUpdate(string blobName, Guid userId, CancellationToken cancellationToken)
     {
-        var userInfo = await DatabaseContext.UserInformation
+        var userInfo = await OperationDbContext.UserInformation
             .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
 
         if (userInfo is not null)
         {
             userInfo.UserImageName = blobName;
-            await DatabaseContext.SaveChangesAsync(cancellationToken);
+            await OperationDbContext.SaveChangesAsync(cancellationToken);
         }
     }
 }

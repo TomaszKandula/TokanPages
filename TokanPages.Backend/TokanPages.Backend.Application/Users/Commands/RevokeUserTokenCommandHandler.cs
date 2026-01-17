@@ -5,6 +5,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService.Abstractions;
 
@@ -18,9 +19,9 @@ public class RevokeUserTokenCommandHandler : RequestHandler<RevokeUserTokenComma
 
     private readonly IDateTimeService _dateTimeService;
 
-    public RevokeUserTokenCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public RevokeUserTokenCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IUserService userService, IWebTokenValidation webTokenValidation, IDateTimeService dateTimeService) 
-        : base(databaseContext, loggerService)
+        : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _webTokenValidation = webTokenValidation;
@@ -31,7 +32,7 @@ public class RevokeUserTokenCommandHandler : RequestHandler<RevokeUserTokenComma
     {
         var token = _webTokenValidation.GetWebTokenFromHeader();
         var userId = _userService.GetLoggedUserId();
-        var tokens = await DatabaseContext.UserTokens
+        var tokens = await OperationDbContext.UserTokens
             .Where(userTokens => userTokens.Token == token)
             .FirstOrDefaultAsync(cancellationToken);
 
@@ -45,7 +46,7 @@ public class RevokeUserTokenCommandHandler : RequestHandler<RevokeUserTokenComma
         tokens.RevokedByIp = requestIpAddress; 
         tokens.ReasonRevoked = reason;
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

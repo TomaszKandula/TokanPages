@@ -2,6 +2,7 @@
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -15,8 +16,8 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public AddArticleCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, IUserService userService, 
-        IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
+    public AddArticleCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService, 
+        IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -38,8 +39,8 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
             LanguageIso = "ENG"
         };
 
-        await DatabaseContext.Articles.AddAsync(newArticle, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.Articles.AddAsync(newArticle, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var textDestinationPath = $"content\\articles\\{newArticle.Id}\\text.json";

@@ -9,6 +9,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -33,9 +34,9 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public AddUserFileCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
+    public AddUserFileCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService, IAzureBusFactory azureBusFactory, 
-        IJsonSerializer jsonSerializer, IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+        IJsonSerializer jsonSerializer, IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;
@@ -136,8 +137,8 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
         using var stream = new MemoryStream(buffer);
 
         await azureBlob.UploadFile(stream, tempPathFile, contentType, cancellationToken);
-        await DatabaseContext.UploadedVideos.AddAsync(upload, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.UploadedVideos.AddAsync(upload, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation($"New user video has been uploaded for processing. Ticket ID: {ticketId}.");
 
         var details = new TargetDetails
@@ -168,8 +169,8 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
             Details = details
         };
 
-        await DatabaseContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         var serialized = _jsonSerializer.Serialize(requestBody, Formatting.None, Settings);
         var messages = new List<string> { serialized };

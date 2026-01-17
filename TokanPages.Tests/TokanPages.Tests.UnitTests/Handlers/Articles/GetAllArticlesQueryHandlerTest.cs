@@ -86,7 +86,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             },
         };
         
-        var categoryNames = new List<Backend.Domain.Entities.CategoryName>
+        var categoryNames = new List<ArticleCategoryName>
         {
             new()
             {
@@ -107,7 +107,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
         await databaseContext.Languages.AddRangeAsync(languages);
         await databaseContext.Articles.AddRangeAsync(articles);
         await databaseContext.ArticleCategories.AddRangeAsync(articleCategories);
-        await databaseContext.CategoryNames.AddRangeAsync(categoryNames);
+        await databaseContext.ArticleCategoryNames.AddRangeAsync(categoryNames);
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();

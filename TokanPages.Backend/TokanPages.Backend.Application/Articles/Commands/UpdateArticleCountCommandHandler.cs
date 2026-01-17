@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Articles.Commands;
@@ -16,8 +17,8 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
 
     private readonly IDateTimeService _dateTimeService;
 
-    public UpdateArticleCountCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService) : base(databaseContext, loggerService)
+    public UpdateArticleCountCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IUserService userService, IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -25,7 +26,7 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
 
     public override async Task<Unit> Handle(UpdateArticleCountCommand request, CancellationToken cancellationToken)
     {
-        var articleData = await DatabaseContext.Articles
+        var articleData = await OperationDbContext.Articles
             .Where(article => article.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
@@ -34,7 +35,7 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
 
         var userId = _userService.GetLoggedUserId();
         var ipAddress = _userService.GetRequestIpAddress();
-        var articleCount = await DatabaseContext.ArticleCounts
+        var articleCount = await OperationDbContext.ArticleCounts
             .Where(count => count.ArticleId == request.Id)
             .Where(count => count.IpAddress == ipAddress)
             .SingleOrDefaultAsync(cancellationToken);
@@ -53,7 +54,7 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
                 ModifiedBy = null
             };
 
-            await DatabaseContext.ArticleCounts.AddAsync(newArticleCount, cancellationToken);
+            await OperationDbContext.ArticleCounts.AddAsync(newArticleCount, cancellationToken);
         }
         else
         {
@@ -61,14 +62,14 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
             articleCount.ModifiedAt = _dateTimeService.Now;
             articleCount.ModifiedBy = userId;
 
-            DatabaseContext.ArticleCounts.Update(articleCount);
+            OperationDbContext.ArticleCounts.Update(articleCount);
         }
 
         articleData.ReadCount += 1;
         articleData.ModifiedAt = _dateTimeService.Now;
         articleData.ModifiedBy = userId;
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

@@ -5,6 +5,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -18,9 +19,9 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public UpdateArticleContentCommandHandler(DatabaseContext databaseContext, ILoggerService loggerService,
+    public UpdateArticleContentCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService,
         IUserService userService, IDateTimeService dateTimeService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
+        IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
@@ -30,7 +31,7 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
     public override async Task<Unit> Handle(UpdateArticleContentCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var articleData = await DatabaseContext.Articles
+        var articleData = await OperationDbContext.Articles
             .Where(article => article.UserId == userId)
             .Where(article => article.Id == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
@@ -61,7 +62,7 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
         articleData.ModifiedAt = _dateTimeService.Now;
         articleData.ModifiedBy = userId;
 
-        await DatabaseContext.SaveChangesAsync(cancellationToken);
+        await OperationDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

@@ -4,6 +4,7 @@ using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Components.Queries;
@@ -16,8 +17,8 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    public GetContentQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IJsonSerializer jsonSerializer, IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService)
+    public GetContentQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IJsonSerializer jsonSerializer, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
     {
         _jsonSerializer = jsonSerializer;
         _azureBlobStorageFactory = azureBlobStorageFactory;

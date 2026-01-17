@@ -6,6 +6,7 @@ using TokanPages.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using TokanPages.Persistence.Database.Contexts;
 
 namespace TokanPages.Backend.Application.Chat.Queries;
 
@@ -15,12 +16,12 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
 
     private static JsonSerializerSettings Settings => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
-    public GetChatDataQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IJsonSerializer jsonSerializer) : base(databaseContext, loggerService) => _jsonSerializer = jsonSerializer;
+    public GetChatDataQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IJsonSerializer jsonSerializer) : base(operationDbContext, loggerService) => _jsonSerializer = jsonSerializer;
 
     public override async Task<GetChatDataQueryResult> Handle(GetChatDataQuery request, CancellationToken cancellationToken)
     {
-        var chatData = await DatabaseContext.UserMessages
+        var chatData = await OperationDbContext.UserMessages
             .AsNoTracking()
             .Where(message => message.ChatKey == request.ChatKey)
             .Where(message => !message.IsArchived)
@@ -64,7 +65,7 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
     private async Task<string> GetUserInitials(Guid userId, CancellationToken cancellationToken)
     {
         var initials = "A";
-        var userInfo = await DatabaseContext.UserInformation
+        var userInfo = await OperationDbContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == userId)
             .Select(info => new
@@ -85,7 +86,7 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
 
     private async Task<string> GetUserAvatarName(Guid userId, CancellationToken cancellationToken)
     {
-        var blobName = await DatabaseContext.UserInformation
+        var blobName = await OperationDbContext.UserInformation
             .AsNoTracking()
             .Where(info => info.UserId == userId)
             .Select(info => info.UserImageName)

@@ -4,6 +4,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Application.Content.Assets.Queries.Models;
+using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Assets.Queries;
@@ -12,8 +13,8 @@ public class GetNonVideoAssetQueryHandler : RequestHandler<GetNonVideoAssetQuery
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public GetNonVideoAssetQueryHandler(DatabaseContext databaseContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(databaseContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
+    public GetNonVideoAssetQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<ContentOutput> Handle(GetNonVideoAssetQuery request, CancellationToken cancellationToken)
     {
