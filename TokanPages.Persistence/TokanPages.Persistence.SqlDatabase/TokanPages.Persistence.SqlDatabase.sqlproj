@@ -131,7 +131,29 @@
         <Build Include="Operation\Indexes\UserSubscriptions.sql" />
         <Build Include="Operation\Indexes\UserTokens.sql" />
         <!-- KEYS -->
-
+        <Build Include="Operation\Keys\Albums.sql" />
+        <Build Include="Operation\Keys\ArticleCounts.sql" />
+        <Build Include="Operation\Keys\ArticleLikes.sql" />
+        <Build Include="Operation\Keys\Articles.sql" />
+        <Build Include="Operation\Keys\ArticleTags.sql" />
+        <Build Include="Operation\Keys\BatchInvoiceItems.sql" />
+        <Build Include="Operation\Keys\BatchInvoices.sql" />
+        <Build Include="Operation\Keys\CategoryNames.sql" />
+        <Build Include="Operation\Keys\DefaultPermissions.sql" />
+        <Build Include="Operation\Keys\IssuedInvoices.sql" />
+        <Build Include="Operation\Keys\PushNotificationTags.sql" />
+        <Build Include="Operation\Keys\UserBankAccounts.sql" />
+        <Build Include="Operation\Keys\UserCompanies.sql" />
+        <Build Include="Operation\Keys\UserInformation.sql" />
+        <Build Include="Operation\Keys\UserNotes.sql" />
+        <Build Include="Operation\Keys\UserPayments.sql" />
+        <Build Include="Operation\Keys\UserPaymentsHistory.sql" />
+        <Build Include="Operation\Keys\UserPermissions.sql" />
+        <Build Include="Operation\Keys\UserPhotos.sql" />
+        <Build Include="Operation\Keys\UserRefreshTokens.sql" />
+        <Build Include="Operation\Keys\UserRoles.sql" />
+        <Build Include="Operation\Keys\UserSubscriptions.sql" />
+        <Build Include="Operation\Keys\UserTokens.sql" />
     </ItemGroup>
     <!-- SOCCER -->
     <ItemGroup>
