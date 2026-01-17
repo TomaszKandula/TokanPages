@@ -1,0 +1,13 @@
+SET ANSI_NULLS ON
+SET QUOTED_IDENTIFIER ON
+
+CREATE TABLE [operation].[HttpRequests](
+	[Id] [uniqueidentifier] NOT NULL,
+	[SourceAddress] [nvarchar](15) NOT NULL,
+	[RequestedAt] [datetime2](7) NOT NULL,
+	[RequestedHandlerName] [nvarchar](150) NOT NULL,
+ CONSTRAINT [PK_HttpRequests] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]

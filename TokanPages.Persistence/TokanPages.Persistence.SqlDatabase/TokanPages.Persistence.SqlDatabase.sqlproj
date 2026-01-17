@@ -13,6 +13,54 @@
     <ItemGroup>
         <PostDeploy Include="Scripts\PostDeployment.sql" />
     </ItemGroup>
+    <!-- OPERATION -->
+    <ItemGroup>
+        <Build Include="Operation\Schema.sql" />
+        <Build Include="Operation\Tables\Albums.sql" />
+        <Build Include="Operation\Tables\ArticleCategories.sql" />
+        <Build Include="Operation\Tables\ArticleCounts.sql" />
+        <Build Include="Operation\Tables\ArticleLikes.sql" />
+        <Build Include="Operation\Tables\Articles.sql" />
+        <Build Include="Operation\Tables\ArticleTags.sql" />
+        <Build Include="Operation\Tables\BatchInvoiceItems.sql" />
+        <Build Include="Operation\Tables\BatchInvoices.sql" />
+        <Build Include="Operation\Tables\BatchInvoicesProcessing.sql" />
+        <Build Include="Operation\Tables\BusinessInquiries.sql" />
+        <Build Include="Operation\Tables\CategoryNames.sql" />
+        <Build Include="Operation\Tables\DefaultPermissions.sql" />
+        <Build Include="Operation\Tables\HttpRequests.sql" />
+        <Build Include="Operation\Tables\InvoiceTemplates.sql" />
+        <Build Include="Operation\Tables\IssuedInvoices.sql" />
+        <Build Include="Operation\Tables\Languages.sql" />
+        <Build Include="Operation\Tables\Newsletters.sql" />
+        <Build Include="Operation\Tables\Permissions.sql" />
+        <Build Include="Operation\Tables\PhotoCategories.sql" />
+        <Build Include="Operation\Tables\PhotoGears.sql" />
+        <Build Include="Operation\Tables\PushNotificationLogs.sql" />
+        <Build Include="Operation\Tables\PushNotifications.sql" />
+        <Build Include="Operation\Tables\PushNotificationTags.sql" />
+        <Build Include="Operation\Tables\Roles.sql" />
+        <Build Include="Operation\Tables\ServiceBusMessages.sql" />
+        <Build Include="Operation\Tables\SubscriptionsPricing.sql" />
+        <Build Include="Operation\Tables\UploadedVideos.sql" />
+        <Build Include="Operation\Tables\UserBankAccounts.sql" />
+        <Build Include="Operation\Tables\UserCompanies.sql" />
+        <Build Include="Operation\Tables\UserInformation.sql" />
+        <Build Include="Operation\Tables\UserMessages.sql" />
+        <Build Include="Operation\Tables\UserMessagesCache.sql" />
+        <Build Include="Operation\Tables\UserNotes.sql" />
+        <Build Include="Operation\Tables\UserPayments.sql" />
+        <Build Include="Operation\Tables\UserPaymentsHistory.sql" />
+        <Build Include="Operation\Tables\UserPermissions.sql" />
+        <Build Include="Operation\Tables\UserPhotos.sql" />
+        <Build Include="Operation\Tables\UserRefreshTokens.sql" />
+        <Build Include="Operation\Tables\UserRoles.sql" />
+        <Build Include="Operation\Tables\Users.sql" />
+        <Build Include="Operation\Tables\UserSubscriptions.sql" />
+        <Build Include="Operation\Tables\UserTokens.sql" />
+        <Build Include="Operation\Tables\VatNumberPatterns.sql" />
+        <Build Include="Operation\Tables\WebNotifications.sql" />
+    </ItemGroup>
     <!-- SOCCER -->
     <ItemGroup>
         <Build Include="Soccer\Schema.sql" />
@@ -32,8 +80,5 @@
         <Build Include="Soccer\Tables\Matches.sql" />
         <Build Include="Soccer\Tables\Lineups.sql" />
         <Build Include="Soccer\Tables\Views.sql" />
-    </ItemGroup>
-    <ItemGroup>
-        <Folder Include="Operation\Tables\" />
     </ItemGroup>
 </Project>
