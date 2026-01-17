@@ -40,7 +40,7 @@ public static class Dependencies
     public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration)
     {
         services.RegisterCommonServices(configuration);
-        services.SetupDatabase(configuration);
+        services.AddDataLayer(configuration);
     }
 
     /// <summary>

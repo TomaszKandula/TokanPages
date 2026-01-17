@@ -7,7 +7,7 @@ namespace TokanPages.Persistence.DataAccess;
 
 public static class ConfigurationExtension
 {
-    public static void SetupDatabase(this IServiceCollection services, IConfiguration configuration)
+    public static void AddDataLayer(this IServiceCollection services, IConfiguration configuration)
     {
         services.SetupDatabase<OperationDbContext>(configuration);
         services.SetupDatabase<SoccerDbContext>(configuration);
