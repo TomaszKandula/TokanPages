@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Persistence.Database;
 using MediatR;
 using TokanPages.Persistence.DataAccess.Contexts;
 

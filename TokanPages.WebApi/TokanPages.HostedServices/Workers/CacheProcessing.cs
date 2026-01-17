@@ -7,7 +7,6 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.HostedServices.Base;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.SpaCachingService;
 using TokanPages.Services.SpaCachingService.Models;

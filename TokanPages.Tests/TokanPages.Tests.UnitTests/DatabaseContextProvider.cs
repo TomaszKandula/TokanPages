@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Persistence.Database;
 
 namespace TokanPages.Tests.UnitTests;
 

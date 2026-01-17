@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.HttpClientService;

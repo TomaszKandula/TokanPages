@@ -9,7 +9,6 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.BatchService.Models;
 using ProcessingStatus = TokanPages.Backend.Domain.Enums.ProcessingStatus;
 

@@ -4,7 +4,6 @@ using Moq;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Abstractions;
 

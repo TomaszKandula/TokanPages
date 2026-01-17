@@ -13,7 +13,6 @@ using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.PayUService;
 using TokanPages.Services.PayUService.Abstractions;

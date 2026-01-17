@@ -16,7 +16,6 @@ using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.AzureStorageService.Abstractions;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.AzureStorageService;
