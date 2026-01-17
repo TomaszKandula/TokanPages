@@ -115,7 +115,7 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Install dependencies
-      run: dotnet restore TokanPages.slnf
+      run: dotnet restore TokanPages.slnx
 
     - name: SonarQube begin scan dotnet
       run: |
@@ -129,10 +129,11 @@ jobs:
         /d:sonar.coverageReportPaths="${{ env.TARGET_DIRECTORY }}/${{ env.SONAR_REPORT }}"
 
     - name: Build .NET
-      run: dotnet build TokanPages.slnf
+      run: dotnet build TokanPages.slnx
 
     - name: Test with the dotnet CLI
       run: |
+        cd TokanPages.Tests/TokanPages.Tests.UnitTests
         ASPNETCORE_ENVIRONMENT=Testing dotnet test --no-build --collect:"XPlat Code Coverage"
         mkdir "${{ env.TARGET_DIRECTORY }}"
         reportgenerator "-reports:${{ env.COVERAGE_REPORT }}" "-targetdir:${{ env.TARGET_DIRECTORY }}" "-reporttypes:SonarQube"
