@@ -1,2 +1,2 @@
-CREATE SCHEMA [soccer] 
+CREATE SCHEMA [soccer]
     AUTHORIZATION [dbo]
