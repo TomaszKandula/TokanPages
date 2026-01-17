@@ -9,8 +9,8 @@
     <File Path="TokanPages.Configuration/appsettings.Testing.json" />
   </Folder>
   <Folder Name="/3. Deployment/">
-    <File Path="dev_build.yml" />
-    <File Path="master_build.yml" />
+    <File Path=".github/workflows/dev_build.yml" />
+    <File Path=".github/workflows/master_build.yml" />
     <File Path="reinstall-all.sh" />
   </Folder>
   <Folder Name="/4. Docker/">
