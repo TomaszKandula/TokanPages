@@ -59,7 +59,9 @@
     </ItemGroup>
     <!-- OPERATION -->
     <ItemGroup>
+        <!-- SCHEMA -->
         <Build Include="Operation\Schema.sql" />
+        <!-- TABLES -->
         <Build Include="Operation\Tables\Albums.sql" />
         <Build Include="Operation\Tables\ArticleCategories.sql" />
         <Build Include="Operation\Tables\ArticleCounts.sql" />
@@ -104,6 +106,32 @@
         <Build Include="Operation\Tables\UserTokens.sql" />
         <Build Include="Operation\Tables\VatNumberPatterns.sql" />
         <Build Include="Operation\Tables\WebNotifications.sql" />
+        <!-- INDEXES -->
+        <Build Include="Operation\Indexes\Albums.sql" />
+        <Build Include="Operation\Indexes\ArticleCounts.sql" />
+        <Build Include="Operation\Indexes\ArticleLikes.sql" />
+        <Build Include="Operation\Indexes\Articles.sql" />
+        <Build Include="Operation\Indexes\ArticleTags.sql" />
+        <Build Include="Operation\Indexes\BatchInvoiceItems.sql" />
+        <Build Include="Operation\Indexes\BatchInvoices.sql" />
+        <Build Include="Operation\Indexes\CategoryNames.sql" />
+        <Build Include="Operation\Indexes\DefaultPermissions.sql" />
+        <Build Include="Operation\Indexes\IssuedInvoices.sql" />
+        <Build Include="Operation\Indexes\PushNotificationTags.sql" />
+        <Build Include="Operation\Indexes\UserBankAccounts.sql" />
+        <Build Include="Operation\Indexes\UserCompanies.sql" />
+        <Build Include="Operation\Indexes\UserInformation.sql" />
+        <Build Include="Operation\Indexes\UserNotes.sql" />
+        <Build Include="Operation\Indexes\UserPayments.sql" />
+        <Build Include="Operation\Indexes\UserPaymentsHistory.sql" />
+        <Build Include="Operation\Indexes\UserPermissions.sql" />
+        <Build Include="Operation\Indexes\UserPhotos.sql" />
+        <Build Include="Operation\Indexes\UserRefreshTokens.sql" />
+        <Build Include="Operation\Indexes\UserRoles.sql" />
+        <Build Include="Operation\Indexes\UserSubscriptions.sql" />
+        <Build Include="Operation\Indexes\UserTokens.sql" />
+        <!-- KEYS -->
+
     </ItemGroup>
     <!-- SOCCER -->
     <ItemGroup>
