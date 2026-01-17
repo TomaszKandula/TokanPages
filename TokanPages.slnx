@@ -58,7 +58,9 @@
     <Project Path="TokanPages.Persistence/TokanPages.Persistence.Caching/TokanPages.Persistence.Caching.csproj" />
     <Project Path="TokanPages.Persistence/TokanPages.Persistence.Database/TokanPages.Persistence.Database.csproj" />
     <Project Path="TokanPages.Persistence/TokanPages.Persistence.MigrationRunner/TokanPages.Persistence.MigrationRunner.csproj" />
-    <Project Path="TokanPages.Persistence/TokanPages.Persistence.SqlDatabase/TokanPages.Persistence.SqlDatabase.sqlproj" Type="42ea0dbd-9cf1-443e-919e-be9c484e4577" />
+    <Project Path="TokanPages.Persistence/TokanPages.Persistence.SqlDatabase/TokanPages.Persistence.SqlDatabase.sqlproj" Type="42ea0dbd-9cf1-443e-919e-be9c484e4577">
+      <Build Project="false" />
+    </Project>
   </Folder>
   <Folder Name="/8. Services/">
     <Project Path="TokanPages.Services/TokanPages.Services.AzureBusService/TokanPages.Services.AzureBusService.csproj" />
