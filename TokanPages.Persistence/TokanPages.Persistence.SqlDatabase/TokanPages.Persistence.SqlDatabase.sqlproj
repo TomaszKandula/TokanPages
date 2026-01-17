@@ -35,6 +35,5 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Operation\Tables\" />
-        <Folder Include="Soccer\Views\" />
     </ItemGroup>
 </Project>
