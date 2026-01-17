@@ -9,6 +9,7 @@ using FluentValidation;
 using TokanPages.Backend.Configuration;
 using TokanPages.Persistence.Caching;
 using TokanPages.Persistence.Caching.Abstractions;
+using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;

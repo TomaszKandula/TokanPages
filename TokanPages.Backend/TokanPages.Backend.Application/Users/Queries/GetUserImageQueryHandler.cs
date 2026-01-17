@@ -4,7 +4,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Queries;

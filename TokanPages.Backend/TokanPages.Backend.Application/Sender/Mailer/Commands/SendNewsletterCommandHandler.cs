@@ -3,8 +3,8 @@ using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.Database;
-using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 

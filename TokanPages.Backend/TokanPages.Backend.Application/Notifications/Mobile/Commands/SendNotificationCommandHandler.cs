@@ -8,7 +8,7 @@ using TokanPages.Services.PushNotificationService.Abstractions;
 using TokanPages.Services.PushNotificationService.Models;
 using Microsoft.Azure.NotificationHubs;
 using TokanPages.Backend.Domain.Entities.Notifications;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Notifications.Mobile.Commands;
 

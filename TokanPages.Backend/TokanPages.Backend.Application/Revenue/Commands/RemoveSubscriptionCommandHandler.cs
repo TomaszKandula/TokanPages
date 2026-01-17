@@ -5,7 +5,7 @@ using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Revenue.Commands;
 

@@ -7,7 +7,7 @@ using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.UserService.Abstractions;
 using MediatR;
 using Microsoft.Extensions.Configuration;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 

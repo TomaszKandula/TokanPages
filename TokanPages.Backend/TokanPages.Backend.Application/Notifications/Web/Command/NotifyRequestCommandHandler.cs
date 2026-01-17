@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Domain.Entities.Notifications;
 using TokanPages.Backend.Domain.Entities.Users;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Notifications.Web.Command;
 

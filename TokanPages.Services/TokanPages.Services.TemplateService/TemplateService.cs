@@ -3,8 +3,8 @@ using TokanPages.Services.TemplateService.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.Database;
-using TokanPages.Persistence.Database.Contexts;
 using InvoiceTemplate = TokanPages.Backend.Domain.Entities.Invoicing.InvoiceTemplate;
 
 namespace TokanPages.Services.TemplateService;

@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.SqlClient;
 using TokanPages.Backend.Shared.Services;
+using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.Database;
-using TokanPages.Persistence.Database.Contexts;
 using TokanPages.Persistence.MigrationRunner.Helpers;
 
 namespace TokanPages.Persistence.MigrationRunner;

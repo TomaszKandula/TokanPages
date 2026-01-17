@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using MediatR;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application;
 

@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Shared.Services;
+using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.MigrationRunner.Databases.DatabaseContext.Seeders;
 using TokanPages.Persistence.MigrationRunner.Helpers;
 
@@ -19,8 +20,8 @@ public static class DatabaseContextUpdater
         var sourceDatabase = DatabaseConnection.GetDatabaseName(sourceConnection);
         var targetDatabase = DatabaseConnection.GetDatabaseName(targetConnection);
 
-        var options = DatabaseOptions.GetOptions<Database.Contexts.OperationDbContext>(targetConnection);
-        var context = new Database.Contexts.OperationDbContext(options);
+        var options = DatabaseOptions.GetOptions<OperationDbContext>(targetConnection);
+        var context = new OperationDbContext(options);
         await context.Database.OpenConnectionAsync();
         var command = context.Database.GetDbConnection().CreateCommand();
 
@@ -31,7 +32,7 @@ public static class DatabaseContextUpdater
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Default user created. Returned: {createResult}.");
 
         var version = DatabaseConnection.GetNextVersion(new SqlConnectionStringBuilder(sourceConnection));
-        var scriptName = DatabaseUpdate.BuildMigrationScriptName(version.number, nameof(Database.Contexts.OperationDbContext));
+        var scriptName = DatabaseUpdate.BuildMigrationScriptName(version.number, nameof(OperationDbContext));
         var scriptContent = DatabaseUpdate.GetSqlScript(scriptName);
 
         scriptContent = scriptContent.Replace("{{SOURCE_TABLE}}", sourceDatabase);
@@ -44,7 +45,7 @@ public static class DatabaseContextUpdater
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Database copied. Returned: {copyResult}.");
     }
 
-    public static void PopulateTestData(Database.Contexts.OperationDbContext operationDbContext)
+    public static void PopulateTestData(OperationDbContext operationDbContext)
     {
         if (!operationDbContext.Users.Any())
         {
@@ -116,7 +117,7 @@ public static class DatabaseContextUpdater
         ConsolePrints.PrintOnSuccess($"[{Caller}]: Changes saved!");
     }
 
-    public static void RemoveTestData(Database.Contexts.OperationDbContext operationDbContext)
+    public static void RemoveTestData(OperationDbContext operationDbContext)
     {
         operationDbContext.RemoveRange(operationDbContext.Albums);
         PrintWarning(nameof(operationDbContext.Albums));

@@ -2,7 +2,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 using Microsoft.EntityFrameworkCore;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Revenue.Queries;
 
