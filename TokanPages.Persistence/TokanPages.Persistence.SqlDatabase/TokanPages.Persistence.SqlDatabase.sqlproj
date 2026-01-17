@@ -8,23 +8,33 @@
         <RootNamespace>TokanPages.Persistance.Database</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-      <None Include="Soccer\Tables\Attributes.sql" />
-      <None Include="Soccer\Tables\FeedImages.sql" />
-      <None Include="Soccer\Tables\Feeds.sql" />
-      <None Include="Soccer\Tables\FieldImages.sql" />
-      <None Include="Soccer\Tables\Fields.sql" />
-      <None Include="Soccer\Tables\Lineups.sql" />
-      <None Include="Soccer\Tables\Matches.sql" />
-      <None Include="Soccer\Tables\Players.sql" />
-      <None Include="Soccer\Tables\PlayerAttributes.sql" />
-      <None Include="Soccer\Tables\Positions.sql" />
-      <None Include="Soccer\Tables\Qualities.sql" />
-      <None Include="Soccer\Tables\TeamInfo.sql" />
-      <None Include="Soccer\Tables\Teams.sql" />
-      <None Include="Soccer\Tables\Views.sql" />
+        <PreDeploy Include="Scripts\PreDeployment.sql" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Operation\Tables\" />
-      <Folder Include="Soccer\Views\" />
+        <PostDeploy Include="Scripts\PostDeployment.sql" />
+    </ItemGroup>
+    <!-- SOCCER -->
+    <ItemGroup>
+        <Build Include="Soccer\Schema.sql" />
+        <!-- STANDALONE TABLES -->
+        <Build Include="Soccer\Tables\Attributes.sql" />
+        <Build Include="Soccer\Tables\Positions.sql" />
+        <Build Include="Soccer\Tables\Qualities.sql" />
+        <!-- TABLES WITH FK -->
+        <Build Include="Soccer\Tables\Players.sql" />
+        <Build Include="Soccer\Tables\PlayerAttributes.sql" />
+        <Build Include="Soccer\Tables\Feeds.sql" />
+        <Build Include="Soccer\Tables\FeedImages.sql" />
+        <Build Include="Soccer\Tables\Fields.sql" />
+        <Build Include="Soccer\Tables\FieldImages.sql" />
+        <Build Include="Soccer\Tables\Teams.sql" />
+        <Build Include="Soccer\Tables\TeamInfo.sql" />
+        <Build Include="Soccer\Tables\Matches.sql" />
+        <Build Include="Soccer\Tables\Lineups.sql" />
+        <Build Include="Soccer\Tables\Views.sql" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Operation\Tables\" />
+        <Folder Include="Soccer\Views\" />
     </ItemGroup>
 </Project>
