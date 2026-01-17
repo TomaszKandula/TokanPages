@@ -1,7 +1,6 @@
 using TokanPages.Backend.Application.Revenue.Models.Sections;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 

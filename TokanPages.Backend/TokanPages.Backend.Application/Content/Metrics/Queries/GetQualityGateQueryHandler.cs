@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.MetricsService;
 
 namespace TokanPages.Backend.Application.Content.Metrics.Queries;

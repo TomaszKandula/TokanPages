@@ -1,7 +1,6 @@
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.TemplateService;
 using TokanPages.Services.TemplateService.Models;
 

@@ -1,6 +1,5 @@
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.PushNotificationService.Abstractions;
 
 namespace TokanPages.Backend.Application.Notifications.Mobile.Query;

@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Application.Articles.Models;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Articles.Commands;

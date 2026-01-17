@@ -3,7 +3,6 @@ using TokanPages.Backend.Application.Revenue.Models;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.WebSocketService.Abstractions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

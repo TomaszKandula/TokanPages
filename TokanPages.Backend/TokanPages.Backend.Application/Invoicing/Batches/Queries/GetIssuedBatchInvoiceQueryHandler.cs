@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.BatchService;
 
 namespace TokanPages.Backend.Application.Invoicing.Batches.Queries;

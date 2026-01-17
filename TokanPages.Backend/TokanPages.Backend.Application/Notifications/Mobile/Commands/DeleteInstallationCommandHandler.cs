@@ -1,5 +1,4 @@
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.PushNotificationService.Abstractions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

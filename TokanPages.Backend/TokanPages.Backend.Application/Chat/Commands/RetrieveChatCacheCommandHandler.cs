@@ -1,5 +1,4 @@
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Persistence.Database;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Persistence.DataAccess.Contexts;
 
