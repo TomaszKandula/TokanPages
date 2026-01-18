@@ -1,5 +1,5 @@
-using TokanPages.Backend.Application.Articles.Models;
 using TokanPages.Backend.Core.Paging;
+using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 namespace TokanPages.Backend.Application.Articles.Queries;
 
