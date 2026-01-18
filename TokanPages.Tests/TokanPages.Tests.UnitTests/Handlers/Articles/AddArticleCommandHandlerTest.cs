@@ -57,7 +57,7 @@ public class AddArticleCommandHandlerTest : TestBase
             .Returns(Guid.NewGuid());
 
         mockedArticlesRepository
-            .Setup(x => x.AddArticle(
+            .Setup(repository => repository.AddArticle(
             It.IsAny<Guid>(),
             It.IsAny<ArticleDataInputDto>(),
             It.IsAny<DateTime>(),
