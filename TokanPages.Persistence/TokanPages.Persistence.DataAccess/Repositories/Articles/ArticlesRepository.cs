@@ -232,7 +232,7 @@ public class ArticlesRepository : IArticlesRepository
         return articleInfoList;
     }
 
-    public async Task AddNewArticle(Guid userId, ArticleDataInputDto articleData, DateTime createdAt, CancellationToken cancellationToken = default)
+    public async Task AddArticle(Guid userId, ArticleDataInputDto articleData, DateTime createdAt, CancellationToken cancellationToken = default)
     {
         var newArticle = new Article
         {
