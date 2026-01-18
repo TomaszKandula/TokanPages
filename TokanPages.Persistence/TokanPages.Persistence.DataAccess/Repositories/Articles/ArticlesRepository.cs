@@ -284,4 +284,49 @@ public class ArticlesRepository : IArticlesRepository
 
         return true;
     }
+
+    public async Task<bool> UpdateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
+    {
+        var articleData = await _operationDbContext.Articles
+            .Where(article => article.Id == articleId)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (articleData is null)
+            return false;
+
+        var articleCount = await _operationDbContext.ArticleCounts
+            .Where(count => count.ArticleId == articleId)
+            .Where(count => count.IpAddress == ipAddress)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (articleCount is null)
+        {
+            var newArticleCount = new ArticleCount
+            {
+                UserId = articleData.UserId,
+                ArticleId = articleData.Id,
+                IpAddress = ipAddress,
+                ReadCount = 1,
+                CreatedAt = updatedAt,
+                CreatedBy = userId
+            };
+
+            await _operationDbContext.ArticleCounts.AddAsync(newArticleCount, cancellationToken);
+        }
+        else
+        {
+            articleCount.ReadCount += 1;
+            articleCount.ModifiedAt = updatedAt;
+            articleCount.ModifiedBy = userId;
+
+            _operationDbContext.ArticleCounts.Update(articleCount);
+        }
+
+        articleData.ReadCount += 1;
+        articleData.ModifiedAt = updatedAt;
+        articleData.ModifiedBy = userId;
+
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
+        return true;
+    }
 }
