@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.Application.Articles.Models;
+namespace TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 /// <summary>
 /// Section definition.
