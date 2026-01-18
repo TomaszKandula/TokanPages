@@ -1,0 +1,115 @@
+using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
+
+namespace TokanPages.Persistence.DataAccess.Repositories.Articles;
+
+public class ArticlesRepository : IArticlesRepository
+{
+    private readonly OperationDbContext _operationDbContext;
+
+    public ArticlesRepository(OperationDbContext operationDbContext) => _operationDbContext = operationDbContext;
+
+    public async Task<Guid> GetArticleIdByTitle(string title, CancellationToken cancellationToken = default)
+    {
+        var comparableTitle = title.Replace("-", " ").ToLower();
+        return await _operationDbContext.Articles
+            .AsNoTracking()
+            .Where(article => article.Title.ToLower() == comparableTitle)
+            .Select(article => article.Id)
+            .SingleOrDefaultAsync(cancellationToken);
+    }
+
+    public async Task<GetArticleOutput> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage, CancellationToken cancellationToken)
+    {
+        var userLikes = await _operationDbContext.ArticleLikes
+            .AsNoTracking()
+            .Where(like => like.ArticleId == requestId)
+            .WhereIfElse(isAnonymousUser, 
+                like => like.IpAddress == ipAddress && like.UserId == null, 
+                like => like.UserId == userId)
+            .Select(like => like.LikeCount)
+            .SumAsync(cancellationToken);
+
+        var totalLikes = await _operationDbContext.ArticleLikes
+            .AsNoTracking()
+            .Where(like => like.ArticleId == requestId)
+            .Select(like => like.LikeCount)
+            .SumAsync(cancellationToken);
+
+        var articleData = await (from article in _operationDbContext.Articles
+            join articleCategory in _operationDbContext.ArticleCategories 
+                on article.CategoryId equals articleCategory.Id
+            join categoryName in _operationDbContext.ArticleCategoryNames
+                on articleCategory.Id equals categoryName.ArticleCategoryId
+            join language in _operationDbContext.Languages
+                on categoryName.LanguageId equals language.Id
+            where language.LangId == userLanguage
+            where article.Id == requestId
+            select new 
+            {
+                article.Id,
+                article.UserId,
+                article.Title,
+                article.Description,
+                article.IsPublished,
+                article.CreatedAt,
+                article.UpdatedAt,
+                article.ReadCount,
+                article.LanguageIso,
+                categoryName.Name,
+                TotalLikes = totalLikes,
+                UserLikes = userLikes,
+            })
+            .AsNoTracking()
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (articleData is null)
+            throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+
+        var userDto = await (from user in _operationDbContext.Users
+            join userInfo in _operationDbContext.UserInformation 
+            on user.Id equals userInfo.UserId
+            where user.Id == articleData.UserId
+            select new GetUserDto
+            {
+                UserId = user.Id,
+                AliasName = user.UserAlias,
+                AvatarName = userInfo.UserImageName,
+                FirstName = userInfo.FirstName,
+                LastName = userInfo.LastName,
+                ShortBio = userInfo.UserAboutText,
+                Registered = userInfo.CreatedAt
+            })
+            .AsNoTracking()
+            .SingleOrDefaultAsync(cancellationToken);
+
+        var tags = await (from articleTags in _operationDbContext.ArticleTags
+            join articles in _operationDbContext.Articles
+            on articleTags.ArticleId equals articles.Id
+            where articles.Id == requestId
+            select articleTags.TagName)
+            .AsNoTracking()
+            .ToArrayAsync(cancellationToken);
+
+        return new GetArticleOutput
+        {
+            Id = articleData.Id,
+            Title = articleData.Title,
+            CategoryName = articleData.Name,
+            Description = articleData.Description,
+            IsPublished = articleData.IsPublished,
+            CreatedAt = articleData.CreatedAt,
+            UpdatedAt = articleData.UpdatedAt,
+            ReadCount = articleData.ReadCount,
+            LanguageIso = articleData.LanguageIso,
+            TotalLikes = totalLikes,
+            UserLikes = userLikes,
+            Author = userDto,
+            Tags = tags,
+        };
+    }
+}
