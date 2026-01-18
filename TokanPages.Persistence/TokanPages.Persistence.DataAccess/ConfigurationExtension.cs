@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Articles;
 
 namespace TokanPages.Persistence.DataAccess;
 
@@ -11,6 +12,8 @@ public static class ConfigurationExtension
     {
         services.SetupDatabase<OperationDbContext>(configuration);
         services.SetupDatabase<SoccerDbContext>(configuration);
+
+        services.AddScoped<IArticlesRepository, ArticlesRepository>();
     }
 
     private static void SetupDatabase<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
