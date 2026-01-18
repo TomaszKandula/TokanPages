@@ -1,9 +1,8 @@
 ﻿using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Application.Articles.Models;
-using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Articles;
+using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Articles.Queries;
@@ -12,87 +11,34 @@ public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetAr
 {
     private readonly IUserService _userService;
 
-    public GetArticlesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService) 
-        : base(operationDbContext, loggerService) => _userService = userService;
+    private readonly IArticlesRepository _articlesRepository;
+
+    public GetArticlesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService, 
+        IArticlesRepository articlesRepository) 
+        : base(operationDbContext, loggerService)
+    {
+        _userService = userService;
+        _articlesRepository = articlesRepository;
+    }
 
     public override IDictionary<string, Expression<Func<ArticleDataDto, object>>> GetOrderingExpressions() => GetSortingConfig();
 
     public override async Task<GetArticlesQueryResult> Handle(GetArticlesQuery request, CancellationToken cancellationToken)
     {
         var userLanguage = _userService.GetRequestUserLanguage();
-        var foundArticleIds = await GetSearchResult(request.SearchTerm, cancellationToken);
-        var hasIds = foundArticleIds != null && foundArticleIds.Count != 0;
-        var hasCategoryId = request.CategoryId != null && request.CategoryId != Guid.Empty;
+        var foundArticleIds = await _articlesRepository.GetSearchResult(request.SearchTerm, cancellationToken);
 
-        var articleList = OperationDbContext.Articles
-            .AsNoTracking()
-            .Include(article => article.ArticleCategory)
-            .Where(article => article.IsPublished == request.IsPublished)
-            .WhereIf(hasIds, article => foundArticleIds!.Contains(article.Id))
-            .WhereIf(hasCategoryId, article => article.ArticleCategory.Id == request.CategoryId)
-            .Select(article => new ArticleDataDto
-            { 
-                Id = article.Id,
-                Title = article.Title,
-                Description = article.Description,
-                IsPublished = article.IsPublished,
-                ReadCount = article.ReadCount,
-                TotalLikes = article.TotalLikes, 
-                CreatedAt = article.CreatedAt,
-                UpdatedAt = article.UpdatedAt,
-                LanguageIso = article.LanguageIso
-            });
-
-        var totalSize = await articleList.CountAsync(cancellationToken);
-        var result = await articleList
-            .ApplyOrdering(request, GetOrderingExpressions())
-            .ApplyPaging(request)
-            .ToListAsync(cancellationToken);
-
-        var categories = await (from articleCategory in OperationDbContext.ArticleCategories
-            join categoryName in OperationDbContext.ArticleCategoryNames
-                on articleCategory.Id equals categoryName.ArticleCategoryId into category 
-                    from categoryName in category.DefaultIfEmpty() 
-            join language in OperationDbContext.Languages
-                on categoryName.LanguageId equals language.Id into languageTable
-                    from  language in languageTable.DefaultIfEmpty()
-            where language.LangId == userLanguage
-            select new ArticleCategoryDto
-            {
-                Id = articleCategory.Id,
-                CategoryName = categoryName.Name
-            }).ToListAsync(cancellationToken);
+        var sortingConfig = GetSortingConfig();
+        var articles = await _articlesRepository.GetArticleList(request.IsPublished, request.SearchTerm, request.CategoryId, foundArticleIds, sortingConfig, cancellationToken);
+        var categories = await _articlesRepository.GetArticleCategories(userLanguage, cancellationToken);
 
         return new GetArticlesQueryResult
         {
             PagingInfo = request,
-            TotalSize = totalSize,
+            TotalSize = articles.Count,
             ArticleCategories = categories,
-            Results = result
+            Results = articles
         };
-    }
-
-    private async Task<HashSet<Guid>?> GetSearchResult(string? searchTerm, CancellationToken cancellationToken)
-    {
-        if (string.IsNullOrWhiteSpace(searchTerm))
-        {
-            return null;
-        }
-
-        var searchTitleAndDescription = await OperationDbContext.Articles
-            .AsNoTracking()
-            .Where(articles => articles.Title.Contains(searchTerm) || articles.Description.Contains(searchTerm))
-            .Select(articles => articles.Id)
-            .ToListAsync(cancellationToken);
-
-        var searchTags = await OperationDbContext.ArticleTags
-            .AsNoTracking()
-            .Where(articleTags => articleTags.TagName.Contains(searchTerm))
-            .Select(articleTags => articleTags.ArticleId)
-            .ToListAsync(cancellationToken);
-
-        var articleIds = searchTitleAndDescription.Union(searchTags);
-        return new HashSet<Guid>(articleIds);
     }
 
     private static Dictionary<string, Expression<Func<ArticleDataDto, object>>> GetSortingConfig()
