@@ -14,4 +14,6 @@ public interface IArticlesRepository
     Task<List<ArticleCategoryDto>> GetArticleCategories(string userLanguage, CancellationToken cancellationToken = default);
     
     Task<HashSet<Guid>?> GetSearchResult(string? searchTerm, CancellationToken cancellationToken = default);
+
+    Task<List<ArticleDataDto>> RetrieveArticleInfo(string userLanguage, HashSet<Guid> articleIds, CancellationToken cancellationToken = default);
 }
