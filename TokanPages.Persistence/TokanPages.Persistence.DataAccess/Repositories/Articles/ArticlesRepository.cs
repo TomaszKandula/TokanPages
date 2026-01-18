@@ -1,5 +1,6 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Domain.Entities.Articles;
@@ -13,7 +14,17 @@ public class ArticlesRepository : IArticlesRepository
 {
     private readonly OperationDbContext _operationDbContext;
 
-    public ArticlesRepository(OperationDbContext operationDbContext) => _operationDbContext = operationDbContext;
+    private readonly IConfiguration _configuration;
+
+    private int MaxLikesForAnonymousUser => _configuration.GetValue<int>("Limit_Likes_Anonymous");
+
+    private int MaxLikesForLoggedUser => _configuration.GetValue<int>("Limit_Likes_User");
+
+    public ArticlesRepository(OperationDbContext operationDbContext, IConfiguration configuration)
+    {
+        _operationDbContext = operationDbContext;
+        _configuration = configuration;
+    }
 
     public async Task<Guid> GetArticleIdByTitle(string title, CancellationToken cancellationToken = default)
     {
@@ -30,8 +41,8 @@ public class ArticlesRepository : IArticlesRepository
         var userLikes = await _operationDbContext.ArticleLikes
             .AsNoTracking()
             .Where(like => like.ArticleId == requestId)
-            .WhereIfElse(isAnonymousUser, 
-                like => like.IpAddress == ipAddress && like.UserId == null, 
+            .WhereIfElse(isAnonymousUser,
+                like => like.IpAddress == ipAddress && like.UserId == null,
                 like => like.UserId == userId)
             .Select(like => like.LikeCount)
             .SumAsync(cancellationToken);
@@ -43,7 +54,7 @@ public class ArticlesRepository : IArticlesRepository
             .SumAsync(cancellationToken);
 
         var articleData = await (from article in _operationDbContext.Articles
-            join articleCategory in _operationDbContext.ArticleCategories 
+            join articleCategory in _operationDbContext.ArticleCategories
                 on article.CategoryId equals articleCategory.Id
             join categoryName in _operationDbContext.ArticleCategoryNames
                 on articleCategory.Id equals categoryName.ArticleCategoryId
@@ -51,7 +62,7 @@ public class ArticlesRepository : IArticlesRepository
                 on categoryName.LanguageId equals language.Id
             where language.LangId == userLanguage
             where article.Id == requestId
-            select new 
+            select new
             {
                 article.Id,
                 article.UserId,
@@ -73,8 +84,8 @@ public class ArticlesRepository : IArticlesRepository
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         var userDto = await (from user in _operationDbContext.Users
-            join userInfo in _operationDbContext.UserInformation 
-            on user.Id equals userInfo.UserId
+            join userInfo in _operationDbContext.UserInformation
+                on user.Id equals userInfo.UserId
             where user.Id == articleData.UserId
             select new GetUserDto
             {
@@ -91,7 +102,7 @@ public class ArticlesRepository : IArticlesRepository
 
         var tags = await (from articleTags in _operationDbContext.ArticleTags
             join articles in _operationDbContext.Articles
-            on articleTags.ArticleId equals articles.Id
+                on articleTags.ArticleId equals articles.Id
             where articles.Id == requestId
             select articleTags.TagName)
             .AsNoTracking()
@@ -115,7 +126,8 @@ public class ArticlesRepository : IArticlesRepository
         };
     }
 
-    public async Task<List<ArticleDataDto>> GetArticleList(bool isPublished, string? searchTerm, Guid? categoryId, HashSet<Guid>? foundArticleIds, IDictionary<string, Expression<Func<ArticleDataDto, object>>> orderByExpressions, CancellationToken cancellationToken = default)
+    public async Task<List<ArticleDataDto>> GetArticleList(bool isPublished, string? searchTerm, Guid? categoryId, HashSet<Guid>? foundArticleIds,
+        IDictionary<string, Expression<Func<ArticleDataDto, object>>> orderByExpressions, CancellationToken cancellationToken = default)
     {
         var hasArticleIds = foundArticleIds != null && foundArticleIds.Count != 0;
         var hasCategoryId = categoryId != null && categoryId != Guid.Empty;
@@ -127,13 +139,13 @@ public class ArticlesRepository : IArticlesRepository
             .WhereIf(hasArticleIds, article => foundArticleIds!.Contains(article.Id))
             .WhereIf(hasCategoryId, article => article.ArticleCategory.Id == categoryId)
             .Select(article => new ArticleDataDto
-            { 
+            {
                 Id = article.Id,
                 Title = article.Title,
                 Description = article.Description,
                 IsPublished = article.IsPublished,
                 ReadCount = article.ReadCount,
-                TotalLikes = article.TotalLikes, 
+                TotalLikes = article.TotalLikes,
                 CreatedAt = article.CreatedAt,
                 UpdatedAt = article.UpdatedAt,
                 LanguageIso = article.LanguageIso
@@ -156,11 +168,11 @@ public class ArticlesRepository : IArticlesRepository
     {
         var categories = await (from articleCategory in _operationDbContext.ArticleCategories
             join categoryName in _operationDbContext.ArticleCategoryNames
-                on articleCategory.Id equals categoryName.ArticleCategoryId into category 
-            from categoryName in category.DefaultIfEmpty() 
+                on articleCategory.Id equals categoryName.ArticleCategoryId into category
+            from categoryName in category.DefaultIfEmpty()
             join language in _operationDbContext.Languages
                 on categoryName.LanguageId equals language.Id into languageTable
-            from  language in languageTable.DefaultIfEmpty()
+            from language in languageTable.DefaultIfEmpty()
             where language.LangId == userLanguage
             select new ArticleCategoryDto
             {
@@ -196,7 +208,7 @@ public class ArticlesRepository : IArticlesRepository
     {
         var articleInfoList = await (
             from article in _operationDbContext.Articles
-            join table in 
+            join table in
                 (from articleCategory in _operationDbContext.ArticleCategories
                 join categoryName in _operationDbContext.ArticleCategoryNames
                     on articleCategory.Id equals categoryName.ArticleCategoryId
@@ -348,7 +360,8 @@ public class ArticlesRepository : IArticlesRepository
         return true;
     }
 
-    public async Task<bool> UpdateArticleContent(Guid userId, Guid articleId, DateTime updatedAt, string? title, string? description, string? languageIso, CancellationToken cancellationToken = default)
+    public async Task<bool> UpdateArticleContent(Guid userId, Guid articleId, DateTime updatedAt, string? title, string? description, string? languageIso,
+        CancellationToken cancellationToken = default)
     {
         var articleData = await _operationDbContext.Articles
             .Where(article => article.UserId == userId)
@@ -367,5 +380,73 @@ public class ArticlesRepository : IArticlesRepository
 
         await _operationDbContext.SaveChangesAsync(cancellationToken);
         return true;
+    }
+
+    public async Task<bool> UpdateArticleLikes(Guid userId, Guid articleId, DateTime updatedAt, int addToLikes, bool isAnonymousUser, string ipAddress,
+        CancellationToken cancellationToken = default)
+    {
+        var articleData = await _operationDbContext.Articles
+            .Where(article => article.Id == articleId)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (articleData is null)
+            return false;
+
+        var articleLike = await _operationDbContext.ArticleLikes
+            .Where(like => like.ArticleId == articleId)
+            .WhereIfElse(isAnonymousUser,
+                like => like.IpAddress == ipAddress,
+                like => like.UserId == userId)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (articleLike is null)
+        {
+            await AddLikes(userId, articleData, updatedAt, addToLikes, ipAddress, cancellationToken);
+        }
+        else
+        {
+            UpdateLikes(userId, articleData, articleLike, addToLikes, updatedAt);
+        }
+
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
+        return true;
+    }
+
+    private async Task AddLikes(Guid userId, Article article, DateTime updatedAt, int addToLikes, string ipAddress, CancellationToken cancellationToken)
+    {
+        var likesLimit = userId == Guid.Empty ? MaxLikesForAnonymousUser : MaxLikesForLoggedUser;
+        var likes = addToLikes > likesLimit ? likesLimit : addToLikes;
+
+        var entity = new ArticleLike
+        {
+            ArticleId = article.Id,
+            UserId = userId == Guid.Empty ? null : userId,
+            IpAddress = ipAddress,
+            LikeCount = likes,
+            CreatedAt = updatedAt,
+            CreatedBy = userId,
+            ModifiedAt = null,
+            ModifiedBy = null
+        };
+
+        article.TotalLikes += likes;
+        article.ModifiedAt = updatedAt;
+        article.ModifiedBy = userId == Guid.Empty ? null : userId;
+        await _operationDbContext.ArticleLikes.AddAsync(entity, cancellationToken);
+    }
+
+    private void UpdateLikes(Guid? userId, Article article, ArticleLike articleLike, int likesToBeAdded, DateTime updatedAt)
+    {
+        var likesLimit = userId == Guid.Empty ? MaxLikesForAnonymousUser : MaxLikesForLoggedUser;
+        var likes = likesToBeAdded > likesLimit ? likesLimit : likesToBeAdded;
+
+        articleLike.LikeCount += likes;
+        articleLike.ModifiedAt = updatedAt;
+        articleLike.ModifiedBy = userId == Guid.Empty ? null : userId;
+
+        article.TotalLikes += likes;
+        article.ModifiedAt = updatedAt;
+        article.ModifiedBy = userId == Guid.Empty ? null : userId;
+        _operationDbContext.ArticleLikes.Update(articleLike);
     }
 }
