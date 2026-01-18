@@ -329,4 +329,22 @@ public class ArticlesRepository : IArticlesRepository
         await _operationDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
+
+    public async Task<bool> UpdateArticleVisibility(Guid userId, Guid articleId, DateTime updatedAt, bool isPublished, CancellationToken cancellationToken = default)
+    {
+        var articleData = await _operationDbContext.Articles
+            .Where(article => article.UserId == userId)
+            .Where(article => article.Id == articleId)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (articleData is null)
+            return false;
+
+        articleData.IsPublished = isPublished;
+        articleData.ModifiedAt = updatedAt;
+        articleData.ModifiedBy = userId;
+
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
+        return true;
+    }
 }
