@@ -2,4 +2,4 @@
 
 namespace TokanPages.Backend.Application.Articles.Queries;
 
-public class GetArticleQueryResult : GetArticleOutput { }
+public class GetArticleQueryResult : GetArticleOutputDto { }

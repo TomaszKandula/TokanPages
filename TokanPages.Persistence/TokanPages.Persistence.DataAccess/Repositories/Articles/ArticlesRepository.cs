@@ -24,7 +24,7 @@ public class ArticlesRepository : IArticlesRepository
             .SingleOrDefaultAsync(cancellationToken);
     }
 
-    public async Task<GetArticleOutput> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage, CancellationToken cancellationToken)
+    public async Task<GetArticleOutputDto> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage, CancellationToken cancellationToken)
     {
         var userLikes = await _operationDbContext.ArticleLikes
             .AsNoTracking()
@@ -96,7 +96,7 @@ public class ArticlesRepository : IArticlesRepository
             .AsNoTracking()
             .ToArrayAsync(cancellationToken);
 
-        return new GetArticleOutput
+        return new GetArticleOutputDto
         {
             Id = articleData.Id,
             Title = articleData.Title,
@@ -138,7 +138,7 @@ public class ArticlesRepository : IArticlesRepository
                 LanguageIso = article.LanguageIso
             });
 
-        var request = new ArticleListRequest
+        var request = new ArticleListRequestDto
         {
             SearchTerm = searchTerm,
             IsPublished = isPublished,

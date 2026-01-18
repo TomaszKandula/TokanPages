@@ -1,6 +1,6 @@
 namespace TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
-public class GetArticleOutput : ArticleDataDto
+public class GetArticleOutputDto : ArticleDataDto
 {
     public int UserLikes { get; set; }
 

@@ -4,7 +4,7 @@ using TokanPages.Backend.Core.Paging;
 namespace TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 [ExcludeFromCodeCoverage]
-public class ArticleListRequest : PagingInfo
+public class ArticleListRequestDto : PagingInfo
 {
     public bool IsPublished { get; set; }
 
