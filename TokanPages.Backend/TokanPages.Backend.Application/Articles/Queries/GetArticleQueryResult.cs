@@ -1,14 +1,5 @@
-﻿using TokanPages.Backend.Application.Articles.Models;
+﻿using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 namespace TokanPages.Backend.Application.Articles.Queries;
 
-public class GetArticleQueryResult : ArticleDataDto
-{
-    public int UserLikes { get; set; }
-
-    public GetUserDto? Author { get; set; }
-
-    public string[]? Tags { get; set; }
-
-    public List<ArticleSectionDto>? Text { get; set; }
-}
+public class GetArticleQueryResult : GetArticleOutput { }
