@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
@@ -111,5 +112,82 @@ public class ArticlesRepository : IArticlesRepository
             Author = userDto,
             Tags = tags,
         };
+    }
+
+    public async Task<List<ArticleDataDto>> GetArticleList(bool isPublished, string? searchTerm, Guid? categoryId, HashSet<Guid>? foundArticleIds, IDictionary<string, Expression<Func<ArticleDataDto, object>>> orderByExpressions, CancellationToken cancellationToken = default)
+    {
+        var hasArticleIds = foundArticleIds != null && foundArticleIds.Count != 0;
+        var hasCategoryId = categoryId != null && categoryId != Guid.Empty;
+
+        var articles = _operationDbContext.Articles
+            .AsNoTracking()
+            .Include(article => article.ArticleCategory)
+            .Where(article => article.IsPublished == isPublished)
+            .WhereIf(hasArticleIds, article => foundArticleIds!.Contains(article.Id))
+            .WhereIf(hasCategoryId, article => article.ArticleCategory.Id == categoryId)
+            .Select(article => new ArticleDataDto
+            { 
+                Id = article.Id,
+                Title = article.Title,
+                Description = article.Description,
+                IsPublished = article.IsPublished,
+                ReadCount = article.ReadCount,
+                TotalLikes = article.TotalLikes, 
+                CreatedAt = article.CreatedAt,
+                UpdatedAt = article.UpdatedAt,
+                LanguageIso = article.LanguageIso
+            });
+
+        var request = new ArticleListRequest
+        {
+            SearchTerm = searchTerm,
+            IsPublished = isPublished,
+            CategoryId = categoryId,
+        };
+
+        return await articles
+            .ApplyOrdering(request, orderByExpressions)
+            .ApplyPaging(request)
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task<List<ArticleCategoryDto>> GetArticleCategories(string userLanguage, CancellationToken cancellationToken = default)
+    {
+        var categories = await (from articleCategory in _operationDbContext.ArticleCategories
+            join categoryName in _operationDbContext.ArticleCategoryNames
+                on articleCategory.Id equals categoryName.ArticleCategoryId into category 
+            from categoryName in category.DefaultIfEmpty() 
+            join language in _operationDbContext.Languages
+                on categoryName.LanguageId equals language.Id into languageTable
+            from  language in languageTable.DefaultIfEmpty()
+            where language.LangId == userLanguage
+            select new ArticleCategoryDto
+            {
+                Id = articleCategory.Id,
+                CategoryName = categoryName.Name
+            }).ToListAsync(cancellationToken);
+
+        return categories;
+    }
+
+    public async Task<HashSet<Guid>?> GetSearchResult(string? searchTerm, CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(searchTerm))
+            return null;
+
+        var searchTitleAndDescription = await _operationDbContext.Articles
+            .AsNoTracking()
+            .Where(articles => articles.Title.Contains(searchTerm) || articles.Description.Contains(searchTerm))
+            .Select(articles => articles.Id)
+            .ToListAsync(cancellationToken);
+
+        var searchTags = await _operationDbContext.ArticleTags
+            .AsNoTracking()
+            .Where(articleTags => articleTags.TagName.Contains(searchTerm))
+            .Select(articleTags => articleTags.ArticleId)
+            .ToListAsync(cancellationToken);
+
+        var articleIds = searchTitleAndDescription.Union(searchTags);
+        return new HashSet<Guid>(articleIds);
     }
 }
