@@ -347,4 +347,25 @@ public class ArticlesRepository : IArticlesRepository
         await _operationDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
+
+    public async Task<bool> UpdateArticleContent(Guid userId, Guid articleId, DateTime updatedAt, string? title, string? description, string? languageIso, CancellationToken cancellationToken = default)
+    {
+        var articleData = await _operationDbContext.Articles
+            .Where(article => article.UserId == userId)
+            .Where(article => article.Id == articleId)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (articleData is null)
+            return false;
+
+        articleData.Title = title ?? articleData.Title;
+        articleData.Description = description ?? articleData.Description;
+        articleData.LanguageIso = languageIso ?? articleData.LanguageIso;
+        articleData.UpdatedAt = updatedAt;
+        articleData.ModifiedAt = updatedAt;
+        articleData.ModifiedBy = userId;
+
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
+        return true;
+    }
 }
