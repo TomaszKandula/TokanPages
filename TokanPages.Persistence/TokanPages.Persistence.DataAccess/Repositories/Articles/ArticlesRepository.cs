@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
@@ -229,5 +230,23 @@ public class ArticlesRepository : IArticlesRepository
             }).ToListAsync(cancellationToken);
 
         return articleInfoList;
+    }
+
+    public async Task AddNewArticle(Guid userId, ArticleDataInputDto articleData, DateTime createdAt, CancellationToken cancellationToken = default)
+    {
+        var newArticle = new Article
+        {
+            Title = articleData.Title,
+            Description = articleData.Description,
+            IsPublished = false,
+            ReadCount = 0,
+            CreatedBy = userId,
+            CreatedAt = createdAt,
+            UserId = userId,
+            LanguageIso = articleData.LanguageIso
+        };
+
+        await _operationDbContext.Articles.AddAsync(newArticle, cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
     }
 }
