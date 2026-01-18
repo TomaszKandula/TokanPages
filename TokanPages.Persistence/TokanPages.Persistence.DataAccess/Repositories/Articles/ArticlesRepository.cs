@@ -36,7 +36,7 @@ public class ArticlesRepository : IArticlesRepository
             .SingleOrDefaultAsync(cancellationToken);
     }
 
-    public async Task<GetArticleOutputDto> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage, CancellationToken cancellationToken)
+    public async Task<GetArticleOutputDto?> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage, CancellationToken cancellationToken)
     {
         var userLikes = await _operationDbContext.ArticleLikes
             .AsNoTracking()
@@ -81,7 +81,7 @@ public class ArticlesRepository : IArticlesRepository
             .SingleOrDefaultAsync(cancellationToken);
 
         if (articleData is null)
-            throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+            return null;
 
         var userDto = await (from user in _operationDbContext.Users
             join userInfo in _operationDbContext.UserInformation

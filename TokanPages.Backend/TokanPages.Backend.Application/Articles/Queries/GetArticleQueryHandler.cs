@@ -52,6 +52,8 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
         var textAsObject = _jsonSerializer.Deserialize<List<ArticleSectionDto>>(textAsString, settings);
 
         var output = await _articlesRepository.GetArticle(userId, requestId, isAnonymousUser, ipAddress, userLanguage, cancellationToken);
+        if (output is null)
+            throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         return new GetArticleQueryResult
         {
