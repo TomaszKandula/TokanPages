@@ -12,7 +12,7 @@ public interface IArticlesRepository
     Task<List<ArticleDataDto>> GetArticleList(bool isPublished, string? searchTerm, Guid? categoryId, HashSet<Guid>? foundArticleIds, IDictionary<string, Expression<Func<ArticleDataDto, object>>> orderByExpressions, CancellationToken cancellationToken = default);
 
     Task<List<ArticleCategoryDto>> GetArticleCategories(string userLanguage, CancellationToken cancellationToken = default);
-    
+
     Task<HashSet<Guid>?> GetSearchResult(string? searchTerm, CancellationToken cancellationToken = default);
 
     Task<List<ArticleDataDto>> RetrieveArticleInfo(string userLanguage, HashSet<Guid> articleIds, CancellationToken cancellationToken = default);
