@@ -1,9 +1,11 @@
-﻿using FluentAssertions;
+﻿using System.Linq.Expressions;
+using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
-using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Persistence.DataAccess.Repositories.Articles;
+using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
@@ -15,14 +17,8 @@ public class GetAllArticlesQueryHandlerTest : TestBase
     public async Task WhenGetAllArticles_ShouldReturnCollection() 
     {
         // Arrange
-        var user = new User
-        {
-            Id = Guid.NewGuid(),
-            UserAlias  = DataUtilityService.GetRandomString(),
-            IsActivated = true,
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            CryptedPassword = DataUtilityService.GetRandomString()
-        };
+        var databaseContext = GetTestDatabaseContext(); //TODO: to be removed
+        var userId = Guid.NewGuid();
 
         var articles = new List<Article>
         {
@@ -34,7 +30,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
                 ReadCount = 0,
                 CreatedAt = DateTime.Now.AddDays(-10),
                 UpdatedAt = null,
-                UserId = user.Id,
+                UserId = userId,
                 LanguageIso = "ENG"
             },
             new()
@@ -45,28 +41,8 @@ public class GetAllArticlesQueryHandlerTest : TestBase
                 ReadCount = 0,
                 CreatedAt = DateTime.Now.AddDays(-15),
                 UpdatedAt = null,
-                UserId = user.Id,
+                UserId = userId,
                 LanguageIso = "ENG"
-            }
-        };
-
-        var languages = new List<Backend.Domain.Entities.Language>
-        {
-            new()
-            {
-                Id = Guid.NewGuid(),
-                LangId = "en",
-                HrefLang = "en-GB",
-                Name = "English",
-                IsDefault = true
-            },
-            new()
-            {
-                Id = Guid.NewGuid(),
-                LangId = "pl",
-                HrefLang = "pl-PL",
-                Name = "Polski",
-                IsDefault = false
             }
         };
 
@@ -85,37 +61,83 @@ public class GetAllArticlesQueryHandlerTest : TestBase
                 CreatedAt = DateTimeService.Now
             },
         };
-        
-        var categoryNames = new List<ArticleCategoryName>
+
+        var articleIds = new HashSet<Guid>
+        {
+            articles[0].Id,
+            articles[1].Id
+        };
+
+        var categoryDto = new List<ArticleCategoryDto>
         {
             new()
             {
-                ArticleCategoryId = articleCategories[0].Id,
-                LanguageId = languages[0].Id,
-                Name = DataUtilityService.GetRandomString()
+                Id = articleCategories[0].Id,
+                CategoryName =  DataUtilityService.GetRandomString(),
             },
             new()
             {
-                ArticleCategoryId = articleCategories[1].Id,
-                LanguageId = languages[1].Id,
-                Name = DataUtilityService.GetRandomString()
-            },
+                Id = articleCategories[1].Id,
+                CategoryName =  DataUtilityService.GetRandomString(),
+            }
         };
 
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(user);
-        await databaseContext.Languages.AddRangeAsync(languages);
-        await databaseContext.Articles.AddRangeAsync(articles);
-        await databaseContext.ArticleCategories.AddRangeAsync(articleCategories);
-        await databaseContext.ArticleCategoryNames.AddRangeAsync(categoryNames);
-        await databaseContext.SaveChangesAsync();
+        var articleDataDto = new List<ArticleDataDto>
+        {
+            new()
+            {
+                Id = articles[0].Id,
+                CategoryName = DataUtilityService.GetRandomString(),
+                Title =  DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
+                IsPublished = true,
+                ReadCount = 8436,
+                TotalLikes = 234,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = null,
+                LanguageIso = "ENG"
+            },
+            new()
+            {
+                Id = articles[1].Id,
+                CategoryName = DataUtilityService.GetRandomString(),
+                Title =  DataUtilityService.GetRandomString(),
+                Description = DataUtilityService.GetRandomString(),
+                IsPublished = true,
+                ReadCount = 9642,
+                TotalLikes = 679,
+                CreatedAt = DateTime.Now,
+                UpdatedAt = null,
+                LanguageIso = "ENG"
+            }
+        };
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedUserProvider = new Mock<IUserService>();
+        var mockedArticlesRepository = new Mock<IArticlesRepository>();
 
         mockedUserProvider
             .Setup(service => service.GetRequestUserLanguage())
             .Returns("en");
+
+        mockedArticlesRepository
+            .Setup(repository => repository.GetSearchResult(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(articleIds);
+
+        mockedArticlesRepository
+            .Setup(repository => repository.GetArticleList(
+            It.IsAny<bool>(),
+            It.IsAny<string?>(),
+            It.IsAny<Guid?>(),
+            It.IsAny<HashSet<Guid>?>(),
+            It.IsAny<IDictionary<string, Expression<Func<ArticleDataDto, object>>>>(),
+            It.IsAny<CancellationToken>()
+            ))
+            .ReturnsAsync(articleDataDto);
+
+        mockedArticlesRepository
+            .Setup(repository => repository.GetArticleCategories(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(categoryDto);
 
         var query = new GetArticlesQuery
         {
@@ -124,7 +146,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             PageSize = 10,
         };
 
-        var handler = new GetArticlesQueryHandler(databaseContext, mockedLogger.Object, mockedUserProvider.Object);
+        var handler = new GetArticlesQueryHandler(databaseContext, mockedLogger.Object, mockedUserProvider.Object, mockedArticlesRepository.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);
