@@ -249,4 +249,39 @@ public class ArticlesRepository : IArticlesRepository
         await _operationDbContext.Articles.AddAsync(newArticle, cancellationToken);
         await _operationDbContext.SaveChangesAsync(cancellationToken);
     }
+
+    public async Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default)
+    {
+        var articleData = await _operationDbContext.Articles
+            .AsNoTracking()
+            .Where(article => article.UserId == userId)
+            .Where(article => article.Id == requestId)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (articleData is null)
+            return false;
+
+        var articleLike = await _operationDbContext.ArticleLikes
+            .AsNoTracking()
+            .Where(like => like.UserId == userId)
+            .Where(like => like.ArticleId == requestId)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        var articleCount = await _operationDbContext.ArticleCounts
+            .AsNoTracking()
+            .Where(count => count.UserId == userId)
+            .Where(count => count.ArticleId == requestId)
+            .SingleOrDefaultAsync(cancellationToken);
+
+        if (articleLike is not null)
+            _operationDbContext.ArticleLikes.Remove(articleLike);
+
+        if (articleCount is not null)
+            _operationDbContext.ArticleCounts.Remove(articleCount);
+
+        _operationDbContext.Articles.Remove(articleData);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
+
+        return true;
+    }
 }
