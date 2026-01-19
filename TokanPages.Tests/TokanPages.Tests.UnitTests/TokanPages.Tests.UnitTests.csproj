@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Application\TokanPages.Backend.Application.csproj" />
-    <ProjectReference Include="..\..\TokanPages.Persistence\TokanPages.Persistence.MigrationRunner\TokanPages.Persistence.MigrationRunner.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.BatchService\TokanPages.Services.BatchService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.SpaCachingService\TokanPages.Services.SpaCachingService.csproj" />
