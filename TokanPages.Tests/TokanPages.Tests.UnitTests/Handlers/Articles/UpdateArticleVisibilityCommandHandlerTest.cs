@@ -1,13 +1,12 @@
 using FluentAssertions;
+using MediatR;
 using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Domain.Entities.Articles;
-using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
@@ -15,156 +14,86 @@ namespace TokanPages.Tests.UnitTests.Handlers.Articles;
 
 public class UpdateArticleVisibilityCommandHandlerTest : TestBase
 {
-    [Theory]
-    [InlineData(false, true)]
-    [InlineData(true, false)]
-    public async Task GivenCorrectPermissionAndExistingArticle_WhenInvokeArticleVisibility_ShouldSucceed(bool isVisible, bool shouldBeVisible)
+    [Fact]
+    public async Task GivenExistingArticle_WhenInvokeArticleVisibility_ShouldSucceed()
     {
         // Arrange
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         var userId = Guid.NewGuid();
-        var articlesId = Guid.NewGuid();
-        var permissionId = Guid.NewGuid();
-
-        var command = new UpdateArticleVisibilityCommand
-        {
-            Id = articlesId,
-            IsPublished = shouldBeVisible
-        };
-
-        var users = new User
-        {
-            Id = userId,
-            IsActivated = true,
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            CryptedPassword = DataUtilityService.GetRandomString()
-        };
-
-        var permission = new Permission
-        {
-            Id = permissionId,
-            Name = DataUtilityService.GetRandomString()
-        };
-
-        var userPermission = new UserPermission
-        {
-            Id = Guid.NewGuid(),
-            UserId = userId,
-            PermissionId = permissionId
-        };
-
-        var articles = new Article
-        {
-            Id = articlesId,
-            UserId = userId,
-            Title = DataUtilityService.GetRandomString(),
-            Description = DataUtilityService.GetRandomString(),
-            IsPublished = isVisible,
-            ReadCount = 0,
-            CreatedAt = DataUtilityService.GetRandomDateTime(),
-            UpdatedAt = null,
-            LanguageIso = "ENG"
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.Permissions.AddAsync(permission);
-        await databaseContext.UserPermissions.AddAsync(userPermission);
-        await databaseContext.Articles.AddAsync(articles);
-        await databaseContext.SaveChangesAsync();
+        var articleId = Guid.NewGuid();
 
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedArticlesRepository = new Mock<IArticlesRepository>();
 
-        mockedUserService.Setup(service => service.GetLoggedUserId())
-            .Returns(users.Id);
+        mockedArticlesRepository
+            .Setup(x => x.UpdateArticleVisibility(
+            It.IsAny<Guid>(), 
+            It.IsAny<Guid>(), 
+            It.IsAny<DateTime>(),
+            It.IsAny<bool>(),
+            It.IsAny<CancellationToken>()))
+            .ReturnsAsync(true);
 
         mockedUserService
-            .Setup(service => service.HasPermissionAssigned(
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(userId);
+
+        mockedUserService
+            .Setup(provider => provider.HasPermissionAssigned(
                 It.IsAny<string>(), 
                 It.IsAny<Guid?>(),
                 It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
+        var command = new UpdateArticleVisibilityCommand
+        {
+            Id = articleId,
+            IsPublished = true
+        };
+
         var handler = new UpdateArticleVisibilityCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
-            mockedDateTime.Object);
+            mockedDateTime.Object,
+            mockedArticlesRepository.Object);
 
         // Act
-        await handler.Handle(command, CancellationToken.None);
+        var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var articlesEntity = await databaseContext.Articles.FindAsync(articles.Id);
-
-        articlesEntity.Should().NotBeNull();
-        articlesEntity?.UpdatedAt.Should().BeNull();
-        articlesEntity?.ModifiedBy.Should().NotBeNull();
-        articlesEntity?.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
-        articlesEntity?.IsPublished.Should().Be(shouldBeVisible);
+        result.Should().Be(Unit.Value);        
     }
 
     [Fact]
-    public async Task GivenNoPermissionAndExistingArticle_WhenInvokeArticleVisibility_ShouldThrowError()
+    public async Task GivenNoPermission_WhenInvokeArticleVisibility_ShouldThrowError()
     {
         // Arrange
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         var userId = Guid.NewGuid();
-        var articlesId = Guid.NewGuid();
-        var permissionId = Guid.NewGuid();
-
-        var users = new User
-        {
-            Id = userId,
-            IsActivated = true,
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            CryptedPassword = DataUtilityService.GetRandomString()
-        };
-
-        var permission = new Permission
-        {
-            Id = permissionId,
-            Name = DataUtilityService.GetRandomString()
-        };
-
-        var userPermission = new UserPermission
-        {
-            Id = Guid.NewGuid(),
-            UserId = userId,
-            PermissionId = permissionId
-        };
-
-        var articles = new Article
-        {
-            Id = articlesId,
-            UserId = userId,
-            Title = DataUtilityService.GetRandomString(),
-            Description = DataUtilityService.GetRandomString(),
-            IsPublished = false,
-            ReadCount = 0,
-            CreatedAt = DataUtilityService.GetRandomDateTime(),
-            UpdatedAt = null,
-            LanguageIso = "ENG"
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.Permissions.AddAsync(permission);
-        await databaseContext.UserPermissions.AddAsync(userPermission);
-        await databaseContext.Articles.AddAsync(articles);
-        await databaseContext.SaveChangesAsync();
+        var articleId = Guid.NewGuid();
 
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedArticlesRepository = new Mock<IArticlesRepository>();
 
-        mockedUserService.Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(), 
-                It.IsAny<bool>(), 
+        mockedArticlesRepository
+            .Setup(x => x.UpdateArticleVisibility(
+                It.IsAny<Guid>(), 
+                It.IsAny<Guid>(), 
+                It.IsAny<DateTime>(),
+                It.IsAny<bool>(),
                 It.IsAny<CancellationToken>()))
-            .ReturnsAsync(users);
+            .ReturnsAsync(true);
+
+        mockedUserService
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(userId);
 
         mockedUserService
             .Setup(provider => provider.HasPermissionAssigned(
@@ -175,7 +104,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
 
         var command = new UpdateArticleVisibilityCommand
         {
-            Id = articles.Id,
+            Id = articleId,
             IsPublished = true
         };
 
@@ -183,73 +112,41 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
-            mockedDateTime.Object);
+            mockedDateTime.Object,
+            mockedArticlesRepository.Object);
 
         // Act
         // Assert
-        var result = await Assert.ThrowsAsync<AccessException>(() => handler.Handle(command, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
     }
 
     [Fact]
-    public async Task GivenCorrectPermissionAndWrongArticleId_WhenInvokeArticleVisibility_ShouldThrowError()
+    public async Task GivenWrongArticleId_WhenInvokeArticleVisibility_ShouldThrowError()
     {
         // Arrange
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         var userId = Guid.NewGuid();
-        var articlesId = Guid.NewGuid();
-        var permissionId = Guid.NewGuid();
-
-        var users = new User
-        {
-            Id = userId,
-            IsActivated = true,
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            CryptedPassword = DataUtilityService.GetRandomString()
-        };
-
-        var permission = new Permission
-        {
-            Id = permissionId,
-            Name = DataUtilityService.GetRandomString()
-        };
-
-        var userPermission = new UserPermission
-        {
-            Id = Guid.NewGuid(),
-            UserId = userId,
-            PermissionId = permissionId
-        };
-
-        var articles = new Article
-        {
-            Id = articlesId,
-            UserId = userId,
-            Title = DataUtilityService.GetRandomString(),
-            Description = DataUtilityService.GetRandomString(),
-            IsPublished = false,
-            ReadCount = 0,
-            CreatedAt = DataUtilityService.GetRandomDateTime(),
-            UpdatedAt = null,
-            LanguageIso = "ENG"
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.Permissions.AddAsync(permission);
-        await databaseContext.UserPermissions.AddAsync(userPermission);
-        await databaseContext.Articles.AddAsync(articles);
-        await databaseContext.SaveChangesAsync();
+        var articleId = Guid.NewGuid();
 
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedArticlesRepository = new Mock<IArticlesRepository>();
 
-        mockedUserService.Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(), 
-                It.IsAny<bool>(), 
+        mockedArticlesRepository
+            .Setup(x => x.UpdateArticleVisibility(
+                It.IsAny<Guid>(), 
+                It.IsAny<Guid>(), 
+                It.IsAny<DateTime>(),
+                It.IsAny<bool>(),
                 It.IsAny<CancellationToken>()))
-            .ReturnsAsync(users);
+            .ReturnsAsync(false);
+
+        mockedUserService
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(userId);
 
         mockedUserService
             .Setup(provider => provider.HasPermissionAssigned(
@@ -260,7 +157,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
 
         var command = new UpdateArticleVisibilityCommand
         {
-            Id = Guid.NewGuid(),
+            Id = articleId,
             IsPublished = true
         };
 
@@ -268,7 +165,8 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
-            mockedDateTime.Object);
+            mockedDateTime.Object,
+            mockedArticlesRepository.Object);
 
         // Act
         // Assert
