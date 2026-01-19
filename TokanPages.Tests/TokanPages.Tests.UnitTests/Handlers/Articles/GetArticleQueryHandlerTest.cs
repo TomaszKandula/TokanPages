@@ -102,6 +102,7 @@ public class GetArticleQueryHandlerTest : TestBase
             CreatedAt = testDate,
             UpdatedAt = null,
             UserId = users.Id,
+            TotalLikes = 25,
             LanguageIso = "ENG"
         };
 
@@ -117,6 +118,16 @@ public class GetArticleQueryHandlerTest : TestBase
             UpdatedAt = testDate,
             LanguageIso = "ENG",
             UserLikes = 1100,
+            Author = new GetUserDto
+            {
+                UserId = users.Id,
+                AliasName = UserAlias,
+                Email = DataUtilityService.GetRandomEmail(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                ShortBio =  DataUtilityService.GetRandomString(),
+                Registered = DateTimeService.Now,
+            },
             CategoryName =  categoryNames[0].Name
         };
 
@@ -178,8 +189,8 @@ public class GetArticleQueryHandlerTest : TestBase
         result.Description.Should().Be(articles.Description);
         result.IsPublished.Should().BeFalse();
         result.ReadCount.Should().Be(articles.ReadCount);
-        result.UserLikes.Should().Be(10);
-        result.UpdatedAt.Should().BeNull();
+        result.UserLikes.Should().Be(1100);
+        result.UpdatedAt.Should().Be(testDate);
         result.CreatedAt.Should().Be(testDate);
         result.TotalLikes.Should().Be(25);
         result.CategoryName.Should().Be(categoryNames[0].Name);
