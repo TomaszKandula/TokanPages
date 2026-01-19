@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using MediatR;
 using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Exceptions;
@@ -8,6 +9,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
@@ -20,6 +22,8 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
     public async Task GivenExistingArticleAndActiveUser_WhenUpdateArticleContent_ShouldUpdateEntity() 
     {
         // Arrange
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         var userId = Guid.NewGuid();
         var articleId = Guid.NewGuid();
         var command = new UpdateArticleContentCommand 
@@ -31,42 +35,16 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var users = new User
-        {
-            Id = userId,
-            IsActivated = true,
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            CryptedPassword = DataUtilityService.GetRandomString()
-        };
-
-        var articles = new Article
-        {
-            Id = articleId,
-            Title = DataUtilityService.GetRandomString(),
-            Description = DataUtilityService.GetRandomString(),
-            IsPublished = false,
-            ReadCount = 0,
-            CreatedAt = DateTime.Now,
-            UpdatedAt = null,
-            UserId = userId,
-            LanguageIso = "ENG"
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.Articles.AddAsync(articles);
-        await databaseContext.SaveChangesAsync();
-
         var mockedUserService = new Mock<IUserService>();
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
         var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedArticlesRepository = new Mock<IArticlesRepository>();
 
         mockedUserService
             .Setup(service => service.GetLoggedUserId())
-            .Returns(users.Id);
+            .Returns(userId);
 
         mockedAzureBlobStorage
             .Setup(storage => storage.UploadFile(
@@ -75,35 +53,44 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(string.Empty));
-            
+
         mockedAzureBlobStorageFactory
             .Setup(factory => factory.Create(mockedLogger.Object))
             .Returns(mockedAzureBlobStorage.Object);
+
+        mockedArticlesRepository
+            .Setup(repository => repository.UpdateArticleContent(
+            It.IsAny<Guid>(), 
+            It.IsAny<Guid>(), 
+            It.IsAny<DateTime>(),
+            It.IsAny<string>(),
+            It.IsAny<string>(),
+            It.IsAny<string>(),
+            It.IsAny<CancellationToken>()            
+            ))
+            .ReturnsAsync(true);
 
         var handler = new UpdateArticleContentCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
             mockedDateTime.Object, 
-            mockedAzureBlobStorageFactory.Object);
+            mockedAzureBlobStorageFactory.Object,
+            mockedArticlesRepository.Object);
 
         // Act
-        await handler.Handle(command, CancellationToken.None);
+        var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var articlesEntity = await databaseContext.Articles.FindAsync(command.Id);
-        articlesEntity.Should().NotBeNull();
-        articlesEntity?.Title.Should().Be(command.Title);
-        articlesEntity?.Description.Should().Be(command.Description); 
-        articlesEntity?.IsPublished.Should().BeFalse();
-        articlesEntity?.UpdatedAt.Should().NotBeNull();
-        articlesEntity?.UpdatedAt.Should().BeBefore(DateTime.UtcNow);
+        result.Should().Be(Unit.Value);
     }
 
     [Fact]
     public async Task GivenNonExistingArticleAndActiveUser_WhenUpdateArticleContent_ShouldThrowError()
     {
         // Arrange
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         var articleId = Guid.NewGuid();
         var userId = Guid.NewGuid();
         var command = new UpdateArticleContentCommand
@@ -115,45 +102,28 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString(255).ToBase64Encode()
         };
 
-        var users = new User
-        {
-            Id = userId,
-            IsActivated = true,
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            CryptedPassword = DataUtilityService.GetRandomString()
-        };
-
-        var articles = new Article
-        {
-            Id = Guid.NewGuid(),
-            Title = DataUtilityService.GetRandomString(),
-            Description = DataUtilityService.GetRandomString(),
-            IsPublished = false,
-            ReadCount = 0,
-            CreatedAt = DateTime.Now,
-            UpdatedAt = null,
-            UserId = userId,
-            LanguageIso = "ENG"
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.Articles.AddAsync(articles);
-        await databaseContext.SaveChangesAsync();
-
         var mockedUserService = new Mock<IUserService>();
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>(); 
         var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedArticlesRepository = new Mock<IArticlesRepository>();
+
+        mockedArticlesRepository
+            .Setup(repository => repository.UpdateArticleContent(
+                It.IsAny<Guid>(), 
+                It.IsAny<Guid>(), 
+                It.IsAny<DateTime>(),
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<CancellationToken>()            
+            ))
+            .ReturnsAsync(false);
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(),
-                It.IsAny<bool>(),
-                It.IsAny<CancellationToken>()))
-            .ReturnsAsync(users);
+            .Setup(service => service.GetLoggedUserId())
+            .Returns(userId);
 
         mockedAzureBlobStorage
             .Setup(storage => storage.UploadFile(
@@ -172,7 +142,8 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             mockedLogger.Object,
             mockedUserService.Object, 
             mockedDateTime.Object, 
-            mockedAzureBlobStorageFactory.Object);
+            mockedAzureBlobStorageFactory.Object,
+            mockedArticlesRepository.Object);
 
         // Act
         // Assert
