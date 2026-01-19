@@ -4,13 +4,12 @@ using Azure.Messaging.ServiceBus;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.HostedServices.Base;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.HostedServices.Workers;
 

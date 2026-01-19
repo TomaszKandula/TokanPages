@@ -1,8 +1,7 @@
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Persistence.Database;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Chat.Commands;
 

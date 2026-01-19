@@ -4,8 +4,8 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Persistence.Database;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -19,50 +19,43 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public UpdateArticleContentCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService,
-        IUserService userService, IDateTimeService dateTimeService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
+    private readonly IArticlesRepository _articlesRepository;
+
+    public UpdateArticleContentCommandHandler(OperationDbContext operationDbContext, 
+        ILoggerService loggerService, IUserService userService, IDateTimeService dateTimeService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory, IArticlesRepository articlesRepository) 
+        : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
+        _articlesRepository = articlesRepository;
     }
 
     public override async Task<Unit> Handle(UpdateArticleContentCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var articleData = await OperationDbContext.Articles
-            .Where(article => article.UserId == userId)
-            .Where(article => article.Id == request.Id)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (articleData is null)
+        var dateTimeStamp = _dateTimeService.Now;
+        var isSuccess = await _articlesRepository.UpdateArticleContent(userId, request.Id, dateTimeStamp, request.Title, request.Description, request.LanguageIso, cancellationToken);
+        if (!isSuccess)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
-        if (!string.IsNullOrEmpty(request.TextToUpload))
+        var hasTextToUpload = !string.IsNullOrWhiteSpace(request.TextToUpload);
+        var hasImageToUpload = !string.IsNullOrWhiteSpace(request.ImageToUpload);
+
+        if (hasTextToUpload)
         {
             var textDestinationPath = $"content\\articles\\{request.Id}\\text.json";
-            await azureBlob.UploadContent(request.TextToUpload, textDestinationPath, cancellationToken);
+            await azureBlob.UploadContent(request.TextToUpload!, textDestinationPath, cancellationToken);
         }
 
-        if (!string.IsNullOrEmpty(request.ImageToUpload))
+        if (hasImageToUpload)
         {
             var imageDestinationPath = $"content\\articles\\{request.Id}\\image.jpg";
-            await azureBlob.UploadContent(request.ImageToUpload, imageDestinationPath, cancellationToken);
+            await azureBlob.UploadContent(request.ImageToUpload!, imageDestinationPath, cancellationToken);
         }
 
-        articleData.Title = request.Title ?? articleData.Title;
-        articleData.Description = request.Description ?? articleData.Description;
-        articleData.LanguageIso = request.LanguageIso ?? articleData.LanguageIso;
-        articleData.UpdatedAt = request is { Title: not null, Description: not null }
-            ? _dateTimeService.Now
-            : articleData.UpdatedAt;
-
-        articleData.ModifiedAt = _dateTimeService.Now;
-        articleData.ModifiedBy = userId;
-
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

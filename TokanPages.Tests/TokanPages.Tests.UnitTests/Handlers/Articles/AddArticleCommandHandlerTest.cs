@@ -4,7 +4,8 @@ using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Persistence.DataAccess.Repositories.Articles;
+using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
@@ -37,6 +38,7 @@ public class AddArticleCommandHandlerTest : TestBase
     public async Task GivenLoggedUser_WhenAddArticle_ShouldAddArticle() 
     {
         // Arrange
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
         var command = new AddArticleCommand
         {
             Title = DataUtilityService.GetRandomString(),
@@ -45,33 +47,31 @@ public class AddArticleCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString().ToBase64Encode()
         };
 
-        var user = new User
-        {
-            Id = Guid.NewGuid(),
-            UserAlias  = DataUtilityService.GetRandomString(),
-            IsActivated = true,
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            CryptedPassword = DataUtilityService.GetRandomString()
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(user);
-        await databaseContext.SaveChangesAsync();
-            
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedArticlesRepository = new Mock<IArticlesRepository>();
 
         mockedUserService
             .Setup(service => service.GetLoggedUserId())
-            .Returns(user.Id);
+            .Returns(Guid.NewGuid());
+
+        mockedArticlesRepository
+            .Setup(repository => repository.AddArticle(
+            It.IsAny<Guid>(),
+            It.IsAny<ArticleDataInputDto>(),
+            It.IsAny<DateTime>(),
+            It.IsAny<CancellationToken>()
+            ))
+            .Returns(Task.CompletedTask);
 
         var handler = new AddArticleCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object,
             mockedDateTime.Object, 
-            _mockedAzureBlobStorageFactory.Object);
+            _mockedAzureBlobStorageFactory.Object, 
+            mockedArticlesRepository.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);

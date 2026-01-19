@@ -1,13 +1,12 @@
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.PayUService.Models;
 using TokanPages.Services.UserService.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Domain.Entities.Users;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 using BuyerInput = TokanPages.Services.PayUService.Models.Sections.Buyer;
 using CardInput = TokanPages.Services.PayUService.Models.Sections.Card;
 using PayMethodInput = TokanPages.Services.PayUService.Models.Sections.PayMethod;

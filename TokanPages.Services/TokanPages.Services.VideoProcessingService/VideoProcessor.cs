@@ -4,7 +4,6 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Enums;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureStorageService.Models;
 using TokanPages.Services.VideoConverterService.Abstractions;
 using TokanPages.Services.VideoConverterService.Models;
@@ -12,7 +11,7 @@ using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.VideoProcessingService.Models;
 using TokanPages.Services.VideoProcessingService.Utilities;
 using Microsoft.EntityFrameworkCore;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Services.VideoProcessingService;

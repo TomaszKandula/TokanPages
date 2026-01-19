@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Application.Articles.Models;
+using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 namespace TokanPages.Backend.Application.Articles.Commands;
 

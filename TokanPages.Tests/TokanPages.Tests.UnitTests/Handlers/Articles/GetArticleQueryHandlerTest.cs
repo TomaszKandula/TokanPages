@@ -2,7 +2,6 @@
 using FluentAssertions;
 using Moq;
 using Newtonsoft.Json;
-using TokanPages.Backend.Application.Articles.Models;
 using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
@@ -10,6 +9,8 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.DataAccess.Repositories.Articles;
+using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.AzureStorageService.Models;
 using TokanPages.Services.UserService.Abstractions;
@@ -21,14 +22,13 @@ public class GetArticleQueryHandlerTest : TestBase
 {
     private const string UserAlias = "Victoria";
 
-    private const string IpAddressFirst = "255.255.255.255";
-        
-    private const string IpAddressSecond = "1.1.1.1";
+    private const string IpAddress = "255.255.255.255";
 
     [Fact]
     public async Task GivenCorrectId_WhenGetArticle_ShouldReturnEntity() 
     {
         // Arrange
+        var databaseContext = GetTestDatabaseContext(); //TODO: to be removed
         var testDate = DateTime.Now;
         var users = new User
         {
@@ -37,20 +37,6 @@ public class GetArticleQueryHandlerTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = UserAlias,
             CryptedPassword = DataUtilityService.GetRandomString()
-        };
-
-        var userInfo = new UserInfo
-        {
-            UserId = users.Id,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            UserAboutText = DataUtilityService.GetRandomString(),
-            UserImageName = null,
-            UserVideoName = null,
-            CreatedBy = Guid.Empty,
-            CreatedAt = DataUtilityService.GetRandomDateTime(),
-            ModifiedBy = null,
-            ModifiedAt = null
         };
 
         var languages = new List<Backend.Domain.Entities.Language>
@@ -88,7 +74,7 @@ public class GetArticleQueryHandlerTest : TestBase
                 CreatedAt = DateTimeService.Now
             },
         };
-        
+
         var categoryNames = new List<ArticleCategoryName>
         {
             new()
@@ -116,42 +102,41 @@ public class GetArticleQueryHandlerTest : TestBase
             CreatedAt = testDate,
             UpdatedAt = null,
             UserId = users.Id,
+            TotalLikes = 25,
             LanguageIso = "ENG"
         };
 
-        var likes = new List<ArticleLike> 
-        { 
-            new()
+        var articleOutputDto = new GetArticleOutputDto
+        {
+            Id =  articles.Id,
+            Title = articles.Title,
+            Description = articles.Description,
+            IsPublished = articles.IsPublished,
+            ReadCount = articles.ReadCount,
+            TotalLikes = articles.TotalLikes,
+            CreatedAt = testDate,
+            UpdatedAt = testDate,
+            LanguageIso = "ENG",
+            UserLikes = 1100,
+            Author = new GetUserDto
             {
-                ArticleId = articles.Id,
-                UserId = null,
-                LikeCount = 10,
-                IpAddress = IpAddressFirst
+                UserId = users.Id,
+                AliasName = UserAlias,
+                Email = DataUtilityService.GetRandomEmail(),
+                FirstName = DataUtilityService.GetRandomString(),
+                LastName = DataUtilityService.GetRandomString(),
+                ShortBio =  DataUtilityService.GetRandomString(),
+                Registered = DateTimeService.Now,
             },
-            new()
-            {
-                ArticleId = articles.Id,
-                UserId = null,
-                LikeCount = 15,
-                IpAddress = IpAddressSecond
-            }
+            CategoryName =  categoryNames[0].Name
         };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.UserInformation.AddAsync(userInfo);
-        await databaseContext.Languages.AddRangeAsync(languages);
-        await databaseContext.Articles.AddAsync(articles);
-        await databaseContext.ArticleLikes.AddRangeAsync(likes);
-        await databaseContext.ArticleCategories.AddRangeAsync(articleCategories);
-        await databaseContext.ArticleCategoryNames.AddRangeAsync(categoryNames);
-        await databaseContext.SaveChangesAsync();
 
         var mockedUserProvider = new Mock<IUserService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
         var mockedAzureBlob = new Mock<IAzureBlobStorage>();
+        var mockedArticleRepository = new Mock<IArticlesRepository>();
 
         var mockedArticleText = GetArticleSectionsAsJson();
         mockedAzureBlob
@@ -164,11 +149,27 @@ public class GetArticleQueryHandlerTest : TestBase
 
         mockedUserProvider
             .Setup(service => service.GetRequestIpAddress())
-            .Returns(IpAddressFirst);
+            .Returns(IpAddress);
 
         mockedUserProvider
             .Setup(service => service.GetRequestUserLanguage())
             .Returns("en");
+
+        var articleId = Guid.NewGuid();
+        mockedArticleRepository
+            .Setup(repository => repository.GetArticleIdByTitle(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(articleId);
+
+        mockedArticleRepository
+            .Setup(repository => repository.GetArticle(
+                It.IsAny<Guid>(), 
+                It.IsAny<Guid>(),
+                It.IsAny<bool>(),
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<CancellationToken>()
+                ))
+            .ReturnsAsync(articleOutputDto);
 
         var query = new GetArticleQuery { Id = articles.Id };
         var handler = new GetArticleQueryHandler(
@@ -176,7 +177,8 @@ public class GetArticleQueryHandlerTest : TestBase
             mockedLogger.Object,
             mockedUserProvider.Object, 
             mockedJsonSerializer.Object, 
-            mockedAzureStorage.Object);
+            mockedAzureStorage.Object, 
+            mockedArticleRepository.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);
@@ -187,8 +189,8 @@ public class GetArticleQueryHandlerTest : TestBase
         result.Description.Should().Be(articles.Description);
         result.IsPublished.Should().BeFalse();
         result.ReadCount.Should().Be(articles.ReadCount);
-        result.UserLikes.Should().Be(10);
-        result.UpdatedAt.Should().BeNull();
+        result.UserLikes.Should().Be(1100);
+        result.UpdatedAt.Should().Be(testDate);
         result.CreatedAt.Should().Be(testDate);
         result.TotalLikes.Should().Be(25);
         result.CategoryName.Should().Be(categoryNames[0].Name);
@@ -201,38 +203,14 @@ public class GetArticleQueryHandlerTest : TestBase
     public async Task GivenIncorrectId_WhenGetArticle_ShouldThrowError()
     {
         // Arrange
-        var users = new User
-        {
-            Id = Guid.NewGuid(),
-            IsActivated = true,
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            CryptedPassword = DataUtilityService.GetRandomString()
-        };
-
-        var articles = new Article
-        {
-            Id = Guid.NewGuid(),
-            Title = DataUtilityService.GetRandomString(),
-            Description = DataUtilityService.GetRandomString(),
-            IsPublished = false,
-            ReadCount = 0,
-            CreatedAt = DateTime.Now,
-            UpdatedAt = null,
-            UserId = users.Id,
-            LanguageIso = "ENG"
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddAsync(users);
-        await databaseContext.Articles.AddAsync(articles);
-        await databaseContext.SaveChangesAsync();
+        var databaseContext = GetTestDatabaseContext(); //TODO: to be removed
 
         var mockedUserProvider = new Mock<IUserService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
         var mockedAzureBlob = new Mock<IAzureBlobStorage>();
+        var mockedArticleRepository = new Mock<IArticlesRepository>();
 
         mockedAzureBlob
             .Setup(storage => storage.OpenRead(It.IsAny<string>(), It.IsAny<CancellationToken>()))
@@ -244,7 +222,24 @@ public class GetArticleQueryHandlerTest : TestBase
         
         mockedUserProvider
             .Setup(provider => provider.GetRequestIpAddress())
-            .Returns(IpAddressFirst);
+            .Returns(IpAddress);
+
+        var articleId = Guid.NewGuid();
+        mockedArticleRepository
+            .Setup(repository => repository.GetArticleIdByTitle(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(articleId);
+
+        GetArticleOutputDto? articleOutputDto = null;
+        mockedArticleRepository
+            .Setup(repository => repository.GetArticle(
+                It.IsAny<Guid>(), 
+                It.IsAny<Guid>(),
+                It.IsAny<bool>(),
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<CancellationToken>()
+            ))
+            .ReturnsAsync(articleOutputDto);
 
         var query = new GetArticleQuery { Id = Guid.NewGuid() };
         var handler = new GetArticleQueryHandler(
@@ -252,7 +247,8 @@ public class GetArticleQueryHandlerTest : TestBase
             mockedLogger.Object,
             mockedUserProvider.Object, 
             mockedJsonSerializer.Object, 
-            mockedAzureStorage.Object);
+            mockedAzureStorage.Object, 
+            mockedArticleRepository.Object);
 
         // Act
         // Assert

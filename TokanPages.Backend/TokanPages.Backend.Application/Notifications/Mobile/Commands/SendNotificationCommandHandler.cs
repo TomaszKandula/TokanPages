@@ -3,12 +3,11 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.PushNotificationService.Abstractions;
 using TokanPages.Services.PushNotificationService.Models;
 using Microsoft.Azure.NotificationHubs;
 using TokanPages.Backend.Domain.Entities.Notifications;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Notifications.Mobile.Commands;
 

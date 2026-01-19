@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.HttpClientService;
@@ -18,6 +17,7 @@ using TokanPages.HostedServices.CronJobs;
 using TokanPages.HostedServices.CronJobs.Abstractions;
 using TokanPages.HostedServices.Models;
 using TokanPages.HostedServices.Workers;
+using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Abstractions;
@@ -40,7 +40,7 @@ public static class Dependencies
     public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration)
     {
         services.RegisterCommonServices(configuration);
-        services.SetupDatabase(configuration);
+        services.AddDataLayer(configuration);
     }
 
     /// <summary>

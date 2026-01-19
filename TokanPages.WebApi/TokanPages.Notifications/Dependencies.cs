@@ -7,10 +7,10 @@ using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Configuration;
+using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
-using TokanPages.Persistence.Database;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.PushNotificationService;
 using TokanPages.Services.PushNotificationService.Abstractions;
@@ -37,7 +37,7 @@ public static class Dependencies
 	public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment = default)
 	{
 		services.CommonServices(configuration);
-		services.SetupDatabase(configuration);
+		services.AddDataLayer(configuration);
 		if (environment != null)
 			PollySupport.SetupRetryPolicyWithPolly(services, configuration, environment);
 	}

@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using MediatR;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Persistence.Database;
-using TokanPages.Persistence.Database.Contexts;
+using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application;
 

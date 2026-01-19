@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TokanPages.Persistence\TokanPages.Persistence.Database\TokanPages.Persistence.Database.csproj" />
+    <ProjectReference Include="..\..\TokanPages.Persistence\TokanPages.Persistence.DataAccess\TokanPages.Persistence.DataAccess.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.AzureBusService\TokanPages.Services.AzureBusService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.BatchService\TokanPages.Services.BatchService.csproj" />
