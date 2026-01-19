@@ -158,6 +158,6 @@ public class GetAllArticlesQueryHandlerTest : TestBase
         result.PagingInfo.Should().NotBeNull();
         result.PagingInfo?.PageNumber.Should().Be(1);
         result.PagingInfo?.PageSize.Should().Be(10);
-        result.ArticleCategories.Should().HaveCount(1);
+        result.ArticleCategories.Should().HaveCount(2);
     }
 }
