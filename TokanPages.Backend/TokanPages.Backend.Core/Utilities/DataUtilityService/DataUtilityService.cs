@@ -10,6 +10,20 @@ public class DataUtilityService : IDataUtilityService
     public DataUtilityService() => _numberGenerator = RandomNumberGenerator.Create();
 
     /// <summary>
+    /// Converts unique GUID list to list of quoted strings, so it can be used in SQL queries/commands. 
+    /// </summary>
+    /// <param name="items">Unique GUID list.</param>
+    /// <returns>List of quoted strings.</returns>
+    public virtual string ConvertUniqueGuidListToQuotedStringList(HashSet<Guid> items)
+    {
+        var articleIds = string.Empty;
+        foreach (var id in items)
+            articleIds = string.IsNullOrEmpty(articleIds) ? $"'{id:D}'" : $"{articleIds},'{id:D}'";
+
+        return articleIds;
+    }
+
+    /// <summary>
     /// Returns randomized Date within given range.
     /// </summary>
     /// <param name="min">Minimum value of expected date. Value can be null (if so, default day and month is: 1 JAN).</param>

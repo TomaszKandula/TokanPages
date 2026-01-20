@@ -6,6 +6,30 @@ namespace TokanPages.Tests.UnitTests.Services;
 public class DataUtilityServiceTest : TestBase
 {
     [Fact]
+    public void GivenGuids_WhenConvertUniqueGuidListToQuotedStringList_ShouldSucceed()
+    {
+        // Arrange
+        var guids = new HashSet<Guid>();
+
+        var guid1 = Guid.NewGuid();
+        var guid2 = Guid.NewGuid();
+        var guid3 = Guid.NewGuid();
+
+        guids.Add(guid1);
+        guids.Add(guid2);
+        guids.Add(guid3);
+
+        var expectedResult = $"'{guid1:D}','{guid2:D}','{guid3:D}'";
+
+        // Act
+        var result = DataUtilityService.ConvertUniqueGuidListToQuotedStringList(guids);
+
+        // Assert
+        result.Should().NotBeNullOrEmpty();
+        result.Should().BeEquivalentTo(expectedResult);
+    }
+
+    [Fact]
     public void GivenZeroLength_WhenInvokeGetRandomString_ShouldReturnEmptyString()
     {
         // Arrange 
