@@ -31,12 +31,10 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<Guid> GetArticleIdByTitle(string title, CancellationToken cancellationToken = default)
     {
-        var comparableTitle = title.Replace("-", " ").ToLower();
-        return await _operationDbContext.Articles
-            .AsNoTracking()
-            .Where(article => article.Title.ToLower() == comparableTitle)
-            .Select(article => article.Id)
-            .SingleOrDefaultAsync(cancellationToken);
+        const string query = "SELECT operation.Articles.Id FROM Operations.Articles WHERE Operations.Articles.Title = @Title";
+
+        await using var db = new SqlConnection(ConnectionString);
+        return await db.QuerySingleOrDefaultAsync<Guid>(query, new { Title = title.Replace("-", " ").ToLower() });
     }
 
     public async Task<GetArticleOutputDto?> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage, CancellationToken cancellationToken)
