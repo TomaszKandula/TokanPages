@@ -167,21 +167,21 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<List<ArticleCategoryDto>> GetArticleCategories(string userLanguage, CancellationToken cancellationToken = default)
     {
-        var categories = await (from articleCategory in _operationDbContext.ArticleCategories
-            join categoryName in _operationDbContext.ArticleCategoryNames
-                on articleCategory.Id equals categoryName.ArticleCategoryId into category
-            from categoryName in category.DefaultIfEmpty()
-            join language in _operationDbContext.Languages
-                on categoryName.LanguageId equals language.Id into languageTable
-            from language in languageTable.DefaultIfEmpty()
-            where language.LangId == userLanguage
-            select new ArticleCategoryDto
-            {
-                Id = articleCategory.Id,
-                CategoryName = categoryName.Name
-            }).ToListAsync(cancellationToken);
+        const string query = @"
+            SELECT 
+                operation.ArticleCategories.Id,
+                operation.ArticleCategoryNames.Name AS CategoryName
+            FROM
+                operation.ArticleCategories
+            LEFT JOIN
+                operation.ArticleCategoryNames ON operation.ArticleCategoryNames.ArticleCategoryId = operation.ArticleCategories.Id
+            LEFT JOIN
+                operation.Languages ON operation.Languages.Id = operation.ArticleCategoryNames.LanguageId
+            WHERE
+                operation.Languages.LangId = @UserLanguage";
 
-        return categories;
+        await using var db = new SqlConnection(ConnectionString);
+        return (await db.QueryAsync<ArticleCategoryDto>(query, new { UserLanguage = userLanguage })).ToList();
     }
 
     public async Task<HashSet<Guid>?> GetSearchResult(string? searchTerm, CancellationToken cancellationToken = default)
