@@ -38,7 +38,7 @@ public class GetArticlesQueryHandler : RequestHandler<GetArticlesQuery, GetArtic
         return new GetArticlesQueryResult
         {
             PagingInfo = request,
-            TotalSize = articles.Count,
+            TotalSize = articles[0].CountOver ?? 0,
             ArticleCategories = categories,
             Results = articles
         };
