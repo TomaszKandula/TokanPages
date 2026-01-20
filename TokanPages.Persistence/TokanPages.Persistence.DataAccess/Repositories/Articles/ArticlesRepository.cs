@@ -160,7 +160,7 @@ public class ArticlesRepository : IArticlesRepository
         query += $"\nOFFSET {skipCount} ROWS FETCH NEXT {pageInfo.PageSize} ROWS ONLY";
 
         await using var db = new SqlConnection(ConnectionString);
-        var articles = db.Query<ArticleDataDto>(query).ToList();
+        var articles = (await db.QueryAsync<ArticleDataDto>(query)).ToList();
 
         return articles;
     }
