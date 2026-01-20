@@ -141,7 +141,8 @@ public class ArticlesRepository : IArticlesRepository
                 operation.Articles.TotalLikes,
                 operation.Articles.CreatedAt,
                 operation.Articles.UpdatedAt,
-                operation.Articles.LanguageIso
+                operation.Articles.LanguageIso,
+                COUNT(*) OVER() AS CountOver
             FROM 
                 operation.Articles 
             LEFT JOIN 
