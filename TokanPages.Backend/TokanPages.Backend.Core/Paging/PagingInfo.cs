@@ -9,7 +9,7 @@ public class PagingInfo
 
     public int PageSize { get; set; }
 
-    public string? OrderByColumn { get; set; }
+    public string OrderByColumn { get; set; } = string.Empty;
 
-    public bool? OrderByAscending { get; set; }
+    public bool OrderByAscending { get; set; }
 }
