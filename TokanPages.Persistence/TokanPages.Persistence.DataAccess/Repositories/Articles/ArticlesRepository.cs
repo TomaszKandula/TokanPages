@@ -157,6 +157,9 @@ public class ArticlesRepository : IArticlesRepository
 
         query += $"\nORDER BY {pageInfo.OrderByColumn} {pageInfo.OrderByAscending}";
 
+        var skipCount = (pageInfo.PageNumber - 1) * pageInfo.PageSize;
+        query += $"\nOFFSET {skipCount} ROWS FETCH NEXT {pageInfo.PageSize} ROWS ONLY";
+
         await using var db = new SqlConnection(ConnectionString);
         var articles = db.Query<ArticleDataDto>(query).ToList();
 
