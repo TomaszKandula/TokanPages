@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using TokanPages.Backend.Core.Utilities.LoggerService;
+﻿using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
@@ -7,7 +6,7 @@ using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Articles.Queries;
 
-public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetArticlesQuery, GetArticlesQueryResult>
+public class GetArticlesQueryHandler : RequestHandler<GetArticlesQuery, GetArticlesQueryResult>
 {
     private readonly IUserService _userService;
 
@@ -21,15 +20,19 @@ public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetAr
         _articlesRepository = articlesRepository;
     }
 
-    public override IDictionary<string, Expression<Func<ArticleDataDto, object>>> GetOrderingExpressions() => GetSortingConfig();
-
     public override async Task<GetArticlesQueryResult> Handle(GetArticlesQuery request, CancellationToken cancellationToken)
     {
         var userLanguage = _userService.GetRequestUserLanguage();
-        var foundArticleIds = await _articlesRepository.GetSearchResult(request.SearchTerm, cancellationToken);
+        var filterById = await _articlesRepository.GetSearchResult(request.SearchTerm, cancellationToken);
+        var pageInfo = new ArticlePageInfo
+        {
+            PageNumber = request.PageNumber,
+            PageSize = request.PageSize,
+            OrderByColumn = request.OrderByColumn,
+            OrderByAscending = request.OrderByAscending ? "ASC" : "DESC"
+        };
 
-        var sortingConfig = GetSortingConfig();
-        var articles = await _articlesRepository.GetArticleList(request.IsPublished, request.SearchTerm, request.CategoryId, foundArticleIds, sortingConfig, cancellationToken);
+        var articles = await _articlesRepository.GetArticleList(request.IsPublished, request.SearchTerm, request.CategoryId, filterById, pageInfo, cancellationToken);
         var categories = await _articlesRepository.GetArticleCategories(userLanguage, cancellationToken);
 
         return new GetArticlesQueryResult
@@ -38,16 +41,6 @@ public class GetArticlesQueryHandler : TableRequestHandler<ArticleDataDto, GetAr
             TotalSize = articles.Count,
             ArticleCategories = categories,
             Results = articles
-        };
-    }
-
-    private static Dictionary<string, Expression<Func<ArticleDataDto, object>>> GetSortingConfig()
-    {
-        return new Dictionary<string, Expression<Func<ArticleDataDto, object>>>(StringComparer.OrdinalIgnoreCase)
-        {
-            {nameof(ArticleDataDto.Title), articlesQueryResult => articlesQueryResult.Title},
-            {nameof(ArticleDataDto.Description), articlesQueryResult => articlesQueryResult.Description},
-            {nameof(ArticleDataDto.CreatedAt), articlesQueryResult => articlesQueryResult.CreatedAt}
         };
     }
 }
