@@ -189,20 +189,27 @@ public class ArticlesRepository : IArticlesRepository
         if (string.IsNullOrWhiteSpace(searchTerm))
             return null;
 
-        var searchTitleAndDescription = await _operationDbContext.Articles
-            .AsNoTracking()
-            .Where(articles => articles.Title.Contains(searchTerm) || articles.Description.Contains(searchTerm))
-            .Select(articles => articles.Id)
-            .ToListAsync(cancellationToken);
+        const string query = @"
+            SELECT
+                operation.Articles.Id
+            FROM
+                operation.Articles
+            WHERE
+                operation.Articles.Title LIKE N'%@SearchTerm%'
+            OR
+                operation.Articles.Description LIKE N'%@SearchTerm%'
+            UNION
+            SELECT
+                operation.ArticleTags.Id
+            FROM
+                operation.ArticleTags
+            WHERE
+                operation.ArticleTags.TagName LIKE N'%@SearchTerm%'
+        ";
 
-        var searchTags = await _operationDbContext.ArticleTags
-            .AsNoTracking()
-            .Where(articleTags => articleTags.TagName.Contains(searchTerm))
-            .Select(articleTags => articleTags.ArticleId)
-            .ToListAsync(cancellationToken);
-
-        var articleIds = searchTitleAndDescription.Union(searchTags);
-        return new HashSet<Guid>(articleIds);
+        await using var db = new SqlConnection(ConnectionString);
+        var result = (await db.QueryAsync<Guid>(query, new { SearchTerm = searchTerm })).ToList();
+        return new HashSet<Guid>(result);
     }
 
     public async Task<List<ArticleDataDto>> RetrieveArticleInfo(string userLanguage, HashSet<Guid> articleIds, CancellationToken cancellationToken = default)
