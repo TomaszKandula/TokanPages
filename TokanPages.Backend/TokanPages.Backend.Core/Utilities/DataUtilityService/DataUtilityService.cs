@@ -14,7 +14,7 @@ public class DataUtilityService : IDataUtilityService
     /// </summary>
     /// <param name="items">Unique GUID list.</param>
     /// <returns>List of quoted strings.</returns>
-    public virtual string ConvertUniqueGuidListToQuotedStringList(HashSet<Guid> items)
+    public virtual string GuidToSQLStrings(HashSet<Guid> items)
     {
         var articleIds = string.Empty;
         foreach (var id in items)

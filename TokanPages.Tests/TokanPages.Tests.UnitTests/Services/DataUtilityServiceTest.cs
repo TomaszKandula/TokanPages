@@ -6,7 +6,7 @@ namespace TokanPages.Tests.UnitTests.Services;
 public class DataUtilityServiceTest : TestBase
 {
     [Fact]
-    public void GivenGuids_WhenConvertUniqueGuidListToQuotedStringList_ShouldSucceed()
+    public void GivenGuids_WhenInvokeGuidToSQLStrings_ShouldSucceed()
     {
         // Arrange
         var guids = new HashSet<Guid>();
@@ -22,7 +22,7 @@ public class DataUtilityServiceTest : TestBase
         var expectedResult = $"'{guid1:D}','{guid2:D}','{guid3:D}'";
 
         // Act
-        var result = DataUtilityService.ConvertUniqueGuidListToQuotedStringList(guids);
+        var result = DataUtilityService.GuidToSQLStrings(guids);
 
         // Assert
         result.Should().NotBeNullOrEmpty();

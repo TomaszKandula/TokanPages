@@ -4,7 +4,7 @@ namespace TokanPages.Backend.Core.Utilities.DataUtilityService;
 
 public interface IDataUtilityService
 {
-    string ConvertUniqueGuidListToQuotedStringList(HashSet<Guid> items);
+    string GuidToSQLStrings(HashSet<Guid> items);
 
     DateTime GetRandomDateTime(DateTime? min = null, DateTime? max = null, int defaultYear = 2020);
 
