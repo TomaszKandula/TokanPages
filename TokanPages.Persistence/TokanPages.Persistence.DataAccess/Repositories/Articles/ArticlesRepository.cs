@@ -127,7 +127,7 @@ public class ArticlesRepository : IArticlesRepository
         };
     }
 
-    public async Task<List<ArticleDataDto>> GetArticleList(bool isPublished, string? searchTerm, Guid? categoryId, HashSet<Guid>? filterById, ArticlePageInfo pageInfo, CancellationToken cancellationToken = default)
+    public async Task<List<ArticleDataDto>> GetArticleList(bool isPublished, string? searchTerm, Guid? categoryId, HashSet<Guid>? filterById, ArticlePageInfoDto pageInfo, CancellationToken cancellationToken = default)
     {
         var query = @"
             SELECT 

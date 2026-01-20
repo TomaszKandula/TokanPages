@@ -24,7 +24,7 @@ public class GetArticlesQueryHandler : RequestHandler<GetArticlesQuery, GetArtic
     {
         var userLanguage = _userService.GetRequestUserLanguage();
         var filterById = await _articlesRepository.GetSearchResult(request.SearchTerm, cancellationToken);
-        var pageInfo = new ArticlePageInfo
+        var pageInfo = new ArticlePageInfoDto
         {
             PageNumber = request.PageNumber,
             PageSize = request.PageSize,

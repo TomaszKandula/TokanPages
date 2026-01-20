@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 [ExcludeFromCodeCoverage]
-public class ArticlePageInfo
+public class ArticlePageInfoDto
 {
     public int PageNumber { get; set; }
 
