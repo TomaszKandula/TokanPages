@@ -1,7 +1,9 @@
-using System.Linq.Expressions;
+using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
@@ -11,17 +13,20 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Articles;
 public class ArticlesRepository : IArticlesRepository
 {
     private readonly OperationDbContext _operationDbContext;
+    
+    private readonly IDataUtilityService _dataUtilityService;
 
+    //TODO: replace IConfiguration with IOption
     private readonly IConfiguration _configuration;
-
     private int MaxLikesForAnonymousUser => _configuration.GetValue<int>("Limit_Likes_Anonymous");
-
     private int MaxLikesForLoggedUser => _configuration.GetValue<int>("Limit_Likes_User");
+    private string ConnectionString => _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
 
-    public ArticlesRepository(OperationDbContext operationDbContext, IConfiguration configuration)
+    public ArticlesRepository(OperationDbContext operationDbContext, IConfiguration configuration, IDataUtilityService dataUtilityService)
     {
         _operationDbContext = operationDbContext;
         _configuration = configuration;
+        _dataUtilityService = dataUtilityService;
     }
 
     public async Task<Guid> GetArticleIdByTitle(string title, CancellationToken cancellationToken = default)
@@ -124,42 +129,38 @@ public class ArticlesRepository : IArticlesRepository
         };
     }
 
-    public async Task<List<ArticleDataDto>> GetArticleList(bool isPublished, string? searchTerm, Guid? categoryId, HashSet<Guid>? foundArticleIds,
-        IDictionary<string, Expression<Func<ArticleDataDto, object>>> orderByExpressions, CancellationToken cancellationToken = default)
+    public async Task<List<ArticleDataDto>> GetArticleList(bool isPublished, string? searchTerm, Guid? categoryId, HashSet<Guid>? filterById, ArticlePageInfo pageInfo, CancellationToken cancellationToken = default)
     {
-        var hasArticleIds = foundArticleIds != null && foundArticleIds.Count != 0;
-        var hasCategoryId = categoryId != null && categoryId != Guid.Empty;
+        var query = @"
+            SELECT 
+                operation.Articles.Id,
+                operation.Articles.Title,
+                operation.Articles.Description,
+                operation.Articles.IsPublished,
+                operation.Articles.ReadCount,
+                operation.Articles.TotalLikes,
+                operation.Articles.CreatedAt,
+                operation.Articles.UpdatedAt,
+                operation.Articles.LanguageIso
+            FROM 
+                operation.Articles 
+            LEFT JOIN 
+                operation.ArticleCategories ON operation.Articles.CategoryId = operation.ArticleCategories.Id
+            WHERE 
+                operation.Articles.IsPublished = 1";
 
-        var articles = _operationDbContext.Articles
-            .AsNoTracking()
-            .Include(article => article.ArticleCategory)
-            .Where(article => article.IsPublished == isPublished)
-            .WhereIf(hasArticleIds, article => foundArticleIds!.Contains(article.Id))
-            .WhereIf(hasCategoryId, article => article.ArticleCategory.Id == categoryId)
-            .Select(article => new ArticleDataDto
-            {
-                Id = article.Id,
-                Title = article.Title,
-                Description = article.Description,
-                IsPublished = article.IsPublished,
-                ReadCount = article.ReadCount,
-                TotalLikes = article.TotalLikes,
-                CreatedAt = article.CreatedAt,
-                UpdatedAt = article.UpdatedAt,
-                LanguageIso = article.LanguageIso
-            });
+        if (categoryId != null && categoryId != Guid.Empty)
+            query += $"\nAND operation.Articles.CategoryId = '{categoryId}'";
 
-        var request = new ArticleListRequestDto
-        {
-            SearchTerm = searchTerm,
-            IsPublished = isPublished,
-            CategoryId = categoryId,
-        };
+        if (filterById != null && filterById.Count != 0)
+            query += $"\nAND operation.Articles.Id IN ({_dataUtilityService.GuidToSQLStrings(filterById)})";
 
-        return await articles
-            .ApplyOrdering(request, orderByExpressions)
-            .ApplyPaging(request)
-            .ToListAsync(cancellationToken);
+        query += $"\nORDER BY {pageInfo.OrderByColumn} {pageInfo.OrderByAscending}";
+
+        await using var db = new SqlConnection(ConnectionString);
+        var articles = db.Query<ArticleDataDto>(query).ToList();
+
+        return articles;
     }
 
     public async Task<List<ArticleCategoryDto>> GetArticleCategories(string userLanguage, CancellationToken cancellationToken = default)
