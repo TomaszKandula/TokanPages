@@ -63,11 +63,11 @@ public class ArticlesRepository : IArticlesRepository
             FROM
                 operation.Articles
             LEFT JOIN
-                operation.ArticleCategories ON operation.Articles.CategoryId = operation.ArticleCategories.ArticleId
+                operation.ArticleCategories ON operation.Articles.CategoryId = operation.ArticleCategories.Id
             LEFT JOIN
                 operation.ArticleCategoryNames ON operation.ArticleCategories.Id = operation.ArticleCategoryNames.ArticleCategoryId
             LEFT JOIN
-                operation.Languages ON operation.ArticleCategories.LanguageId = operation.Languages.Id
+                operation.Languages ON operation.ArticleCategoryNames.LanguageId = operation.Languages.Id
             WHERE
                 operation.Languages.LangId = @LanguageId
             AND
@@ -93,7 +93,7 @@ public class ArticlesRepository : IArticlesRepository
 
         const string queryTags = @"
             SELECT
-                operation.ArticleTags.TagName,
+                operation.ArticleTags.TagName
             FROM
                 operation.ArticleTags
             LEFT JOIN
@@ -120,7 +120,7 @@ public class ArticlesRepository : IArticlesRepository
         var userLikes = await db.QuerySingleOrDefaultAsync<int>(queryFilteredLikes, queryFilteredParams);
         var totalLikes = await db.QuerySingleOrDefaultAsync<int>(queryArticleLikes, queryArticleParams);
         var userDto = await db.QuerySingleOrDefaultAsync<GetUserDto>(queryUserData, queryUserParams);
-        var tags = await db.QuerySingleOrDefaultAsync<string[]>(queryTags, queryTagParams);
+        var tags = (await db.QueryAsync<string>(queryTags, queryTagParams)).ToArray();
 
         return new GetArticleOutputDto
         {
