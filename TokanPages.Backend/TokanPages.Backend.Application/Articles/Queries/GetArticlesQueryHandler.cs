@@ -23,7 +23,7 @@ public class GetArticlesQueryHandler : RequestHandler<GetArticlesQuery, GetArtic
     public override async Task<GetArticlesQueryResult> Handle(GetArticlesQuery request, CancellationToken cancellationToken)
     {
         var userLanguage = _userService.GetRequestUserLanguage();
-        var filterById = await _articlesRepository.GetSearchResult(request.SearchTerm, cancellationToken);
+        var filterById = await _articlesRepository.GetSearchResult(request.SearchTerm);
         var pageInfo = new ArticlePageInfoDto
         {
             PageNumber = request.PageNumber,
@@ -32,8 +32,8 @@ public class GetArticlesQueryHandler : RequestHandler<GetArticlesQuery, GetArtic
             OrderByAscending = request.OrderByAscending ? "ASC" : "DESC"
         };
 
-        var articles = await _articlesRepository.GetArticleList(request.IsPublished, request.SearchTerm, request.CategoryId, filterById, pageInfo, cancellationToken);
-        var categories = await _articlesRepository.GetArticleCategories(userLanguage, cancellationToken);
+        var articles = await _articlesRepository.GetArticleList(request.IsPublished, request.SearchTerm, request.CategoryId, filterById, pageInfo);
+        var categories = await _articlesRepository.GetArticleCategories(userLanguage);
 
         return new GetArticlesQueryResult
         {
