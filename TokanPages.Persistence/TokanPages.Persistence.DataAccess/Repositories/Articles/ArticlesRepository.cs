@@ -39,81 +39,94 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<GetArticleOutputDto?> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage, CancellationToken cancellationToken)
     {
-        var userLikes = await _operationDbContext.ArticleLikes
-            .AsNoTracking()
-            .Where(like => like.ArticleId == requestId)
-            .WhereIfElse(isAnonymousUser,
-                like => like.IpAddress == ipAddress && like.UserId == null,
-                like => like.UserId == userId)
-            .Select(like => like.LikeCount)
-            .SumAsync(cancellationToken);
+        const string queryArticleLikes = @"
+            SELECT
+                SUM(operation.ArticleLikes.LikeCount)
+            FROM
+                operation.ArticleLikes
+            WHERE
+                operation.ArticleLikes.ArticleId = @RequestId
+        ";
 
-        var totalLikes = await _operationDbContext.ArticleLikes
-            .AsNoTracking()
-            .Where(like => like.ArticleId == requestId)
-            .Select(like => like.LikeCount)
-            .SumAsync(cancellationToken);
+        const string queryArticleData = @"
+            SELECT
+                operation.Articles.Id,
+                operation.Articles.UserId,
+                operation.Articles.Title,
+                operation.Articles.Description,
+                operation.Articles.IsPublished,
+                operation.Articles.CreatedAt,
+                operation.Articles.UpdatedAt,
+                operation.Articles.ReadCount,
+                operation.Articles.LanguageIso,
+                operation.ArticleCategoryNames.Name AS CategoryName
+            FROM
+                operation.Articles
+            LEFT JOIN
+                operation.ArticleCategories ON operation.Articles.CategoryId = operation.ArticleCategories.ArticleId
+            LEFT JOIN
+                operation.ArticleCategoryNames ON operation.ArticleCategories.Id = operation.ArticleCategoryNames.ArticleCategoryId
+            LEFT JOIN
+                operation.Languages ON operation.ArticleCategories.LanguageId = operation.Languages.Id
+            WHERE
+                operation.Languages.LangId = @LanguageId
+            AND
+                operation.Articles.Id = @RequestId
+        ";
 
-        var articleData = await (from article in _operationDbContext.Articles
-            join articleCategory in _operationDbContext.ArticleCategories
-                on article.CategoryId equals articleCategory.Id
-            join categoryName in _operationDbContext.ArticleCategoryNames
-                on articleCategory.Id equals categoryName.ArticleCategoryId
-            join language in _operationDbContext.Languages
-                on categoryName.LanguageId equals language.Id
-            where language.LangId == userLanguage
-            where article.Id == requestId
-            select new
-            {
-                article.Id,
-                article.UserId,
-                article.Title,
-                article.Description,
-                article.IsPublished,
-                article.CreatedAt,
-                article.UpdatedAt,
-                article.ReadCount,
-                article.LanguageIso,
-                categoryName.Name,
-                TotalLikes = totalLikes,
-                UserLikes = userLikes,
-            })
-            .AsNoTracking()
-            .SingleOrDefaultAsync(cancellationToken);
+        const string queryUserData = @"
+            SELECT
+                operation.Users.Id AS UserId,
+                operation.Users.UserAlias,
+                operation.UserInformation.UserImageName AS AvatarName,
+                operation.UserInformation.FirstName,
+                operation.UserInformation.LastName,
+                operation.UserInformation.UserAboutText AS ShortBio,
+                operation.UserInformation.CreatedAt AS Registered
+            FROM
+                operation.Users
+            LEFT JOIN
+                operation.UserInformation ON operation.Users.Id = operation.UserInformation.UserId
+            WHERE
+                operation.Users.Id = @UserId
+        ";
 
+        const string queryTags = @"
+            SELECT
+                operation.ArticleTags.TagName,
+            FROM
+                operation.ArticleTags
+            LEFT JOIN
+                operation.Articles ON operation.ArticleTags.ArticleId = operation.Articles.Id
+            WHERE
+                operation.Articles.Id = @RequestId
+        ";
+
+        const string filterAnonymouse = "\nAND operation.ArticleLikes.IpAddress = @IpAddress AND operation.ArticleLikes.UserId IS NULL";
+        const string filterLoggedUser = "\nAND operation.ArticleLikes.UserId = @UserId";
+        var queryFilteredLikes = isAnonymousUser ? $"{queryArticleLikes}{filterAnonymouse}" : $"{queryArticleLikes}{filterLoggedUser}";
+
+        var queryArticleDataParams = new { RequestId = requestId, LanguageId = userLanguage };
+        var queryFilteredParams = new { RequestId = requestId, IpAddress = ipAddress, UserId = userId };
+        var queryArticleParams = new { RequestId = requestId };
+        var queryUserParams = new { UserId = userId };
+        var queryTagParams = new { RequestId = requestId };
+
+        await using var db = new SqlConnection(ConnectionString);
+        var articleData = await db.QuerySingleOrDefaultAsync<ArticleBaseDto>(queryArticleData, queryArticleDataParams);
         if (articleData is null)
             return null;
 
-        var userDto = await (from user in _operationDbContext.Users
-            join userInfo in _operationDbContext.UserInformation
-                on user.Id equals userInfo.UserId
-            where user.Id == articleData.UserId
-            select new GetUserDto
-            {
-                UserId = user.Id,
-                AliasName = user.UserAlias,
-                AvatarName = userInfo.UserImageName,
-                FirstName = userInfo.FirstName,
-                LastName = userInfo.LastName,
-                ShortBio = userInfo.UserAboutText,
-                Registered = userInfo.CreatedAt
-            })
-            .AsNoTracking()
-            .SingleOrDefaultAsync(cancellationToken);
-
-        var tags = await (from articleTags in _operationDbContext.ArticleTags
-            join articles in _operationDbContext.Articles
-                on articleTags.ArticleId equals articles.Id
-            where articles.Id == requestId
-            select articleTags.TagName)
-            .AsNoTracking()
-            .ToArrayAsync(cancellationToken);
+        var userLikes = await db.QuerySingleOrDefaultAsync<int>(queryFilteredLikes, queryFilteredParams);
+        var totalLikes = await db.QuerySingleOrDefaultAsync<int>(queryArticleLikes, queryArticleParams);
+        var userDto = await db.QuerySingleOrDefaultAsync<GetUserDto>(queryUserData, queryUserParams);
+        var tags = await db.QuerySingleOrDefaultAsync<string[]>(queryTags, queryTagParams);
 
         return new GetArticleOutputDto
         {
             Id = articleData.Id,
             Title = articleData.Title,
-            CategoryName = articleData.Name,
+            CategoryName = articleData.CategoryName,
             Description = articleData.Description,
             IsPublished = articleData.IsPublished,
             CreatedAt = articleData.CreatedAt,
