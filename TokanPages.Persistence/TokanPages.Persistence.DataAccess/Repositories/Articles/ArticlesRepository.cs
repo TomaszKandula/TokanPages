@@ -195,16 +195,16 @@ public class ArticlesRepository : IArticlesRepository
             FROM
                 operation.Articles
             WHERE
-                operation.Articles.Title LIKE N'%@SearchTerm%'
+                operation.Articles.Title LIKE CONCAT('%', @SearchTerm, '%')
             OR
-                operation.Articles.Description LIKE N'%@SearchTerm%'
+                operation.Articles.Description LIKE CONCAT('%', @SearchTerm, '%')
             UNION
             SELECT
                 operation.ArticleTags.Id
             FROM
                 operation.ArticleTags
             WHERE
-                operation.ArticleTags.TagName LIKE N'%@SearchTerm%'
+                operation.ArticleTags.TagName LIKE CONCAT('%', @SearchTerm, '%')
         ";
 
         await using var db = new SqlConnection(ConnectionString);
