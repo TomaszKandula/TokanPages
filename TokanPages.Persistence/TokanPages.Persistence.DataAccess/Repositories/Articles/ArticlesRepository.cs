@@ -29,7 +29,7 @@ public class ArticlesRepository : IArticlesRepository
         _dataUtilityService = dataUtilityService;
     }
 
-    public async Task<Guid> GetArticleIdByTitle(string title, CancellationToken cancellationToken = default)
+    public async Task<Guid> GetArticleIdByTitle(string title)
     {
         const string query = "SELECT operation.Articles.Id FROM Operations.Articles WHERE Operations.Articles.Title = @Title";
 
@@ -37,7 +37,7 @@ public class ArticlesRepository : IArticlesRepository
         return await db.QuerySingleOrDefaultAsync<Guid>(query, new { Title = title.Replace("-", " ").ToLower() });
     }
 
-    public async Task<GetArticleOutputDto?> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage, CancellationToken cancellationToken)
+    public async Task<GetArticleOutputDto?> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage)
     {
         const string queryArticleLikes = @"
             SELECT
@@ -140,7 +140,7 @@ public class ArticlesRepository : IArticlesRepository
         };
     }
 
-    public async Task<List<ArticleDataDto>> GetArticleList(bool isPublished, string? searchTerm, Guid? categoryId, HashSet<Guid>? filterById, ArticlePageInfoDto pageInfo, CancellationToken cancellationToken = default)
+    public async Task<List<ArticleDataDto>> GetArticleList(bool isPublished, string? searchTerm, Guid? categoryId, HashSet<Guid>? filterById, ArticlePageInfoDto pageInfo)
     {
         var query = @"
             SELECT 
@@ -178,7 +178,7 @@ public class ArticlesRepository : IArticlesRepository
         return articles;
     }
 
-    public async Task<List<ArticleCategoryDto>> GetArticleCategories(string userLanguage, CancellationToken cancellationToken = default)
+    public async Task<List<ArticleCategoryDto>> GetArticleCategories(string userLanguage)
     {
         const string query = @"
             SELECT 
@@ -197,7 +197,7 @@ public class ArticlesRepository : IArticlesRepository
         return (await db.QueryAsync<ArticleCategoryDto>(query, new { UserLanguage = userLanguage })).ToList();
     }
 
-    public async Task<HashSet<Guid>?> GetSearchResult(string? searchTerm, CancellationToken cancellationToken = default)
+    public async Task<HashSet<Guid>?> GetSearchResult(string? searchTerm)
     {
         if (string.IsNullOrWhiteSpace(searchTerm))
             return null;
