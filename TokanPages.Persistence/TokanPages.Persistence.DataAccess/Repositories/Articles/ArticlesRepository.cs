@@ -198,9 +198,9 @@ public class ArticlesRepository : IArticlesRepository
                 operation.Articles.Title LIKE CONCAT('%', @SearchTerm, '%')
             OR
                 operation.Articles.Description LIKE CONCAT('%', @SearchTerm, '%')
-            UNION
+            UNION ALL
             SELECT
-                operation.ArticleTags.Id
+                operation.ArticleTags.ArticleId
             FROM
                 operation.ArticleTags
             WHERE
