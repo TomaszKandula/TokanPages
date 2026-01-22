@@ -23,7 +23,7 @@ public class RetrieveArticleInfoCommandHandler : RequestHandler<RetrieveArticleI
     {
         var userLanguage = _userService.GetRequestUserLanguage();
         var articleIds = new HashSet<Guid>(request.ArticleIds);
-        var articleInfoList = await _articlesRepository.RetrieveArticleInfo(userLanguage, articleIds, cancellationToken);
+        var articleInfoList = await _articlesRepository.RetrieveArticleInfo(userLanguage, articleIds);
 
         return new RetrieveArticleInfoCommandResult
         {

@@ -15,7 +15,7 @@ public interface IArticlesRepository
 
     Task<HashSet<Guid>?> GetSearchResult(string? searchTerm);
 
-    Task<List<ArticleDataDto>> RetrieveArticleInfo(string userLanguage, HashSet<Guid> articleIds, CancellationToken cancellationToken = default);
+    Task<List<ArticleDataDto>> RetrieveArticleInfo(string userLanguage, HashSet<Guid> articleIds);
 
     Task AddArticle(Guid userId, ArticleDataInputDto articleData, DateTime createdAt, CancellationToken cancellationToken = default);
 
