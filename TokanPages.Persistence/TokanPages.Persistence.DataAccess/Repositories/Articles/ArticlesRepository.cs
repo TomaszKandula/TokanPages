@@ -171,7 +171,7 @@ public class ArticlesRepository : IArticlesRepository
             query += $"\nAND operation.Articles.CategoryId = '{categoryId}'";
 
         if (filterById != null && filterById.Count != 0)
-            query += $"\nAND operation.Articles.Id IN ({_dataUtilityService.GuidToSQLStrings(filterById)})";
+            query += $"\nAND operation.Articles.Id IN {filterById.ToArray()}";
 
         query += $"\nORDER BY {pageInfo.OrderByColumn} {pageInfo.OrderByAscending}";
 
