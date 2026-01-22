@@ -41,7 +41,11 @@ public class ArticlesRepository : IArticlesRepository
     {
         const string queryArticleLikes = @"
             SELECT
-                SUM(operation.ArticleLikes.LikeCount)
+                CASE WHEN 
+                    SUM(operation.ArticleLikes.LikeCount) IS NULL 
+                THEN 0 ELSE 
+                    SUM(operation.ArticleLikes.LikeCount) 
+                END
             FROM
                 operation.ArticleLikes
             WHERE
