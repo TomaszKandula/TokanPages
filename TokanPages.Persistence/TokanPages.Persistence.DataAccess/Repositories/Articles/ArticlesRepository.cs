@@ -3,7 +3,6 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
@@ -13,8 +12,6 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Articles;
 public class ArticlesRepository : IArticlesRepository
 {
     private readonly OperationDbContext _operationDbContext;
-    
-    private readonly IDataUtilityService _dataUtilityService;
 
     //TODO: replace IConfiguration with IOption
     private readonly IConfiguration _configuration;
@@ -22,11 +19,10 @@ public class ArticlesRepository : IArticlesRepository
     private int MaxLikesForLoggedUser => _configuration.GetValue<int>("Limit_Likes_User");
     private string ConnectionString => _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
 
-    public ArticlesRepository(OperationDbContext operationDbContext, IConfiguration configuration, IDataUtilityService dataUtilityService)
+    public ArticlesRepository(OperationDbContext operationDbContext, IConfiguration configuration)
     {
         _operationDbContext = operationDbContext;
         _configuration = configuration;
-        _dataUtilityService = dataUtilityService;
     }
 
     public async Task<Guid> GetArticleIdByTitle(string title)
