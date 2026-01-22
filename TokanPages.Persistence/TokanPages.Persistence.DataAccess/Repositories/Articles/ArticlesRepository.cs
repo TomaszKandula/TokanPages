@@ -314,10 +314,17 @@ public class ArticlesRepository : IArticlesRepository
         var articleTags = new ArticleTag { Id = requestId };
         var articles = new Article { Id = requestId, UserId =  userId };
 
-        await _dapperWrapper.Delete(articleLikes, cancellationToken);
-        await _dapperWrapper.Delete(articleCounts, cancellationToken);
-        await _dapperWrapper.Delete(articleTags, cancellationToken);
-        await _dapperWrapper.Delete(articles, cancellationToken);
+        try
+        {
+            await _dapperWrapper.Delete(articleLikes, cancellationToken);
+            await _dapperWrapper.Delete(articleCounts, cancellationToken);
+            await _dapperWrapper.Delete(articleTags, cancellationToken);
+            await _dapperWrapper.Delete(articles, cancellationToken);
+        }
+        catch
+        {
+            return false;
+        }
 
         return true;
     }
