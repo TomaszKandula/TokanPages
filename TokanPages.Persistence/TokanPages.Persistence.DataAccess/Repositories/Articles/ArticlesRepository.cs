@@ -2,8 +2,11 @@ using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
@@ -13,16 +16,19 @@ public class ArticlesRepository : IArticlesRepository
 {
     private readonly OperationDbContext _operationDbContext;
 
+    private readonly ILoggerService _loggerService;
+
     //TODO: replace IConfiguration with IOption
     private readonly IConfiguration _configuration;
     private int MaxLikesForAnonymousUser => _configuration.GetValue<int>("Limit_Likes_Anonymous");
     private int MaxLikesForLoggedUser => _configuration.GetValue<int>("Limit_Likes_User");
     private string ConnectionString => _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
 
-    public ArticlesRepository(OperationDbContext operationDbContext, IConfiguration configuration)
+    public ArticlesRepository(OperationDbContext operationDbContext, IConfiguration configuration, ILoggerService loggerService)
     {
         _operationDbContext = operationDbContext;
         _configuration = configuration;
+        _loggerService = loggerService;
     }
 
     public async Task<Guid> GetArticleIdByTitle(string title)
@@ -285,22 +291,49 @@ public class ArticlesRepository : IArticlesRepository
         return articleInfoList;
     }
 
-    public async Task AddArticle(Guid userId, ArticleDataInputDto articleData, DateTime createdAt, CancellationToken cancellationToken = default)
+    public async Task AddArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default)
     {
-        var newArticle = new Article
-        {
-            Title = articleData.Title,
-            Description = articleData.Description,
-            IsPublished = false,
-            ReadCount = 0,
-            CreatedBy = userId,
-            CreatedAt = createdAt,
-            UserId = userId,
-            LanguageIso = articleData.LanguageIso
-        };
+        const string command = @"
+            INSERT INTO
+                Articles
+            VALUES (
+                @Id,
+                @Title,
+                @Description,
+                @IsPublished,
+                @ReadCount,
+                @CreatedBy,
+                @CreatedAt,
+                @UserId,
+                @LanguageIso
+            )
+        ";
 
-        await _operationDbContext.Articles.AddAsync(newArticle, cancellationToken);
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
+        await using var db = new SqlConnection(ConnectionString);
+        var transaction = await db.BeginTransactionAsync(cancellationToken);
+        try
+        {
+            await db.ExecuteAsync(command, new
+            {
+                Id = Guid.NewGuid(),
+                data.Title,
+                escription = data.Description,
+                IsPublished = false,
+                ReadCount = 0,
+                CreatedBy = userId,
+                CreatedAt = createdAt,
+                UserId = userId,
+                data.LanguageIso
+            }, transaction);
+
+            await transaction.CommitAsync(cancellationToken);
+        }
+        catch (Exception exception)
+        {
+            await transaction.RollbackAsync(cancellationToken);
+            _loggerService.LogFatal($"{exception.Message} {exception.InnerException?.Message}");
+            throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+        }
     }
 
     public async Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default)
