@@ -309,35 +309,15 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default)
     {
-        var articleData = await _operationDbContext.Articles
-            .AsNoTracking()
-            .Where(article => article.UserId == userId)
-            .Where(article => article.Id == requestId)
-            .SingleOrDefaultAsync(cancellationToken);
+        var articleLikes = new ArticleLike { Id = requestId, UserId =  userId };
+        var articleCounts = new ArticleCount { Id = requestId, UserId =  userId };
+        var articleTags = new ArticleTag { Id = requestId };
+        var articles = new Article { Id = requestId, UserId =  userId };
 
-        if (articleData is null)
-            return false;
-
-        var articleLike = await _operationDbContext.ArticleLikes
-            .AsNoTracking()
-            .Where(like => like.UserId == userId)
-            .Where(like => like.ArticleId == requestId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        var articleCount = await _operationDbContext.ArticleCounts
-            .AsNoTracking()
-            .Where(count => count.UserId == userId)
-            .Where(count => count.ArticleId == requestId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (articleLike is not null)
-            _operationDbContext.ArticleLikes.Remove(articleLike);
-
-        if (articleCount is not null)
-            _operationDbContext.ArticleCounts.Remove(articleCount);
-
-        _operationDbContext.Articles.Remove(articleData);
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
+        await _dapperWrapper.Delete(articleLikes, cancellationToken);
+        await _dapperWrapper.Delete(articleCounts, cancellationToken);
+        await _dapperWrapper.Delete(articleTags, cancellationToken);
+        await _dapperWrapper.Delete(articles, cancellationToken);
 
         return true;
     }
