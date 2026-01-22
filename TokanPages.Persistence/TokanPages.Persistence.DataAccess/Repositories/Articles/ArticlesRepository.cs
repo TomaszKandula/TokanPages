@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Persistence.DataAccess.DapperWrapper;
+using TokanPages.Persistence.DataAccess.Helpers;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Articles;

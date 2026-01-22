@@ -6,7 +6,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Shared.Resources;
 
-namespace TokanPages.Persistence.DataAccess.DapperWrapper;
+namespace TokanPages.Persistence.DataAccess.Helpers;
 
 public class DapperWrapper : IDapperWrapper
 {

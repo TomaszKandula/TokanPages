@@ -1,4 +1,4 @@
-namespace TokanPages.Persistence.DataAccess.DapperWrapper;
+namespace TokanPages.Persistence.DataAccess.Helpers;
 
 public interface IDapperWrapper
 {
