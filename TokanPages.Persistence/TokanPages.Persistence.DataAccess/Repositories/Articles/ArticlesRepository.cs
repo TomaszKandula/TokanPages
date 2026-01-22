@@ -39,19 +39,6 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<GetArticleOutputDto?> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage)
     {
-        const string queryArticleLikes = @"
-            SELECT
-                CASE WHEN 
-                    SUM(operation.ArticleLikes.LikeCount) IS NULL 
-                THEN 0 ELSE 
-                    SUM(operation.ArticleLikes.LikeCount) 
-                END
-            FROM
-                operation.ArticleLikes
-            WHERE
-                operation.ArticleLikes.ArticleId = @RequestId
-        ";
-
         const string queryArticleData = @"
             SELECT
                 operation.Articles.Id,
@@ -78,6 +65,35 @@ public class ArticlesRepository : IArticlesRepository
                 operation.Articles.Id = @RequestId
         ";
 
+        await using var db = new SqlConnection(ConnectionString);
+        var queryArticleDataParams = new { RequestId = requestId, LanguageId = userLanguage };
+        var articleData = await db.QuerySingleOrDefaultAsync<ArticleBaseDto>(queryArticleData, queryArticleDataParams);
+        if (articleData is null)
+            return null;
+
+        const string queryArticleLikes = @"
+            SELECT
+                CASE WHEN 
+                    SUM(operation.ArticleLikes.LikeCount) IS NULL 
+                THEN 0 ELSE 
+                    SUM(operation.ArticleLikes.LikeCount) 
+                END
+            FROM
+                operation.ArticleLikes
+            WHERE
+                operation.ArticleLikes.ArticleId = @RequestId
+        ";
+
+        const string filterAnonymouse = "\nAND operation.ArticleLikes.IpAddress = @IpAddress AND operation.ArticleLikes.UserId IS NULL";
+        const string filterLoggedUser = "\nAND operation.ArticleLikes.UserId = @UserId";
+
+        var queryFilteredLikes = isAnonymousUser ? $"{queryArticleLikes}{filterAnonymouse}" : $"{queryArticleLikes}{filterLoggedUser}";
+        var queryFilteredParams = new { RequestId = requestId, IpAddress = ipAddress, UserId = userId };
+        var queryArticleParams = new { RequestId = requestId };
+
+        var userLikes = await db.QuerySingleOrDefaultAsync<int>(queryFilteredLikes, queryFilteredParams);
+        var totalLikes = await db.QuerySingleOrDefaultAsync<int>(queryArticleLikes, queryArticleParams);
+
         const string queryUserData = @"
             SELECT
                 operation.Users.Id AS UserId,
@@ -95,6 +111,9 @@ public class ArticlesRepository : IArticlesRepository
                 operation.Users.Id = @UserId
         ";
 
+        var queryUserParams = new { UserId = userId };
+        var userDto = await db.QuerySingleOrDefaultAsync<GetUserDto>(queryUserData, queryUserParams);
+
         const string queryTags = @"
             SELECT
                 operation.ArticleTags.TagName
@@ -106,24 +125,7 @@ public class ArticlesRepository : IArticlesRepository
                 operation.Articles.Id = @RequestId
         ";
 
-        const string filterAnonymouse = "\nAND operation.ArticleLikes.IpAddress = @IpAddress AND operation.ArticleLikes.UserId IS NULL";
-        const string filterLoggedUser = "\nAND operation.ArticleLikes.UserId = @UserId";
-        var queryFilteredLikes = isAnonymousUser ? $"{queryArticleLikes}{filterAnonymouse}" : $"{queryArticleLikes}{filterLoggedUser}";
-
-        var queryArticleDataParams = new { RequestId = requestId, LanguageId = userLanguage };
-        var queryFilteredParams = new { RequestId = requestId, IpAddress = ipAddress, UserId = userId };
-        var queryArticleParams = new { RequestId = requestId };
-        var queryUserParams = new { UserId = userId };
         var queryTagParams = new { RequestId = requestId };
-
-        await using var db = new SqlConnection(ConnectionString);
-        var articleData = await db.QuerySingleOrDefaultAsync<ArticleBaseDto>(queryArticleData, queryArticleDataParams);
-        if (articleData is null)
-            return null;
-
-        var userLikes = await db.QuerySingleOrDefaultAsync<int>(queryFilteredLikes, queryFilteredParams);
-        var totalLikes = await db.QuerySingleOrDefaultAsync<int>(queryArticleLikes, queryArticleParams);
-        var userDto = await db.QuerySingleOrDefaultAsync<GetUserDto>(queryUserData, queryUserParams);
         var tags = (await db.QueryAsync<string>(queryTags, queryTagParams)).ToArray();
 
         return new GetArticleOutputDto
@@ -140,7 +142,7 @@ public class ArticlesRepository : IArticlesRepository
             TotalLikes = totalLikes,
             UserLikes = userLikes,
             Author = userDto,
-            Tags = tags,
+            Tags = tags
         };
     }
 
