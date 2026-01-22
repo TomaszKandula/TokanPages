@@ -73,10 +73,10 @@ public class DapperWrapper : IDapperWrapper
                 case null:
                     values.Add("NULL"); 
                     break;
-                case "false":
+                case "False":
                     values.Add("0");
                     break;
-                case "true":
+                case "True":
                     values.Add("1");
                     break;
                 default:
