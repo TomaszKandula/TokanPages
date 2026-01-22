@@ -1,8 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 
 namespace TokanPages.Backend.Domain.Entities.Soccer;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "soccer", TableName = "Matches")]
 public class Match : Entity<Guid>
 {
     public DateTime EventDate { get; set; }

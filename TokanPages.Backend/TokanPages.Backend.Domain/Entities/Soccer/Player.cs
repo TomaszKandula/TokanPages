@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Backend.Domain.Attributes;
 
 namespace TokanPages.Backend.Domain.Entities.Soccer;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "soccer", TableName = "Players")]
 public class Player : Entity<Guid>
 {
     public Guid UserId { get; set; }

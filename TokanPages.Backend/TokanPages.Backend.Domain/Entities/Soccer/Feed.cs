@@ -1,10 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
 
 namespace TokanPages.Backend.Domain.Entities.Soccer;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "soccer", TableName = "Feeds")]
 public class Feed : Entity<Guid>, ISoftDelete
 {
     public Guid PlayerId { get; set; }
