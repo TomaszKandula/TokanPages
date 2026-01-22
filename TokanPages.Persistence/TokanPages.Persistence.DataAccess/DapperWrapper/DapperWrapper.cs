@@ -34,7 +34,8 @@ public class DapperWrapper : IDapperWrapper
 
     public async Task Delete<T>(T entity, CancellationToken cancellationToken = default)
     {
-        await ExecuteSqlTransaction("sql", cancellationToken);//TODO: to be done
+        var sql = GenerateDeleteStatement(entity);
+        await ExecuteSqlTransaction(sql, cancellationToken);
     }
 
     private async Task ExecuteSqlTransaction(string sql, CancellationToken cancellationToken = default)
@@ -86,5 +87,25 @@ public class DapperWrapper : IDapperWrapper
         }
 
         return string.Format(template, table, string.Join(",", columns), string.Join(",", values));
+    }
+
+    private static string GenerateDeleteStatement<T>(T entity)
+    {
+        const string template = "DELETE FROM {0} WHERE {1}";
+        const string table = nameof(T);
+
+        var conditions = new List<string>();
+        var properties = typeof(T).GetProperties();
+
+        foreach (var property in properties)
+        {
+            var value = property.GetValue(entity)?.ToString();
+            if (!string.IsNullOrEmpty(value))
+            {
+                conditions.Add($"{property.Name} = '{value}'");
+            }
+        }
+
+        return string.Format(template, table, string.Join(" AND ", conditions));
     }
 }
