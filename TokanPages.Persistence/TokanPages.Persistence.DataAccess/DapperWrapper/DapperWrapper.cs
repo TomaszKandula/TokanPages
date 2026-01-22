@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Persistence.DataAccess.DapperWrapper;
@@ -57,8 +58,16 @@ public class DapperWrapper : IDapperWrapper
 
     private static string GenerateInsertStatement<T>(T entity)
     {
+        var table = nameof(T);
+
+        var entityAttributes = (DatabaseTableAttribute[])typeof(T).GetCustomAttributes(typeof(DatabaseTableAttribute), true);
+        if (entityAttributes.Length != 0)
+        {
+            var attributes = entityAttributes[0];
+            table = $"{attributes.Schema}.{attributes.TableName}";
+        }
+
         const string template = "INSERT INTO {0} ({1}) VALUES ({2})";
-        const string table = nameof(T);
 
         var columns = new List<string>();
         var values = new List<string>();
@@ -91,8 +100,16 @@ public class DapperWrapper : IDapperWrapper
 
     private static string GenerateDeleteStatement<T>(T entity)
     {
+        var table = nameof(T);
+
+        var entityAttributes = (DatabaseTableAttribute[])typeof(T).GetCustomAttributes(typeof(DatabaseTableAttribute), true);
+        if (entityAttributes.Length != 0)
+        {
+            var attributes = entityAttributes[0];
+            table = $"{attributes.Schema}.{attributes.TableName}";
+        }
+
         const string template = "DELETE FROM {0} WHERE {1}";
-        const string table = nameof(T);
 
         var conditions = new List<string>();
         var properties = typeof(T).GetProperties();
