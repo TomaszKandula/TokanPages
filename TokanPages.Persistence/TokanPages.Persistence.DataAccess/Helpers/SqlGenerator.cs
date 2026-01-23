@@ -1,3 +1,4 @@
+using System.Reflection;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Shared.Resources;
@@ -76,7 +77,7 @@ public class SqlGenerator : ISqlGenerator
             if (string.IsNullOrEmpty(value))
                 continue;
 
-            var hasPrimaryKey = Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute)) != null;
+            var hasPrimaryKey = HasPrimaryKey(property);
             if (hasPrimaryKey)
             {
                 condition = $"{property.Name}='{value}'";
@@ -107,6 +108,7 @@ public class SqlGenerator : ISqlGenerator
 
         var table = GetTableName<T>();
         var conditions = new List<string>();
+        var columnWithKey = new List<string>();
         var properties = typeof(T).GetProperties();
 
         foreach (var property in properties)
@@ -114,6 +116,10 @@ public class SqlGenerator : ISqlGenerator
             var value = property.GetValue(entity)?.ToString();
             if (string.IsNullOrEmpty(value))
                 continue;
+
+            var hasPrimaryKey = HasPrimaryKey(property);
+            if (hasPrimaryKey)
+                columnWithKey.Add(value);
 
             var inputValue = value switch
             {
@@ -126,8 +132,13 @@ public class SqlGenerator : ISqlGenerator
             conditions.Add($"{property.Name}={inputValue}");
         }
 
+        if (columnWithKey.Count != 1)
+            throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+
         return string.Format(template, table, string.Join(" AND ", conditions));
     }
+
+    private static bool HasPrimaryKey (PropertyInfo property) => Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute)) != null;
 
     private static string ProcessValue(string value)
     {
