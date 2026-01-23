@@ -97,7 +97,7 @@ public class SqlGenerator : ISqlGenerator
         }
 
         if (string.IsNullOrWhiteSpace(condition))
-            throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+            throw new GeneralException(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
 
         return string.Format(template, table, string.Join(",", update), condition);
     }
@@ -133,7 +133,7 @@ public class SqlGenerator : ISqlGenerator
         }
 
         if (columnWithKey.Count != 1)
-            throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+            throw new GeneralException(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
 
         return string.Format(template, table, string.Join(" AND ", conditions));
     }
