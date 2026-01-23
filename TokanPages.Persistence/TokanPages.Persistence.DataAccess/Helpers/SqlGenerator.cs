@@ -142,9 +142,9 @@ public class SqlGenerator : ISqlGenerator
 
     private static string ProcessValue(string value)
     {
-        var isInteger = int.TryParse(value, out var _);
-        var isDouble = double.TryParse(value, out var _);
-        var isFloat = float.TryParse(value, out var _);
+        var isInteger = int.TryParse(value, out _);
+        var isDouble = double.TryParse(value, out _);
+        var isFloat = float.TryParse(value, out _);
 
         if (!isInteger || !isDouble || !isFloat)
             value = $"'{value}'";
