@@ -1,4 +1,6 @@
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Attributes;
+using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Persistence.DataAccess.Helpers;
 
@@ -92,6 +94,9 @@ public class SqlGenerator : ISqlGenerator
                 update.Add($"{property.Name}={inputValue}");
             }
         }
+
+        if (string.IsNullOrWhiteSpace(condition))
+            throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
 
         return string.Format(template, table, string.Join(",", update), condition);
     }
