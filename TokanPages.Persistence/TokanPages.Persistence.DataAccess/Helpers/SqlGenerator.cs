@@ -6,14 +6,21 @@ public class SqlGenerator : ISqlGenerator
 {
     public string GetTableName<T>()
     {
-        var table = nameof(T);
+        var table = typeof(T).Name;
 
         var entityAttributes = (DatabaseTableAttribute[])typeof(T).GetCustomAttributes(typeof(DatabaseTableAttribute), true);
         if (entityAttributes.Length == 0)
             return table;
 
         var attributes = entityAttributes[0];
-        table = $"{attributes.Schema}.{attributes.TableName}";
+        if (string.IsNullOrWhiteSpace(attributes.TableName))
+        {
+            table = $"{attributes.Schema}.{table}";
+        }
+        else
+        {
+            table = $"{attributes.Schema}.{attributes.TableName}";
+        }
 
         return table;
     }
