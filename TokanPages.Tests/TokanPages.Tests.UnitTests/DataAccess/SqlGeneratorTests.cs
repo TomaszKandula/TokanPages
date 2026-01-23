@@ -84,4 +84,26 @@ public class SqlGeneratorTests : TestBase
         // Assert
         result.Should().Be("INSERT INTO soccer.Players (Id,Name,IsPublished,CreatedAt,Likes) VALUES ('c388e731-0e0f-4886-8326-a97769e51912','Victoria',1,'27/09/2020 00:00:00','2026')");
     }
+
+    [Fact]
+    public void GivenEntity_WhenGenerateDeleteStatement_ShouldSucceed()
+    {
+        // Arrange
+        var article = new TestPlayerOne
+        {
+            Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
+            Name = "Victoria",
+            IsPublished = true,
+            CreatedAt = DateTime.Parse("2020-09-27"),
+            Likes = 2026
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        var result = sqlGenerator.GenerateDeleteStatement(article);
+
+        // Assert
+        result.Should().Be("DELETE FROM soccer.Players WHERE Id='c388e731-0e0f-4886-8326-a97769e51912' AND Name='Victoria' AND IsPublished=1 AND CreatedAt='27/09/2020 00:00:00' AND Likes='2026'");
+    }
 }
