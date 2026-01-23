@@ -157,7 +157,7 @@ public class GetArticleQueryHandlerTest : TestBase
 
         var articleId = Guid.NewGuid();
         mockedArticleRepository
-            .Setup(repository => repository.GetArticleIdByTitle(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Setup(repository => repository.GetArticleIdByTitle(It.IsAny<string>()))
             .ReturnsAsync(articleId);
 
         mockedArticleRepository
@@ -166,8 +166,7 @@ public class GetArticleQueryHandlerTest : TestBase
                 It.IsAny<Guid>(),
                 It.IsAny<bool>(),
                 It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<CancellationToken>()
+                It.IsAny<string>()
                 ))
             .ReturnsAsync(articleOutputDto);
 
@@ -226,7 +225,7 @@ public class GetArticleQueryHandlerTest : TestBase
 
         var articleId = Guid.NewGuid();
         mockedArticleRepository
-            .Setup(repository => repository.GetArticleIdByTitle(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Setup(repository => repository.GetArticleIdByTitle(It.IsAny<string>()))
             .ReturnsAsync(articleId);
 
         GetArticleOutputDto? articleOutputDto = null;
@@ -236,8 +235,7 @@ public class GetArticleQueryHandlerTest : TestBase
                 It.IsAny<Guid>(),
                 It.IsAny<bool>(),
                 It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<CancellationToken>()
+                It.IsAny<string>()
             ))
             .ReturnsAsync(articleOutputDto);
 
