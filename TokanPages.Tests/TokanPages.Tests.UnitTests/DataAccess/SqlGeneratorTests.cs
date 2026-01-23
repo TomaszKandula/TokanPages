@@ -149,4 +149,23 @@ public class SqlGeneratorTests : TestBase
         // Assert
         result.Should().Be("DELETE FROM soccer.Players WHERE Id='c388e731-0e0f-4886-8326-a97769e51912' AND Name='Victoria' AND IsPublished=1 AND CreatedAt='27/09/2020 00:00:00' AND Likes=2026");
     }
+
+    [Fact]
+    public void GivenEntityWithoutPrimaryKey_WhenGenerateDeleteStatement_ShouldFail()
+    {
+        // Arrange
+        var article = new TestPlayerTwo
+        {
+            Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
+            Name = "Victoria",
+            IsPublished = true
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        // Assert
+        var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateDeleteStatement(article));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.ERROR_UNEXPECTED));
+    }
 }
