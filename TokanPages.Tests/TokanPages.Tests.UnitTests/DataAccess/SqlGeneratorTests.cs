@@ -78,13 +78,16 @@ public class SqlGeneratorTests : TestBase
             Likes = 2026
         };
 
+        const string expectedValues = "'c388e731-0e0f-4886-8326-a97769e51912','Victoria',1,'27/09/2020 00:00:00',2026";
+        const string expectedStatement = $"INSERT INTO soccer.Players (Id,Name,IsPublished,CreatedAt,Likes) VALUES ({expectedValues})";
+
         var sqlGenerator = new SqlGenerator();
 
         // Act
         var result = sqlGenerator.GenerateInsertStatement(article);
 
         // Assert
-        result.Should().Be("INSERT INTO soccer.Players (Id,Name,IsPublished,CreatedAt,Likes) VALUES ('c388e731-0e0f-4886-8326-a97769e51912','Victoria',1,'27/09/2020 00:00:00',2026)");
+        result.Should().Be(expectedStatement);
     }
 
     [Fact]
@@ -100,13 +103,16 @@ public class SqlGeneratorTests : TestBase
             Likes = 2026
         };
 
+        const string expectedValues = "Name='Victoria',IsPublished=1,CreatedAt='27/09/2020 00:00:00',Likes=2026 WHERE Id='c388e731-0e0f-4886-8326-a97769e51912'";
+        const string expectedStatement = $"UPDATE soccer.Players SET {expectedValues}";
+
         var sqlGenerator = new SqlGenerator();
 
         // Act
         var result = sqlGenerator.GenerateUpdateStatement(article);
 
         // Assert
-        result.Should().Be("UPDATE soccer.Players SET Name='Victoria',IsPublished=1,CreatedAt='27/09/2020 00:00:00',Likes=2026 WHERE Id='c388e731-0e0f-4886-8326-a97769e51912'");
+        result.Should().Be(expectedStatement);
     }
 
     [Fact]
@@ -141,13 +147,16 @@ public class SqlGeneratorTests : TestBase
             Likes = 2026
         };
 
+        const string expectedValues = "Id='c388e731-0e0f-4886-8326-a97769e51912' AND Name='Victoria' AND IsPublished=1 AND CreatedAt='27/09/2020 00:00:00' AND Likes=2026";
+        const string expectedStatement = $"DELETE FROM soccer.Players WHERE {expectedValues}";
+
         var sqlGenerator = new SqlGenerator();
 
         // Act
         var result = sqlGenerator.GenerateDeleteStatement(article);
 
         // Assert
-        result.Should().Be("DELETE FROM soccer.Players WHERE Id='c388e731-0e0f-4886-8326-a97769e51912' AND Name='Victoria' AND IsPublished=1 AND CreatedAt='27/09/2020 00:00:00' AND Likes=2026");
+        result.Should().Be(expectedStatement);
     }
 
     [Fact]
