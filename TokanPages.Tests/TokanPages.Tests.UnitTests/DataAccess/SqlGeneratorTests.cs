@@ -62,4 +62,26 @@ public class SqlGeneratorTests : TestBase
         // Assert
         result.Should().Be(expectedTableName);
     }
+
+    [Fact]
+    public void GivenEntity_WhenGenerateInsertStatement_ShouldSucceed()
+    {
+        // Arrange
+        var article = new TestPlayerOne
+        {
+            Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
+            Name = "Victoria",
+            IsPublished = true,
+            CreatedAt = DateTime.Parse("2020-09-27"),
+            Likes = 2026
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        var result = sqlGenerator.GenerateInsertStatement(article);
+
+        // Assert
+        result.Should().Be("INSERT INTO soccer.Players (Id,Name,IsPublished,CreatedAt,Likes) VALUES ('c388e731-0e0f-4886-8326-a97769e51912','Victoria',1,'27/09/2020 00:00:00','2026')");
+    }
 }
