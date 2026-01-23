@@ -5,6 +5,7 @@ namespace TokanPages.Tests.UnitTests.Models;
 [DatabaseTable(Schema = "soccer", TableName = "Players")]
 internal class TestPlayerOne
 {
+    [PrimaryKey]
     public Guid Id { get; set; }
 
     public string? Name { get; set; }
