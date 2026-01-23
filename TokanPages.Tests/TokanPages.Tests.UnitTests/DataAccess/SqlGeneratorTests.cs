@@ -82,7 +82,7 @@ public class SqlGeneratorTests : TestBase
         var result = sqlGenerator.GenerateInsertStatement(article);
 
         // Assert
-        result.Should().Be("INSERT INTO soccer.Players (Id,Name,IsPublished,CreatedAt,Likes) VALUES ('c388e731-0e0f-4886-8326-a97769e51912','Victoria',1,'27/09/2020 00:00:00','2026')");
+        result.Should().Be("INSERT INTO soccer.Players (Id,Name,IsPublished,CreatedAt,Likes) VALUES ('c388e731-0e0f-4886-8326-a97769e51912','Victoria',1,'27/09/2020 00:00:00',2026)");
     }
 
     [Fact]
@@ -104,6 +104,6 @@ public class SqlGeneratorTests : TestBase
         var result = sqlGenerator.GenerateDeleteStatement(article);
 
         // Assert
-        result.Should().Be("DELETE FROM soccer.Players WHERE Id='c388e731-0e0f-4886-8326-a97769e51912' AND Name='Victoria' AND IsPublished=1 AND CreatedAt='27/09/2020 00:00:00' AND Likes='2026'");
+        result.Should().Be("DELETE FROM soccer.Players WHERE Id='c388e731-0e0f-4886-8326-a97769e51912' AND Name='Victoria' AND IsPublished=1 AND CreatedAt='27/09/2020 00:00:00' AND Likes=2026");
     }
 }
