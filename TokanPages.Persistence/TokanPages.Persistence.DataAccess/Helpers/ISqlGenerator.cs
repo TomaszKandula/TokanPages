@@ -6,5 +6,7 @@ public interface ISqlGenerator
 
     string GenerateInsertStatement<T>(T entity);
 
+    string GenerateUpdateStatement<T>(T entity);
+
     string GenerateDeleteStatement<T>(T entity);
 }
