@@ -16,14 +16,8 @@ public class SqlGenerator : ISqlGenerator
             return table;
 
         var attributes = entityAttributes[0];
-        if (string.IsNullOrWhiteSpace(attributes.TableName))
-        {
-            table = $"{attributes.Schema}.{table}";
-        }
-        else
-        {
-            table = $"{attributes.Schema}.{attributes.TableName}";
-        }
+        var hasNoTableName = string.IsNullOrWhiteSpace(attributes.TableName);
+        table = hasNoTableName ? $"{attributes.Schema}.{table}" : $"{attributes.Schema}.{attributes.TableName}";
 
         return table;
     }
