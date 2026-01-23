@@ -59,6 +59,43 @@ public class SqlGenerator : ISqlGenerator
         return string.Format(template, table, string.Join(",", columns), string.Join(",", values));
     }
 
+    public string GenerateUpdateStatement<T>(T entity)
+    {
+        const string template = "UPDATE {0} SET {1} WHERE {2}";
+
+        var table = GetTableName<T>();
+        var update = new List<string>();
+        var condition = string.Empty;
+        var properties = typeof(T).GetProperties();
+
+        foreach (var property in properties)
+        {
+            var value = property.GetValue(entity)?.ToString();
+            if (string.IsNullOrEmpty(value))
+                continue;
+
+            var hasPrimaryKey = Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute)) != null;
+            if (hasPrimaryKey)
+            {
+                condition = $"{property.Name}='{value}'";
+            }
+            else
+            {
+                var inputValue = value switch
+                {
+                    null => "NULL",
+                    "False" => "0",
+                    "True" => "1",
+                    _ => ProcessValue(value)
+                };
+
+                update.Add($"{property.Name}={inputValue}");
+            }
+        }
+
+        return string.Format(template, table, string.Join(",", update), condition);
+    }
+
     public string GenerateDeleteStatement<T>(T entity)
     {
         const string template = "DELETE FROM {0} WHERE {1}";
@@ -90,9 +127,10 @@ public class SqlGenerator : ISqlGenerator
     private static string ProcessValue(string value)
     {
         var isInteger = int.TryParse(value, out var _);
+        var isDouble = double.TryParse(value, out var _);
         var isFloat = float.TryParse(value, out var _);
 
-        if (!isInteger || !isFloat)
+        if (!isInteger || !isDouble || !isFloat)
             value = $"'{value}'";
 
         return value;
