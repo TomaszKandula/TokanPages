@@ -96,10 +96,8 @@ public class SqlGenerator : ISqlGenerator
             }
         }
 
-        if (string.IsNullOrWhiteSpace(condition))
-            throw new GeneralException(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
-
-        return string.Format(template, table, string.Join(",", update), condition);
+        var statement = string.Format(template, table, string.Join(",", update), condition);
+        return string.IsNullOrWhiteSpace(condition) ? throw MissingPrimaryKey : statement;
     }
 
     public string GenerateDeleteStatement<T>(T entity)
@@ -132,11 +130,11 @@ public class SqlGenerator : ISqlGenerator
             conditions.Add($"{property.Name}={inputValue}");
         }
 
-        if (columnWithKey.Count != 1)
-            throw new GeneralException(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
-
-        return string.Format(template, table, string.Join(" AND ", conditions));
+        var statement = string.Format(template, table, string.Join(" AND ", conditions));
+        return columnWithKey.Count != 1 ? throw MissingPrimaryKey : statement;
     }
+
+    private static GeneralException MissingPrimaryKey => new(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
 
     private static bool HasPrimaryKey (PropertyInfo property) => Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute)) != null;
 
