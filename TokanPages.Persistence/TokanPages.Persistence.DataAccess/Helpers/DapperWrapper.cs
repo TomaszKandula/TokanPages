@@ -32,7 +32,8 @@ public class DapperWrapper : IDapperWrapper
 
     public async Task Update<T>(T entity, CancellationToken cancellationToken = default)
     {
-        await ExecuteSqlTransaction("sql", cancellationToken);//TODO: to be done
+        var sql = _sqlGenerator.GenerateUpdateStatement(entity);
+        await ExecuteSqlTransaction(sql, cancellationToken);
     }
 
     public async Task Delete<T>(T entity, CancellationToken cancellationToken = default)
