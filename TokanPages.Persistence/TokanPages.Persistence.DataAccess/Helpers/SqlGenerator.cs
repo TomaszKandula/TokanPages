@@ -70,10 +70,18 @@ public class SqlGenerator : ISqlGenerator
         foreach (var property in properties)
         {
             var value = property.GetValue(entity)?.ToString();
-            if (!string.IsNullOrEmpty(value))
+            if (string.IsNullOrEmpty(value))
+                continue;
+
+            var inputValue = value switch
             {
-                conditions.Add($"{property.Name} = '{value}'");
-            }
+                null => "NULL",
+                "False" => "0",
+                "True" => "1",
+                _ => "'" + value + "'"
+            };
+
+            conditions.Add($"{property.Name}={inputValue}");
         }
 
         return string.Format(template, table, string.Join(" AND ", conditions));
