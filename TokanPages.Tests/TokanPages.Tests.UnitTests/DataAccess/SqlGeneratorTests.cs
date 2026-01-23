@@ -91,6 +91,25 @@ public class SqlGeneratorTests : TestBase
     }
 
     [Fact]
+    public void GivenEntityWithoutPrimaryKey_WhenGenerateInsertStatement_ShouldFail()
+    {
+        // Arrange
+        var article = new TestPlayerTwo
+        {
+            Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
+            Name = "Victoria",
+            IsPublished = true
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        // Assert
+        var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateInsertStatement(article));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_PRIMARYKEY));
+    }
+
+    [Fact]
     public void GivenEntity_WhenGenerateUpdateStatement_ShouldSucceed()
     {
         // Arrange
