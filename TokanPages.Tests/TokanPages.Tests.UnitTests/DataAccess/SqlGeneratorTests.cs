@@ -1,4 +1,6 @@
 using FluentAssertions;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Helpers;
 using TokanPages.Tests.UnitTests.Models;
 using Xunit;
@@ -105,6 +107,25 @@ public class SqlGeneratorTests : TestBase
 
         // Assert
         result.Should().Be("UPDATE soccer.Players SET Name='Victoria',IsPublished=1,CreatedAt='27/09/2020 00:00:00',Likes=2026 WHERE Id='c388e731-0e0f-4886-8326-a97769e51912'");
+    }
+
+    [Fact]
+    public void GivenEntityWithoutPrimaryKey_WhenGenerateUpdateStatement_ShouldFail()
+    {
+        // Arrange
+        var article = new TestPlayerTwo
+        {
+            Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
+            Name = "Victoria",
+            IsPublished = true
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        // Assert
+        var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateUpdateStatement(article));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.ERROR_UNEXPECTED));
     }
 
     [Fact]
