@@ -29,11 +29,17 @@ public class SqlGenerator : ISqlGenerator
         var table = GetTableName<T>();
         var columns = new List<string>();
         var values = new List<string>();
+        var hasPrimaryKey = false;
 
         var properties = typeof(T).GetProperties();
         foreach (var property in properties)
         {
             var value = property.GetValue(entity)?.ToString();
+            var isPrimaryKeyFound = HasPrimaryKey(property);
+
+            if (!hasPrimaryKey && isPrimaryKeyFound)
+                hasPrimaryKey = true;
+
             switch (value)
             {
                 case null:
@@ -53,7 +59,8 @@ public class SqlGenerator : ISqlGenerator
             columns.Add(property.Name);
         }
 
-        return string.Format(template, table, string.Join(",", columns), string.Join(",", values));
+        var statement = string.Format(template, table, string.Join(",", columns), string.Join(",", values));
+        return !hasPrimaryKey ? throw MissingPrimaryKey : statement;
     }
 
     public string GenerateUpdateStatement<T>(T entity)
@@ -100,7 +107,7 @@ public class SqlGenerator : ISqlGenerator
 
         var table = GetTableName<T>();
         var conditions = new List<string>();
-        var columnWithKey = new List<string>();
+        var hasPrimaryKey = false;
         var properties = typeof(T).GetProperties();
 
         foreach (var property in properties)
@@ -109,9 +116,9 @@ public class SqlGenerator : ISqlGenerator
             if (string.IsNullOrEmpty(value))
                 continue;
 
-            var hasPrimaryKey = HasPrimaryKey(property);
-            if (hasPrimaryKey)
-                columnWithKey.Add(value);
+            var isPrimaryKeyFound = HasPrimaryKey(property);
+            if (!hasPrimaryKey && isPrimaryKeyFound)
+                hasPrimaryKey = true;
 
             var inputValue = value switch
             {
@@ -125,7 +132,7 @@ public class SqlGenerator : ISqlGenerator
         }
 
         var statement = string.Format(template, table, string.Join(" AND ", conditions));
-        return columnWithKey.Count != 1 ? throw MissingPrimaryKey : statement;
+        return !hasPrimaryKey ? throw MissingPrimaryKey : statement;
     }
 
     private static GeneralException MissingPrimaryKey => new(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
