@@ -125,7 +125,7 @@ public class SqlGeneratorTests : TestBase
         // Act
         // Assert
         var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateUpdateStatement(article));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ERROR_UNEXPECTED));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_PRIMARYKEY));
     }
 
     [Fact]
@@ -166,6 +166,6 @@ public class SqlGeneratorTests : TestBase
         // Act
         // Assert
         var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateDeleteStatement(article));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ERROR_UNEXPECTED));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_PRIMARYKEY));
     }
 }
