@@ -49,7 +49,7 @@ public class SqlGenerator : ISqlGenerator
                     values.Add("1");
                     break;
                 default:
-                    values.Add("'" + value + "'");
+                    values.Add(ProcessValue(value));
                     break;
             }
 
@@ -78,12 +78,23 @@ public class SqlGenerator : ISqlGenerator
                 null => "NULL",
                 "False" => "0",
                 "True" => "1",
-                _ => "'" + value + "'"
+                _ => ProcessValue(value)
             };
 
             conditions.Add($"{property.Name}={inputValue}");
         }
 
         return string.Format(template, table, string.Join(" AND ", conditions));
+    }
+
+    private static string ProcessValue(string value)
+    {
+        var isInteger = int.TryParse(value, out var _);
+        var isFloat = float.TryParse(value, out var _);
+
+        if (!isInteger || !isFloat)
+            value = $"'{value}'";
+
+        return value;
     }
 }
