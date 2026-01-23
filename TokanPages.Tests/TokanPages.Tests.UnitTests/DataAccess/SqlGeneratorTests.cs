@@ -86,6 +86,28 @@ public class SqlGeneratorTests : TestBase
     }
 
     [Fact]
+    public void GivenEntity_WhenGenerateUpdateStatement_ShouldSucceed()
+    {
+        // Arrange
+        var article = new TestPlayerOne
+        {
+            Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
+            Name = "Victoria",
+            IsPublished = true,
+            CreatedAt = DateTime.Parse("2020-09-27"),
+            Likes = 2026
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        var result = sqlGenerator.GenerateUpdateStatement(article);
+
+        // Assert
+        result.Should().Be("UPDATE soccer.Players SET Name='Victoria',IsPublished=1,CreatedAt='27/09/2020 00:00:00',Likes=2026 WHERE Id='c388e731-0e0f-4886-8326-a97769e51912'");
+    }
+
+    [Fact]
     public void GivenEntity_WhenGenerateDeleteStatement_ShouldSucceed()
     {
         // Arrange
