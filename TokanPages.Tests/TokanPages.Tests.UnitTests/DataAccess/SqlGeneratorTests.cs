@@ -136,22 +136,19 @@ public class SqlGeneratorTests : TestBase
     public void GivenEntity_WhenGenerateUpdateStatement_ShouldSucceed()
     {
         // Arrange
-        var article = new TestPlayerOne
+        var table = new
         {
             Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
-            Name = "Victoria",
-            IsPublished = true,
-            CreatedAt = DateTime.Parse("2020-09-27"),
-            Likes = 2026
+            Name = "Victoria"
         };
 
-        const string expectedValues = "Name='Victoria',IsPublished=1,CreatedAt='27/09/2020 00:00:00',Likes=2026 WHERE Id='c388e731-0e0f-4886-8326-a97769e51912'";
+        const string expectedValues = "Name='Victoria' WHERE Id='c388e731-0e0f-4886-8326-a97769e51912'";
         const string expectedStatement = $"UPDATE soccer.Players SET {expectedValues}";
 
         var sqlGenerator = new SqlGenerator();
 
         // Act
-        var result = sqlGenerator.GenerateUpdateStatement(article);
+        var result = sqlGenerator.GenerateUpdateStatement<TestPlayerOne>(table);
 
         // Assert
         result.Should().Be(expectedStatement);
@@ -161,7 +158,7 @@ public class SqlGeneratorTests : TestBase
     public void GivenEntityWithoutPrimaryKey_WhenGenerateUpdateStatement_ShouldFail()
     {
         // Arrange
-        var article = new TestPlayerTwo
+        var entity = new
         {
             Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
             Name = "Victoria",
@@ -172,7 +169,7 @@ public class SqlGeneratorTests : TestBase
 
         // Act
         // Assert
-        var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateUpdateStatement(article));
+        var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateUpdateStatement<TestPlayerTwo>(entity));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_PRIMARYKEY));
     }
 
