@@ -22,9 +22,12 @@ public static class Program
         try
         {
             var configuration = GetConfiguration();
+            var isProduction = EnvironmentValue == "Production";
             const string fileName = @"logs/TokanPages.Logger/{yyyy}{MM}{dd}.txt";
-            Log.Logger = AppLogger.Configuration.GetLogger(configuration, fileName);
+
+            Log.Logger = AppLogger.Configuration.GetLogger(configuration, fileName, isProduction);
             Log.Information("Starting WebHost... Environment: {Environment}", EnvironmentValue);
+
             CreateHostBuilder(configuration)
                 .ConfigureWebHostDefaults(builder => builder
                     .ConfigureKestrel(options => options.AddServerHeader = false)
