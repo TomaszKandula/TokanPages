@@ -25,7 +25,7 @@ public class SqlGenerator : ISqlGenerator
     }
 
     /// <inheritdoc/>
-    public string GenerateQueryStatement<T>(IReadOnlyDictionary<string, object> filterBy)
+    public string GenerateQueryStatement<T>(object filterBy)
     {
         const string template = "SELECT {0} FROM {1} WHERE {2}";
 
@@ -33,13 +33,16 @@ public class SqlGenerator : ISqlGenerator
         var columns = new List<string>();
         var conditions = new List<string>();
 
-        var properties = typeof(T).GetProperties();
-        foreach (var property in properties)
+        var entityProperties = typeof(T).GetProperties();
+        foreach (var property in entityProperties)
             columns.Add(property.Name);
 
-        foreach (var item in filterBy)
+        var objectProperties = filterBy.GetType().GetProperties();
+        var dictionary = objectProperties.ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
+
+        foreach (var item in dictionary)
         {
-            var value = item.Value.ToString();
+            var value = item.Value?.ToString();
             var inputValue = value switch
             {
                 null => "NULL",
