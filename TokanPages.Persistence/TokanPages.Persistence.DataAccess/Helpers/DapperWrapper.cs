@@ -29,11 +29,33 @@ public class DapperWrapper : IDapperWrapper
         _environment = environment;
     }
 
-    public async Task<IEnumerable<T>> Retrieve<T>(T entity, IReadOnlyDictionary<string, object> filterBy, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<T>> Retrieve<T>(T entity, CancellationToken cancellationToken = default)
     {
         await using var db = new SqlConnection(ConnectionString);
-        var sql = _sqlGenerator.GenerateQueryStatement(entity, filterBy);
-        return await db.QueryAsync<T>(sql);
+        var sql = _sqlGenerator.GenerateQueryStatement(entity);
+        var watch = new Stopwatch();
+        try
+        {
+            watch.Start();
+            var result = await db.QueryAsync<T>(sql);
+            watch.Stop();
+
+            if (_environment.IsDevelopment() || _environment.IsStaging())
+            {
+                _loggerService.LogDebug($"SQL statement:\n{sql}\nExecuted within {watch.ElapsedMilliseconds} ms.");
+            }
+            else
+            {
+                _loggerService.LogInformation($"SQL statement executed within {watch.ElapsedMilliseconds} ms.");
+            }
+
+            return result;            
+        }
+        catch (Exception exception)
+        {
+            _loggerService.LogFatal($"{exception.Message}\n{exception.InnerException?.Message}");
+            throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
+        }
     }
 
     public async Task Insert<T>(T entity, CancellationToken cancellationToken = default)
