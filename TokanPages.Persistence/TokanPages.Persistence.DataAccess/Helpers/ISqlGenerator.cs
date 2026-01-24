@@ -18,10 +18,9 @@ public interface ISqlGenerator
     /// Table name is derived from the provided class. Use 'DatabaseTable' attribute.
     /// </summary>
     /// <param name="entity">Entity object.</param>
-    /// <param name="filterBy">List of filter conditions, key-value style.</param>
     /// <typeparam name="T">Given entity object type.</typeparam>
     /// <returns>SQL statement.</returns>
-    string GenerateQueryStatement<T>(T entity, IReadOnlyDictionary<string, object> filterBy);
+    string GenerateQueryStatement<T>(T entity);
 
     /// <summary>
     /// Returns an SQL statement for an INSERT query for the given values from provided in the entity object.
