@@ -2,7 +2,7 @@ namespace TokanPages.Persistence.DataAccess.Helpers;
 
 public interface IDapperWrapper
 {
-    Task<IEnumerable<T>> Retrieve<T>(IReadOnlyDictionary<string, object> filterBy, CancellationToken cancellationToken = default);
+    Task<IEnumerable<T>> Retrieve<T>(object filterBy);
 
     Task Insert<T>(T entity, CancellationToken cancellationToken = default);
 
