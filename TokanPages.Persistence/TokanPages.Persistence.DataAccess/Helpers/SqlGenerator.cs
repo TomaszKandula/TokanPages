@@ -100,37 +100,44 @@ public class SqlGenerator : ISqlGenerator
     }
 
     /// <inheritdoc/>
-    public string GenerateUpdateStatement<T>(T entity)
+    public string GenerateUpdateStatement<T>(object updateBy)
     {
         const string template = "UPDATE {0} SET {1} WHERE {2}";
 
         var table = GetTableName<T>();
         var update = new List<string>();
         var condition = string.Empty;
-        var properties = typeof(T).GetProperties();
+        var primaryKeyName = string.Empty;
+        var entityProperties = typeof(T).GetProperties();
 
-        foreach (var property in properties)
+        foreach (var property in entityProperties)
         {
-            var value = property.GetValue(entity)?.ToString();
-            if (string.IsNullOrEmpty(value))
-                continue;
-
             var hasPrimaryKey = HasPrimaryKey(property);
             if (hasPrimaryKey)
+                primaryKeyName =  property.Name;
+        }
+
+        var objectProperties = updateBy.GetType().GetProperties();
+        var dictionary = objectProperties.ToDictionary(info => info.Name, info => info.GetValue(updateBy,null));
+
+        foreach (var item in dictionary)
+        {
+            var value = item.Value?.ToString();
+            var inputValue = value switch
             {
-                condition = $"{property.Name}='{value}'";
+                null => "NULL",
+                "False" => "0",
+                "True" => "1",
+                _ => ProcessValue(value)
+            };
+
+            if (primaryKeyName == item.Key)
+            {
+                condition = $"{primaryKeyName}={inputValue}";
             }
             else
             {
-                var inputValue = value switch
-                {
-                    null => "NULL",
-                    "False" => "0",
-                    "True" => "1",
-                    _ => ProcessValue(value)
-                };
-
-                update.Add($"{property.Name}={inputValue}");
+                update.Add($"{item.Key}={inputValue}");
             }
         }
 
