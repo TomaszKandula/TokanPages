@@ -5,8 +5,10 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Persistence.DataAccess.Helpers;
 
+/// <inheritdoc/>
 public class SqlGenerator : ISqlGenerator
 {
+    /// <inheritdoc/>
     public string GetTableName<T>()
     {
         var table = typeof(T).Name;
@@ -22,6 +24,13 @@ public class SqlGenerator : ISqlGenerator
         return table;
     }
 
+    /// <inheritdoc/>
+    public string GenerateQueryStatement<T>(T entity, IReadOnlyDictionary<string, object> filterBy)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <inheritdoc/>
     public string GenerateInsertStatement<T>(T entity)
     {
         const string template = "INSERT INTO {0} ({1}) VALUES ({2})";
@@ -63,6 +72,7 @@ public class SqlGenerator : ISqlGenerator
         return !hasPrimaryKey ? throw MissingPrimaryKey : statement;
     }
 
+    /// <inheritdoc/>
     public string GenerateUpdateStatement<T>(T entity)
     {
         const string template = "UPDATE {0} SET {1} WHERE {2}";
@@ -101,6 +111,7 @@ public class SqlGenerator : ISqlGenerator
         return string.IsNullOrWhiteSpace(condition) ? throw MissingPrimaryKey : statement;
     }
 
+    /// <inheritdoc/>
     public string GenerateDeleteStatement<T>(T entity)
     {
         const string template = "DELETE FROM {0} WHERE {1}";
