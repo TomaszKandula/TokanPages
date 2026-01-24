@@ -177,22 +177,20 @@ public class SqlGeneratorTests : TestBase
     public void GivenEntity_WhenGenerateDeleteStatement_ShouldSucceed()
     {
         // Arrange
-        var article = new TestPlayerOne
+        var deleteBy = new
         {
             Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
             Name = "Victoria",
-            IsPublished = true,
             CreatedAt = DateTime.Parse("2020-09-27"),
-            Likes = 2026
         };
 
-        const string expectedValues = "Id='c388e731-0e0f-4886-8326-a97769e51912' AND Name='Victoria' AND IsPublished=1 AND CreatedAt='27/09/2020 00:00:00' AND Likes=2026";
+        const string expectedValues = "Id='c388e731-0e0f-4886-8326-a97769e51912' AND Name='Victoria' AND CreatedAt='27/09/2020 00:00:00'";
         const string expectedStatement = $"DELETE FROM soccer.Players WHERE {expectedValues}";
 
         var sqlGenerator = new SqlGenerator();
 
         // Act
-        var result = sqlGenerator.GenerateDeleteStatement(article);
+        var result = sqlGenerator.GenerateDeleteStatement<TestPlayerOne>(deleteBy);
 
         // Assert
         result.Should().Be(expectedStatement);
@@ -202,7 +200,7 @@ public class SqlGeneratorTests : TestBase
     public void GivenEntityWithoutPrimaryKey_WhenGenerateDeleteStatement_ShouldFail()
     {
         // Arrange
-        var article = new TestPlayerTwo
+        var deleteBy = new 
         {
             Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
             Name = "Victoria",
@@ -213,7 +211,25 @@ public class SqlGeneratorTests : TestBase
 
         // Act
         // Assert
-        var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateDeleteStatement(article));
+        var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateDeleteStatement<TestPlayerTwo>(deleteBy));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_PRIMARYKEY));
+    }
+
+    [Fact]
+    public void GivenEntityAndFilterWithoutPrimaryKey_WhenGenerateDeleteStatement_ShouldFail()
+    {
+        // Arrange
+        var deleteBy = new 
+        {
+            Name = "Victoria",
+            IsPublished = true
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        // Assert
+        var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateDeleteStatement<TestPlayerOne>(deleteBy));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_PRIMARYKEY));
     }
 }
