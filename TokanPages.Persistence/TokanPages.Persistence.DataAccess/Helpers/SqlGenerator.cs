@@ -25,9 +25,36 @@ public class SqlGenerator : ISqlGenerator
     }
 
     /// <inheritdoc/>
-    public string GenerateQueryStatement<T>(T entity, IReadOnlyDictionary<string, object> filterBy)
+    public string GenerateQueryStatement<T>(T entity)
     {
-        throw new NotImplementedException();
+        const string template = "SELECT {0} FROM {1} WHERE {2}";
+
+        var table = GetTableName<T>();
+        var columns = new List<string>();
+        var conditions = new List<string>();
+
+        var properties = typeof(T).GetProperties();
+        foreach (var property in properties)
+        {
+            columns.Add(property.Name);
+
+            var value = property.GetValue(entity)?.ToString();
+            if  (string.IsNullOrEmpty(value)) 
+                continue;
+
+            var inputValue = value switch
+            {
+                null => "NULL",
+                "False" => "0",
+                "True" => "1",
+                _ => ProcessValue(value)
+            };
+
+            conditions.Add($"{property.Name}={inputValue}");
+        }
+
+        var statement = string.Format(template, string.Join(",", columns), table, string.Join(" AND ", conditions));
+        return conditions.Count == 0 ? throw MissingWhereClause : statement;
     }
 
     /// <inheritdoc/>
@@ -147,6 +174,8 @@ public class SqlGenerator : ISqlGenerator
     }
 
     private static GeneralException MissingPrimaryKey => new(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
+
+    private static GeneralException MissingWhereClause => new(nameof(ErrorCodes.MISSING_WHERE_CLAUSE), ErrorCodes.MISSING_WHERE_CLAUSE);
 
     private static bool HasPrimaryKey (PropertyInfo property) => Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute)) != null;
 
