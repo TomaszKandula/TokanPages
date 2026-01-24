@@ -66,6 +66,29 @@ public class SqlGeneratorTests : TestBase
     }
 
     [Fact]
+    public void GivenEntity_WhenGenerateQueryStatement_ShouldSucceed()
+    {
+        // Arrange
+        var filter = new Dictionary<string, object>
+        {
+            { "Name", "Victoria" },
+            { "IsPublished", true },
+            { "CreatedAt", DateTime.Parse("2020-09-27") },
+        };
+
+        const string expectedValues = "Name='Victoria' AND IsPublished=1 AND CreatedAt='27/09/2020 00:00:00'";
+        const string expectedStatement = $"SELECT Id,Name,IsPublished,CreatedAt,Likes FROM soccer.Players WHERE {expectedValues}";
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        var result = sqlGenerator.GenerateQueryStatement<TestPlayerOne>(filter);
+
+        // Assert
+        result.Should().Be(expectedStatement);
+    }
+
+    [Fact]
     public void GivenEntity_WhenGenerateInsertStatement_ShouldSucceed()
     {
         // Arrange
