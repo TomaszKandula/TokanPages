@@ -40,8 +40,7 @@ public class DapperWrapper : IDapperWrapper
             var result = await db.QueryAsync<T>(sql);
             watch.Stop();
 
-            var isProductionEnvironment = !_environment.IsDevelopment() || !_environment.IsStaging() || !_environment.IsEnvironment("Testing");
-            if (isProductionEnvironment)
+            if (_environment.IsProduction())
             {
                 _loggerService.LogInformation($"SQL statement executed within {watch.ElapsedMilliseconds} ms.");
             }
