@@ -69,11 +69,11 @@ public class SqlGeneratorTests : TestBase
     public void GivenEntity_WhenGenerateQueryStatement_ShouldSucceed()
     {
         // Arrange
-        var filter = new Dictionary<string, object>
+        var filter = new 
         {
-            { "Name", "Victoria" },
-            { "IsPublished", true },
-            { "CreatedAt", DateTime.Parse("2020-09-27") },
+            Name = "Victoria",
+            IsPublished= true,
+            CreatedAt= DateTime.Parse("2020-09-27"),
         };
 
         const string expectedValues = "Name='Victoria' AND IsPublished=1 AND CreatedAt='27/09/2020 00:00:00'";
