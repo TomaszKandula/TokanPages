@@ -308,17 +308,17 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default)
     {
-        var articleLikes = new ArticleLike { Id = requestId, UserId =  userId };
-        var articleCounts = new ArticleCount { Id = requestId, UserId =  userId };
-        var articleTags = new ArticleTag { Id = requestId };
-        var articles = new Article { Id = requestId, UserId =  userId };
+        var articleLikes = new { Id = requestId, UserId =  userId };
+        var articleCounts = new { Id = requestId, UserId =  userId };
+        var articleTags = new { Id = requestId };
+        var articles = new { Id = requestId, UserId =  userId };
 
         try
         {
-            await _dapperWrapper.Delete(articleLikes, cancellationToken);
-            await _dapperWrapper.Delete(articleCounts, cancellationToken);
-            await _dapperWrapper.Delete(articleTags, cancellationToken);
-            await _dapperWrapper.Delete(articles, cancellationToken);
+            await _dapperWrapper.Delete<ArticleLike>(articleLikes, cancellationToken);
+            await _dapperWrapper.Delete<ArticleCount>(articleCounts, cancellationToken);
+            await _dapperWrapper.Delete<ArticleTag>(articleTags, cancellationToken);
+            await _dapperWrapper.Delete<Article>(articles, cancellationToken);
         }
         catch
         {
