@@ -71,7 +71,7 @@ public class DapperWrapper : IDapperWrapper
         catch (Exception exception)
         {
             await transaction.RollbackAsync(cancellationToken);
-            _loggerService.LogFatal($"{exception.Message} {exception.InnerException?.Message}");
+            _loggerService.LogFatal($"{exception.Message}\n{exception.InnerException?.Message}");
             throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
         }
     }
