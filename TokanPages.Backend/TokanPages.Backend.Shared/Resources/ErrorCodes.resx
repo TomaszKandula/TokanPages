@@ -303,7 +303,4 @@
   <data name="MISSING_PRIMARYKEY" xml:space="preserve">
       <value>Missing 'Primary Key'. Cannot perform database operation</value>
   </data>
-  <data name="MISSING_WHERE_CLAUSE" xml:space="preserve">
-      <value>Missing WHERE clouse</value>
-  </data>
 </root>
