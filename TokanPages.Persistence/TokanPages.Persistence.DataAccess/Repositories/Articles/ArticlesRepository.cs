@@ -31,8 +31,8 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<Guid> GetArticleIdByTitle(string title)
     {
-        var article = new Article { Title = title.Replace("-", " ").ToLower() };
-        var data = (await _dapperWrapper.Retrieve(article)).SingleOrDefault();
+        var filterBy = new Dictionary<string, object> { { "Title", title.Replace("-", " ").ToLower() } };
+        var data = (await _dapperWrapper.Retrieve<Article>(filterBy)).SingleOrDefault();
         return data?.Id ?? Guid.Empty;
     }
 
