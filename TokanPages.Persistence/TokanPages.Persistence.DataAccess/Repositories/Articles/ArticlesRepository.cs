@@ -31,10 +31,9 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<Guid> GetArticleIdByTitle(string title)
     {
-        const string query = "SELECT operation.Articles.Id FROM Operations.Articles WHERE Operations.Articles.Title = @Title";
-
-        await using var db = new SqlConnection(ConnectionString);
-        return await db.QuerySingleOrDefaultAsync<Guid>(query, new { Title = title.Replace("-", " ").ToLower() });
+        var article = new Article { Title = title.Replace("-", " ").ToLower() };
+        var data = (await _dapperWrapper.Retrieve(article)).SingleOrDefault();
+        return data?.Id ?? Guid.Empty;
     }
 
     public async Task<GetArticleOutputDto?> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage)
