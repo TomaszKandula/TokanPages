@@ -28,11 +28,4 @@ public class Article : Entity<Guid>, IAuditable
     [Required]
     [MaxLength(3)]
     public string LanguageIso { get; set; }
-
-    /* Navigation properties */
-    public Users.User User { get; set; }
-    public ArticleCategory ArticleCategory { get; set; }
-    public ICollection<ArticleTag> ArticleTags { get; set; } =  new HashSet<ArticleTag>();
-    public ICollection<ArticleLike> ArticleLikes { get; set; } = new HashSet<ArticleLike>();
-    public ICollection<ArticleCount> ArticleCounts { get; set; } = new HashSet<ArticleCount>();
 }
