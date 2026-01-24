@@ -146,25 +146,29 @@ public class SqlGenerator : ISqlGenerator
     }
 
     /// <inheritdoc/>
-    public string GenerateDeleteStatement<T>(T entity)
+    public string GenerateDeleteStatement<T>(object deleteBy)
     {
         const string template = "DELETE FROM {0} WHERE {1}";
 
         var table = GetTableName<T>();
         var conditions = new List<string>();
-        var hasPrimaryKey = false;
-        var properties = typeof(T).GetProperties();
+        var primaryKeyName = string.Empty;
+        var isPrimaryKeyFound = false;
+        var entityProperties = typeof(T).GetProperties();
 
-        foreach (var property in properties)
+        foreach (var property in entityProperties)
         {
-            var value = property.GetValue(entity)?.ToString();
-            if (string.IsNullOrEmpty(value))
-                continue;
+            var hasPrimaryKey = HasPrimaryKey(property);
+            if (hasPrimaryKey)
+                primaryKeyName = property.Name;
+        }
 
-            var isPrimaryKeyFound = HasPrimaryKey(property);
-            if (!hasPrimaryKey && isPrimaryKeyFound)
-                hasPrimaryKey = true;
+        var objectProperties = deleteBy.GetType().GetProperties();
+        var dictionary = objectProperties.ToDictionary(info => info.Name, info => info.GetValue(deleteBy,null));
 
+        foreach (var item in dictionary)
+        {
+            var value = item.Value?.ToString();
             var inputValue = value switch
             {
                 null => "NULL",
@@ -173,11 +177,14 @@ public class SqlGenerator : ISqlGenerator
                 _ => ProcessValue(value)
             };
 
-            conditions.Add($"{property.Name}={inputValue}");
+            if (!isPrimaryKeyFound && primaryKeyName == item.Key)
+                isPrimaryKeyFound = true;
+
+            conditions.Add($"{item.Key}={inputValue}");
         }
 
         var statement = string.Format(template, table, string.Join(" AND ", conditions));
-        return !hasPrimaryKey ? throw MissingPrimaryKey : statement;
+        return !isPrimaryKeyFound ? throw MissingPrimaryKey : statement;
     }
 
     private static GeneralException MissingPrimaryKey => new(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
