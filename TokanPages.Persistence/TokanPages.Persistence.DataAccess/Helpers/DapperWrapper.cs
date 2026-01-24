@@ -29,6 +29,13 @@ public class DapperWrapper : IDapperWrapper
         _environment = environment;
     }
 
+    public async Task<IEnumerable<T>> Retrieve<T>(T entity, IReadOnlyDictionary<string, object> filterBy, CancellationToken cancellationToken = default)
+    {
+        await using var db = new SqlConnection(ConnectionString);
+        var sql = _sqlGenerator.GenerateQueryStatement(entity, filterBy);
+        return await db.QueryAsync<T>(sql);
+    }
+
     public async Task Insert<T>(T entity, CancellationToken cancellationToken = default)
     {
         var sql = _sqlGenerator.GenerateInsertStatement(entity);
