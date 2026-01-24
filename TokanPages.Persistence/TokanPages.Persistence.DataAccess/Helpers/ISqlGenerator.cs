@@ -17,7 +17,7 @@ public interface ISqlGenerator
     /// Returns an SQL query to retrieve data from the given table, filtered by one or more columns.
     /// Table name is derived from the provided class. Use 'DatabaseTable' attribute.
     /// </summary>
-    /// <param name="filterBy">List of columns with values used for filtering.</param>
+    /// <param name="filterBy">'Key-Value' fields used for filtering.</param>
     /// <typeparam name="T">Given entity object type.</typeparam>
     /// <returns>SQL statement.</returns>
     string GenerateQueryStatement<T>(object filterBy);
@@ -35,11 +35,11 @@ public interface ISqlGenerator
     string GenerateInsertStatement<T>(T entity);
 
     /// <summary>
-    /// Returns an SQL statement for an UPDATE query for the given values provided in the entity object.
+    /// Returns an SQL statement for an UPDATE query for the given values provided in the object.
     /// Table name is derived from the provided class. Use 'DatabaseTable' attribute.
     /// </summary>
     /// <remarks>
-    /// Provided entity object should have a property marked with the 'PrimaryKey' attribute.
+    /// Provided object should have a property marked with the 'PrimaryKey' attribute.
     /// IMPORTANT: Primary key is used as a QUERY filter.
     /// </remarks>
     /// <param name="entity">Entity object.</param>
