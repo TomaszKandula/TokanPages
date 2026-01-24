@@ -78,23 +78,26 @@ public class DapperWrapper : IDapperWrapper
 
     private async Task ExecuteSqlTransaction(string sql, CancellationToken cancellationToken = default)
     {
-        await using var db = new SqlConnection(ConnectionString);
-        var transaction = await db.BeginTransactionAsync(cancellationToken);
         var watch = new Stopwatch();
+
+        await using var db = new SqlConnection(ConnectionString);
+        await db.OpenAsync(cancellationToken);
+        await using var transaction = await db.BeginTransactionAsync(cancellationToken);
+
         try
         {
             watch.Start();
-            await db.ExecuteAsync(sql, transaction);
+            var rowsAffected = await db.ExecuteAsync(sql, transaction);
             await transaction.CommitAsync(cancellationToken);
             watch.Stop();
 
             if (_environment.IsDevelopment() || _environment.IsStaging())
             {
-                _loggerService.LogDebug($"SQL Transaction:\n{sql}\nExecuted within {watch.ElapsedMilliseconds} ms.");
+                _loggerService.LogDebug($"SQL Transaction:\n{sql}\nExecuted within {watch.ElapsedMilliseconds} ms. Rows affected: {rowsAffected}.");
             }
             else
             {
-                _loggerService.LogInformation($"SQL Transaction executed within {watch.ElapsedMilliseconds} ms.");
+                _loggerService.LogInformation($"SQL Transaction executed within {watch.ElapsedMilliseconds} ms. Rows affected: {rowsAffected}.");
             }
         }
         catch (Exception exception)
