@@ -25,7 +25,7 @@ public class SqlGenerator : ISqlGenerator
     }
 
     /// <inheritdoc/>
-    public string GenerateQueryStatement<T>(T entity)
+    public string GenerateQueryStatement<T>(IReadOnlyDictionary<string, object> filterBy)
     {
         const string template = "SELECT {0} FROM {1} WHERE {2}";
 
@@ -35,13 +35,11 @@ public class SqlGenerator : ISqlGenerator
 
         var properties = typeof(T).GetProperties();
         foreach (var property in properties)
-        {
             columns.Add(property.Name);
 
-            var value = property.GetValue(entity)?.ToString();
-            if  (string.IsNullOrEmpty(value)) 
-                continue;
-
+        foreach (var item in filterBy)
+        {
+            var value = item.Value.ToString();
             var inputValue = value switch
             {
                 null => "NULL",
@@ -50,11 +48,10 @@ public class SqlGenerator : ISqlGenerator
                 _ => ProcessValue(value)
             };
 
-            conditions.Add($"{property.Name}={inputValue}");
+            conditions.Add($"{item.Key}={inputValue}");
         }
 
-        var statement = string.Format(template, string.Join(",", columns), table, string.Join(" AND ", conditions));
-        return conditions.Count == 0 ? throw MissingWhereClause : statement;
+        return string.Format(template, string.Join(",", columns), table, string.Join(" AND ", conditions));
     }
 
     /// <inheritdoc/>
