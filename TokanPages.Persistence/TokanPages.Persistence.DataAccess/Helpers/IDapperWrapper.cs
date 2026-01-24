@@ -8,5 +8,5 @@ public interface IDapperWrapper
 
     Task Update<T>(object updateBy, CancellationToken cancellationToken = default);
 
-    Task Delete<T>(T entity, CancellationToken cancellationToken = default);
+    Task Delete<T>(object deleteBy, CancellationToken cancellationToken = default);
 }

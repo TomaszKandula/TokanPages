@@ -70,9 +70,9 @@ public class DapperWrapper : IDapperWrapper
         await ExecuteSqlTransaction(sql, cancellationToken);
     }
 
-    public async Task Delete<T>(T entity, CancellationToken cancellationToken = default)
+    public async Task Delete<T>(object deleteBy, CancellationToken cancellationToken = default)
     {
-        var sql = _sqlGenerator.GenerateDeleteStatement(entity);
+        var sql = _sqlGenerator.GenerateDeleteStatement<T>(deleteBy);
         await ExecuteSqlTransaction(sql, cancellationToken);
     }
 
