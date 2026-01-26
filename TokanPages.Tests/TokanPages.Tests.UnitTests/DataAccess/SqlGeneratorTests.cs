@@ -76,7 +76,7 @@ public class SqlGeneratorTests : TestBase
             CreatedAt= DateTime.Parse("2020-09-27"),
         };
 
-        const string expectedValues = "Name='Victoria' AND IsPublished=1 AND CreatedAt='27/09/2020 00:00:00'";
+        const string expectedValues = "Name='Victoria' AND IsPublished=1 AND CreatedAt='2020-09-27 00:00:00'";
         const string expectedStatement = $"SELECT Id,Name,IsPublished,CreatedAt,Likes FROM soccer.Players WHERE {expectedValues}";
 
         var sqlGenerator = new SqlGenerator();
@@ -101,7 +101,7 @@ public class SqlGeneratorTests : TestBase
             Likes = 2026
         };
 
-        const string expectedValues = "'c388e731-0e0f-4886-8326-a97769e51912','Victoria',1,'27/09/2020 00:00:00',2026";
+        const string expectedValues = "'c388e731-0e0f-4886-8326-a97769e51912','Victoria',1,'2020-09-27 00:00:00',2026";
         const string expectedStatement = $"INSERT INTO soccer.Players (Id,Name,IsPublished,CreatedAt,Likes) VALUES ({expectedValues})";
 
         var sqlGenerator = new SqlGenerator();
@@ -184,7 +184,7 @@ public class SqlGeneratorTests : TestBase
             CreatedAt = DateTime.Parse("2020-09-27"),
         };
 
-        const string expectedValues = "Id='c388e731-0e0f-4886-8326-a97769e51912' AND Name='Victoria' AND CreatedAt='27/09/2020 00:00:00'";
+        const string expectedValues = "Id='c388e731-0e0f-4886-8326-a97769e51912' AND Name='Victoria' AND CreatedAt='2020-09-27 00:00:00'";
         const string expectedStatement = $"DELETE FROM soccer.Players WHERE {expectedValues}";
 
         var sqlGenerator = new SqlGenerator();
