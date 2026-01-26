@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Reflection;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Attributes;
@@ -42,15 +43,7 @@ public class SqlGenerator : ISqlGenerator
 
         foreach (var item in dictionary)
         {
-            var value = item.Value?.ToString();
-            var inputValue = value switch
-            {
-                null => "NULL",
-                "False" => "0",
-                "True" => "1",
-                _ => ProcessValue(value)
-            };
-
+            var inputValue = ProcessValue(item.Value);
             conditions.Add($"{item.Key}={inputValue}");
         }
 
@@ -70,28 +63,12 @@ public class SqlGenerator : ISqlGenerator
         var properties = typeof(T).GetProperties();
         foreach (var property in properties)
         {
-            var value = property.GetValue(entity)?.ToString();
+            var value = ProcessValue(property.GetValue(entity));
             var isPrimaryKeyFound = HasPrimaryKey(property);
-
             if (!hasPrimaryKey && isPrimaryKeyFound)
                 hasPrimaryKey = true;
 
-            switch (value)
-            {
-                case null:
-                    values.Add("NULL"); 
-                    break;
-                case "False":
-                    values.Add("0");
-                    break;
-                case "True":
-                    values.Add("1");
-                    break;
-                default:
-                    values.Add(ProcessValue(value));
-                    break;
-            }
-
+            values.Add(value);
             columns.Add(property.Name);
         }
 
@@ -122,15 +99,7 @@ public class SqlGenerator : ISqlGenerator
 
         foreach (var item in dictionary)
         {
-            var value = item.Value?.ToString();
-            var inputValue = value switch
-            {
-                null => "NULL",
-                "False" => "0",
-                "True" => "1",
-                _ => ProcessValue(value)
-            };
-
+            var inputValue = ProcessValue(item.Value);
             if (primaryKeyName == item.Key)
             {
                 condition = $"{primaryKeyName}={inputValue}";
@@ -168,15 +137,7 @@ public class SqlGenerator : ISqlGenerator
 
         foreach (var item in dictionary)
         {
-            var value = item.Value?.ToString();
-            var inputValue = value switch
-            {
-                null => "NULL",
-                "False" => "0",
-                "True" => "1",
-                _ => ProcessValue(value)
-            };
-
+            var inputValue = ProcessValue(item.Value);
             if (!isPrimaryKeyFound && primaryKeyName == item.Key)
                 isPrimaryKeyFound = true;
 
@@ -191,15 +152,34 @@ public class SqlGenerator : ISqlGenerator
 
     private static bool HasPrimaryKey (PropertyInfo property) => Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute)) != null;
 
-    private static string ProcessValue(string value)
+    private static string ProcessValue(object? value)
     {
-        var isInteger = int.TryParse(value, out _);
-        var isDouble = double.TryParse(value, out _);
-        var isFloat = float.TryParse(value, out _);
+        if (value == null)
+            return "NULL";
 
-        if (!isInteger || !isDouble || !isFloat)
-            value = $"'{value}'";
+        var valueType = value.GetType();
 
-        return value;
+        if (valueType == typeof(bool))
+            return (bool)value ? "1" : "0";
+
+        if (valueType == typeof(DateTime))
+            return $"'{(DateTime)value:yyyy-MM-dd HH:mm:ss}'";
+
+        if (valueType == typeof(Guid))
+            return $"'{(Guid)value:D}'";
+
+        if (valueType == typeof(int))
+            return ((int)value).ToString();
+
+        if (valueType == typeof(decimal))
+            return ((decimal)value).ToString(CultureInfo.InvariantCulture);
+
+        if (valueType == typeof(double))
+            return ((double)value).ToString(CultureInfo.InvariantCulture);
+
+        if (valueType == typeof(float))
+            return ((float)value).ToString(CultureInfo.InvariantCulture);
+
+        return $"'{value}'";
     }
 }
