@@ -79,16 +79,12 @@ public class DapperWrapper : IDapperWrapper
     private async Task ExecuteSqlTransaction(string sql, CancellationToken cancellationToken = default)
     {
         var watch = new Stopwatch();
-
-        await using var db = new SqlConnection(ConnectionString);
-        await db.OpenAsync(cancellationToken);
-        await using var transaction = await db.BeginTransactionAsync(cancellationToken);
-
+        await using var connection = new SqlConnection(ConnectionString);
         try
         {
             watch.Start();
-            var rowsAffected = await db.ExecuteAsync(sql, transaction);
-            await transaction.CommitAsync(cancellationToken);
+            var query = TransactionTemplate.Replace("{QUERY}", sql);
+            var rowsAffected = await connection.ExecuteAsync(query, cancellationToken);
             watch.Stop();
 
             if (_environment.IsDevelopment() || _environment.IsStaging())
@@ -102,9 +98,30 @@ public class DapperWrapper : IDapperWrapper
         }
         catch (Exception exception)
         {
-            await transaction.RollbackAsync(cancellationToken);
             _loggerService.LogFatal($"{exception.Message}\n{exception.InnerException?.Message}");
             throw new GeneralException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
         }
     }
+
+    private static string TransactionTemplate => @"
+	    SET ANSI_NULLS ON
+	    SET QUOTED_IDENTIFIER ON
+	    SET ARITHABORT ON
+	    SET XACT_ABORT ON
+	    SET NOCOUNT ON
+
+        BEGIN TRY
+            BEGIN TRANSACTION
+
+            {QUERY}
+
+            OPTION (RECOMPILE)
+            COMMIT TRANSACTION
+        END TRY
+        BEGIN CATCH
+		    IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION
+	        DECLARE @ErrorMsg NVARCHAR(2048) = error_message()
+	        RAISERROR (@ErrorMsg, 16, 1)
+        END CATCH
+    ";
 }
