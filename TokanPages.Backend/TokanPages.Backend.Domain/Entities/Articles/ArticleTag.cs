@@ -1,9 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
 
 namespace TokanPages.Backend.Domain.Entities.Articles;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "ArticleTags")]
 public class ArticleTag : Entity<Guid>, IAuditable
 {
     public Guid ArticleId { get; set; }
