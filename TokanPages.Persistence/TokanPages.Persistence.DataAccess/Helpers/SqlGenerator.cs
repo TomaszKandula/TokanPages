@@ -31,21 +31,18 @@ public class SqlGenerator : ISqlGenerator
         const string template = "SELECT {0} FROM {1} WHERE {2}";
 
         var table = GetTableName<T>();
-        var columns = new List<string>();
-        var conditions = new List<string>();
 
         var entityProperties = typeof(T).GetProperties();
-        foreach (var property in entityProperties)
-            columns.Add(property.Name);
+        var columns = entityProperties.Select(property => property.Name).ToList();
 
         var objectProperties = filterBy.GetType().GetProperties();
         var dictionary = objectProperties.ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
 
-        foreach (var item in dictionary)
-        {
-            var inputValue = ProcessValue(item.Value);
-            conditions.Add($"{item.Key}={inputValue}");
-        }
+        var conditions = (
+            from item in dictionary 
+            let inputValue = ProcessValue(item.Value) 
+            select $"{item.Key}={inputValue}"
+        ).ToList();
 
         return string.Format(template, string.Join(",", columns), table, string.Join(" AND ", conditions));
     }
@@ -82,8 +79,6 @@ public class SqlGenerator : ISqlGenerator
         const string template = "UPDATE {0} SET {1} WHERE {2}";
 
         var table = GetTableName<T>();
-        var update = new List<string>();
-        var condition = new List<string>();
         var entityProperties = typeof(T).GetProperties();
         var isPrimaryKeyFound = entityProperties.Any(HasPrimaryKey);
 
@@ -92,22 +87,22 @@ public class SqlGenerator : ISqlGenerator
             .GetProperties()
             .ToDictionary(info => info.Name, info => info.GetValue(updateBy,null));
 
-        foreach (var item in updateDict)
-        {
-            var inputValue = ProcessValue(item.Value);
-            update.Add($"{item.Key}={inputValue}");
-        }
+        var update = (
+            from item in updateDict 
+            let inputValue = ProcessValue(item.Value) 
+            select $"{item.Key}={inputValue}"
+        ).ToList();
 
         var filterDict = filterBy
             .GetType()
             .GetProperties()
             .ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
 
-        foreach (var item in filterDict)
-        {
-            var inputValue = ProcessValue(item.Value);
-            condition.Add($"{item.Key}={inputValue}");
-        }
+        var condition = (
+            from item in filterDict 
+            let inputValue = ProcessValue(item.Value) 
+            select $"{item.Key}={inputValue}"
+        ).ToList();
 
         var set = string.Join(",", update);
         var where = string.Join(" AND ", condition);
@@ -125,18 +120,17 @@ public class SqlGenerator : ISqlGenerator
         const string template = "DELETE FROM {0} WHERE {1}";
 
         var table = GetTableName<T>();
-        var conditions = new List<string>();
         var entityProperties = typeof(T).GetProperties();
         var isPrimaryKeyFound = entityProperties.Any(HasPrimaryKey);
 
         var objectProperties = deleteBy.GetType().GetProperties();
         var dictionary = objectProperties.ToDictionary(info => info.Name, info => info.GetValue(deleteBy,null));
 
-        foreach (var item in dictionary)
-        {
-            var inputValue = ProcessValue(item.Value);
-            conditions.Add($"{item.Key}={inputValue}");
-        }
+        var conditions = (
+            from item in dictionary 
+            let inputValue = ProcessValue(item.Value) 
+            select $"{item.Key}={inputValue}"
+        ).ToList();
 
         var statement = string.Format(template, table, string.Join(" AND ", conditions));
         return !isPrimaryKeyFound ? throw MissingPrimaryKey : statement;
