@@ -17,6 +17,8 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
     
     private readonly IArticlesRepository _articlesRepository;
 
+    private static BusinessException ArticleException => new(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+
     public UpdateArticleCountCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IUserService userService, IDateTimeService dateTimeService, IArticlesRepository articlesRepository) : base(operationDbContext, loggerService)
     {
@@ -30,8 +32,21 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
         var userId = _userService.GetLoggedUserId();
         var ipAddress = _userService.GetRequestIpAddress();
         var dateTimeStamp = _dateTimeService.Now;
-        var isSuccess = await _articlesRepository.UpdateArticleCount(userId, request.Id, dateTimeStamp,  ipAddress, cancellationToken);
 
-        return !isSuccess ? throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS) : Unit.Value;
+        bool isSuccess;
+        var articleCount = (await _articlesRepository.GetArticleCount(ipAddress, request.Id)).SingleOrDefault();
+        if (articleCount is not null)
+        {
+            var readCount = articleCount.ReadCount + 1;
+            isSuccess = await _articlesRepository.UpdateArticleCount(userId, request.Id, readCount, dateTimeStamp, ipAddress, cancellationToken);
+        }
+        else
+        {
+            isSuccess = await _articlesRepository.AddArticleCount(userId, request.Id, dateTimeStamp, ipAddress, cancellationToken);
+        }
+
+        return !isSuccess 
+            ? throw ArticleException 
+            : Unit.Value;
     }
 }
