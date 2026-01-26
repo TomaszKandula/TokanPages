@@ -1,4 +1,4 @@
-using System.Linq.Expressions;
+using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Articles;
@@ -17,11 +17,15 @@ public interface IArticlesRepository
 
     Task<List<ArticleDataDto>> RetrieveArticleInfo(string userLanguage, HashSet<Guid> articleIds);
 
+    Task<List<ArticleCount>> GetArticleCount(string ipAddress, Guid articleId);
+
     Task AddArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default);
 
     Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default);
 
-    Task<bool> UpdateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default);
+    Task<bool> AddArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default);
+    
+    Task<bool> UpdateArticleCount(Guid userId, Guid articleId, int count, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default);
 
     Task<bool> UpdateArticleVisibility(Guid userId, Guid articleId, DateTime updatedAt, bool isPublished, CancellationToken cancellationToken = default);
 

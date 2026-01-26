@@ -288,6 +288,17 @@ public class ArticlesRepository : IArticlesRepository
         return articleInfoList;
     }
 
+    public async Task<List<ArticleCount>> GetArticleCount(string ipAddress, Guid articleId)
+    {
+        var filterBy = new
+        {
+            ArticleId = articleId,
+            IpAddress = ipAddress
+        };
+
+        return (await _dapperWrapper.Retrieve<ArticleCount>(filterBy)).ToList();
+    }
+
     public async Task AddArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default)
     {
         var entity = new Article
@@ -328,11 +339,36 @@ public class ArticlesRepository : IArticlesRepository
         return true;
     }
 
-    public async Task<bool> UpdateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
+    public async Task<bool> AddArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
+    {
+        var entity = new ArticleCount
+        {
+            Id = Guid.NewGuid(),
+            ArticleId = articleId,
+            UserId = userId,
+            IpAddress = ipAddress,
+            ReadCount = 1,
+            CreatedBy = userId,
+            CreatedAt = updatedAt
+        };
+
+        try
+        {
+            await _dapperWrapper.Insert(entity, cancellationToken);
+        }
+        catch
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public async Task<bool> UpdateArticleCount(Guid userId, Guid articleId, int count, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
     {
         var updateBy = new
         {
-            ReadCount = 101,//TODO: pass the count
+            ReadCount = count,
             ModifiedAt = updatedAt,
             ModifiedBy = userId
         };
