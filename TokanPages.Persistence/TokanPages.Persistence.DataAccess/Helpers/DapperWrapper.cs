@@ -84,16 +84,16 @@ public class DapperWrapper : IDapperWrapper
         {
             watch.Start();
             var query = TransactionTemplate.Replace("{QUERY}", sql);
-            var rowsAffected = await connection.ExecuteAsync(query, cancellationToken);
+            await connection.ExecuteAsync(query, cancellationToken);
             watch.Stop();
 
-            if (_environment.IsDevelopment() || _environment.IsStaging())
+            if (_environment.IsProduction())
             {
-                _loggerService.LogDebug($"SQL Transaction:\n{sql}\nExecuted within {watch.ElapsedMilliseconds} ms. Rows affected: {rowsAffected}.");
+                _loggerService.LogInformation($"SQL Transaction executed within {watch.ElapsedMilliseconds} ms.");
             }
             else
             {
-                _loggerService.LogInformation($"SQL Transaction executed within {watch.ElapsedMilliseconds} ms. Rows affected: {rowsAffected}.");
+                _loggerService.LogDebug($"SQL Transaction:\n{query}\nExecuted within {watch.ElapsedMilliseconds} ms.");
             }
         }
         catch (Exception exception)
