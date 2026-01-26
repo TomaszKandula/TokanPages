@@ -299,7 +299,7 @@ public class ArticlesRepository : IArticlesRepository
         return (await _dapperWrapper.Retrieve<ArticleCount>(filterBy)).ToList();
     }
 
-    public async Task AddArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default)
+    public async Task CreateArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default)
     {
         var entity = new Article
         {
