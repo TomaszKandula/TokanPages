@@ -31,13 +31,13 @@ public class DapperWrapper : IDapperWrapper
 
     public async Task<IEnumerable<T>> Retrieve<T>(object filterBy)
     {
-        await using var db = new SqlConnection(ConnectionString);
+        await using var connection = new SqlConnection(ConnectionString);
         var sql = _sqlGenerator.GenerateQueryStatement<T>(filterBy);
         var watch = new Stopwatch();
         try
         {
             watch.Start();
-            var result = await db.QueryAsync<T>(sql);
+            var result = await connection.QueryAsync<T>(sql);
             watch.Stop();
 
             if (_environment.IsProduction())
