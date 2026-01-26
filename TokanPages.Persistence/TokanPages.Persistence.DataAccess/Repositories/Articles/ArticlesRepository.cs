@@ -308,9 +308,9 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default)
     {
-        var articleLikes = new { Id = requestId, UserId =  userId };
-        var articleCounts = new { Id = requestId, UserId =  userId };
-        var articleTags = new { Id = requestId };
+        var articleLikes = new { ArticleId = requestId, UserId =  userId };
+        var articleCounts = new { ArticleId = requestId, UserId =  userId };
+        var articleTags = new { ArticleId = requestId };
         var articles = new { Id = requestId, UserId =  userId };
 
         try
@@ -330,46 +330,22 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<bool> UpdateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
     {
-        var articleData = await _operationDbContext.Articles
-            .Where(article => article.Id == articleId)
-            .SingleOrDefaultAsync(cancellationToken);
+        var updateBy = new
+        {
+            ReadCount = 1,
+            ModifiedAt = updatedAt,
+            ModifiedBy = userId
+        };
 
-        if (articleData is null)
+        try 
+        {
+            await _dapperWrapper.Update<ArticleCount>(updateBy, cancellationToken);
+        }
+        catch
+        {
             return false;
-
-        var articleCount = await _operationDbContext.ArticleCounts
-            .Where(count => count.ArticleId == articleId)
-            .Where(count => count.IpAddress == ipAddress)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (articleCount is null)
-        {
-            var newArticleCount = new ArticleCount
-            {
-                UserId = articleData.UserId,
-                ArticleId = articleData.Id,
-                IpAddress = ipAddress,
-                ReadCount = 1,
-                CreatedAt = updatedAt,
-                CreatedBy = userId
-            };
-
-            await _operationDbContext.ArticleCounts.AddAsync(newArticleCount, cancellationToken);
-        }
-        else
-        {
-            articleCount.ReadCount += 1;
-            articleCount.ModifiedAt = updatedAt;
-            articleCount.ModifiedBy = userId;
-
-            _operationDbContext.ArticleCounts.Update(articleCount);
         }
 
-        articleData.ReadCount += 1;
-        articleData.ModifiedAt = updatedAt;
-        articleData.ModifiedBy = userId;
-
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
 
