@@ -64,9 +64,9 @@ public class DapperWrapper : IDapperWrapper
         await ExecuteSqlTransaction(sql, cancellationToken);
     }
 
-    public async Task Update<T>(object updateBy, CancellationToken cancellationToken = default)
+    public async Task Update<T>(object updateBy, object filterBy, CancellationToken cancellationToken = default)
     {
-        var sql = _sqlGenerator.GenerateUpdateStatement<T>(updateBy);
+        var sql = _sqlGenerator.GenerateUpdateStatement<T>(updateBy, filterBy);
         await ExecuteSqlTransaction(sql, cancellationToken);
     }
 
