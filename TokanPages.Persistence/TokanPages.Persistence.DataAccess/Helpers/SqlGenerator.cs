@@ -138,6 +138,9 @@ public class SqlGenerator : ISqlGenerator
             select $"{item.Key}={inputValue}"
         ).ToList();
 
+        if (conditions.Count == 0)
+            throw MissingWhereClause;
+
         return string.Format(template, table, string.Join(" AND ", conditions));
     }
 
