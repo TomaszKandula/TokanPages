@@ -42,7 +42,7 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
         }
         else
         {
-            isSuccess = await _articlesRepository.AddArticleCount(userId, request.Id, dateTimeStamp, ipAddress, cancellationToken);
+            isSuccess = await _articlesRepository.CreateArticleCount(userId, request.Id, dateTimeStamp, ipAddress, cancellationToken);
         }
 
         return !isSuccess 

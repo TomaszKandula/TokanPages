@@ -339,7 +339,7 @@ public class ArticlesRepository : IArticlesRepository
         return true;
     }
 
-    public async Task<bool> AddArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
+    public async Task<bool> CreateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
     {
         var entity = new ArticleCount
         {

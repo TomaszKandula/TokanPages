@@ -23,7 +23,7 @@ public interface IArticlesRepository
 
     Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default);
 
-    Task<bool> AddArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default);
+    Task<bool> CreateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default);
     
     Task<bool> UpdateArticleCount(Guid userId, Guid articleId, int count, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default);
 
