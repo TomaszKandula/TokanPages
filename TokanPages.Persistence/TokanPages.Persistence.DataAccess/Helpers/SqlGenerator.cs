@@ -31,12 +31,12 @@ public class SqlGenerator : ISqlGenerator
         const string template = "SELECT {0} FROM {1} WHERE {2}";
 
         var table = GetTableName<T>();
+        var columns = typeof(T).GetProperties().Select(property => property.Name).ToList();
 
-        var entityProperties = typeof(T).GetProperties();
-        var columns = entityProperties.Select(property => property.Name).ToList();
-
-        var objectProperties = filterBy.GetType().GetProperties();
-        var dictionary = objectProperties.ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
+        var dictionary = filterBy
+            .GetType()
+            .GetProperties()
+            .ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
 
         var conditions = (
             from item in dictionary 
@@ -123,8 +123,10 @@ public class SqlGenerator : ISqlGenerator
         var entityProperties = typeof(T).GetProperties();
         var isPrimaryKeyFound = entityProperties.Any(HasPrimaryKey);
 
-        var objectProperties = deleteBy.GetType().GetProperties();
-        var dictionary = objectProperties.ToDictionary(info => info.Name, info => info.GetValue(deleteBy,null));
+        var dictionary = deleteBy
+            .GetType()
+            .GetProperties()
+            .ToDictionary(info => info.Name, info => info.GetValue(deleteBy,null));
 
         var conditions = (
             from item in dictionary 
