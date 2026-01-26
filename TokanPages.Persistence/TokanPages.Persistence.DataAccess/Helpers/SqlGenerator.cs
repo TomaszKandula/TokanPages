@@ -107,7 +107,7 @@ public class SqlGenerator : ISqlGenerator
         ).ToList();
 
         if (condition.Count == 0)
-            throw MissingPrimaryKey;//TODO: change to MISSING_WHERE_CLAUSE
+            throw MissingWhereClause;
 
         var set = string.Join(",", update);
         var where = string.Join(" AND ", condition);
@@ -142,6 +142,8 @@ public class SqlGenerator : ISqlGenerator
     }
 
     private static GeneralException MissingPrimaryKey => new(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
+
+    private static GeneralException MissingWhereClause => new(nameof(ErrorCodes.MISSING_WHERE_CLAUSE), ErrorCodes.MISSING_WHERE_CLAUSE);
 
     private static bool HasPrimaryKey (PropertyInfo property) => Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute)) != null;
 
