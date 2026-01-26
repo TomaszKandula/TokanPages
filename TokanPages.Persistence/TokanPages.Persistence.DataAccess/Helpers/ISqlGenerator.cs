@@ -53,7 +53,6 @@ public interface ISqlGenerator
     /// </summary>
     /// <remarks>
     /// Provided entity object should have a property marked with the 'PrimaryKey' attribute.
-    /// IMPORTANT: Primary key is used as a QUERY filter.
     /// </remarks>
     /// <param name="deleteBy">'Key-Value' fields used for deleting.</param>
     /// <typeparam name="T">Given entity object type.</typeparam>
