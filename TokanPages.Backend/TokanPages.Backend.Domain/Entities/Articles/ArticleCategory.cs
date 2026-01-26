@@ -1,9 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
 
 namespace TokanPages.Backend.Domain.Entities.Articles;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "ArticleCategories")]
 public class ArticleCategory : Entity<Guid>, IAuditable
 {
     public Guid CreatedBy { get; set; }
