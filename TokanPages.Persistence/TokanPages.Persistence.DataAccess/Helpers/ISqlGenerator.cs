@@ -40,12 +40,12 @@ public interface ISqlGenerator
     /// </summary>
     /// <remarks>
     /// Provided object should have a property marked with the 'PrimaryKey' attribute.
-    /// IMPORTANT: Primary key is used as a QUERY filter.
     /// </remarks>
     /// <param name="updateBy">'Key-Value' fields used for updating.</param>
+    /// <param name="filterBy">'Key-Value' fields used for filtering.</param>
     /// <typeparam name="T">Given entity object type.</typeparam>
     /// <returns>SQL statement.</returns>
-    string GenerateUpdateStatement<T>(object updateBy);
+    string GenerateUpdateStatement<T>(object updateBy, object filterBy);
 
     /// <summary>
     /// Returns an SQL statement for a DELETE query for the given values provided in the entity object.
