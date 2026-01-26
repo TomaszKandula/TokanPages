@@ -81,6 +81,8 @@ public class SqlGenerator : ISqlGenerator
         var table = GetTableName<T>();
         var entityProperties = typeof(T).GetProperties();
         var isPrimaryKeyFound = entityProperties.Any(HasPrimaryKey);
+        if (!isPrimaryKeyFound)
+            throw MissingPrimaryKey;
 
         var updateDict = updateBy
             .GetType()
@@ -104,14 +106,14 @@ public class SqlGenerator : ISqlGenerator
             select $"{item.Key}={inputValue}"
         ).ToList();
 
+        if (condition.Count == 0)
+            throw MissingPrimaryKey;//TODO: change to MISSING_WHERE_CLAUSE
+
         var set = string.Join(",", update);
         var where = string.Join(" AND ", condition);
         var statement = string.Format(template, table, set, where);
 
-        if (condition.Count == 0)
-            throw MissingPrimaryKey;//TODO: change to MISSING_WHERE_CLAUSE
-
-        return !isPrimaryKeyFound ? throw MissingPrimaryKey : statement;
+        return statement;
     }
 
     /// <inheritdoc/>
@@ -122,6 +124,8 @@ public class SqlGenerator : ISqlGenerator
         var table = GetTableName<T>();
         var entityProperties = typeof(T).GetProperties();
         var isPrimaryKeyFound = entityProperties.Any(HasPrimaryKey);
+        if (!isPrimaryKeyFound)
+            throw MissingPrimaryKey;
 
         var dictionary = deleteBy
             .GetType()
@@ -134,8 +138,7 @@ public class SqlGenerator : ISqlGenerator
             select $"{item.Key}={inputValue}"
         ).ToList();
 
-        var statement = string.Format(template, table, string.Join(" AND ", conditions));
-        return !isPrimaryKeyFound ? throw MissingPrimaryKey : statement;
+        return string.Format(template, table, string.Join(" AND ", conditions));
     }
 
     private static GeneralException MissingPrimaryKey => new(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
