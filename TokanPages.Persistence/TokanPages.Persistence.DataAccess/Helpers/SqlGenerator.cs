@@ -77,41 +77,46 @@ public class SqlGenerator : ISqlGenerator
     }
 
     /// <inheritdoc/>
-    public string GenerateUpdateStatement<T>(object updateBy)
+    public string GenerateUpdateStatement<T>(object updateBy, object filterBy)
     {
         const string template = "UPDATE {0} SET {1} WHERE {2}";
 
         var table = GetTableName<T>();
         var update = new List<string>();
-        var condition = string.Empty;
-        var primaryKeyName = string.Empty;
+        var condition = new List<string>();
         var entityProperties = typeof(T).GetProperties();
+        var isPrimaryKeyFound = entityProperties.Any(HasPrimaryKey);
 
-        foreach (var property in entityProperties)
-        {
-            var hasPrimaryKey = HasPrimaryKey(property);
-            if (hasPrimaryKey)
-                primaryKeyName =  property.Name;
-        }
+        var updateDict = updateBy
+            .GetType()
+            .GetProperties()
+            .ToDictionary(info => info.Name, info => info.GetValue(updateBy,null));
 
-        var objectProperties = updateBy.GetType().GetProperties();
-        var dictionary = objectProperties.ToDictionary(info => info.Name, info => info.GetValue(updateBy,null));
-
-        foreach (var item in dictionary)
+        foreach (var item in updateDict)
         {
             var inputValue = ProcessValue(item.Value);
-            if (primaryKeyName == item.Key)
-            {
-                condition = $"{primaryKeyName}={inputValue}";
-            }
-            else
-            {
-                update.Add($"{item.Key}={inputValue}");
-            }
+            update.Add($"{item.Key}={inputValue}");
         }
 
-        var statement = string.Format(template, table, string.Join(",", update), condition);
-        return string.IsNullOrWhiteSpace(condition) ? throw MissingPrimaryKey : statement;
+        var filterDict = filterBy
+            .GetType()
+            .GetProperties()
+            .ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
+
+        foreach (var item in filterDict)
+        {
+            var inputValue = ProcessValue(item.Value);
+            condition.Add($"{item.Key}={inputValue}");
+        }
+
+        var set = string.Join(",", update);
+        var where = string.Join(" AND ", condition);
+        var statement = string.Format(template, table, set, where);
+
+        if (condition.Count == 0)
+            throw MissingPrimaryKey;//TODO: change to MISSING_WHERE_CLAUSE
+
+        return !isPrimaryKeyFound ? throw MissingPrimaryKey : statement;
     }
 
     /// <inheritdoc/>
