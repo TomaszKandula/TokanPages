@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
 
@@ -9,11 +8,7 @@ namespace TokanPages.Backend.Domain.Entities.Articles;
 [DatabaseTable(Schema = "operation", TableName = "Articles")]
 public class Article : Entity<Guid>, IAuditable
 {
-    [Required]
-    [MaxLength(255)]
     public string Title { get; set; }
-    [Required]
-    [MaxLength(255)]
     public string Description { get; set; }
     public bool IsPublished { get; set; }
     public int ReadCount { get; set; }
@@ -25,7 +20,5 @@ public class Article : Entity<Guid>, IAuditable
     public DateTime? UpdatedAt { get; set; }
     public Guid? UserId { get; set; }
     public Guid? CategoryId {get; set; }
-    [Required]
-    [MaxLength(3)]
     public string LanguageIso { get; set; }
 }
