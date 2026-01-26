@@ -332,14 +332,20 @@ public class ArticlesRepository : IArticlesRepository
     {
         var updateBy = new
         {
-            ReadCount = 1,
+            ReadCount = 101,//TODO: pass the count
             ModifiedAt = updatedAt,
             ModifiedBy = userId
         };
 
+        var filterBy = new
+        {
+            ArticleId = articleId,
+            IpAddress = ipAddress
+        };
+
         try 
         {
-            await _dapperWrapper.Update<ArticleCount>(updateBy, cancellationToken);
+            await _dapperWrapper.Update<ArticleCount>(updateBy, filterBy, cancellationToken);
         }
         catch
         {
