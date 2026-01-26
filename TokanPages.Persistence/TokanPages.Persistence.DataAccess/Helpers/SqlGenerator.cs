@@ -121,16 +121,8 @@ public class SqlGenerator : ISqlGenerator
 
         var table = GetTableName<T>();
         var conditions = new List<string>();
-        var primaryKeyName = string.Empty;
-        var isPrimaryKeyFound = false;
         var entityProperties = typeof(T).GetProperties();
-
-        foreach (var property in entityProperties)
-        {
-            var hasPrimaryKey = HasPrimaryKey(property);
-            if (hasPrimaryKey)
-                primaryKeyName = property.Name;
-        }
+        var isPrimaryKeyFound = entityProperties.Any(HasPrimaryKey);
 
         var objectProperties = deleteBy.GetType().GetProperties();
         var dictionary = objectProperties.ToDictionary(info => info.Name, info => info.GetValue(deleteBy,null));
@@ -138,9 +130,6 @@ public class SqlGenerator : ISqlGenerator
         foreach (var item in dictionary)
         {
             var inputValue = ProcessValue(item.Value);
-            if (!isPrimaryKeyFound && primaryKeyName == item.Key)
-                isPrimaryKeyFound = true;
-
             conditions.Add($"{item.Key}={inputValue}");
         }
 
