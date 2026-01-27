@@ -1,6 +1,6 @@
 namespace TokanPages.Persistence.DataAccess.Helpers;
 
-public interface IDapperWrapper
+public interface IDbOperations
 {
     Task<IEnumerable<T>> Retrieve<T>(object filterBy);
 

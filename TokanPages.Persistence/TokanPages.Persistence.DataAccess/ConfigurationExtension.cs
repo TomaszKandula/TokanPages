@@ -15,7 +15,7 @@ public static class ConfigurationExtension
         services.SetupDatabase<SoccerDbContext>(configuration);
 
         services.AddScoped<ISqlGenerator, SqlGenerator>();
-        services.AddScoped<IDapperWrapper, DapperWrapper>();
+        services.AddScoped<IDbOperations, DbOperations>();
         services.AddScoped<IArticlesRepository, ArticlesRepository>();
     }
 

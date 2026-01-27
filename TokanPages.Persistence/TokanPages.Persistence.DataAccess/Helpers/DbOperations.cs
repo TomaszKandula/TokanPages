@@ -9,7 +9,7 @@ using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Persistence.DataAccess.Helpers;
 
-public class DapperWrapper : IDapperWrapper
+public class DbOperations : IDbOperations
 {
     private readonly ILoggerService _loggerService;
 
@@ -21,7 +21,7 @@ public class DapperWrapper : IDapperWrapper
 
     private string ConnectionString => _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
 
-    public DapperWrapper(ILoggerService loggerService, IConfiguration configuration, ISqlGenerator sqlGenerator, IHostEnvironment environment)
+    public DbOperations(ILoggerService loggerService, IConfiguration configuration, ISqlGenerator sqlGenerator, IHostEnvironment environment)
     {
         _loggerService = loggerService;
         _configuration = configuration;

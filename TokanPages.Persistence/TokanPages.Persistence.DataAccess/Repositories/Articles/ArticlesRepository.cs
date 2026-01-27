@@ -14,7 +14,7 @@ public class ArticlesRepository : IArticlesRepository
 {
     private readonly OperationDbContext _operationDbContext;
 
-    private readonly IDapperWrapper _dapperWrapper;
+    private readonly IDbOperations _dbOperations;
 
     //TODO: replace IConfiguration with IOption
     private readonly IConfiguration _configuration;
@@ -22,17 +22,17 @@ public class ArticlesRepository : IArticlesRepository
     private int MaxLikesForLoggedUser => _configuration.GetValue<int>("Limit_Likes_User");
     private string ConnectionString => _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
 
-    public ArticlesRepository(OperationDbContext operationDbContext, IConfiguration configuration, IDapperWrapper dapperWrapper)
+    public ArticlesRepository(OperationDbContext operationDbContext, IConfiguration configuration, IDbOperations dbOperations)
     {
         _operationDbContext = operationDbContext;
         _configuration = configuration;
-        _dapperWrapper = dapperWrapper;
+        _dbOperations = dbOperations;
     }
 
     public async Task<Guid> GetArticleIdByTitle(string title)
     {
         var filterBy = new { Title = title.Replace("-", " ").ToLower() };
-        var data = (await _dapperWrapper.Retrieve<Article>(filterBy)).SingleOrDefault();
+        var data = (await _dbOperations.Retrieve<Article>(filterBy)).SingleOrDefault();
         return data?.Id ?? Guid.Empty;
     }
 
@@ -291,7 +291,7 @@ public class ArticlesRepository : IArticlesRepository
     public async Task<List<ArticleCount>> GetArticleCount(string ipAddress, Guid articleId)
     {
         var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
-        return (await _dapperWrapper.Retrieve<ArticleCount>(filterBy)).ToList();
+        return (await _dbOperations.Retrieve<ArticleCount>(filterBy)).ToList();
     }
 
     public async Task CreateArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default)
@@ -309,7 +309,7 @@ public class ArticlesRepository : IArticlesRepository
             LanguageIso = data.LanguageIso
         };
 
-        await _dapperWrapper.Insert(entity, cancellationToken);
+        await _dbOperations.Insert(entity, cancellationToken);
     }
 
     public async Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default)
@@ -321,10 +321,10 @@ public class ArticlesRepository : IArticlesRepository
             var articleTags = new { ArticleId = requestId };
             var articles = new { Id = requestId, UserId =  userId };
 
-            await _dapperWrapper.Delete<ArticleLike>(articleLikes, cancellationToken);
-            await _dapperWrapper.Delete<ArticleCount>(articleCounts, cancellationToken);
-            await _dapperWrapper.Delete<ArticleTag>(articleTags, cancellationToken);
-            await _dapperWrapper.Delete<Article>(articles, cancellationToken);
+            await _dbOperations.Delete<ArticleLike>(articleLikes, cancellationToken);
+            await _dbOperations.Delete<ArticleCount>(articleCounts, cancellationToken);
+            await _dbOperations.Delete<ArticleTag>(articleTags, cancellationToken);
+            await _dbOperations.Delete<Article>(articles, cancellationToken);
         }
         catch
         {
@@ -349,7 +349,7 @@ public class ArticlesRepository : IArticlesRepository
                 CreatedAt = updatedAt
             };
 
-            await _dapperWrapper.Insert(entity, cancellationToken);
+            await _dbOperations.Insert(entity, cancellationToken);
         }
         catch
         {
@@ -365,7 +365,7 @@ public class ArticlesRepository : IArticlesRepository
         {
             var updateBy = new { ReadCount = count, ModifiedAt = updatedAt, ModifiedBy = userId };
             var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
-            await _dapperWrapper.Update<ArticleCount>(updateBy, filterBy, cancellationToken);
+            await _dbOperations.Update<ArticleCount>(updateBy, filterBy, cancellationToken);
         }
         catch
         {
@@ -392,7 +392,7 @@ public class ArticlesRepository : IArticlesRepository
                 UserId = userId
             };
 
-            await _dapperWrapper.Update<Article>(updateBy, filterBy, cancellationToken);
+            await _dbOperations.Update<Article>(updateBy, filterBy, cancellationToken);
         }
         catch
         {
@@ -423,7 +423,7 @@ public class ArticlesRepository : IArticlesRepository
                 ArticleId = articleId
             };
 
-            await _dapperWrapper.Update<Article>(updateBy, filterBy, cancellationToken);
+            await _dbOperations.Update<Article>(updateBy, filterBy, cancellationToken);
         }
         catch
         {
