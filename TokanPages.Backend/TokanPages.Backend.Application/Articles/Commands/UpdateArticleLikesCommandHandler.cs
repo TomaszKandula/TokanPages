@@ -17,6 +17,8 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
 
     private readonly IArticlesRepository _articlesRepository;
 
+    private static BusinessException ArticleException => new(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+
     public UpdateArticleLikesCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService, 
     IDateTimeService dateTimeService, IArticlesRepository articlesRepository) : base(operationDbContext, loggerService)
     {
@@ -33,6 +35,9 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
         var dateTimeStamp = _dateTimeService.Now;
 
         var isSuccess = await _articlesRepository.UpdateArticleLikes(userId, request.Id, dateTimeStamp, request.AddToLikes, isAnonymousUser, ipAddress, cancellationToken);
-        return !isSuccess ? throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS) : Unit.Value;
+
+        return !isSuccess 
+            ? throw ArticleException 
+            : Unit.Value;
     }
 }
