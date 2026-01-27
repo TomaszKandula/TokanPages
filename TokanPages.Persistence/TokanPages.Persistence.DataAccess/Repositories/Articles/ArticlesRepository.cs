@@ -405,22 +405,31 @@ public class ArticlesRepository : IArticlesRepository
     public async Task<bool> UpdateArticleContent(Guid userId, Guid articleId, DateTime updatedAt, string? title, string? description, string? languageIso,
         CancellationToken cancellationToken = default)
     {
-        var articleData = await _operationDbContext.Articles
-            .Where(article => article.UserId == userId)
-            .Where(article => article.Id == articleId)
-            .SingleOrDefaultAsync(cancellationToken);
+        try
+        {
+            var updateBy = new
+            {
+                Title = title,
+                Description = description,
+                LanguageIso = languageIso,
+                UpdatedAt = updatedAt,
+                ModifiedAt = updatedAt,
+                ModifiedBy = userId
+            };
 
-        if (articleData is null)
-            return false;
+            var filterBy = new
+            {
+                UserId = userId,
+                ArticleId = articleId
+            };
 
-        articleData.Title = title ?? articleData.Title;
-        articleData.Description = description ?? articleData.Description;
-        articleData.LanguageIso = languageIso ?? articleData.LanguageIso;
-        articleData.UpdatedAt = updatedAt;
-        articleData.ModifiedAt = updatedAt;
-        articleData.ModifiedBy = userId;
+            await _dapperWrapper.Update<Article>(updateBy, filterBy, cancellationToken);
+        }
+        catch
+        {
+            return false;    
+        }
 
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
 
