@@ -377,19 +377,28 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<bool> UpdateArticleVisibility(Guid userId, Guid articleId, DateTime updatedAt, bool isPublished, CancellationToken cancellationToken = default)
     {
-        var articleData = await _operationDbContext.Articles
-            .Where(article => article.UserId == userId)
-            .Where(article => article.Id == articleId)
-            .SingleOrDefaultAsync(cancellationToken);
+        try
+        {
+            var updateBy = new
+            {
+                IsPublished = isPublished,
+                ModifiedAt = updatedAt,
+                ModifiedBy = userId,
+            };
 
-        if (articleData is null)
+            var filterBy = new
+            {
+                ArticleId = articleId,
+                UserId = userId
+            };
+
+            await _dapperWrapper.Update<Article>(updateBy, filterBy, cancellationToken);
+        }
+        catch
+        {
             return false;
+        }
 
-        articleData.IsPublished = isPublished;
-        articleData.ModifiedAt = updatedAt;
-        articleData.ModifiedBy = userId;
-
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
 
