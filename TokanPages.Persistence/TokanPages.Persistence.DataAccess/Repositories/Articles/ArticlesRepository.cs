@@ -290,12 +290,7 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<List<ArticleCount>> GetArticleCount(string ipAddress, Guid articleId)
     {
-        var filterBy = new
-        {
-            ArticleId = articleId,
-            IpAddress = ipAddress
-        };
-
+        var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
         return (await _dapperWrapper.Retrieve<ArticleCount>(filterBy)).ToList();
     }
 
@@ -319,13 +314,13 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default)
     {
-        var articleLikes = new { ArticleId = requestId, UserId =  userId };
-        var articleCounts = new { ArticleId = requestId, UserId =  userId };
-        var articleTags = new { ArticleId = requestId };
-        var articles = new { Id = requestId, UserId =  userId };
-
         try
         {
+            var articleLikes = new { ArticleId = requestId, UserId =  userId };
+            var articleCounts = new { ArticleId = requestId, UserId =  userId };
+            var articleTags = new { ArticleId = requestId };
+            var articles = new { Id = requestId, UserId =  userId };
+
             await _dapperWrapper.Delete<ArticleLike>(articleLikes, cancellationToken);
             await _dapperWrapper.Delete<ArticleCount>(articleCounts, cancellationToken);
             await _dapperWrapper.Delete<ArticleTag>(articleTags, cancellationToken);
@@ -341,19 +336,19 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<bool> CreateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
     {
-        var entity = new ArticleCount
-        {
-            Id = Guid.NewGuid(),
-            ArticleId = articleId,
-            UserId = userId,
-            IpAddress = ipAddress,
-            ReadCount = 1,
-            CreatedBy = userId,
-            CreatedAt = updatedAt
-        };
-
         try
         {
+            var entity = new ArticleCount
+            {
+                Id = Guid.NewGuid(),
+                ArticleId = articleId,
+                UserId = userId,
+                IpAddress = ipAddress,
+                ReadCount = 1,
+                CreatedBy = userId,
+                CreatedAt = updatedAt
+            };
+
             await _dapperWrapper.Insert(entity, cancellationToken);
         }
         catch
@@ -366,21 +361,10 @@ public class ArticlesRepository : IArticlesRepository
 
     public async Task<bool> UpdateArticleCount(Guid userId, Guid articleId, int count, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
     {
-        var updateBy = new
-        {
-            ReadCount = count,
-            ModifiedAt = updatedAt,
-            ModifiedBy = userId
-        };
-
-        var filterBy = new
-        {
-            ArticleId = articleId,
-            IpAddress = ipAddress
-        };
-
         try 
         {
+            var updateBy = new { ReadCount = count, ModifiedAt = updatedAt, ModifiedBy = userId };
+            var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
             await _dapperWrapper.Update<ArticleCount>(updateBy, filterBy, cancellationToken);
         }
         catch
