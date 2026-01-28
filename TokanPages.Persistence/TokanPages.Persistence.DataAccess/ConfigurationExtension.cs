@@ -11,8 +11,7 @@ public static class ConfigurationExtension
 {
     public static void AddDataLayer(this IServiceCollection services, IConfiguration configuration)
     {
-        services.SetupDatabase<OperationDbContext>(configuration);
-        services.SetupDatabase<SoccerDbContext>(configuration);
+        services.SetupDatabase<OperationDbContext>(configuration);//TODO: to be removed
 
         services.AddScoped<ISqlGenerator, SqlGenerator>();
         services.AddScoped<IDbOperations, DbOperations>();
