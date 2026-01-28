@@ -98,11 +98,9 @@ public class GetArticleQueryHandlerTest : TestBase
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = false,
-            ReadCount = 0,
             CreatedAt = testDate,
             UpdatedAt = null,
             UserId = users.Id,
-            TotalLikes = 25,
             LanguageIso = "ENG"
         };
 
@@ -112,8 +110,6 @@ public class GetArticleQueryHandlerTest : TestBase
             Title = articles.Title,
             Description = articles.Description,
             IsPublished = articles.IsPublished,
-            ReadCount = articles.ReadCount,
-            TotalLikes = articles.TotalLikes,
             CreatedAt = testDate,
             UpdatedAt = testDate,
             LanguageIso = "ENG",
@@ -187,7 +183,6 @@ public class GetArticleQueryHandlerTest : TestBase
         result.Title.Should().Be(articles.Title);
         result.Description.Should().Be(articles.Description);
         result.IsPublished.Should().BeFalse();
-        result.ReadCount.Should().Be(articles.ReadCount);
         result.UserLikes.Should().Be(1100);
         result.UpdatedAt.Should().Be(testDate);
         result.CreatedAt.Should().Be(testDate);
