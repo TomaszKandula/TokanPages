@@ -11,7 +11,7 @@ using TokanPages.Backend.Domain.Entities.Users;
 namespace TokanPages.Persistence.DataAccess.Contexts;
 
 [ExcludeFromCodeCoverage]
-public class OperationDbContext : DbContext
+public class OperationDbContext : DbContext//TODO: to be removed
 {
     public OperationDbContext(DbContextOptions<OperationDbContext> options) : base(options) { }
 
