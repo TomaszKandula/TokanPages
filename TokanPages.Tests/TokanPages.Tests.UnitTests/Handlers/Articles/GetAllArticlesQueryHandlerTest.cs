@@ -1,5 +1,4 @@
-﻿using System.Linq.Expressions;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Articles.Queries;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -121,7 +120,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             .Returns("en");
 
         mockedArticlesRepository
-            .Setup(repository => repository.GetSearchResult(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Setup(repository => repository.GetSearchResult(It.IsAny<string>()))
             .ReturnsAsync(articleIds);
 
         mockedArticlesRepository
@@ -130,13 +129,12 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             It.IsAny<string?>(),
             It.IsAny<Guid?>(),
             It.IsAny<HashSet<Guid>?>(),
-            It.IsAny<IDictionary<string, Expression<Func<ArticleDataDto, object>>>>(),
-            It.IsAny<CancellationToken>()
+            It.IsAny<ArticlePageInfoDto>()
             ))
             .ReturnsAsync(articleDataDto);
 
         mockedArticlesRepository
-            .Setup(repository => repository.GetArticleCategories(It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Setup(repository => repository.GetArticleCategories(It.IsAny<string>()))
             .ReturnsAsync(categoryDto);
 
         var query = new GetArticlesQuery

@@ -1,116 +1,129 @@
-using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
+using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Domain.Entities.Articles;
-using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Helpers;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Articles;
 
 public class ArticlesRepository : IArticlesRepository
 {
-    private readonly OperationDbContext _operationDbContext;
+    private readonly IDbOperations _dbOperations;
 
+    //TODO: replace IConfiguration with IOption
     private readonly IConfiguration _configuration;
+    private string ConnectionString => _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
 
-    private int MaxLikesForAnonymousUser => _configuration.GetValue<int>("Limit_Likes_Anonymous");
-
-    private int MaxLikesForLoggedUser => _configuration.GetValue<int>("Limit_Likes_User");
-
-    public ArticlesRepository(OperationDbContext operationDbContext, IConfiguration configuration)
+    public ArticlesRepository(IConfiguration configuration, IDbOperations dbOperations)
     {
-        _operationDbContext = operationDbContext;
         _configuration = configuration;
+        _dbOperations = dbOperations;
     }
 
-    public async Task<Guid> GetArticleIdByTitle(string title, CancellationToken cancellationToken = default)
+    public async Task<Guid> GetArticleIdByTitle(string title)
     {
-        var comparableTitle = title.Replace("-", " ").ToLower();
-        return await _operationDbContext.Articles
-            .AsNoTracking()
-            .Where(article => article.Title.ToLower() == comparableTitle)
-            .Select(article => article.Id)
-            .SingleOrDefaultAsync(cancellationToken);
+        var filterBy = new { Title = title.Replace("-", " ").ToLower() };
+        var data = (await _dbOperations.Retrieve<Article>(filterBy)).SingleOrDefault();
+        return data?.Id ?? Guid.Empty;
     }
 
-    public async Task<GetArticleOutputDto?> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage, CancellationToken cancellationToken)
+    public async Task<GetArticleOutputDto?> GetArticle(Guid userId, Guid requestId, bool isAnonymousUser, string ipAddress, string userLanguage)
     {
-        var userLikes = await _operationDbContext.ArticleLikes
-            .AsNoTracking()
-            .Where(like => like.ArticleId == requestId)
-            .WhereIfElse(isAnonymousUser,
-                like => like.IpAddress == ipAddress && like.UserId == null,
-                like => like.UserId == userId)
-            .Select(like => like.LikeCount)
-            .SumAsync(cancellationToken);
+        const string queryArticleData = @"
+            SELECT
+                operation.Articles.Id,
+                operation.Articles.UserId,
+                operation.Articles.Title,
+                operation.Articles.Description,
+                operation.Articles.IsPublished,
+                operation.Articles.CreatedAt,
+                operation.Articles.UpdatedAt,
+                operation.Articles.ReadCount,
+                operation.Articles.LanguageIso,
+                operation.ArticleCategoryNames.Name AS CategoryName
+            FROM
+                operation.Articles
+            LEFT JOIN
+                operation.ArticleCategories ON operation.Articles.CategoryId = operation.ArticleCategories.Id
+            LEFT JOIN
+                operation.ArticleCategoryNames ON operation.ArticleCategories.Id = operation.ArticleCategoryNames.ArticleCategoryId
+            LEFT JOIN
+                operation.Languages ON operation.ArticleCategoryNames.LanguageId = operation.Languages.Id
+            WHERE
+                operation.Languages.LangId = @LanguageId
+            AND
+                operation.Articles.Id = @RequestId
+        ";
 
-        var totalLikes = await _operationDbContext.ArticleLikes
-            .AsNoTracking()
-            .Where(like => like.ArticleId == requestId)
-            .Select(like => like.LikeCount)
-            .SumAsync(cancellationToken);
-
-        var articleData = await (from article in _operationDbContext.Articles
-            join articleCategory in _operationDbContext.ArticleCategories
-                on article.CategoryId equals articleCategory.Id
-            join categoryName in _operationDbContext.ArticleCategoryNames
-                on articleCategory.Id equals categoryName.ArticleCategoryId
-            join language in _operationDbContext.Languages
-                on categoryName.LanguageId equals language.Id
-            where language.LangId == userLanguage
-            where article.Id == requestId
-            select new
-            {
-                article.Id,
-                article.UserId,
-                article.Title,
-                article.Description,
-                article.IsPublished,
-                article.CreatedAt,
-                article.UpdatedAt,
-                article.ReadCount,
-                article.LanguageIso,
-                categoryName.Name,
-                TotalLikes = totalLikes,
-                UserLikes = userLikes,
-            })
-            .AsNoTracking()
-            .SingleOrDefaultAsync(cancellationToken);
-
+        await using var db = new SqlConnection(ConnectionString);
+        var queryArticleDataParams = new { RequestId = requestId, LanguageId = userLanguage };
+        var articleData = await db.QuerySingleOrDefaultAsync<ArticleBaseDto>(queryArticleData, queryArticleDataParams);
         if (articleData is null)
             return null;
 
-        var userDto = await (from user in _operationDbContext.Users
-            join userInfo in _operationDbContext.UserInformation
-                on user.Id equals userInfo.UserId
-            where user.Id == articleData.UserId
-            select new GetUserDto
-            {
-                UserId = user.Id,
-                AliasName = user.UserAlias,
-                AvatarName = userInfo.UserImageName,
-                FirstName = userInfo.FirstName,
-                LastName = userInfo.LastName,
-                ShortBio = userInfo.UserAboutText,
-                Registered = userInfo.CreatedAt
-            })
-            .AsNoTracking()
-            .SingleOrDefaultAsync(cancellationToken);
+        const string queryArticleLikes = @"
+            SELECT
+                CASE WHEN 
+                    SUM(operation.ArticleLikes.LikeCount) IS NULL 
+                THEN 0 ELSE 
+                    SUM(operation.ArticleLikes.LikeCount) 
+                END
+            FROM
+                operation.ArticleLikes
+            WHERE
+                operation.ArticleLikes.ArticleId = @RequestId
+        ";
 
-        var tags = await (from articleTags in _operationDbContext.ArticleTags
-            join articles in _operationDbContext.Articles
-                on articleTags.ArticleId equals articles.Id
-            where articles.Id == requestId
-            select articleTags.TagName)
-            .AsNoTracking()
-            .ToArrayAsync(cancellationToken);
+        const string filterAnonymouse = "\nAND operation.ArticleLikes.IpAddress = @IpAddress AND operation.ArticleLikes.UserId IS NULL";
+        const string filterLoggedUser = "\nAND operation.ArticleLikes.UserId = @UserId";
+
+        var queryFilteredLikes = isAnonymousUser ? $"{queryArticleLikes}{filterAnonymouse}" : $"{queryArticleLikes}{filterLoggedUser}";
+        var queryFilteredParams = new { RequestId = requestId, IpAddress = ipAddress, UserId = userId };
+        var queryArticleParams = new { RequestId = requestId };
+
+        var userLikes = await db.QuerySingleOrDefaultAsync<int>(queryFilteredLikes, queryFilteredParams);
+        var totalLikes = await db.QuerySingleOrDefaultAsync<int>(queryArticleLikes, queryArticleParams);
+
+        const string queryUserData = @"
+            SELECT
+                operation.Users.Id AS UserId,
+                operation.Users.UserAlias,
+                operation.UserInformation.UserImageName AS AvatarName,
+                operation.UserInformation.FirstName,
+                operation.UserInformation.LastName,
+                operation.UserInformation.UserAboutText AS ShortBio,
+                operation.UserInformation.CreatedAt AS Registered
+            FROM
+                operation.Users
+            LEFT JOIN
+                operation.UserInformation ON operation.Users.Id = operation.UserInformation.UserId
+            WHERE
+                operation.Users.Id = @UserId
+        ";
+
+        var queryUserParams = new { UserId = userId };
+        var userDto = await db.QuerySingleOrDefaultAsync<GetUserDto>(queryUserData, queryUserParams);
+
+        const string queryTags = @"
+            SELECT
+                operation.ArticleTags.TagName
+            FROM
+                operation.ArticleTags
+            LEFT JOIN
+                operation.Articles ON operation.ArticleTags.ArticleId = operation.Articles.Id
+            WHERE
+                operation.Articles.Id = @RequestId
+        ";
+
+        var queryTagParams = new { RequestId = requestId };
+        var tags = (await db.QueryAsync<string>(queryTags, queryTagParams)).ToArray();
 
         return new GetArticleOutputDto
         {
             Id = articleData.Id,
             Title = articleData.Title,
-            CategoryName = articleData.Name,
+            CategoryName = articleData.CategoryName,
             Description = articleData.Description,
             IsPublished = articleData.IsPublished,
             CreatedAt = articleData.CreatedAt,
@@ -120,331 +133,366 @@ public class ArticlesRepository : IArticlesRepository
             TotalLikes = totalLikes,
             UserLikes = userLikes,
             Author = userDto,
-            Tags = tags,
+            Tags = tags
         };
     }
 
-    public async Task<List<ArticleDataDto>> GetArticleList(bool isPublished, string? searchTerm, Guid? categoryId, HashSet<Guid>? foundArticleIds,
-        IDictionary<string, Expression<Func<ArticleDataDto, object>>> orderByExpressions, CancellationToken cancellationToken = default)
+    public async Task<List<ArticleDataDto>> GetArticleList(bool isPublished, string? searchTerm, Guid? categoryId, HashSet<Guid>? filterById, ArticlePageInfoDto pageInfo)
     {
-        var hasArticleIds = foundArticleIds != null && foundArticleIds.Count != 0;
-        var hasCategoryId = categoryId != null && categoryId != Guid.Empty;
+        var query = @"
+            SELECT 
+                operation.Articles.Id,
+                operation.Articles.Title,
+                operation.Articles.Description,
+                operation.Articles.IsPublished,
+                operation.Articles.ReadCount,
+                operation.Articles.TotalLikes,
+                operation.Articles.CreatedAt,
+                operation.Articles.UpdatedAt,
+                operation.Articles.LanguageIso,
+                COUNT(*) OVER() AS CountOver
+            FROM 
+                operation.Articles 
+            LEFT JOIN 
+                operation.ArticleCategories ON operation.Articles.CategoryId = operation.ArticleCategories.Id
+            WHERE 
+                operation.Articles.IsPublished = 1";
 
-        var articles = _operationDbContext.Articles
-            .AsNoTracking()
-            .Include(article => article.ArticleCategory)
-            .Where(article => article.IsPublished == isPublished)
-            .WhereIf(hasArticleIds, article => foundArticleIds!.Contains(article.Id))
-            .WhereIf(hasCategoryId, article => article.ArticleCategory.Id == categoryId)
-            .Select(article => new ArticleDataDto
-            {
-                Id = article.Id,
-                Title = article.Title,
-                Description = article.Description,
-                IsPublished = article.IsPublished,
-                ReadCount = article.ReadCount,
-                TotalLikes = article.TotalLikes,
-                CreatedAt = article.CreatedAt,
-                UpdatedAt = article.UpdatedAt,
-                LanguageIso = article.LanguageIso
-            });
+        if (categoryId != null && categoryId != Guid.Empty)
+            query += $"\nAND operation.Articles.CategoryId = '{categoryId}'";
 
-        var request = new ArticleListRequestDto
-        {
-            SearchTerm = searchTerm,
-            IsPublished = isPublished,
-            CategoryId = categoryId,
-        };
+        if (filterById != null && filterById.Count != 0)
+            query += $"\nAND operation.Articles.Id IN {filterById.ToArray()}";
 
-        return await articles
-            .ApplyOrdering(request, orderByExpressions)
-            .ApplyPaging(request)
-            .ToListAsync(cancellationToken);
+        query += $"\nORDER BY {pageInfo.OrderByColumn} {pageInfo.OrderByAscending}";
+
+        var skipCount = (pageInfo.PageNumber - 1) * pageInfo.PageSize;
+        query += $"\nOFFSET {skipCount} ROWS FETCH NEXT {pageInfo.PageSize} ROWS ONLY";
+
+        await using var db = new SqlConnection(ConnectionString);
+        var articles = (await db.QueryAsync<ArticleDataDto>(query)).ToList();
+
+        return articles;
     }
 
-    public async Task<List<ArticleCategoryDto>> GetArticleCategories(string userLanguage, CancellationToken cancellationToken = default)
+    public async Task<List<ArticleCategoryDto>> GetArticleCategories(string userLanguage)
     {
-        var categories = await (from articleCategory in _operationDbContext.ArticleCategories
-            join categoryName in _operationDbContext.ArticleCategoryNames
-                on articleCategory.Id equals categoryName.ArticleCategoryId into category
-            from categoryName in category.DefaultIfEmpty()
-            join language in _operationDbContext.Languages
-                on categoryName.LanguageId equals language.Id into languageTable
-            from language in languageTable.DefaultIfEmpty()
-            where language.LangId == userLanguage
-            select new ArticleCategoryDto
-            {
-                Id = articleCategory.Id,
-                CategoryName = categoryName.Name
-            }).ToListAsync(cancellationToken);
+        const string query = @"
+            SELECT 
+                operation.ArticleCategories.Id,
+                operation.ArticleCategoryNames.Name AS CategoryName
+            FROM
+                operation.ArticleCategories
+            LEFT JOIN
+                operation.ArticleCategoryNames ON operation.ArticleCategoryNames.ArticleCategoryId = operation.ArticleCategories.Id
+            LEFT JOIN
+                operation.Languages ON operation.Languages.Id = operation.ArticleCategoryNames.LanguageId
+            WHERE
+                operation.Languages.LangId = @UserLanguage";
 
-        return categories;
+        await using var db = new SqlConnection(ConnectionString);
+        return (await db.QueryAsync<ArticleCategoryDto>(query, new { UserLanguage = userLanguage })).ToList();
     }
 
-    public async Task<HashSet<Guid>?> GetSearchResult(string? searchTerm, CancellationToken cancellationToken = default)
+    public async Task<HashSet<Guid>?> GetSearchResult(string? searchTerm)
     {
         if (string.IsNullOrWhiteSpace(searchTerm))
             return null;
 
-        var searchTitleAndDescription = await _operationDbContext.Articles
-            .AsNoTracking()
-            .Where(articles => articles.Title.Contains(searchTerm) || articles.Description.Contains(searchTerm))
-            .Select(articles => articles.Id)
-            .ToListAsync(cancellationToken);
+        const string query = @"
+            SELECT
+                operation.Articles.Id
+            FROM
+                operation.Articles
+            WHERE
+                operation.Articles.Title LIKE CONCAT('%', @SearchTerm, '%')
+            OR
+                operation.Articles.Description LIKE CONCAT('%', @SearchTerm, '%')
+            UNION ALL
+            SELECT
+                operation.ArticleTags.ArticleId
+            FROM
+                operation.ArticleTags
+            WHERE
+                operation.ArticleTags.TagName LIKE CONCAT('%', @SearchTerm, '%')
+        ";
 
-        var searchTags = await _operationDbContext.ArticleTags
-            .AsNoTracking()
-            .Where(articleTags => articleTags.TagName.Contains(searchTerm))
-            .Select(articleTags => articleTags.ArticleId)
-            .ToListAsync(cancellationToken);
-
-        var articleIds = searchTitleAndDescription.Union(searchTags);
-        return new HashSet<Guid>(articleIds);
+        await using var db = new SqlConnection(ConnectionString);
+        var result = (await db.QueryAsync<Guid>(query, new { SearchTerm = searchTerm })).ToList();
+        return new HashSet<Guid>(result);
     }
 
-    public async Task<List<ArticleDataDto>> RetrieveArticleInfo(string userLanguage, HashSet<Guid> articleIds, CancellationToken cancellationToken = default)
+    public async Task<List<ArticleDataDto>> RetrieveArticleInfo(string userLanguage, HashSet<Guid> articleIds)
     {
-        var articleInfoList = await (
-            from article in _operationDbContext.Articles
-            join table in
-                (from articleCategory in _operationDbContext.ArticleCategories
-                join categoryName in _operationDbContext.ArticleCategoryNames
-                    on articleCategory.Id equals categoryName.ArticleCategoryId
-                join language in _operationDbContext.Languages
-                    on categoryName.LanguageId equals language.Id
-                select new
-                {
-                    categoryName.ArticleCategoryId,
-                    categoryName.Name,
-                    language.LangId
-                }
-                )
-                on article.CategoryId equals table.ArticleCategoryId
-            where table.LangId == userLanguage
-            where articleIds.Contains(article.Id)
-            select new ArticleDataDto
-            {
-                Id = article.Id,
-                CategoryName = table.Name,
-                Title = article.Title,
-                Description = article.Description,
-                IsPublished = article.IsPublished,
-                ReadCount = article.ReadCount,
-                TotalLikes = article.ArticleLikes
-                    .Where(likes => likes.ArticleId == article.Id)
-                    .Select(likes => likes.LikeCount)
-                    .Sum(),
-                CreatedAt = article.CreatedAt,
-                UpdatedAt = article.UpdatedAt,
-                LanguageIso = article.LanguageIso
-            }).ToListAsync(cancellationToken);
+        const string query = @"
+            SELECT
+                operation.Articles.Id,
+                operation.Articles.Title,
+                operation.Articles.Description,
+                operation.Articles.IsPublished,
+                operation.Articles.ReadCount,
+                operation.Articles.TotalLikes,
+                operation.Articles.CreatedAt,
+                operation.Articles.UpdatedAt,
+                operation.Articles.LanguageIso,
+                Categories.Name,
+                Likes.TotalLikes
+            FROM
+                operation.Articles
+            LEFT JOIN (
+                SELECT
+                    operation.ArticleCategoryNames.ArticleCategoryId,
+                    operation.ArticleCategoryNames.Name,
+                    operation.Languages.LangId
+                FROM
+                    operation.ArticleCategories
+                LEFT JOIN
+                    operation.ArticleCategoryNames ON operation.ArticleCategories.Id = operation.ArticleCategoryNames.ArticleCategoryId
+                LEFT JOIN
+                    operation.Languages ON operation.ArticleCategoryNames.LanguageId = operation.Languages.Id
+            ) AS Categories
+            ON 
+                operation.Articles.CategoryId = Categories.ArticleCategoryId
+            LEFT JOIN (
+                SELECT
+                    operation.ArticleLikes.ArticleId,
+                    SUM(LikeCount) AS TotalLikes
+                FROM
+                    operation.ArticleLikes
+                GROUP BY
+                    operation.ArticleLikes.ArticleId
+            ) AS Likes
+            ON
+                operation.Articles.Id = Likes.ArticleId
+            WHERE
+                Categories.LangId = @UserLanguage
+            AND
+                operation.Articles.Id IN @ArticleIds
+        ";
+
+        await using var db = new SqlConnection(ConnectionString);
+        var articleInfoList = (await db.QueryAsync<ArticleDataDto>(query, new
+        {
+            UserLanguage = userLanguage,
+            ArticleIds = articleIds.ToArray()
+        })).ToList();
 
         return articleInfoList;
     }
 
-    public async Task AddArticle(Guid userId, ArticleDataInputDto articleData, DateTime createdAt, CancellationToken cancellationToken = default)
+    public async Task<List<ArticleCount>> GetArticleCount(string ipAddress, Guid articleId)
     {
-        var newArticle = new Article
-        {
-            Title = articleData.Title,
-            Description = articleData.Description,
-            IsPublished = false,
-            ReadCount = 0,
-            CreatedBy = userId,
-            CreatedAt = createdAt,
-            UserId = userId,
-            LanguageIso = articleData.LanguageIso
-        };
-
-        await _operationDbContext.Articles.AddAsync(newArticle, cancellationToken);
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
+        var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
+        return (await _dbOperations.Retrieve<ArticleCount>(filterBy)).ToList();
     }
 
-    public async Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default)
+    public async Task<ArticleLike?> GetArticleLikes(bool isAnonymousUser, Guid userId, Guid articleId, string ipAddress)
     {
-        var articleData = await _operationDbContext.Articles
-            .AsNoTracking()
-            .Where(article => article.UserId == userId)
-            .Where(article => article.Id == requestId)
-            .SingleOrDefaultAsync(cancellationToken);
+        return isAnonymousUser 
+            ? (await _dbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, IpAddress = ipAddress })).SingleOrDefault()
+            : (await _dbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, UserId = userId })).SingleOrDefault();
+    }
 
-        if (articleData is null)
-            return false;
+    public async Task<bool> CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes, DateTime createdAt, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var entity = new ArticleLike
+            {
+                Id =  Guid.NewGuid(),
+                UserId = userId,
+                ArticleId = articleId,
+                IpAddress = ipAddress,
+                LikeCount = likes,
+                CreatedAt = createdAt,
+                CreatedBy = userId,
+                ModifiedAt = null,
+                ModifiedBy = null
+            };
 
-        var articleLike = await _operationDbContext.ArticleLikes
-            .AsNoTracking()
-            .Where(like => like.UserId == userId)
-            .Where(like => like.ArticleId == requestId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        var articleCount = await _operationDbContext.ArticleCounts
-            .AsNoTracking()
-            .Where(count => count.UserId == userId)
-            .Where(count => count.ArticleId == requestId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (articleLike is not null)
-            _operationDbContext.ArticleLikes.Remove(articleLike);
-
-        if (articleCount is not null)
-            _operationDbContext.ArticleCounts.Remove(articleCount);
-
-        _operationDbContext.Articles.Remove(articleData);
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
+            await _dbOperations.Insert(entity, cancellationToken);
+        }
+        catch
+        {
+            return false;    
+        }
 
         return true;
     }
 
-    public async Task<bool> UpdateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
+    public async Task<bool> CreateArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default)
     {
-        var articleData = await _operationDbContext.Articles
-            .Where(article => article.Id == articleId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (articleData is null)
-            return false;
-
-        var articleCount = await _operationDbContext.ArticleCounts
-            .Where(count => count.ArticleId == articleId)
-            .Where(count => count.IpAddress == ipAddress)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (articleCount is null)
+        try
         {
-            var newArticleCount = new ArticleCount
+            var entity = new Article
             {
-                UserId = articleData.UserId,
-                ArticleId = articleData.Id,
-                IpAddress = ipAddress,
-                ReadCount = 1,
-                CreatedAt = updatedAt,
-                CreatedBy = userId
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                Title = data.Title,
+                Description = data.Description,
+                IsPublished = false,
+                ReadCount = 0,
+                CreatedBy = userId,
+                CreatedAt = createdAt,
+                LanguageIso = data.LanguageIso
             };
 
-            await _operationDbContext.ArticleCounts.AddAsync(newArticleCount, cancellationToken);
+            await _dbOperations.Insert(entity, cancellationToken);
         }
-        else
+        catch
         {
-            articleCount.ReadCount += 1;
-            articleCount.ModifiedAt = updatedAt;
-            articleCount.ModifiedBy = userId;
-
-            _operationDbContext.ArticleCounts.Update(articleCount);
+            return false;
         }
 
-        articleData.ReadCount += 1;
-        articleData.ModifiedAt = updatedAt;
-        articleData.ModifiedBy = userId;
+        return true;
+    }
 
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
+    public async Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var articleLikes = new { ArticleId = requestId, UserId =  userId };
+            var articleCounts = new { ArticleId = requestId, UserId =  userId };
+            var articleTags = new { ArticleId = requestId };
+            var articles = new { Id = requestId, UserId =  userId };
+
+            await _dbOperations.Delete<ArticleLike>(articleLikes, cancellationToken);
+            await _dbOperations.Delete<ArticleCount>(articleCounts, cancellationToken);
+            await _dbOperations.Delete<ArticleTag>(articleTags, cancellationToken);
+            await _dbOperations.Delete<Article>(articles, cancellationToken);
+        }
+        catch
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public async Task<bool> CreateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            var entity = new ArticleCount
+            {
+                Id = Guid.NewGuid(),
+                ArticleId = articleId,
+                UserId = userId,
+                IpAddress = ipAddress,
+                ReadCount = 1,
+                CreatedBy = userId,
+                CreatedAt = updatedAt
+            };
+
+            await _dbOperations.Insert(entity, cancellationToken);
+        }
+        catch
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public async Task<bool> UpdateArticleCount(Guid userId, Guid articleId, int count, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
+    {
+        try 
+        {
+            var updateBy = new { ReadCount = count, ModifiedAt = updatedAt, ModifiedBy = userId };
+            var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
+            await _dbOperations.Update<ArticleCount>(updateBy, filterBy, cancellationToken);
+        }
+        catch
+        {
+            return false;
+        }
+
         return true;
     }
 
     public async Task<bool> UpdateArticleVisibility(Guid userId, Guid articleId, DateTime updatedAt, bool isPublished, CancellationToken cancellationToken = default)
     {
-        var articleData = await _operationDbContext.Articles
-            .Where(article => article.UserId == userId)
-            .Where(article => article.Id == articleId)
-            .SingleOrDefaultAsync(cancellationToken);
+        try
+        {
+            var updateBy = new
+            {
+                IsPublished = isPublished,
+                ModifiedAt = updatedAt,
+                ModifiedBy = userId,
+            };
 
-        if (articleData is null)
+            var filterBy = new
+            {
+                ArticleId = articleId,
+                UserId = userId
+            };
+
+            await _dbOperations.Update<Article>(updateBy, filterBy, cancellationToken);
+        }
+        catch
+        {
             return false;
+        }
 
-        articleData.IsPublished = isPublished;
-        articleData.ModifiedAt = updatedAt;
-        articleData.ModifiedBy = userId;
-
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
 
     public async Task<bool> UpdateArticleContent(Guid userId, Guid articleId, DateTime updatedAt, string? title, string? description, string? languageIso,
         CancellationToken cancellationToken = default)
     {
-        var articleData = await _operationDbContext.Articles
-            .Where(article => article.UserId == userId)
-            .Where(article => article.Id == articleId)
-            .SingleOrDefaultAsync(cancellationToken);
+        try
+        {
+            var updateBy = new
+            {
+                Title = title,
+                Description = description,
+                LanguageIso = languageIso,
+                UpdatedAt = updatedAt,
+                ModifiedAt = updatedAt,
+                ModifiedBy = userId
+            };
 
-        if (articleData is null)
-            return false;
+            var filterBy = new
+            {
+                UserId = userId,
+                ArticleId = articleId
+            };
 
-        articleData.Title = title ?? articleData.Title;
-        articleData.Description = description ?? articleData.Description;
-        articleData.LanguageIso = languageIso ?? articleData.LanguageIso;
-        articleData.UpdatedAt = updatedAt;
-        articleData.ModifiedAt = updatedAt;
-        articleData.ModifiedBy = userId;
+            await _dbOperations.Update<Article>(updateBy, filterBy, cancellationToken);
+        }
+        catch
+        {
+            return false;    
+        }
 
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
 
     public async Task<bool> UpdateArticleLikes(Guid userId, Guid articleId, DateTime updatedAt, int addToLikes, bool isAnonymousUser, string ipAddress,
         CancellationToken cancellationToken = default)
     {
-        var articleData = await _operationDbContext.Articles
-            .Where(article => article.Id == articleId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (articleData is null)
-            return false;
-
-        var articleLike = await _operationDbContext.ArticleLikes
-            .Where(like => like.ArticleId == articleId)
-            .WhereIfElse(isAnonymousUser,
-                like => like.IpAddress == ipAddress,
-                like => like.UserId == userId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (articleLike is null)
+        var updateBy = new
         {
-            await AddLikes(userId, articleData, updatedAt, addToLikes, ipAddress, cancellationToken);
-        }
-        else
-        {
-            UpdateLikes(userId, articleData, articleLike, addToLikes, updatedAt);
-        }
-
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
-        return true;
-    }
-
-    private async Task AddLikes(Guid userId, Article article, DateTime updatedAt, int addToLikes, string ipAddress, CancellationToken cancellationToken)
-    {
-        var likesLimit = userId == Guid.Empty ? MaxLikesForAnonymousUser : MaxLikesForLoggedUser;
-        var likes = addToLikes > likesLimit ? likesLimit : addToLikes;
-
-        var entity = new ArticleLike
-        {
-            ArticleId = article.Id,
-            UserId = userId == Guid.Empty ? null : userId,
-            IpAddress = ipAddress,
-            LikeCount = likes,
-            CreatedAt = updatedAt,
-            CreatedBy = userId,
-            ModifiedAt = null,
-            ModifiedBy = null
+            LikeCount = addToLikes,
+            UpdatedAt = updatedAt
         };
 
-        article.TotalLikes += likes;
-        article.ModifiedAt = updatedAt;
-        article.ModifiedBy = userId == Guid.Empty ? null : userId;
-        await _operationDbContext.ArticleLikes.AddAsync(entity, cancellationToken);
-    }
+        try
+        {
+            if (isAnonymousUser)
+            {
+                await _dbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, IpAddress = ipAddress }, cancellationToken);
+            }
+            else
+            {
+                await _dbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, UserId = userId }, cancellationToken);    
+            }
+        }
+        catch
+        {
+            return false;
+        }
 
-    private void UpdateLikes(Guid? userId, Article article, ArticleLike articleLike, int likesToBeAdded, DateTime updatedAt)
-    {
-        var likesLimit = userId == Guid.Empty ? MaxLikesForAnonymousUser : MaxLikesForLoggedUser;
-        var likes = likesToBeAdded > likesLimit ? likesLimit : likesToBeAdded;
-
-        articleLike.LikeCount += likes;
-        articleLike.ModifiedAt = updatedAt;
-        articleLike.ModifiedBy = userId == Guid.Empty ? null : userId;
-
-        article.TotalLikes += likes;
-        article.ModifiedAt = updatedAt;
-        article.ModifiedBy = userId == Guid.Empty ? null : userId;
-        _operationDbContext.ArticleLikes.Update(articleLike);
+        return true;
     }
 }

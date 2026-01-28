@@ -11,18 +11,20 @@ public static class Configuration
     private const string LogTemplate 
         = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
 
-    public static ILogger GetLogger(IConfigurationRoot configuration, string storageFileName)
+    public static ILogger GetLogger(IConfigurationRoot configuration, string storageFileName, bool isProduction)
     {
         var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString");
         var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName");
 
-        return new LoggerConfiguration()
-            .MinimumLevel.Information()
+        var logger = isProduction 
+            ? new LoggerConfiguration().MinimumLevel.Information() 
+            : new LoggerConfiguration().MinimumLevel.Debug();
+
+        return logger
             .Enrich.FromLogContext()
             .WriteTo.Console()
             .WriteTo.AzureBlobStorage(
                 connectionString: connectionString, 
-                restrictedToMinimumLevel: LogEventLevel.Information,
                 storageContainerName: containerName,
                 storageFileName: storageFileName,
                 writeInBatches: true,

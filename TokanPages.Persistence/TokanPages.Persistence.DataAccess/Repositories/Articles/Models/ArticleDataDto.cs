@@ -24,4 +24,6 @@ public class ArticleDataDto
     public DateTime? UpdatedAt { get; set; }
 
     public string? LanguageIso { get; set; }
+
+    public int? CountOver { get; set; }
 }

@@ -44,22 +44,4 @@ public static class StringExtensions
         return templateItemModels.Aggregate(template, (current, item) 
             => current.Replace(item.Key, item.Value));
     }
-
-    public static string ToMediaType(this string contentType)
-    {
-        return contentType switch
-        {
-            ContentTypes.Zip => "archives",
-            ContentTypes.Pdf => "documents",
-            ContentTypes.TextPlain => "documents",
-            ContentTypes.TextCsv => "documents",
-            ContentTypes.TextHtml => "documents",
-            ContentTypes.ImageJpeg => "images",
-            ContentTypes.ImagePng => "images",
-            ContentTypes.ImageSvg => "images",
-            ContentTypes.AudioMpeg => "sounds",
-            ContentTypes.VideoMpeg => "videos",
-            _ => "uncategorized"
-        };
-    }
 }

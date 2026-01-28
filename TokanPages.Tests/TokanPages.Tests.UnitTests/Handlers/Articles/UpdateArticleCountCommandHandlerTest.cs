@@ -1,17 +1,14 @@
 using FluentAssertions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
-using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Services.UserService.Abstractions;
-using TokanPages.Services.UserService.Models;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Articles;
@@ -33,10 +30,18 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
 
+        var articleCounts = new List<ArticleCount>
+        { new() { Id = articleId, ReadCount = 2048 } };
+
+        mockedArticlesRepository
+            .Setup(repository => repository.GetArticleCount(It.IsAny<string>(), It.IsAny<Guid>()))
+            .ReturnsAsync(articleCounts);
+
         mockedArticlesRepository
             .Setup(repository => repository.UpdateArticleCount(
             It.IsAny<Guid>(),
             It.IsAny<Guid>(),
+            It.IsAny<int>(),
             It.IsAny<DateTime>(),
             It.IsAny<string>(),
             It.IsAny<CancellationToken>()))
@@ -82,9 +87,14 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
 
         mockedArticlesRepository
+            .Setup(repository => repository.GetArticleCount(It.IsAny<string>(), It.IsAny<Guid>()))
+            .ReturnsAsync(new List<ArticleCount>());
+
+        mockedArticlesRepository
             .Setup(repository => repository.UpdateArticleCount(
                 It.IsAny<Guid>(),
                 It.IsAny<Guid>(),
+                It.IsAny<int>(),
                 It.IsAny<DateTime>(),
                 It.IsAny<string>(),
                 It.IsAny<CancellationToken>()))

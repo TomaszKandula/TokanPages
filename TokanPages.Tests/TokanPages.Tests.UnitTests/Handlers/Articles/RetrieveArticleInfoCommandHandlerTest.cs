@@ -54,8 +54,7 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
         mockedArticleRepository
             .Setup(repository => repository.RetrieveArticleInfo(
                 It.IsAny<string>(), 
-                It.IsAny<HashSet<Guid>>(), 
-                It.IsAny<CancellationToken>()))
+                It.IsAny<HashSet<Guid>>()))
             .ReturnsAsync(articles);
 
         mockedUserProvider

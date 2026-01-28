@@ -58,7 +58,6 @@ public class RemoveArticleCommandHandlerTest : TestBase
         // Arrange
         var databaseContext = GetTestDatabaseContext();//TODO: to be removed
 
-        var userId = Guid.NewGuid();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();

@@ -45,13 +45,13 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
             requestId = (Guid)request.Id;
 
         if (!string.IsNullOrWhiteSpace(request.Title))
-            requestId = await _articlesRepository.GetArticleIdByTitle(request.Title, cancellationToken);
+            requestId = await _articlesRepository.GetArticleIdByTitle(request.Title);
 
         var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
         var textAsString = await GetArticleTextContent(requestId, cancellationToken);
         var textAsObject = _jsonSerializer.Deserialize<List<ArticleSectionDto>>(textAsString, settings);
 
-        var output = await _articlesRepository.GetArticle(userId, requestId, isAnonymousUser, ipAddress, userLanguage, cancellationToken);
+        var output = await _articlesRepository.GetArticle(userId, requestId, isAnonymousUser, ipAddress, userLanguage);
         if (output is null)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 

@@ -410,5 +410,17 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("CANNOT_FIND_USER_NOTE", resourceCulture);
             }
         }
+        
+        public static string MISSING_PRIMARYKEY {
+            get {
+                return ResourceManager.GetString("MISSING_PRIMARYKEY", resourceCulture);
+            }
+        }
+        
+        public static string MISSING_WHERE_CLAUSE {
+            get {
+                return ResourceManager.GetString("MISSING_WHERE_CLAUSE", resourceCulture);
+            }
+        }
     }
 }

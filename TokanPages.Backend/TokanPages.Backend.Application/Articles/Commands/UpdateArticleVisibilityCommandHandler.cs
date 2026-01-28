@@ -19,6 +19,8 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
 
     private const string Permission = nameof(Domain.Enums.Permission.CanPublishArticles);
 
+    private static BusinessException ArticleException => new(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+
     public UpdateArticleVisibilityCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IUserService userService, IDateTimeService dateTimeService, IArticlesRepository articlesRepository) 
         : base(operationDbContext, loggerService)
@@ -40,6 +42,8 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
         var updatedAt = _dateTimeService.Now;
         var isSuccess = await _articlesRepository.UpdateArticleVisibility(userId, request.Id, updatedAt, request.IsPublished, cancellationToken);
 
-        return !isSuccess ? throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS) : Unit.Value;
+        return !isSuccess 
+            ? throw ArticleException 
+            : Unit.Value;
     }
 }

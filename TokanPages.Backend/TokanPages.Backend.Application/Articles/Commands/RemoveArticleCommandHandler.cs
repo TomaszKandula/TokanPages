@@ -14,6 +14,8 @@ public class RemoveArticleCommandHandler : RequestHandler<RemoveArticleCommand, 
 
     private readonly IArticlesRepository _articlesRepository;
 
+    private static BusinessException ArticleException => new(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+
     public RemoveArticleCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IUserService userService, IArticlesRepository articlesRepository) : base(operationDbContext, loggerService)
     {
@@ -25,6 +27,9 @@ public class RemoveArticleCommandHandler : RequestHandler<RemoveArticleCommand, 
     {
         var userId = _userService.GetLoggedUserId();
         var isSuccess = await _articlesRepository.RemoveArticle(userId, request.Id, cancellationToken);
-        return !isSuccess ? throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS) : Unit.Value;
+
+        return !isSuccess 
+            ? throw ArticleException 
+            : Unit.Value;
     }
 }

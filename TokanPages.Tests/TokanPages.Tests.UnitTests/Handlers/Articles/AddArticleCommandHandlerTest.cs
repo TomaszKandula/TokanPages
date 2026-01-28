@@ -57,13 +57,13 @@ public class AddArticleCommandHandlerTest : TestBase
             .Returns(Guid.NewGuid());
 
         mockedArticlesRepository
-            .Setup(repository => repository.AddArticle(
+            .Setup(repository => repository.CreateArticle(
             It.IsAny<Guid>(),
             It.IsAny<ArticleDataInputDto>(),
             It.IsAny<DateTime>(),
             It.IsAny<CancellationToken>()
             ))
-            .Returns(Task.CompletedTask);
+            .ReturnsAsync(true);
 
         var handler = new AddArticleCommandHandler(
             databaseContext, 

@@ -37,7 +37,7 @@ public class ArticlesController : ApiBaseController
     /// <param name="pageSize">Mandatory number of pages.</param>
     /// <param name="phrase">Optional search phrase.</param>
     /// <param name="categoryId">Optional category ID.</param>
-    /// <param name="orderByColumn">Optional column to be used for sorting (Title, Duration).</param>
+    /// <param name="orderByColumn">Optional column to be used for sorting (default is CreatedAt).</param>
     /// <param name="orderByAscending">Optional sorting (A-Z or Z-A).</param>
     /// <param name="noCache">Enable/disable REDIS cache.</param>
     /// <returns>Object list.</returns>
@@ -49,7 +49,7 @@ public class ArticlesController : ApiBaseController
         [FromQuery] int pageSize,
         [FromQuery] string? phrase = null,
         [FromQuery] Guid? categoryId = null,
-        [FromQuery] string? orderByColumn = "title",
+        [FromQuery] string orderByColumn = "CreatedAt",
         [FromQuery] bool orderByAscending = false,
         [FromQuery] bool isPublished = true, 
         [FromQuery] bool noCache = false)

@@ -1,9 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 
-namespace TokanPages.Backend.Core.Paging;
+namespace TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 [ExcludeFromCodeCoverage]
-public class PagingInfo
+public class ArticlePageInfoDto
 {
     public int PageNumber { get; set; }
 
@@ -11,5 +11,5 @@ public class PagingInfo
 
     public string OrderByColumn { get; set; } = string.Empty;
 
-    public bool OrderByAscending { get; set; }
+    public string OrderByAscending { get; set; } = "ASC";
 }
