@@ -21,9 +21,9 @@ public interface IArticlesRepository
 
     Task<ArticleLike?> GetArticleLikes(bool isAnonymousUser, Guid userId, Guid articleId, string ipAddress);
 
-    Task CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes, DateTime createdAt, CancellationToken cancellationToken = default);
+    Task<bool> CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes, DateTime createdAt, CancellationToken cancellationToken = default);
 
-    Task CreateArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default);
+    Task<bool> CreateArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default);
 
     Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default);
 

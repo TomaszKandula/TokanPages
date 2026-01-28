@@ -293,40 +293,58 @@ public class ArticlesRepository : IArticlesRepository
             : (await _dbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, UserId = userId })).SingleOrDefault();
     }
 
-    public async Task CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes, DateTime createdAt, CancellationToken cancellationToken = default)
+    public async Task<bool> CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes, DateTime createdAt, CancellationToken cancellationToken = default)
     {
-        var entity = new ArticleLike
+        try
         {
-            Id =  Guid.NewGuid(),
-            UserId = userId,
-            ArticleId = articleId,
-            IpAddress = ipAddress,
-            LikeCount = likes,
-            CreatedAt = createdAt,
-            CreatedBy = userId,
-            ModifiedAt = null,
-            ModifiedBy = null
-        };
+            var entity = new ArticleLike
+            {
+                Id =  Guid.NewGuid(),
+                UserId = userId,
+                ArticleId = articleId,
+                IpAddress = ipAddress,
+                LikeCount = likes,
+                CreatedAt = createdAt,
+                CreatedBy = userId,
+                ModifiedAt = null,
+                ModifiedBy = null
+            };
 
-        await _dbOperations.Insert(entity, cancellationToken);
+            await _dbOperations.Insert(entity, cancellationToken);
+        }
+        catch
+        {
+            return false;    
+        }
+
+        return true;
     }
 
-    public async Task CreateArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default)
+    public async Task<bool> CreateArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default)
     {
-        var entity = new Article
+        try
         {
-            Id = Guid.NewGuid(),
-            UserId = userId,
-            Title = data.Title,
-            Description = data.Description,
-            IsPublished = false,
-            ReadCount = 0,
-            CreatedBy = userId,
-            CreatedAt = createdAt,
-            LanguageIso = data.LanguageIso
-        };
+            var entity = new Article
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                Title = data.Title,
+                Description = data.Description,
+                IsPublished = false,
+                ReadCount = 0,
+                CreatedBy = userId,
+                CreatedAt = createdAt,
+                LanguageIso = data.LanguageIso
+            };
 
-        await _dbOperations.Insert(entity, cancellationToken);
+            await _dbOperations.Insert(entity, cancellationToken);
+        }
+        catch
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public async Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default)
