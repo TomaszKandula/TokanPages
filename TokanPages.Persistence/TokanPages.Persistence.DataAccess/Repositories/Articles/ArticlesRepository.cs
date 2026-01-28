@@ -1,10 +1,7 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Domain.Entities.Articles;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Helpers;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
@@ -12,19 +9,14 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Articles;
 
 public class ArticlesRepository : IArticlesRepository
 {
-    private readonly OperationDbContext _operationDbContext;
-
     private readonly IDbOperations _dbOperations;
 
     //TODO: replace IConfiguration with IOption
     private readonly IConfiguration _configuration;
-    private int MaxLikesForAnonymousUser => _configuration.GetValue<int>("Limit_Likes_Anonymous");
-    private int MaxLikesForLoggedUser => _configuration.GetValue<int>("Limit_Likes_User");
     private string ConnectionString => _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
 
-    public ArticlesRepository(OperationDbContext operationDbContext, IConfiguration configuration, IDbOperations dbOperations)
+    public ArticlesRepository(IConfiguration configuration, IDbOperations dbOperations)
     {
-        _operationDbContext = operationDbContext;
         _configuration = configuration;
         _dbOperations = dbOperations;
     }
@@ -294,6 +286,31 @@ public class ArticlesRepository : IArticlesRepository
         return (await _dbOperations.Retrieve<ArticleCount>(filterBy)).ToList();
     }
 
+    public async Task<ArticleLike?> GetArticleLikes(bool isAnonymousUser, Guid userId, Guid articleId, string ipAddress)
+    {
+        return isAnonymousUser 
+            ? (await _dbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, IpAddress = ipAddress })).SingleOrDefault()
+            : (await _dbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, UserId = userId })).SingleOrDefault();
+    }
+
+    public async Task CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes, DateTime createdAt, CancellationToken cancellationToken = default)
+    {
+        var entity = new ArticleLike
+        {
+            Id =  Guid.NewGuid(),
+            UserId = userId,
+            ArticleId = articleId,
+            IpAddress = ipAddress,
+            LikeCount = likes,
+            CreatedAt = createdAt,
+            CreatedBy = userId,
+            ModifiedAt = null,
+            ModifiedBy = null
+        };
+
+        await _dbOperations.Insert(entity, cancellationToken);
+    }
+
     public async Task CreateArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default)
     {
         var entity = new Article
@@ -436,68 +453,28 @@ public class ArticlesRepository : IArticlesRepository
     public async Task<bool> UpdateArticleLikes(Guid userId, Guid articleId, DateTime updatedAt, int addToLikes, bool isAnonymousUser, string ipAddress,
         CancellationToken cancellationToken = default)
     {
-        var articleData = await _operationDbContext.Articles
-            .Where(article => article.Id == articleId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (articleData is null)
-            return false;
-
-        var articleLike = await _operationDbContext.ArticleLikes
-            .Where(like => like.ArticleId == articleId)
-            .WhereIfElse(isAnonymousUser,
-                like => like.IpAddress == ipAddress,
-                like => like.UserId == userId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (articleLike is null)
+        var updateBy = new
         {
-            await AddLikes(userId, articleData, updatedAt, addToLikes, ipAddress, cancellationToken);
-        }
-        else
-        {
-            UpdateLikes(userId, articleData, articleLike, addToLikes, updatedAt);
-        }
-
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
-        return true;
-    }
-
-    private async Task AddLikes(Guid userId, Article article, DateTime updatedAt, int addToLikes, string ipAddress, CancellationToken cancellationToken)
-    {
-        var likesLimit = userId == Guid.Empty ? MaxLikesForAnonymousUser : MaxLikesForLoggedUser;
-        var likes = addToLikes > likesLimit ? likesLimit : addToLikes;
-
-        var entity = new ArticleLike
-        {
-            ArticleId = article.Id,
-            UserId = userId == Guid.Empty ? null : userId,
-            IpAddress = ipAddress,
-            LikeCount = likes,
-            CreatedAt = updatedAt,
-            CreatedBy = userId,
-            ModifiedAt = null,
-            ModifiedBy = null
+            LikeCount = addToLikes,
+            UpdatedAt = updatedAt
         };
 
-        article.TotalLikes += likes;
-        article.ModifiedAt = updatedAt;
-        article.ModifiedBy = userId == Guid.Empty ? null : userId;
-        await _operationDbContext.ArticleLikes.AddAsync(entity, cancellationToken);
-    }
+        try
+        {
+            if (isAnonymousUser)
+            {
+                await _dbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, IpAddress = ipAddress }, cancellationToken);
+            }
+            else
+            {
+                await _dbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, UserId = userId }, cancellationToken);    
+            }
+        }
+        catch
+        {
+            return false;
+        }
 
-    private void UpdateLikes(Guid? userId, Article article, ArticleLike articleLike, int likesToBeAdded, DateTime updatedAt)
-    {
-        var likesLimit = userId == Guid.Empty ? MaxLikesForAnonymousUser : MaxLikesForLoggedUser;
-        var likes = likesToBeAdded > likesLimit ? likesLimit : likesToBeAdded;
-
-        articleLike.LikeCount += likes;
-        articleLike.ModifiedAt = updatedAt;
-        articleLike.ModifiedBy = userId == Guid.Empty ? null : userId;
-
-        article.TotalLikes += likes;
-        article.ModifiedAt = updatedAt;
-        article.ModifiedBy = userId == Guid.Empty ? null : userId;
-        _operationDbContext.ArticleLikes.Update(articleLike);
+        return true;
     }
 }
