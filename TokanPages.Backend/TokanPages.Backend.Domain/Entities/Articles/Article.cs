@@ -11,8 +11,6 @@ public class Article : Entity<Guid>, IAuditable
     public string Title { get; set; }
     public string Description { get; set; }
     public bool IsPublished { get; set; }
-    public int ReadCount { get; set; }
-    public int TotalLikes { get; set; }
     public Guid CreatedBy { get; set; }
     public DateTime CreatedAt { get; set; }
     public Guid? ModifiedBy { get; set; }
