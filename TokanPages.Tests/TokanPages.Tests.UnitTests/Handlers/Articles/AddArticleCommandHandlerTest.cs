@@ -63,7 +63,7 @@ public class AddArticleCommandHandlerTest : TestBase
             It.IsAny<DateTime>(),
             It.IsAny<CancellationToken>()
             ))
-            .Returns(Task.CompletedTask);
+            .ReturnsAsync(true);
 
         var handler = new AddArticleCommandHandler(
             databaseContext, 
