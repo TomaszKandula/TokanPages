@@ -114,6 +114,7 @@ public class GetArticleQueryHandlerTest : TestBase
             UpdatedAt = testDate,
             LanguageIso = "ENG",
             UserLikes = 1100,
+            TotalLikes = 25,
             Author = new GetUserDto
             {
                 UserId = users.Id,
