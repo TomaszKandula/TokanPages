@@ -144,7 +144,6 @@ public class RemoveUserCommandHandlerTest : TestBase
             Title = DataUtilityService.GetRandomString(),
             Description = DataUtilityService.GetRandomString(),
             IsPublished = true,
-            ReadCount = DataUtilityService.GetRandomInteger(),
             CreatedAt = DataUtilityService.GetRandomDateTime(),
             UpdatedAt = null,
             LanguageIso = "ENG"

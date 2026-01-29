@@ -58,6 +58,11 @@
     <ItemGroup>
         <PostDeploy Include="Scripts\PostDeployment.sql" />
     </ItemGroup>
+    <!-- SCRIPTS -->
+    <ItemGroup>
+        <None Include="Scripts\CreateDatabase.sql" />
+        <None Include="Scripts\CreateUser.sql" />
+    </ItemGroup>
     <!-- OPERATION -->
     <ItemGroup>
         <!-- SCHEMA -->
@@ -175,5 +180,16 @@
         <Build Include="Soccer\Tables\Matches.sql" />
         <Build Include="Soccer\Tables\Lineups.sql" />
         <Build Include="Soccer\Tables\Views.sql" />
+        <!-- INDEXES -->
+        <Build Include="Soccer\Indexes\FeedImages.sql" />
+        <Build Include="Soccer\Indexes\Feeds.sql" />
+        <Build Include="Soccer\Indexes\FieldImages.sql" />
+        <Build Include="Soccer\Indexes\Lineups.sql" />
+        <Build Include="Soccer\Indexes\Matches.sql" />
+        <Build Include="Soccer\Indexes\PlayerAttributes.sql" />
+        <Build Include="Soccer\Indexes\Players.sql" />
+        <Build Include="Soccer\Indexes\TeamInfo.sql" />
+        <Build Include="Soccer\Indexes\Teams.sql" />
+        <Build Include="Soccer\Indexes\Views.sql" />
     </ItemGroup>
 </Project>

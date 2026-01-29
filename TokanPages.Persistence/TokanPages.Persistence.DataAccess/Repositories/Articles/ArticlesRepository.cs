@@ -39,9 +39,9 @@ public class ArticlesRepository : IArticlesRepository
                 operation.Articles.IsPublished,
                 operation.Articles.CreatedAt,
                 operation.Articles.UpdatedAt,
-                operation.Articles.ReadCount,
                 operation.Articles.LanguageIso,
-                operation.ArticleCategoryNames.Name AS CategoryName
+                operation.ArticleCategoryNames.Name AS CategoryName,
+                Counts.ReadCount
             FROM
                 operation.Articles
             LEFT JOIN
@@ -50,6 +50,17 @@ public class ArticlesRepository : IArticlesRepository
                 operation.ArticleCategoryNames ON operation.ArticleCategories.Id = operation.ArticleCategoryNames.ArticleCategoryId
             LEFT JOIN
                 operation.Languages ON operation.ArticleCategoryNames.LanguageId = operation.Languages.Id
+            LEFT JOIN (
+                SELECT
+                    operation.ArticleCounts.ArticleId,
+                    SUM(ReadCount) AS ReadCount
+                FROM
+                    operation.ArticleCounts
+                GROUP BY
+                    operation.ArticleCounts.ArticleId
+            ) AS Counts
+            ON
+                operation.Articles.Id = Counts.ArticleId
             WHERE
                 operation.Languages.LangId = @LanguageId
             AND
@@ -145,16 +156,38 @@ public class ArticlesRepository : IArticlesRepository
                 operation.Articles.Title,
                 operation.Articles.Description,
                 operation.Articles.IsPublished,
-                operation.Articles.ReadCount,
-                operation.Articles.TotalLikes,
                 operation.Articles.CreatedAt,
                 operation.Articles.UpdatedAt,
                 operation.Articles.LanguageIso,
+                Likes.TotalLikes,
+                Counts.ReadCount,
                 COUNT(*) OVER() AS CountOver
             FROM 
                 operation.Articles 
             LEFT JOIN 
                 operation.ArticleCategories ON operation.Articles.CategoryId = operation.ArticleCategories.Id
+            LEFT JOIN (
+                SELECT
+                    operation.ArticleLikes.ArticleId,
+                    SUM(LikeCount) AS TotalLikes
+                FROM
+                    operation.ArticleLikes
+                GROUP BY
+                    operation.ArticleLikes.ArticleId
+            ) AS Likes
+            ON
+                operation.Articles.Id = Likes.ArticleId
+            LEFT JOIN (
+                SELECT
+                    operation.ArticleCounts.ArticleId,
+                    SUM(ReadCount) AS ReadCount
+                FROM
+                    operation.ArticleCounts
+                GROUP BY
+                    operation.ArticleCounts.ArticleId
+            ) AS Counts
+            ON
+                operation.Articles.Id = Counts.ArticleId
             WHERE 
                 operation.Articles.IsPublished = 1";
 
@@ -230,13 +263,12 @@ public class ArticlesRepository : IArticlesRepository
                 operation.Articles.Title,
                 operation.Articles.Description,
                 operation.Articles.IsPublished,
-                operation.Articles.ReadCount,
-                operation.Articles.TotalLikes,
                 operation.Articles.CreatedAt,
                 operation.Articles.UpdatedAt,
                 operation.Articles.LanguageIso,
                 Categories.Name,
-                Likes.TotalLikes
+                Likes.TotalLikes,
+                Counts.ReadCount
             FROM
                 operation.Articles
             LEFT JOIN (
@@ -264,6 +296,17 @@ public class ArticlesRepository : IArticlesRepository
             ) AS Likes
             ON
                 operation.Articles.Id = Likes.ArticleId
+            LEFT JOIN (
+                SELECT
+                    operation.ArticleCounts.ArticleId,
+                    SUM(ReadCount) AS ReadCount
+                FROM
+                    operation.ArticleCounts
+                GROUP BY
+                    operation.ArticleCounts.ArticleId
+            ) AS Counts
+            ON
+                operation.Articles.Id = Counts.ArticleId
             WHERE
                 Categories.LangId = @UserLanguage
             AND
@@ -331,7 +374,6 @@ public class ArticlesRepository : IArticlesRepository
                 Title = data.Title,
                 Description = data.Description,
                 IsPublished = false,
-                ReadCount = 0,
                 CreatedBy = userId,
                 CreatedAt = createdAt,
                 LanguageIso = data.LanguageIso
