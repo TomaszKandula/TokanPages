@@ -13,6 +13,7 @@ using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using Newtonsoft.Json;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.HostedServices.CronJobs;
 using TokanPages.HostedServices.CronJobs.Abstractions;
 using TokanPages.HostedServices.Models;
@@ -50,17 +51,16 @@ public static class Dependencies
     /// <param name="configuration">Application configuration.</param>
     public static void RegisterCommonServices(this IServiceCollection services, IConfiguration configuration)
     {
-        SetupLogger(services);
-        SetupServices(services, configuration);
+        services.SetupServices(configuration);
+        services.Configure<AppSettings>(configuration.GetSection(AppSettings.SectionName));
     }
 
-    private static void SetupLogger(IServiceCollection services) 
-        => services.AddSingleton<ILoggerService, LoggerService>();
-
-    private static void SetupServices(IServiceCollection services, IConfiguration configuration) 
+    private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 
 	{
 		services.AddHttpContextAccessor();
-		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
+
+        services.AddSingleton<ILoggerService, LoggerService>();
+        services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
 
         services.AddSingleton<IJsonSerializer, JsonSerializer>();
 		services.AddSingleton<IDateTimeService, DateTimeService>();
