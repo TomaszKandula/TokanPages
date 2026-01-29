@@ -1,12 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Serilog;
-using Serilog.Events;
 
-namespace TokanPages.Backend.Configuration.Logger;
+namespace TokanPages.Backend.Configuration;
 
 [ExcludeFromCodeCoverage]
-public static class Configuration
+public static class SeriLogSupport
 {
     private const string LogTemplate 
         = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";

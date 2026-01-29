@@ -1,6 +1,6 @@
-using Logger = TokanPages.Backend.Configuration.Logger;
 using System.Diagnostics.CodeAnalysis;
 using Serilog;
+using TokanPages.Backend.Configuration;
 
 namespace TokanPages.Gateway;
 
@@ -25,7 +25,7 @@ public static class Program
             var isProduction = EnvironmentValue == "Production";
             const string fileName = @"logs/TokanPages.Gateway/{yyyy}{MM}{dd}.txt";
 
-            Log.Logger = Logger.Configuration.GetLogger(configuration, fileName, isProduction);
+            Log.Logger = SeriLogSupport.GetLogger(configuration, fileName, isProduction);
             Log.Information("Starting WebHost... Environment: {Environment}", EnvironmentValue);
 
             CreateHostBuilder(configuration)
