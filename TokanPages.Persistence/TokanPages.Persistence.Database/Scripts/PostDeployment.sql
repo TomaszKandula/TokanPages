@@ -1,1 +1,5 @@
---TODO
+USE MASTER
+GO
+
+ALTER DATABASE [tokanpages-dev] SET READ_WRITE 
+GO
