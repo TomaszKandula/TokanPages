@@ -124,7 +124,7 @@ public class EmailSenderService : IEmailSenderService
         };
 
         var payload = new ContentString { Payload = content };
-        var configuration = new Configuration 
+        var configuration = new HttpClientSettings 
         { 
             Url = _configuration.GetValue<string>("Email_BaseUrl") ?? "", 
             Method = "POST", 
@@ -158,7 +158,7 @@ public class EmailSenderService : IEmailSenderService
     
     public async Task<string> GetEmailTemplate(string templateUrl, CancellationToken cancellationToken = default)
     {
-        var httpConfiguration = new Configuration { Url = templateUrl, Method = "GET" };
+        var httpConfiguration = new HttpClientSettings { Url = templateUrl, Method = "GET" };
         var client = _httpClientServiceFactory.Create(true, _loggerService);
         var result = await client.Execute(httpConfiguration, cancellationToken);
 

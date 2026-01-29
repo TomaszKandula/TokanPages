@@ -22,7 +22,7 @@ public class GetVideoAssetQueryHandler : RangeRequestHandler<GetVideoAssetQuery,
 
         var range = HttpContextAccessor.HttpContext?.Request.Headers.Range;
         var response = HttpContextAccessor.HttpContext!.Response;
-        var configuration = new Configuration { Url = url, Method = "GET", Range = range };
+        var configuration = new HttpClientSettings { Url = url, Method = "GET", Range = range };
 
         var client = ClientServiceFactory.Create(false, LoggerService);
         await client.ProxyRequest(configuration, response, cancellationToken);

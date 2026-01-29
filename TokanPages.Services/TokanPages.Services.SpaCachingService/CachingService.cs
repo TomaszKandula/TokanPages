@@ -246,7 +246,7 @@ public class CachingService : ICachingService
 
     private async Task<byte[]?> GetFileFromUrl(string url)
     {
-        var configuration = new Configuration { Url = url, Method = "GET" };
+        var configuration = new HttpClientSettings { Url = url, Method = "GET" };
         var client = _httpClientServiceFactory.Create(true, _loggerService);
         var result = await client.Execute(configuration);
         return result.Content;
@@ -254,7 +254,7 @@ public class CachingService : ICachingService
 
     private async Task UploadFile(byte[] fileData, string fileName, string requestUrl)
     {
-        var configuration = new Configuration 
+        var configuration = new HttpClientSettings 
         { 
             Url = requestUrl, 
             Method = "POST",

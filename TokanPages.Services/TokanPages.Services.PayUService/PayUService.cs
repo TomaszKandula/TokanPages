@@ -43,7 +43,7 @@ public class PayUService : IPayUService
         };
 
         var content = new ContentDictionary { Payload = payload };
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = authorizeUrl,
             Method = "POST",
@@ -65,7 +65,7 @@ public class PayUService : IPayUService
             Token = authorization.AccessToken ?? string.Empty
         };
 
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = payMethodsUrl,
             Authentication = authentication,
@@ -87,7 +87,7 @@ public class PayUService : IPayUService
             Token = authorization.AccessToken ?? string.Empty
         };
 
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = orderUrl,
             Authentication = authentication,
@@ -109,7 +109,7 @@ public class PayUService : IPayUService
             Token = authorization.AccessToken ?? string.Empty
         };
 
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = orderUrl,
             Authentication = authentication,
@@ -124,7 +124,7 @@ public class PayUService : IPayUService
     {
         var baseUrl = _configuration.GetValue<string>("Pmt_BaseUrl");
         var orderUrl = $"{baseUrl}{_configuration.GetValue<string>("Pmt_Address_Tokens")}";
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = orderUrl,
             Method = "POST",
@@ -142,7 +142,7 @@ public class PayUService : IPayUService
         var content = output.Content;
         var authentication = output.Authentication;
 
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = orderUrl ?? string.Empty,
             Authentication = authentication,
@@ -161,7 +161,7 @@ public class PayUService : IPayUService
         var content = output.Content;
         var authentication = output.Authentication;
 
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = orderUrl ?? string.Empty,
             Authentication = authentication,

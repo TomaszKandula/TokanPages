@@ -58,7 +58,7 @@ public class MetricsService : IMetricsService
             Password = string.Empty
         };
 
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = url, 
             Method = "GET",
@@ -72,7 +72,7 @@ public class MetricsService : IMetricsService
 
     private async Task<FileContentResult> GetProjectBadge(string requestUrl)
     {
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = requestUrl, 
             Method = "GET"
