@@ -1,6 +1,7 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Persistence.DataAccess.Helpers;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
@@ -11,13 +12,11 @@ public class ArticlesRepository : IArticlesRepository
 {
     private readonly IDbOperations _dbOperations;
 
-    //TODO: replace IConfiguration with IOption
-    private readonly IConfiguration _configuration;
-    private string ConnectionString => _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
+    private readonly AppSettings _appSettings;
 
-    public ArticlesRepository(IConfiguration configuration, IDbOperations dbOperations)
+    public ArticlesRepository(IOptions<AppSettings> appSettings, IDbOperations dbOperations)
     {
-        _configuration = configuration;
+        _appSettings = appSettings.Value;
         _dbOperations = dbOperations;
     }
 
@@ -67,7 +66,7 @@ public class ArticlesRepository : IArticlesRepository
                 operation.Articles.Id = @RequestId
         ";
 
-        await using var db = new SqlConnection(ConnectionString);
+        await using var db = new SqlConnection(_appSettings.DbDatabaseContext);
         var queryArticleDataParams = new { RequestId = requestId, LanguageId = userLanguage };
         var articleData = await db.QuerySingleOrDefaultAsync<ArticleBaseDto>(queryArticleData, queryArticleDataParams);
         if (articleData is null)
@@ -202,7 +201,7 @@ public class ArticlesRepository : IArticlesRepository
         var skipCount = (pageInfo.PageNumber - 1) * pageInfo.PageSize;
         query += $"\nOFFSET {skipCount} ROWS FETCH NEXT {pageInfo.PageSize} ROWS ONLY";
 
-        await using var db = new SqlConnection(ConnectionString);
+        await using var db = new SqlConnection(_appSettings.DbDatabaseContext);
         var articles = (await db.QueryAsync<ArticleDataDto>(query)).ToList();
 
         return articles;
@@ -223,7 +222,7 @@ public class ArticlesRepository : IArticlesRepository
             WHERE
                 operation.Languages.LangId = @UserLanguage";
 
-        await using var db = new SqlConnection(ConnectionString);
+        await using var db = new SqlConnection(_appSettings.DbDatabaseContext);
         return (await db.QueryAsync<ArticleCategoryDto>(query, new { UserLanguage = userLanguage })).ToList();
     }
 
@@ -250,7 +249,7 @@ public class ArticlesRepository : IArticlesRepository
                 operation.ArticleTags.TagName LIKE CONCAT('%', @SearchTerm, '%')
         ";
 
-        await using var db = new SqlConnection(ConnectionString);
+        await using var db = new SqlConnection(_appSettings.DbDatabaseContext);
         var result = (await db.QueryAsync<Guid>(query, new { SearchTerm = searchTerm })).ToList();
         return new HashSet<Guid>(result);
     }
@@ -313,7 +312,7 @@ public class ArticlesRepository : IArticlesRepository
                 operation.Articles.Id IN @ArticleIds
         ";
 
-        await using var db = new SqlConnection(ConnectionString);
+        await using var db = new SqlConnection(_appSettings.DbDatabaseContext);
         var articleInfoList = (await db.QueryAsync<ArticleDataDto>(query, new
         {
             UserLanguage = userLanguage,
