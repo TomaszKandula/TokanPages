@@ -58,6 +58,11 @@
     <ItemGroup>
         <PostDeploy Include="Scripts\PostDeployment.sql" />
     </ItemGroup>
+    <!-- SCRIPTS -->
+    <ItemGroup>
+        <None Include="Scripts\CreateDatabase.sql" />
+        <None Include="Scripts\CreateUser.sql" />
+    </ItemGroup>
     <!-- OPERATION -->
     <ItemGroup>
         <!-- SCHEMA -->
