@@ -77,10 +77,11 @@ public static class Dependencies
 		services.AddScoped<IArticlesCache, ArticlesCache>();
 		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
 
+        var settings = BoundAppSettings.GetSettings(configuration);
 		services.AddSingleton<IAzureBlobStorageFactory>(_ =>
 		{
-			var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName") ?? "";
-			var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "";
+			var containerName = settings.AzStorageContainerName;
+			var connectionString = settings.AzStorageConnectionString;
 			return new AzureBlobStorageFactory(connectionString, containerName);
 		});
 	}
