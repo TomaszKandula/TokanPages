@@ -2,7 +2,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
@@ -19,18 +20,18 @@ public class MetricsService : IMetricsService
 
     private readonly ILoggerService _loggerService;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
-    public MetricsService(IHttpClientServiceFactory httpClientServiceFactory, ILoggerService loggerService, IConfiguration configuration)
+    public MetricsService(IHttpClientServiceFactory httpClientServiceFactory, ILoggerService loggerService, IOptions<AppSettings> options)
     {
         _httpClientServiceFactory = httpClientServiceFactory;
         _loggerService = loggerService;
-        _configuration = configuration;
+        _appSettings = options.Value;
     }
 
     public async Task<IActionResult> GetMetrics(string project, string metric)
     {
-        var server = _configuration.GetValue<string>("SonarQube_Server");
+        var server = _appSettings.SonarQubeServer;
         var token = await GetProjectToken(project);
         var requestUrl = $"{server}/api/project_badges/measure?project={project}&metric={metric}&token={token}";
 
@@ -39,7 +40,7 @@ public class MetricsService : IMetricsService
 
     public async Task<IActionResult> GetQualityGate(string project)
     {
-        var server = _configuration.GetValue<string>("SonarQube_Server");
+        var server = _appSettings.SonarQubeServer;
         var token = await GetProjectToken(project);
         var requestUrl = $"{server}/api/project_badges/quality_gate?project={project}&token={token}";
 
@@ -48,13 +49,13 @@ public class MetricsService : IMetricsService
 
     private async Task<string> GetProjectToken(string projectName)
     {
-        var server = _configuration.GetValue<string>("SonarQube_Server");
-        var token = _configuration.GetValue<string>("SonarQube_Token");
+        var server = _appSettings.SonarQubeServer;
+        var token = _appSettings.SonarQubeToken;
         var url = $"{server}/api/project_badges/token?project={projectName}";
 
         var authentication = new BasicAuthentication
         {
-            Login = token ?? "",
+            Login = token,
             Password = string.Empty
         };
 
