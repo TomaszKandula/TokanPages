@@ -75,6 +75,7 @@ public abstract class TestBase
             PathsNewsletterRemove = DataUtilityService.GetRandomString(),
             LimitLikesAnonymous = 25,
             LimitLikesUser = 50,
+            UserNoteMaxCount = 10
         };
 
         mockedOptions.Setup(options => options.Value).Returns(apsSettings);
