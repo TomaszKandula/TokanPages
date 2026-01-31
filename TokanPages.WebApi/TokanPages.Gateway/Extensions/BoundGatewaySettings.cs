@@ -1,6 +1,6 @@
 using TokanPages.Gateway.Models;
 
-namespace TokanPages.Gateway.Helpers;
+namespace TokanPages.Gateway.Extensions;
 
 /// <summary>
 /// Bound gateway settings.
@@ -12,7 +12,7 @@ public static class BoundGatewaySettings
     /// </summary>
     /// <param name="configuration">IConfiguration instance.</param>
     /// <returns>Mapped gateways settings</returns>
-    public static GatewaySettings GetSettings(IConfiguration configuration)
+    public static GatewaySettings GetGatewaySettings(this IConfiguration configuration)
     {
         var settings = new GatewaySettings();
         configuration.Bind(GatewaySettings.SectionName, settings);
