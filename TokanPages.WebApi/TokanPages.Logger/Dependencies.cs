@@ -66,10 +66,11 @@ public static class Dependencies
         services.AddScoped<IDateTimeService, DateTimeService>();
         services.AddScoped<IDataUtilityService, DataUtilityService>();
 
+        var settings = BoundAppSettings.GetSettings(configuration);
         services.AddSingleton<IAzureBlobStorageFactory>(_ =>
         {
-            var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName") ?? "";
-            var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "";
+            var containerName = settings.AzStorageContainerName;
+            var connectionString = settings.AzStorageConnectionString;
             return new AzureBlobStorageFactory(connectionString, containerName);
         });
     }
