@@ -37,7 +37,7 @@ public class DbOperations : IDbOperations
         try
         {
             watch.Start();
-            var result = await connection.QueryAsync<T>(sql);
+            var result = await connection.QueryAsync<T>(sql, filterBy);
             watch.Stop();
 
             if (_environment.IsProduction())
