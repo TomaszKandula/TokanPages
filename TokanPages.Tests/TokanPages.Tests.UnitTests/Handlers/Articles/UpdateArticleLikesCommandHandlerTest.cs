@@ -30,7 +30,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
-        var mockedConfiguration = SetConfiguration();
+        var mockedConfiguration = GetMockSettings();
 
         mockedUserService
             .Setup(service => service.GetLoggedUserId())
@@ -96,7 +96,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
-        var mockedConfiguration = SetConfiguration();
+        var mockedConfiguration = GetMockSettings();
 
         mockedUserService
             .Setup(service => service.GetLoggedUserId())
