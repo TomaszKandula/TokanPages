@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
@@ -16,11 +17,13 @@ namespace TokanPages.Backend.Configuration;
 public static class WebTokenSupport
 {
 	public static void SetupWebToken(this IServiceCollection services, IConfiguration configuration)
-	{ 
-		var issuer = configuration.GetValue<string>("Ids_Issuer");
-		var audience = configuration.GetValue<string>("Ids_Audience");
-		var webSecret = configuration.GetValue<string>("Ids_WebSecret") ?? "";
-		var requireHttps = configuration.GetValue<bool>("Ids_RequireHttps");
+    {
+        var settings = BoundAppSettings.GetSettings(configuration);
+
+        var issuer = settings.IdsIssuer;
+		var audience = settings.IdsAudience;
+		var webSecret = settings.IdsWebSecret;
+		var requireHttps = settings.IdsRequireHttps;
 
 		services.AddAuthentication(options =>
 		{
