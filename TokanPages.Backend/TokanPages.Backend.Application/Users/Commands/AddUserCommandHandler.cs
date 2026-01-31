@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using TokanPages.Backend.Application.Users.Models;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -25,20 +26,20 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private readonly IEmailSenderService _emailSenderService;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
     private readonly IUserService _userService;
 
     public AddUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IDateTimeService dateTimeService,
-        ICipheringService cipheringService, IEmailSenderService emailSenderService, IConfiguration configuration, 
+        ICipheringService cipheringService, IEmailSenderService emailSenderService, IOptions<AppSettings> options, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) : base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _cipheringService = cipheringService;
         _emailSenderService = emailSenderService;
-        _configuration = configuration;
+        _appSettings = options.Value;
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;
     }
@@ -58,7 +59,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var getHashedPassword = _cipheringService.GetHashedPassword(request.Password, getNewSalt);
         LoggerService.LogInformation($"New hashed password has been generated. Requested by: {request.EmailAddress}.");
 
-        var expiresIn = _configuration.GetValue<int>("Limit_Activation_Maturity");
+        var expiresIn = _appSettings.LimitActivationMaturity;
         var activationId = Guid.NewGuid();
         var activationIdEnds = _dateTimeService.Now.AddMinutes(expiresIn);
 
@@ -171,7 +172,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private async Task SetupDefaultPermissionsUncommitted(Guid userId, Guid? adminUserId, CancellationToken cancellationToken)
     {
-        var userRoleName = Domain.Enums.Role.EverydayUser.ToString();
+        var userRoleName = nameof(Domain.Enums.Role.EverydayUser);
         var defaultPermissions = await OperationDbContext.DefaultPermissions
             .AsNoTracking()
             .Include(permissions => permissions.Role)
