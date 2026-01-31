@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Net.Http.Headers;
+using TokanPages.Backend.Configuration.Options;
 
 namespace TokanPages.Backend.Configuration;
 
@@ -18,8 +19,9 @@ public static class CorsPolicy
     /// <param name="configuration">Provided configuration.</param>
     public static void ApplyCorsPolicy(this IApplicationBuilder builder, IConfiguration configuration)
     {
-        var deploymentOrigin = configuration.GetValue<string>("Paths_DevelopmentOrigin");
-        var developmentOrigin = configuration.GetValue<string>("Paths_DeploymentOrigin");
+        var settings = BoundAppSettings.GetSettings(configuration);
+        var deploymentOrigin = settings.PathsDevelopmentOrigin;
+        var developmentOrigin = settings.PathsDeploymentOrigin;
         var origins = $"{deploymentOrigin};{developmentOrigin}".Split(";");
 
         builder.UseCors(policyBuilder =>
