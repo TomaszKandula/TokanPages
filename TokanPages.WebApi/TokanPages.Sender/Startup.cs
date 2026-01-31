@@ -8,6 +8,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Serilog;
 using TokanPages.Backend.Configuration;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Exceptions.Middleware;
 
@@ -67,18 +68,15 @@ public class Startup
         services.SetupSwaggerOptions(_environment, ApiName, DocVersion, XmlDocs);
         services.SetupDockerInternalNetwork();
 
-        var emailHealthUrl = _configuration.GetValue<string>("Email_HealthUrl") ?? "";
-        var sqlServer = _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
-        var azureStorage = _configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "";
-        var azureStorageContainer = _configuration.GetValue<string>("AZ_Storage_ContainerName") ?? "";
+        var settings = BoundAppSettings.GetSettings(_configuration);
         services
             .AddHealthChecks()
-            .AddUrlGroup(new Uri(emailHealthUrl), name: "EmailService")
-            .AddSqlServer(sqlServer, name: "SQLServer")
+            .AddUrlGroup(new Uri(settings.EmailHealthUrl), name: "EmailService")
+            .AddSqlServer(settings.DbDatabaseContext, name: "SQLServer")
             .AddAzureBlobStorage(
                 name: "AzureStorage",
-                clientFactory: _ => new BlobServiceClient(azureStorage),
-                optionsFactory: _ => new AzureBlobStorageHealthCheckOptions { ContainerName = azureStorageContainer });
+                clientFactory: _ => new BlobServiceClient(settings.AzStorageConnectionString),
+                optionsFactory: _ => new AzureBlobStorageHealthCheckOptions { ContainerName = settings.AzStorageContainerName });
     }
 
     /// <summary>
