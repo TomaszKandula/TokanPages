@@ -65,7 +65,7 @@ public static class Dependencies
 
 	private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 
 	{
-		services.AddHttpContextAccessor();
+        services.AddHttpContextAccessor();
 
         services.AddSingleton<ILoggerService, LoggerService>();
 		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
@@ -82,16 +82,17 @@ public static class Dependencies
 		services.AddScoped<INewslettersCache, NewslettersCache>();
 		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
 
+        var settings = BoundAppSettings.GetSettings(configuration);
 		services.AddSingleton<IAzureBusFactory>(_ =>
 		{
-			var connectionString = configuration.GetValue<string>("AZ_Bus_ConnectionString") ?? "";
+			var connectionString = settings.AzBusConnectionString;
 			return new AzureBusFactory(connectionString);
 		});
 
 		services.AddSingleton<IAzureBlobStorageFactory>(_ =>
 		{
-			var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName") ?? "";
-			var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "";
+			var containerName = settings.AzStorageContainerName;
+			var connectionString = settings.AzStorageConnectionString;
 			return new AzureBlobStorageFactory(connectionString, containerName);
 		});
 	}
