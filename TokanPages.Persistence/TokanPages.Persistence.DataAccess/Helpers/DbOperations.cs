@@ -1,8 +1,9 @@
 using System.Diagnostics;
 using Dapper;
 using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
@@ -17,21 +18,19 @@ public class DbOperations : IDbOperations
 
     private readonly IHostEnvironment  _environment;
 
-    private readonly IConfiguration _configuration;//TODO: replace w/IOption
+    private readonly AppSettings _appSettings;
 
-    private string ConnectionString => _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
-
-    public DbOperations(ILoggerService loggerService, IConfiguration configuration, ISqlGenerator sqlGenerator, IHostEnvironment environment)
+    public DbOperations(ILoggerService loggerService, IOptions<AppSettings> options, ISqlGenerator sqlGenerator, IHostEnvironment environment)
     {
         _loggerService = loggerService;
-        _configuration = configuration;
+        _appSettings = options.Value;
         _sqlGenerator = sqlGenerator;
         _environment = environment;
     }
 
     public async Task<IEnumerable<T>> Retrieve<T>(object filterBy)
     {
-        await using var connection = new SqlConnection(ConnectionString);
+        await using var connection = new SqlConnection(_appSettings.DbDatabaseContext);
         var sql = _sqlGenerator.GenerateQueryStatement<T>(filterBy);
         var watch = new Stopwatch();
         try
@@ -79,7 +78,7 @@ public class DbOperations : IDbOperations
     private async Task ExecuteSqlTransaction(string sql, CancellationToken cancellationToken = default)
     {
         var watch = new Stopwatch();
-        await using var connection = new SqlConnection(ConnectionString);
+        await using var connection = new SqlConnection(_appSettings.DbDatabaseContext);
         try
         {
             watch.Start();
