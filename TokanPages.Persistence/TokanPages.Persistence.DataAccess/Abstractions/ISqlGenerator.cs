@@ -1,4 +1,4 @@
-namespace TokanPages.Persistence.DataAccess.Helpers;
+namespace TokanPages.Persistence.DataAccess.Abstractions;
 
 /// <summary>
 /// Generates SQL for most common CRUD operations.

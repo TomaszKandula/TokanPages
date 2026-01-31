@@ -1,4 +1,4 @@
-namespace TokanPages.Persistence.DataAccess.Helpers;
+namespace TokanPages.Persistence.DataAccess.Abstractions;
 
 public interface IDbOperations
 {

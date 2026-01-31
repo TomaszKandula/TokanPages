@@ -7,8 +7,9 @@ using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.DataAccess.Abstractions;
 
-namespace TokanPages.Persistence.DataAccess.Helpers;
+namespace TokanPages.Persistence.DataAccess;
 
 public class DbOperations : IDbOperations
 {

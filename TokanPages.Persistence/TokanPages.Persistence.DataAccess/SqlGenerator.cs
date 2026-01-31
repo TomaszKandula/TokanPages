@@ -3,8 +3,9 @@ using System.Reflection;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.DataAccess.Abstractions;
 
-namespace TokanPages.Persistence.DataAccess.Helpers;
+namespace TokanPages.Persistence.DataAccess;
 
 /// <inheritdoc/>
 public class SqlGenerator : ISqlGenerator
