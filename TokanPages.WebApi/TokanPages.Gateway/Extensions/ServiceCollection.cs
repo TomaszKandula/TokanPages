@@ -1,5 +1,4 @@
 using System.Net.Http.Headers;
-using TokanPages.Gateway.Helpers;
 using TokanPages.Gateway.Services;
 using TokanPages.Gateway.Services.Abstractions;
 
@@ -41,8 +40,7 @@ public static class ServiceCollection
     /// <param name="configuration">Passed configuration.</param>
     public static void AddNamedHttpClients(this IServiceCollection services, IConfiguration configuration)
     {
-        var settings = BoundGatewaySettings.GetSettings(configuration);
-
+        var settings = configuration.GetGatewaySettings();
         var ports = settings.Routes?
             .Select(routeDefinition => routeDefinition.Port)
             .Distinct() ?? new List<string>();
