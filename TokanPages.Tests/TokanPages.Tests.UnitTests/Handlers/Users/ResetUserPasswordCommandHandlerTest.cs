@@ -41,7 +41,7 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
 
         mockedUserService
             .Setup(service => service.GetRequestUserTimezoneOffset())
