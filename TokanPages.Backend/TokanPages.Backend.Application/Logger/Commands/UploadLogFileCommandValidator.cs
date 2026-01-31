@@ -1,5 +1,6 @@
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Application.Logger.Commands;
@@ -8,7 +9,8 @@ public class UploadLogFileCommandValidator : AbstractValidator<UploadLogFileComm
 {
     public UploadLogFileCommandValidator(IConfiguration configuration)
     {
-        var sizeLimit = configuration.GetValue<int>("AZ_Storage_MaxFileSizeUserMedia");
+        var settings = BoundAppSettings.GetSettings(configuration);
+        var sizeLimit = settings.AzStorageMaxFileSizeUserMedia;
 
         RuleFor(command => command.CatalogName)
             .NotEmpty()
