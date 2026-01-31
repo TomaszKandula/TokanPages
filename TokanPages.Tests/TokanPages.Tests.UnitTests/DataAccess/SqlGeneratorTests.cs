@@ -1,7 +1,7 @@
 using FluentAssertions;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Persistence.DataAccess.Helpers;
+using TokanPages.Persistence.DataAccess;
 using TokanPages.Tests.UnitTests.Models;
 using Xunit;
 

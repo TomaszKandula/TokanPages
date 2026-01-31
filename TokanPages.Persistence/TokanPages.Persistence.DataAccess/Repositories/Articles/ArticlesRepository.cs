@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Domain.Entities.Articles;
-using TokanPages.Persistence.DataAccess.Helpers;
+using TokanPages.Persistence.DataAccess.Abstractions;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Articles;
