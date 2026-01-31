@@ -8,7 +8,7 @@ using TokanPages.Persistence.DataAccess.Repositories.Articles;
 
 namespace TokanPages.Persistence.DataAccess;
 
-public static class ConfigurationExtension
+public static class Configuration
 {
     public static void AddDataLayer(this IServiceCollection services, IConfiguration configuration)
     {
