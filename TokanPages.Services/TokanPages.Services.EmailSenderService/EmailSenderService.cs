@@ -1,7 +1,8 @@
 using System.Text;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
@@ -23,7 +24,7 @@ public class EmailSenderService : IEmailSenderService
 
     private readonly IAzureBusFactory _azureBusFactory;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     private readonly ILoggerService _loggerService;
 
@@ -33,11 +34,11 @@ public class EmailSenderService : IEmailSenderService
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public EmailSenderService(IHttpClientServiceFactory httpClientServiceFactory, IConfiguration configuration, 
+    public EmailSenderService(IHttpClientServiceFactory httpClientServiceFactory, IOptions<AppSettings> configuration, 
         ILoggerService loggerService, IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer)
     {
         _httpClientServiceFactory = httpClientServiceFactory;
-        _configuration = configuration;
+        _appSettings = configuration.Value;
         _loggerService = loggerService;
         _azureBusFactory = azureBusFactory;
         _jsonSerializer = jsonSerializer;
@@ -46,18 +47,18 @@ public class EmailSenderService : IEmailSenderService
     public async Task SendNotification(IEmailConfiguration configuration, CancellationToken cancellationToken = default)
     {
         var isProduction = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production";
-        var deploymentOrigin = _configuration.GetValue<string>("Paths_DeploymentOrigin");
-        var developmentOrigin = _configuration.GetValue<string>("Paths_DevelopmentOrigin");
+        var deploymentOrigin = _appSettings.PathsDeploymentOrigin;
+        var developmentOrigin = _appSettings.PathsDevelopmentOrigin;
 
         var origin = isProduction ? deploymentOrigin : developmentOrigin;
-        var baseUrl = _configuration.GetValue<string>("AZ_Storage_BaseUrl");
+        var baseUrl = _appSettings.AzStorageBaseUrl;
 
-        var registerFormTemplate = _configuration.GetValue<string>("Paths_Templates_RegisterForm");
-        var resetPasswordTemplate = _configuration.GetValue<string>("Paths_Templates_ResetPassword");
-        var verifyEmailTemplate = _configuration.GetValue<string>("Paths_Template_VerifyEmail");
+        var registerFormTemplate = _appSettings.PathsTemplatesRegisterForm;
+        var resetPasswordTemplate = _appSettings.PathsTemplatesResetPassword;
+        var verifyEmailTemplate = _appSettings.PathsTemplatesVerifyEmail;
 
-        var activationPath = _configuration.GetValue<string>("Paths_Activation");
-        var updatePasswordPath = _configuration.GetValue<string>("Paths_UpdatePassword");
+        var activationPath = _appSettings.PathsActivation;
+        var updatePasswordPath = _appSettings.PathsUpdatePassword;
 
         var subject = configuration switch
         {
@@ -104,10 +105,10 @@ public class EmailSenderService : IEmailSenderService
         };
 
         var template = await GetEmailTemplate(templateUrl, cancellationToken);
-        var sendFrom = _configuration.GetValue<string>("Email_Address_Contact");
+        var sendFrom = _appSettings.EmailAddressContact;
         var payload = new SendMessageConfiguration
         {
-            From = sendFrom ?? "",
+            From = sendFrom,
             To = new List<string> { emailAddress },
             Subject = subject,
             Body = template.MakeBody(templateValues)
@@ -120,13 +121,13 @@ public class EmailSenderService : IEmailSenderService
     {
         var headers = new Dictionary<string, string>
         {
-            ["X-Private-Key"] = _configuration.GetValue<string>("Email_PrivateKey") ?? ""
+            ["X-Private-Key"] = _appSettings.EmailPrivateKey
         };
 
         var payload = new ContentString { Payload = content };
         var configuration = new HttpClientSettings 
         { 
-            Url = _configuration.GetValue<string>("Email_BaseUrl") ?? "", 
+            Url = _appSettings.EmailBaseUrl, 
             Method = "POST", 
             Headers = headers,
             PayloadContent = payload
