@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -20,14 +21,14 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
     private readonly ICookieAccessor _cookieAccessor;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     public ReAuthenticateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
-        IUserService userService, IConfiguration configuration, ICookieAccessor cookieAccessor) : base(operationDbContext, loggerService)
+        IUserService userService, IOptions<AppSettings> options, ICookieAccessor cookieAccessor) : base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _userService = userService;
-        _configuration = configuration;
+        _appSettings = options.Value;
         _cookieAccessor = cookieAccessor;
     }
 
@@ -82,7 +83,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
         var currentDateTime = _dateTimeService.Now;
         var ipAddress = _userService.GetRequestIpAddress();
-        var tokenExpires = _dateTimeService.Now.AddMinutes(_configuration.GetValue<int>("Ids_WebToken_Maturity"));
+        var tokenExpires = _dateTimeService.Now.AddMinutes(_appSettings.IdsWebTokenMaturity);
         var userToken = await _userService.GenerateUserToken(user, tokenExpires, cancellationToken);
 
         var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRolesOutput>();
@@ -102,7 +103,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         var userInfo = await TryGetUserInfo(user.Id, cancellationToken);
-        var expiresIn = _configuration.GetValue<int>("Ids_RefreshToken_Maturity");
+        var expiresIn = _appSettings.IdsRefreshTokenMaturity;
 
         _cookieAccessor.Set("X-CSRF-Token", newRefreshToken.Token, maxAge: TimeSpan.FromMinutes(expiresIn));
 
