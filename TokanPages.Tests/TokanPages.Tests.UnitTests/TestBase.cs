@@ -40,6 +40,7 @@ public abstract class TestBase
         return DatabaseContextProvider.CreateDatabaseContext(options);
     }
     
+    //TODO: to be removed
     protected static IConfigurationSection SetReturnValue(string value)
     {
         var mockedSection = new Mock<IConfigurationSection>();
@@ -80,6 +81,7 @@ public abstract class TestBase
         return mockedOptions;
     }
 
+    //TODO: to be removed
     protected Mock<IConfiguration> SetConfiguration()
     {
         var mockedConfig = new Mock<IConfiguration>();
