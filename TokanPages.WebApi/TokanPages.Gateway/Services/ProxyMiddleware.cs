@@ -17,7 +17,7 @@ public class ProxyMiddleware
 
     private readonly IProxyHttpClient _proxyHttpClient;
 
-    private GatewaySettingsModel _settingsAccessor = null!;
+    private GatewaySettingsModel _gatewaySettings = null!;
 
     /// <summary>
     /// Proxy middleware.
@@ -33,16 +33,16 @@ public class ProxyMiddleware
     }
 
     private IEnumerable<string> ResponseHeadersExclude 
-        => _settingsAccessor.ResponseHeaders?.Exclude ?? Array.Empty<string>();
+        => _gatewaySettings.ResponseHeaders?.Exclude ?? Array.Empty<string>();
 
     /// <summary>
     /// Invoke middleware implementation.
     /// </summary>
     /// <param name="context">HTTP context.</param>
-    /// <param name="settingsAccessor">Gateways settings.</param>
-    public async Task Invoke(HttpContext context, IOptionsSnapshot<GatewaySettingsModel> settingsAccessor)
+    /// <param name="settings">Gateways settings.</param>
+    public async Task Invoke(HttpContext context, IOptionsSnapshot<GatewaySettingsModel> settings)
     {
-        _settingsAccessor = settingsAccessor.Value;
+        _gatewaySettings = settings.Value;
 
         var path = context.Request.Path.ToString().ToLower();
         if (path.Contains("/api/websocket") || path == "/hc" || path == "/")
@@ -65,7 +65,7 @@ public class ProxyMiddleware
     private RouteDefinition? GetRouteForPath(string path)
     {
         RouteDefinition? route = null;
-        foreach (var item in _settingsAccessor.Routes!)
+        foreach (var item in _gatewaySettings.Routes!)
         {
             var serviceName = item.ServiceName.ToLower();
             if (!path.Contains(serviceName))
@@ -83,7 +83,7 @@ public class ProxyMiddleware
     {
         try
         {
-            var httpRequestMessage = RequestMessageFactory.Create(context.Request, route, _settingsAccessor.Headers);
+            var httpRequestMessage = RequestMessageFactory.Create(context.Request, route, _gatewaySettings.Headers);
             await _proxyHttpClient.ProxyRequest(httpRequestMessage, context, ResponseHeadersExclude);
         }
         catch (Exception exception)
