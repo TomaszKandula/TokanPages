@@ -6,6 +6,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Serilog;
 using TokanPages.Backend.Configuration;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Exceptions.Middleware;
 
@@ -68,10 +69,10 @@ public class Startup
         services.SetupSwaggerOptions(_environment, ApiName, DocVersion, XmlDocs);
         services.SetupDockerInternalNetwork();
 
-        var sqlServer = _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
+        var settings = BoundAppSettings.GetSettings(_configuration);
         services
             .AddHealthChecks()
-            .AddSqlServer(sqlServer, name: "SQLServer");
+            .AddSqlServer(settings.DbDatabaseContext, name: "SQLServer");
     }
 
     /// <summary>
