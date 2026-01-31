@@ -52,7 +52,7 @@ public static class Dependencies
     public static void RegisterCommonServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.SetupServices(configuration);
-        services.Configure<AppSettings>(configuration.GetSection(AppSettings.SectionName));
+        services.Configure<AppSettingsModel>(configuration.GetSection(AppSettingsModel.SectionName));
     }
 
     private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 

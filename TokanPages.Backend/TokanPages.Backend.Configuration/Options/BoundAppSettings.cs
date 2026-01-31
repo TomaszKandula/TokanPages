@@ -4,10 +4,10 @@ namespace TokanPages.Backend.Configuration.Options;
 
 public static class BoundAppSettings
 {
-    public static AppSettings GetAppSettings(this IConfiguration configuration)
+    public static AppSettingsModel GetAppSettings(this IConfiguration configuration)
     {
-        var settings = new AppSettings();
-        configuration.Bind(AppSettings.SectionName, settings);
+        var settings = new AppSettingsModel();
+        configuration.Bind(AppSettingsModel.SectionName, settings);
         return settings;
     }
 }

@@ -12,9 +12,9 @@ public class ArticlesRepository : IArticlesRepository
 {
     private readonly IDbOperations _dbOperations;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
-    public ArticlesRepository(IOptions<AppSettings> appSettings, IDbOperations dbOperations)
+    public ArticlesRepository(IOptions<AppSettingsModel> appSettings, IDbOperations dbOperations)
     {
         _appSettings = appSettings.Value;
         _dbOperations = dbOperations;

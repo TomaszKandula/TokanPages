@@ -26,14 +26,14 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private readonly IEmailSenderService _emailSenderService;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
     private readonly IUserService _userService;
 
     public AddUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IDateTimeService dateTimeService,
-        ICipheringService cipheringService, IEmailSenderService emailSenderService, IOptions<AppSettings> options, 
+        ICipheringService cipheringService, IEmailSenderService emailSenderService, IOptions<AppSettingsModel> options, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) : base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;

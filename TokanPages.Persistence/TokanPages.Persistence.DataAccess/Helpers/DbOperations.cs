@@ -18,9 +18,9 @@ public class DbOperations : IDbOperations
 
     private readonly IHostEnvironment  _environment;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
-    public DbOperations(ILoggerService loggerService, IOptions<AppSettings> options, ISqlGenerator sqlGenerator, IHostEnvironment environment)
+    public DbOperations(ILoggerService loggerService, IOptions<AppSettingsModel> options, ISqlGenerator sqlGenerator, IHostEnvironment environment)
     {
         _loggerService = loggerService;
         _appSettings = options.Value;

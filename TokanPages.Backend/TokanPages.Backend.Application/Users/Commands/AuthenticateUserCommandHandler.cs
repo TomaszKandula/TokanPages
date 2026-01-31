@@ -27,11 +27,11 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
     
     private readonly ICookieAccessor _cookieAccessor;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
         
     public AuthenticateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         ICipheringService cipheringService, IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, 
-        IUserService userService, IOptions<AppSettings> options, ICookieAccessor cookieAccessor) : base(operationDbContext, loggerService)
+        IUserService userService, IOptions<AppSettingsModel> options, ICookieAccessor cookieAccessor) : base(operationDbContext, loggerService)
     {
         _cipheringService = cipheringService;
         _webTokenUtility = webTokenUtility;

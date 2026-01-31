@@ -21,10 +21,10 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
 
     private static BusinessException ArticleException => new(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     public UpdateArticleLikesCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService, 
-    IDateTimeService dateTimeService, IArticlesRepository articlesRepository, IOptions<AppSettings> options) : base(operationDbContext, loggerService)
+    IDateTimeService dateTimeService, IArticlesRepository articlesRepository, IOptions<AppSettingsModel> options) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;

@@ -20,9 +20,9 @@ public class MetricsService : IMetricsService
 
     private readonly ILoggerService _loggerService;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
-    public MetricsService(IHttpClientServiceFactory httpClientServiceFactory, ILoggerService loggerService, IOptions<AppSettings> options)
+    public MetricsService(IHttpClientServiceFactory httpClientServiceFactory, ILoggerService loggerService, IOptions<AppSettingsModel> options)
     {
         _httpClientServiceFactory = httpClientServiceFactory;
         _loggerService = loggerService;

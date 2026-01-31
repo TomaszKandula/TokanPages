@@ -19,13 +19,13 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
 
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     private readonly IUserService _userService;
 
     public SendMessageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IEmailSenderService emailSenderService, IDateTimeService dateTimeService, 
-        IOptions<AppSettings> options, IUserService userService) : base(operationDbContext, loggerService)
+        IOptions<AppSettingsModel> options, IUserService userService) : base(operationDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;

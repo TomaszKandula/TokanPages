@@ -24,7 +24,7 @@ public class EmailSenderService : IEmailSenderService
 
     private readonly IAzureBusFactory _azureBusFactory;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     private readonly ILoggerService _loggerService;
 
@@ -34,7 +34,7 @@ public class EmailSenderService : IEmailSenderService
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public EmailSenderService(IHttpClientServiceFactory httpClientServiceFactory, IOptions<AppSettings> configuration, 
+    public EmailSenderService(IHttpClientServiceFactory httpClientServiceFactory, IOptions<AppSettingsModel> configuration, 
         ILoggerService loggerService, IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer)
     {
         _httpClientServiceFactory = httpClientServiceFactory;

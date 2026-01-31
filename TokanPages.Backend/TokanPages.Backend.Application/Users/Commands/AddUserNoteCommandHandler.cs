@@ -16,10 +16,10 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
 
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     public AddUserNoteCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService, IOptions<AppSettings> options) : base(operationDbContext, loggerService)
+        IUserService userService, IDateTimeService dateTimeService, IOptions<AppSettingsModel> options) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;

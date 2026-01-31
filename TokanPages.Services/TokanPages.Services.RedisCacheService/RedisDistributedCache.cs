@@ -17,14 +17,14 @@ public class RedisDistributedCache : IRedisDistributedCache
 {
     private readonly IDistributedCache _distributedCache;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     /// <summary>
     /// Redis distributed implementation
     /// </summary>
     /// <param name="distributedCache">DistributedCache instance</param>
     /// <param name="configuration">Configuration instance</param>
-    public RedisDistributedCache(IDistributedCache distributedCache, IOptions<AppSettings> configuration)
+    public RedisDistributedCache(IDistributedCache distributedCache, IOptions<AppSettingsModel> configuration)
     {
         _distributedCache = distributedCache;
         _appSettings = configuration.Value;

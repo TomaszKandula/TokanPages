@@ -21,10 +21,10 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
     private readonly ICookieAccessor _cookieAccessor;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     public ReAuthenticateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
-        IUserService userService, IOptions<AppSettings> options, ICookieAccessor cookieAccessor) : base(operationDbContext, loggerService)
+        IUserService userService, IOptions<AppSettingsModel> options, ICookieAccessor cookieAccessor) : base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _userService = userService;

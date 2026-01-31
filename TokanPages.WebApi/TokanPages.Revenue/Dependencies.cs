@@ -58,7 +58,7 @@ public static class Dependencies
         services.SetupValidators();
         services.SetupMediatR();
 		services.SetupWebToken(configuration);
-        services.Configure<AppSettings>(configuration.GetSection(AppSettings.SectionName));
+        services.Configure<AppSettingsModel>(configuration.GetSection(AppSettingsModel.SectionName));
 	}
 
 	private static void SetupServices(this IServiceCollection services) 

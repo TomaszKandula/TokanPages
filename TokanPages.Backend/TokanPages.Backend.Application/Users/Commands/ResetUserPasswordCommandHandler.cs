@@ -20,12 +20,12 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
 
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     private readonly IUserService _userService;
 
     public ResetUserPasswordCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IDateTimeService dateTimeService, IOptions<AppSettings> options, 
+        IEmailSenderService emailSenderService, IDateTimeService dateTimeService, IOptions<AppSettingsModel> options, 
         IUserService userService) : base(operationDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
