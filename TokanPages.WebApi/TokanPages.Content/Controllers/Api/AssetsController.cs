@@ -1,8 +1,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using TokanPages.Backend.Application.Content.Assets.Commands;
 using TokanPages.Backend.Application.Content.Assets.Queries;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Attributes;
@@ -22,16 +24,16 @@ namespace TokanPages.Content.Controllers.Api;
 [Route("api/v{version:apiVersion}/content/[controller]/[action]")]
 public class AssetsController : ApiBaseController
 {
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     /// <summary>
     /// Assets controller.
     /// </summary>
     /// <param name="mediator">Mediator instance.</param>
     /// <param name="configuration"></param>
-    public AssetsController(IMediator mediator, IConfiguration configuration) : base(mediator)
+    public AssetsController(IMediator mediator, IOptions<AppSettings> configuration) : base(mediator)
     {
-        _configuration = configuration;
+        _appSettings = configuration.Value;
     }
 
     /// <summary>
@@ -145,9 +147,9 @@ public class AssetsController : ApiBaseController
     /// <param name="fileName"></param>
     private void AddCacheControl(string fileName)
     {
-        var cacheMediaFiles = _configuration.GetValue<string>("CacheMediaFiles");
-        var cacheNonMediaFiles = _configuration.GetValue<string>("CacheNonMediaFiles");
-        var cacheConfiguration = _configuration.GetValue<string>("CacheConfiguration");
+        var cacheMediaFiles = _appSettings.CacheMediaFiles;
+        var cacheNonMediaFiles = _appSettings.CacheNonMediaFiles;
+        var cacheConfiguration = _appSettings.CacheConfiguration;
         var cacheList = $"{cacheMediaFiles};{cacheNonMediaFiles}".Split(";");
 
         var fileExtension = Path.GetExtension(fileName).Replace(".", "");

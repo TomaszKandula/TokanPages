@@ -5,7 +5,7 @@ using TokanPages.Services.HttpClientService.Abstractions;
 namespace TokanPages.Services.HttpClientService.Models;
 
 [ExcludeFromCodeCoverage]
-public class Configuration
+public class HttpClientSettings
 {
     public string Url { get; set; } = "";
 

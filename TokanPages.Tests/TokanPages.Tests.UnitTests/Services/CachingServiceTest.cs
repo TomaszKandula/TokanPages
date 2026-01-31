@@ -40,13 +40,13 @@ public class CachingServiceTest : TestBase
 
         mockedHttp
             .Setup(service => service.Execute(
-                It.IsAny<Configuration>(), 
+                It.IsAny<HttpClientSettings>(), 
                 It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(testContent));
 
         mockedHttp
             .Setup(service => service.Execute<UploadFileOutputDto>(
-                It.IsAny<Configuration>(), 
+                It.IsAny<HttpClientSettings>(), 
                 It.IsAny<CancellationToken>()))
             .Returns(Task.FromResult(new UploadFileOutputDto
             {

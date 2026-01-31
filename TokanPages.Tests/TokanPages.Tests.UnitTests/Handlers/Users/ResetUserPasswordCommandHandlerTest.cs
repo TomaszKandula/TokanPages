@@ -41,7 +41,7 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
 
         mockedUserService
             .Setup(service => service.GetRequestUserTimezoneOffset())
@@ -66,10 +66,10 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
         var userEntity = await databaseContext.Users.FindAsync(user.Id);
 
         userEntity.Should().NotBeNull();
-        userEntity?.EmailAddress.Should().Be(user.EmailAddress);
-        userEntity?.UserAlias.Should().Be(user.UserAlias);
-        userEntity?.IsActivated.Should().BeTrue();
-        userEntity?.CryptedPassword.Should().BeEmpty();
-        userEntity?.ResetId.Should().NotBeNull();
+        userEntity.EmailAddress.Should().Be(user.EmailAddress);
+        userEntity.UserAlias.Should().Be(user.UserAlias);
+        userEntity.IsActivated.Should().BeTrue();
+        userEntity.CryptedPassword.Should().BeEmpty();
+        userEntity.ResetId.Should().NotBeNull();
     }
 }

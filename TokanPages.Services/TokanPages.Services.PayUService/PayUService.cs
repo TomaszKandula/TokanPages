@@ -7,7 +7,8 @@ using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
 using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.PayUService.Models;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 
 namespace TokanPages.Services.PayUService;
 
@@ -17,33 +18,33 @@ public class PayUService : IPayUService
 
     private readonly ILoggerService _loggerService;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     public PayUService(IHttpClientServiceFactory httpClientServiceFactory, 
-        ILoggerService loggerService, IConfiguration configuration)
+        ILoggerService loggerService, IOptions<AppSettings> options)
     {
         _httpClientServiceFactory = httpClientServiceFactory;
         _loggerService = loggerService;
-        _configuration = configuration;
+        _appSettings = options.Value;
     }
 
     public async Task<AuthorizationOutput> GetAuthorization(CancellationToken cancellationToken = default)
     {
-        var clientId = _configuration.GetValue<string>("Pmt_ClientId");
-        var clientSecret = _configuration.GetValue<string>("Pmt_ClientSecret");
+        var clientId = _appSettings.PmtClientId;
+        var clientSecret = _appSettings.PmtClientSecret;
 
-        var baseUrl = _configuration.GetValue<string>("Pmt_BaseUrl");
-        var authorizeUrl = $"{baseUrl}{_configuration.GetValue<string>("Pmt_Address_Authorize")}";
+        var baseUrl = _appSettings.PmtBaseUrl;
+        var authorizeUrl = $"{baseUrl}{_appSettings.PmtAddressAuthorize}";
 
         var payload = new Dictionary<string, string>
         {
             { "grant_type", "client_credentials" },
-            { "client_id", clientId ?? "" },
-            { "client_secret", clientSecret ?? "" }
+            { "client_id", clientId },
+            { "client_secret", clientSecret }
         };
 
         var content = new ContentDictionary { Payload = payload };
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = authorizeUrl,
             Method = "POST",
@@ -57,15 +58,15 @@ public class PayUService : IPayUService
     public async Task<PaymentMethodsOutput> GetPaymentMethods(CancellationToken cancellationToken = default)
     {
         var authorization = await GetAuthorization(cancellationToken);
-        var baseUrl = _configuration.GetValue<string>("Pmt_BaseUrl");
-        var payMethodsUrl = $"{baseUrl}{_configuration.GetValue<string>("Pmt_Address_PayMethods")}";
+        var baseUrl = _appSettings.PmtBaseUrl;
+        var payMethodsUrl = $"{baseUrl}{_appSettings.PmtAddressPayMethods}";
 
         var authentication = new BearerAuthentication
         {
             Token = authorization.AccessToken ?? string.Empty
         };
 
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = payMethodsUrl,
             Authentication = authentication,
@@ -79,15 +80,15 @@ public class PayUService : IPayUService
     public async Task<OrderDetailsOutput> GetOrderDetails(string orderId, CancellationToken cancellationToken = default)
     {
         var authorization = await GetAuthorization(cancellationToken);
-        var baseUrl = _configuration.GetValue<string>("Pmt_BaseUrl");
-        var orderUrl = $"{baseUrl}{_configuration.GetValue<string>("Pmt_Address_Orders")}/{orderId}";
+        var baseUrl = _appSettings.PmtBaseUrl;
+        var orderUrl = $"{baseUrl}{_appSettings.PmtAddressOrders}/{orderId}";
 
         var authentication = new BearerAuthentication
         {
             Token = authorization.AccessToken ?? string.Empty
         };
 
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = orderUrl,
             Authentication = authentication,
@@ -101,15 +102,15 @@ public class PayUService : IPayUService
     public async Task<OrderTransactionsOutput> GetOrderTransactions(string orderId, CancellationToken cancellationToken = default)
     {
         var authorization = await GetAuthorization(cancellationToken);
-        var baseUrl = _configuration.GetValue<string>("Pmt_BaseUrl");
-        var orderUrl = $"{baseUrl}{_configuration.GetValue<string>("Pmt_Address_Orders")}/{orderId}/transactions";
+        var baseUrl = _appSettings.PmtBaseUrl;
+        var orderUrl = $"{baseUrl}{_appSettings.PmtAddressOrders}/{orderId}/transactions";
 
         var authentication = new BearerAuthentication
         {
             Token = authorization.AccessToken ?? string.Empty
         };
 
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = orderUrl,
             Authentication = authentication,
@@ -122,9 +123,9 @@ public class PayUService : IPayUService
 
     public async Task<GenerateCardTokenOutput> GenerateCardToken(GenerateCardTokenInput input, CancellationToken cancellationToken = default)
     {
-        var baseUrl = _configuration.GetValue<string>("Pmt_BaseUrl");
-        var orderUrl = $"{baseUrl}{_configuration.GetValue<string>("Pmt_Address_Tokens")}";
-        var configuration = new Configuration
+        var baseUrl = _appSettings.PmtBaseUrl;
+        var orderUrl = $"{baseUrl}{_appSettings.PmtAddressTokens}";
+        var configuration = new HttpClientSettings
         {
             Url = orderUrl,
             Method = "POST",
@@ -142,7 +143,7 @@ public class PayUService : IPayUService
         var content = output.Content;
         var authentication = output.Authentication;
 
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = orderUrl ?? string.Empty,
             Authentication = authentication,
@@ -161,7 +162,7 @@ public class PayUService : IPayUService
         var content = output.Content;
         var authentication = output.Authentication;
 
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = orderUrl ?? string.Empty,
             Authentication = authentication,
@@ -183,8 +184,8 @@ public class PayUService : IPayUService
     private async Task<PreparePostOrderOutput> PreparePostOrder(PostOrderInput input, CancellationToken cancellationToken = default)
     {
         var authorization = await GetAuthorization(cancellationToken);
-        var baseUrl = _configuration.GetValue<string>("Pmt_BaseUrl");
-        var orderUrl = $"{baseUrl}{_configuration.GetValue<string>("Pmt_Address_Orders")}";
+        var baseUrl = _appSettings.PmtBaseUrl;
+        var orderUrl = $"{baseUrl}{_appSettings.PmtAddressOrders}";
 
         var content = new ContentString { Payload = input };
         var authentication = new BearerAuthentication

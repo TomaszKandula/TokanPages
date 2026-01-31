@@ -1,5 +1,6 @@
 using MediatR;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -20,18 +21,15 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
 
     private static BusinessException ArticleException => new(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
-    //TODO: replace IConfiguration with IOption
-    private readonly IConfiguration _configuration;
-    private int MaxLikesForAnonymousUser => _configuration.GetValue<int>("Limit_Likes_Anonymous");
-    private int MaxLikesForLoggedUser => _configuration.GetValue<int>("Limit_Likes_User");
+    private readonly AppSettings _appSettings;
 
     public UpdateArticleLikesCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService, 
-    IDateTimeService dateTimeService, IArticlesRepository articlesRepository, IConfiguration configuration) : base(operationDbContext, loggerService)
+    IDateTimeService dateTimeService, IArticlesRepository articlesRepository, IOptions<AppSettings> options) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
         _articlesRepository = articlesRepository;
-        _configuration = configuration;
+        _appSettings = options.Value;
     }
 
     public override async Task<Unit> Handle(UpdateArticleLikesCommand request, CancellationToken cancellationToken)
@@ -41,7 +39,7 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
         var isAnonymousUser = userId == Guid.Empty;
         var dateTimeStamp = _dateTimeService.Now;
 
-        var likesLimit = userId == Guid.Empty ? MaxLikesForAnonymousUser : MaxLikesForLoggedUser;
+        var likesLimit = userId == Guid.Empty ? _appSettings.LimitLikesAnonymous : _appSettings.LimitLikesUser;
         var likes = request.AddToLikes > likesLimit ? likesLimit : request.AddToLikes;
 
         bool isSuccess;

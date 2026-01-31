@@ -3,6 +3,7 @@ using System.Reflection;
 using FluentValidation;
 using MediatR;
 using TokanPages.Backend.Configuration;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
@@ -45,19 +46,18 @@ public static class Dependencies
     /// <param name="configuration">Provided configuration.</param>
     public static void CommonServices(this IServiceCollection services, IConfiguration configuration)
     {
-        SetupLogger(services);
-        SetupServices(services, configuration);
-        SetupValidators(services);
-        SetupMediatR(services);
-        WebTokenSupport.SetupWebToken(services, configuration);
+        services.SetupServices(configuration);
+        services.SetupValidators();
+        services.SetupMediatR();
+        services.SetupWebToken(configuration);
+        services.Configure<AppSettings>(configuration.GetSection(AppSettings.SectionName));
     }
 
-    private static void SetupLogger(IServiceCollection services) 
-        => services.AddSingleton<ILoggerService, LoggerService>();
-
-    private static void SetupServices(IServiceCollection services, IConfiguration configuration) 
+    private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 
     {
         services.AddHttpContextAccessor();
+
+        services.AddSingleton<ILoggerService, LoggerService>();
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
         services.AddScoped<IWebTokenValidation, WebTokenValidation>();
         services.AddScoped<IUserService, UserService>();
@@ -74,10 +74,10 @@ public static class Dependencies
         });
     }
 
-    private static void SetupValidators(IServiceCollection services)
+    private static void SetupValidators(this IServiceCollection services)
         => services.AddValidatorsFromAssemblyContaining<Backend.Application.RequestHandler<IRequest, Unit>>();
 
-    private static void SetupMediatR(IServiceCollection services) 
+    private static void SetupMediatR(this IServiceCollection services) 
     {
         services.AddMediatR(options => options.AsScoped(), 
             typeof(Backend.Application.RequestHandler<IRequest, Unit>).GetTypeInfo().Assembly);

@@ -15,7 +15,7 @@ namespace TokanPages.Backend.Configuration;
 [ExcludeFromCodeCoverage]
 public static class WebTokenSupport
 {
-	public static void SetupWebToken(IServiceCollection services, IConfiguration configuration)
+	public static void SetupWebToken(this IServiceCollection services, IConfiguration configuration)
 	{ 
 		var issuer = configuration.GetValue<string>("Ids_Issuer");
 		var audience = configuration.GetValue<string>("Ids_Audience");

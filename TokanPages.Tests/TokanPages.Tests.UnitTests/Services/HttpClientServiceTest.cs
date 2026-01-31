@@ -16,7 +16,7 @@ public class HttpClientServiceTest : TestBase
     public async Task GivenValidConfigurationAndNoPayload_WhenInvokeExecute_ShouldSucceed()
     {
         // Arrange
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = "http://localhost:5000/",
             Method = "GET"
@@ -40,7 +40,7 @@ public class HttpClientServiceTest : TestBase
     public async Task GivenValidConfigurationAndPayload_WhenInvokeExecute_ShouldSucceed()
     {
         // Arrange
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = "http://localhost:5000/",
             Method = "POST"
@@ -65,7 +65,7 @@ public class HttpClientServiceTest : TestBase
     public async Task GivenMissingUrl_WhenInvokeExecute_ShouldThrowError()
     {
         // Arrange
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = string.Empty,
             Method = "GET"
@@ -86,7 +86,7 @@ public class HttpClientServiceTest : TestBase
     public async Task GivenMissingMethod_WhenInvokeExecute_ShouldThrowError()
     {
         // Arrange
-        var configuration = new Configuration
+        var configuration = new HttpClientSettings
         {
             Url = "http://localhost:5000/",
             Method = string.Empty

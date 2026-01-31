@@ -2,7 +2,8 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities.Users;
@@ -37,7 +38,7 @@ public sealed class UserService : IUserService
 
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     private List<GetUserPermissionsOutput>? _userPermissions;
 
@@ -46,13 +47,13 @@ public sealed class UserService : IUserService
     private GetUserOutput? _user;
 
     public UserService(IHttpContextAccessor httpContextAccessor, OperationDbContext operationDbContext, 
-        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IConfiguration configuration)
+        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IOptions<AppSettings> configuration)
     {
         _httpContextAccessor = httpContextAccessor;
         _operationDbContext = operationDbContext;
         _webTokenUtility = webTokenUtility;
         _dateTimeService = dateTimeService;
-        _configuration = configuration;
+        _appSettings = configuration.Value;
     }
 
     public string GetRequestIpAddress() 
@@ -247,14 +248,14 @@ public sealed class UserService : IUserService
         return _webTokenUtility.GenerateJwt(
             tokenExpires,
             claimsIdentity,
-            _configuration.GetValue<string>("Ids_WebSecret") ?? "",
-            _configuration.GetValue<string>("Ids_Issuer") ?? "",
-            _configuration.GetValue<string>("Ids_Audience") ?? "");
+            _appSettings.IdsWebSecret,
+            _appSettings.IdsIssuer,
+            _appSettings.IdsAudience);
     }
 
     public async Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default)
     {
-        var tokenMaturity = _configuration.GetValue<int>("Ids_RefreshToken_Maturity");
+        var tokenMaturity = _appSettings.IdsRefreshTokenMaturity;
         var refreshTokens = await _operationDbContext.UserRefreshTokens
             .Where(tokens => tokens.UserId == userId 
                              && tokens.Expires <= _dateTimeService.Now 
@@ -272,7 +273,7 @@ public sealed class UserService : IUserService
     public async Task<UserRefreshToken> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default)
     {
         var newRefreshToken = _webTokenUtility.GenerateRefreshToken(input.RequesterIpAddress, 
-            _configuration.GetValue<int>("Ids_RefreshToken_Maturity"));
+            _appSettings.IdsRefreshTokenMaturity);
 
         var tokenInput = new RevokeRefreshTokenInput
         {

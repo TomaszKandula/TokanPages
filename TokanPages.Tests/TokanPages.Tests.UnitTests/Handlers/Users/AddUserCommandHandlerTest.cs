@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using Microsoft.Extensions.Configuration;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
@@ -35,19 +34,19 @@ public class AddUserCommandHandlerTest : TestBase
         
         var roles = new Role
         {
-            Name = Backend.Domain.Enums.Role.EverydayUser.ToString(),
-            Description = Backend.Domain.Enums.Role.EverydayUser.ToString()
+            Name = nameof(Backend.Domain.Enums.Role.EverydayUser),
+            Description = nameof(Backend.Domain.Enums.Role.EverydayUser)
         };
 
         var permissions = new List<Permission>
         {
             new()
             {
-                Name = Backend.Domain.Enums.Permission.CanSelectArticles.ToString()
+                Name = nameof(Backend.Domain.Enums.Permission.CanSelectArticles)
             },
             new()
             {
-                Name = Backend.Domain.Enums.Permission.CanSelectComments.ToString()
+                Name = nameof(Backend.Domain.Enums.Permission.CanSelectComments)
             }
         };
 
@@ -81,7 +80,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedBlobStorage = new Mock<IAzureBlobStorage>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
 
         mockedUserService
             .Setup(service => service.GetRequestUserTimezoneOffset())
@@ -166,7 +165,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
 
         mockedCipher
             .Setup(service => service.GetHashedPassword(It.IsAny<string>(), It.IsAny<string>()))
@@ -242,7 +241,7 @@ public class AddUserCommandHandlerTest : TestBase
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedUserService = new Mock<IUserService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = GetMockSettings();
 
         mockedUserService
             .Setup(service => service.GetRequestUserTimezoneOffset())

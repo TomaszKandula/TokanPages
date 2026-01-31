@@ -31,13 +31,13 @@ public class HttpClientService : IHttpClientService
         _loggerService = loggerService;
     }
 
-    public async Task ProxyRequest(Configuration configuration, HttpResponse response, CancellationToken cancellationToken = default)
+    public async Task ProxyRequest(HttpClientSettings configuration, HttpResponse response, CancellationToken cancellationToken = default)
     {
         var preparedRequest = PrepareProxyRequest(configuration);
         await ExecuteRangeRequest(response, preparedRequest, cancellationToken);
     }
 
-    public async Task<ExecutionResult> Execute(Configuration configuration, CancellationToken cancellationToken = default)
+    public async Task<ExecutionResult> Execute(HttpClientSettings configuration, CancellationToken cancellationToken = default)
     {
         VerifyConfigurationArgument(configuration);
 
@@ -59,7 +59,7 @@ public class HttpClientService : IHttpClientService
         throw new BusinessException(nameof(ErrorCodes.HTTP_REQUEST_FAILED), ErrorCodes.HTTP_REQUEST_FAILED);
     }
 
-    public async Task<T> Execute<T>(Configuration configuration, CancellationToken cancellationToken = default)
+    public async Task<T> Execute<T>(HttpClientSettings configuration, CancellationToken cancellationToken = default)
     {
         VerifyConfigurationArgument(configuration);
 
@@ -99,7 +99,7 @@ public class HttpClientService : IHttpClientService
         }
     }
 
-    private async Task<HttpResponseMessage> GetResponse(Configuration configuration, CancellationToken cancellationToken = default)
+    private async Task<HttpResponseMessage> GetResponse(HttpClientSettings configuration, CancellationToken cancellationToken = default)
     {
         var requestUri = configuration.Url;
         if (configuration.FileData.Length > 0)
@@ -180,7 +180,7 @@ public class HttpClientService : IHttpClientService
         throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL), message);
     }
 
-    private static void VerifyConfigurationArgument(Configuration configuration)
+    private static void VerifyConfigurationArgument(HttpClientSettings configuration)
     {
         string message;
 
@@ -196,7 +196,7 @@ public class HttpClientService : IHttpClientService
         throw new BusinessException(nameof(ErrorCodes.ARGUMENT_EMPTY_OR_NULL), message);
     }
 
-    private static HttpRequestMessage PrepareProxyRequest(Configuration configuration)
+    private static HttpRequestMessage PrepareProxyRequest(HttpClientSettings configuration)
     {
         var url = configuration.Url;
         if (configuration.QueryParameters is not null && configuration.QueryParameters.Any())

@@ -1,5 +1,6 @@
 ﻿using MediatR;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
@@ -13,26 +14,26 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
 {
     private readonly IEmailSenderService _emailSenderService;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
     public SendNewsletterCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IConfiguration configuration) : base(operationDbContext, loggerService)
+        IEmailSenderService emailSenderService, IOptions<AppSettings> options) : base(operationDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
-        _configuration = configuration;
+        _appSettings = options.Value;
     }
 
     public override async Task<Unit> Handle(SendNewsletterCommand request, CancellationToken cancellationToken)
     {
         var isProduction = CurrentEnv == "Production";
-        var deploymentOrigin = _configuration.GetValue<string>("Paths_DeploymentOrigin");
-        var developmentOrigin = _configuration.GetValue<string>("Paths_DevelopmentOrigin");
+        var deploymentOrigin = _appSettings.PathsDeploymentOrigin;
+        var developmentOrigin = _appSettings.PathsDevelopmentOrigin;
 
         var origin = isProduction ? deploymentOrigin : developmentOrigin;
-        var newsletterUpdatePath = _configuration.GetValue<string>("Paths_NewsletterUpdate");
-        var newsletterRemovePath = _configuration.GetValue<string>("Paths_NewsletterRemove");
+        var newsletterUpdatePath = _appSettings.PathsNewsletterUpdate;
+        var newsletterRemovePath = _appSettings.PathsNewsletterRemove;
 
         var newsletterUpdateLink = $"{origin}/{request.LanguageId}{newsletterUpdatePath}";
         var newsletterRemoveLink = $"{origin}/{request.LanguageId}{newsletterRemovePath}";
@@ -58,8 +59,8 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
                 { "{UNSUBSCRIBE_LINK}", unsubscribeLink }
             };
 
-            var baseUrl = _configuration.GetValue<string>("AZ_Storage_BaseUrl");
-            var newsletter = _configuration.GetValue<string>("Paths_Templates_Newsletter");
+            var baseUrl = _appSettings.AzStorageBaseUrl;
+            var newsletter = _appSettings.PathsTemplatesNewsletter;
 
             var templateUrl = $"{baseUrl}{newsletter}";
             var template = await _emailSenderService.GetEmailTemplate(templateUrl, cancellationToken);
@@ -75,7 +76,7 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
             var payload = new SendMessageConfiguration
             {
                 MessageId = messageId,
-                From = _configuration.GetValue<string>("Email_Address_Contact") ?? "",
+                From = _appSettings.EmailAddressContact,
                 To = new List<string> { subscriber.Email },
                 Subject = request.Subject,
                 Body = template.MakeBody(newValues)

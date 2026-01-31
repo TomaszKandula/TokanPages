@@ -129,7 +129,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
                 CancellationToken.None))
             .ReturnsAsync(newUserToken);
 
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
         var mockedCookieAccessor = new Mock<ICookieAccessor>();
         mockedCookieAccessor.Setup(accessor => accessor.Get(It.IsAny<string>()))
             .Returns(userRefreshToken.Token);
@@ -244,7 +244,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshToken>()))
             .Returns(false);
 
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
         var mockedCookieAccessor = new Mock<ICookieAccessor>();
 
         var handler = new ReAuthenticateUserCommandHandler(
@@ -303,7 +303,7 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             .Setup(service => service.IsRefreshTokenActive(It.IsAny<UserRefreshToken>()))
             .Returns(false);
 
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
         var mockedCookieAccessor = new Mock<ICookieAccessor>();
 
         var handler = new ReAuthenticateUserCommandHandler(

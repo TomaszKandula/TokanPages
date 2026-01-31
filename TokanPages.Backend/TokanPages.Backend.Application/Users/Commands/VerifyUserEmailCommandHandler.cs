@@ -5,14 +5,15 @@ using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.UserService.Abstractions;
 using MediatR;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
 public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailCommand, Unit>
 {
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     private readonly IUserService _userService;
 
@@ -21,10 +22,10 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
     private readonly IEmailSenderService _emailSenderService;
 
     public VerifyUserEmailCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IConfiguration configuration, IUserService userService, IDateTimeService dateTimeService, 
+        IOptions<AppSettings> options, IUserService userService, IDateTimeService dateTimeService, 
         IEmailSenderService emailSenderService) : base(operationDbContext, loggerService)
     {
-        _configuration = configuration;
+        _appSettings = options.Value;
         _userService = userService;
         _dateTimeService = dateTimeService;
         _emailSenderService = emailSenderService;
@@ -35,7 +36,7 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
         var user = await _userService.GetActiveUser(isTracking: true, cancellationToken: cancellationToken);
 
         var activationId = Guid.NewGuid();
-        var activationMaturity = _configuration.GetValue<int>("Limit_Activation_Maturity");
+        var activationMaturity = _appSettings.LimitActivationMaturity;
         var activationIdEnds = _dateTimeService.Now.AddMinutes(activationMaturity);
 
         user.ActivationId = activationId;

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -26,17 +27,17 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
     
     private readonly ICookieAccessor _cookieAccessor;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
         
     public AuthenticateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         ICipheringService cipheringService, IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, 
-        IUserService userService, IConfiguration configuration, ICookieAccessor cookieAccessor) : base(operationDbContext, loggerService)
+        IUserService userService, IOptions<AppSettings> options, ICookieAccessor cookieAccessor) : base(operationDbContext, loggerService)
     {
         _cipheringService = cipheringService;
         _webTokenUtility = webTokenUtility;
         _dateTimeService = dateTimeService;
         _userService = userService;
-        _configuration = configuration;
+        _appSettings = options.Value;
         _cookieAccessor = cookieAccessor;
     }
 
@@ -68,10 +69,10 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
         var currentDateTime = _dateTimeService.Now;
         var ipAddress = _userService.GetRequestIpAddress();
-        var tokenExpires = _dateTimeService.Now.AddMinutes(_configuration.GetValue<int>("Ids_WebToken_Maturity"));
+        var tokenExpires = _dateTimeService.Now.AddMinutes(_appSettings.IdsWebTokenMaturity);
         var userToken = await _userService.GenerateUserToken(user, tokenExpires, cancellationToken);
 
-        var expiresIn = _configuration.GetValue<int>("Ids_RefreshToken_Maturity");
+        var expiresIn = _appSettings.IdsRefreshTokenMaturity;
         var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, expiresIn);
 
         var newUserToken = new UserToken

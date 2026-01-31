@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using MediatR;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -18,17 +19,17 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
 
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     private readonly IUserService _userService;
 
     public SendMessageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IEmailSenderService emailSenderService, IDateTimeService dateTimeService, 
-        IConfiguration configuration, IUserService userService) : base(operationDbContext, loggerService)
+        IOptions<AppSettings> options, IUserService userService) : base(operationDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;
-        _configuration = configuration;
+        _appSettings = options.Value;
         _userService = userService;
     }
 
@@ -38,14 +39,14 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
         var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
         var dateTime = baseDateTime.ToString(CultureInfo.InvariantCulture);
 
-        var baseUrl = _configuration.GetValue<string>("AZ_Storage_BaseUrl");
-        var contactForm = _configuration.GetValue<string>("Paths_Templates_ContactForm");
+        var baseUrl = _appSettings.AzStorageBaseUrl;
+        var contactForm = _appSettings.PathsTemplatesContactForm;
 
         var templateUrl = $"{baseUrl}{contactForm}";
         var template = await _emailSenderService.GetEmailTemplate(templateUrl, cancellationToken);
         LoggerService.LogInformation($"Getting email template from URL: {templateUrl}.");
 
-        var contactAddress = _configuration.GetValue<string>("Email_Address_Contact");
+        var contactAddress = _appSettings.EmailAddressContact;
         var messageId = Guid.NewGuid();
 
         var serviceBusMessage = new ServiceBusMessage
@@ -65,8 +66,8 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
         var message = new SendMessageConfiguration
         {
             MessageId = messageId,
-            From = contactAddress ?? "",
-            To = new List<string> { contactAddress ?? "" },
+            From = contactAddress,
+            To = new List<string> { contactAddress },
             Subject = $"New user message from {request.FirstName}"
         };
 

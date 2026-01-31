@@ -1,6 +1,5 @@
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
@@ -116,7 +115,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
                     It.IsAny<bool>(),
                     It.IsAny<CancellationToken>()));
 
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
         var handler = new AuthenticateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
@@ -200,7 +199,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserServiceProvider = new Mock<IUserService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = GetMockSettings();
         var mockedCookieAccessor = new Mock<ICookieAccessor>();
         var handler = new AuthenticateUserCommandHandler(
             databaseContext,
@@ -255,7 +254,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
         var mockedJwtUtilityService = new Mock<IWebTokenUtility>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserServiceProvider = new Mock<IUserService>();
-        var mockedConfig = new Mock<IConfiguration>();
+        var mockedConfig = GetMockSettings();
         var mockedCookieAccessor = new Mock<ICookieAccessor>();
         var handler = new AuthenticateUserCommandHandler(
             databaseContext,
@@ -354,7 +353,7 @@ public class AuthenticateUserCommandHandlerTest : TestBase
                     It.IsAny<bool>(),
                     It.IsAny<CancellationToken>()));
 
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
         var mockedCookieAccessor = new Mock<ICookieAccessor>();
         var handler = new AuthenticateUserCommandHandler(
             databaseContext, 
