@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Serilog;
+using TokanPages.Backend.Configuration.Options;
 
 namespace TokanPages.Backend.Configuration;
 
@@ -12,8 +13,9 @@ public static class SeriLogSupport
 
     public static ILogger GetLogger(IConfigurationRoot configuration, string storageFileName, bool isProduction)
     {
-        var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString");
-        var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName");
+        var settings = BoundAppSettings.GetSettings(configuration);
+        var connectionString = settings.AzStorageConnectionString;
+        var containerName = settings.AzStorageContainerName;
 
         var logger = isProduction 
             ? new LoggerConfiguration().MinimumLevel.Information() 
