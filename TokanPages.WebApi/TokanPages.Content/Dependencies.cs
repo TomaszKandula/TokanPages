@@ -81,7 +81,7 @@ public static class Dependencies
 		services.AddScoped<IContentCache, ContentCache>();
 		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
 
-        var settings = BoundAppSettings.GetSettings(configuration);
+        var settings = configuration.GetSettings();
 		services.AddSingleton<IAzureBusFactory>(_ =>
 		{
 			var connectionString = settings.AzBusConnectionString;

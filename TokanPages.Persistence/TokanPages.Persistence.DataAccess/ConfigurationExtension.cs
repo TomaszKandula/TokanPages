@@ -22,7 +22,7 @@ public static class ConfigurationExtension
     private static void SetupDatabase<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
     {
         const int maxRetryCount = 10;
-        var settings = BoundAppSettings.GetSettings(configuration);
+        var settings = configuration.GetSettings();
         var maxRetryDelay = TimeSpan.FromSeconds(5);
         var connectionString = settings.DbDatabaseContext;
 

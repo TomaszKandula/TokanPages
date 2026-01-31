@@ -18,7 +18,7 @@ public static class WebTokenSupport
 {
 	public static void SetupWebToken(this IServiceCollection services, IConfiguration configuration)
     {
-        var settings = BoundAppSettings.GetSettings(configuration);
+        var settings = configuration.GetSettings();
 
         var issuer = settings.IdsIssuer;
 		var audience = settings.IdsAudience;

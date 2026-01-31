@@ -75,7 +75,7 @@ public static class Dependencies
 		services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
 		services.AddScoped<IAzureNotificationHubUtility, AzureNotificationHubUtility>();
 
-        var settings = BoundAppSettings.GetSettings(configuration);
+        var settings = configuration.GetSettings();
 		services.AddSingleton<IAzureNotificationHubFactory>(_ =>
 		{
 			var containerName = settings.AzHubHubName;

@@ -68,7 +68,7 @@ public class Startup
         services.SetupSwaggerOptions(_environment, ApiName, DocVersion, XmlDocs);
         services.SetupDockerInternalNetwork();
 
-        var settings = BoundAppSettings.GetSettings(_configuration);
+        var settings = _configuration.GetSettings();
         services
             .AddHealthChecks()
             .AddUrlGroup(new Uri(settings.EmailHealthUrl), name: "EmailService")

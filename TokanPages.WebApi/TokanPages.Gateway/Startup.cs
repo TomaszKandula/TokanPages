@@ -62,7 +62,7 @@ public class Startup
         services.AddProxyHttpClient();
         services.AddNamedHttpClients(_configuration);
 
-        var settings = BoundAppSettings.GetSettings(_configuration);
+        var settings = _configuration.GetSettings();
         services
             .AddHealthChecks()
             .AddUrlGroup(new Uri(settings.EmailHealthUrl), name: "EmailService")

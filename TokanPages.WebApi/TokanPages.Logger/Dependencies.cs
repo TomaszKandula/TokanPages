@@ -66,7 +66,7 @@ public static class Dependencies
         services.AddScoped<IDateTimeService, DateTimeService>();
         services.AddScoped<IDataUtilityService, DataUtilityService>();
 
-        var settings = BoundAppSettings.GetSettings(configuration);
+        var settings = configuration.GetSettings();
         services.AddSingleton<IAzureBlobStorageFactory>(_ =>
         {
             var containerName = settings.AzStorageContainerName;

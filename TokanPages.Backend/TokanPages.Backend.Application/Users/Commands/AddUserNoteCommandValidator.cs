@@ -9,7 +9,7 @@ public class AddUserNoteCommandValidator : AbstractValidator<AddUserNoteCommand>
 {
     public AddUserNoteCommandValidator(IConfiguration configuration)
     {
-        var settings = BoundAppSettings.GetSettings(configuration);
+        var settings = configuration.GetSettings();
         var maxSize = settings.UserNoteMaxSize;
 
         RuleFor(command => command.Note)

@@ -77,7 +77,7 @@ public static class Dependencies
 		services.AddScoped<IArticlesCache, ArticlesCache>();
 		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
 
-        var settings = BoundAppSettings.GetSettings(configuration);
+        var settings = configuration.GetSettings();
 		services.AddSingleton<IAzureBlobStorageFactory>(_ =>
 		{
 			var containerName = settings.AzStorageContainerName;

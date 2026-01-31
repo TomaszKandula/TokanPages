@@ -9,7 +9,7 @@ public class UploadLogFileCommandValidator : AbstractValidator<UploadLogFileComm
 {
     public UploadLogFileCommandValidator(IConfiguration configuration)
     {
-        var settings = BoundAppSettings.GetSettings(configuration);
+        var settings = configuration.GetSettings();
         var sizeLimit = settings.AzStorageMaxFileSizeUserMedia;
 
         RuleFor(command => command.CatalogName)
