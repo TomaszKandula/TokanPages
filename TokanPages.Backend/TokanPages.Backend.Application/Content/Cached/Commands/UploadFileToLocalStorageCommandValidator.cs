@@ -1,5 +1,5 @@
 using FluentValidation;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Shared.Resources;
 
@@ -7,10 +7,9 @@ namespace TokanPages.Backend.Application.Content.Cached.Commands;
 
 public class UploadFileToLocalStorageCommandValidator : AbstractValidator<UploadFileToLocalStorageCommand>
 {
-    public UploadFileToLocalStorageCommandValidator(IConfiguration configuration)
+    public UploadFileToLocalStorageCommandValidator(IOptions<AppSettingsModel> configuration)
     {
-        var settings = configuration.GetAppSettings();
-        var sizeLimit = settings.AzStorageMaxFileSizeSingleAsset;
+        var sizeLimit = configuration.Value.AzStorageMaxFileSizeSingleAsset;
 
         RuleFor(command => command.BinaryData)
             .NotEmpty()
