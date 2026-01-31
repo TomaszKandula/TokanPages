@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TokanPages.Backend.Configuration.Options;
 
 namespace TokanPages.Backend.Configuration;
 
@@ -17,28 +18,29 @@ public static class RedisSupport
     /// <param name="configuration">Application configuration instance.</param>
     public static void SetupRedisCache(this IServiceCollection services, IConfiguration configuration)
     {
+        var settings = BoundAppSettings.GetSettings(configuration);
         services.AddDistributedRedisCache(option =>
         {
-            option.Configuration = configuration.GetValue<string>("AZ_Redis_ConnectionString");
-            option.InstanceName = configuration.GetValue<string>("AZ_Redis_InstanceName");
+            option.Configuration = settings.AzRedisConnectionString;
+            option.InstanceName = settings.AzRedisInstanceName;
         });
     }
 
     public static string GetHostAndPort(IConfiguration configuration)
     {
-        var connectionString = configuration.GetValue<string>("AZ_Redis_ConnectionString");
-        var data = connectionString?.Split(',');
-        if (data is null)
-            return string.Empty;
+        var settings = BoundAppSettings.GetSettings(configuration);
+        var connectionString = settings.AzRedisConnectionString;
+        var data = connectionString.Split(',');
 
         return data.Length == 0 ? string.Empty : data[0];
     }
 
     public static string GetPassword(IConfiguration configuration)
     {
-        var connectionString = configuration.GetValue<string>("AZ_Redis_ConnectionString");
-        var data = connectionString?.Split(',');
-        if (data is null || data.Length < 1)
+        var settings = BoundAppSettings.GetSettings(configuration);
+        var connectionString = settings.AzRedisConnectionString;
+        var data = connectionString.Split(',');
+        if (data.Length < 1)
             return string.Empty;
 
         var password = data[1];
@@ -47,11 +49,9 @@ public static class RedisSupport
 
     public static bool GetSsl(IConfiguration configuration)
     {
-        var connectionString = configuration.GetValue<string>("AZ_Redis_ConnectionString");
-        var data = connectionString?.Split(',');
-        if (data is null)
-            return false;
-
+        var settings = BoundAppSettings.GetSettings(configuration);
+        var connectionString = settings.AzRedisConnectionString;
+        var data = connectionString.Split(',');
         if (data.Length < 2)
             return false;
 
@@ -61,11 +61,9 @@ public static class RedisSupport
 
     public static bool GetAbortConnect(IConfiguration configuration)
     {
-        var connectionString = configuration.GetValue<string>("AZ_Redis_ConnectionString");
-        var data = connectionString?.Split(',');
-        if (data is null)
-            return false;
-
+        var settings = BoundAppSettings.GetSettings(configuration);
+        var connectionString = settings.AzRedisConnectionString;
+        var data = connectionString.Split(',');
         if (data.Length < 3)
             return false;
 
