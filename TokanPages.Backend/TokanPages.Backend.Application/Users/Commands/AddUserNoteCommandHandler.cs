@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -15,14 +16,14 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
 
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     public AddUserNoteCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService, IConfiguration configuration) : base(operationDbContext, loggerService)
+        IUserService userService, IDateTimeService dateTimeService, IOptions<AppSettings> options) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
-        _configuration = configuration;
+        _appSettings = options.Value;
     }
 
     public override async Task<AddUserNoteCommandResult> Handle(AddUserNoteCommand request, CancellationToken cancellationToken)
@@ -33,7 +34,7 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
             .Where(note => note.UserId == userId)
             .CountAsync(cancellationToken);
 
-        var maxCount = _configuration.GetValue<int>("UserNote_MaxCount");
+        var maxCount = _appSettings.UserNoteMaxCount;
         if (notesCount == maxCount)
             return new AddUserNoteCommandResult
             {
