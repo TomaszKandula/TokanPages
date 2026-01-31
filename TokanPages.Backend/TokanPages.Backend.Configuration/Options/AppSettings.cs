@@ -108,8 +108,8 @@ public class AppSettings
     [ConfigurationKeyName("AZ_Redis_ExpirationMinute")]
     public int AzRedisExpirationMinute { get; set; } = 15;
 
-    [ConfigurationKeyName("AZ_Redis_DatabaseId")]
-    public int AzRedisDatabaseId { get; set; } = 30;
+    [ConfigurationKeyName("AZ_Redis_ExpirationSecond")]
+    public int AzRedisExpirationSecond { get; set; } = 30;
 
     [ConfigurationKeyName("AZ_Hub_HubName")]
     public string AzHubHubName { get; set; } = string.Empty;
