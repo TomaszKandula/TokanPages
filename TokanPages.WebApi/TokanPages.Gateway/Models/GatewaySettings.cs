@@ -6,6 +6,16 @@ namespace TokanPages.Gateway.Models;
 public class GatewaySettings
 {
     /// <summary>
+    /// Configuration section name.
+    /// </summary>
+    public const string SectionName = nameof(GatewaySettings);
+
+    /// <summary>
+    /// Allowed path(s).
+    /// </summary>
+    public string Allowed { get; set; } = string.Empty;
+
+    /// <summary>
     /// List of routes.
     /// </summary>
     public IEnumerable<RouteDefinition>? Routes { get; set; }
