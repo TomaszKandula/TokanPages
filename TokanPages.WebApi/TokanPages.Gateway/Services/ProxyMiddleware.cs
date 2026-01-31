@@ -17,7 +17,7 @@ public class ProxyMiddleware
 
     private readonly IProxyHttpClient _proxyHttpClient;
 
-    private IOptionsSnapshot<GatewaySettings> _settingsAccessor = null!;
+    private GatewaySettings _settingsAccessor = null!;
 
     /// <summary>
     /// Proxy middleware.
@@ -33,7 +33,7 @@ public class ProxyMiddleware
     }
 
     private IEnumerable<string> ResponseHeadersExclude 
-        => _settingsAccessor.Value.ResponseHeaders?.Exclude ?? Array.Empty<string>();
+        => _settingsAccessor.ResponseHeaders?.Exclude ?? Array.Empty<string>();
 
     /// <summary>
     /// Invoke middleware implementation.
@@ -42,7 +42,7 @@ public class ProxyMiddleware
     /// <param name="settingsAccessor">Gateways settings.</param>
     public async Task Invoke(HttpContext context, IOptionsSnapshot<GatewaySettings> settingsAccessor)
     {
-        _settingsAccessor = settingsAccessor;
+        _settingsAccessor = settingsAccessor.Value;
 
         var path = context.Request.Path.ToString().ToLower();
         if (path.Contains("/api/websocket") || path == "/hc" || path == "/")
@@ -65,7 +65,7 @@ public class ProxyMiddleware
     private RouteDefinition? GetRouteForPath(string path)
     {
         RouteDefinition? route = null;
-        foreach (var item in _settingsAccessor.Value.Routes!)
+        foreach (var item in _settingsAccessor.Routes!)
         {
             var serviceName = item.ServiceName.ToLower();
             if (!path.Contains(serviceName))
@@ -83,7 +83,7 @@ public class ProxyMiddleware
     {
         try
         {
-            var httpRequestMessage = RequestMessageFactory.Create(context.Request, route, _settingsAccessor.Value.Headers);
+            var httpRequestMessage = RequestMessageFactory.Create(context.Request, route, _settingsAccessor.Headers);
             await _proxyHttpClient.ProxyRequest(httpRequestMessage, context, ResponseHeadersExclude);
         }
         catch (Exception exception)
