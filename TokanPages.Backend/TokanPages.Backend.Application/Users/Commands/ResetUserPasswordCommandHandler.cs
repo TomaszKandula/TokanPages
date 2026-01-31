@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -19,17 +20,17 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
 
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     private readonly IUserService _userService;
 
     public ResetUserPasswordCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IDateTimeService dateTimeService, IConfiguration configuration, 
+        IEmailSenderService emailSenderService, IDateTimeService dateTimeService, IOptions<AppSettings> options, 
         IUserService userService) : base(operationDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;
-        _configuration = configuration;
+        _appSettings = options.Value;
         _userService = userService;
     }
 
@@ -45,7 +46,7 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
             throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         var resetId = Guid.NewGuid();
-        var resetMaturity = _configuration.GetValue<int>("Limit_Reset_Maturity");
+        var resetMaturity = _appSettings.LimitResetMaturity;
 
         user.CryptedPassword = string.Empty;
         user.ResetId = resetId;
