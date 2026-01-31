@@ -9,6 +9,7 @@ using TokanPages.Gateway.Services;
 using TokanPages.Services.WebSocketService;
 using TokanPages.Services.WebSocketService.Abstractions;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using TokanPages.Backend.Configuration.Options;
 
 namespace TokanPages.Gateway;
 
@@ -57,28 +58,23 @@ public class Startup
         services.AddSingleton<ILoggerService, LoggerService>();
         services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
         services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
-        services.Configure<GatewaySettings>(_configuration);
+        services.Configure<GatewaySettings>(_configuration.GetSection(GatewaySettings.SectionName));
         services.AddProxyHttpClient();
         services.AddNamedHttpClients(_configuration);
 
-        var emailHealthUrl = _configuration.GetValue<string>("Email_HealthUrl") ?? "";
-        var azureRedis = _configuration.GetValue<string>("AZ_Redis_ConnectionString") ?? "";
-        var sqlServer = _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
-        var azureStorage = _configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "";
-        var azureStorageContainer = _configuration.GetValue<string>("AZ_Storage_ContainerName") ?? "";
-        var azureBusService = _configuration.GetValue<string>("AZ_Bus_ConnectionString") ?? "";
+        var settings = BoundAppSettings.GetSettings(_configuration);
         services
             .AddHealthChecks()
-            .AddUrlGroup(new Uri(emailHealthUrl), name: "EmailService")
-            .AddRedis(azureRedis, name: "AzureRedisCache")
-            .AddSqlServer(sqlServer, name: "SQLServer")
+            .AddUrlGroup(new Uri(settings.EmailHealthUrl), name: "EmailService")
+            .AddRedis(settings.AzRedisConnectionString, name: "AzureRedisCache")
+            .AddSqlServer(settings.DbDatabaseContext, name: "SQLServer")
             .AddAzureBlobStorage(
                 name: "AzureStorage",
-                clientFactory: _ => new BlobServiceClient(azureStorage),
-                optionsFactory: _ => new AzureBlobStorageHealthCheckOptions { ContainerName = azureStorageContainer })
-            .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServiceEmail", queueName: "email_queue")
-            .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServicePayment", queueName: "payment_queue")
-            .AddAzureServiceBusQueue(azureBusService, name: "AzureBusServiceVideo", queueName: "video_queue");
+                clientFactory: _ => new BlobServiceClient(settings.AzStorageConnectionString),
+                optionsFactory: _ => new AzureBlobStorageHealthCheckOptions { ContainerName = settings.AzStorageContainerName })
+            .AddAzureServiceBusQueue(settings.AzBusConnectionString, name: "AzureBusServiceEmail", queueName: "email_queue")
+            .AddAzureServiceBusQueue(settings.AzBusConnectionString, name: "AzureBusServicePayment", queueName: "payment_queue")
+            .AddAzureServiceBusQueue(settings.AzBusConnectionString, name: "AzureBusServiceVideo", queueName: "video_queue");
     }
 
     /// <summary>
