@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Moq;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Persistence.DataAccess.Contexts;
@@ -46,6 +48,36 @@ public abstract class TestBase
             .Returns(value);
 
         return mockedSection.Object;
+    }
+
+    protected Mock<IOptions<AppSettings>> GetMockSettings()
+    {
+        var mockedOptions = new Mock<IOptions<AppSettings>>();
+        var apsSettings = new AppSettings
+        {
+            IdsIssuer = DataUtilityService.GetRandomString(),
+            IdsAudience = DataUtilityService.GetRandomString(),
+            IdsWebSecret = DataUtilityService.GetRandomString(),
+            IdsRequireHttps = false,
+            IdsWebTokenMaturity = 90,
+            IdsRefreshTokenMaturity = 120,
+            LimitActivationMaturity = 30,
+            LimitResetMaturity = 30,
+            AzStorageBaseUrl = DataUtilityService.GetRandomString(),
+            AzStorageMaxFileSizeUserMedia = 4096,
+            PathsTemplatesContactForm = DataUtilityService.GetRandomString(),
+            PathsTemplatesNewsletter = DataUtilityService.GetRandomString(),
+            EmailAddressContact = DataUtilityService.GetRandomString(),
+            PathsDeploymentOrigin = DataUtilityService.GetRandomString(),
+            PathsDevelopmentOrigin = DataUtilityService.GetRandomString(),
+            PathsNewsletterUpdate = DataUtilityService.GetRandomString(),
+            PathsNewsletterRemove = DataUtilityService.GetRandomString(),
+            LimitLikesAnonymous = 25,
+            LimitLikesUser = 50,
+        };
+
+        mockedOptions.Setup(options => options.Value).Returns(apsSettings);
+        return mockedOptions;
     }
 
     protected Mock<IConfiguration> SetConfiguration()
