@@ -1,7 +1,7 @@
 using FluentAssertions;
-using Microsoft.Extensions.Configuration;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
@@ -19,7 +19,6 @@ public class AddUserNoteCommandHandlerTest : TestBase
     {
         // Arrange
         const string currentNote = "This is my test existing note...";
-        var limitNotes = SetReturnValue("10");
         var compressedNote = currentNote.CompressToBase64();
         var userId = Guid.NewGuid();
 
@@ -49,7 +48,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfiguration = new Mock<IConfiguration>();
+        var mockedConfiguration = GetMockSettings();
 
         mockedUserService
             .Setup(service => service.GetActiveUser(
@@ -61,10 +60,6 @@ public class AddUserNoteCommandHandlerTest : TestBase
         mockedUserService
             .Setup(service => service.GetLoggedUserId())
             .Returns(user.Id);
-
-        mockedConfiguration
-            .Setup(configuration => configuration.GetSection(It.IsAny<string>()))
-            .Returns(limitNotes);
 
         var command = new AddUserNoteCommand
         {
@@ -83,7 +78,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
 
         // Assert
         result.CurrentNotes.Should().Be(2);
-        result.Result.Should().Be(TokanPages.Backend.Domain.Enums.UserNote.NoteAdded);
+        result.Result.Should().Be(Backend.Domain.Enums.UserNote.NoteAdded);
     }
 
     [Fact]
@@ -91,7 +86,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
     {
         // Arrange
         const string currentNote = "This is my test existing note...";
-        var limitNotes = SetReturnValue("1");
+        const int limitNotes = 1;
         var compressedNote = currentNote.CompressToBase64();
         var userId = Guid.NewGuid();
 
@@ -121,7 +116,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
         var mockedLogger = new Mock<ILoggerService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
-        var mockedConfiguration = new Mock<IConfiguration>();
+        var mockedConfiguration = GetMockSettings();
 
         mockedUserService
             .Setup(service => service.GetActiveUser(
@@ -135,8 +130,11 @@ public class AddUserNoteCommandHandlerTest : TestBase
             .Returns(user.Id);
 
         mockedConfiguration
-            .Setup(configuration => configuration.GetSection(It.IsAny<string>()))
-            .Returns(limitNotes);
+            .Setup(configuration => configuration.Value)
+            .Returns(new AppSettings
+            {
+                UserNoteMaxCount = limitNotes
+            });
 
         var command = new AddUserNoteCommand
         {
@@ -155,6 +153,6 @@ public class AddUserNoteCommandHandlerTest : TestBase
 
         // Assert
         result.CurrentNotes.Should().Be(1);
-        result.Result.Should().Be(TokanPages.Backend.Domain.Enums.UserNote.NoteRejected);
+        result.Result.Should().Be(Backend.Domain.Enums.UserNote.NoteRejected);
     }
 }
