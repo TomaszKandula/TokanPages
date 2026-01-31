@@ -13,7 +13,7 @@ public static class SeriLogSupport
 
     public static ILogger GetLogger(IConfigurationRoot configuration, string storageFileName, bool isProduction)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var connectionString = settings.AzStorageConnectionString;
         var containerName = settings.AzStorageContainerName;
 

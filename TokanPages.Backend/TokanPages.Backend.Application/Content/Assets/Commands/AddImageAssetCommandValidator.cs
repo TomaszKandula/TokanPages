@@ -9,7 +9,7 @@ public class AddImageAssetCommandValidator : AbstractValidator<AddImageAssetComm
 {
     public AddImageAssetCommandValidator(IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var sizeLimit = settings.AzStorageMaxFileSizeSingleAsset;
 
         When(command => command.BinaryData != null, () =>

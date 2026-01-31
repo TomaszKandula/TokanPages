@@ -9,7 +9,7 @@ public class UploadImageCommandValidator : AbstractValidator<UploadImageCommand>
 {
     public UploadImageCommandValidator(IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var sizeLimit = settings.AzStorageMaxFileSizeUserMedia;
 
         When(command => command.BinaryData != null, () =>

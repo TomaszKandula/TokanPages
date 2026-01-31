@@ -78,7 +78,7 @@ public class Startup
         services.SetupSwaggerOptions(_environment, ApiName, DocVersion, XmlDocs);
         services.SetupDockerInternalNetwork();
 
-        var settings = _configuration.GetSettings();
+        var settings = _configuration.GetAppSettings();
         services
             .AddHealthChecks()
             .AddRedis(settings.AzRedisConnectionString, name: "AzureRedisCache")

@@ -9,7 +9,7 @@ public class UpdateUserNoteCommandValidator : AbstractValidator<UpdateUserNoteCo
 {
     public UpdateUserNoteCommandValidator(IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var maxSize = settings.UserNoteMaxSize;
 
         RuleFor(command => command.Note)

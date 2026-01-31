@@ -18,7 +18,7 @@ public static class RedisSupport
     /// <param name="configuration">Application configuration instance.</param>
     public static void SetupRedisCache(this IServiceCollection services, IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         services.AddDistributedRedisCache(option =>
         {
             option.Configuration = settings.AzRedisConnectionString;
@@ -28,7 +28,7 @@ public static class RedisSupport
 
     public static string GetHostAndPort(IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var connectionString = settings.AzRedisConnectionString;
         var data = connectionString.Split(',');
 
@@ -37,7 +37,7 @@ public static class RedisSupport
 
     public static string GetPassword(IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var connectionString = settings.AzRedisConnectionString;
         var data = connectionString.Split(',');
         if (data.Length < 1)
@@ -49,7 +49,7 @@ public static class RedisSupport
 
     public static bool GetSsl(IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var connectionString = settings.AzRedisConnectionString;
         var data = connectionString.Split(',');
         if (data.Length < 2)
@@ -61,7 +61,7 @@ public static class RedisSupport
 
     public static bool GetAbortConnect(IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var connectionString = settings.AzRedisConnectionString;
         var data = connectionString.Split(',');
         if (data.Length < 3)

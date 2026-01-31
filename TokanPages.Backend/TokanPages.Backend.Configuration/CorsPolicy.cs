@@ -19,7 +19,7 @@ public static class CorsPolicy
     /// <param name="configuration">Provided configuration.</param>
     public static void ApplyCorsPolicy(this IApplicationBuilder builder, IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var deploymentOrigin = settings.PathsDevelopmentOrigin;
         var developmentOrigin = settings.PathsDeploymentOrigin;
         var origins = $"{deploymentOrigin};{developmentOrigin}".Split(";");

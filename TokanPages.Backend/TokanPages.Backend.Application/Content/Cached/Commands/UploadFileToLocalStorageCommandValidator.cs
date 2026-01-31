@@ -9,7 +9,7 @@ public class UploadFileToLocalStorageCommandValidator : AbstractValidator<Upload
 {
     public UploadFileToLocalStorageCommandValidator(IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var sizeLimit = settings.AzStorageMaxFileSizeSingleAsset;
 
         RuleFor(command => command.BinaryData)

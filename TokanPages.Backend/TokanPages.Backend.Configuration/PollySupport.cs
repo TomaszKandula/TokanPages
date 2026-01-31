@@ -12,7 +12,7 @@ public static class PollySupport
 {
     public static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var developmentOrigin = settings.PathsDevelopmentOrigin;
         var deploymentOrigin = settings.PathsDeploymentOrigin;
         var url = environment.IsDevelopment() ? developmentOrigin : deploymentOrigin;

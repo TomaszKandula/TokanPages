@@ -9,7 +9,7 @@ public class AddUserFileCommandValidator : AbstractValidator<AddUserFileCommand>
 {
     public AddUserFileCommandValidator(IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var sizeLimit = settings.AzStorageMaxFileSizeUserMedia;
 
         RuleFor(command => command.Type)

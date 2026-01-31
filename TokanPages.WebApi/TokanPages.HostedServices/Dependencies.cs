@@ -83,7 +83,7 @@ public static class Dependencies
 
     private static void SetupAzureServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         services.AddSingleton<IAzureBusFactory>(_ =>
         {
             var connectionString = settings.AzBusConnectionString;
@@ -100,7 +100,7 @@ public static class Dependencies
 
     private static void SetupCronServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         var batchInvoicingCron = settings.BatchInvoicingCron;
         var cachingServiceCron = settings.CachingServiceCron;
         var cachingServiceGetUrl = settings.CachingServiceGetUrl;

@@ -17,7 +17,7 @@ public static class RequestLimiterPolicy
 
     public static void AddLimiter(this IServiceCollection services, IConfiguration configuration)
     {
-        var settings = configuration.GetSettings();
+        var settings = configuration.GetAppSettings();
         services.AddRateLimiter(options =>
         {
             var window = settings.RequestLimiterWindow;
