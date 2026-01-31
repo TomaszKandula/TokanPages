@@ -1,7 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Caching.Distributed;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.RedisCacheService.Abstractions;
@@ -16,17 +17,17 @@ public class RedisDistributedCache : IRedisDistributedCache
 {
     private readonly IDistributedCache _distributedCache;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     /// <summary>
     /// Redis distributed implementation
     /// </summary>
     /// <param name="distributedCache">DistributedCache instance</param>
     /// <param name="configuration">Configuration instance</param>
-    public RedisDistributedCache(IDistributedCache distributedCache, IConfiguration configuration)
+    public RedisDistributedCache(IDistributedCache distributedCache, IOptions<AppSettings> configuration)
     {
         _distributedCache = distributedCache;
-        _configuration = configuration;
+        _appSettings = configuration.Value;
     }
 
     /// <inheritdoc />
@@ -93,11 +94,11 @@ public class RedisDistributedCache : IRedisDistributedCache
     private DistributedCacheEntryOptions SetDistributedCacheEntryOptions(int absoluteExpirationMinute, int slidingExpirationSecond)
     {
         var expirationMinute = absoluteExpirationMinute == 0
-            ? _configuration.GetValue<int>("AZ_Redis_ExpirationMinute")
+            ? _appSettings.AzRedisExpirationMinute
             : absoluteExpirationMinute;
 
         var expirationSecond = slidingExpirationSecond == 0
-            ? _configuration.GetValue<int>("AZ_Redis_ExpirationSecond")
+            ? _appSettings.AzRedisExpirationSecond
             : slidingExpirationSecond;
 
         return new DistributedCacheEntryOptions
