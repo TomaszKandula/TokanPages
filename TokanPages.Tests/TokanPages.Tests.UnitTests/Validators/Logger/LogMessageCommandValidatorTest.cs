@@ -94,7 +94,7 @@ public class LogMessageCommandValidatorTest : TestBase
     public void GivenValidFile_WhenUploadLogFile_ShouldSucceed()
     {
         // Arrange
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
         var mockFile = new Mock<IFormFile>();
         mockFile.Setup(f => f.Length).Returns(4096);
 
@@ -116,7 +116,7 @@ public class LogMessageCommandValidatorTest : TestBase
     public void GivenTooLargeFile_WhenUploadLogFile_ShouldFail()
     {
         // Arrange
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
         var mockFile = new Mock<IFormFile>();
         mockFile.Setup(f => f.Length).Returns(90128);
 
@@ -139,7 +139,7 @@ public class LogMessageCommandValidatorTest : TestBase
     public void GivenTooLargeFileAndTooLongCatalog_WhenUploadLogFile_ShouldFail()
     {
         // Arrange
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
         var mockFile = new Mock<IFormFile>();
         mockFile.Setup(f => f.Length).Returns(90128);
 
@@ -163,7 +163,7 @@ public class LogMessageCommandValidatorTest : TestBase
     public void GivenMissingFileAndCatalog_WhenUploadLogFile_ShouldFail()
     {
         // Arrange
-        var mockedConfig = SetConfiguration();
+        var mockedConfig = GetMockSettings();
         var mockFile = new Mock<IFormFile>();
         mockFile.Setup(f => f.Length).Returns(0);
 

@@ -1,6 +1,4 @@
 using FluentAssertions;
-using Microsoft.Extensions.Configuration;
-using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Shared.Resources;
 using Xunit;
@@ -13,19 +11,12 @@ public class AddUserNoteCommandValidatorTest : TestBase
     public void GivenUserNote_WhenAddUserNoteCommand_ShouldSucceed()
     {
         // Arrange
-        const int noteLength = 50;
-        var noteMaxSize = SetReturnValue("100");
-
         var command = new AddUserNoteCommand
         {
-            Note = DataUtilityService.GetRandomString(noteLength)
+            Note = DataUtilityService.GetRandomString(50)
         };
 
-        var mockedConfiguration = new Mock<IConfiguration>();
-        mockedConfiguration
-            .Setup(configuration => configuration.GetSection(It.IsAny<string>()))
-            .Returns(noteMaxSize);
-
+        var mockedConfiguration = GetMockSettings();
         var validator = new AddUserNoteCommandValidator(mockedConfiguration.Object);
 
         // Act
@@ -39,19 +30,12 @@ public class AddUserNoteCommandValidatorTest : TestBase
     public void GivenTooLargeUserNote_WhenAddUserNoteCommand_ShouldThrowError()
     {
         // Arrange
-        const int noteLength = 200;
-        var noteMaxSize = SetReturnValue("100");
-
         var command = new AddUserNoteCommand
         {
-            Note = DataUtilityService.GetRandomString(noteLength)
+            Note = DataUtilityService.GetRandomString(2048)
         };
 
-        var mockedConfiguration = new Mock<IConfiguration>();
-        mockedConfiguration
-            .Setup(configuration => configuration.GetSection(It.IsAny<string>()))
-            .Returns(noteMaxSize);
-
+        var mockedConfiguration = GetMockSettings();
         var validator = new AddUserNoteCommandValidator(mockedConfiguration.Object);
 
         // Act
@@ -66,17 +50,12 @@ public class AddUserNoteCommandValidatorTest : TestBase
     public void GivenEmptyLargeUserNote_WhenAddUserNoteCommand_ShouldThrowError()
     {
         // Arrange
-        var noteMaxSize = SetReturnValue("100");
         var command = new AddUserNoteCommand
         {
             Note = string.Empty
         };
 
-        var mockedConfiguration = new Mock<IConfiguration>();
-        mockedConfiguration
-            .Setup(configuration => configuration.GetSection(It.IsAny<string>()))
-            .Returns(noteMaxSize);
-
+        var mockedConfiguration = GetMockSettings();
         var validator = new AddUserNoteCommandValidator(mockedConfiguration.Object);
 
         // Act

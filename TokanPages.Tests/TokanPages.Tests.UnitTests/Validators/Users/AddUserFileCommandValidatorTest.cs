@@ -1,7 +1,5 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
@@ -21,12 +19,7 @@ public class AddUserFileCommandValidatorTest : TestBase
 
         var stream = DataUtilityService.GetRandomStream(testFileSizeInKb);
         var formFile = new FormFile(stream, 0, testFileSizeInKb, name, fileName);
-
-        var maxFileSize = SetReturnValue("2048");
-        var mockConfiguration = new Mock<IConfiguration>();
-        mockConfiguration
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeUserMedia"))
-            .Returns(maxFileSize);
+        var mockConfiguration = GetMockSettings();
 
         var command = new AddUserFileCommand
         {
@@ -46,19 +39,13 @@ public class AddUserFileCommandValidatorTest : TestBase
     public async Task GivenInvalidFileSize_WhenInvokeValidation_ShouldFail()
     {
         // Arrange
-        const int testFileSizeInKb = 2048;
+        const int testFileSizeInKb = 9048;
         const string name = "Test";
         const string fileName = "TestFile.mov";
 
         var stream = DataUtilityService.GetRandomStream(testFileSizeInKb);
         var formFile = new FormFile(stream, 0, testFileSizeInKb, name, fileName);
-
-        var maxFileSize = SetReturnValue("1024");
-        var mockConfiguration = new Mock<IConfiguration>();
-        mockConfiguration
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeUserMedia"))
-            .Returns(maxFileSize);
-
+        var mockConfiguration = GetMockSettings();
         var command = new AddUserFileCommand
         {
             Type = UserFileToUpdate.Video,
@@ -84,13 +71,7 @@ public class AddUserFileCommandValidatorTest : TestBase
 
         var stream = DataUtilityService.GetRandomStream(testFileSizeInKb);
         var formFile = new FormFile(stream, 0, testFileSizeInKb, name, fileName);
-
-        var maxFileSize = SetReturnValue("2024");
-        var mockConfiguration = new Mock<IConfiguration>();
-        mockConfiguration
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeUserMedia"))
-            .Returns(maxFileSize);
-
+        var mockConfiguration = GetMockSettings();
         var command = new AddUserFileCommand
         {
             Type = (UserFileToUpdate)900,
@@ -110,12 +91,7 @@ public class AddUserFileCommandValidatorTest : TestBase
     public async Task GivenMissingFile_WhenInvokeValidation_ShouldFail()
     {
         // Arrange
-        var maxFileSize = SetReturnValue("1048");
-        var mockConfiguration = new Mock<IConfiguration>();
-        mockConfiguration
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeUserMedia"))
-            .Returns(maxFileSize);
-
+        var mockConfiguration = GetMockSettings();
         var command = new AddUserFileCommand
         {
             Type = UserFileToUpdate.Video,
@@ -134,12 +110,7 @@ public class AddUserFileCommandValidatorTest : TestBase
     public async Task GivenEmptyCommand_WhenInvokeValidation_ShouldFail()
     {
         // Arrange
-        var maxFileSize = SetReturnValue("1048");
-        var mockConfiguration = new Mock<IConfiguration>();
-        mockConfiguration
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeUserMedia"))
-            .Returns(maxFileSize);
-
+        var mockConfiguration = GetMockSettings();
         var command = new AddUserFileCommand();
 
         // Act
