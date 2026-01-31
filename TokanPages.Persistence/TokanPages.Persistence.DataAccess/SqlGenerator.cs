@@ -41,8 +41,7 @@ public class SqlGenerator : ISqlGenerator
 
         var conditions = (
             from item in dictionary 
-            let inputValue = ProcessValue(item.Value) 
-            select $"{item.Key}={inputValue}"
+            select $"{item.Key}=@{item.Key}"
         ).ToList();
 
         return string.Format(template, string.Join(",", columns), table, string.Join(" AND ", conditions));
