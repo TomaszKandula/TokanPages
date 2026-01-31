@@ -4,7 +4,8 @@ using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.PayUService.Models;
 using TokanPages.Services.UserService.Abstractions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Persistence.DataAccess.Contexts;
 using BuyerInput = TokanPages.Services.PayUService.Models.Sections.Buyer;
@@ -23,23 +24,23 @@ public class CreatePaymentDefaultCommandHandler : RequestHandler<CreatePaymentDe
 
     private readonly IPayUService _payUService;
 
-    private readonly IConfiguration _configuration;
+    private readonly AppSettings _appSettings;
 
     public CreatePaymentDefaultCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IUserService userService, IDateTimeService dateTimeService, IPayUService payUService, 
-        IConfiguration configuration) : base(operationDbContext, loggerService)
+        IOptions<AppSettings> options) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;
         _payUService = payUService;
-        _configuration = configuration;
+        _appSettings = options.Value;
     }
 
     public override async Task<string> Handle(CreatePaymentDefaultCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
         var ipAddress = _userService.GetRequestIpAddress();
-        var merchantPosId = _configuration.GetValue<string>("Pmt_MerchantPosId");
+        var merchantPosId = _appSettings.PmtMerchantPosId;
         var order = request.Request;
 
         var cardTokenResponse = await _payUService.GenerateCardToken(new GenerateCardTokenInput
