@@ -15,10 +15,7 @@ public class AddImageAssetCommandValidatorTest : TestBase
     {
         // Arrange
         var command = new AddImageAssetCommand();
-        var mockedConfig = new Mock<IConfiguration>();
-        mockedConfig
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeSingleAsset"))
-            .Returns(SetReturnValue("100"));
+        var mockedConfig = GetMockSettings();
 
         // Act
         var validator = new AddImageAssetCommandValidator(mockedConfig.Object);
@@ -40,11 +37,7 @@ public class AddImageAssetCommandValidatorTest : TestBase
         var form = new FormFile(stream, 0, testFileSizeInKb, name, fileName);
 
         var command = new AddImageAssetCommand { BinaryData = form };
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeSingleAsset"))
-            .Returns(SetReturnValue("1000"));
+        var mockedConfig = GetMockSettings();
 
         // Act
         var validator = new AddImageAssetCommandValidator(mockedConfig.Object);
@@ -65,11 +58,7 @@ public class AddImageAssetCommandValidatorTest : TestBase
         var form = new FormFile(stream, 0, 0, name, fileName);
 
         var command = new AddImageAssetCommand { BinaryData = form };
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeSingleAsset"))
-            .Returns(SetReturnValue("1000"));
+        var mockedConfig = GetMockSettings();
 
         // Act
         var validator = new AddImageAssetCommandValidator(mockedConfig.Object);
@@ -84,7 +73,7 @@ public class AddImageAssetCommandValidatorTest : TestBase
     public void GivenFileTooLarge_WhenAddImageAssetCommand_ShouldFail()
     {
         // Arrange
-        const int testFileSizeInKb = 20;
+        const int testFileSizeInKb = 4090;
         const string name = "Test";
         const string fileName = "TestFile.webp";
 
@@ -92,11 +81,7 @@ public class AddImageAssetCommandValidatorTest : TestBase
         var form = new FormFile(stream, 0, testFileSizeInKb, name, fileName);
 
         var command = new AddImageAssetCommand { BinaryData = form };
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeSingleAsset"))
-            .Returns(SetReturnValue("10"));
+        var mockedConfig = GetMockSettings();
 
         // Act
         var validator = new AddImageAssetCommandValidator(mockedConfig.Object);

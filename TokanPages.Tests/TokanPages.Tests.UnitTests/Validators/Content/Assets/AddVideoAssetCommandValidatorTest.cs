@@ -22,11 +22,7 @@ public class AddVideoAssetCommandValidatorTest : TestBase
         var form = new FormFile(stream, 0, testFileSizeInKb, name, fileName);
 
         var command = new AddVideoAssetCommand { BinaryData = form };
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeSingleAsset"))
-            .Returns(SetReturnValue("1000"));
+        var mockedConfig = GetMockSettings();
 
         // Act
         var validator = new AddVideoAssetCommandValidator(mockedConfig.Object);
@@ -47,11 +43,7 @@ public class AddVideoAssetCommandValidatorTest : TestBase
         var form = new FormFile(stream, 0, 0, name, fileName);
 
         var command = new AddVideoAssetCommand { BinaryData = form };
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeSingleAsset"))
-            .Returns(SetReturnValue("1000"));
+        var mockedConfig = GetMockSettings();
 
         // Act
         var validator = new AddVideoAssetCommandValidator(mockedConfig.Object);
@@ -66,7 +58,7 @@ public class AddVideoAssetCommandValidatorTest : TestBase
     public void GivenFileTooLarge_WhenAddVideoAssetCommand_ShouldFail()
     {
         // Arrange
-        const int testFileSizeInKb = 20;
+        const int testFileSizeInKb = 5000;
         const string name = "Test";
         const string fileName = "TestFile.mov";
 
@@ -74,11 +66,7 @@ public class AddVideoAssetCommandValidatorTest : TestBase
         var form = new FormFile(stream, 0, testFileSizeInKb, name, fileName);
 
         var command = new AddVideoAssetCommand { BinaryData = form };
-        var mockedConfig = new Mock<IConfiguration>();
-
-        mockedConfig
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeSingleAsset"))
-            .Returns(SetReturnValue("10"));
+        var mockedConfig = GetMockSettings();
 
         // Act
         var validator = new AddVideoAssetCommandValidator(mockedConfig.Object);

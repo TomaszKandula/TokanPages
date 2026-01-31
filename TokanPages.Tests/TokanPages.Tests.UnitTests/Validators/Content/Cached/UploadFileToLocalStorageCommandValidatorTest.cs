@@ -1,7 +1,5 @@
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
-using Moq;
 using TokanPages.Backend.Application.Content.Cached.Commands;
 using TokanPages.Backend.Shared.Resources;
 using Xunit;
@@ -25,10 +23,7 @@ public class UploadFileToLocalStorageCommandValidatorTest : TestBase
             BinaryData = form
         };
 
-        var mockedConfig = new Mock<IConfiguration>();
-        mockedConfig
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeSingleAsset"))
-            .Returns(SetReturnValue("100"));
+        var mockedConfig = GetMockSettings();
 
         // Act
         var validator = new UploadFileToLocalStorageCommandValidator(mockedConfig.Object);
@@ -43,10 +38,7 @@ public class UploadFileToLocalStorageCommandValidatorTest : TestBase
     {
         // Arrange
         var command = new UploadFileToLocalStorageCommand();
-        var mockedConfig = new Mock<IConfiguration>();
-        mockedConfig
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeSingleAsset"))
-            .Returns(SetReturnValue("100"));
+        var mockedConfig = GetMockSettings();
 
         // Act
         var validator = new UploadFileToLocalStorageCommandValidator(mockedConfig.Object);
@@ -61,7 +53,7 @@ public class UploadFileToLocalStorageCommandValidatorTest : TestBase
     public void GivenTooBigFile_WhenUploadFileToLocalStorageCommand_ShouldFail()
     {
         // Arrange
-        const int testFileSizeInKb = 500;
+        const int testFileSizeInKb = 5000;
         const string name = "Test";
         const string fileName = "TestFile.js";
 
@@ -72,10 +64,7 @@ public class UploadFileToLocalStorageCommandValidatorTest : TestBase
             BinaryData = form
         };
 
-        var mockedConfig = new Mock<IConfiguration>();
-        mockedConfig
-            .Setup(configuration => configuration.GetSection("AZ_Storage_MaxFileSizeSingleAsset"))
-            .Returns(SetReturnValue("100"));
+        var mockedConfig = GetMockSettings();
 
         // Act
         var validator = new UploadFileToLocalStorageCommandValidator(mockedConfig.Object);

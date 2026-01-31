@@ -6,6 +6,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Serilog;
 using TokanPages.Backend.Configuration;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Exceptions.Middleware;
 using TokanPages.Services.WebSocketService;
@@ -77,12 +78,11 @@ public class Startup
         services.SetupSwaggerOptions(_environment, ApiName, DocVersion, XmlDocs);
         services.SetupDockerInternalNetwork();
 
-        var azureRedis = _configuration.GetValue<string>("AZ_Redis_ConnectionString") ?? "";
-        var sqlServer = _configuration.GetValue<string>("Db_DatabaseContext") ?? "";
+        var settings = _configuration.GetAppSettings();
         services
             .AddHealthChecks()
-            .AddRedis(azureRedis, name: "AzureRedisCache")
-            .AddSqlServer(sqlServer, name: "SQLServer");
+            .AddRedis(settings.AzRedisConnectionString, name: "AzureRedisCache")
+            .AddSqlServer(settings.DbDatabaseContext, name: "SQLServer");
     }
 
     /// <summary>

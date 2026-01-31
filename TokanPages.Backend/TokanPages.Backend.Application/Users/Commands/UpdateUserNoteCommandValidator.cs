@@ -1,14 +1,15 @@
 using FluentValidation;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
 public class UpdateUserNoteCommandValidator : AbstractValidator<UpdateUserNoteCommand>
 {
-    public UpdateUserNoteCommandValidator(IConfiguration configuration)
+    public UpdateUserNoteCommandValidator(IOptions<AppSettingsModel> configuration)
     {
-        var maxSize = configuration.GetValue<int>("UserNote_MaxSize");
+        var maxSize = configuration.Value.UserNoteMaxSize;
 
         RuleFor(command => command.Note)
             .NotEmpty()

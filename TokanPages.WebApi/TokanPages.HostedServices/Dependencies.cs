@@ -52,7 +52,7 @@ public static class Dependencies
     public static void RegisterCommonServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.SetupServices(configuration);
-        services.Configure<AppSettings>(configuration.GetSection(AppSettings.SectionName));
+        services.Configure<AppSettingsModel>(configuration.GetSection(AppSettingsModel.SectionName));
     }
 
     private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 
@@ -83,29 +83,31 @@ public static class Dependencies
 
     private static void SetupAzureServices(this IServiceCollection services, IConfiguration configuration)
     {
+        var settings = configuration.GetAppSettings();
         services.AddSingleton<IAzureBusFactory>(_ =>
         {
-            var connectionString = configuration.GetValue<string>("AZ_Bus_ConnectionString") ?? string.Empty;
+            var connectionString = settings.AzBusConnectionString;
             return new AzureBusFactory(connectionString);
         });
 
         services.AddSingleton<IAzureBlobStorageFactory>(_ =>
         {
-            var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName") ?? string.Empty;
-            var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? string.Empty;
+            var containerName = settings.AzStorageContainerName;
+            var connectionString = settings.AzStorageConnectionString;
             return new AzureBlobStorageFactory(connectionString, containerName);
         });
     }
 
     private static void SetupCronServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var batchInvoicingCron = configuration.GetValue<string>("BatchInvoicing_Cron");
-        var cachingServiceCron = configuration.GetValue<string>("CachingService_Cron");
-        var cachingServiceGetUrl = configuration.GetValue<string>("CachingService_GetUrl");
-        var cachingServicePostUrl = configuration.GetValue<string>("CachingService_PostUrl");
-        var cachingServiceFiles = configuration.GetValue<string>("CachingService_Files");
-        var cachingServicePaths = configuration.GetValue<string>("CachingService_Paths");
-        var cachingServicePdfSource = configuration.GetValue<string>("CachingService_PdfSource");
+        var settings = configuration.GetAppSettings();
+        var batchInvoicingCron = settings.BatchInvoicingCron;
+        var cachingServiceCron = settings.CachingServiceCron;
+        var cachingServiceGetUrl = settings.CachingServiceGetUrl;
+        var cachingServicePostUrl = settings.CachingServicePostUrl;
+        var cachingServiceFiles = settings.CachingServiceFiles;
+        var cachingServicePaths = settings.CachingServicePaths;
+        var cachingServicePdfSource = settings.CachingServicePdfSource;
 
         if (!string.IsNullOrWhiteSpace(batchInvoicingCron))
         {
@@ -126,9 +128,9 @@ public static class Dependencies
             {
                 TimeZoneInfo = TimeZoneInfo.Local,
                 CronExpression = cachingServiceCron,
-                GetActionUrl = cachingServiceGetUrl ?? "",
-                PostActionUrl = cachingServicePostUrl ?? "",
-                FilesToCache = hasFiles ? cachingServiceFiles?.Split(";") : null,
+                GetActionUrl = cachingServiceGetUrl,
+                PostActionUrl = cachingServicePostUrl,
+                FilesToCache = hasFiles ? cachingServiceFiles.Split(";") : null,
                 PageRoutePaths = GetSerializedList<RoutePath>(cachingServicePaths),
                 PdfRoutePaths = GetSerializedList<RoutePath>(cachingServicePdfSource),
             };

@@ -51,10 +51,10 @@ public abstract class TestBase
         return mockedSection.Object;
     }
 
-    protected Mock<IOptions<AppSettings>> GetMockSettings()
+    protected Mock<IOptions<AppSettingsModel>> GetMockSettings()
     {
-        var mockedOptions = new Mock<IOptions<AppSettings>>();
-        var apsSettings = new AppSettings
+        var mockedOptions = new Mock<IOptions<AppSettingsModel>>();
+        var apsSettings = new AppSettingsModel
         {
             IdsIssuer = DataUtilityService.GetRandomString(),
             IdsAudience = DataUtilityService.GetRandomString(),
@@ -66,6 +66,7 @@ public abstract class TestBase
             LimitResetMaturity = 30,
             AzStorageBaseUrl = DataUtilityService.GetRandomString(),
             AzStorageMaxFileSizeUserMedia = 4096,
+            AzStorageMaxFileSizeSingleAsset = 4069,
             PathsTemplatesContactForm = DataUtilityService.GetRandomString(),
             PathsTemplatesNewsletter = DataUtilityService.GetRandomString(),
             EmailAddressContact = DataUtilityService.GetRandomString(),
@@ -75,7 +76,8 @@ public abstract class TestBase
             PathsNewsletterRemove = DataUtilityService.GetRandomString(),
             LimitLikesAnonymous = 25,
             LimitLikesUser = 50,
-            UserNoteMaxCount = 10
+            UserNoteMaxCount = 10,
+            UserNoteMaxSize = 1024
         };
 
         mockedOptions.Setup(options => options.Value).Returns(apsSettings);

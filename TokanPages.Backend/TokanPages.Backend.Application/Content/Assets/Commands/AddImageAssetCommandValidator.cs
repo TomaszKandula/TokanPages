@@ -1,14 +1,15 @@
 using TokanPages.Backend.Shared.Resources;
 using FluentValidation;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 
 namespace TokanPages.Backend.Application.Content.Assets.Commands;
 
 public class AddImageAssetCommandValidator : AbstractValidator<AddImageAssetCommand>
 {
-    public AddImageAssetCommandValidator(IConfiguration configuration)
+    public AddImageAssetCommandValidator(IOptions<AppSettingsModel> configuration)
     {
-        var sizeLimit = configuration.GetValue<int>("AZ_Storage_MaxFileSizeSingleAsset");
+        var sizeLimit = configuration.Value.AzStorageMaxFileSizeSingleAsset;
 
         When(command => command.BinaryData != null, () =>
         {

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TokanPages.Backend.Configuration.Options;
 
 namespace TokanPages.Backend.Configuration;
 
@@ -16,12 +17,13 @@ public static class RequestLimiterPolicy
 
     public static void AddLimiter(this IServiceCollection services, IConfiguration configuration)
     {
+        var settings = configuration.GetAppSettings();
         services.AddRateLimiter(options =>
         {
-            var window = configuration.GetValue<int>("RequestLimiter_Window");
-            var permit = configuration.GetValue<int>("RequestLimiter_Permit");
-            var segments = configuration.GetValue<int>("RequestLimiter_Segments");
-            var settings = new SlidingWindowRateLimiterOptions
+            var window = settings.RequestLimiterWindow;
+            var permit = settings.RequestLimiterPermit;
+            var segments = settings.RequestLimiterSegments;
+            var limiterOptions = new SlidingWindowRateLimiterOptions
             {
                 SegmentsPerWindow = segments,
                 Window = TimeSpan.FromSeconds(window),
@@ -32,7 +34,7 @@ public static class RequestLimiterPolicy
             options.AddPolicy("SigninRateLimiter", httpContext =>
             {
                 var ipAddress = httpContext.GetRequestIpAddress();
-                return RateLimitPartition.GetSlidingWindowLimiter(ipAddress, _ => settings);
+                return RateLimitPartition.GetSlidingWindowLimiter(ipAddress, _ => limiterOptions);
             });
         });
     }

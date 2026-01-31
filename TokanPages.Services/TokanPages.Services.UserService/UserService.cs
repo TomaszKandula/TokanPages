@@ -38,7 +38,7 @@ public sealed class UserService : IUserService
 
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     private List<GetUserPermissionsOutput>? _userPermissions;
 
@@ -47,7 +47,7 @@ public sealed class UserService : IUserService
     private GetUserOutput? _user;
 
     public UserService(IHttpContextAccessor httpContextAccessor, OperationDbContext operationDbContext, 
-        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IOptions<AppSettings> configuration)
+        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IOptions<AppSettingsModel> configuration)
     {
         _httpContextAccessor = httpContextAccessor;
         _operationDbContext = operationDbContext;

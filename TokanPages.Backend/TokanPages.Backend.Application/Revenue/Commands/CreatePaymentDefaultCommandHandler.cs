@@ -24,11 +24,11 @@ public class CreatePaymentDefaultCommandHandler : RequestHandler<CreatePaymentDe
 
     private readonly IPayUService _payUService;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     public CreatePaymentDefaultCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IUserService userService, IDateTimeService dateTimeService, IPayUService payUService, 
-        IOptions<AppSettings> options) : base(operationDbContext, loggerService)
+        IOptions<AppSettingsModel> options) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;

@@ -2,7 +2,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace TokanPages.Backend.Configuration.Options;
 
-public class AppSettings
+public class AppSettingsModel
 {
     public const string SectionName = "AppSettings";
 

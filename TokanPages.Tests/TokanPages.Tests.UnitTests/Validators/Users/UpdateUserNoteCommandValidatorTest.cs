@@ -1,6 +1,4 @@
 using FluentAssertions;
-using Microsoft.Extensions.Configuration;
-using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Shared.Resources;
 using Xunit;
@@ -14,18 +12,12 @@ public class UpdateUserNoteCommandValidatorTest : TestBase
     {
         // Arrange
         const int noteLength = 50;
-        var noteMaxSize = SetReturnValue("100");
-
         var command = new UpdateUserNoteCommand
         {
             Note = DataUtilityService.GetRandomString(noteLength)
         };
 
-        var mockedConfiguration = new Mock<IConfiguration>();
-        mockedConfiguration
-            .Setup(configuration => configuration.GetSection(It.IsAny<string>()))
-            .Returns(noteMaxSize);
-
+        var mockedConfiguration = GetMockSettings();
         var validator = new UpdateUserNoteCommandValidator(mockedConfiguration.Object);
 
         // Act
@@ -39,19 +31,14 @@ public class UpdateUserNoteCommandValidatorTest : TestBase
     public void GivenTooLargeUserNote_WhenUpdateUserNoteCommand_ShouldThrowError()
     {
         // Arrange
-        const int noteLength = 200;
-        var noteMaxSize = SetReturnValue("100");
+        const int noteLength = 2048;
 
         var command = new UpdateUserNoteCommand
         {
             Note = DataUtilityService.GetRandomString(noteLength)
         };
 
-        var mockedConfiguration = new Mock<IConfiguration>();
-        mockedConfiguration
-            .Setup(configuration => configuration.GetSection(It.IsAny<string>()))
-            .Returns(noteMaxSize);
-
+        var mockedConfiguration = GetMockSettings();
         var validator = new UpdateUserNoteCommandValidator(mockedConfiguration.Object);
 
         // Act
@@ -66,17 +53,12 @@ public class UpdateUserNoteCommandValidatorTest : TestBase
     public void GivenEmptyLargeUserNote_WhenUpdateUserNoteCommand_ShouldThrowError()
     {
         // Arrange
-        var noteMaxSize = SetReturnValue("100");
         var command = new UpdateUserNoteCommand
         {
             Note = string.Empty
         };
 
-        var mockedConfiguration = new Mock<IConfiguration>();
-        mockedConfiguration
-            .Setup(configuration => configuration.GetSection(It.IsAny<string>()))
-            .Returns(noteMaxSize);
-
+        var mockedConfiguration = GetMockSettings();
         var validator = new UpdateUserNoteCommandValidator(mockedConfiguration.Object);
 
         // Act

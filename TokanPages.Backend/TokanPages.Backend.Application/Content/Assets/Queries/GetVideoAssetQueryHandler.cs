@@ -10,9 +10,9 @@ namespace TokanPages.Backend.Application.Content.Assets.Queries;
 
 public class GetVideoAssetQueryHandler : RangeRequestHandler<GetVideoAssetQuery, Unit>
 {
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
-    public GetVideoAssetQueryHandler(IOptions<AppSettings> options, IHttpContextAccessor httpContextAccessor, 
+    public GetVideoAssetQueryHandler(IOptions<AppSettingsModel> options, IHttpContextAccessor httpContextAccessor, 
         IHttpClientServiceFactory clientServiceFactory, ILoggerService loggerService) 
         : base(httpContextAccessor, clientServiceFactory, loggerService) => _appSettings = options.Value;
 

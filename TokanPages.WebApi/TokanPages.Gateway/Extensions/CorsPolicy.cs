@@ -34,7 +34,8 @@ public static class CorsPolicy
     /// <param name="configuration">Application configuration instance.</param>
     public static void ApplyGatewayCorsPolicy(this IApplicationBuilder builder, IConfiguration configuration)
     {
-        var allowed = configuration.GetValue<string>("Allowed") ?? "";
+        var settings = configuration.GetGatewaySettings();
+        var allowed = settings.Allowed;
         var origins = allowed.Split(";");
         builder
             .UseCors(policy => policy

@@ -18,10 +18,10 @@ public class PayUService : IPayUService
 
     private readonly ILoggerService _loggerService;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     public PayUService(IHttpClientServiceFactory httpClientServiceFactory, 
-        ILoggerService loggerService, IOptions<AppSettings> options)
+        ILoggerService loggerService, IOptions<AppSettingsModel> options)
     {
         _httpClientServiceFactory = httpClientServiceFactory;
         _loggerService = loggerService;

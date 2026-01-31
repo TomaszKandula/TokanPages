@@ -131,7 +131,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
 
         mockedConfiguration
             .Setup(configuration => configuration.Value)
-            .Returns(new AppSettings
+            .Returns(new AppSettingsModel
             {
                 UserNoteMaxCount = limitNotes
             });

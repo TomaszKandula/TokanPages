@@ -61,7 +61,7 @@ public static class Dependencies
         services.SetupValidators();
         services.SetupMediatR();
 		services.SetupWebToken(configuration);
-        services.Configure<AppSettings>(configuration.GetSection(AppSettings.SectionName));
+        services.Configure<AppSettingsModel>(configuration.GetSection(AppSettingsModel.SectionName));
 	}
 
 	private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 
@@ -89,16 +89,17 @@ public static class Dependencies
 		services.AddScoped<ITemplatesCache, TemplatesCache>();
 		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
 
+        var settings = configuration.GetAppSettings();
 		services.AddSingleton<IAzureBusFactory>(_ =>
 		{
-			var connectionString = configuration.GetValue<string>("AZ_Bus_ConnectionString") ?? "";
+			var connectionString = settings.AzBusConnectionString;
 			return new AzureBusFactory(connectionString);
 		});
 
 		services.AddSingleton<IAzureBlobStorageFactory>(_ =>
 		{
-			var containerName = configuration.GetValue<string>("AZ_Storage_ContainerName") ?? "";
-			var connectionString = configuration.GetValue<string>("AZ_Storage_ConnectionString") ?? "";
+			var containerName = settings.AzStorageContainerName;
+			var connectionString = settings.AzStorageConnectionString;
 			return new AzureBlobStorageFactory(connectionString, containerName);
 		});
 	}

@@ -13,7 +13,7 @@ namespace TokanPages.Backend.Application.Users.Commands;
 
 public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailCommand, Unit>
 {
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     private readonly IUserService _userService;
 
@@ -22,7 +22,7 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
     private readonly IEmailSenderService _emailSenderService;
 
     public VerifyUserEmailCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IOptions<AppSettings> options, IUserService userService, IDateTimeService dateTimeService, 
+        IOptions<AppSettingsModel> options, IUserService userService, IDateTimeService dateTimeService, 
         IEmailSenderService emailSenderService) : base(operationDbContext, loggerService)
     {
         _appSettings = options.Value;

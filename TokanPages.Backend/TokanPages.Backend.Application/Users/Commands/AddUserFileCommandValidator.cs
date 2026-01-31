@@ -1,14 +1,15 @@
 using FluentValidation;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
 public class AddUserFileCommandValidator : AbstractValidator<AddUserFileCommand>
 {
-    public AddUserFileCommandValidator(IConfiguration configuration)
+    public AddUserFileCommandValidator(IOptions<AppSettingsModel> configuration)
     {
-        var sizeLimit = configuration.GetValue<int>("AZ_Storage_MaxFileSizeUserMedia");
+        var sizeLimit = configuration.Value.AzStorageMaxFileSizeUserMedia;
 
         RuleFor(command => command.Type)
             .NotEmpty()

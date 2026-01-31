@@ -24,14 +24,14 @@ namespace TokanPages.Content.Controllers.Api;
 [Route("api/v{version:apiVersion}/content/[controller]/[action]")]
 public class AssetsController : ApiBaseController
 {
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     /// <summary>
     /// Assets controller.
     /// </summary>
     /// <param name="mediator">Mediator instance.</param>
     /// <param name="configuration"></param>
-    public AssetsController(IMediator mediator, IOptions<AppSettings> configuration) : base(mediator)
+    public AssetsController(IMediator mediator, IOptions<AppSettingsModel> configuration) : base(mediator)
     {
         _appSettings = configuration.Value;
     }

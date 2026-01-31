@@ -14,12 +14,12 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
 {
     private readonly IEmailSenderService _emailSenderService;
 
-    private readonly AppSettings _appSettings;
+    private readonly AppSettingsModel _appSettings;
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
     public SendNewsletterCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IOptions<AppSettings> options) : base(operationDbContext, loggerService)
+        IEmailSenderService emailSenderService, IOptions<AppSettingsModel> options) : base(operationDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _appSettings = options.Value;

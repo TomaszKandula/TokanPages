@@ -54,13 +54,13 @@ public static class Dependencies
         services.SetupValidators();
         services.SetupMediatR();
 		services.SetupWebToken(configuration);
-        services.Configure<AppSettings>(configuration.GetSection(AppSettings.SectionName));
+        services.Configure<AppSettingsModel>(configuration.GetSection(AppSettingsModel.SectionName));
 	}
 
 	private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 
 	{
-		services.AddHttpContextAccessor();
-        
+        services.AddHttpContextAccessor();
+
         services.AddSingleton<ILoggerService, LoggerService>();
 		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
 
@@ -74,10 +74,12 @@ public static class Dependencies
 
 		services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
 		services.AddScoped<IAzureNotificationHubUtility, AzureNotificationHubUtility>();
+
+        var settings = configuration.GetAppSettings();
 		services.AddSingleton<IAzureNotificationHubFactory>(_ =>
 		{
-			var containerName = configuration.GetValue<string>("AZ_Hub_HubName") ?? "";
-			var connectionString = configuration.GetValue<string>("AZ_Hub_ConnectionString") ?? "";
+			var containerName = settings.AzHubHubName;
+			var connectionString = settings.AzHubConnectionString;
 			return new AzureNotificationHubFactory(containerName, connectionString);
 		});
 	}

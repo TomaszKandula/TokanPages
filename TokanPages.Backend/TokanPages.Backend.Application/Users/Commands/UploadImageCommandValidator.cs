@@ -1,6 +1,7 @@
 using FluentValidation;
 using TokanPages.Backend.Shared.Resources;
 using Microsoft.Extensions.Configuration;
+using TokanPages.Backend.Configuration.Options;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
@@ -8,7 +9,8 @@ public class UploadImageCommandValidator : AbstractValidator<UploadImageCommand>
 {
     public UploadImageCommandValidator(IConfiguration configuration)
     {
-        var sizeLimit = configuration.GetValue<int>("AZ_Storage_MaxFileSizeUserMedia");
+        var settings = configuration.GetAppSettings();
+        var sizeLimit = settings.AzStorageMaxFileSizeUserMedia;
 
         When(command => command.BinaryData != null, () =>
         {

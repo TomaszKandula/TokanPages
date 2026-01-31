@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Helpers;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
@@ -21,8 +22,9 @@ public static class ConfigurationExtension
     private static void SetupDatabase<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
     {
         const int maxRetryCount = 10;
+        var settings = configuration.GetAppSettings();
         var maxRetryDelay = TimeSpan.FromSeconds(5);
-        var connectionString = configuration.GetValue<string>("Db_DatabaseContext") ?? "";
+        var connectionString = settings.DbDatabaseContext;
 
         services.AddDbContext<T>(options =>
         {
