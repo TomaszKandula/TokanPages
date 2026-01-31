@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Shared.Constants;
 
 namespace TokanPages.Backend.Configuration;
@@ -11,8 +12,9 @@ public static class PollySupport
 {
     public static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
     {
-        var developmentOrigin = configuration.GetValue<string>("Paths_DevelopmentOrigin") ?? "";
-        var deploymentOrigin = configuration.GetValue<string>("Paths_DeploymentOrigin") ?? "";
+        var settings = BoundAppSettings.GetSettings(configuration);
+        var developmentOrigin = settings.PathsDevelopmentOrigin;
+        var deploymentOrigin = settings.PathsDeploymentOrigin;
         var url = environment.IsDevelopment() ? developmentOrigin : deploymentOrigin;
 
         services.AddHttpClient("RetryHttpClient", options =>
