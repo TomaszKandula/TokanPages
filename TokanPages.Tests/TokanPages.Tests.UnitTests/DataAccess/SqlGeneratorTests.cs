@@ -72,11 +72,11 @@ public class SqlGeneratorTests : TestBase
         var filterBy = new 
         {
             Name = "Victoria",
-            IsPublished= true,
-            CreatedAt= DateTime.Parse("2020-09-27"),
+            IsPublished = true,
+            CreatedAt = DateTime.Parse("2020-09-27"),
         };
 
-        const string expectedValues = "Name='Victoria' AND IsPublished=1 AND CreatedAt='2020-09-27 00:00:00'";
+        const string expectedValues = "Name=@Name AND IsPublished=@IsPublished AND CreatedAt=@CreatedAt";
         const string expectedStatement = $"SELECT Id,Name,IsPublished,CreatedAt,Likes FROM soccer.Players WHERE {expectedValues}";
 
         var sqlGenerator = new SqlGenerator();
