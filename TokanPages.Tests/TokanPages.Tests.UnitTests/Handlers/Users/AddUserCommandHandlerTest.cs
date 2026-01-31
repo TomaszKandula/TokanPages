@@ -35,19 +35,19 @@ public class AddUserCommandHandlerTest : TestBase
         
         var roles = new Role
         {
-            Name = Backend.Domain.Enums.Role.EverydayUser.ToString(),
-            Description = Backend.Domain.Enums.Role.EverydayUser.ToString()
+            Name = nameof(Backend.Domain.Enums.Role.EverydayUser),
+            Description = nameof(Backend.Domain.Enums.Role.EverydayUser)
         };
 
         var permissions = new List<Permission>
         {
             new()
             {
-                Name = Backend.Domain.Enums.Permission.CanSelectArticles.ToString()
+                Name = nameof(Backend.Domain.Enums.Permission.CanSelectArticles)
             },
             new()
             {
-                Name = Backend.Domain.Enums.Permission.CanSelectComments.ToString()
+                Name = nameof(Backend.Domain.Enums.Permission.CanSelectComments)
             }
         };
 
