@@ -17,7 +17,7 @@ public class ProxyMiddleware
 
     private readonly IProxyHttpClient _proxyHttpClient;
 
-    private GatewaySettings _settingsAccessor = null!;
+    private GatewaySettingsModel _settingsAccessor = null!;
 
     /// <summary>
     /// Proxy middleware.
@@ -40,7 +40,7 @@ public class ProxyMiddleware
     /// </summary>
     /// <param name="context">HTTP context.</param>
     /// <param name="settingsAccessor">Gateways settings.</param>
-    public async Task Invoke(HttpContext context, IOptionsSnapshot<GatewaySettings> settingsAccessor)
+    public async Task Invoke(HttpContext context, IOptionsSnapshot<GatewaySettingsModel> settingsAccessor)
     {
         _settingsAccessor = settingsAccessor.Value;
 

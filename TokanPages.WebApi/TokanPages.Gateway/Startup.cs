@@ -58,7 +58,7 @@ public class Startup
         services.AddSingleton<ILoggerService, LoggerService>();
         services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
         services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
-        services.Configure<GatewaySettings>(_configuration.GetSection(GatewaySettings.SectionName));
+        services.Configure<GatewaySettingsModel>(_configuration.GetSection(GatewaySettingsModel.SectionName));
         services.AddProxyHttpClient();
         services.AddNamedHttpClients(_configuration);
 
