@@ -31,6 +31,7 @@ public class SqlGenerator : ISqlGenerator
         const string template = "SELECT {0} FROM {1} WHERE {2}";
 
         var table = GetTableName<T>();
+        var conditions = new List<string>();
         var columns = typeof(T).GetProperties().Select(property => property.Name).ToList();
 
         var dictionary = filterBy
@@ -38,10 +39,12 @@ public class SqlGenerator : ISqlGenerator
             .GetProperties()
             .ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
 
-        var conditions = (
-            from item in dictionary 
-            select $"{item.Key}=@{item.Key}"
-        ).ToList();
+        foreach (var item in dictionary)
+        {
+            conditions.Add($"{item.Key}=@{item.Key}");
+            if (!columns.Contains(item.Key))
+                throw new ArgumentOutOfRangeException(paramName: $"{item.Key}", message: ErrorCodes.INVALID_COLUMN_NAME);
+        }
 
         return string.Format(template, string.Join(",", columns), table, string.Join(" AND ", conditions));
     }
@@ -83,6 +86,7 @@ public class SqlGenerator : ISqlGenerator
         const string template = "UPDATE {0} SET {1} WHERE {2}";
 
         var table = GetTableName<T>();
+        var columns = typeof(T).GetProperties().Select(property => property.Name).ToList();
         var entityProperties = typeof(T).GetProperties();
         var update = new List<string>();
         var condition = new List<string>();
@@ -101,6 +105,8 @@ public class SqlGenerator : ISqlGenerator
         {
             update.Add($"{item.Key}=@{item.Key}");
             parameters.Add(item.Key, item.Value);
+            if (!columns.Contains(item.Key))
+                throw new ArgumentOutOfRangeException(paramName: $"{item.Key}", message: ErrorCodes.INVALID_COLUMN_NAME);
         }
 
         var filterDict = filterBy
@@ -112,6 +118,8 @@ public class SqlGenerator : ISqlGenerator
         {
             condition.Add($"{item.Key}=@{item.Key}");
             parameters.Add(item.Key, item.Value);
+            if (!columns.Contains(item.Key))
+                throw new ArgumentOutOfRangeException(paramName: $"{item.Key}", message: ErrorCodes.INVALID_COLUMN_NAME);
         }
 
         if (condition.Count == 0)
@@ -130,6 +138,7 @@ public class SqlGenerator : ISqlGenerator
         const string template = "DELETE FROM {0} WHERE {1}";
 
         var table = GetTableName<T>();
+        var columns = typeof(T).GetProperties().Select(property => property.Name).ToList();
         var entityProperties = typeof(T).GetProperties();
         var conditions = new List<string>();
         var parameters = new Dictionary<string, object?>();
@@ -147,6 +156,8 @@ public class SqlGenerator : ISqlGenerator
         {
             conditions.Add($"{item.Key}=@{item.Key}");
             parameters.Add(item.Key, item.Value);
+            if (!columns.Contains(item.Key))
+                throw new ArgumentOutOfRangeException(paramName: $"{item.Key}", message: ErrorCodes.INVALID_COLUMN_NAME);
         }
 
         if (conditions.Count == 0)
