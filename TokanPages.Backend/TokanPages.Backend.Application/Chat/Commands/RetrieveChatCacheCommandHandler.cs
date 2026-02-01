@@ -1,22 +1,21 @@
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Chat;
 
 namespace TokanPages.Backend.Application.Chat.Commands;
 
 public class RetrieveChatCacheCommandHandler : RequestHandler<RetrieveChatCacheCommand, RetrieveChatCacheCommandResult>
 {
-    public RetrieveChatCacheCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService)
-        : base(operationDbContext, loggerService) { }
+    private readonly IChatRepository _chatRepository;
+    
+    public RetrieveChatCacheCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IChatRepository chatRepository)
+        : base(operationDbContext, loggerService) => _chatRepository = chatRepository;
 
     public override async Task<RetrieveChatCacheCommandResult> Handle(RetrieveChatCacheCommand request, CancellationToken cancellationToken)
     {
-        var keys = new HashSet<string>(request.ChatKey);
-        var notifications = await OperationDbContext.UserMessagesCache
-            .AsNoTracking()
-            .Where(cache => keys.Contains(cache.ChatKey))
-            .Select(cache => cache.Notification)
-            .ToArrayAsync(cancellationToken);
+        var notifications = await _chatRepository.RetrieveChatCache(request.ChatKey);
+        if (notifications.Length == 0)
+            return new RetrieveChatCacheCommandResult();
 
         return new RetrieveChatCacheCommandResult
         {
