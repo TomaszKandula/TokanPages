@@ -3,7 +3,7 @@ using MediatR;
 using Moq;
 using TokanPages.Backend.Application.Chat.Commands;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Persistence.DataAccess.Repositories.Chat;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Chat;
@@ -11,8 +11,10 @@ namespace TokanPages.Tests.UnitTests.Handlers.Chat;
 public class RemoveChatCacheCommandHandlerTest : TestBase
 {
     [Fact]
-    public async Task GivenChatKeys_WhenRetrieveChatCache_ShouldSucceed()
+    public async Task GivenChatKeys_WhenRemoveChatCache_ShouldSucceed()
     {
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         // Arrange
         var key = DataUtilityService.GetRandomString();
         var command = new RemoveChatCacheCommand
@@ -20,100 +22,78 @@ public class RemoveChatCacheCommandHandlerTest : TestBase
             ChatKey = key
         };
 
-        var userMessagesCache = new UserMessageCache
-        {
-            ChatKey = key,
-            Notification = DataUtilityService.GetRandomString()
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.UserMessagesCache.AddAsync(userMessagesCache);
-        await databaseContext.SaveChangesAsync();
-
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedChatRepository = new Mock<IChatRepository>();
+
+        mockedChatRepository
+            .Setup(repository => repository.RemoveChatUserCacheByKey(It.IsAny<string>()))
+            .ReturnsAsync(true);
+
         var handler = new RemoveChatCacheCommandHandler(
             databaseContext, 
-            mockedLogger.Object);
+            mockedLogger.Object,
+            mockedChatRepository.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
         result.Should().Be(Unit.Value);
-
-        var cache = databaseContext.UserMessagesCache.ToList();
-        cache.Count.Should().Be(0);
     }
 
     [Fact]
-    public async Task GivenChatId_WhenRetrieveChatCache_ShouldSucceed()
+    public async Task GivenChatId_WhenRemoveChatCache_ShouldSucceed()
     {
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         // Arrange
-        var id = Guid.NewGuid();
-        var key = DataUtilityService.GetRandomString();
         var command = new RemoveChatCacheCommand
         {
-            ChatId = id
+            ChatId = Guid.NewGuid()
         };
-
-        var userMessagesCache = new UserMessageCache
-        {
-            Id = id,
-            ChatKey = key,
-            Notification = DataUtilityService.GetRandomString()
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.UserMessagesCache.AddAsync(userMessagesCache);
-        await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedChatRepository = new Mock<IChatRepository>();
+
+        mockedChatRepository
+            .Setup(repository => repository.RemoveChatUserCacheById(It.IsAny<Guid>()))
+            .ReturnsAsync(true);
+
         var handler = new RemoveChatCacheCommandHandler(
             databaseContext, 
-            mockedLogger.Object);
+            mockedLogger.Object,
+            mockedChatRepository.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
         result.Should().Be(Unit.Value);
-
-        var cache = databaseContext.UserMessagesCache.ToList();
-        cache.Count.Should().Be(0);
     }
 
     [Fact]
-    public async Task GivenNoIdAndNoKey_WhenRetrieveChatCache_ShouldSucceed()
+    public async Task GivenNoIdAndNoKey_WhenRemoveChatCache_ShouldSucceed()
     {
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         // Arrange
-        var key = DataUtilityService.GetRandomString();
         var command = new RemoveChatCacheCommand
         {
             ChatKey = DataUtilityService.GetRandomString()
         };
 
-        var userMessagesCache = new UserMessageCache
-        {
-            ChatKey = key,
-            Notification = DataUtilityService.GetRandomString()
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.UserMessagesCache.AddAsync(userMessagesCache);
-        await databaseContext.SaveChangesAsync();
-
         var mockedLogger = new Mock<ILoggerService>();
+        var mockedChatRepository = new Mock<IChatRepository>();
+
         var handler = new RemoveChatCacheCommandHandler(
             databaseContext, 
-            mockedLogger.Object);
+            mockedLogger.Object,
+            mockedChatRepository.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
         result.Should().Be(Unit.Value);
-
-        var cache = databaseContext.UserMessagesCache.ToList();
-        cache.Count.Should().Be(1);
     }
 }
