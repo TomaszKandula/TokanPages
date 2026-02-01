@@ -422,5 +422,11 @@ namespace TokanPages.Backend.Shared.Resources {
                 return ResourceManager.GetString("MISSING_WHERE_CLAUSE", resourceCulture);
             }
         }
+        
+        public static string INVALID_COLUMN_NAME {
+            get {
+                return ResourceManager.GetString("INVALID_COLUMN_NAME", resourceCulture);
+            }
+        }
     }
 }

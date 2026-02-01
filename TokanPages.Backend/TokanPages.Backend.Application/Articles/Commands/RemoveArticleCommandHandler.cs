@@ -26,7 +26,7 @@ public class RemoveArticleCommandHandler : RequestHandler<RemoveArticleCommand, 
     public override async Task<Unit> Handle(RemoveArticleCommand request, CancellationToken cancellationToken) 
     {
         var userId = _userService.GetLoggedUserId();
-        var isSuccess = await _articlesRepository.RemoveArticle(userId, request.Id, cancellationToken);
+        var isSuccess = await _articlesRepository.RemoveArticle(userId, request.Id);
 
         return !isSuccess 
             ? throw ArticleException 

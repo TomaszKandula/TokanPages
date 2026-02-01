@@ -60,8 +60,7 @@ public class AddArticleCommandHandlerTest : TestBase
             .Setup(repository => repository.CreateArticle(
             It.IsAny<Guid>(),
             It.IsAny<ArticleDataInputDto>(),
-            It.IsAny<DateTime>(),
-            It.IsAny<CancellationToken>()
+            It.IsAny<DateTime>()
             ))
             .ReturnsAsync(true);
 

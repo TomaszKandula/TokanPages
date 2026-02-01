@@ -38,11 +38,11 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
         if (articleCount is not null)
         {
             var readCount = articleCount.ReadCount + 1;
-            isSuccess = await _articlesRepository.UpdateArticleCount(userId, request.Id, readCount, dateTimeStamp, ipAddress, cancellationToken);
+            isSuccess = await _articlesRepository.UpdateArticleCount(userId, request.Id, readCount, dateTimeStamp, ipAddress);
         }
         else
         {
-            isSuccess = await _articlesRepository.CreateArticleCount(userId, request.Id, dateTimeStamp, ipAddress, cancellationToken);
+            isSuccess = await _articlesRepository.CreateArticleCount(userId, request.Id, dateTimeStamp, ipAddress);
         }
 
         return !isSuccess 

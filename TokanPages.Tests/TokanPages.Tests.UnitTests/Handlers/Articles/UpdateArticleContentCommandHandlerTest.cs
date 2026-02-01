@@ -63,8 +63,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             It.IsAny<DateTime>(),
             It.IsAny<string>(),
             It.IsAny<string>(),
-            It.IsAny<string>(),
-            It.IsAny<CancellationToken>()            
+            It.IsAny<string>()            
             ))
             .ReturnsAsync(true);
 
@@ -114,8 +113,7 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
                 It.IsAny<DateTime>(),
                 It.IsAny<string>(),
                 It.IsAny<string>(),
-                It.IsAny<string>(),
-                It.IsAny<CancellationToken>()            
+                It.IsAny<string>()            
             ))
             .ReturnsAsync(false);
 

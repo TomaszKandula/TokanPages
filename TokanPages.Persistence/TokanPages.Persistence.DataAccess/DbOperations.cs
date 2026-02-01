@@ -7,8 +7,9 @@ using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.DataAccess.Abstractions;
 
-namespace TokanPages.Persistence.DataAccess.Helpers;
+namespace TokanPages.Persistence.DataAccess;
 
 public class DbOperations : IDbOperations
 {
@@ -36,7 +37,7 @@ public class DbOperations : IDbOperations
         try
         {
             watch.Start();
-            var result = await connection.QueryAsync<T>(sql);
+            var result = await connection.QueryAsync<T>(sql, filterBy);
             watch.Stop();
 
             if (_environment.IsProduction())
@@ -57,25 +58,25 @@ public class DbOperations : IDbOperations
         }
     }
 
-    public async Task Insert<T>(T entity, CancellationToken cancellationToken = default)
+    public async Task Insert<T>(T entity)
     {
-        var sql = _sqlGenerator.GenerateInsertStatement(entity);
-        await ExecuteSqlTransaction(sql, cancellationToken);
+        var (query, parameters) = _sqlGenerator.GenerateInsertStatement(entity);
+        await ExecuteSqlTransaction(query, parameters);
     }
 
-    public async Task Update<T>(object updateBy, object filterBy, CancellationToken cancellationToken = default)
+    public async Task Update<T>(object updateBy, object filterBy)
     {
-        var sql = _sqlGenerator.GenerateUpdateStatement<T>(updateBy, filterBy);
-        await ExecuteSqlTransaction(sql, cancellationToken);
+        var (query, parameters) = _sqlGenerator.GenerateUpdateStatement<T>(updateBy, filterBy);
+        await ExecuteSqlTransaction(query, parameters);
     }
 
-    public async Task Delete<T>(object deleteBy, CancellationToken cancellationToken = default)
+    public async Task Delete<T>(object deleteBy)
     {
-        var sql = _sqlGenerator.GenerateDeleteStatement<T>(deleteBy);
-        await ExecuteSqlTransaction(sql, cancellationToken);
+        var (query, parameters) = _sqlGenerator.GenerateDeleteStatement<T>(deleteBy);
+        await ExecuteSqlTransaction(query, parameters);
     }
 
-    private async Task ExecuteSqlTransaction(string sql, CancellationToken cancellationToken = default)
+    private async Task ExecuteSqlTransaction(string sql, object? parameters = null)
     {
         var watch = new Stopwatch();
         await using var connection = new SqlConnection(_appSettings.DbDatabaseContext);
@@ -83,7 +84,7 @@ public class DbOperations : IDbOperations
         {
             watch.Start();
             var query = TransactionTemplate.Replace("{QUERY}", sql);
-            await connection.ExecuteAsync(query, cancellationToken);
+            await connection.ExecuteAsync(query, parameters);
             watch.Stop();
 
             if (_environment.IsProduction())

@@ -306,4 +306,7 @@
   <data name="MISSING_WHERE_CLAUSE" xml:space="preserve">
       <value>Missing 'WHERE' clause. Cannot perform database operation</value>
   </data>
+  <data name="INVALID_COLUMN_NAME" xml:space="preserve">
+      <value>Given parameter indicates unknown column</value>
+  </data>
 </root>

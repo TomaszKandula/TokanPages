@@ -33,8 +33,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
         mockedArticlesRepository
             .Setup(repository => repository.RemoveArticle(
                 It.IsAny<Guid>(), 
-                It.IsAny<Guid>(), 
-                It.IsAny<CancellationToken>())
+                It.IsAny<Guid>())
             )
             .ReturnsAsync(true);
 
@@ -69,8 +68,7 @@ public class RemoveArticleCommandHandlerTest : TestBase
         mockedArticlesRepository
             .Setup(repository => repository.RemoveArticle(
                 It.IsAny<Guid>(), 
-                It.IsAny<Guid>(), 
-                It.IsAny<CancellationToken>())
+                It.IsAny<Guid>())
             )
             .ReturnsAsync(false);
 
