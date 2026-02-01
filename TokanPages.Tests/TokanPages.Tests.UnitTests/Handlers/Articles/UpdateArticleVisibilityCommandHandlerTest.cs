@@ -33,8 +33,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             It.IsAny<Guid>(), 
             It.IsAny<Guid>(), 
             It.IsAny<DateTime>(),
-            It.IsAny<bool>(),
-            It.IsAny<CancellationToken>()))
+            It.IsAny<bool>()))
             .ReturnsAsync(true);
 
         mockedUserService
@@ -87,8 +86,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
                 It.IsAny<Guid>(), 
                 It.IsAny<Guid>(), 
                 It.IsAny<DateTime>(),
-                It.IsAny<bool>(),
-                It.IsAny<CancellationToken>()))
+                It.IsAny<bool>()))
             .ReturnsAsync(true);
 
         mockedUserService
@@ -140,8 +138,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
                 It.IsAny<Guid>(), 
                 It.IsAny<Guid>(), 
                 It.IsAny<DateTime>(),
-                It.IsAny<bool>(),
-                It.IsAny<CancellationToken>()))
+                It.IsAny<bool>()))
             .ReturnsAsync(false);
 
         mockedUserService

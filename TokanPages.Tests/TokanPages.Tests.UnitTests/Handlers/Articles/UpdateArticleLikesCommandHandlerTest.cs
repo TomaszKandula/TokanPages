@@ -47,8 +47,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
                 It.IsAny<DateTime>(),
                 It.IsAny<int>(),
                 It.IsAny<bool>(),
-                It.IsAny<string>(),
-                It.IsAny<CancellationToken>()
+                It.IsAny<string>()
                 ))
             .ReturnsAsync(true);
 
@@ -113,8 +112,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
                 It.IsAny<DateTime>(),
                 It.IsAny<int>(),
                 It.IsAny<bool>(),
-                It.IsAny<string>(),
-                It.IsAny<CancellationToken>()
+                It.IsAny<string>()
             ))
             .ReturnsAsync(false);
 
@@ -124,8 +122,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
                 It.IsAny<Guid>(), 
                 It.IsAny<string>(), 
                 It.IsAny<int>(),
-                It.IsAny<DateTime>(),
-                It.IsAny<CancellationToken>()
+                It.IsAny<DateTime>()
             ))
             .ReturnsAsync(false);
 

@@ -43,8 +43,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             It.IsAny<Guid>(),
             It.IsAny<int>(),
             It.IsAny<DateTime>(),
-            It.IsAny<string>(),
-            It.IsAny<CancellationToken>()))
+            It.IsAny<string>()))
             .ReturnsAsync(true);
 
         mockedUserService
@@ -96,8 +95,7 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
                 It.IsAny<Guid>(),
                 It.IsAny<int>(),
                 It.IsAny<DateTime>(),
-                It.IsAny<string>(),
-                It.IsAny<CancellationToken>()))
+                It.IsAny<string>()))
             .ReturnsAsync(false);
 
         mockedUserService
