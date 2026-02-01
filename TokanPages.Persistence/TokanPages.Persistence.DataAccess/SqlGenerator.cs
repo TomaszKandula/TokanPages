@@ -9,6 +9,12 @@ namespace TokanPages.Persistence.DataAccess;
 /// <inheritdoc/>
 public class SqlGenerator : ISqlGenerator
 {
+    private static GeneralException MissingPrimaryKey => new(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
+
+    private static GeneralException MissingWhereClause => new(nameof(ErrorCodes.MISSING_WHERE_CLAUSE), ErrorCodes.MISSING_WHERE_CLAUSE);
+
+    private static bool HasPrimaryKey (PropertyInfo property) => Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute)) != null;
+
     /// <inheritdoc/>
     public string GetTableName<T>()
     {
@@ -55,16 +61,16 @@ public class SqlGenerator : ISqlGenerator
         const string template = "INSERT INTO {0} ({1}) VALUES ({2})";
 
         var table = GetTableName<T>();
-        var hasPrimaryKey = false;
+        var properties = typeof(T).GetProperties();
 
+        var hasPrimaryKey = false;
         var columns = new List<string>();
         var values = new List<string>();
         var parameters = new Dictionary<string, object?>();
 
-        var properties = typeof(T).GetProperties();
         foreach (var property in properties)
         {
-            var value= property.GetValue(entity);
+            var value = property.GetValue(entity);
             var isPrimaryKeyFound = HasPrimaryKey(property);
             if (!hasPrimaryKey && isPrimaryKeyFound)
                 hasPrimaryKey = true;
@@ -86,8 +92,9 @@ public class SqlGenerator : ISqlGenerator
         const string template = "UPDATE {0} SET {1} WHERE {2}";
 
         var table = GetTableName<T>();
-        var columns = typeof(T).GetProperties().Select(property => property.Name).ToList();
         var entityProperties = typeof(T).GetProperties();
+        var columns = entityProperties.Select(property => property.Name).ToList();
+
         var update = new List<string>();
         var condition = new List<string>();
         var parameters = new Dictionary<string, object?>();
@@ -138,8 +145,9 @@ public class SqlGenerator : ISqlGenerator
         const string template = "DELETE FROM {0} WHERE {1}";
 
         var table = GetTableName<T>();
-        var columns = typeof(T).GetProperties().Select(property => property.Name).ToList();
         var entityProperties = typeof(T).GetProperties();
+        var columns = entityProperties.Select(property => property.Name).ToList();
+
         var conditions = new List<string>();
         var parameters = new Dictionary<string, object?>();
 
@@ -166,10 +174,4 @@ public class SqlGenerator : ISqlGenerator
         var statement = string.Format(template, table, string.Join(" AND ", conditions));
         return new Tuple<string, object>(statement, parameters);
     }
-
-    private static GeneralException MissingPrimaryKey => new(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
-
-    private static GeneralException MissingWhereClause => new(nameof(ErrorCodes.MISSING_WHERE_CLAUSE), ErrorCodes.MISSING_WHERE_CLAUSE);
-
-    private static bool HasPrimaryKey (PropertyInfo property) => Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute)) != null;
 }
