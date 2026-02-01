@@ -31,8 +31,8 @@ public interface ISqlGenerator
     /// </remarks>
     /// <param name="entity">Entity object.</param>
     /// <typeparam name="T">Given entity object type.</typeparam>
-    /// <returns>SQL statement.</returns>
-    string GenerateInsertStatement<T>(T entity);
+    /// <returns>SQL statement and its parameters.</returns>
+    Tuple<string, object> GenerateInsertStatement<T>(T entity);
 
     /// <summary>
     /// Returns an SQL statement for an UPDATE query for the given values provided in the object.
@@ -44,8 +44,8 @@ public interface ISqlGenerator
     /// <param name="updateBy">'Key-Value' fields used for updating.</param>
     /// <param name="filterBy">'Key-Value' fields used for filtering.</param>
     /// <typeparam name="T">Given entity object type.</typeparam>
-    /// <returns>SQL statement.</returns>
-    string GenerateUpdateStatement<T>(object updateBy, object filterBy);
+    /// <returns>SQL statement and its parameters.</returns>
+    Tuple<string, object> GenerateUpdateStatement<T>(object updateBy, object filterBy);
 
     /// <summary>
     /// Returns an SQL statement for a DELETE query for the given values provided in the entity object.
@@ -56,6 +56,6 @@ public interface ISqlGenerator
     /// </remarks>
     /// <param name="deleteBy">'Key-Value' fields used for deleting.</param>
     /// <typeparam name="T">Given entity object type.</typeparam>
-    /// <returns>SQL statement.</returns>
-    string GenerateDeleteStatement<T>(object deleteBy);
+    /// <returns>SQL statement and its parameters.</returns>
+    Tuple<string, object> GenerateDeleteStatement<T>(object deleteBy);
 }
