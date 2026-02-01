@@ -42,7 +42,7 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
             LanguageIso = request.LanguageIso,
         };
 
-        await _articlesRepository.CreateArticle(userId, input, createdAt, cancellationToken);
+        await _articlesRepository.CreateArticle(userId, input, createdAt);
 
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var textDestinationPath = $"content\\articles\\{articleId}\\text.json";

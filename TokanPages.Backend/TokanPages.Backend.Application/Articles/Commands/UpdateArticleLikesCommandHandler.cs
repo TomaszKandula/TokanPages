@@ -46,12 +46,12 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
         var articleLikes = await _articlesRepository.GetArticleLikes(isAnonymousUser, userId, request.Id, ipAddress);
         if (articleLikes is null)
         {
-            isSuccess = await _articlesRepository.CreateArticleLikes(userId, request.Id, ipAddress, likes, dateTimeStamp, cancellationToken);
+            isSuccess = await _articlesRepository.CreateArticleLikes(userId, request.Id, ipAddress, likes, dateTimeStamp);
         }
         else
         {
             var likesToBeAdded = articleLikes.LikeCount + likes;
-            isSuccess = await _articlesRepository.UpdateArticleLikes(userId, request.Id, dateTimeStamp, likesToBeAdded, isAnonymousUser, ipAddress, cancellationToken);
+            isSuccess = await _articlesRepository.UpdateArticleLikes(userId, request.Id, dateTimeStamp, likesToBeAdded, isAnonymousUser, ipAddress);
         }
 
         return !isSuccess 

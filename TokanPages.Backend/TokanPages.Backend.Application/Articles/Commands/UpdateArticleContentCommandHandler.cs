@@ -35,7 +35,7 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
     {
         var userId = _userService.GetLoggedUserId();
         var dateTimeStamp = _dateTimeService.Now;
-        var isSuccess = await _articlesRepository.UpdateArticleContent(userId, request.Id, dateTimeStamp, request.Title, request.Description, request.LanguageIso, cancellationToken);
+        var isSuccess = await _articlesRepository.UpdateArticleContent(userId, request.Id, dateTimeStamp, request.Title, request.Description, request.LanguageIso);
         if (!isSuccess)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 

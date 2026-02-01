@@ -40,7 +40,7 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
         var updatedAt = _dateTimeService.Now;
-        var isSuccess = await _articlesRepository.UpdateArticleVisibility(userId, request.Id, updatedAt, request.IsPublished, cancellationToken);
+        var isSuccess = await _articlesRepository.UpdateArticleVisibility(userId, request.Id, updatedAt, request.IsPublished);
 
         return !isSuccess 
             ? throw ArticleException 
