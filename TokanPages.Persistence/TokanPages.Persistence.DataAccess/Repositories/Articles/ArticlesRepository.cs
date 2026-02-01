@@ -8,22 +8,15 @@ using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Articles;
 
-public class ArticlesRepository : IArticlesRepository
+public class ArticlesRepository : RepositoryPattern, IArticlesRepository
 {
-    private readonly IDbOperations _dbOperations;
-
-    private readonly AppSettingsModel _appSettings;
-
-    public ArticlesRepository(IOptions<AppSettingsModel> appSettings, IDbOperations dbOperations)
-    {
-        _appSettings = appSettings.Value;
-        _dbOperations = dbOperations;
-    }
+    public ArticlesRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings) 
+        : base(dbOperations, appSettings) { }
 
     public async Task<Guid> GetArticleIdByTitle(string title)
     {
         var filterBy = new { Title = title.Replace("-", " ").ToLower() };
-        var data = (await _dbOperations.Retrieve<Article>(filterBy)).SingleOrDefault();
+        var data = (await DbOperations.Retrieve<Article>(filterBy)).SingleOrDefault();
         return data?.Id ?? Guid.Empty;
     }
 
@@ -66,7 +59,7 @@ public class ArticlesRepository : IArticlesRepository
                 operation.Articles.Id = @RequestId
         ";
 
-        await using var db = new SqlConnection(_appSettings.DbDatabaseContext);
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
         var queryArticleDataParams = new { RequestId = requestId, LanguageId = userLanguage };
         var articleData = await db.QuerySingleOrDefaultAsync<ArticleBaseDto>(queryArticleData, queryArticleDataParams);
         if (articleData is null)
@@ -201,7 +194,7 @@ public class ArticlesRepository : IArticlesRepository
         var skipCount = (pageInfo.PageNumber - 1) * pageInfo.PageSize;
         query += $"\nOFFSET {skipCount} ROWS FETCH NEXT {pageInfo.PageSize} ROWS ONLY";
 
-        await using var db = new SqlConnection(_appSettings.DbDatabaseContext);
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
         var articles = (await db.QueryAsync<ArticleDataDto>(query)).ToList();
 
         return articles;
@@ -222,7 +215,7 @@ public class ArticlesRepository : IArticlesRepository
             WHERE
                 operation.Languages.LangId = @UserLanguage";
 
-        await using var db = new SqlConnection(_appSettings.DbDatabaseContext);
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
         return (await db.QueryAsync<ArticleCategoryDto>(query, new { UserLanguage = userLanguage })).ToList();
     }
 
@@ -249,7 +242,7 @@ public class ArticlesRepository : IArticlesRepository
                 operation.ArticleTags.TagName LIKE CONCAT('%', @SearchTerm, '%')
         ";
 
-        await using var db = new SqlConnection(_appSettings.DbDatabaseContext);
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
         var result = (await db.QueryAsync<Guid>(query, new { SearchTerm = searchTerm })).ToList();
         return new HashSet<Guid>(result);
     }
@@ -312,7 +305,7 @@ public class ArticlesRepository : IArticlesRepository
                 operation.Articles.Id IN @ArticleIds
         ";
 
-        await using var db = new SqlConnection(_appSettings.DbDatabaseContext);
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
         var articleInfoList = (await db.QueryAsync<ArticleDataDto>(query, new
         {
             UserLanguage = userLanguage,
@@ -325,14 +318,14 @@ public class ArticlesRepository : IArticlesRepository
     public async Task<List<ArticleCount>> GetArticleCount(string ipAddress, Guid articleId)
     {
         var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
-        return (await _dbOperations.Retrieve<ArticleCount>(filterBy)).ToList();
+        return (await DbOperations.Retrieve<ArticleCount>(filterBy)).ToList();
     }
 
     public async Task<ArticleLike?> GetArticleLikes(bool isAnonymousUser, Guid userId, Guid articleId, string ipAddress)
     {
         return isAnonymousUser 
-            ? (await _dbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, IpAddress = ipAddress })).SingleOrDefault()
-            : (await _dbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, UserId = userId })).SingleOrDefault();
+            ? (await DbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, IpAddress = ipAddress })).SingleOrDefault()
+            : (await DbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, UserId = userId })).SingleOrDefault();
     }
 
     public async Task<bool> CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes, DateTime createdAt)
@@ -352,7 +345,7 @@ public class ArticlesRepository : IArticlesRepository
                 ModifiedBy = null
             };
 
-            await _dbOperations.Insert(entity);
+            await DbOperations.Insert(entity);
         }
         catch
         {
@@ -378,7 +371,7 @@ public class ArticlesRepository : IArticlesRepository
                 LanguageIso = data.LanguageIso
             };
 
-            await _dbOperations.Insert(entity);
+            await DbOperations.Insert(entity);
         }
         catch
         {
@@ -397,10 +390,10 @@ public class ArticlesRepository : IArticlesRepository
             var articleTags = new { ArticleId = requestId };
             var articles = new { Id = requestId, UserId =  userId };
 
-            await _dbOperations.Delete<ArticleLike>(articleLikes);
-            await _dbOperations.Delete<ArticleCount>(articleCounts);
-            await _dbOperations.Delete<ArticleTag>(articleTags);
-            await _dbOperations.Delete<Article>(articles);
+            await DbOperations.Delete<ArticleLike>(articleLikes);
+            await DbOperations.Delete<ArticleCount>(articleCounts);
+            await DbOperations.Delete<ArticleTag>(articleTags);
+            await DbOperations.Delete<Article>(articles);
         }
         catch
         {
@@ -425,7 +418,7 @@ public class ArticlesRepository : IArticlesRepository
                 CreatedAt = updatedAt
             };
 
-            await _dbOperations.Insert(entity);
+            await DbOperations.Insert(entity);
         }
         catch
         {
@@ -441,7 +434,7 @@ public class ArticlesRepository : IArticlesRepository
         {
             var updateBy = new { ReadCount = count, ModifiedAt = updatedAt, ModifiedBy = userId };
             var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
-            await _dbOperations.Update<ArticleCount>(updateBy, filterBy);
+            await DbOperations.Update<ArticleCount>(updateBy, filterBy);
         }
         catch
         {
@@ -468,7 +461,7 @@ public class ArticlesRepository : IArticlesRepository
                 UserId = userId
             };
 
-            await _dbOperations.Update<Article>(updateBy, filterBy);
+            await DbOperations.Update<Article>(updateBy, filterBy);
         }
         catch
         {
@@ -498,7 +491,7 @@ public class ArticlesRepository : IArticlesRepository
                 ArticleId = articleId
             };
 
-            await _dbOperations.Update<Article>(updateBy, filterBy);
+            await DbOperations.Update<Article>(updateBy, filterBy);
         }
         catch
         {
@@ -520,11 +513,11 @@ public class ArticlesRepository : IArticlesRepository
         {
             if (isAnonymousUser)
             {
-                await _dbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, IpAddress = ipAddress });
+                await DbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, IpAddress = ipAddress });
             }
             else
             {
-                await _dbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, UserId = userId });    
+                await DbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, UserId = userId });    
             }
         }
         catch
