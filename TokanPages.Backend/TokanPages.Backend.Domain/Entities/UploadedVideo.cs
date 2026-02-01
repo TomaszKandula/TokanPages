@@ -1,11 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
 using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "UploadedVideos")]
 public class UploadedVideo : Entity<Guid>, IAuditable
 {
     public Guid TicketId { get; set; }
