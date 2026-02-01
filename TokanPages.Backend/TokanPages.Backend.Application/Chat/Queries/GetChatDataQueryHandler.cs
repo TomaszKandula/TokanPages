@@ -2,10 +2,10 @@ using TokanPages.Backend.Application.Chat.Models;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Chat;
 
 namespace TokanPages.Backend.Application.Chat.Queries;
 
@@ -13,47 +13,50 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
 {
     private readonly IJsonSerializer _jsonSerializer;
 
+    private readonly IChatRepository _chatRepository;
+
     private static JsonSerializerSettings Settings => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
     public GetChatDataQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IJsonSerializer jsonSerializer) : base(operationDbContext, loggerService) => _jsonSerializer = jsonSerializer;
+        IJsonSerializer jsonSerializer, IChatRepository chatRepository) : base(operationDbContext, loggerService)
+    {
+        _jsonSerializer = jsonSerializer;
+        _chatRepository = chatRepository;
+    }
 
     public override async Task<GetChatDataQueryResult> Handle(GetChatDataQuery request, CancellationToken cancellationToken)
     {
-        var chatData = await OperationDbContext.UserMessages
-            .AsNoTracking()
-            .Where(message => message.ChatKey == request.ChatKey)
-            .Where(message => !message.IsArchived)
-            .Select(message => message.ChatData)
-            .SingleOrDefaultAsync(cancellationToken);
+        var userMessage = await _chatRepository.GetChatUserMessageData(request.ChatKey, false);
+        if (userMessage is null)
+            return new GetChatDataQueryResult { ChatData = string.Empty };
 
+        var chatData = userMessage.ChatData;        
         if (string.IsNullOrWhiteSpace(chatData))
             return new GetChatDataQueryResult { ChatData = string.Empty };
 
         var decodedKey = request.ChatKey.ToBase64Decode();
         var arrayKey = decodedKey.Split(':');
+
+        //TODO: reimplement this to allow many IDs
         var id1 = Guid.Parse(arrayKey[0]);
         var id2 = Guid.Parse(arrayKey[1]);
 
-        var initialsUser1 = await GetUserInitials(id1, cancellationToken);
-        var avatarUser1 = await GetUserAvatarName(id1, cancellationToken);
-
-        var initialsUser2 = await GetUserInitials(id2, cancellationToken);
-        var avatarUser2 = await GetUserAvatarName(id2, cancellationToken);
+        var user1data = await _chatRepository.GetChatUserData(id1);
+        var user2data = await _chatRepository.GetChatUserData(id2);
 
         var data = _jsonSerializer.Deserialize<List<GetChatItem>>(chatData);
         foreach (var item in data)
         {
-            if (item.UserId == id1)
+            if (user1data is not null && item.UserId == id1)
             {
-                item.AvatarName = avatarUser1;
-                item.Initials = initialsUser1;
+                item.AvatarName = user1data.UserImageName ?? string.Empty;
+                item.Initials = GetUserInitials(user1data.FirstName, user1data.LastName);
             }
 
-            if (item.UserId == id2)
+            if (user2data is not null && item.UserId == id2)
             {
-                item.AvatarName = avatarUser2;
-                item.Initials = initialsUser2;
+                item.AvatarName = user2data.UserImageName;
+                item.Initials = GetUserInitials(user2data.FirstName, user2data.LastName);
             }
         }
 
@@ -61,36 +64,12 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
         return new GetChatDataQueryResult { ChatData = enriched };
     }
 
-    private async Task<string> GetUserInitials(Guid userId, CancellationToken cancellationToken)
+    private static string GetUserInitials(string? firstName, string? lastName)
     {
-        var initials = "A";
-        var userInfo = await OperationDbContext.UserInformation
-            .AsNoTracking()
-            .Where(info => info.UserId == userId)
-            .Select(info => new
-            {
-                info.FirstName,
-                info.LastName
-            })
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (userInfo is null)
+        const string initials = "A";
+        if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             return initials;
 
-        if (userInfo is not { FirstName: "", LastName: "" })
-            initials = (userInfo.FirstName[..1] + userInfo.LastName[..1]).ToUpper();
-
-        return initials;
-    }
-
-    private async Task<string> GetUserAvatarName(Guid userId, CancellationToken cancellationToken)
-    {
-        var blobName = await OperationDbContext.UserInformation
-            .AsNoTracking()
-            .Where(info => info.UserId == userId)
-            .Select(info => info.UserImageName)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        return blobName ?? string.Empty;
+        return (firstName[..1] + lastName[..1]).ToUpper();
     }
 }
