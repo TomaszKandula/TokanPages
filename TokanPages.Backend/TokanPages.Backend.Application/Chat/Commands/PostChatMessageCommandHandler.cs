@@ -5,11 +5,12 @@ using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebSocketService.Abstractions;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Chat;
 
 namespace TokanPages.Backend.Application.Chat.Commands;
 
@@ -23,29 +24,29 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
 
     private readonly INotificationService _notificationService;
 
+    private readonly IChatRepository _chatRepository;
+
     private static JsonSerializerSettings Settings => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
     public PostChatMessageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IDateTimeService dateTimeService, IJsonSerializer jsonSerializer, IUserService userService, 
-        INotificationService notificationService) : base(operationDbContext, loggerService)
+        INotificationService notificationService, IChatRepository chatRepository) : base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _jsonSerializer = jsonSerializer;
         _userService = userService;
         _notificationService = notificationService;
+        _chatRepository = chatRepository;
     }
 
+    //TODO: change implementation for multiuser chat
     public override async Task<PostChatMessageCommandResult> Handle(PostChatMessageCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var userMessage = await OperationDbContext.UserMessages
-            .Where(message => message.ChatKey == request.ChatKey)
-            .Where(message => !message.IsArchived)
-            .SingleOrDefaultAsync(cancellationToken);
-
         var chatDateTime = _dateTimeService.Now;
         var chatItemId = Guid.NewGuid();
 
+        var userMessage = await _chatRepository.GetChatUserMessageData(request.ChatKey, false);
         if (userMessage is not null)
         {
             var data = _jsonSerializer.Deserialize<List<AddChatItem>>(userMessage.ChatData);
@@ -58,9 +59,8 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
                 ChatKey = request.ChatKey
             });
 
-            userMessage.ModifiedAt = chatDateTime;
-            userMessage.ModifiedBy = userId;
-            userMessage.ChatData = _jsonSerializer.Serialize(data, Formatting.None, Settings);
+            var chatData = _jsonSerializer.Serialize(data, Formatting.None, Settings);
+            await _chatRepository.UpdateChatUserMessageData(request.ChatKey, chatData, false, chatDateTime, userId);
         }
         else
         {
@@ -76,32 +76,27 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
                 }
             };
 
-            var newChat = new UserMessage
-            {
-                CreatedAt = chatDateTime,
-                CreatedBy = userId,
-                ChatKey = request.ChatKey,
-                ChatData = _jsonSerializer.Serialize(items, Formatting.None, Settings)
-            };
-
-            await OperationDbContext.UserMessages.AddAsync(newChat, cancellationToken);
+            var chatData = _jsonSerializer.Serialize(items, Formatting.None, Settings);
+            await _chatRepository.CreateChatUserData(request.ChatKey, chatData, false, chatDateTime, userId);
         }
 
-        var initials = await GetUserInitials(userId, cancellationToken);
-        var avatarName = await GetUserAvatarName(userId, cancellationToken);
-        var chatData = new NotifyChatItem
+        var user = await _chatRepository.GetChatUserData(userId);
+        if (user is null)
+            throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+
+        var initials = GetUserInitials(user.FirstName, user.LastName);
+        var notification = new NotifyChatItem
         {
             Id = chatItemId,
             UserId = userId,
             Initials = initials,
-            AvatarName = avatarName,
+            AvatarName = user.UserImageName,
             DateTime = chatDateTime,
             Text = request.Message,
             ChatKey = request.ChatKey
         };
 
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
-        await Notify(chatData, cancellationToken);
+        await Notify(notification, cancellationToken);
 
         return new PostChatMessageCommandResult
         {
@@ -124,36 +119,12 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
         await handler.Handle(notify, cancellationToken);
     }
 
-    private async Task<string> GetUserInitials(Guid userId, CancellationToken cancellationToken)
+    private static string GetUserInitials(string? firstName, string? lastName)
     {
-        var initials = "A";
-        var userInfo = await OperationDbContext.UserInformation
-            .AsNoTracking()
-            .Where(info => info.UserId == userId)
-            .Select(info => new
-            {
-                info.FirstName,
-                info.LastName
-            })
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (userInfo is null)
+        const string initials = "A";
+        if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             return initials;
 
-        if (userInfo is not { FirstName: "", LastName: "" })
-            initials = (userInfo.FirstName[..1] + userInfo.LastName[..1]).ToUpper();
-
-        return initials;
-    }
-
-    private async Task<string> GetUserAvatarName(Guid userId, CancellationToken cancellationToken)
-    {
-        var blobName = await OperationDbContext.UserInformation
-            .AsNoTracking()
-            .Where(info => info.UserId == userId)
-            .Select(info => info.UserImageName)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        return blobName ?? string.Empty;
+        return (firstName[..1] + lastName[..1]).ToUpper();
     }
 }
