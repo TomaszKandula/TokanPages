@@ -17,6 +17,7 @@ public static class Configuration
 
         services.AddScoped<ISqlGenerator, SqlGenerator>();
         services.AddScoped<IDbOperations, DbOperations>();
+
         services.AddScoped<IArticlesRepository, ArticlesRepository>();
         services.AddScoped<IChatRepository, ChatRepository>();
     }
