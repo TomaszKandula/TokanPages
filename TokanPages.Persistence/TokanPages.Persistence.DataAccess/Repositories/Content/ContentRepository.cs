@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Domain.Enums;
 using TokanPages.Persistence.DataAccess.Abstractions;
 using TokanPages.Persistence.DataAccess.Repositories.Content.Models;
 
@@ -25,4 +26,32 @@ public class ContentRepository : RepositoryPattern, IContentRepository
             ThumbnailUri = data.TargetThumbnailUri
         };
     }
+
+    public async Task<bool> UploadVideo(Guid userId, Guid ticketId, string sourceBlobUri, string targetVideoUri, string targetThumbnailUri, DateTime createdAt)
+    {
+        try
+        {
+            var entity = new UploadedVideo
+            {
+                Id = Guid.NewGuid(),
+                TicketId = ticketId,
+                SourceBlobUri = sourceBlobUri,
+                TargetVideoUri = targetVideoUri,
+                TargetThumbnailUri = targetThumbnailUri,
+                Status = VideoStatus.New,
+                CreatedAt = createdAt,
+                CreatedBy = userId,
+                IsSourceDeleted = false
+            };
+
+            await DbOperations.Insert(entity);            
+        }
+        catch
+        {
+            return false;
+        }
+
+        return true;
+    }
+
 }
