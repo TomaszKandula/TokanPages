@@ -41,7 +41,7 @@ public class ChatRepository : IChatRepository
         return (await _dbOperations.Retrieve<UserMessage>(filterBy)).SingleOrDefault();
     }
 
-    public async Task<string?[]> RetrieveChatCache(string[] chatKey)
+    public async Task<string[]> RetrieveChatCache(string[] chatKey)
     {
         const string query = @"
             SELECT
@@ -53,7 +53,8 @@ public class ChatRepository : IChatRepository
         ";
 
         await using var db = new SqlConnection(_appSettings.DbDatabaseContext);
-        return (await db.QueryAsync<string?>(query, new { ChatKey = chatKey })).ToArray();
+        var result = await db.QueryAsync<string>(query, new { ChatKey = chatKey });
+        return result.ToArray();
     }
 
     public async Task<bool> CreateChatUserData(string chatKey, string chatData, bool isArchived, DateTime createdAt, Guid createdBy)

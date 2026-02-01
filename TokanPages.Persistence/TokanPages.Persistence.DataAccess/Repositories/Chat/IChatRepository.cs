@@ -9,7 +9,7 @@ public interface IChatRepository
 
     Task<UserMessage?> GetChatUserMessageData(string chatKey, bool isArchived);
 
-    Task<string?[]> RetrieveChatCache(string[] chatKey);
+    Task<string[]> RetrieveChatCache(string[] chatKey);
 
     Task<bool> CreateChatUserData(string chatKey, string chatData, bool isArchived, DateTime createdAt, Guid createdBy);
 
