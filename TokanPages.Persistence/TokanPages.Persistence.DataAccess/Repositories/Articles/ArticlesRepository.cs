@@ -335,7 +335,7 @@ public class ArticlesRepository : IArticlesRepository
             : (await _dbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, UserId = userId })).SingleOrDefault();
     }
 
-    public async Task<bool> CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes, DateTime createdAt, CancellationToken cancellationToken = default)
+    public async Task<bool> CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes, DateTime createdAt)
     {
         try
         {
@@ -352,7 +352,7 @@ public class ArticlesRepository : IArticlesRepository
                 ModifiedBy = null
             };
 
-            await _dbOperations.Insert(entity, cancellationToken);
+            await _dbOperations.Insert(entity);
         }
         catch
         {
@@ -362,7 +362,7 @@ public class ArticlesRepository : IArticlesRepository
         return true;
     }
 
-    public async Task<bool> CreateArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt, CancellationToken cancellationToken = default)
+    public async Task<bool> CreateArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt)
     {
         try
         {
@@ -378,7 +378,7 @@ public class ArticlesRepository : IArticlesRepository
                 LanguageIso = data.LanguageIso
             };
 
-            await _dbOperations.Insert(entity, cancellationToken);
+            await _dbOperations.Insert(entity);
         }
         catch
         {
@@ -388,7 +388,7 @@ public class ArticlesRepository : IArticlesRepository
         return true;
     }
 
-    public async Task<bool> RemoveArticle(Guid userId, Guid requestId, CancellationToken cancellationToken = default)
+    public async Task<bool> RemoveArticle(Guid userId, Guid requestId)
     {
         try
         {
@@ -397,10 +397,10 @@ public class ArticlesRepository : IArticlesRepository
             var articleTags = new { ArticleId = requestId };
             var articles = new { Id = requestId, UserId =  userId };
 
-            await _dbOperations.Delete<ArticleLike>(articleLikes, cancellationToken);
-            await _dbOperations.Delete<ArticleCount>(articleCounts, cancellationToken);
-            await _dbOperations.Delete<ArticleTag>(articleTags, cancellationToken);
-            await _dbOperations.Delete<Article>(articles, cancellationToken);
+            await _dbOperations.Delete<ArticleLike>(articleLikes);
+            await _dbOperations.Delete<ArticleCount>(articleCounts);
+            await _dbOperations.Delete<ArticleTag>(articleTags);
+            await _dbOperations.Delete<Article>(articles);
         }
         catch
         {
@@ -410,7 +410,7 @@ public class ArticlesRepository : IArticlesRepository
         return true;
     }
 
-    public async Task<bool> CreateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
+    public async Task<bool> CreateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress)
     {
         try
         {
@@ -425,7 +425,7 @@ public class ArticlesRepository : IArticlesRepository
                 CreatedAt = updatedAt
             };
 
-            await _dbOperations.Insert(entity, cancellationToken);
+            await _dbOperations.Insert(entity);
         }
         catch
         {
@@ -435,13 +435,13 @@ public class ArticlesRepository : IArticlesRepository
         return true;
     }
 
-    public async Task<bool> UpdateArticleCount(Guid userId, Guid articleId, int count, DateTime updatedAt, string ipAddress, CancellationToken cancellationToken = default)
+    public async Task<bool> UpdateArticleCount(Guid userId, Guid articleId, int count, DateTime updatedAt, string ipAddress)
     {
         try 
         {
             var updateBy = new { ReadCount = count, ModifiedAt = updatedAt, ModifiedBy = userId };
             var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
-            await _dbOperations.Update<ArticleCount>(updateBy, filterBy, cancellationToken);
+            await _dbOperations.Update<ArticleCount>(updateBy, filterBy);
         }
         catch
         {
@@ -451,7 +451,7 @@ public class ArticlesRepository : IArticlesRepository
         return true;
     }
 
-    public async Task<bool> UpdateArticleVisibility(Guid userId, Guid articleId, DateTime updatedAt, bool isPublished, CancellationToken cancellationToken = default)
+    public async Task<bool> UpdateArticleVisibility(Guid userId, Guid articleId, DateTime updatedAt, bool isPublished)
     {
         try
         {
@@ -468,7 +468,7 @@ public class ArticlesRepository : IArticlesRepository
                 UserId = userId
             };
 
-            await _dbOperations.Update<Article>(updateBy, filterBy, cancellationToken);
+            await _dbOperations.Update<Article>(updateBy, filterBy);
         }
         catch
         {
@@ -478,8 +478,7 @@ public class ArticlesRepository : IArticlesRepository
         return true;
     }
 
-    public async Task<bool> UpdateArticleContent(Guid userId, Guid articleId, DateTime updatedAt, string? title, string? description, string? languageIso,
-        CancellationToken cancellationToken = default)
+    public async Task<bool> UpdateArticleContent(Guid userId, Guid articleId, DateTime updatedAt, string? title, string? description, string? languageIso)
     {
         try
         {
@@ -499,7 +498,7 @@ public class ArticlesRepository : IArticlesRepository
                 ArticleId = articleId
             };
 
-            await _dbOperations.Update<Article>(updateBy, filterBy, cancellationToken);
+            await _dbOperations.Update<Article>(updateBy, filterBy);
         }
         catch
         {
@@ -509,8 +508,7 @@ public class ArticlesRepository : IArticlesRepository
         return true;
     }
 
-    public async Task<bool> UpdateArticleLikes(Guid userId, Guid articleId, DateTime updatedAt, int addToLikes, bool isAnonymousUser, string ipAddress,
-        CancellationToken cancellationToken = default)
+    public async Task<bool> UpdateArticleLikes(Guid userId, Guid articleId, DateTime updatedAt, int addToLikes, bool isAnonymousUser, string ipAddress)
     {
         var updateBy = new
         {
@@ -522,11 +520,11 @@ public class ArticlesRepository : IArticlesRepository
         {
             if (isAnonymousUser)
             {
-                await _dbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, IpAddress = ipAddress }, cancellationToken);
+                await _dbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, IpAddress = ipAddress });
             }
             else
             {
-                await _dbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, UserId = userId }, cancellationToken);    
+                await _dbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, UserId = userId });    
             }
         }
         catch
