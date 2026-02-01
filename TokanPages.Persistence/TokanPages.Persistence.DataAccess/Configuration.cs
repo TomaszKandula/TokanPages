@@ -7,6 +7,7 @@ using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Persistence.DataAccess.Repositories.Chat;
 using TokanPages.Persistence.DataAccess.Repositories.Content;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 
 namespace TokanPages.Persistence.DataAccess;
 
@@ -22,6 +23,7 @@ public static class Configuration
         services.AddScoped<IArticlesRepository, ArticlesRepository>();
         services.AddScoped<IChatRepository, ChatRepository>();
         services.AddScoped<IContentRepository, ContentRepository>();
+        services.AddScoped<IMessagingRepository, MessagingRepository>();
     }
 
     private static void SetupDatabase<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
