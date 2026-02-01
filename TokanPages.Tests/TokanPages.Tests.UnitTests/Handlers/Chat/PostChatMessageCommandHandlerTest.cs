@@ -7,6 +7,8 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Persistence.DataAccess.Repositories.Chat;
+using TokanPages.Persistence.DataAccess.Repositories.Chat.Models;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebSocketService.Abstractions;
 using Xunit;
@@ -18,8 +20,9 @@ public class PostChatMessageCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenChatKeyAndMessage_WhenPostChatMessage_ShouldSucceed()
     {
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         // Arrange
-        var userId0 = Guid.NewGuid();
         var userId1 = Guid.NewGuid();
         var userId2 = Guid.NewGuid();
         var chatKey = $"{userId1}:{userId2}".ToBase64Encode();
@@ -29,47 +32,9 @@ public class PostChatMessageCommandHandlerTest : TestBase
             Message = DataUtilityService.GetRandomString()
         };
 
-        var users0 = new User
-        {
-            Id = userId0,
-            IsActivated = true,
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            CryptedPassword = DataUtilityService.GetRandomString()
-        };
-
-        var users1 = new User
-        {
-            Id = userId1,
-            IsActivated = true,
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            CryptedPassword = DataUtilityService.GetRandomString()
-        };
-
-        var users2 = new User
-        {
-            Id = userId2,
-            IsActivated = true,
-            EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString(),
-            CryptedPassword = DataUtilityService.GetRandomString()
-        };
-
         var userInfo1 = new UserInfo
         {
             UserId = userId1,
-            FirstName = DataUtilityService.GetRandomString(),
-            LastName = DataUtilityService.GetRandomString(),
-            UserAboutText = DataUtilityService.GetRandomString(),
-            UserImageName = DataUtilityService.GetRandomString(),
-            CreatedAt = DataUtilityService.GetRandomDateTime(),
-            CreatedBy = Guid.NewGuid()
-        };
-
-        var userInfo2 = new UserInfo
-        {
-            UserId = userId2,
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
             UserAboutText = DataUtilityService.GetRandomString(),
@@ -99,54 +64,62 @@ public class PostChatMessageCommandHandlerTest : TestBase
             CreatedBy = Guid.NewGuid()
         };
 
-        var users = new List<User>
-        {
-            users0,
-            users1,
-            users2
-        };
-
-        var userInfos = new List<UserInfo>
-        {
-            userInfo1,
-            userInfo2
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Users.AddRangeAsync(users);
-        await databaseContext.UserInformation.AddRangeAsync(userInfos);
-        await databaseContext.UserMessages.AddAsync(userMessage);
-        await databaseContext.SaveChangesAsync();
-
         var mockedDateTime = new Mock<IDateTimeService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedUserService = new Mock<IUserService>();
-
-        mockedUserService
-            .Setup(service => service
-                .GetActiveUser(
-                    It.IsAny<Guid?>(),
-                    It.IsAny<bool>(),
-                    It.IsAny<CancellationToken>()))
-            .ReturnsAsync(users0);
+        var mockedNotification = new Mock<INotificationService>();
+        var mockedChatRepository = new Mock<IChatRepository>();
 
         mockedUserService
             .Setup(service => service.GetLoggedUserId())
-            .Returns(userId0);
+            .Returns(userId1);
 
-        var dateTime = DateTime.UtcNow;
+        var dateTime = DataUtilityService.GetRandomDateTime();
         mockedDateTime
             .Setup(service => service.Now)
             .Returns(dateTime);
 
-        var mockedNotification = new Mock<INotificationService>();
+        mockedChatRepository
+            .Setup(repository => repository.GetChatUserMessageData(
+                It.IsAny<string>(),
+                It.IsAny<bool>()))
+            .ReturnsAsync(userMessage);
+
+        mockedChatRepository
+            .Setup(repository => repository.GetChatUserData(userId1))
+            .ReturnsAsync(new ChatUserDataDto
+            {
+                FirstName = userInfo1.FirstName,
+                LastName = userInfo1.LastName,
+                UserImageName = userInfo1.UserImageName,
+            });
+
+        mockedChatRepository
+            .Setup(repository => repository.UpdateChatUserMessageData(
+            It.IsAny<string>(), 
+            It.IsAny<string>(), 
+            It.IsAny<bool>(), 
+            It.IsAny<DateTime>(), 
+            It.IsAny<Guid>()))
+            .ReturnsAsync(true);
+
+        mockedChatRepository
+            .Setup(repository => repository.CreateChatUserData(
+                It.IsAny<string>(), 
+                It.IsAny<string>(), 
+                It.IsAny<bool>(), 
+                It.IsAny<DateTime>(), 
+                It.IsAny<Guid>()))
+            .ReturnsAsync(true);
+
         var handler = new PostChatMessageCommandHandler(
             databaseContext,
             mockedLogger.Object,
             mockedDateTime.Object,
             jsonSerializer,
             mockedUserService.Object,
-            mockedNotification.Object);
+            mockedNotification.Object,
+            mockedChatRepository.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
