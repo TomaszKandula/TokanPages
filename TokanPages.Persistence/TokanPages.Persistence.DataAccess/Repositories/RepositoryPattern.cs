@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Options;
 using TokanPages.Backend.Configuration.Options;
 using TokanPages.Persistence.DataAccess.Abstractions;
 
@@ -9,9 +10,9 @@ public abstract class RepositoryPattern
 
     protected readonly AppSettingsModel AppSettings;
 
-    protected RepositoryPattern(IDbOperations dbOperations, AppSettingsModel appSettings)
+    protected RepositoryPattern(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings)
     {
         DbOperations = dbOperations;
-        AppSettings = appSettings;
+        AppSettings = appSettings.Value;
     }
 }
