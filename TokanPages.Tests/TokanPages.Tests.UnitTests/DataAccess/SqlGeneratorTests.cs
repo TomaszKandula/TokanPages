@@ -89,6 +89,24 @@ public class SqlGeneratorTests : TestBase
     }
 
     [Fact]
+    public void GivenEntityAndInvalidFilter_WhenGenerateQueryStatement_ShouldFail()
+    {
+        // Arrange
+        var filterBy = new 
+        {
+            SomeField = "Victoria"
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        // Assert
+        var result = Assert.Throws<ArgumentOutOfRangeException>(() => sqlGenerator.GenerateQueryStatement<TestPlayerOne>(filterBy));
+        result.ParamName.Should().Be("SomeField");
+        result.Message.Should().Contain(ErrorCodes.INVALID_COLUMN_NAME);
+    }
+    
+    [Fact]
     public void GivenEntity_WhenGenerateInsertStatement_ShouldSucceed()
     {
         // Arrange
@@ -161,6 +179,30 @@ public class SqlGeneratorTests : TestBase
     }
 
     [Fact]
+    public void GivenEntityAndInvalidFilter_WhenGenerateUpdateStatement_ShouldFail()
+    {
+        // Arrange
+        var updateBy = new
+        {
+            Name = "Victoria",
+            IsPublished = true
+        };
+
+        var filterBy = new
+        {
+            SomeField = "Victoria"
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        // Assert
+        var result = Assert.Throws<ArgumentOutOfRangeException>(() => sqlGenerator.GenerateUpdateStatement<TestPlayerOne>(updateBy, filterBy));
+        result.ParamName.Should().Be("SomeField");
+        result.Message.Should().Contain(ErrorCodes.INVALID_COLUMN_NAME);
+    }
+
+    [Fact]
     public void GivenEntityWithoutFilterObject_WhenGenerateUpdateStatement_ShouldFail()
     {
         // Arrange
@@ -224,6 +266,24 @@ public class SqlGeneratorTests : TestBase
         // Assert
         query.Should().Be(expectedStatement);
         parameters.Should().NotBeNull();
+    }
+
+    [Fact]
+    public void GivenEntityAndInvalidFilter_WhenGenerateDeleteStatement_ShouldFail()
+    {
+        // Arrange
+        var deleteBy = new
+        {
+            SomeField = "Victoria"
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        // Assert
+        var result = Assert.Throws<ArgumentOutOfRangeException>(() => sqlGenerator.GenerateDeleteStatement<TestPlayerOne>(deleteBy));
+        result.ParamName.Should().Be("SomeField");
+        result.Message.Should().Contain(ErrorCodes.INVALID_COLUMN_NAME);
     }
 
     [Fact]
