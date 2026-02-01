@@ -96,7 +96,7 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
             ChatKey = request.ChatKey
         };
 
-        await Notify(notification, cancellationToken);
+        //await Notify(notification, cancellationToken);
 
         return new PostChatMessageCommandResult
         {
@@ -105,19 +105,20 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
         };
     }
 
-    private async Task Notify(NotifyChatItem notification, CancellationToken cancellationToken)
-    {
-        var notify = new NotifyRequestCommand
-        {
-            UserId = notification.UserId,
-            ExternalPayload = _jsonSerializer.Serialize(notification),
-            Handler = "chat_post_message",
-            CanSkipPreservation = true
-        };
-
-        var handler = new NotifyRequestCommandHandler(OperationDbContext, LoggerService, _notificationService, _jsonSerializer);
-        await handler.Handle(notify, cancellationToken);
-    }
+    // TODO: reimplement for repository pattern
+    // private async Task Notify(NotifyChatItem notification, CancellationToken cancellationToken)
+    // {
+    //     var notify = new NotifyRequestCommand
+    //     {
+    //         UserId = notification.UserId,
+    //         ExternalPayload = _jsonSerializer.Serialize(notification),
+    //         Handler = "chat_post_message",
+    //         CanSkipPreservation = true
+    //     };
+    //
+    //     var handler = new NotifyRequestCommandHandler(OperationDbContext, LoggerService, _notificationService, _jsonSerializer);
+    //     await handler.Handle(notify, cancellationToken);
+    // }
 
     private static string GetUserInitials(string? firstName, string? lastName)
     {
