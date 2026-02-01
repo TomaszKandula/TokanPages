@@ -4,7 +4,6 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureBusService.Abstractions;
@@ -13,6 +12,7 @@ using TokanPages.Services.AzureStorageService.Abstractions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Content;
 
 namespace TokanPages.Backend.Application.Content.Assets.Commands;
 
@@ -30,6 +30,8 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
 
     private readonly IUserService _userService;
 
+    private readonly IContentRepository _contentRepository;
+
     private static JsonSerializerSettings Settings => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
@@ -37,13 +39,14 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
     public AddVideoAssetCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IAzureBusFactory azureBusFactory, 
         IJsonSerializer jsonSerializer, IDateTimeService dateTimeService, 
-        IUserService userService) : base(operationDbContext, loggerService)
+        IUserService userService, IContentRepository contentRepository) : base(operationDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _azureBusFactory = azureBusFactory;
         _jsonSerializer = jsonSerializer;
         _dateTimeService = dateTimeService;
         _userService = userService;
+        _contentRepository = contentRepository;
     }
 
     public override async Task<AddVideoAssetCommandResult> Handle(AddVideoAssetCommand request, CancellationToken cancellationToken)
@@ -73,24 +76,10 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
         var targetThumbnailUri = $"{targetBasePath}/{fileGuid}.jpg";
 
         var ticketId = Guid.NewGuid();
-        var upload = new UploadedVideo
-        {
-            TicketId = ticketId,
-            SourceBlobUri = tempPathFile,
-            TargetVideoUri = targetVideoUri,
-            TargetThumbnailUri = targetThumbnailUri,
-            Status = VideoStatus.New,
-            CreatedAt = _dateTimeService.Now,
-            CreatedBy = userId,
-            IsSourceDeleted = false
-        };
-
         var buffer = binaryData.GetByteArray();
         using var stream = new MemoryStream(buffer);
-
         await azureBlob.UploadFile(stream, tempPathFile, contentType, cancellationToken);
-        await OperationDbContext.UploadedVideos.AddAsync(upload, cancellationToken);
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
+        await _contentRepository.UploadVideo(userId, ticketId, tempPathFile, targetVideoUri, targetThumbnailUri, _dateTimeService.Now);
         LoggerService.LogInformation($"New video has been uploaded for processing. Ticket ID: {ticketId}.");
 
         var details = new TargetDetails
