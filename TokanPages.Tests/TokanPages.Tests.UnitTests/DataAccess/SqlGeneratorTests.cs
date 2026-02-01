@@ -101,16 +101,17 @@ public class SqlGeneratorTests : TestBase
             Likes = 2026
         };
 
-        const string expectedValues = "'c388e731-0e0f-4886-8326-a97769e51912','Victoria',1,'2020-09-27 00:00:00',2026";
+        const string expectedValues = "@Id,@Name,@IsPublished,@CreatedAt,@Likes";
         const string expectedStatement = $"INSERT INTO soccer.Players (Id,Name,IsPublished,CreatedAt,Likes) VALUES ({expectedValues})";
 
         var sqlGenerator = new SqlGenerator();
 
         // Act
-        var result = sqlGenerator.GenerateInsertStatement(entity);
+        var (query, parameters) = sqlGenerator.GenerateInsertStatement(entity);
 
         // Assert
-        result.Should().Be(expectedStatement);
+        query.Should().Be(expectedStatement);
+        parameters.Should().NotBeNull();
     }
 
     [Fact]
@@ -146,16 +147,17 @@ public class SqlGeneratorTests : TestBase
             Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912")
         };
 
-        const string expectedValues = "Name='Victoria' WHERE Id='c388e731-0e0f-4886-8326-a97769e51912'";
+        const string expectedValues = "Name=@Name WHERE Id=@Id";
         const string expectedStatement = $"UPDATE soccer.Players SET {expectedValues}";
 
         var sqlGenerator = new SqlGenerator();
 
         // Act
-        var result = sqlGenerator.GenerateUpdateStatement<TestPlayerOne>(updateBy, filterBy);
+        var (query, parameters) = sqlGenerator.GenerateUpdateStatement<TestPlayerOne>(updateBy, filterBy);
 
         // Assert
-        result.Should().Be(expectedStatement);
+        query.Should().Be(expectedStatement);
+        parameters.Should().NotBeNull();
     }
 
     [Fact]
@@ -211,16 +213,17 @@ public class SqlGeneratorTests : TestBase
             CreatedAt = DateTime.Parse("2020-09-27"),
         };
 
-        const string expectedValues = "Id='c388e731-0e0f-4886-8326-a97769e51912' AND Name='Victoria' AND CreatedAt='2020-09-27 00:00:00'";
+        const string expectedValues = "Id=@Id AND Name=@Name AND CreatedAt=@CreatedAt";
         const string expectedStatement = $"DELETE FROM soccer.Players WHERE {expectedValues}";
 
         var sqlGenerator = new SqlGenerator();
 
         // Act
-        var result = sqlGenerator.GenerateDeleteStatement<TestPlayerOne>(deleteBy);
+        var (query, parameters) = sqlGenerator.GenerateDeleteStatement<TestPlayerOne>(deleteBy);
 
         // Assert
-        result.Should().Be(expectedStatement);
+        query.Should().Be(expectedStatement);
+        parameters.Should().NotBeNull();
     }
 
     [Fact]
