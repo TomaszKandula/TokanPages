@@ -4,7 +4,6 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -13,6 +12,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Content;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 
 namespace TokanPages.Backend.Application.Content.Assets.Commands;
 
@@ -32,14 +32,17 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
 
     private readonly IContentRepository _contentRepository;
 
+    private readonly IMessagingRepository _messagingRepository;
+
     private static JsonSerializerSettings Settings => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
     public AddVideoAssetCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IAzureBusFactory azureBusFactory, 
-        IJsonSerializer jsonSerializer, IDateTimeService dateTimeService, 
-        IUserService userService, IContentRepository contentRepository) : base(operationDbContext, loggerService)
+        IJsonSerializer jsonSerializer, IDateTimeService dateTimeService, IUserService userService, 
+        IContentRepository contentRepository, IMessagingRepository messagingRepository) 
+        : base(operationDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _azureBusFactory = azureBusFactory;
@@ -47,6 +50,7 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
         _dateTimeService = dateTimeService;
         _userService = userService;
         _contentRepository = contentRepository;
+        _messagingRepository = messagingRepository;
     }
 
     public override async Task<AddVideoAssetCommandResult> Handle(AddVideoAssetCommand request, CancellationToken cancellationToken)
@@ -95,12 +99,6 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
     private async Task RequestVideoProcessing(Guid ticketId, Guid userId, TargetDetails details, CancellationToken cancellationToken = default)
     {
         var messageId = Guid.NewGuid();
-        var serviceBusMessage = new ServiceBusMessage
-        {
-            Id = messageId,
-            IsConsumed = false
-        };
-
         var requestBody = new RequestProcessing
         {
             MessageId = messageId,
@@ -110,9 +108,7 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
             Details = details
         };
 
-        await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
-
+        await _messagingRepository.CreateServiceBusMessage(messageId);
         var serialized = _jsonSerializer.Serialize(requestBody, Formatting.None, Settings);
         var messages = new List<string> { serialized };
 
