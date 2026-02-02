@@ -40,7 +40,7 @@ public class SqlGenerator : ISqlGenerator
     /// <inheritdoc/>
     public string GenerateQueryStatement<T>(object? filterBy = null, object? orderBy = null)
     {
-        const string baseTemplate = "SELECT {0} FROM {1}";
+        const string template = "SELECT {0} FROM {1}";
 
         var table = GetTableName<T>();
         var whereConditions = new List<string>();
@@ -85,7 +85,7 @@ public class SqlGenerator : ISqlGenerator
 
         var hasWhereClause = !string.IsNullOrWhiteSpace(whereClause);
         var hasOrderByClause = !string.IsNullOrWhiteSpace(orderByClause);
-        var query = string.Format(baseTemplate, tableColumns, table);
+        var query = string.Format(template, tableColumns, table);
 
         if (hasWhereClause && !hasOrderByClause)
             query += $" WHERE {whereClause}";
