@@ -32,27 +32,73 @@ public class SqlGenerator : ISqlGenerator
     }
 
     /// <inheritdoc/>
-    public string GenerateQueryStatement<T>(object filterBy)
+    public string GenerateQueryStatement<T>(object? filterBy = null, object? orderBy = null)
     {
-        const string template = "SELECT {0} FROM {1} WHERE {2}";
+        const string baseTemplate = "SELECT {0} FROM {1}";
 
         var table = GetTableName<T>();
-        var conditions = new List<string>();
-        var columns = typeof(T).GetProperties().Select(property => property.Name).ToList();
+        var whereConditions = new List<string>();
+        var orderConditions = new List<string>();
 
-        var dictionary = filterBy
-            .GetType()
-            .GetProperties()
-            .ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
+        var whereClause = string.Empty;
+        var orderByClause = string.Empty;
 
-        foreach (var item in dictionary)
+        var properties = typeof(T).GetProperties();
+        var columns = properties.Select(property => property.Name).ToList();
+        var tableColumns = string.Join(",", columns);
+
+        if (filterBy != null)
         {
-            conditions.Add($"{item.Key}=@{item.Key}");
-            if (!columns.Contains(item.Key))
-                throw new ArgumentOutOfRangeException(paramName: $"{item.Key}", message: ErrorCodes.INVALID_COLUMN_NAME);
+            var dictionary = filterBy
+                .GetType()
+                .GetProperties()
+                .ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
+
+            foreach (var item in dictionary)
+            {
+                whereConditions.Add($"{item.Key}=@{item.Key}");
+                if (!columns.Contains(item.Key))
+                    throw new ArgumentOutOfRangeException(paramName: $"{item.Key}", message: ErrorCodes.INVALID_COLUMN_NAME);
+            }
+
+            whereClause = string.Join(" AND ", whereConditions);
         }
 
-        return string.Format(template, string.Join(",", columns), table, string.Join(" AND ", conditions));
+        if (orderBy != null)
+        {
+            var dictionary = orderBy
+                .GetType()
+                .GetProperties()
+                .ToDictionary(info => info.Name, info => info.GetValue(orderBy,null));
+
+            foreach (var item in dictionary)
+            {
+                var value = item.Value as string;
+                if (string.IsNullOrWhiteSpace(value) || value != "ASC" || value != "DESC")
+                    throw new ArgumentException(ErrorCodes.INVALID_ARGUMENT);
+
+                orderConditions.Add($"{item.Key} {value}");
+                if (!columns.Contains(item.Key))
+                    throw new ArgumentOutOfRangeException(paramName: $"{item.Key}", message: ErrorCodes.INVALID_COLUMN_NAME);
+            }
+
+            orderByClause = string.Join(",", orderConditions);
+        }
+
+        var hasWhereClause = !string.IsNullOrWhiteSpace(whereClause);
+        var hasOrderByClause = !string.IsNullOrWhiteSpace(orderByClause);
+        var query = string.Format(baseTemplate, tableColumns, table);
+
+        if (hasWhereClause && !hasOrderByClause)
+            query += $" WHERE {whereClause}";
+
+        if (!hasWhereClause && hasOrderByClause)
+            query += $" ORDER BY {orderByClause}";
+
+        if (hasWhereClause && hasOrderByClause)
+            query += $" WHERE {whereClause} ORDER BY {orderByClause}";
+
+        return query;
     }
 
     /// <inheritdoc/>
