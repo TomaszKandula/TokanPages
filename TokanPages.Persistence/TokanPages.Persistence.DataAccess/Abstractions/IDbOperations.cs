@@ -2,7 +2,7 @@ namespace TokanPages.Persistence.DataAccess.Abstractions;
 
 public interface IDbOperations
 {
-    Task<IEnumerable<T>> Retrieve<T>(object filterBy);
+    Task<IEnumerable<T>> Retrieve<T>(object? filterBy = null, object? orderBy = null);
 
     Task Insert<T>(T entity);
 

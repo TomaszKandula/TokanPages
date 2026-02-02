@@ -29,10 +29,10 @@ public class DbOperations : IDbOperations
         _environment = environment;
     }
 
-    public async Task<IEnumerable<T>> Retrieve<T>(object filterBy)
+    public async Task<IEnumerable<T>> Retrieve<T>(object? filterBy = null, object? orderBy = null)
     {
         await using var connection = new SqlConnection(_appSettings.DbDatabaseContext);
-        var sql = _sqlGenerator.GenerateQueryStatement<T>(filterBy);
+        var sql = _sqlGenerator.GenerateQueryStatement<T>(filterBy, orderBy);
         var watch = new Stopwatch();
         try
         {
