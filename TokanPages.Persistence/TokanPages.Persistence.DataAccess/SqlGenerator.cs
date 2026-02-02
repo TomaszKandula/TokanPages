@@ -15,6 +15,12 @@ public class SqlGenerator : ISqlGenerator
 
     private static bool HasPrimaryKey (PropertyInfo property) => Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute)) != null;
 
+    private static Dictionary<string, object?> GetDictionary(object entity)
+        => entity
+            .GetType()
+            .GetProperties()
+            .ToDictionary(info => info.Name, info => info.GetValue(entity,null));
+
     /// <inheritdoc/>
     public string GetTableName<T>()
     {
@@ -49,11 +55,7 @@ public class SqlGenerator : ISqlGenerator
 
         if (filterBy != null)
         {
-            var dictionary = filterBy
-                .GetType()
-                .GetProperties()
-                .ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
-
+            var dictionary = GetDictionary(filterBy);
             foreach (var item in dictionary)
             {
                 whereConditions.Add($"{item.Key}=@{item.Key}");
@@ -66,11 +68,7 @@ public class SqlGenerator : ISqlGenerator
 
         if (orderBy != null)
         {
-            var dictionary = orderBy
-                .GetType()
-                .GetProperties()
-                .ToDictionary(info => info.Name, info => info.GetValue(orderBy,null));
-
+            var dictionary = GetDictionary(orderBy);
             foreach (var item in dictionary)
             {
                 var value = item.Value as string;
@@ -149,11 +147,7 @@ public class SqlGenerator : ISqlGenerator
         if (!isPrimaryKeyFound)
             throw MissingPrimaryKey;
 
-        var updateDict = updateBy
-            .GetType()
-            .GetProperties()
-            .ToDictionary(info => info.Name, info => info.GetValue(updateBy,null));
-
+        var updateDict = GetDictionary(updateBy);
         foreach (var item in updateDict)
         {
             update.Add($"{item.Key}=@{item.Key}");
@@ -162,11 +156,7 @@ public class SqlGenerator : ISqlGenerator
                 throw new ArgumentOutOfRangeException(paramName: $"{item.Key}", message: ErrorCodes.INVALID_COLUMN_NAME);
         }
 
-        var filterDict = filterBy
-            .GetType()
-            .GetProperties()
-            .ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
-
+        var filterDict = GetDictionary(filterBy);
         foreach (var item in filterDict)
         {
             condition.Add($"{item.Key}=@{item.Key}");
@@ -201,11 +191,7 @@ public class SqlGenerator : ISqlGenerator
         if (!isPrimaryKeyFound)
             throw MissingPrimaryKey;
 
-        var dictionary = deleteBy
-            .GetType()
-            .GetProperties()
-            .ToDictionary(info => info.Name, info => info.GetValue(deleteBy,null));
-
+        var dictionary = GetDictionary(deleteBy);
         foreach (var item in dictionary)
         {
             conditions.Add($"{item.Key}=@{item.Key}");
