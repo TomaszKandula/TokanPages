@@ -1,11 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "BatchInvoiceItems")]
 public class BatchInvoiceItem : Entity<Guid>
 {
     public Guid BatchInvoiceId { get; set; }
@@ -32,7 +34,4 @@ public class BatchInvoiceItem : Entity<Guid>
     public decimal GrossAmount { get; set; }
     [Required]
     public CurrencyCode CurrencyCode { get; set; }
-
-    /* Navigation properties */
-    public BatchInvoice BatchInvoice { get; set; }
 }

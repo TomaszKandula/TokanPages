@@ -1,12 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
-using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "BatchInvoices")]
 public class BatchInvoice : Entity<Guid>, IAuditable
 {
     [Required]
@@ -59,11 +60,4 @@ public class BatchInvoice : Entity<Guid>, IAuditable
     public Guid UserCompanyId { get; set; }
     [Required]
     public Guid UserBankAccountId { get; set; }
-
-    /* Navigation properties */
-    public BatchInvoiceProcessing BatchInvoiceProcessing { get; set; }
-    public Users.User User { get; set; }
-    public UserCompany UserCompany { get; set; }
-    public UserBankAccount UserBankAccount { get; set; }
-    public ICollection<BatchInvoiceItem> BatchInvoiceItems { get; set; } = new HashSet<BatchInvoiceItem>();
 }
