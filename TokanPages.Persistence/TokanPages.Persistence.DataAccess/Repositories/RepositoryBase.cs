@@ -4,13 +4,13 @@ using TokanPages.Persistence.DataAccess.Abstractions;
 
 namespace TokanPages.Persistence.DataAccess.Repositories;
 
-public abstract class RepositoryPattern
+public abstract class RepositoryBase
 {
     protected readonly IDbOperations DbOperations;
 
     protected readonly AppSettingsModel AppSettings;
 
-    protected RepositoryPattern(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings)
+    protected RepositoryBase(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings)
     {
         DbOperations = dbOperations;
         AppSettings = appSettings.Value;

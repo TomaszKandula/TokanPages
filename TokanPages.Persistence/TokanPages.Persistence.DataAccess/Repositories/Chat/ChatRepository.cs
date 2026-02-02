@@ -8,7 +8,7 @@ using TokanPages.Persistence.DataAccess.Repositories.Chat.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Chat;
 
-public class ChatRepository : RepositoryPattern, IChatRepository
+public class ChatRepository : RepositoryBase, IChatRepository
 {
     public ChatRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings) 
         : base(dbOperations, appSettings) { }
