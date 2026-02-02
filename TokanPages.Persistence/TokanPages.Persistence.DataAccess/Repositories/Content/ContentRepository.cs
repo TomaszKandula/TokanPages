@@ -54,4 +54,24 @@ public class ContentRepository : RepositoryPattern, IContentRepository
         return true;
     }
 
+    public async Task<List<LanguageItemDto>?> GetContentLanguageList()
+    {
+        var data = (await DbOperations.Retrieve<Language>(new { })).ToList();
+        if (data.Count == 0)
+            return null;
+
+        var languages = new List<LanguageItemDto>();
+        foreach (var item in data)
+        {
+            languages.Add(new LanguageItemDto
+            {
+                Id = item.LangId,
+                Iso = item.HrefLang,
+                Name = item.Name,
+                IsDefault = item.IsDefault
+            });
+        }
+
+        return languages;
+    }
 }
