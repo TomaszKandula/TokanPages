@@ -4,8 +4,8 @@ using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Application.Content.Cached.Commands.Models;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Services.AzureBusService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Cached.Commands;
@@ -18,26 +18,23 @@ public class OrderSpaCachingCommandHandler : RequestHandler<OrderSpaCachingComma
 
     private readonly IJsonSerializer _jsonSerializer;
 
+    private readonly IMessagingRepository _messagingRepository;
+
     private static JsonSerializerSettings Settings => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
     public OrderSpaCachingCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer) : base(operationDbContext, loggerService)
+        IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer, IMessagingRepository messagingRepository) : base(operationDbContext, loggerService)
     {
         _azureBusFactory = azureBusFactory;
         _jsonSerializer = jsonSerializer;
+        _messagingRepository = messagingRepository;
     }
 
     public override async Task<Unit> Handle(OrderSpaCachingCommand request, CancellationToken cancellationToken)
     {
         var messageId = Guid.NewGuid();
-        var serviceBusMessage = new ServiceBusMessage
-        {
-            Id = messageId,
-            IsConsumed = false
-        };
-
         var requestBody = new RequestProcessing
         {
             MessageId = messageId,
@@ -48,9 +45,7 @@ public class OrderSpaCachingCommandHandler : RequestHandler<OrderSpaCachingComma
             Paths = request.Paths
         };
 
-        await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
-
+        await _messagingRepository.CreateServiceBusMessage(messageId);
         var serialized = _jsonSerializer.Serialize(requestBody, Formatting.None, Settings);
         var messages = new List<string> { serialized };
 
