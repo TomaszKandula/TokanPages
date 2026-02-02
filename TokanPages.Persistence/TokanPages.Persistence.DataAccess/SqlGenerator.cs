@@ -15,6 +15,12 @@ public class SqlGenerator : ISqlGenerator
 
     private static bool HasPrimaryKey (PropertyInfo property) => Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute)) != null;
 
+    private static Dictionary<string, object?> GetDictionary(object entity)
+        => entity
+            .GetType()
+            .GetProperties()
+            .ToDictionary(info => info.Name, info => info.GetValue(entity,null));
+
     /// <inheritdoc/>
     public string GetTableName<T>()
     {
@@ -32,27 +38,65 @@ public class SqlGenerator : ISqlGenerator
     }
 
     /// <inheritdoc/>
-    public string GenerateQueryStatement<T>(object filterBy)
+    public string GenerateQueryStatement<T>(object? filterBy = null, object? orderBy = null)
     {
-        const string template = "SELECT {0} FROM {1} WHERE {2}";
+        const string template = "SELECT {0} FROM {1}";
 
         var table = GetTableName<T>();
-        var conditions = new List<string>();
-        var columns = typeof(T).GetProperties().Select(property => property.Name).ToList();
+        var whereConditions = new List<string>();
+        var orderConditions = new List<string>();
 
-        var dictionary = filterBy
-            .GetType()
-            .GetProperties()
-            .ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
+        var whereClause = string.Empty;
+        var orderByClause = string.Empty;
 
-        foreach (var item in dictionary)
+        var properties = typeof(T).GetProperties();
+        var columns = properties.Select(property => property.Name).ToList();
+        var tableColumns = string.Join(",", columns);
+
+        if (filterBy != null)
         {
-            conditions.Add($"{item.Key}=@{item.Key}");
-            if (!columns.Contains(item.Key))
-                throw new ArgumentOutOfRangeException(paramName: $"{item.Key}", message: ErrorCodes.INVALID_COLUMN_NAME);
+            var dictionary = GetDictionary(filterBy);
+            foreach (var item in dictionary)
+            {
+                whereConditions.Add($"{item.Key}=@{item.Key}");
+                if (!columns.Contains(item.Key))
+                    throw new ArgumentOutOfRangeException(paramName: $"{item.Key}", message: ErrorCodes.INVALID_COLUMN_NAME);
+            }
+
+            whereClause = string.Join(" AND ", whereConditions);
         }
 
-        return string.Format(template, string.Join(",", columns), table, string.Join(" AND ", conditions));
+        if (orderBy != null)
+        {
+            var dictionary = GetDictionary(orderBy);
+            foreach (var item in dictionary)
+            {
+                var value = item.Value as string;
+                if (value != "ASC" && value != "DESC")
+                    throw new ArgumentException(ErrorCodes.INVALID_ARGUMENT);
+
+                orderConditions.Add($"{item.Key} {value}");
+                if (!columns.Contains(item.Key))
+                    throw new ArgumentOutOfRangeException(paramName: $"{item.Key}", message: ErrorCodes.INVALID_COLUMN_NAME);
+            }
+
+            orderByClause = string.Join(",", orderConditions);
+        }
+
+        var hasWhereClause = !string.IsNullOrWhiteSpace(whereClause);
+        var hasOrderByClause = !string.IsNullOrWhiteSpace(orderByClause);
+        var query = string.Format(template, tableColumns, table);
+
+        if (hasWhereClause && !hasOrderByClause)
+            query += $" WHERE {whereClause}";
+
+        if (!hasWhereClause && hasOrderByClause)
+            query += $" ORDER BY {orderByClause}";
+
+        if (hasWhereClause && hasOrderByClause)
+            query += $" WHERE {whereClause} ORDER BY {orderByClause}";
+
+        return query;
     }
 
     /// <inheritdoc/>
@@ -103,11 +147,7 @@ public class SqlGenerator : ISqlGenerator
         if (!isPrimaryKeyFound)
             throw MissingPrimaryKey;
 
-        var updateDict = updateBy
-            .GetType()
-            .GetProperties()
-            .ToDictionary(info => info.Name, info => info.GetValue(updateBy,null));
-
+        var updateDict = GetDictionary(updateBy);
         foreach (var item in updateDict)
         {
             update.Add($"{item.Key}=@{item.Key}");
@@ -116,11 +156,7 @@ public class SqlGenerator : ISqlGenerator
                 throw new ArgumentOutOfRangeException(paramName: $"{item.Key}", message: ErrorCodes.INVALID_COLUMN_NAME);
         }
 
-        var filterDict = filterBy
-            .GetType()
-            .GetProperties()
-            .ToDictionary(info => info.Name, info => info.GetValue(filterBy,null));
-
+        var filterDict = GetDictionary(filterBy);
         foreach (var item in filterDict)
         {
             condition.Add($"{item.Key}=@{item.Key}");
@@ -155,11 +191,7 @@ public class SqlGenerator : ISqlGenerator
         if (!isPrimaryKeyFound)
             throw MissingPrimaryKey;
 
-        var dictionary = deleteBy
-            .GetType()
-            .GetProperties()
-            .ToDictionary(info => info.Name, info => info.GetValue(deleteBy,null));
-
+        var dictionary = GetDictionary(deleteBy);
         foreach (var item in dictionary)
         {
             conditions.Add($"{item.Key}=@{item.Key}");

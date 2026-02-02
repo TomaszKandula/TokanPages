@@ -56,7 +56,7 @@ public class ContentRepository : RepositoryPattern, IContentRepository
 
     public async Task<List<LanguageItemDto>?> GetContentLanguageList()
     {
-        var data = (await DbOperations.Retrieve<Language>(new { })).ToList();
+        var data = (await DbOperations.Retrieve<Language>(orderBy: new { SortOrder = "ASC" })).ToList();
         if (data.Count == 0)
             return null;
 

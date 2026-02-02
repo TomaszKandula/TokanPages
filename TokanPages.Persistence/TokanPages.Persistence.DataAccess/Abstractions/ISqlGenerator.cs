@@ -17,10 +17,11 @@ public interface ISqlGenerator
     /// Returns an SQL query to retrieve data from the given table, filtered by one or more columns.
     /// Table name is derived from the provided class. Use 'DatabaseTable' attribute.
     /// </summary>
-    /// <param name="filterBy">'Key-Value' fields used for filtering.</param>
+    /// <param name="filterBy">Optional 'Key-Value' fields used for filtering.</param>
+    /// <param name="orderBy">Optional 'Key-Value' fields used for ordering, i.e. 'Column1 = DESC, Column2 = ASC'.</param>
     /// <typeparam name="T">Given entity object type.</typeparam>
     /// <returns>SQL statement.</returns>
-    string GenerateQueryStatement<T>(object filterBy);
+    string GenerateQueryStatement<T>(object? filterBy = null, object? orderBy = null);
 
     /// <summary>
     /// Returns an SQL statement for an INSERT query for the given values from provided in the entity object.
