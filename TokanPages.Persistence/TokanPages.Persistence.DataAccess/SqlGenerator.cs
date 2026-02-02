@@ -72,7 +72,7 @@ public class SqlGenerator : ISqlGenerator
             foreach (var item in dictionary)
             {
                 var value = item.Value as string;
-                if (string.IsNullOrWhiteSpace(value) || value != "ASC" || value != "DESC")
+                if (value != "ASC" && value != "DESC")
                     throw new ArgumentException(ErrorCodes.INVALID_ARGUMENT);
 
                 orderConditions.Add($"{item.Key} {value}");
