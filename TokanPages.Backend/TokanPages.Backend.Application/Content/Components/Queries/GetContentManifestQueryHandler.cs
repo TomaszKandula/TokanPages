@@ -1,5 +1,4 @@
 using System.Text;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Application.Content.Components.Models;
@@ -8,6 +7,7 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Content;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Components.Queries;
@@ -18,11 +18,15 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
 
     private readonly IJsonSerializer _jsonSerializer;
 
+    private readonly IContentRepository _contentRepository;
+
     public GetContentManifestQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IJsonSerializer jsonSerializer) : base(operationDbContext, loggerService)
+        IAzureBlobStorageFactory azureBlobStorageFactory, IJsonSerializer jsonSerializer, IContentRepository contentRepository) 
+        : base(operationDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _jsonSerializer = jsonSerializer;
+        _contentRepository = contentRepository;
     }
 
     public override async Task<GetContentManifestQueryResult> Handle(GetContentManifestQuery request, CancellationToken cancellationToken)
@@ -46,19 +50,21 @@ public class GetContentManifestQueryHandler : RequestHandler<GetContentManifestQ
         var settings = new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() };
         var manifest = _jsonSerializer.Deserialize<GetContentManifestQueryResult>(strings, settings);
 
-        var languageList = await OperationDbContext.Languages
-            .AsNoTracking()
-            .OrderBy(language => language.SortOrder)
-            .Select(language => new LanguageModel
-            {
-                Id = language.LangId,
-                Iso = language.HrefLang,
-                Name = language.Name,
-                IsDefault = language.IsDefault
-            })
-            .ToListAsync(cancellationToken);
+        var languageList = await _contentRepository.GetContentLanguageList();
+        if (languageList is null)
+            return manifest;
 
-        manifest.Languages = languageList;
+        var languages = languageList
+            .Select(item => new LanguageModel
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Iso =  item.Iso,
+                IsDefault =  item.IsDefault,
+            })
+            .ToList();
+
+        manifest.Languages = languages;
         return manifest;
     }
 }

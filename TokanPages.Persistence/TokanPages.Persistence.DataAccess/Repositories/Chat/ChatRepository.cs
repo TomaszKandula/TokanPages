@@ -8,22 +8,15 @@ using TokanPages.Persistence.DataAccess.Repositories.Chat.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Chat;
 
-public class ChatRepository : IChatRepository
+public class ChatRepository : RepositoryPattern, IChatRepository
 {
-    private readonly IDbOperations _dbOperations;
-
-    private readonly AppSettingsModel _appSettings;
-
-    public ChatRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> options)
-    {
-        _dbOperations = dbOperations;
-        _appSettings = options.Value;
-    }
+    public ChatRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings) 
+        : base(dbOperations, appSettings) { }
 
     public async Task<ChatUserDataDto?> GetChatUserData(Guid userId)
     {
         var filterBy = new { UserId = userId };
-        var data = (await _dbOperations.Retrieve<UserInfo>(filterBy)).SingleOrDefault();
+        var data = (await DbOperations.Retrieve<UserInfo>(filterBy)).SingleOrDefault();
         if (data == null)
             return null;
 
@@ -38,7 +31,7 @@ public class ChatRepository : IChatRepository
     public async Task<UserMessage?> GetChatUserMessageData(string chatKey, bool isArchived)
     {
         var filterBy = new { ChatKey = chatKey, IsArchived = isArchived };
-        return (await _dbOperations.Retrieve<UserMessage>(filterBy)).SingleOrDefault();
+        return (await DbOperations.Retrieve<UserMessage>(filterBy)).SingleOrDefault();
     }
 
     public async Task<string[]> RetrieveChatCache(string[] chatKey)
@@ -52,7 +45,7 @@ public class ChatRepository : IChatRepository
                 operation.ChatKey IN @ChatKey
         ";
 
-        await using var db = new SqlConnection(_appSettings.DbDatabaseContext);
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
         var result = await db.QueryAsync<string>(query, new { ChatKey = chatKey });
         return result.ToArray();
     }
@@ -73,7 +66,7 @@ public class ChatRepository : IChatRepository
                 ModifiedBy = null
             };
 
-            await _dbOperations.Insert(entity);
+            await DbOperations.Insert(entity);
         }
         catch
         {
@@ -89,7 +82,7 @@ public class ChatRepository : IChatRepository
         {
             var updateBy = new { ChatData = chatData, ModifiedAt = modifiedAt, ModifiedBy = modifiedBy };
             var filterBy = new { ChatKey = chatKey, IsArchived = isArchived };
-            await _dbOperations.Update<UserMessage>(updateBy, filterBy);
+            await DbOperations.Update<UserMessage>(updateBy, filterBy);
         }
         catch
         {
@@ -104,7 +97,7 @@ public class ChatRepository : IChatRepository
         try
         {
             var filterBy = new { ChatId = chatId };
-            await _dbOperations.Delete<UserMessageCache>(filterBy);
+            await DbOperations.Delete<UserMessageCache>(filterBy);
         }
         catch
         {
@@ -119,7 +112,7 @@ public class ChatRepository : IChatRepository
         try
         {
             var filterBy = new { ChatKey = chatKey };
-            await _dbOperations.Delete<UserMessageCache>(filterBy);
+            await DbOperations.Delete<UserMessageCache>(filterBy);
         }
         catch
         {
