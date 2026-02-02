@@ -66,7 +66,7 @@ public class SqlGeneratorTests : TestBase
     }
 
     [Fact]
-    public void GivenEntity_WhenGenerateQueryStatement_ShouldSucceed()
+    public void GivenEntityWithFilter_WhenGenerateQueryStatement_ShouldSucceed()
     {
         // Arrange
         var filterBy = new 
@@ -83,6 +83,68 @@ public class SqlGeneratorTests : TestBase
 
         // Act
         var result = sqlGenerator.GenerateQueryStatement<TestPlayerOne>(filterBy);
+
+        // Assert
+        result.Should().Be(expectedStatement);
+    }
+
+    [Fact]
+    public void GivenEntityWithoutFilter_WhenGenerateQueryStatement_ShouldSucceed()
+    {
+        // Arrange
+        const string expectedStatement = $"SELECT Id,Name,IsPublished,CreatedAt,Likes FROM soccer.Players";
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        var result = sqlGenerator.GenerateQueryStatement<TestPlayerOne>();
+
+        // Assert
+        result.Should().Be(expectedStatement);
+    }
+
+    [Fact]
+    public void GivenEntityWithOrderBy_WhenGenerateQueryStatement_ShouldSucceed()
+    {
+        // Arrange
+        var orderBy = new
+        {
+            Likes = "DESC",
+            Name = "ASC"
+        };
+
+        const string expectedStatement = $"SELECT Id,Name,IsPublished,CreatedAt,Likes FROM soccer.Players ORDER BY Likes DESC,Name ASC";
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        var result = sqlGenerator.GenerateQueryStatement<TestPlayerOne>(orderBy: orderBy);
+
+        // Assert
+        result.Should().Be(expectedStatement);
+    }
+
+    [Fact]
+    public void GivenEntityWithWhereAndOrderBy_WhenGenerateQueryStatement_ShouldSucceed()
+    {
+        // Arrange
+        var filterBy = new 
+        {
+            Name = "Victoria",
+            IsPublished = true,
+            CreatedAt = DateTime.Parse("2020-09-27"),
+        };
+
+        var orderBy = new
+        {
+            Likes = "DESC",
+            Name = "ASC"
+        };
+
+        const string expectedValues = "Name=@Name AND IsPublished=@IsPublished AND CreatedAt=@CreatedAt";
+        const string expectedStatement = $"SELECT Id,Name,IsPublished,CreatedAt,Likes FROM soccer.Players WHERE {expectedValues} ORDER BY Likes DESC,Name ASC";
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        var result = sqlGenerator.GenerateQueryStatement<TestPlayerOne>(filterBy, orderBy);
 
         // Assert
         result.Should().Be(expectedStatement);
