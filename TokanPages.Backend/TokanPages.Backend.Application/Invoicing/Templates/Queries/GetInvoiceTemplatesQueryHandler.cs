@@ -1,21 +1,20 @@
 using TokanPages.Backend.Application.Invoicing.Models;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Services.TemplateService;
+using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 
 namespace TokanPages.Backend.Application.Invoicing.Templates.Queries;
 
 public class GetInvoiceTemplatesQueryHandler : RequestHandler<GetInvoiceTemplatesQuery, IList<InvoiceTemplateInfo>>
 {
-    private readonly ITemplateService _templateService;
+    private readonly IInvoicingRepository _invoicingRepository;
 
     public GetInvoiceTemplatesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        ITemplateService templateService) : base(operationDbContext, loggerService) => _templateService = templateService;
+        IInvoicingRepository invoicingRepository) : base(operationDbContext, loggerService) => _invoicingRepository = invoicingRepository;
 
     public override async Task<IList<InvoiceTemplateInfo>> Handle(GetInvoiceTemplatesQuery request, CancellationToken cancellationToken)
     {
-        var result = await _templateService.GetInvoiceTemplates(cancellationToken);
-        var templates = result as Services.TemplateService.Models.InvoiceTemplateInfo[] ?? result.ToArray();
+        var templates = await _invoicingRepository.GetInvoiceTemplates(false);
         var list = new List<InvoiceTemplateInfo>();
         foreach (var template in templates)
         {
@@ -26,7 +25,7 @@ public class GetInvoiceTemplatesQueryHandler : RequestHandler<GetInvoiceTemplate
             });
         }
 
-        LoggerService.LogInformation($"Returned {templates.Length} invoice template(s)");
+        LoggerService.LogInformation($"Returned {templates.Count} invoice template(s)");
         return list;
     }
 }
