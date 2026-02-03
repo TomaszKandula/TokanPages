@@ -9,6 +9,8 @@ using TokanPages.Backend.Domain.Entities.Invoicing;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
+using TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 using TokanPages.Services.BatchService.Models;
 using ProcessingStatus = TokanPages.Backend.Domain.Enums.ProcessingStatus;
 
@@ -18,17 +20,22 @@ public class BatchService : IBatchService
 {
     private readonly OperationDbContext _operationDbContext;
 
+    private readonly IInvoicingRepository _invoicingRepository;
+
     private readonly IDateTimeService _dateTimeService;
 
     private readonly ILoggerService _loggerService;
 
-    public BatchService(OperationDbContext operationDbContext, IDateTimeService dateTimeService, ILoggerService loggerService)
+    public BatchService(OperationDbContext operationDbContext, IDateTimeService dateTimeService, 
+        ILoggerService loggerService, IInvoicingRepository invoicingRepository)
     {
         _operationDbContext = operationDbContext;
         _dateTimeService = dateTimeService;
         _loggerService = loggerService;
+        _invoicingRepository = invoicingRepository;
     }
 
+    //TODO: WARNING! This is not optimal, re-do for high performance.
     /// <summary>
     /// Place an order for invoice processing. 
     /// </summary>
@@ -37,26 +44,17 @@ public class BatchService : IBatchService
     /// <returns>Process Batch Key.</returns>
     public async Task<Guid> OrderInvoiceBatchProcessing(IEnumerable<OrderDetail> orderDetails, CancellationToken cancellationToken = default)
     {
-        var invoices = new List<BatchInvoice>();
-        var invoiceItems = new List<BatchInvoiceItem>();
-
-        var processing = new BatchInvoiceProcessing
-        {
-            Id = Guid.NewGuid(),
-            BatchProcessingTime = null,
-            Status = ProcessingStatus.New,
-            CreatedAt = _dateTimeService.Now
-        };
+        var processingId = await _invoicingRepository.CreateBatchInvoiceProcessing(_dateTimeService.Now);
 
         foreach (var order in orderDetails)
         {
             var batchInvoiceId = Guid.NewGuid();
-            invoices.Add(new BatchInvoice
+            var invoice = new BatchInvoiceDto
             {
                 Id = batchInvoiceId,
                 InvoiceNumber = order.InvoiceNumber,
-                VoucherDate = order.VoucherDate ?? DateTime.Now,
-                ValueDate = order.ValueDate ?? DateTime.Now,
+                VoucherDate = order.VoucherDate ?? _dateTimeService.Now,
+                ValueDate = order.ValueDate ?? _dateTimeService.Now,
                 DueDate = order.DueDate,
                 PaymentTerms = order.PaymentTerms,
                 PaymentType = order.PaymentType,
@@ -71,19 +69,18 @@ public class BatchService : IBatchService
                 InvoiceTemplateName = order.InvoiceTemplateName,
                 CreatedAt = _dateTimeService.Now,
                 CreatedBy = order.UserId,
-                ModifiedAt = null,
-                ModifiedBy = null,
-                ProcessBatchKey = processing.Id,
+                ProcessBatchKey = processingId,
                 UserId = order.UserId,
                 UserCompanyId = order.UserCompanyId,
                 UserBankAccountId = order.UserBankAccountId
-            });
+            };
+
+            await _invoicingRepository.CreateBatchInvoice(invoice);
 
             foreach (var item in order.InvoiceItems)
             {
-                invoiceItems.Add(new BatchInvoiceItem
+                var invoiceItems = new BatchInvoiceItemDto
                 {
-                    Id = Guid.NewGuid(),
                     BatchInvoiceId = batchInvoiceId,
                     ItemText = item.ItemText,
                     ItemQuantity = item.ItemQuantity,
@@ -94,20 +91,14 @@ public class BatchService : IBatchService
                     VatRate = item.VatRate,
                     GrossAmount = item.GrossAmount,
                     CurrencyCode = item.CurrencyCode
-                });
+                };
+                
+                await _invoicingRepository.CreateBatchInvoiceItem(invoiceItems);
             }
         }
 
-        await _operationDbContext.AddAsync(processing, cancellationToken);
-        await _operationDbContext.AddRangeAsync(invoices, cancellationToken);
-        await _operationDbContext.AddRangeAsync(invoiceItems, cancellationToken);
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
-
-        var messageText1 = $"Invoice batch processing has been ordered (ProcessBatchKey: {processing.Id}).";
-        var messageText2 = $"Total invoices: {invoices.Count}.";
-
-        _loggerService.LogInformation($"{messageText1} {messageText2}.");
-        return processing.Id;
+        _loggerService.LogInformation($"Invoice batch processing has been ordered (ProcessBatchKey: {processingId}).");
+        return processingId;
     }
 
     /// <summary>
