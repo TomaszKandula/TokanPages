@@ -48,7 +48,7 @@ public interface IInvoicingRepository
     Task<bool> RemoveInvoiceTemplate(Guid templateId);
 
     /// <summary>
-    /// Creates new batch invoice processing.
+    /// Creates a new batch invoice processing entry.
     /// </summary>
     /// <param name="createdAt">Timestamp.</param>
     /// <returns>Process UID.</returns>
