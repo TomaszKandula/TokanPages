@@ -33,7 +33,6 @@
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.AzureStorageService\TokanPages.Services.AzureStorageService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.BatchService\TokanPages.Services.BatchService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.SpaCachingService\TokanPages.Services.SpaCachingService.csproj" />
-    <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.TemplateService\TokanPages.Services.TemplateService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.VatService\TokanPages.Services.VatService.csproj" />
   </ItemGroup>
 

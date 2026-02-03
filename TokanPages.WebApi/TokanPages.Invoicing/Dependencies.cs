@@ -23,7 +23,6 @@ using TokanPages.Services.BatchService;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.RedisCacheService.Abstractions;
-using TokanPages.Services.TemplateService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.VatService;
 using TokanPages.Services.WebTokenService.Abstractions;
@@ -81,7 +80,6 @@ public static class Dependencies
 
 		services.AddScoped<IVatService, VatService>();
 		services.AddScoped<IBatchService, BatchService>();
-		services.AddScoped<ITemplateService, TemplateService>();
 
 		services.AddScoped<ICountriesCache, CountriesCache>();
 		services.AddScoped<ICurrenciesCache, CurrenciesCache>();

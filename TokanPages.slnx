@@ -75,7 +75,6 @@
     <Project Path="TokanPages.Services/TokanPages.Services.PushNotificationService/TokanPages.Services.PushNotificationService.csproj" />
     <Project Path="TokanPages.Services/TokanPages.Services.RedisCacheService/TokanPages.Services.RedisCacheService.csproj" />
     <Project Path="TokanPages.Services/TokanPages.Services.SpaCachingService/TokanPages.Services.SpaCachingService.csproj" />
-    <Project Path="TokanPages.Services/TokanPages.Services.TemplateService/TokanPages.Services.TemplateService.csproj" />
     <Project Path="TokanPages.Services/TokanPages.Services.UserService/TokanPages.Services.UserService.csproj" />
     <Project Path="TokanPages.Services/TokanPages.Services.VatService/TokanPages.Services.VatService.csproj" />
     <Project Path="TokanPages.Services/TokanPages.Services.VideoConverterService/TokanPages.Services.VideoConverterService.csproj" />
