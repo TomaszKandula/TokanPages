@@ -2,6 +2,7 @@ using Microsoft.Extensions.Options;
 using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Entities.Invoicing;
+using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Abstractions;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
@@ -102,5 +103,20 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         }
 
         return true;
+    }
+
+    /// <inheritdoc/>
+    public async Task<Guid> CreateBatchInvoiceProcessing(DateTime createdAt)
+    {
+        var entity = new BatchInvoiceProcessing
+        {
+            Id = Guid.NewGuid(),
+            BatchProcessingTime = null,
+            Status = ProcessingStatus.New,
+            CreatedAt = createdAt
+        };
+
+        await DbOperations.Insert(entity);
+        return entity.Id;
     }
 }
