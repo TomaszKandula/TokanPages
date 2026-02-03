@@ -7,4 +7,8 @@ public interface IInvoicingRepository
     Task<List<VatNumberPattern>> GetVatNumberPatterns();
 
     Task<List<InvoiceTemplate>> GetInvoiceTemplates(bool isDeleted);
+
+    Task<InvoiceTemplate> GetInvoiceTemplate(Guid templateId, bool isDeleted);
+
+    Task<bool> RemoveInvoiceTemplate(Guid templateId);
 }
