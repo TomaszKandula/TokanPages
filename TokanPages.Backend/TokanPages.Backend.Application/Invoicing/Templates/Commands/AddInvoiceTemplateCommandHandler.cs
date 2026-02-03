@@ -1,17 +1,24 @@
 using TokanPages.Backend.Core.Extensions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Services.TemplateService;
-using TokanPages.Services.TemplateService.Models;
+using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
+using TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 
 namespace TokanPages.Backend.Application.Invoicing.Templates.Commands;
 
 public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplateCommand, AddInvoiceTemplateCommandResult>
 {
-    private readonly ITemplateService _templateService;
+    private readonly IInvoicingRepository _invoicingRepository;
+    
+    private readonly IDateTimeService _dateTimeService;
 
     public AddInvoiceTemplateCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        ITemplateService templateService) : base(operationDbContext, loggerService) => _templateService = templateService;
+        IInvoicingRepository invoicingRepository, IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
+    {
+        _invoicingRepository = invoicingRepository;
+        _dateTimeService = dateTimeService;
+    }
 
     public override async Task<AddInvoiceTemplateCommandResult> Handle(AddInvoiceTemplateCommand request, CancellationToken cancellationToken)
     {
@@ -19,10 +26,10 @@ public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplat
         var contentType = request.Data!.ContentType;
         var binary = request.Data.GetByteArray();
 
-        var newInvoiceTemplate = new InvoiceTemplate
+        var newInvoiceTemplate = new InvoiceTemplateDto
         {
             TemplateName = fileName,
-            InvoiceTemplateData = new InvoiceTemplateData
+            InvoiceTemplateData = new InvoiceTemplateDataDto
             {
                 ContentData = binary,
                 ContentType = contentType
@@ -30,7 +37,9 @@ public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplat
             InvoiceTemplateDescription = request.Description
         };
 
-        var result = await _templateService.AddInvoiceTemplate(newInvoiceTemplate, cancellationToken);
+        var generatedAt = _dateTimeService.Now;
+        var result = await _invoicingRepository.CreateInvoiceTemplate(newInvoiceTemplate, generatedAt);
+
         LoggerService.LogInformation($"New invoice template has been added. Invoice template name: {fileName}");
 
         return new AddInvoiceTemplateCommandResult { TemplateId = result };
