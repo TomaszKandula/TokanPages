@@ -58,10 +58,8 @@ public interface IInvoicingRepository
     /// Creates a new batch invoice entry.
     /// </summary>
     /// <param name="data">Batch invoice details.</param>
-    /// <param name="processBatchKey">Process batch key.</param>
-    /// <param name="createdAt">Timestamp.</param>
     /// <returns>Process UID.</returns>
-    Task<Guid> CreateBatchInvoice(BatchInvoiceDto data, Guid processBatchKey, DateTime createdAt);
+    Task<Guid> CreateBatchInvoice(BatchInvoiceDto data);
 
     /// <summary>
     /// Creates a new batch invoice item entry.
