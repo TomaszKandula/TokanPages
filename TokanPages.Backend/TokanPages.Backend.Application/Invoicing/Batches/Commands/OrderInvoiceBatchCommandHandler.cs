@@ -113,7 +113,7 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
             });
         }
 
-        var result = await _batchService.OrderInvoiceBatchProcessing(order, cancellationToken);
+        var result = await _batchService.OrderInvoiceBatchProcessing(order);
         return new OrderInvoiceBatchCommandResult
         {
             ProcessBatchKey = result
