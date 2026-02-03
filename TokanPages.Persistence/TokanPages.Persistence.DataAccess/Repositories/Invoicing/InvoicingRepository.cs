@@ -106,6 +106,39 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     }
 
     /// <inheritdoc/>
+    public async Task<BatchInvoiceProcessing?> GetBatchInvoiceProcessingByKey(Guid processBatchKey)
+    {
+        var filterBy = new { ProcessBatchKey = processBatchKey };
+        return (await DbOperations.Retrieve<BatchInvoiceProcessing>(filterBy)).SingleOrDefault();
+    }
+
+    /// <inheritdoc/>
+    public async Task<List<BatchInvoiceProcessing>> GetBatchInvoiceProcessingByStatus(ProcessingStatus status)
+    {
+        var filterBy = new { Status = status };
+        return (await DbOperations.Retrieve<BatchInvoiceProcessing>(filterBy)).ToList();
+    }
+
+    /// <inheritdoc/>
+    public async Task<List<InvoiceDataDto>> GetIssuedInvoiceById(string invoiceNumber)
+    {
+        var  filterBy = new { InvoiceNumber = invoiceNumber };
+        var data = (await DbOperations.Retrieve<IssuedInvoice>(filterBy)).ToList();
+
+        var result = data
+            .Select(invoice => new InvoiceDataDto
+            {
+                Number = invoice.InvoiceNumber,
+                ContentData = invoice.InvoiceData,
+                ContentType = invoice.ContentType,
+                GeneratedAt = invoice.GeneratedAt
+            })
+            .ToList();
+
+        return result;
+    }
+
+    /// <inheritdoc/>
     public async Task<Guid> CreateBatchInvoiceProcessing(DateTime createdAt)
     {
         var entity = new BatchInvoiceProcessing
