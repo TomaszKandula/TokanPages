@@ -40,9 +40,8 @@ public class BatchService : IBatchService
     /// Place an order for invoice processing. 
     /// </summary>
     /// <param name="orderDetails">Desired invoice data.</param>
-    /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>Process Batch Key.</returns>
-    public async Task<Guid> OrderInvoiceBatchProcessing(IEnumerable<OrderDetail> orderDetails, CancellationToken cancellationToken = default)
+    public async Task<Guid> OrderInvoiceBatchProcessing(IEnumerable<OrderDetail> orderDetails)
     {
         var processingId = await _invoicingRepository.CreateBatchInvoiceProcessing(_dateTimeService.Now);
 
@@ -251,7 +250,7 @@ public class BatchService : IBatchService
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>Processing Status object.</returns>
     /// <exception cref="BusinessException">Throws an error code INVALID_PROCESSING_BATCH_KEY.</exception>
-    public async Task<Models.ProcessingStatus> GetBatchInvoiceProcessingStatus(Guid processBatchKey, CancellationToken cancellationToken = default)
+    public async Task<Models.ProcessingStatus> GetBatchInvoiceProcessingStatus(Guid processBatchKey, CancellationToken cancellationToken = default)//TODO: remove
     {
         var processing = await _operationDbContext.BatchInvoicesProcessing
             .AsNoTracking()
@@ -275,7 +274,7 @@ public class BatchService : IBatchService
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>Invoice (binary content).</returns>
     /// <exception cref="BusinessException"></exception>
-    public async Task<InvoiceData> GetIssuedInvoice(string invoiceNumber, CancellationToken cancellationToken = default)
+    public async Task<InvoiceData> GetIssuedInvoice(string invoiceNumber, CancellationToken cancellationToken = default)//TODO: remove
     {
         var invoice = await _operationDbContext.IssuedInvoices
             .AsNoTracking()
