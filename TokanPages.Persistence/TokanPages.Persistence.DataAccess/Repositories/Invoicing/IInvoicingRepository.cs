@@ -1,4 +1,5 @@
 using TokanPages.Backend.Domain.Entities.Invoicing;
+using TokanPages.Backend.Domain.Enums;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Invoicing;
@@ -46,6 +47,33 @@ public interface IInvoicingRepository
     /// </summary>
     /// <param name="templateId">Invoice template ID.</param>
     Task<bool> RemoveInvoiceTemplate(Guid templateId);
+
+    /// <summary>
+    /// Returns batch invoice processing by given Key.
+    /// </summary>
+    /// <param name="processBatchKey">Mandatory processing key.</param>
+    /// <returns>Entity.</returns>
+    Task<BatchInvoiceProcessing?> GetBatchInvoiceProcessingByKey(Guid processBatchKey);
+
+    /// <summary>
+    /// Returns batch invoice processing by given Status:
+    /// </summary>
+    /// <list type="bullet">
+    /// <item><description>new - newly created entry, processing is not started yet.</description></item>
+    /// <item><description>started - indicates ongoing processing.</description></item>
+    /// <item><description>finished - indicates successful processing.</description></item>
+    /// <item><description>failed - indicates failed processing.</description></item>
+    /// </list>
+    /// <param name="status">Requested status.</param>
+    /// <returns>List of entities.</returns>
+    Task<List<BatchInvoiceProcessing>> GetBatchInvoiceProcessingByStatus(ProcessingStatus status);
+
+    /// <summary>
+    /// Returns issued invoice.
+    /// </summary>
+    /// <param name="invoiceNumber">Invoice number.</param>
+    /// <returns>File data.</returns>
+    Task<List<InvoiceDataDto>> GetIssuedInvoiceById(string invoiceNumber);
 
     /// <summary>
     /// Creates a new batch invoice processing entry.
