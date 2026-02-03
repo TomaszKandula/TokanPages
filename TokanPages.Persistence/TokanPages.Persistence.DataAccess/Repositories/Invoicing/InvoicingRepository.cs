@@ -121,7 +121,7 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     }
 
     /// <inheritdoc/>
-    public async Task<Guid> CreateBatchInvoice(BatchInvoiceDto data, Guid processBatchKey, DateTime createdAt)
+    public async Task<Guid> CreateBatchInvoice(BatchInvoiceDto data)
     {
         var entity = new BatchInvoice
         {
@@ -141,11 +141,11 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
             PostalCode = data.PostalCode,
             PostalArea = data.PostalArea,
             InvoiceTemplateName = data.InvoiceTemplateName,
-            CreatedAt = createdAt,
+            CreatedAt = data.CreatedAt,
             CreatedBy = data.UserId,
             ModifiedAt = null,
             ModifiedBy = null,
-            ProcessBatchKey = processBatchKey,
+            ProcessBatchKey = data.ProcessBatchKey,
             UserId = data.UserId,
             UserCompanyId = data.UserCompanyId,
             UserBankAccountId = data.UserBankAccountId
