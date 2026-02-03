@@ -2,31 +2,31 @@ using MediatR;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Services.TemplateService;
-using TokanPages.Services.TemplateService.Models;
+using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
+using TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 
 namespace TokanPages.Backend.Application.Invoicing.Templates.Commands;
 
 public class ReplaceInvoiceTemplateCommandHandler : RequestHandler<ReplaceInvoiceTemplateCommand, Unit>
 {
-    private readonly ITemplateService _templateService;
+    private readonly IInvoicingRepository _invoicingRepository;
 
     public ReplaceInvoiceTemplateCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        ITemplateService templateService) : base(operationDbContext, loggerService) => _templateService = templateService;
+        IInvoicingRepository invoicingRepository) : base(operationDbContext, loggerService) => _invoicingRepository = invoicingRepository;
 
     public override async Task<Unit> Handle(ReplaceInvoiceTemplateCommand request, CancellationToken cancellationToken)
     {
         var contentType = request.Data!.ContentType;
         var binary = request.Data.GetByteArray();
 
-        var newTemplate = new InvoiceTemplateData
+        var newTemplate = new InvoiceTemplateDataDto
         {
             ContentData = binary,
             ContentType = contentType,
             Description = request.Description
         };
 
-        await _templateService.ReplaceInvoiceTemplate(request.Id, newTemplate, cancellationToken);
+        await _invoicingRepository.ReplaceInvoiceTemplate(request.Id, newTemplate);
         LoggerService.LogInformation($"Invoice template (ID: {request.Id}) has been replaced by the provided template with description: {newTemplate.Description}");
         return Unit.Value;
     }
