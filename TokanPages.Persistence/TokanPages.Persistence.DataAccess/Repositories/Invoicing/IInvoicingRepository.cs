@@ -14,17 +14,17 @@ public interface IInvoicingRepository
     /// <summary>
     /// Returns list of registered invoices templates with system.
     /// </summary>
-    /// <param name="isDeleted">Delete flag.</param>
+    /// <param name="isDeleted">Optional delete flag.</param>
     /// <returns>List of templates.</returns>
-    Task<List<InvoiceTemplate>> GetInvoiceTemplates(bool isDeleted);
+    Task<List<InvoiceTemplate>> GetInvoiceTemplates(bool isDeleted = false);
 
     /// <summary>
     /// Returns registered invoice template by ID.
     /// </summary>
     /// <param name="templateId">Invoice template ID.</param>
-    /// <param name="isDeleted">Delete flag.</param>
+    /// <param name="isDeleted">Optional delete flag.</param>
     /// <returns>Template file.</returns>
-    Task<InvoiceTemplate> GetInvoiceTemplate(Guid templateId, bool isDeleted);
+    Task<InvoiceTemplate> GetInvoiceTemplate(Guid templateId, bool isDeleted = false);
 
     /// <summary>
     /// Adds new invoice template to the database.

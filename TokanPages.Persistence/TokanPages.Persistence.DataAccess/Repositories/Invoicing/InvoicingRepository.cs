@@ -23,7 +23,7 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     }
 
     /// <inheritdoc/>
-    public async Task<List<InvoiceTemplate>> GetInvoiceTemplates(bool isDeleted)
+    public async Task<List<InvoiceTemplate>> GetInvoiceTemplates(bool isDeleted = false)
     {
         var filterBy = new { IsDeleted = isDeleted };
         return (await DbOperations.Retrieve<InvoiceTemplate>(filterBy: filterBy)).ToList();
@@ -31,7 +31,7 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
 
     /// <inheritdoc/>
     /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
-    public async Task<InvoiceTemplate> GetInvoiceTemplate(Guid templateId, bool isDeleted)
+    public async Task<InvoiceTemplate> GetInvoiceTemplate(Guid templateId, bool isDeleted = false)
     {
         var filterBy = new { Id = templateId, IsDeleted = isDeleted };
         var data = (await DbOperations.Retrieve<InvoiceTemplate>(filterBy: filterBy)).SingleOrDefault();
