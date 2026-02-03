@@ -1,14 +1,12 @@
 using System.Text;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Invoicing;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 using TokanPages.Services.BatchService.Models;
@@ -18,18 +16,14 @@ namespace TokanPages.Services.BatchService;
 
 public class BatchService : IBatchService
 {
-    private readonly OperationDbContext _operationDbContext;
-
     private readonly IInvoicingRepository _invoicingRepository;
 
     private readonly IDateTimeService _dateTimeService;
 
     private readonly ILoggerService _loggerService;
 
-    public BatchService(OperationDbContext operationDbContext, IDateTimeService dateTimeService, 
-        ILoggerService loggerService, IInvoicingRepository invoicingRepository)
+    public BatchService(IDateTimeService dateTimeService, ILoggerService loggerService, IInvoicingRepository invoicingRepository)
     {
-        _operationDbContext = operationDbContext;
         _dateTimeService = dateTimeService;
         _loggerService = loggerService;
         _invoicingRepository = invoicingRepository;
