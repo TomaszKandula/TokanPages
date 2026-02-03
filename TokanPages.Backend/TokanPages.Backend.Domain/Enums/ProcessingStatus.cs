@@ -4,8 +4,6 @@ namespace TokanPages.Backend.Domain.Enums;
 
 public enum ProcessingStatus
 {
-    [EnumMember(Value = "unknown")]
-    Unknown = 0,
     [EnumMember(Value = "new")]
     New = 1,
     [EnumMember(Value = "started")]
