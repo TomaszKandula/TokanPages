@@ -119,4 +119,60 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         await DbOperations.Insert(entity);
         return entity.Id;
     }
+
+    /// <inheritdoc/>
+    public async Task<Guid> CreateBatchInvoice(BatchInvoiceDto data, Guid processBatchKey, DateTime createdAt)
+    {
+        var entity = new BatchInvoice
+        {
+            Id = Guid.NewGuid(),
+            InvoiceNumber = data.InvoiceNumber,
+            VoucherDate = data.VoucherDate,
+            ValueDate = data.ValueDate,
+            DueDate = data.DueDate,
+            PaymentTerms = data.PaymentTerms,
+            PaymentType = data.PaymentType,
+            PaymentStatus = data.PaymentStatus,
+            CustomerName = data.CustomerName,
+            CustomerVatNumber = data.CustomerVatNumber,
+            CountryCode = data.CountryCode,
+            City = data.City,
+            StreetAddress = data.StreetAddress,
+            PostalCode = data.PostalCode,
+            PostalArea = data.PostalArea,
+            InvoiceTemplateName = data.InvoiceTemplateName,
+            CreatedAt = createdAt,
+            CreatedBy = data.UserId,
+            ModifiedAt = null,
+            ModifiedBy = null,
+            ProcessBatchKey = processBatchKey,
+            UserId = data.UserId,
+            UserCompanyId = data.UserCompanyId,
+            UserBankAccountId = data.UserBankAccountId
+        };
+
+        await DbOperations.Insert(entity);
+        return entity.Id;
+    }
+
+    public async Task<Guid> CreateBatchInvoiceItem(BatchInvoiceItemDto data)
+    {
+        var entity = new BatchInvoiceItem
+        {
+            Id = Guid.NewGuid(),
+            BatchInvoiceId = data.BatchInvoiceId,
+            ItemText = data.ItemText,
+            ItemQuantity = data.ItemQuantity,
+            ItemQuantityUnit = data.ItemQuantityUnit,
+            ItemAmount = data.ItemAmount,
+            ItemDiscountRate = data.ItemDiscountRate,
+            ValueAmount = data.ValueAmount,
+            VatRate = data.VatRate,
+            GrossAmount = data.GrossAmount,
+            CurrencyCode = data.CurrencyCode
+        };
+
+        await  DbOperations.Insert(entity);
+        return entity.Id;
+    }
 }
