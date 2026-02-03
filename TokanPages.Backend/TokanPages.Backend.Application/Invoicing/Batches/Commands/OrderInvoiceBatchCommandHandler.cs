@@ -43,7 +43,7 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
         var vatPatterns = await _invoicingRepository.GetVatNumberPatterns();
         LoggerService.LogInformation($"Found {vatPatterns.Count} VAT patterns");
 
-        var availableTemplates = await _invoicingRepository.GetInvoiceTemplates(false);
+        var availableTemplates = await _invoicingRepository.GetInvoiceTemplates();
         LoggerService.LogInformation($"Found {availableTemplates.Count} invoice patterns");
 
         var order = new List<OrderDetail>();
