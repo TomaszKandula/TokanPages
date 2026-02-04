@@ -251,6 +251,34 @@ public class SqlGeneratorTests : TestBase
     }
 
     [Fact]
+    public void GivenManyEntityWithoutPrimaryKey_WhenGenerateInsertStatement_ShouldFail()
+    {
+        // Arrange
+        var entities = new List<TestPlayerTwo>
+        {
+            new()
+            {
+                Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
+                Name = "Victoria",
+                IsPublished = true,
+            },
+            new()
+            {
+                Id = Guid.Parse("e5f9e867-7d54-4daa-9edd-882a3d26fe60"),
+                Name = "Dawn",
+                IsPublished = false,
+            }
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        // Assert
+        var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateInsertStatement(entities));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_PRIMARYKEY));
+    }
+
+    [Fact]
     public void GivenEntity_WhenGenerateUpdateStatement_ShouldSucceed()
     {
         // Arrange
