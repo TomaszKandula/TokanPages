@@ -22,6 +22,20 @@ public interface IInvoicingRepository
     Task<List<UserBankAccount>> GetUserBankAccounts(HashSet<Guid> userIds);
 
     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ids"></param>
+    /// <returns></returns>
+    Task<List<BatchInvoice>> GetBatchInvoicesByIds(HashSet<Guid> ids);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="ids"></param>
+    /// <returns></returns>
+    Task<List<BatchInvoiceItem>> GetBatchInvoiceItemsByIds(HashSet<Guid> ids);
+
+    /// <summary>
     /// Returns VAT patterns for different languages.
     /// </summary>
     /// <returns>List of available VAT patterns.</returns>
@@ -33,6 +47,13 @@ public interface IInvoicingRepository
     /// <param name="isDeleted">Optional delete flag.</param>
     /// <returns>List of templates.</returns>
     Task<List<InvoiceTemplate>> GetInvoiceTemplates(bool isDeleted = false);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="names"></param>
+    /// <returns></returns>
+    Task<List<InvoiceTemplate>> GetInvoiceTemplatesByNames(HashSet<string> names);
 
     /// <summary>
     /// Returns registered invoice template by ID.
