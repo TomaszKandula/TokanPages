@@ -1,4 +1,5 @@
 using TokanPages.Backend.Domain.Entities.Invoicing;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 
@@ -6,6 +7,20 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 
 public interface IInvoicingRepository
 {
+    /// <summary>
+    /// Returns list of user companies.
+    /// </summary>
+    /// <param name="userIds">List of user UID.</param>
+    /// <returns>List of user companies.</returns>
+    Task<List<UserCompany>> GetUserCompanies(HashSet<Guid> userIds);
+
+    /// <summary>
+    /// Returns list of user bank accounts.
+    /// </summary>
+    /// <param name="userIds">List of user UID.</param>
+    /// <returns>List of user bank accounts.</returns>
+    Task<List<UserBankAccount>> GetUserBankAccounts(HashSet<Guid> userIds);
+
     /// <summary>
     /// Returns VAT patterns for different languages.
     /// </summary>
