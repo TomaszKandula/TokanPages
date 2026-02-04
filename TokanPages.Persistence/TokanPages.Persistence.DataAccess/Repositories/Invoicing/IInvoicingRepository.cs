@@ -120,18 +120,18 @@ public interface IInvoicingRepository
     Task<bool> UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data);
 
     /// <summary>
-    /// Creates a new batch invoice entry.
+    /// Creates a new batch invoice entries based on provided items.
     /// </summary>
     /// <param name="data">Batch invoice details.</param>
-    /// <returns>Process UID.</returns>
-    Task<Guid> CreateBatchInvoice(BatchInvoiceDto data);
+    /// <returns>Indicates success or fail.</returns>
+    Task<bool> CreateBatchInvoice(List<BatchInvoiceDto> data);
 
     /// <summary>
-    /// Creates a new batch invoice item entry.
+    /// Creates a new batch invoice item entries based on provided items.
     /// </summary>
     /// <param name="data">Item details.</param>
-    /// <returns></returns>
-    Task<Guid> CreateBatchInvoiceItem(BatchInvoiceItemDto data);
+    /// <returns>Indicates success or fail.</returns>
+    Task<bool> CreateBatchInvoiceItem(List<BatchInvoiceItemDto> data);
 
     /// <summary>
     /// Returns issued invoice by given invoice number.

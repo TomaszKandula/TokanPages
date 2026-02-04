@@ -304,59 +304,84 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     }
 
     /// <inheritdoc/>
-    public async Task<Guid> CreateBatchInvoice(BatchInvoiceDto data)
+    public async Task<bool> CreateBatchInvoice(List<BatchInvoiceDto> data)
     {
-        var entity = new BatchInvoice
+        try
         {
-            Id = Guid.NewGuid(),
-            InvoiceNumber = data.InvoiceNumber,
-            VoucherDate = data.VoucherDate,
-            ValueDate = data.ValueDate,
-            DueDate = data.DueDate,
-            PaymentTerms = data.PaymentTerms,
-            PaymentType = data.PaymentType,
-            PaymentStatus = data.PaymentStatus,
-            CustomerName = data.CustomerName,
-            CustomerVatNumber = data.CustomerVatNumber,
-            CountryCode = data.CountryCode,
-            City = data.City,
-            StreetAddress = data.StreetAddress,
-            PostalCode = data.PostalCode,
-            PostalArea = data.PostalArea,
-            InvoiceTemplateName = data.InvoiceTemplateName,
-            CreatedAt = data.CreatedAt,
-            CreatedBy = data.UserId,
-            ModifiedAt = null,
-            ModifiedBy = null,
-            ProcessBatchKey = data.ProcessBatchKey,
-            UserId = data.UserId,
-            UserCompanyId = data.UserCompanyId,
-            UserBankAccountId = data.UserBankAccountId
-        };
+            var entities = new List<BatchInvoice>();
+            foreach (var dto in data)
+            {
+                var timestamp = _dateTimeService.Now;
+                entities.Add(new BatchInvoice
+                {
+                    Id = dto.Id ?? Guid.NewGuid(),
+                    InvoiceNumber = dto.InvoiceNumber,
+                    VoucherDate = dto.VoucherDate,
+                    ValueDate = dto.ValueDate,
+                    DueDate = dto.DueDate,
+                    PaymentTerms = dto.PaymentTerms,
+                    PaymentType = dto.PaymentType,
+                    PaymentStatus = dto.PaymentStatus,
+                    CustomerName = dto.CustomerName,
+                    CustomerVatNumber = dto.CustomerVatNumber,
+                    CountryCode = dto.CountryCode,
+                    City = dto.City,
+                    StreetAddress = dto.StreetAddress,
+                    PostalCode = dto.PostalCode,
+                    PostalArea = dto.PostalArea,
+                    InvoiceTemplateName = dto.InvoiceTemplateName,
+                    CreatedAt = timestamp,
+                    CreatedBy = dto.UserId,
+                    ModifiedAt = null,
+                    ModifiedBy = null,
+                    ProcessBatchKey = dto.ProcessBatchKey,
+                    UserId = dto.UserId,
+                    UserCompanyId = dto.UserCompanyId,
+                    UserBankAccountId = dto.UserBankAccountId
+                });
+            }
 
-        await DbOperations.Insert(entity);
-        return entity.Id;
+            await DbOperations.Insert(entities);
+        }
+        catch
+        {
+            return false;
+        }
+
+        return true;
     }
 
-    public async Task<Guid> CreateBatchInvoiceItem(BatchInvoiceItemDto data)
+    public async Task<bool> CreateBatchInvoiceItem(List<BatchInvoiceItemDto> data)
     {
-        var entity = new BatchInvoiceItem
+        try
         {
-            Id = Guid.NewGuid(),
-            BatchInvoiceId = data.BatchInvoiceId,
-            ItemText = data.ItemText,
-            ItemQuantity = data.ItemQuantity,
-            ItemQuantityUnit = data.ItemQuantityUnit,
-            ItemAmount = data.ItemAmount,
-            ItemDiscountRate = data.ItemDiscountRate,
-            ValueAmount = data.ValueAmount,
-            VatRate = data.VatRate,
-            GrossAmount = data.GrossAmount,
-            CurrencyCode = data.CurrencyCode
-        };
+            var entities = new List<BatchInvoiceItem>();
+            foreach (var dto in data)
+            {
+                entities.Add(new BatchInvoiceItem
+                {
+                    Id = Guid.NewGuid(),
+                    BatchInvoiceId = dto.BatchInvoiceId,
+                    ItemText = dto.ItemText,
+                    ItemQuantity = dto.ItemQuantity,
+                    ItemQuantityUnit = dto.ItemQuantityUnit,
+                    ItemAmount = dto.ItemAmount,
+                    ItemDiscountRate = dto.ItemDiscountRate,
+                    ValueAmount = dto.ValueAmount,
+                    VatRate = dto.VatRate,
+                    GrossAmount = dto.GrossAmount,
+                    CurrencyCode = dto.CurrencyCode
+                });
+            }
 
-        await  DbOperations.Insert(entity);
-        return entity.Id;
+            await  DbOperations.Insert(entities);
+        }
+        catch
+        {
+            return false;
+        }
+
+        return true;
     }
 
     /// <inheritdoc/>
