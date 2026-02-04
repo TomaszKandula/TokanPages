@@ -1,6 +1,7 @@
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities.Invoicing;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
@@ -11,8 +12,10 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 
 public class InvoicingRepository : RepositoryBase, IInvoicingRepository
 {
-    public InvoicingRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings) 
-        : base(dbOperations, appSettings) { }
+    private readonly IDateTimeService _dateTimeService;
+
+    public InvoicingRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, 
+        IDateTimeService dateTimeService) : base(dbOperations, appSettings) => _dateTimeService = dateTimeService;
 
     private static BusinessException InvalidTemplateId => new(nameof(ErrorCodes.INVALID_TEMPLATE_ID), ErrorCodes.INVALID_TEMPLATE_ID);
 
@@ -158,6 +161,23 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         }
 
         return null;
+    }
+
+    /// <inheritdoc/>
+    public async Task<Guid> CreateIssuedInvoice(Guid userId, string invoiceNumber, byte[] invoiceData)
+    {
+        var entity = new IssuedInvoice
+        {
+            Id = Guid.NewGuid(),
+            UserId =  userId,
+            InvoiceNumber = invoiceNumber,
+            InvoiceData = invoiceData,
+            ContentType = "text/html",
+            GeneratedAt = _dateTimeService.Now
+        };
+
+        await DbOperations.Insert(entity);
+        return entity.Id;
     }
 
     /// <inheritdoc/>
