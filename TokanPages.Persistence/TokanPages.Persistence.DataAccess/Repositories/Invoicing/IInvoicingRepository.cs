@@ -10,29 +10,29 @@ public interface IInvoicingRepository
     /// <summary>
     /// Returns list of user companies.
     /// </summary>
-    /// <param name="userIds">List of user UID.</param>
+    /// <param name="userIds">List of user UIDs.</param>
     /// <returns>List of user companies.</returns>
     Task<List<UserCompany>> GetUserCompanies(HashSet<Guid> userIds);
 
     /// <summary>
     /// Returns list of user bank accounts.
     /// </summary>
-    /// <param name="userIds">List of user UID.</param>
+    /// <param name="userIds">List of user UIDs.</param>
     /// <returns>List of user bank accounts.</returns>
     Task<List<UserBankAccount>> GetUserBankAccounts(HashSet<Guid> userIds);
 
     /// <summary>
-    /// 
+    /// Returns list of invoices based on provided IDs.
     /// </summary>
-    /// <param name="ids"></param>
-    /// <returns></returns>
+    /// <param name="ids">List of UIDs.</param>
+    /// <returns>List of invoices.</returns>
     Task<List<BatchInvoice>> GetBatchInvoicesByIds(HashSet<Guid> ids);
 
     /// <summary>
-    /// 
+    /// Returns invoice items based on provided IDs.
     /// </summary>
-    /// <param name="ids"></param>
-    /// <returns></returns>
+    /// <param name="ids">List of UIDs.</param>
+    /// <returns>List of invoice items.</returns>
     Task<List<BatchInvoiceItem>> GetBatchInvoiceItemsByIds(HashSet<Guid> ids);
 
     /// <summary>
@@ -49,10 +49,10 @@ public interface IInvoicingRepository
     Task<List<InvoiceTemplate>> GetInvoiceTemplates(bool isDeleted = false);
 
     /// <summary>
-    /// 
+    /// Returns list of invoice templates based on provided template names.
     /// </summary>
-    /// <param name="names"></param>
-    /// <returns></returns>
+    /// <param name="names">List of unique template names.</param>
+    /// <returns>List of invoice templates.</returns>
     Task<List<InvoiceTemplate>> GetInvoiceTemplatesByNames(HashSet<string> names);
 
     /// <summary>
