@@ -73,6 +73,7 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         return (await db.QueryAsync<UserBankAccount>(query, parameters)).ToList();
     }
 
+    /// <inheritdoc/>
     public async Task<List<VatNumberPattern>> GetVatNumberPatterns()
     {
         return (await DbOperations.Retrieve<VatNumberPattern>()).ToList();
