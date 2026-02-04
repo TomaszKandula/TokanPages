@@ -123,6 +123,21 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     }
 
     /// <inheritdoc/>
+    public async Task<Guid> CreateBatchInvoiceProcessing(DateTime createdAt)
+    {
+        var entity = new BatchInvoiceProcessing
+        {
+            Id = Guid.NewGuid(),
+            BatchProcessingTime = null,
+            Status = ProcessingStatus.New,
+            CreatedAt = createdAt
+        };
+
+        await DbOperations.Insert(entity);
+        return entity.Id;
+    }
+
+    /// <inheritdoc/>
     public async Task<bool> UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data)
     {
         try
@@ -142,57 +157,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         }
 
         return true;        
-    }
-
-    /// <inheritdoc/>
-    public async Task<InvoiceDataDto?> GetIssuedInvoiceById(string invoiceNumber)
-    {
-        var  filterBy = new { InvoiceNumber = invoiceNumber };
-        var data = (await DbOperations.Retrieve<IssuedInvoice>(filterBy)).SingleOrDefault();
-        if (data != null)
-        {
-            return new InvoiceDataDto
-            {
-                Number = data.InvoiceNumber,
-                ContentData = data.InvoiceData,
-                ContentType = data.ContentType,
-                GeneratedAt = data.GeneratedAt
-            };
-        }
-
-        return null;
-    }
-
-    /// <inheritdoc/>
-    public async Task<Guid> CreateIssuedInvoice(Guid userId, string invoiceNumber, byte[] invoiceData)
-    {
-        var entity = new IssuedInvoice
-        {
-            Id = Guid.NewGuid(),
-            UserId =  userId,
-            InvoiceNumber = invoiceNumber,
-            InvoiceData = invoiceData,
-            ContentType = "text/html",
-            GeneratedAt = _dateTimeService.Now
-        };
-
-        await DbOperations.Insert(entity);
-        return entity.Id;
-    }
-
-    /// <inheritdoc/>
-    public async Task<Guid> CreateBatchInvoiceProcessing(DateTime createdAt)
-    {
-        var entity = new BatchInvoiceProcessing
-        {
-            Id = Guid.NewGuid(),
-            BatchProcessingTime = null,
-            Status = ProcessingStatus.New,
-            CreatedAt = createdAt
-        };
-
-        await DbOperations.Insert(entity);
-        return entity.Id;
     }
 
     /// <inheritdoc/>
@@ -248,6 +212,42 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         };
 
         await  DbOperations.Insert(entity);
+        return entity.Id;
+    }
+
+    /// <inheritdoc/>
+    public async Task<InvoiceDataDto?> GetIssuedInvoiceById(string invoiceNumber)
+    {
+        var  filterBy = new { InvoiceNumber = invoiceNumber };
+        var data = (await DbOperations.Retrieve<IssuedInvoice>(filterBy)).SingleOrDefault();
+        if (data != null)
+        {
+            return new InvoiceDataDto
+            {
+                Number = data.InvoiceNumber,
+                ContentData = data.InvoiceData,
+                ContentType = data.ContentType,
+                GeneratedAt = data.GeneratedAt
+            };
+        }
+
+        return null;
+    }
+
+    /// <inheritdoc/>
+    public async Task<Guid> CreateIssuedInvoice(Guid userId, string invoiceNumber, byte[] invoiceData)
+    {
+        var entity = new IssuedInvoice
+        {
+            Id = Guid.NewGuid(),
+            UserId =  userId,
+            InvoiceNumber = invoiceNumber,
+            InvoiceData = invoiceData,
+            ContentType = "text/html",
+            GeneratedAt = _dateTimeService.Now
+        };
+
+        await DbOperations.Insert(entity);
         return entity.Id;
     }
 }

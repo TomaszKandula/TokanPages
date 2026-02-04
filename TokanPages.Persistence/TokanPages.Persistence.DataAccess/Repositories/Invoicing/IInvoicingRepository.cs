@@ -69,6 +69,13 @@ public interface IInvoicingRepository
     Task<List<BatchInvoiceProcessing>> GetBatchInvoiceProcessingByStatus(ProcessingStatus status);
 
     /// <summary>
+    /// Creates a new batch invoice processing entry.
+    /// </summary>
+    /// <param name="createdAt">Timestamp.</param>
+    /// <returns>Process UID.</returns>
+    Task<Guid> CreateBatchInvoiceProcessing(DateTime createdAt);
+
+    /// <summary>
     /// Updates current processing status entry by given ID.
     /// </summary>
     /// <remarks>
@@ -77,6 +84,20 @@ public interface IInvoicingRepository
     /// <param name="data">Update details (id, time, status).</param>
     /// <returns>Indicates success.</returns>
     Task<bool> UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data);
+
+    /// <summary>
+    /// Creates a new batch invoice entry.
+    /// </summary>
+    /// <param name="data">Batch invoice details.</param>
+    /// <returns>Process UID.</returns>
+    Task<Guid> CreateBatchInvoice(BatchInvoiceDto data);
+
+    /// <summary>
+    /// Creates a new batch invoice item entry.
+    /// </summary>
+    /// <param name="data">Item details.</param>
+    /// <returns></returns>
+    Task<Guid> CreateBatchInvoiceItem(BatchInvoiceItemDto data);
 
     /// <summary>
     /// Returns issued invoice by given invoice number.
@@ -96,25 +117,4 @@ public interface IInvoicingRepository
     /// <param name="invoiceData">Invoice file binary data.</param>
     /// <returns>Invoice UID.</returns>
     Task<Guid> CreateIssuedInvoice(Guid userId, string invoiceNumber, byte[] invoiceData);
-
-    /// <summary>
-    /// Creates a new batch invoice processing entry.
-    /// </summary>
-    /// <param name="createdAt">Timestamp.</param>
-    /// <returns>Process UID.</returns>
-    Task<Guid> CreateBatchInvoiceProcessing(DateTime createdAt);
-
-    /// <summary>
-    /// Creates a new batch invoice entry.
-    /// </summary>
-    /// <param name="data">Batch invoice details.</param>
-    /// <returns>Process UID.</returns>
-    Task<Guid> CreateBatchInvoice(BatchInvoiceDto data);
-
-    /// <summary>
-    /// Creates a new batch invoice item entry.
-    /// </summary>
-    /// <param name="data">Item details.</param>
-    /// <returns></returns>
-    Task<Guid> CreateBatchInvoiceItem(BatchInvoiceItemDto data);
 }
