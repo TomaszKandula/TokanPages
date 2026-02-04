@@ -74,6 +74,72 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     }
 
     /// <inheritdoc/>
+    public async Task<List<BatchInvoice>> GetBatchInvoicesByIds(HashSet<Guid> ids)
+    {
+        const string query = @"
+            SELECT
+                operation.BatchInvoices.Id,
+                operation.BatchInvoices.InvoiceNumber,
+                operation.BatchInvoices.VoucherDate,
+                operation.BatchInvoices.ValueDate,
+                operation.BatchInvoices.DueDate,
+                operation.BatchInvoices.PaymentTerms,
+                operation.BatchInvoices.PaymentType,
+                operation.BatchInvoices.PaymentStatus,
+                operation.BatchInvoices.CustomerName,
+                operation.BatchInvoices.CustomerVatNumber,
+                operation.BatchInvoices.CountryCode,
+                operation.BatchInvoices.City,
+                operation.BatchInvoices.StreetAddress,
+                operation.BatchInvoices.PostalCode,
+                operation.BatchInvoices.PostalArea,
+                operation.BatchInvoices.ProcessBatchKey,
+                operation.BatchInvoices.CreatedBy,
+                operation.BatchInvoices.CreatedAt,
+                operation.BatchInvoices.ModifiedBy,
+                operation.BatchInvoices.ModifiedAt,
+                operation.BatchInvoices.InvoiceTemplateName,
+                operation.BatchInvoices.UserId,
+                operation.BatchInvoices.UserCompanyId,
+                operation.BatchInvoices.UserBankAccountId
+            FROM
+                operation.BatchInvoices
+            WHERE
+                operation.BatchInvoices.Id IN @Ids
+        ";
+
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        var parameters = new { Ids = ids };
+        return (await db.QueryAsync<BatchInvoice>(query, parameters)).ToList();
+    }
+
+    public async Task<List<BatchInvoiceItem>> GetBatchInvoiceItemsByIds(HashSet<Guid> ids)
+    {
+        const string query = @"
+            SELECT
+                operation.BatchInvoiceItems.Id,
+                operation.BatchInvoiceItems.BatchInvoiceId,
+                operation.BatchInvoiceItems.ItemText,
+                operation.BatchInvoiceItems.ItemQuantity,
+                operation.BatchInvoiceItems.ItemQuantityUnit,
+                operation.BatchInvoiceItems.ItemAmount,
+                operation.BatchInvoiceItems.ItemDiscountRate,
+                operation.BatchInvoiceItems.ValueAmount,
+                operation.BatchInvoiceItems.VatRate,
+                operation.BatchInvoiceItems.GrossAmount,
+                operation.BatchInvoiceItems.CurrencyCode
+            FROM
+                operation.BatchInvoiceItems
+            WHERE
+                operation.BatchInvoiceItems.Id IN @Ids
+        ";
+
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        var parameters = new { Ids = ids };
+        return (await db.QueryAsync<BatchInvoiceItem>(query, parameters)).ToList();
+    }
+
+    /// <inheritdoc/>
     public async Task<List<VatNumberPattern>> GetVatNumberPatterns()
     {
         return (await DbOperations.Retrieve<VatNumberPattern>()).ToList();
@@ -84,6 +150,31 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     {
         var filterBy = new { IsDeleted = isDeleted };
         return (await DbOperations.Retrieve<InvoiceTemplate>(filterBy: filterBy)).ToList();
+    }
+
+    /// <inheritdoc/>
+    public async Task<List<InvoiceTemplate>> GetInvoiceTemplatesByNames(HashSet<string> names)
+    {
+        const string query = @"
+            SELECT
+                operation.InvoiceTemplates.Id,
+                operation.InvoiceTemplates.Name,
+                operation.InvoiceTemplates.Data,
+                operation.InvoiceTemplates.ContentType,
+                operation.InvoiceTemplates.ShortDescription,
+                operation.InvoiceTemplates.GeneratedAt,
+                operation.InvoiceTemplates.IsDeleted
+            FROM
+                operation.InvoiceTemplates
+            WHERE
+                operation.InvoiceTemplates.Name IN @Names
+            AND
+                operation.InvoiceTemplates.IsDeleted = 0
+        ";
+
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        var parameters = new { Names = names };
+        return (await db.QueryAsync<InvoiceTemplate>(query, parameters)).ToList();
     }
 
     /// <inheritdoc/>
