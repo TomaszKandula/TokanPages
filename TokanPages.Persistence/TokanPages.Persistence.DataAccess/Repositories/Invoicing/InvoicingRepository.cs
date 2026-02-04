@@ -375,7 +375,7 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
                 });
             }
 
-            await  DbOperations.Insert(entities);
+            await DbOperations.Insert(entities);
         }
         catch
         {
