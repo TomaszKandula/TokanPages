@@ -351,6 +351,7 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         return true;
     }
 
+    /// <inheritdoc/>
     public async Task<bool> CreateBatchInvoiceItem(List<BatchInvoiceItemDto> data)
     {
         try
