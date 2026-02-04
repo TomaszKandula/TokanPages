@@ -6,7 +6,7 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 [ExcludeFromCodeCoverage]
 public class BatchInvoiceDto
 {
-    public Guid Id { get; set; }
+    public Guid? Id { get; set; }
 
     public string InvoiceNumber { get; set; } = string.Empty;
 
