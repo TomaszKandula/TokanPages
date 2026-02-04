@@ -1,25 +1,31 @@
+using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Services.BatchService;
+using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 
 namespace TokanPages.Backend.Application.Invoicing.Batches.Queries;
 
 public class GetBatchProcessingStatusQueryHandler : RequestHandler<GetBatchProcessingStatusQuery, GetBatchProcessingStatusQueryResult>
 {
-    private readonly IBatchService _batchService;
+    private readonly IInvoicingRepository _invoicingRepository;
 
-    public GetBatchProcessingStatusQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IBatchService batchService) 
-        : base(operationDbContext, loggerService) => _batchService = batchService;
-        
+    public GetBatchProcessingStatusQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IInvoicingRepository invoicingRepository) : base(operationDbContext, loggerService) => _invoicingRepository = invoicingRepository;
+
     public override async Task<GetBatchProcessingStatusQueryResult> Handle(GetBatchProcessingStatusQuery request, CancellationToken cancellationToken)
     {
-        var result = await _batchService.GetBatchInvoiceProcessingStatus(request.ProcessBatchKey, cancellationToken);
-        LoggerService.LogInformation($"Returned batch invoice processing status. PBK: {request.ProcessBatchKey}");
+        var data = await _invoicingRepository.GetBatchInvoiceProcessingByKey(request.ProcessBatchKey);
+        if (data == null)
+            throw new BusinessException(nameof(ErrorCodes.INVALID_PROCESSING_BATCH_KEY), ErrorCodes.INVALID_PROCESSING_BATCH_KEY);
+
+        LoggerService.LogInformation($"Returned batch invoice processing status for key: {request.ProcessBatchKey}");
+
         return new GetBatchProcessingStatusQueryResult
         {
-            ProcessingStatus = result.Status,
-            BatchProcessingTime = result.BatchProcessingTime,
-            CreatedAt = result.CreatedAt
+            ProcessingStatus = data.Status,
+            BatchProcessingTime = data.BatchProcessingTime,
+            CreatedAt = data.CreatedAt
         };
     }
 }
