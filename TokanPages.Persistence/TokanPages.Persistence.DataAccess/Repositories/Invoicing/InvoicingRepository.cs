@@ -187,7 +187,7 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     }
 
     /// <inheritdoc/>
-    public async Task<Guid> CreateInvoiceTemplate(InvoiceTemplateDto template, DateTime generatedAt)
+    public async Task<Guid> CreateInvoiceTemplate(InvoiceTemplateDto template)
     {
         if (string.IsNullOrEmpty(template.InvoiceTemplateData.ContentType))
             throw InvalidContentType;
@@ -199,7 +199,7 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
             Data = template.InvoiceTemplateData.ContentData,
             ContentType = template.InvoiceTemplateData.ContentType,
             ShortDescription = template.InvoiceTemplateDescription,
-            GeneratedAt = generatedAt,
+            GeneratedAt = _dateTimeService.Now,
             IsDeleted = false
         };
 
@@ -267,14 +267,14 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     }
 
     /// <inheritdoc/>
-    public async Task<Guid> CreateBatchInvoiceProcessing(DateTime createdAt)
+    public async Task<Guid> CreateBatchInvoiceProcessing()
     {
         var entity = new BatchInvoiceProcessing
         {
             Id = Guid.NewGuid(),
             BatchProcessingTime = null,
             Status = ProcessingStatus.New,
-            CreatedAt = createdAt
+            CreatedAt = _dateTimeService.Now
         };
 
         await DbOperations.Insert(entity);

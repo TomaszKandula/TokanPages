@@ -35,7 +35,7 @@ public class BatchService : IBatchService
     /// <returns>Process Batch Key.</returns>
     public async Task<Guid> OrderInvoiceBatchProcessing(IEnumerable<OrderDetail> orderDetails)
     {
-        var processingId = await _invoicingRepository.CreateBatchInvoiceProcessing(_dateTimeService.Now);
+        var processingId = await _invoicingRepository.CreateBatchInvoiceProcessing();
 
         foreach (var order in orderDetails)
         {

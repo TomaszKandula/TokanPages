@@ -67,9 +67,8 @@ public interface IInvoicingRepository
     /// Adds new invoice template to the database.
     /// </summary>
     /// <param name="template">Invoice template data.</param>
-    /// <param name="generatedAt">Invoice timestamp.</param>
     /// <returns>Invoice template ID.</returns>
-    Task<Guid> CreateInvoiceTemplate(InvoiceTemplateDto template, DateTime generatedAt);
+    Task<Guid> CreateInvoiceTemplate(InvoiceTemplateDto template);
 
     /// <summary>
     /// Updates current invoice template.
@@ -107,9 +106,8 @@ public interface IInvoicingRepository
     /// <summary>
     /// Creates a new batch invoice processing entry.
     /// </summary>
-    /// <param name="createdAt">Timestamp.</param>
     /// <returns>Process UID.</returns>
-    Task<Guid> CreateBatchInvoiceProcessing(DateTime createdAt);
+    Task<Guid> CreateBatchInvoiceProcessing();
 
     /// <summary>
     /// Updates current processing status entry by given ID.
