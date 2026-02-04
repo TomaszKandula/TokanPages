@@ -27,7 +27,6 @@ public class BatchService : IBatchService
         _invoicingRepository = invoicingRepository;
     }
 
-    //TODO: WARNING! This is not optimal, re-do for high performance.
     /// <summary>
     /// Place an order for invoice processing. 
     /// </summary>
@@ -36,11 +35,13 @@ public class BatchService : IBatchService
     public async Task<Guid> OrderInvoiceBatchProcessing(IEnumerable<OrderDetail> orderDetails)
     {
         var processingId = await _invoicingRepository.CreateBatchInvoiceProcessing();
+        var invoices = new List<BatchInvoiceDto>();
+        var invoiceItems = new List<BatchInvoiceItemDto>();
 
         foreach (var order in orderDetails)
         {
             var batchInvoiceId = Guid.NewGuid();
-            var invoice = new BatchInvoiceDto
+            invoices.Add(new BatchInvoiceDto
             {
                 Id = batchInvoiceId,
                 InvoiceNumber = order.InvoiceNumber,
@@ -64,13 +65,11 @@ public class BatchService : IBatchService
                 UserId = order.UserId,
                 UserCompanyId = order.UserCompanyId,
                 UserBankAccountId = order.UserBankAccountId
-            };
-
-            await _invoicingRepository.CreateBatchInvoice(invoice);
+            });
 
             foreach (var item in order.InvoiceItems)
             {
-                var invoiceItems = new BatchInvoiceItemDto
+                invoiceItems.Add(new BatchInvoiceItemDto
                 {
                     BatchInvoiceId = batchInvoiceId,
                     ItemText = item.ItemText,
@@ -82,11 +81,12 @@ public class BatchService : IBatchService
                     VatRate = item.VatRate,
                     GrossAmount = item.GrossAmount,
                     CurrencyCode = item.CurrencyCode
-                };
-                
-                await _invoicingRepository.CreateBatchInvoiceItem(invoiceItems);
+                });
             }
         }
+
+        await _invoicingRepository.CreateBatchInvoice(invoices);
+        await _invoicingRepository.CreateBatchInvoiceItem(invoiceItems);
 
         _loggerService.LogInformation($"Invoice batch processing has been ordered (ProcessBatchKey: {processingId}).");
         return processingId;
