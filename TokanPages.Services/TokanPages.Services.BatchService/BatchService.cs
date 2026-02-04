@@ -107,20 +107,20 @@ public class BatchService : IBatchService
         }
 
         var processingIdList = processingList.Select(processing => processing.Id).ToList();
-        var ids = new HashSet<Guid>(processingIdList);
-        var invoices = await _invoicingRepository.GetBatchInvoicesByIds(ids);
+        var processingIds = new HashSet<Guid>(processingIdList);
+        var invoices = await _invoicingRepository.GetBatchInvoicesByIds(processingIds);
 
-        var x = invoices.Select(invoice => invoice.Id).ToList();
-        var invoiceItemsIds = new HashSet<Guid>(x);
-        var invoiceItemsList = await _invoicingRepository.GetBatchInvoiceItemsByIds(invoiceItemsIds);
+        var invoiceIdList = invoices.Select(invoice => invoice.Id).ToList();
+        var invoiceIds = new HashSet<Guid>(invoiceIdList);
+        var invoiceItemsList = await _invoicingRepository.GetBatchInvoiceItemsByIds(invoiceIds);
 
         var templateNames = invoices
-            .Select(batchInvoices => batchInvoices.InvoiceTemplateName)
+            .Select(invoice => invoice.InvoiceTemplateName)
             .ToList();
-        
-        var y = new HashSet<string>(templateNames);
-        var invoiceTemplates = await _invoicingRepository.GetInvoiceTemplatesByNames(y);
-        
+
+        var uniqueTemplateNames = new HashSet<string>(templateNames);
+        var invoiceTemplates = await _invoicingRepository.GetInvoiceTemplatesByNames(uniqueTemplateNames);
+
         var userIds = new HashSet<Guid>(invoices.Select(batchInvoices => batchInvoices.UserId));
         var userCompaniesList = await _invoicingRepository.GetUserCompanies(userIds);
         var userBankAccountsList = await _invoicingRepository.GetUserBankAccounts(userIds);
