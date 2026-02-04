@@ -69,6 +69,16 @@ public interface IInvoicingRepository
     Task<List<BatchInvoiceProcessing>> GetBatchInvoiceProcessingByStatus(ProcessingStatus status);
 
     /// <summary>
+    /// Updates current processing status entry by given ID.
+    /// </summary>
+    /// <remarks>
+    /// Provided ID is used to filter the entity. The key (ID) remain unchanged.
+    /// </remarks>
+    /// <param name="data">Update details (id, time, status).</param>
+    /// <returns>Indicates success.</returns>
+    Task<bool> UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data);
+
+    /// <summary>
     /// Returns issued invoice by given invoice number.
     /// </summary>
     /// <remarks>
