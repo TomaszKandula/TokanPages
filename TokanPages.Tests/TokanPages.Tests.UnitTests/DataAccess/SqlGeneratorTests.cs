@@ -195,6 +195,43 @@ public class SqlGeneratorTests : TestBase
     }
 
     [Fact]
+    public void GivenManyEntities_WhenGenerateInsertStatement_ShouldSucceed()
+    {
+        // Arrange
+        var entities = new List<TestPlayerOne>
+        {
+            new()
+            {
+                Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
+                Name = "Victoria",
+                IsPublished = true,
+                CreatedAt = DateTime.Parse("2020-09-27"),
+                Likes = 2026
+            },
+            new()
+            {
+                Id = Guid.Parse("e5f9e867-7d54-4daa-9edd-882a3d26fe60"),
+                Name = "Dawn",
+                IsPublished = false,
+                CreatedAt = DateTime.Parse("2026-09-07"),
+                Likes = 1050
+            }
+        };
+
+        const string expectedValues = "(@Id1,@Name1,@IsPublished1,@CreatedAt1,@Likes1),(@Id2,@Name2,@IsPublished2,@CreatedAt2,@Likes2)";
+        const string expectedStatement = $"INSERT INTO soccer.Players (Id,Name,IsPublished,CreatedAt,Likes) VALUES {expectedValues}";
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        var (query, parameters) = sqlGenerator.GenerateInsertStatement(entities);
+
+        // Assert
+        query.Should().Be(expectedStatement);
+        parameters.Should().NotBeNull();
+    }
+
+    [Fact]
     public void GivenEntityWithoutPrimaryKey_WhenGenerateInsertStatement_ShouldFail()
     {
         // Arrange
@@ -210,6 +247,34 @@ public class SqlGeneratorTests : TestBase
         // Act
         // Assert
         var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateInsertStatement(entity));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_PRIMARYKEY));
+    }
+
+    [Fact]
+    public void GivenManyEntityWithoutPrimaryKey_WhenGenerateInsertStatement_ShouldFail()
+    {
+        // Arrange
+        var entities = new List<TestPlayerTwo>
+        {
+            new()
+            {
+                Id = Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
+                Name = "Victoria",
+                IsPublished = true,
+            },
+            new()
+            {
+                Id = Guid.Parse("e5f9e867-7d54-4daa-9edd-882a3d26fe60"),
+                Name = "Dawn",
+                IsPublished = false,
+            }
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        // Assert
+        var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateInsertStatement(entities));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_PRIMARYKEY));
     }
 

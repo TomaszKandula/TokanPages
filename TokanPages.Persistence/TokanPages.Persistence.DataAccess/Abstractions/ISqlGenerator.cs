@@ -36,6 +36,18 @@ public interface ISqlGenerator
     Tuple<string, object> GenerateInsertStatement<T>(T entity);
 
     /// <summary>
+    /// Returns an SQL statement for an INSERT query for the given values from provided in the entity list.
+    /// Table name is derived from the provided class. Use 'DatabaseTable' attribute.
+    /// </summary>
+    /// <remarks>
+    /// Provided entity object should have a property marked with the 'PrimaryKey' attribute.
+    /// </remarks>
+    /// <param name="entities">List of entity objects.</param>
+    /// <typeparam name="T">Given entity object type.</typeparam>
+    /// <returns>SQL statement and its parameters.</returns>
+    Tuple<string, object> GenerateInsertStatement<T>(List<T> entities);
+
+    /// <summary>
     /// Returns an SQL statement for an UPDATE query for the given values provided in the object.
     /// Table name is derived from the provided class. Use 'DatabaseTable' attribute.
     /// </summary>
