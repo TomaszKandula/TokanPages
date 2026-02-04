@@ -1,8 +1,11 @@
+using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities.Invoicing;
+using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Abstractions;
@@ -20,7 +23,56 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     private static BusinessException InvalidTemplateId => new(nameof(ErrorCodes.INVALID_TEMPLATE_ID), ErrorCodes.INVALID_TEMPLATE_ID);
 
     private static BusinessException InvalidContentType => new(nameof(ErrorCodes.INVALID_CONTENT_TYPE), ErrorCodes.INVALID_CONTENT_TYPE);
-    
+
+    /// <inheritdoc/>
+    public async Task<List<UserCompany>> GetUserCompanies(HashSet<Guid> userIds)
+    {
+        const string query = @"
+            SELECT
+                operation.UserCompanies.Id
+                operation.UserCompanies.UserId,
+                operation.UserCompanies.CompanyName,
+                operation.UserCompanies.VatNumber,
+                operation.UserCompanies.EmailAddress,
+                operation.UserCompanies.PhoneNumber,
+                operation.UserCompanies.StreetAddress,
+                operation.UserCompanies.PostalCode,
+                operation.UserCompanies.City,
+                operation.UserCompanies.CurrencyCode,
+                operation.UserCompanies.CountryCode              
+            FROM
+                operation.UserCompanies
+            WHERE
+                operation.UserCompanies.Id IN @UserIds
+        ";
+
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        var parameters = new { UserIds = userIds };
+        return (await db.QueryAsync<UserCompany>(query, parameters)).ToList();
+    }
+
+    /// <inheritdoc/>
+    public async Task<List<UserBankAccount>> GetUserBankAccounts(HashSet<Guid> userIds)
+    {
+        const string query = @"
+            SELECT
+                operation.UserBankAccounts.Id
+                operation.UserBankAccounts.UserId,
+                operation.UserBankAccounts.BankName,
+                operation.UserBankAccounts.SwiftNumber,
+                operation.UserBankAccounts.AccountNumber,
+                operation.UserBankAccounts.CurrencyCode
+            FROM
+                operation.UserBankAccounts
+            WHERE
+                operation.UserBankAccounts.Id IN @UserIds
+        ";
+
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        var parameters = new { UserIds = userIds };
+        return (await db.QueryAsync<UserBankAccount>(query, parameters)).ToList();
+    }
+
     public async Task<List<VatNumberPattern>> GetVatNumberPatterns()
     {
         return (await DbOperations.Retrieve<VatNumberPattern>()).ToList();
