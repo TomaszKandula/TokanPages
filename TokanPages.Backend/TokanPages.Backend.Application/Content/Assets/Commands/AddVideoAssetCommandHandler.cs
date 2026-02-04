@@ -1,7 +1,6 @@
 using TokanPages.Backend.Application.Content.Assets.Commands.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
@@ -26,8 +25,6 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    private readonly IDateTimeService _dateTimeService;
-
     private readonly IUserService _userService;
 
     private readonly IContentRepository _contentRepository;
@@ -39,15 +36,13 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
     public AddVideoAssetCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IAzureBusFactory azureBusFactory, 
-        IJsonSerializer jsonSerializer, IDateTimeService dateTimeService, IUserService userService, 
-        IContentRepository contentRepository, IMessagingRepository messagingRepository) 
+        IAzureBlobStorageFactory azureBlobStorageFactory, IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer, 
+        IUserService userService, IContentRepository contentRepository, IMessagingRepository messagingRepository) 
         : base(operationDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _azureBusFactory = azureBusFactory;
         _jsonSerializer = jsonSerializer;
-        _dateTimeService = dateTimeService;
         _userService = userService;
         _contentRepository = contentRepository;
         _messagingRepository = messagingRepository;
@@ -83,7 +78,7 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
         var buffer = binaryData.GetByteArray();
         using var stream = new MemoryStream(buffer);
         await azureBlob.UploadFile(stream, tempPathFile, contentType, cancellationToken);
-        await _contentRepository.UploadVideo(userId, ticketId, tempPathFile, targetVideoUri, targetThumbnailUri, _dateTimeService.Now);
+        await _contentRepository.UploadVideo(userId, ticketId, tempPathFile, targetVideoUri, targetThumbnailUri);
         LoggerService.LogInformation($"New video has been uploaded for processing. Ticket ID: {ticketId}.");
 
         var details = new TargetDetails

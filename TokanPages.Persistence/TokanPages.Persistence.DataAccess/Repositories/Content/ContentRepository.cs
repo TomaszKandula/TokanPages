@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Persistence.DataAccess.Abstractions;
@@ -9,8 +10,10 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Content;
 
 public class ContentRepository : RepositoryBase, IContentRepository
 {
-    public ContentRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings) 
-        : base(dbOperations,  appSettings) { }
+    private readonly IDateTimeService _dateTimeService;
+
+    public ContentRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
+        : base(dbOperations,  appSettings) => _dateTimeService = dateTimeService;
 
     public async Task<VideoUploadStatusDto?> GetVideoUploadStatus(Guid ticketId)
     {
@@ -27,7 +30,7 @@ public class ContentRepository : RepositoryBase, IContentRepository
         };
     }
 
-    public async Task<bool> UploadVideo(Guid userId, Guid ticketId, string sourceBlobUri, string targetVideoUri, string targetThumbnailUri, DateTime createdAt)
+    public async Task<bool> UploadVideo(Guid userId, Guid ticketId, string sourceBlobUri, string targetVideoUri, string targetThumbnailUri)
     {
         try
         {
@@ -39,7 +42,7 @@ public class ContentRepository : RepositoryBase, IContentRepository
                 TargetVideoUri = targetVideoUri,
                 TargetThumbnailUri = targetThumbnailUri,
                 Status = VideoStatus.New,
-                CreatedAt = createdAt,
+                CreatedAt = _dateTimeService.Now,
                 CreatedBy = userId,
                 IsSourceDeleted = false
             };
