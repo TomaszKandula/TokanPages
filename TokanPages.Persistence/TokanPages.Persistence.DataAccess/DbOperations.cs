@@ -64,6 +64,12 @@ public class DbOperations : IDbOperations
         await ExecuteSqlTransaction(query, parameters);
     }
 
+    public async Task Insert<T>(List<T> entities)
+    {
+        var (query, parameters) = _sqlGenerator.GenerateInsertStatement(entities);
+        await ExecuteSqlTransaction(query, parameters);
+    }
+
     public async Task Update<T>(object updateBy, object filterBy)
     {
         var (query, parameters) = _sqlGenerator.GenerateUpdateStatement<T>(updateBy, filterBy);
