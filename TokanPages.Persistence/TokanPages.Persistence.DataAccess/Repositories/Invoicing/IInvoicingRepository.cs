@@ -69,11 +69,14 @@ public interface IInvoicingRepository
     Task<List<BatchInvoiceProcessing>> GetBatchInvoiceProcessingByStatus(ProcessingStatus status);
 
     /// <summary>
-    /// Returns issued invoice.
+    /// Returns issued invoice by given invoice number.
     /// </summary>
+    /// <remarks>
+    /// If nothing is found, returns null.
+    /// </remarks>
     /// <param name="invoiceNumber">Invoice number.</param>
-    /// <returns>File data.</returns>
-    Task<List<InvoiceDataDto>> GetIssuedInvoiceById(string invoiceNumber);
+    /// <returns>File data</returns>
+    Task<InvoiceDataDto?> GetIssuedInvoiceById(string invoiceNumber);
 
     /// <summary>
     /// Creates a new batch invoice processing entry.

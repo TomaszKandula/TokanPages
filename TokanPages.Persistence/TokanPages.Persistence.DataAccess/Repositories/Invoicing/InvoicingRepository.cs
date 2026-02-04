@@ -120,20 +120,20 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     }
 
     /// <inheritdoc/>
-    public async Task<List<InvoiceDataDto>> GetIssuedInvoiceById(string invoiceNumber)
+    public async Task<InvoiceDataDto?> GetIssuedInvoiceById(string invoiceNumber)
     {
         var  filterBy = new { InvoiceNumber = invoiceNumber };
-        var data = (await DbOperations.Retrieve<IssuedInvoice>(filterBy)).ToList();
-
-        var result = data
-            .Select(invoice => new InvoiceDataDto
+        var data = (await DbOperations.Retrieve<IssuedInvoice>(filterBy)).SingleOrDefault();
+        if (data != null)
+        {
+            return new InvoiceDataDto
             {
-                Number = invoice.InvoiceNumber,
-                ContentData = invoice.InvoiceData,
-                ContentType = invoice.ContentType,
-                GeneratedAt = invoice.GeneratedAt
-            })
-            .ToList();
+                Number = data.InvoiceNumber,
+                ContentData = data.InvoiceData,
+                ContentType = data.ContentType,
+                GeneratedAt = data.GeneratedAt
+            };
+        }
 
         return result;
     }
