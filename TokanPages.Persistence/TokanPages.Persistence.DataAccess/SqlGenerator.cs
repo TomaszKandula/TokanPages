@@ -131,6 +131,54 @@ public class SqlGenerator : ISqlGenerator
     }
 
     /// <inheritdoc/>
+    public Tuple<string, object> GenerateInsertStatement<T>(List<T> entities)
+    {
+        const string template = "INSERT INTO {0} VALUES {1}";
+
+        var table = GetTableName<T>();
+        var properties = typeof(T).GetProperties();
+
+        var hasPrimaryKey = false;
+        var entries = new List<string>();
+        var parameterCounter = 1;
+        var parameters = new Dictionary<string, object?>();
+
+        var columns = new List<string>();
+        foreach (var property in properties)
+        {
+            var isPrimaryKeyFound = HasPrimaryKey(property);
+            if (!hasPrimaryKey && isPrimaryKeyFound)
+                hasPrimaryKey = true;
+
+            columns.Add(property.Name);
+        }
+
+        var stringColumns = string.Join(",", columns);
+        var statement = $"{table} ({stringColumns})";
+
+        foreach (var entity in entities)
+        {
+            var entityProperties = entity?.GetType().GetProperties();
+            var values = new List<string>();
+            foreach (var property in entityProperties!)
+            {
+                var value = property.GetValue(entity);
+                values.Add($"@{property.Name}{parameterCounter}");
+                parameters.Add($"{property.Name}{parameterCounter}", value);
+            }
+
+            entries.Add($"({string.Join(",", values)})");
+            parameterCounter++;
+        }
+
+        var stringEntries = string.Join(",", entries);
+        var query = string.Format(template, statement, stringEntries);
+        var result = new Tuple<string, object>(query, parameters);
+
+        return !hasPrimaryKey ? throw MissingPrimaryKey : result;
+    }
+
+    /// <inheritdoc/>
     public Tuple<string, object> GenerateUpdateStatement<T>(object updateBy, object filterBy)
     {
         const string template = "UPDATE {0} SET {1} WHERE {2}";
