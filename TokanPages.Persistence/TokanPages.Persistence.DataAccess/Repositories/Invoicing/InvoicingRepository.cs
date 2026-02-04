@@ -120,6 +120,28 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     }
 
     /// <inheritdoc/>
+    public async Task<bool> UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data)
+    {
+        try
+        {
+            var filterBy = new { Id = data.ProcessingId };
+            var updateBy = new
+            {
+                Status = data.ProcessingStatus,
+                BatchProcessingTime = data.ProcessingTime
+            };
+
+            await DbOperations.Update<BatchInvoiceProcessing>(updateBy, filterBy);    
+        }
+        catch
+        {
+            return false;
+        }
+
+        return true;        
+    }
+
+    /// <inheritdoc/>
     public async Task<InvoiceDataDto?> GetIssuedInvoiceById(string invoiceNumber)
     {
         var  filterBy = new { InvoiceNumber = invoiceNumber };
@@ -135,7 +157,7 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
             };
         }
 
-        return result;
+        return null;
     }
 
     /// <inheritdoc/>
