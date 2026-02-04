@@ -139,7 +139,6 @@ public class SqlGenerator : ISqlGenerator
         var properties = typeof(T).GetProperties();
 
         var hasPrimaryKey = false;
-        var entries = new List<string>();
         var parameterCounter = 1;
         var parameters = new Dictionary<string, object?>();
 
@@ -156,6 +155,7 @@ public class SqlGenerator : ISqlGenerator
         var stringColumns = string.Join(",", columns);
         var statement = $"{table} ({stringColumns})";
 
+        var rows = new List<string>();
         foreach (var entity in entities)
         {
             var entityProperties = entity?.GetType().GetProperties();
@@ -167,12 +167,12 @@ public class SqlGenerator : ISqlGenerator
                 parameters.Add($"{property.Name}{parameterCounter}", value);
             }
 
-            entries.Add($"({string.Join(",", values)})");
+            rows.Add($"({string.Join(",", values)})");
             parameterCounter++;
         }
 
-        var stringEntries = string.Join(",", entries);
-        var query = string.Format(template, statement, stringEntries);
+        var stringRows = string.Join(",", rows);
+        var query = string.Format(template, statement, stringRows);
         var result = new Tuple<string, object>(query, parameters);
 
         return !hasPrimaryKey ? throw MissingPrimaryKey : result;
