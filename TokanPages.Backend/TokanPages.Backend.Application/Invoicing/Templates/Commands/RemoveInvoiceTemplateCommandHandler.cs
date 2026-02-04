@@ -1,20 +1,20 @@
 using MediatR;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
-using TokanPages.Services.TemplateService;
+using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 
 namespace TokanPages.Backend.Application.Invoicing.Templates.Commands;
 
 public class RemoveInvoiceTemplateCommandHandler : RequestHandler<RemoveInvoiceTemplateCommand, Unit>
 {
-    private readonly ITemplateService _templateService;
+    private readonly IInvoicingRepository _invoicingRepository;
 
-    public RemoveInvoiceTemplateCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        ITemplateService templateService) : base(operationDbContext, loggerService) => _templateService = templateService;
+    public RemoveInvoiceTemplateCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IInvoicingRepository invoicingRepository) 
+        : base(operationDbContext, loggerService) => _invoicingRepository = invoicingRepository;
 
     public override async Task<Unit> Handle(RemoveInvoiceTemplateCommand request, CancellationToken cancellationToken)
     {
-        await _templateService.RemoveInvoiceTemplate(request.Id, cancellationToken);
+        await _invoicingRepository.RemoveInvoiceTemplate(request.Id);
         LoggerService.LogInformation($"Invoice template has been remove from the system. Invoice template ID: {request.Id}");
         return Unit.Value;
     }

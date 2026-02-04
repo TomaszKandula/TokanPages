@@ -8,7 +8,7 @@ using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Articles;
 
-public class ArticlesRepository : RepositoryPattern, IArticlesRepository
+public class ArticlesRepository : RepositoryBase, IArticlesRepository
 {
     public ArticlesRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings) 
         : base(dbOperations, appSettings) { }

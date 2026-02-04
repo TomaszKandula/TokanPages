@@ -7,7 +7,7 @@ using TokanPages.Persistence.DataAccess.Repositories.Content.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Content;
 
-public class ContentRepository : RepositoryPattern, IContentRepository
+public class ContentRepository : RepositoryBase, IContentRepository
 {
     public ContentRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings) 
         : base(dbOperations,  appSettings) { }

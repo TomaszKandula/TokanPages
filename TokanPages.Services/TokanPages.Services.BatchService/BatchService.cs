@@ -1,14 +1,12 @@
 using System.Text;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities.Invoicing;
-using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
+using TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 using TokanPages.Services.BatchService.Models;
 using ProcessingStatus = TokanPages.Backend.Domain.Enums.ProcessingStatus;
 
@@ -16,47 +14,38 @@ namespace TokanPages.Services.BatchService;
 
 public class BatchService : IBatchService
 {
-    private readonly OperationDbContext _operationDbContext;
+    private readonly IInvoicingRepository _invoicingRepository;
 
     private readonly IDateTimeService _dateTimeService;
 
     private readonly ILoggerService _loggerService;
 
-    public BatchService(OperationDbContext operationDbContext, IDateTimeService dateTimeService, ILoggerService loggerService)
+    public BatchService(IDateTimeService dateTimeService, ILoggerService loggerService, IInvoicingRepository invoicingRepository)
     {
-        _operationDbContext = operationDbContext;
         _dateTimeService = dateTimeService;
         _loggerService = loggerService;
+        _invoicingRepository = invoicingRepository;
     }
 
+    //TODO: WARNING! This is not optimal, re-do for high performance.
     /// <summary>
     /// Place an order for invoice processing. 
     /// </summary>
     /// <param name="orderDetails">Desired invoice data.</param>
-    /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>Process Batch Key.</returns>
-    public async Task<Guid> OrderInvoiceBatchProcessing(IEnumerable<OrderDetail> orderDetails, CancellationToken cancellationToken = default)
+    public async Task<Guid> OrderInvoiceBatchProcessing(IEnumerable<OrderDetail> orderDetails)
     {
-        var invoices = new List<BatchInvoice>();
-        var invoiceItems = new List<BatchInvoiceItem>();
-
-        var processing = new BatchInvoiceProcessing
-        {
-            Id = Guid.NewGuid(),
-            BatchProcessingTime = null,
-            Status = ProcessingStatus.New,
-            CreatedAt = _dateTimeService.Now
-        };
+        var processingId = await _invoicingRepository.CreateBatchInvoiceProcessing();
 
         foreach (var order in orderDetails)
         {
             var batchInvoiceId = Guid.NewGuid();
-            invoices.Add(new BatchInvoice
+            var invoice = new BatchInvoiceDto
             {
                 Id = batchInvoiceId,
                 InvoiceNumber = order.InvoiceNumber,
-                VoucherDate = order.VoucherDate ?? DateTime.Now,
-                ValueDate = order.ValueDate ?? DateTime.Now,
+                VoucherDate = order.VoucherDate ?? _dateTimeService.Now,
+                ValueDate = order.ValueDate ?? _dateTimeService.Now,
                 DueDate = order.DueDate,
                 PaymentTerms = order.PaymentTerms,
                 PaymentType = order.PaymentType,
@@ -71,19 +60,18 @@ public class BatchService : IBatchService
                 InvoiceTemplateName = order.InvoiceTemplateName,
                 CreatedAt = _dateTimeService.Now,
                 CreatedBy = order.UserId,
-                ModifiedAt = null,
-                ModifiedBy = null,
-                ProcessBatchKey = processing.Id,
+                ProcessBatchKey = processingId,
                 UserId = order.UserId,
                 UserCompanyId = order.UserCompanyId,
                 UserBankAccountId = order.UserBankAccountId
-            });
+            };
+
+            await _invoicingRepository.CreateBatchInvoice(invoice);
 
             foreach (var item in order.InvoiceItems)
             {
-                invoiceItems.Add(new BatchInvoiceItem
+                var invoiceItems = new BatchInvoiceItemDto
                 {
-                    Id = Guid.NewGuid(),
                     BatchInvoiceId = batchInvoiceId,
                     ItemText = item.ItemText,
                     ItemQuantity = item.ItemQuantity,
@@ -94,54 +82,57 @@ public class BatchService : IBatchService
                     VatRate = item.VatRate,
                     GrossAmount = item.GrossAmount,
                     CurrencyCode = item.CurrencyCode
-                });
+                };
+                
+                await _invoicingRepository.CreateBatchInvoiceItem(invoiceItems);
             }
         }
 
-        await _operationDbContext.AddAsync(processing, cancellationToken);
-        await _operationDbContext.AddRangeAsync(invoices, cancellationToken);
-        await _operationDbContext.AddRangeAsync(invoiceItems, cancellationToken);
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
-
-        var messageText1 = $"Invoice batch processing has been ordered (ProcessBatchKey: {processing.Id}).";
-        var messageText2 = $"Total invoices: {invoices.Count}.";
-
-        _loggerService.LogInformation($"{messageText1} {messageText2}.");
-        return processing.Id;
+        _loggerService.LogInformation($"Invoice batch processing has been ordered (ProcessBatchKey: {processingId}).");
+        return processingId;
     }
 
+    //TODO: WARNING! This is not optimal, re-do for high performance.
     /// <summary>
     /// Processes all outstanding invoices that have status 'new'.
     /// </summary>
     /// <param name="cancellationToken"></param>
     public async Task ProcessOutstandingInvoices(CancellationToken cancellationToken = default)
     {
-        var processingList = await _operationDbContext.BatchInvoicesProcessing
-            .AsNoTracking()
-            .Where(processing => processing.Status == ProcessingStatus.New)
-            .Select(processing => processing.Id)
-            .ToListAsync(cancellationToken);
-
+        var processingList = await _invoicingRepository.GetBatchInvoiceProcessingByStatus(ProcessingStatus.New);
         if (processingList.Count == 0)
         {
             _loggerService.LogInformation("No new invoices to process.");
             return;
         }
 
-        var (invoices, invoiceItemsList, invoiceTemplates) = await GetInvoiceData(processingList, cancellationToken);
-        var (userCompaniesList, userBankAccountsList) = await GetUserData(invoices, cancellationToken);
-        var issuedInvoices = new List<IssuedInvoice>();
+        var processingIdList = processingList.Select(processing => processing.Id).ToList();
+        var ids = new HashSet<Guid>(processingIdList);
+        var invoices = await _invoicingRepository.GetBatchInvoicesByIds(ids);
+
+        var x = invoices.Select(invoice => invoice.Id).ToList();
+        var invoiceItemsIds = new HashSet<Guid>(x);
+        var invoiceItemsList = await _invoicingRepository.GetBatchInvoiceItemsByIds(invoiceItemsIds);
+
+        var templateNames = invoices
+            .Select(batchInvoices => batchInvoices.InvoiceTemplateName)
+            .ToList();
+        
+        var y = new HashSet<string>(templateNames);
+        var invoiceTemplates = await _invoicingRepository.GetInvoiceTemplatesByNames(y);
+        
+        var userIds = new HashSet<Guid>(invoices.Select(batchInvoices => batchInvoices.UserId));
+        var userCompaniesList = await _invoicingRepository.GetUserCompanies(userIds);
+        var userBankAccountsList = await _invoicingRepository.GetUserBankAccounts(userIds);
 
         foreach (var invoice in invoices)
         {
             var timer = new Stopwatch();
-            var processing = await _operationDbContext.BatchInvoicesProcessing
-                .Where(processing => processing.Id == invoice.ProcessBatchKey)
-                .SingleOrDefaultAsync(cancellationToken);
+            var processing = await _invoicingRepository.GetBatchInvoiceProcessingByKey(invoice.ProcessBatchKey);
 
             ThrowIfNull(processing);
 
-            await LogProcessingStarted(invoice, processing!, timer, cancellationToken);
+            await LogProcessingStarted(processing!.Id, invoice.InvoiceNumber, timer);
             try
             {
                 var templateData = invoiceTemplates
@@ -218,88 +209,22 @@ public class BatchService : IBatchService
                     .Replace("<row-template>", string.Empty)
                     .Replace("</row-template>", string.Empty);
 
-                var issuedInvoiceData = new IssuedInvoiceData
-                {
-                    InvoiceContent = newInvoice,
-                    CurrentInvoice = invoice,
-                    InvoiceCollection = issuedInvoices,
-                    BatchInvoiceProcessing = processing!,
-                    ProcessingTimer = timer
-                };
+                timer.Stop();
 
-                await LogIssuedInvoice(issuedInvoiceData, cancellationToken);
+                var invoiceData = Encoding.Default.GetBytes(newInvoice);
+                await _invoicingRepository.CreateIssuedInvoice(invoice.Id, invoice.InvoiceNumber, invoiceData);
+                await _invoicingRepository.UpdateBatchInvoiceProcessingById(new BatchInvoiceProcessingDto
+                {
+                    ProcessingId = invoice.Id,
+                    ProcessingStatus =  ProcessingStatus.Finished,
+                    ProcessingTime = timer.Elapsed
+                });
             }
             catch (BusinessException exception)
             {
-                var error = new ProcessingError
-                {
-                    Error = exception.Message,
-                    InnerError = exception.InnerException?.Message ?? string.Empty,
-                    InvoiceNumber = invoice.InvoiceNumber,
-                    Timer = timer,
-                    ProcessingObject = processing!
-                };
-
-                await LogProcessingFailed(error, cancellationToken);
+                await LogProcessingFailed(processing.Id, exception.Message, timer);
             }
         }
-
-        if (issuedInvoices.Count != 0)
-        {
-            await _operationDbContext.IssuedInvoices.AddRangeAsync(issuedInvoices, cancellationToken);
-            await _operationDbContext.SaveChangesAsync(cancellationToken);
-        }
-
-        _loggerService.LogInformation($"Issued invoices: {issuedInvoices.Count}.");
-    }
-
-    /// <summary>
-    /// Returns processing status of invoices to be generated.
-    /// </summary>
-    /// <param name="processBatchKey">Unique ID of batch process.</param>
-    /// <param name="cancellationToken">Cancellation token.</param>
-    /// <returns>Processing Status object.</returns>
-    /// <exception cref="BusinessException">Throws an error code INVALID_PROCESSING_BATCH_KEY.</exception>
-    public async Task<Models.ProcessingStatus> GetBatchInvoiceProcessingStatus(Guid processBatchKey, CancellationToken cancellationToken = default)
-    {
-        var processing = await _operationDbContext.BatchInvoicesProcessing
-            .AsNoTracking()
-            .Where(processing => processing.Id == processBatchKey)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        ThrowIfNull(processing, ErrorCodes.INVALID_PROCESSING_BATCH_KEY);
-
-        return new Models.ProcessingStatus
-        {
-            Status = processing!.Status,
-            CreatedAt = processing.CreatedAt,
-            BatchProcessingTime = processing.BatchProcessingTime ?? TimeSpan.Zero
-        };
-    }
-
-    /// <summary>
-    /// Returns generated invoice data of given type.
-    /// </summary>
-    /// <param name="invoiceNumber">Binary representation of generated invoice.</param>
-    /// <param name="cancellationToken">Cancellation token.</param>
-    /// <returns>Invoice (binary content).</returns>
-    /// <exception cref="BusinessException"></exception>
-    public async Task<InvoiceData> GetIssuedInvoice(string invoiceNumber, CancellationToken cancellationToken = default)
-    {
-        var invoice = await _operationDbContext.IssuedInvoices
-            .AsNoTracking()
-            .Where(invoices => invoices.InvoiceNumber == invoiceNumber)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        ThrowIfNull(invoice, ErrorCodes.INVALID_INVOICE_NUMBER);
-
-        return new InvoiceData
-        {
-            Number = invoice!.InvoiceNumber,
-            ContentData = invoice.InvoiceData,
-            ContentType = invoice.ContentType,
-            GeneratedAt = invoice.GeneratedAt
-        };
     }
 
     private static void ThrowIfNull(object? @object, string? errorMessage = default)
@@ -316,88 +241,31 @@ public class BatchService : IBatchService
             throw new BusinessException(nameof(ErrorCodes.PROCESSING_EXCEPTION), message);
     }
 
-    private async Task<(List<BatchInvoice> invoices, List<BatchInvoiceItem> invoiceItemsList, List<InvoiceTemplate> invoiceTemplates)> GetInvoiceData
-        (IEnumerable<Guid> processingList, CancellationToken cancellationToken)
-    {
-        var invoicesIds = new HashSet<Guid>(processingList);
-
-        var invoices = await _operationDbContext.BatchInvoices
-            .AsNoTracking()
-            .Where(batchInvoices => invoicesIds.Contains(batchInvoices.ProcessBatchKey))
-            .ToListAsync(cancellationToken);
-
-        var invoiceItemsIds = new HashSet<Guid>(invoices.Select(batchInvoices => batchInvoices.Id));
-
-        var invoiceItemsList = await _operationDbContext.BatchInvoiceItems
-            .AsNoTracking()
-            .Where(batchInvoiceItems => invoiceItemsIds.Contains(batchInvoiceItems.BatchInvoiceId))
-            .ToListAsync(cancellationToken);
-
-        var templateNames = invoices
-            .Select(batchInvoices => batchInvoices.InvoiceTemplateName)
-            .ToList();
-
-        var invoiceTemplates = await _operationDbContext.InvoiceTemplates
-            .AsNoTracking()
-            .Where(templates => templateNames.Contains(templates.Name))
-            .Where(templates => !templates.IsDeleted)
-            .ToListAsync(cancellationToken);
-
-        return (invoices, invoiceItemsList, invoiceTemplates);
-    }
-
-    private async Task<(List<UserCompany> userCompanies, List<UserBankAccount> userBankAccounts)> GetUserData(
-        IEnumerable<BatchInvoice> invoices, CancellationToken cancellationToken)
-    {
-        var userIds = new HashSet<Guid>(invoices.Select(batchInvoices => batchInvoices.UserId));
-
-        var userCompanies = await _operationDbContext.UserCompanies
-            .AsNoTracking()
-            .Where(details => userIds.Contains(details.UserId))
-            .ToListAsync(cancellationToken);
-
-        var userBankAccounts = await _operationDbContext.UserBankAccounts
-            .AsNoTracking()
-            .Where(bankData => userIds.Contains(bankData.UserId))
-            .ToListAsync(cancellationToken);
-
-        return (userCompanies, userBankAccounts);
-    }
-
-    private async Task LogIssuedInvoice(IssuedInvoiceData issuedInvoiceData, CancellationToken cancellationToken)
-    {
-        var issuedInvoice = new IssuedInvoice
-        {
-            UserId = issuedInvoiceData.CurrentInvoice.UserId,
-            InvoiceNumber = issuedInvoiceData.CurrentInvoice.InvoiceNumber,
-            InvoiceData = Encoding.Default.GetBytes(issuedInvoiceData.InvoiceContent),
-            ContentType = "text/html",
-            GeneratedAt = _dateTimeService.Now
-        };
-
-        issuedInvoiceData.InvoiceCollection.Add(issuedInvoice);
-        issuedInvoiceData.ProcessingTimer.Stop();
-                    
-        issuedInvoiceData.BatchInvoiceProcessing.Status = ProcessingStatus.Finished;
-        issuedInvoiceData.BatchInvoiceProcessing.BatchProcessingTime = issuedInvoiceData.ProcessingTimer.Elapsed;
-                    
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
-    }
-
-    private async Task LogProcessingStarted(BatchInvoice currentInvoice, BatchInvoiceProcessing processing, Stopwatch timer, CancellationToken cancellationToken)
+    private async Task LogProcessingStarted(Guid batchInvoiceProcessingId, string message, Stopwatch timer)
     {
         timer.Start();
-        _loggerService.LogInformation($"Start processing invoice number: {currentInvoice.InvoiceNumber}.");
-        processing.Status = ProcessingStatus.Started;
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
+
+        _loggerService.LogInformation($"Start processing invoice number: {message}.");
+
+        await _invoicingRepository.UpdateBatchInvoiceProcessingById(new BatchInvoiceProcessingDto
+        {
+            ProcessingId = batchInvoiceProcessingId,
+            ProcessingStatus = ProcessingStatus.Started
+        });
     }
 
-    private async Task LogProcessingFailed(ProcessingError error, CancellationToken cancellationToken)
+    private async Task LogProcessingFailed(Guid batchInvoiceProcessingId, string message, Stopwatch timer)
     {
-        error.Timer.Stop();
-        _loggerService.LogError($"Invoice processing has failed. Invoice number: {error.InvoiceNumber}.");
-        error.ProcessingObject.Status = ProcessingStatus.Failed;
-        error.ProcessingObject.BatchProcessingTime = error.Timer.Elapsed;
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
+        timer.Stop();
+        var elapsed = timer.Elapsed;
+
+        _loggerService.LogError($"Invoice processing has failed. Invoice number: {message}.");
+
+        await _invoicingRepository.UpdateBatchInvoiceProcessingById(new BatchInvoiceProcessingDto
+        {
+            ProcessingId = batchInvoiceProcessingId,
+            ProcessingStatus = ProcessingStatus.Failed,
+            ProcessingTime = elapsed
+        });
     }
 }

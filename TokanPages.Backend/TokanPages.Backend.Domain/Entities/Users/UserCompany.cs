@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.Invoicing;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Backend.Domain.Entities.Users;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "UserCompanies")]
 public class UserCompany : Entity<Guid>
 {
     public Guid UserId { get; set; }
@@ -30,8 +31,4 @@ public class UserCompany : Entity<Guid>
     public CurrencyCode CurrencyCode { get; set; }
     [Required]
     public CountryCode CountryCode { get; set; }
-
-    /* Navigation properties */
-    public User User { get; set; }
-    public ICollection<BatchInvoice> BatchInvoices { get; set; } = new HashSet<BatchInvoice>();
 }

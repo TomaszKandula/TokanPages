@@ -5,7 +5,7 @@ using TokanPages.Persistence.DataAccess.Abstractions;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Messaging;
 
-public class MessagingRepository : RepositoryPattern, IMessagingRepository
+public class MessagingRepository : RepositoryBase, IMessagingRepository
 {
     public MessagingRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings) 
         : base(dbOperations, appSettings) { }

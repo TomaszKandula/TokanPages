@@ -1,9 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 
 namespace TokanPages.Backend.Domain.Entities.Invoicing;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "IssuedInvoices")]
 public class IssuedInvoice : Entity<Guid>
 {
     [Required]
@@ -18,7 +20,4 @@ public class IssuedInvoice : Entity<Guid>
     public string ContentType { get; set; }
     [Required]
     public DateTime GeneratedAt { get; set; }
-
-    /* Navigation properties */
-    public Users.User User { get; set; }
 }

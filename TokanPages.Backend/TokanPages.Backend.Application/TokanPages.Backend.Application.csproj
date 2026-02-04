@@ -19,7 +19,6 @@
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.MetricsService\TokanPages.Services.MetricsService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.PayUService\TokanPages.Services.PayUService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.PushNotificationService\TokanPages.Services.PushNotificationService.csproj" />
-    <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.TemplateService\TokanPages.Services.TemplateService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.UserService\TokanPages.Services.UserService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.VatService\TokanPages.Services.VatService.csproj" />
     <ProjectReference Include="..\..\TokanPages.Services\TokanPages.Services.WebSocketService\TokanPages.Services.WebSocketService.csproj" />

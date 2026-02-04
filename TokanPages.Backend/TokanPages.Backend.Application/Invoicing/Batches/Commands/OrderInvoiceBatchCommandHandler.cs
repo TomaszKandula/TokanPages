@@ -1,9 +1,9 @@
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.BatchService.Models;
 using TokanPages.Services.UserService.Abstractions;
@@ -22,13 +22,16 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
 
     private readonly IDateTimeService _dateTimeService;
 
+    private readonly IInvoicingRepository _invoicingRepository;
+
     public OrderInvoiceBatchCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IBatchService batchService, 
-        IVatService vatService, IUserService userService, IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
+        IVatService vatService, IUserService userService, IDateTimeService dateTimeService, IInvoicingRepository invoicingRepository) : base(operationDbContext, loggerService)
     {
         _batchService = batchService;
         _vatService = vatService;
         _userService = userService;
         _dateTimeService = dateTimeService;
+        _invoicingRepository = invoicingRepository;
     }
 
     public override async Task<OrderInvoiceBatchCommandResult> Handle(OrderInvoiceBatchCommand request, CancellationToken cancellationToken)
@@ -37,17 +40,10 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
         LoggerService.LogInformation($"Request to process {request.OrderDetails.Count()} orders. User ID: {userId}");
 
         var vatOptions = new PolishVatNumberOptions(true, true);
-        var vatPatterns = await OperationDbContext.VatNumberPatterns
-            .AsNoTracking()
-            .ToListAsync(cancellationToken);
-
+        var vatPatterns = await _invoicingRepository.GetVatNumberPatterns();
         LoggerService.LogInformation($"Found {vatPatterns.Count} VAT patterns");
 
-        var availableTemplates = await OperationDbContext.InvoiceTemplates
-            .AsNoTracking()
-            .Where(templates => !templates.IsDeleted)
-            .ToListAsync(cancellationToken);
-            
+        var availableTemplates = await _invoicingRepository.GetInvoiceTemplates();
         LoggerService.LogInformation($"Found {availableTemplates.Count} invoice patterns");
 
         var order = new List<OrderDetail>();
@@ -117,7 +113,7 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
             });
         }
 
-        var result = await _batchService.OrderInvoiceBatchProcessing(order, cancellationToken);
+        var result = await _batchService.OrderInvoiceBatchProcessing(order);
         return new OrderInvoiceBatchCommandResult
         {
             ProcessBatchKey = result
