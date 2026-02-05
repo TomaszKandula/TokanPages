@@ -1,7 +1,5 @@
 ﻿using MediatR;
-using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Services.AzureStorageService.Abstractions;
@@ -28,9 +26,7 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
     public override async Task<Unit> Handle(UpdateArticleContentCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var isSuccess = await _articlesRepository.UpdateArticleContent(userId, request.Id, request.Title, request.Description, request.LanguageIso);
-        if (!isSuccess)
-            throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
+        await _articlesRepository.UpdateArticleContent(userId, request.Id, request.Title, request.Description, request.LanguageIso);
 
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var hasTextToUpload = !string.IsNullOrWhiteSpace(request.TextToUpload);

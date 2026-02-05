@@ -16,8 +16,6 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
 
     private const string Permission = nameof(Domain.Enums.Permission.CanPublishArticles);
 
-    private static BusinessException ArticleException => new(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
-
     public UpdateArticleVisibilityCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IUserService userService, IArticlesRepository articlesRepository) : base(operationDbContext, loggerService)
     {
@@ -34,10 +32,8 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
         if (!canPublishArticles)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-        var isSuccess = await _articlesRepository.UpdateArticleVisibility(userId, request.Id, request.IsPublished);
+        await _articlesRepository.UpdateArticleVisibility(userId, request.Id, request.IsPublished);
 
-        return !isSuccess 
-            ? throw ArticleException 
-            : Unit.Value;
+        return Unit.Value;
     }
 }
