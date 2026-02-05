@@ -71,4 +71,16 @@ public interface ISqlGenerator
     /// <typeparam name="T">Given entity object type.</typeparam>
     /// <returns>SQL statement and its parameters.</returns>
     Tuple<string, object> GenerateDeleteStatement<T>(object deleteBy);
+
+    /// <summary>
+    /// Returns an SQL statement for a DELETE query for the given list of UIDs.
+    /// Table name is derived from the provided class. Use 'DatabaseTable' attribute.
+    /// </summary>
+    /// <remarks>
+    /// Provided entity object should have a property marked with the 'PrimaryKey' attribute.
+    /// </remarks>
+    /// <param name="ids">List of UIDs used for deleting.</param>
+    /// <typeparam name="T">Given entity object type.</typeparam>
+    /// <returns>SQL statement and its parameters.</returns>
+    Tuple<string, object> GenerateDeleteStatement<T>(HashSet<object> ids);
 }
