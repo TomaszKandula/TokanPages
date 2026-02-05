@@ -1,9 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
 
 namespace TokanPages.Backend.Domain.Entities.Notifications;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "PushNotificationTags")]
 public class PushNotificationTag : Entity<Guid>, IAuditable
 {
     public Guid PushNotificationId { get; set; }
@@ -12,7 +14,4 @@ public class PushNotificationTag : Entity<Guid>, IAuditable
     public DateTime CreatedAt { get; set; }
     public Guid? ModifiedBy { get; set; }
     public DateTime? ModifiedAt { get; set; }
-
-    /* Navigation properties */
-    public PushNotification PushNotification { get; set; }
 }
