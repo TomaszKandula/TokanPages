@@ -331,181 +331,118 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
             : (await DbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, UserId = userId })).SingleOrDefault();
     }
 
-    public async Task<bool> CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes)
+    public async Task CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes)
     {
-        try
+        var entity = new ArticleLike
         {
-            var entity = new ArticleLike
-            {
-                Id =  Guid.NewGuid(),
-                UserId = userId,
-                ArticleId = articleId,
-                IpAddress = ipAddress,
-                LikeCount = likes,
-                CreatedAt = _dateTimeService.Now,
-                CreatedBy = userId,
-                ModifiedAt = null,
-                ModifiedBy = null
-            };
+            Id =  Guid.NewGuid(),
+            UserId = userId,
+            ArticleId = articleId,
+            IpAddress = ipAddress,
+            LikeCount = likes,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = userId,
+            ModifiedAt = null,
+            ModifiedBy = null
+        };
 
-            await DbOperations.Insert(entity);
-        }
-        catch
-        {
-            return false;    
-        }
-
-        return true;
+        await DbOperations.Insert(entity);
     }
 
-    public async Task<bool> CreateArticle(Guid userId, ArticleDataInputDto data)
+    public async Task CreateArticle(Guid userId, ArticleDataInputDto data)
     {
-        try
+        var entity = new Article
         {
-            var entity = new Article
-            {
-                Id = Guid.NewGuid(),
-                UserId = userId,
-                Title = data.Title,
-                Description = data.Description,
-                IsPublished = false,
-                CreatedBy = userId,
-                CreatedAt = _dateTimeService.Now,
-                LanguageIso = data.LanguageIso
-            };
+            Id = Guid.NewGuid(),
+            UserId = userId,
+            Title = data.Title,
+            Description = data.Description,
+            IsPublished = false,
+            CreatedBy = userId,
+            CreatedAt = _dateTimeService.Now,
+            LanguageIso = data.LanguageIso
+        };
 
-            await DbOperations.Insert(entity);
-        }
-        catch
-        {
-            return false;
-        }
-
-        return true;
+        await DbOperations.Insert(entity);
     }
 
-    public async Task<bool> RemoveArticle(Guid userId, Guid requestId)
+    public async Task RemoveArticle(Guid userId, Guid requestId)
     {
-        try
-        {
-            var articleLikes = new { ArticleId = requestId, UserId =  userId };
-            var articleCounts = new { ArticleId = requestId, UserId =  userId };
-            var articleTags = new { ArticleId = requestId };
-            var articles = new { Id = requestId, UserId =  userId };
+        var articleLikes = new { ArticleId = requestId, UserId =  userId };
+        var articleCounts = new { ArticleId = requestId, UserId =  userId };
+        var articleTags = new { ArticleId = requestId };
+        var articles = new { Id = requestId, UserId =  userId };
 
-            await DbOperations.Delete<ArticleLike>(articleLikes);
-            await DbOperations.Delete<ArticleCount>(articleCounts);
-            await DbOperations.Delete<ArticleTag>(articleTags);
-            await DbOperations.Delete<Article>(articles);
-        }
-        catch
-        {
-            return false;
-        }
-
-        return true;
+        await DbOperations.Delete<ArticleLike>(articleLikes);
+        await DbOperations.Delete<ArticleCount>(articleCounts);
+        await DbOperations.Delete<ArticleTag>(articleTags);
+        await DbOperations.Delete<Article>(articles);
     }
 
-    public async Task<bool> CreateArticleCount(Guid userId, Guid articleId, string ipAddress)
+    public async Task CreateArticleCount(Guid userId, Guid articleId, string ipAddress)
     {
-        try
+        var entity = new ArticleCount
         {
-            var entity = new ArticleCount
-            {
-                Id = Guid.NewGuid(),
-                ArticleId = articleId,
-                UserId = userId,
-                IpAddress = ipAddress,
-                ReadCount = 1,
-                CreatedBy = userId,
-                CreatedAt = _dateTimeService.Now
-            };
+            Id = Guid.NewGuid(),
+            ArticleId = articleId,
+            UserId = userId,
+            IpAddress = ipAddress,
+            ReadCount = 1,
+            CreatedBy = userId,
+            CreatedAt = _dateTimeService.Now
+        };
 
-            await DbOperations.Insert(entity);
-        }
-        catch
-        {
-            return false;
-        }
-
-        return true;
+        await DbOperations.Insert(entity);
     }
 
-    public async Task<bool> UpdateArticleCount(Guid userId, Guid articleId, int count, string ipAddress)
+    public async Task UpdateArticleCount(Guid userId, Guid articleId, int count, string ipAddress)
     {
-        try 
-        {
-            var updateBy = new { ReadCount = count, ModifiedAt = _dateTimeService.Now, ModifiedBy = userId };
-            var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
-            await DbOperations.Update<ArticleCount>(updateBy, filterBy);
-        }
-        catch
-        {
-            return false;
-        }
-
-        return true;
+        var updateBy = new { ReadCount = count, ModifiedAt = _dateTimeService.Now, ModifiedBy = userId };
+        var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
+        await DbOperations.Update<ArticleCount>(updateBy, filterBy);
     }
 
-    public async Task<bool> UpdateArticleVisibility(Guid userId, Guid articleId, bool isPublished)
+    public async Task UpdateArticleVisibility(Guid userId, Guid articleId, bool isPublished)
     {
-        try
+        var updateBy = new
         {
-            var updateBy = new
-            {
-                IsPublished = isPublished,
-                ModifiedAt = _dateTimeService.Now,
-                ModifiedBy = userId,
-            };
+            IsPublished = isPublished,
+            ModifiedAt = _dateTimeService.Now,
+            ModifiedBy = userId,
+        };
 
-            var filterBy = new
-            {
-                ArticleId = articleId,
-                UserId = userId
-            };
-
-            await DbOperations.Update<Article>(updateBy, filterBy);
-        }
-        catch
+        var filterBy = new
         {
-            return false;
-        }
+            ArticleId = articleId,
+            UserId = userId
+        };
 
-        return true;
+        await DbOperations.Update<Article>(updateBy, filterBy);
     }
 
-    public async Task<bool> UpdateArticleContent(Guid userId, Guid articleId, string? title, string? description, string? languageIso)
+    public async Task UpdateArticleContent(Guid userId, Guid articleId, string? title, string? description, string? languageIso)
     {
-        try
+        var timestamp = _dateTimeService.Now;
+        var updateBy = new
         {
-            var timestamp = _dateTimeService.Now;
-            var updateBy = new
-            {
-                Title = title,
-                Description = description,
-                LanguageIso = languageIso,
-                UpdatedAt = timestamp,
-                ModifiedAt = timestamp,
-                ModifiedBy = userId
-            };
+            Title = title,
+            Description = description,
+            LanguageIso = languageIso,
+            UpdatedAt = timestamp,
+            ModifiedAt = timestamp,
+            ModifiedBy = userId
+        };
 
-            var filterBy = new
-            {
-                UserId = userId,
-                ArticleId = articleId
-            };
-
-            await DbOperations.Update<Article>(updateBy, filterBy);
-        }
-        catch
+        var filterBy = new
         {
-            return false;    
-        }
+            UserId = userId,
+            ArticleId = articleId
+        };
 
-        return true;
+        await DbOperations.Update<Article>(updateBy, filterBy);
     }
 
-    public async Task<bool> UpdateArticleLikes(Guid userId, Guid articleId, int addToLikes, bool isAnonymousUser, string ipAddress)
+    public async Task UpdateArticleLikes(Guid userId, Guid articleId, int addToLikes, bool isAnonymousUser, string ipAddress)
     {
         var updateBy = new
         {
@@ -513,22 +450,13 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
             UpdatedAt = _dateTimeService.Now
         };
 
-        try
+        if (isAnonymousUser)
         {
-            if (isAnonymousUser)
-            {
-                await DbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, IpAddress = ipAddress });
-            }
-            else
-            {
-                await DbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, UserId = userId });    
-            }
+            await DbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, IpAddress = ipAddress });
         }
-        catch
+        else
         {
-            return false;
+            await DbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, UserId = userId });    
         }
-
-        return true;
     }
 }
