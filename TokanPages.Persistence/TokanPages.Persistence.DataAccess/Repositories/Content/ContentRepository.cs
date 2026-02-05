@@ -30,31 +30,22 @@ public class ContentRepository : RepositoryBase, IContentRepository
         };
     }
 
-    public async Task<bool> UploadVideo(Guid userId, Guid ticketId, string sourceBlobUri, string targetVideoUri, string targetThumbnailUri)
+    public async Task UploadVideo(Guid userId, Guid ticketId, string sourceBlobUri, string targetVideoUri, string targetThumbnailUri)
     {
-        try
+        var entity = new UploadedVideo
         {
-            var entity = new UploadedVideo
-            {
-                Id = Guid.NewGuid(),
-                TicketId = ticketId,
-                SourceBlobUri = sourceBlobUri,
-                TargetVideoUri = targetVideoUri,
-                TargetThumbnailUri = targetThumbnailUri,
-                Status = VideoStatus.New,
-                CreatedAt = _dateTimeService.Now,
-                CreatedBy = userId,
-                IsSourceDeleted = false
-            };
+            Id = Guid.NewGuid(),
+            TicketId = ticketId,
+            SourceBlobUri = sourceBlobUri,
+            TargetVideoUri = targetVideoUri,
+            TargetThumbnailUri = targetThumbnailUri,
+            Status = VideoStatus.New,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = userId,
+            IsSourceDeleted = false
+        };
 
-            await DbOperations.Insert(entity);            
-        }
-        catch
-        {
-            return false;
-        }
-
-        return true;
+        await DbOperations.Insert(entity);            
     }
 
     public async Task<List<LanguageItemDto>?> GetContentLanguageList()
