@@ -1,10 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
 
 namespace TokanPages.Backend.Domain.Entities.Notifications;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "PushNotifications")]
 public class PushNotification : Entity<Guid>, IAuditable
 {
     [Required]
@@ -23,7 +25,4 @@ public class PushNotification : Entity<Guid>, IAuditable
     [Required]
     [MaxLength(255)]
     public string RegistrationId { get; set; }
-
-    /* Navigation properties */
-    public ICollection<PushNotificationTag> PushNotificationTags { get; set; } = new HashSet<PushNotificationTag>();
 }
