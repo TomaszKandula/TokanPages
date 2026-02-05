@@ -101,7 +101,7 @@ public class PostChatMessageCommandHandlerTest : TestBase
             It.IsAny<bool>(), 
             It.IsAny<DateTime>(), 
             It.IsAny<Guid>()))
-            .ReturnsAsync(true);
+            .Returns(Task.CompletedTask);
 
         mockedChatRepository
             .Setup(repository => repository.CreateChatUserData(
@@ -110,7 +110,7 @@ public class PostChatMessageCommandHandlerTest : TestBase
                 It.IsAny<bool>(), 
                 It.IsAny<DateTime>(), 
                 It.IsAny<Guid>()))
-            .ReturnsAsync(true);
+            .Returns(Task.CompletedTask);
 
         var handler = new PostChatMessageCommandHandler(
             databaseContext,
