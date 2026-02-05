@@ -59,7 +59,7 @@ public class AddArticleCommandHandlerTest : TestBase
             It.IsAny<Guid>(),
             It.IsAny<ArticleDataInputDto>()
             ))
-            .ReturnsAsync(true);
+            .Returns(Task.CompletedTask);
 
         var handler = new AddArticleCommandHandler(
             databaseContext, 

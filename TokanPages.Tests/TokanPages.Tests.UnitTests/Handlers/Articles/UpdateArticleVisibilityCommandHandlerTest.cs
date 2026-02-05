@@ -31,7 +31,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             It.IsAny<Guid>(), 
             It.IsAny<Guid>(), 
             It.IsAny<bool>()))
-            .ReturnsAsync(true);
+            .Returns(Task.CompletedTask);
 
         mockedUserService
             .Setup(service => service.GetLoggedUserId())
@@ -81,7 +81,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
                 It.IsAny<Guid>(), 
                 It.IsAny<Guid>(), 
                 It.IsAny<bool>()))
-            .ReturnsAsync(true);
+            .Returns(Task.CompletedTask);
 
         mockedUserService
             .Setup(service => service.GetLoggedUserId())
@@ -110,54 +110,5 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         // Assert
         var result = await Assert.ThrowsAsync<AccessException>(() => handler.Handle(command, CancellationToken.None));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.ACCESS_DENIED));
-    }
-
-    [Fact]
-    public async Task GivenWrongArticleId_WhenInvokeArticleVisibility_ShouldThrowError()
-    {
-        // Arrange
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
-        var userId = Guid.NewGuid();
-        var articleId = Guid.NewGuid();
-
-        var mockedUserService = new Mock<IUserService>();
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockedArticlesRepository = new Mock<IArticlesRepository>();
-
-        mockedArticlesRepository
-            .Setup(x => x.UpdateArticleVisibility(
-                It.IsAny<Guid>(), 
-                It.IsAny<Guid>(), 
-                It.IsAny<bool>()))
-            .ReturnsAsync(false);
-
-        mockedUserService
-            .Setup(service => service.GetLoggedUserId())
-            .Returns(userId);
-
-        mockedUserService
-            .Setup(provider => provider.HasPermissionAssigned(
-                It.IsAny<string>(), 
-                It.IsAny<Guid?>(),
-                It.IsAny<CancellationToken>()))
-            .ReturnsAsync(true);
-
-        var command = new UpdateArticleVisibilityCommand
-        {
-            Id = articleId,
-            IsPublished = true
-        };
-
-        var handler = new UpdateArticleVisibilityCommandHandler(
-            databaseContext, 
-            mockedLogger.Object, 
-            mockedUserService.Object, 
-            mockedArticlesRepository.Object);
-
-        // Act
-        // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS));
     }
 }
