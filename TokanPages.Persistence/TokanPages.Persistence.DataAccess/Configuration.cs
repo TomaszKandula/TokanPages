@@ -9,6 +9,7 @@ using TokanPages.Persistence.DataAccess.Repositories.Chat;
 using TokanPages.Persistence.DataAccess.Repositories.Content;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 using TokanPages.Persistence.DataAccess.Repositories.Messaging;
+using TokanPages.Persistence.DataAccess.Repositories.Notification;
 
 namespace TokanPages.Persistence.DataAccess;
 
@@ -26,6 +27,7 @@ public static class Configuration
         services.AddScoped<IContentRepository, ContentRepository>();
         services.AddScoped<IMessagingRepository, MessagingRepository>();
         services.AddScoped<IInvoicingRepository, InvoicingRepository>();
+        services.AddScoped<INotificationRepository, NotificationRepository>();
     }
 
     private static void SetupDatabase<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
