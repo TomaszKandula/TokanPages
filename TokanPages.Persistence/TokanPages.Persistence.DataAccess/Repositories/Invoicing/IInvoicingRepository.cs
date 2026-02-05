@@ -75,13 +75,13 @@ public interface IInvoicingRepository
     /// </summary>
     /// <param name="templateId">Invoice template ID.</param>
     /// <param name="data">Holds Binary representation of a new invoice template and its content type.</param>
-    Task<bool> ReplaceInvoiceTemplate(Guid templateId, InvoiceTemplateDataDto data);
+    Task ReplaceInvoiceTemplate(Guid templateId, InvoiceTemplateDataDto data);
 
     /// <summary>
     /// Remove (soft delete) existing invoice template.
     /// </summary>
     /// <param name="templateId">Invoice template ID.</param>
-    Task<bool> RemoveInvoiceTemplate(Guid templateId);
+    Task RemoveInvoiceTemplate(Guid templateId);
 
     /// <summary>
     /// Returns batch invoice processing by given Key.
@@ -116,22 +116,19 @@ public interface IInvoicingRepository
     /// Provided ID is used to filter the entity. The key (ID) remain unchanged.
     /// </remarks>
     /// <param name="data">Update details (id, time, status).</param>
-    /// <returns>Indicates success.</returns>
-    Task<bool> UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data);
+    Task UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data);
 
     /// <summary>
     /// Creates a new batch invoice entries based on provided items.
     /// </summary>
     /// <param name="data">Batch invoice details.</param>
-    /// <returns>Indicates success or fail.</returns>
-    Task<bool> CreateBatchInvoice(List<BatchInvoiceDto> data);
+    Task CreateBatchInvoice(List<BatchInvoiceDto> data);
 
     /// <summary>
     /// Creates a new batch invoice item entries based on provided items.
     /// </summary>
     /// <param name="data">Item details.</param>
-    /// <returns>Indicates success or fail.</returns>
-    Task<bool> CreateBatchInvoiceItem(List<BatchInvoiceItemDto> data);
+    Task CreateBatchInvoiceItem(List<BatchInvoiceItemDto> data);
 
     /// <summary>
     /// Returns issued invoice by given invoice number.

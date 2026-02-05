@@ -209,47 +209,29 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
 
     /// <inheritdoc/>
     /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
-    public async Task<bool> ReplaceInvoiceTemplate(Guid templateId, InvoiceTemplateDataDto data)
+    public async Task ReplaceInvoiceTemplate(Guid templateId, InvoiceTemplateDataDto data)
     {
-        try
+        if (string.IsNullOrEmpty(data.ContentType))
+            throw InvalidContentType;
+
+        var filterBy = new { Id = templateId, IsDeleted = false };
+        var updateBy = new
         {
-            if (string.IsNullOrEmpty(data.ContentType))
-                throw InvalidContentType;
+            Data =  data.ContentData,
+            ContentType = data.ContentType,
+            ShortDescription = data.Description
+        };
 
-            var filterBy = new { Id = templateId, IsDeleted = false };
-            var updateBy = new
-            {
-                Data =  data.ContentData,
-                ContentType = data.ContentType,
-                ShortDescription = data.Description
-            };
-
-            await DbOperations.Update<InvoiceTemplate>(updateBy, filterBy);
-        }
-        catch
-        {
-            return false;
-        }
-
-        return true;
+        await DbOperations.Update<InvoiceTemplate>(updateBy, filterBy);
     }
 
     /// <inheritdoc/>
-    public async Task<bool> RemoveInvoiceTemplate(Guid templateId)
+    public async Task RemoveInvoiceTemplate(Guid templateId)
     {
-        try
-        {
-            var updateBy = new { IsDeleted = true };
-            var filterBy = new { Id = templateId };
+        var updateBy = new { IsDeleted = true };
+        var filterBy = new { Id = templateId };
 
-            await DbOperations.Update<InvoiceTemplate>(updateBy, filterBy);
-        }
-        catch
-        {
-            return false;
-        }
-
-        return true;
+        await DbOperations.Update<InvoiceTemplate>(updateBy, filterBy);
     }
 
     /// <inheritdoc/>
@@ -282,107 +264,80 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     }
 
     /// <inheritdoc/>
-    public async Task<bool> UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data)
+    public async Task UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data)
     {
-        try
+        var filterBy = new { Id = data.ProcessingId };
+        var updateBy = new
         {
-            var filterBy = new { Id = data.ProcessingId };
-            var updateBy = new
-            {
-                Status = data.ProcessingStatus,
-                BatchProcessingTime = data.ProcessingTime
-            };
+            Status = data.ProcessingStatus,
+            BatchProcessingTime = data.ProcessingTime
+        };
 
-            await DbOperations.Update<BatchInvoiceProcessing>(updateBy, filterBy);    
-        }
-        catch
-        {
-            return false;
-        }
-
-        return true;        
+        await DbOperations.Update<BatchInvoiceProcessing>(updateBy, filterBy);    
     }
 
     /// <inheritdoc/>
-    public async Task<bool> CreateBatchInvoice(List<BatchInvoiceDto> data)
+    public async Task CreateBatchInvoice(List<BatchInvoiceDto> data)
     {
-        try
+        var entities = new List<BatchInvoice>();
+        foreach (var dto in data)
         {
-            var entities = new List<BatchInvoice>();
-            foreach (var dto in data)
+            var timestamp = _dateTimeService.Now;
+            entities.Add(new BatchInvoice
             {
-                var timestamp = _dateTimeService.Now;
-                entities.Add(new BatchInvoice
-                {
-                    Id = dto.Id ?? Guid.NewGuid(),
-                    InvoiceNumber = dto.InvoiceNumber,
-                    VoucherDate = dto.VoucherDate,
-                    ValueDate = dto.ValueDate,
-                    DueDate = dto.DueDate,
-                    PaymentTerms = dto.PaymentTerms,
-                    PaymentType = dto.PaymentType,
-                    PaymentStatus = dto.PaymentStatus,
-                    CustomerName = dto.CustomerName,
-                    CustomerVatNumber = dto.CustomerVatNumber,
-                    CountryCode = dto.CountryCode,
-                    City = dto.City,
-                    StreetAddress = dto.StreetAddress,
-                    PostalCode = dto.PostalCode,
-                    PostalArea = dto.PostalArea,
-                    InvoiceTemplateName = dto.InvoiceTemplateName,
-                    CreatedAt = timestamp,
-                    CreatedBy = dto.UserId,
-                    ModifiedAt = null,
-                    ModifiedBy = null,
-                    ProcessBatchKey = dto.ProcessBatchKey,
-                    UserId = dto.UserId,
-                    UserCompanyId = dto.UserCompanyId,
-                    UserBankAccountId = dto.UserBankAccountId
-                });
-            }
-
-            await DbOperations.Insert(entities);
-        }
-        catch
-        {
-            return false;
+                Id = dto.Id ?? Guid.NewGuid(),
+                InvoiceNumber = dto.InvoiceNumber,
+                VoucherDate = dto.VoucherDate,
+                ValueDate = dto.ValueDate,
+                DueDate = dto.DueDate,
+                PaymentTerms = dto.PaymentTerms,
+                PaymentType = dto.PaymentType,
+                PaymentStatus = dto.PaymentStatus,
+                CustomerName = dto.CustomerName,
+                CustomerVatNumber = dto.CustomerVatNumber,
+                CountryCode = dto.CountryCode,
+                City = dto.City,
+                StreetAddress = dto.StreetAddress,
+                PostalCode = dto.PostalCode,
+                PostalArea = dto.PostalArea,
+                InvoiceTemplateName = dto.InvoiceTemplateName,
+                CreatedAt = timestamp,
+                CreatedBy = dto.UserId,
+                ModifiedAt = null,
+                ModifiedBy = null,
+                ProcessBatchKey = dto.ProcessBatchKey,
+                UserId = dto.UserId,
+                UserCompanyId = dto.UserCompanyId,
+                UserBankAccountId = dto.UserBankAccountId
+            });
         }
 
-        return true;
+        await DbOperations.Insert(entities);
     }
 
     /// <inheritdoc/>
-    public async Task<bool> CreateBatchInvoiceItem(List<BatchInvoiceItemDto> data)
+    public async Task CreateBatchInvoiceItem(List<BatchInvoiceItemDto> data)
     {
-        try
+        var entities = new List<BatchInvoiceItem>();
+        foreach (var dto in data)
         {
-            var entities = new List<BatchInvoiceItem>();
-            foreach (var dto in data)
+            entities.Add(new BatchInvoiceItem
             {
-                entities.Add(new BatchInvoiceItem
-                {
-                    Id = Guid.NewGuid(),
-                    BatchInvoiceId = dto.BatchInvoiceId,
-                    ItemText = dto.ItemText,
-                    ItemQuantity = dto.ItemQuantity,
-                    ItemQuantityUnit = dto.ItemQuantityUnit,
-                    ItemAmount = dto.ItemAmount,
-                    ItemDiscountRate = dto.ItemDiscountRate,
-                    ValueAmount = dto.ValueAmount,
-                    VatRate = dto.VatRate,
-                    GrossAmount = dto.GrossAmount,
-                    CurrencyCode = dto.CurrencyCode
-                });
-            }
-
-            await DbOperations.Insert(entities);
-        }
-        catch
-        {
-            return false;
+                Id = Guid.NewGuid(),
+                BatchInvoiceId = dto.BatchInvoiceId,
+                ItemText = dto.ItemText,
+                ItemQuantity = dto.ItemQuantity,
+                ItemQuantityUnit = dto.ItemQuantityUnit,
+                ItemAmount = dto.ItemAmount,
+                ItemDiscountRate = dto.ItemDiscountRate,
+                ValueAmount = dto.ValueAmount,
+                VatRate = dto.VatRate,
+                GrossAmount = dto.GrossAmount,
+                CurrencyCode = dto.CurrencyCode
+            });
         }
 
-        return true;
+        await DbOperations.Insert(entities);
     }
 
     /// <inheritdoc/>
