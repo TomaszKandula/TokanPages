@@ -75,7 +75,7 @@ public interface IInvoicingRepository
     /// </summary>
     /// <param name="templateId">Invoice template ID.</param>
     /// <param name="data">Holds Binary representation of a new invoice template and its content type.</param>
-    Task ReplaceInvoiceTemplate(Guid templateId, InvoiceTemplateDataDto data);
+    Task UpdateInvoiceTemplate(Guid templateId, InvoiceTemplateDataDto data);
 
     /// <summary>
     /// Remove (soft delete) existing invoice template.

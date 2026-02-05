@@ -26,7 +26,7 @@ public class ReplaceInvoiceTemplateCommandHandler : RequestHandler<ReplaceInvoic
             Description = request.Description
         };
 
-        await _invoicingRepository.ReplaceInvoiceTemplate(request.Id, newTemplate);
+        await _invoicingRepository.UpdateInvoiceTemplate(request.Id, newTemplate);
         LoggerService.LogInformation($"Invoice template (ID: {request.Id}) has been replaced by the provided template with description: {newTemplate.Description}");
         return Unit.Value;
     }

@@ -209,7 +209,7 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
 
     /// <inheritdoc/>
     /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
-    public async Task ReplaceInvoiceTemplate(Guid templateId, InvoiceTemplateDataDto data)
+    public async Task UpdateInvoiceTemplate(Guid templateId, InvoiceTemplateDataDto data)
     {
         if (string.IsNullOrEmpty(data.ContentType))
             throw InvalidContentType;
