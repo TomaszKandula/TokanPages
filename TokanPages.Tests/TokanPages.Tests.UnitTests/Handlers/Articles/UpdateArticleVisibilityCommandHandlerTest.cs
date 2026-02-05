@@ -3,7 +3,6 @@ using MediatR;
 using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
@@ -23,7 +22,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var userId = Guid.NewGuid();
         var articleId = Guid.NewGuid();
 
-        var mockedDateTime = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
@@ -32,7 +30,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             .Setup(x => x.UpdateArticleVisibility(
             It.IsAny<Guid>(), 
             It.IsAny<Guid>(), 
-            It.IsAny<DateTime>(),
             It.IsAny<bool>()))
             .ReturnsAsync(true);
 
@@ -57,7 +54,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
-            mockedDateTime.Object,
             mockedArticlesRepository.Object);
 
         // Act
@@ -76,7 +72,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var userId = Guid.NewGuid();
         var articleId = Guid.NewGuid();
 
-        var mockedDateTime = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
@@ -85,7 +80,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             .Setup(x => x.UpdateArticleVisibility(
                 It.IsAny<Guid>(), 
                 It.IsAny<Guid>(), 
-                It.IsAny<DateTime>(),
                 It.IsAny<bool>()))
             .ReturnsAsync(true);
 
@@ -110,7 +104,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
-            mockedDateTime.Object,
             mockedArticlesRepository.Object);
 
         // Act
@@ -128,7 +121,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         var userId = Guid.NewGuid();
         var articleId = Guid.NewGuid();
 
-        var mockedDateTime = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
@@ -137,7 +129,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             .Setup(x => x.UpdateArticleVisibility(
                 It.IsAny<Guid>(), 
                 It.IsAny<Guid>(), 
-                It.IsAny<DateTime>(),
                 It.IsAny<bool>()))
             .ReturnsAsync(false);
 
@@ -162,7 +153,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
-            mockedDateTime.Object,
             mockedArticlesRepository.Object);
 
         // Act

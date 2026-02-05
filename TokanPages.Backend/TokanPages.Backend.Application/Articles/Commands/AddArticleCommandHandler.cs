@@ -1,5 +1,4 @@
-﻿using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.LoggerService;
+﻿using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
@@ -12,18 +11,14 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 {
     private readonly IUserService _userService;
 
-    private readonly IDateTimeService _dateTimeService;
-
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
     private readonly IArticlesRepository _articlesRepository;
 
     public AddArticleCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService, 
-        IDateTimeService dateTimeService, IAzureBlobStorageFactory azureBlobStorageFactory, IArticlesRepository articlesRepository) 
-        : base(operationDbContext, loggerService)
+        IAzureBlobStorageFactory azureBlobStorageFactory, IArticlesRepository articlesRepository) : base(operationDbContext, loggerService)
     {
         _userService = userService;
-        _dateTimeService = dateTimeService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _articlesRepository = articlesRepository;
     }
@@ -32,7 +27,6 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
     {
         var userId = _userService.GetLoggedUserId();
         var articleId = Guid.NewGuid();
-        var createdAt = _dateTimeService.Now;
 
         var input = new ArticleDataInputDto
         {
@@ -42,7 +36,7 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
             LanguageIso = request.LanguageIso,
         };
 
-        await _articlesRepository.CreateArticle(userId, input, createdAt);
+        await _articlesRepository.CreateArticle(userId, input);
 
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         var textDestinationPath = $"content\\articles\\{articleId}\\text.json";

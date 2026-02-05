@@ -3,7 +3,6 @@ using MediatR;
 using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Shared.Resources;
@@ -25,7 +24,6 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var articleId = Guid.NewGuid();
 
         var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-        var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
@@ -42,7 +40,6 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             It.IsAny<Guid>(),
             It.IsAny<Guid>(),
             It.IsAny<int>(),
-            It.IsAny<DateTime>(),
             It.IsAny<string>()))
             .ReturnsAsync(true);
 
@@ -58,7 +55,6 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
-            dateTimeService,
             mockedArticlesRepository.Object);
 
         var command = new UpdateArticleCountCommand { Id = articleId };
@@ -80,7 +76,6 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var articleId = Guid.NewGuid();
 
         var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-        var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
@@ -94,7 +89,6 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
                 It.IsAny<Guid>(),
                 It.IsAny<Guid>(),
                 It.IsAny<int>(),
-                It.IsAny<DateTime>(),
                 It.IsAny<string>()))
             .ReturnsAsync(false);
 
@@ -110,7 +104,6 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
-            dateTimeService,
             mockedArticlesRepository.Object);
 
         var command = new UpdateArticleCountCommand { Id = articleId };

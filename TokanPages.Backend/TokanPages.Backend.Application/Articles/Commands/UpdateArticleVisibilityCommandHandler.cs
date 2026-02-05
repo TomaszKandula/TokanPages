@@ -1,6 +1,5 @@
 using MediatR;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Contexts;
@@ -13,8 +12,6 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
 {
     private readonly IUserService _userService;
 
-    private readonly IDateTimeService _dateTimeService;
-
     private readonly IArticlesRepository _articlesRepository;
 
     private const string Permission = nameof(Domain.Enums.Permission.CanPublishArticles);
@@ -22,11 +19,9 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
     private static BusinessException ArticleException => new(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 
     public UpdateArticleVisibilityCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService, IArticlesRepository articlesRepository) 
-        : base(operationDbContext, loggerService)
+        IUserService userService, IArticlesRepository articlesRepository) : base(operationDbContext, loggerService)
     {
         _userService = userService;
-        _dateTimeService = dateTimeService;
         _articlesRepository = articlesRepository;
     }
 
@@ -39,8 +34,7 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
         if (!canPublishArticles)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-        var updatedAt = _dateTimeService.Now;
-        var isSuccess = await _articlesRepository.UpdateArticleVisibility(userId, request.Id, updatedAt, request.IsPublished);
+        var isSuccess = await _articlesRepository.UpdateArticleVisibility(userId, request.Id, request.IsPublished);
 
         return !isSuccess 
             ? throw ArticleException 

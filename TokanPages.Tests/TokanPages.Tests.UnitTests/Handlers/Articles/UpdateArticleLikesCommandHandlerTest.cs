@@ -3,7 +3,6 @@ using MediatR;
 using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Backend.Shared.Resources;
@@ -26,7 +25,6 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var userId = Guid.NewGuid();
         var articleId = Guid.NewGuid();
 
-        var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
@@ -44,7 +42,6 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             .Setup(repository => repository.UpdateArticleLikes(
                 It.IsAny<Guid>(),
                 It.IsAny<Guid>(),
-                It.IsAny<DateTime>(),
                 It.IsAny<int>(),
                 It.IsAny<bool>(),
                 It.IsAny<string>()
@@ -71,7 +68,6 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
-            dateTimeService, 
             mockedArticlesRepository.Object,
             mockedConfiguration.Object);
 
@@ -91,7 +87,6 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         var userId = Guid.NewGuid();
         var articleId = Guid.NewGuid();
 
-        var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
@@ -109,7 +104,6 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             .Setup(repository => repository.UpdateArticleLikes(
                 It.IsAny<Guid>(),
                 It.IsAny<Guid>(),
-                It.IsAny<DateTime>(),
                 It.IsAny<int>(),
                 It.IsAny<bool>(),
                 It.IsAny<string>()
@@ -121,8 +115,7 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
                 It.IsAny<Guid>(), 
                 It.IsAny<Guid>(), 
                 It.IsAny<string>(), 
-                It.IsAny<int>(),
-                It.IsAny<DateTime>()
+                It.IsAny<int>()
             ))
             .ReturnsAsync(false);
 
@@ -136,7 +129,6 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
-            dateTimeService, 
             mockedArticlesRepository.Object,
             mockedConfiguration.Object);
 

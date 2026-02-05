@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Contexts;
@@ -14,19 +13,14 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
 {
     private readonly IUserService _userService;
 
-    private readonly IDateTimeService _dateTimeService;
-
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
     private readonly IArticlesRepository _articlesRepository;
 
-    public UpdateArticleContentCommandHandler(OperationDbContext operationDbContext, 
-        ILoggerService loggerService, IUserService userService, IDateTimeService dateTimeService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IArticlesRepository articlesRepository) 
-        : base(operationDbContext, loggerService)
+    public UpdateArticleContentCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService,
+        IAzureBlobStorageFactory azureBlobStorageFactory, IArticlesRepository articlesRepository) : base(operationDbContext, loggerService)
     {
         _userService = userService;
-        _dateTimeService = dateTimeService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _articlesRepository = articlesRepository;
     }
@@ -34,8 +28,7 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
     public override async Task<Unit> Handle(UpdateArticleContentCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var dateTimeStamp = _dateTimeService.Now;
-        var isSuccess = await _articlesRepository.UpdateArticleContent(userId, request.Id, dateTimeStamp, request.Title, request.Description, request.LanguageIso);
+        var isSuccess = await _articlesRepository.UpdateArticleContent(userId, request.Id, request.Title, request.Description, request.LanguageIso);
         if (!isSuccess)
             throw new BusinessException(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS), ErrorCodes.ARTICLE_DOES_NOT_EXISTS);
 

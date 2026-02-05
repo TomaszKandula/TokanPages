@@ -4,7 +4,6 @@ using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
@@ -34,7 +33,6 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         };
 
         var mockedUserService = new Mock<IUserService>();
-        var mockedDateTime = new Mock<IDateTimeService>();
         var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>();
         var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
         var mockedLogger = new Mock<ILoggerService>();
@@ -60,7 +58,6 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             .Setup(repository => repository.UpdateArticleContent(
             It.IsAny<Guid>(), 
             It.IsAny<Guid>(), 
-            It.IsAny<DateTime>(),
             It.IsAny<string>(),
             It.IsAny<string>(),
             It.IsAny<string>()            
@@ -71,7 +68,6 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
-            mockedDateTime.Object, 
             mockedAzureBlobStorageFactory.Object,
             mockedArticlesRepository.Object);
 
@@ -100,7 +96,6 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
         };
 
         var mockedUserService = new Mock<IUserService>();
-        var mockedDateTime = new Mock<IDateTimeService>();
         var mockedAzureBlobStorageFactory = new Mock<IAzureBlobStorageFactory>(); 
         var mockedAzureBlobStorage = new Mock<IAzureBlobStorage>();
         var mockedLogger = new Mock<ILoggerService>();
@@ -110,7 +105,6 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             .Setup(repository => repository.UpdateArticleContent(
                 It.IsAny<Guid>(), 
                 It.IsAny<Guid>(), 
-                It.IsAny<DateTime>(),
                 It.IsAny<string>(),
                 It.IsAny<string>(),
                 It.IsAny<string>()            
@@ -137,7 +131,6 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
-            mockedDateTime.Object, 
             mockedAzureBlobStorageFactory.Object,
             mockedArticlesRepository.Object);
 
