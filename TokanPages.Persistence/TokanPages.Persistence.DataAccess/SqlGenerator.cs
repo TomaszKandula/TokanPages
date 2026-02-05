@@ -254,4 +254,10 @@ public class SqlGenerator : ISqlGenerator
         var statement = string.Format(template, table, string.Join(" AND ", conditions));
         return new Tuple<string, object>(statement, parameters);
     }
+
+    /// <inheritdoc/>
+    public Tuple<string, object> GenerateDeleteStatement<T>(HashSet<object> ids)
+    {
+        throw new NotImplementedException();
+    }
 }
