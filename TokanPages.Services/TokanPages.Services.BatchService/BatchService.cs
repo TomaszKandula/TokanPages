@@ -92,7 +92,6 @@ public class BatchService : IBatchService
         return processingId;
     }
 
-    //TODO: WARNING! This is not optimal, re-do for high performance.
     /// <summary>
     /// Processes all outstanding invoices that have status 'new'.
     /// </summary>
@@ -125,6 +124,7 @@ public class BatchService : IBatchService
         var userCompaniesList = await _invoicingRepository.GetUserCompanies(userIds);
         var userBankAccountsList = await _invoicingRepository.GetUserBankAccounts(userIds);
 
+        var issuedInvoices = new List<IssuedInvoiceDto>();
         foreach (var invoice in invoices)
         {
             var timer = new Stopwatch();
@@ -211,12 +211,17 @@ public class BatchService : IBatchService
 
                 timer.Stop();
 
-                var invoiceData = Encoding.Default.GetBytes(newInvoice);
-                await _invoicingRepository.CreateIssuedInvoice(invoice.Id, invoice.InvoiceNumber, invoiceData);
+                issuedInvoices.Add(new IssuedInvoiceDto
+                {
+                    UserId = invoice.UserId,
+                    InvoiceNumber = invoice.InvoiceNumber,
+                    InvoiceData = Encoding.Default.GetBytes(newInvoice)
+                });
+
                 await _invoicingRepository.UpdateBatchInvoiceProcessingById(new BatchInvoiceProcessingDto
                 {
                     ProcessingId = invoice.Id,
-                    ProcessingStatus =  ProcessingStatus.Finished,
+                    ProcessingStatus = ProcessingStatus.Finished,
                     ProcessingTime = timer.Elapsed
                 });
             }
@@ -225,6 +230,9 @@ public class BatchService : IBatchService
                 await LogProcessingFailed(processing.Id, exception.Message, timer);
             }
         }
+
+        await _invoicingRepository.CreateIssuedInvoice(issuedInvoices);
+        _loggerService.LogInformation($"Issued invoices: {issuedInvoices.Count}.");
     }
 
     private static void ThrowIfNull(object? @object, string? errorMessage = default)
