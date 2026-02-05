@@ -21,19 +21,19 @@ public interface IArticlesRepository
 
     Task<ArticleLike?> GetArticleLikes(bool isAnonymousUser, Guid userId, Guid articleId, string ipAddress);
 
-    Task<bool> CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes, DateTime createdAt);
+    Task<bool> CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes);
 
-    Task<bool> CreateArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt);
+    Task<bool> CreateArticle(Guid userId, ArticleDataInputDto data);
 
     Task<bool> RemoveArticle(Guid userId, Guid requestId);
 
-    Task<bool> CreateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress);
+    Task<bool> CreateArticleCount(Guid userId, Guid articleId, string ipAddress);
     
-    Task<bool> UpdateArticleCount(Guid userId, Guid articleId, int count, DateTime updatedAt, string ipAddress);
+    Task<bool> UpdateArticleCount(Guid userId, Guid articleId, int count, string ipAddress);
 
-    Task<bool> UpdateArticleVisibility(Guid userId, Guid articleId, DateTime updatedAt, bool isPublished);
+    Task<bool> UpdateArticleVisibility(Guid userId, Guid articleId, bool isPublished);
 
-    Task<bool> UpdateArticleContent(Guid userId, Guid articleId, DateTime updatedAt, string? title, string? description, string? languageIso);
+    Task<bool> UpdateArticleContent(Guid userId, Guid articleId, string? title, string? description, string? languageIso);
 
-    Task<bool> UpdateArticleLikes(Guid userId, Guid articleId, DateTime updatedAt, int addToLikes, bool isAnonymousUser, string ipAddress);
+    Task<bool> UpdateArticleLikes(Guid userId, Guid articleId, int addToLikes, bool isAnonymousUser, string ipAddress);
 }

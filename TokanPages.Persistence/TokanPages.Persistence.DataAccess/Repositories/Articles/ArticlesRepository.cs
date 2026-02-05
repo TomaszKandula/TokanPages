@@ -2,6 +2,7 @@ using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities.Articles;
 using TokanPages.Persistence.DataAccess.Abstractions;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
@@ -10,8 +11,10 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Articles;
 
 public class ArticlesRepository : RepositoryBase, IArticlesRepository
 {
-    public ArticlesRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings) 
-        : base(dbOperations, appSettings) { }
+    private readonly IDateTimeService _dateTimeService;
+
+    public ArticlesRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
+        : base(dbOperations, appSettings) => _dateTimeService = dateTimeService;
 
     public async Task<Guid> GetArticleIdByTitle(string title)
     {
@@ -328,7 +331,7 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
             : (await DbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, UserId = userId })).SingleOrDefault();
     }
 
-    public async Task<bool> CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes, DateTime createdAt)
+    public async Task<bool> CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes)
     {
         try
         {
@@ -339,7 +342,7 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
                 ArticleId = articleId,
                 IpAddress = ipAddress,
                 LikeCount = likes,
-                CreatedAt = createdAt,
+                CreatedAt = _dateTimeService.Now,
                 CreatedBy = userId,
                 ModifiedAt = null,
                 ModifiedBy = null
@@ -355,7 +358,7 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         return true;
     }
 
-    public async Task<bool> CreateArticle(Guid userId, ArticleDataInputDto data, DateTime createdAt)
+    public async Task<bool> CreateArticle(Guid userId, ArticleDataInputDto data)
     {
         try
         {
@@ -367,7 +370,7 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
                 Description = data.Description,
                 IsPublished = false,
                 CreatedBy = userId,
-                CreatedAt = createdAt,
+                CreatedAt = _dateTimeService.Now,
                 LanguageIso = data.LanguageIso
             };
 
@@ -403,7 +406,7 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         return true;
     }
 
-    public async Task<bool> CreateArticleCount(Guid userId, Guid articleId, DateTime updatedAt, string ipAddress)
+    public async Task<bool> CreateArticleCount(Guid userId, Guid articleId, string ipAddress)
     {
         try
         {
@@ -415,7 +418,7 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
                 IpAddress = ipAddress,
                 ReadCount = 1,
                 CreatedBy = userId,
-                CreatedAt = updatedAt
+                CreatedAt = _dateTimeService.Now
             };
 
             await DbOperations.Insert(entity);
@@ -428,11 +431,11 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         return true;
     }
 
-    public async Task<bool> UpdateArticleCount(Guid userId, Guid articleId, int count, DateTime updatedAt, string ipAddress)
+    public async Task<bool> UpdateArticleCount(Guid userId, Guid articleId, int count, string ipAddress)
     {
         try 
         {
-            var updateBy = new { ReadCount = count, ModifiedAt = updatedAt, ModifiedBy = userId };
+            var updateBy = new { ReadCount = count, ModifiedAt = _dateTimeService.Now, ModifiedBy = userId };
             var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
             await DbOperations.Update<ArticleCount>(updateBy, filterBy);
         }
@@ -444,14 +447,14 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         return true;
     }
 
-    public async Task<bool> UpdateArticleVisibility(Guid userId, Guid articleId, DateTime updatedAt, bool isPublished)
+    public async Task<bool> UpdateArticleVisibility(Guid userId, Guid articleId, bool isPublished)
     {
         try
         {
             var updateBy = new
             {
                 IsPublished = isPublished,
-                ModifiedAt = updatedAt,
+                ModifiedAt = _dateTimeService.Now,
                 ModifiedBy = userId,
             };
 
@@ -471,17 +474,18 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         return true;
     }
 
-    public async Task<bool> UpdateArticleContent(Guid userId, Guid articleId, DateTime updatedAt, string? title, string? description, string? languageIso)
+    public async Task<bool> UpdateArticleContent(Guid userId, Guid articleId, string? title, string? description, string? languageIso)
     {
         try
         {
+            var timestamp = _dateTimeService.Now;
             var updateBy = new
             {
                 Title = title,
                 Description = description,
                 LanguageIso = languageIso,
-                UpdatedAt = updatedAt,
-                ModifiedAt = updatedAt,
+                UpdatedAt = timestamp,
+                ModifiedAt = timestamp,
                 ModifiedBy = userId
             };
 
@@ -501,12 +505,12 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         return true;
     }
 
-    public async Task<bool> UpdateArticleLikes(Guid userId, Guid articleId, DateTime updatedAt, int addToLikes, bool isAnonymousUser, string ipAddress)
+    public async Task<bool> UpdateArticleLikes(Guid userId, Guid articleId, int addToLikes, bool isAnonymousUser, string ipAddress)
     {
         var updateBy = new
         {
             LikeCount = addToLikes,
-            UpdatedAt = updatedAt
+            UpdatedAt = _dateTimeService.Now
         };
 
         try
