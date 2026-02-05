@@ -360,19 +360,22 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
     }
 
     /// <inheritdoc/>
-    public async Task<Guid> CreateIssuedInvoice(Guid userId, string invoiceNumber, byte[] invoiceData)
+    public async Task CreateIssuedInvoice(List<IssuedInvoiceDto> data)
     {
-        var entity = new IssuedInvoice
+        var entities = new List<IssuedInvoice>();
+        foreach (var dto in data)
         {
-            Id = Guid.NewGuid(),
-            UserId =  userId,
-            InvoiceNumber = invoiceNumber,
-            InvoiceData = invoiceData,
-            ContentType = "text/html",
-            GeneratedAt = _dateTimeService.Now
-        };
+            entities.Add(new IssuedInvoice
+            {
+                Id = Guid.NewGuid(),
+                UserId =  dto.UserId,
+                InvoiceNumber = dto.InvoiceNumber,
+                InvoiceData = dto.InvoiceData,
+                ContentType = "text/html",
+                GeneratedAt = _dateTimeService.Now
+            });
+        }
 
-        await DbOperations.Insert(entity);
-        return entity.Id;
+        await DbOperations.Insert(entities);
     }
 }

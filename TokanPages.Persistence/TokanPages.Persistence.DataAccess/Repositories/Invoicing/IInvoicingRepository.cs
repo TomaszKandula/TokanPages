@@ -141,11 +141,8 @@ public interface IInvoicingRepository
     Task<InvoiceDataDto?> GetIssuedInvoiceById(string invoiceNumber);
 
     /// <summary>
-    /// Creates a new entry with processed invoice.
+    /// Creates a new entries with processed invoices.
     /// </summary>
-    /// <param name="userId">User ID.</param>
-    /// <param name="invoiceNumber">Invoice number.</param>
-    /// <param name="invoiceData">Invoice file binary data.</param>
-    /// <returns>Invoice UID.</returns>
-    Task<Guid> CreateIssuedInvoice(Guid userId, string invoiceNumber, byte[] invoiceData);
+    /// <param name="data">Issued invoice details, incl. invoice number, etc.</param>
+    Task CreateIssuedInvoice(List<IssuedInvoiceDto> data);
 }
