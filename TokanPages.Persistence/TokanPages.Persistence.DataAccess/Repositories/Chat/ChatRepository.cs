@@ -50,75 +50,39 @@ public class ChatRepository : RepositoryBase, IChatRepository
         return result.ToArray();
     }
 
-    public async Task<bool> CreateChatUserData(string chatKey, string chatData, bool isArchived, DateTime createdAt, Guid createdBy)
+    public async Task CreateChatUserData(string chatKey, string chatData, bool isArchived, DateTime createdAt, Guid createdBy)
     {
-        try
+        var entity = new UserMessage
         {
-            var entity = new UserMessage
-            {
-                Id = Guid.NewGuid(),
-                ChatKey = chatKey,
-                ChatData = chatData,
-                IsArchived = isArchived,
-                CreatedAt = createdAt,
-                CreatedBy = createdBy,
-                ModifiedAt = null,
-                ModifiedBy = null
-            };
+            Id = Guid.NewGuid(),
+            ChatKey = chatKey,
+            ChatData = chatData,
+            IsArchived = isArchived,
+            CreatedAt = createdAt,
+            CreatedBy = createdBy,
+            ModifiedAt = null,
+            ModifiedBy = null
+        };
 
-            await DbOperations.Insert(entity);
-        }
-        catch
-        {
-            return false;
-        }
-
-        return true;
+        await DbOperations.Insert(entity);
     }
 
-    public async Task<bool> UpdateChatUserMessageData(string chatKey, string chatData, bool isArchived, DateTime modifiedAt, Guid modifiedBy)
+    public async Task UpdateChatUserMessageData(string chatKey, string chatData, bool isArchived, DateTime modifiedAt, Guid modifiedBy)
     {
-        try
-        {
-            var updateBy = new { ChatData = chatData, ModifiedAt = modifiedAt, ModifiedBy = modifiedBy };
-            var filterBy = new { ChatKey = chatKey, IsArchived = isArchived };
-            await DbOperations.Update<UserMessage>(updateBy, filterBy);
-        }
-        catch
-        {
-            return false;
-        }
-        
-        return true;
+        var updateBy = new { ChatData = chatData, ModifiedAt = modifiedAt, ModifiedBy = modifiedBy };
+        var filterBy = new { ChatKey = chatKey, IsArchived = isArchived };
+        await DbOperations.Update<UserMessage>(updateBy, filterBy);
     }
 
-    public async Task<bool> RemoveChatUserCacheById(Guid chatId)
+    public async Task RemoveChatUserCacheById(Guid chatId)
     {
-        try
-        {
-            var filterBy = new { ChatId = chatId };
-            await DbOperations.Delete<UserMessageCache>(filterBy);
-        }
-        catch
-        {
-            return false;
-        }
-        
-        return true;
+        var filterBy = new { ChatId = chatId };
+        await DbOperations.Delete<UserMessageCache>(filterBy);
     }
 
-    public async Task<bool> RemoveChatUserCacheByKey(string chatKey)
+    public async Task RemoveChatUserCacheByKey(string chatKey)
     {
-        try
-        {
-            var filterBy = new { ChatKey = chatKey };
-            await DbOperations.Delete<UserMessageCache>(filterBy);
-        }
-        catch
-        {
-            return false;
-        }
-        
-        return true;
+        var filterBy = new { ChatKey = chatKey };
+        await DbOperations.Delete<UserMessageCache>(filterBy);
     }
 }

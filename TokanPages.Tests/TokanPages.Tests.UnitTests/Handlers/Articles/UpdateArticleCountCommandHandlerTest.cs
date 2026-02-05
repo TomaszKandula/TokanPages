@@ -2,11 +2,8 @@ using FluentAssertions;
 using MediatR;
 using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
-using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
@@ -25,7 +22,6 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var articleId = Guid.NewGuid();
 
         var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-        var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
@@ -42,9 +38,8 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             It.IsAny<Guid>(),
             It.IsAny<Guid>(),
             It.IsAny<int>(),
-            It.IsAny<DateTime>(),
             It.IsAny<string>()))
-            .ReturnsAsync(true);
+            .Returns(Task.CompletedTask);
 
         mockedUserService
             .Setup(service => service.GetLoggedUserId())
@@ -58,7 +53,6 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
-            dateTimeService,
             mockedArticlesRepository.Object);
 
         var command = new UpdateArticleCountCommand { Id = articleId };
@@ -68,56 +62,5 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
 
         // Assert
         result.Should().Be(Unit.Value);
-    }
-
-    [Fact]
-    public async Task GivenExistingArticleAndIncorrectArticleId_WhenUpdateArticleCount_ShouldThrowError()
-    {
-        // Arrange
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
-        var userId = Guid.NewGuid();
-        var articleId = Guid.NewGuid();
-
-        var mockedIpAddress = DataUtilityService.GetRandomIpAddress().ToString();
-        var dateTimeService = new DateTimeService();
-        var mockedUserService = new Mock<IUserService>();
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockedArticlesRepository = new Mock<IArticlesRepository>();
-
-        mockedArticlesRepository
-            .Setup(repository => repository.GetArticleCount(It.IsAny<string>(), It.IsAny<Guid>()))
-            .ReturnsAsync(new List<ArticleCount>());
-
-        mockedArticlesRepository
-            .Setup(repository => repository.UpdateArticleCount(
-                It.IsAny<Guid>(),
-                It.IsAny<Guid>(),
-                It.IsAny<int>(),
-                It.IsAny<DateTime>(),
-                It.IsAny<string>()))
-            .ReturnsAsync(false);
-
-        mockedUserService
-            .Setup(service => service.GetLoggedUserId())
-            .Returns(userId);
-
-        mockedUserService
-            .Setup(service => service.GetRequestIpAddress())
-            .Returns(mockedIpAddress);
-
-        var handler = new UpdateArticleCountCommandHandler(
-            databaseContext, 
-            mockedLogger.Object, 
-            mockedUserService.Object, 
-            dateTimeService,
-            mockedArticlesRepository.Object);
-
-        var command = new UpdateArticleCountCommand { Id = articleId };
-
-        // Act
-        // Assert
-        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
-        result.ErrorCode.Should().Be(nameof(ErrorCodes.ARTICLE_DOES_NOT_EXISTS));
     }
 }

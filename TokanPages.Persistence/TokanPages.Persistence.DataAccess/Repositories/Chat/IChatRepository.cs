@@ -11,11 +11,11 @@ public interface IChatRepository
 
     Task<string[]> RetrieveChatCache(string[] chatKey);
 
-    Task<bool> CreateChatUserData(string chatKey, string chatData, bool isArchived, DateTime createdAt, Guid createdBy);
+    Task CreateChatUserData(string chatKey, string chatData, bool isArchived, DateTime createdAt, Guid createdBy);
 
-    Task<bool> UpdateChatUserMessageData(string chatKey, string chatData, bool isArchived, DateTime modifiedAt, Guid modifiedBy);
+    Task UpdateChatUserMessageData(string chatKey, string chatData, bool isArchived, DateTime modifiedAt, Guid modifiedBy);
 
-    Task<bool> RemoveChatUserCacheById(Guid chatId);
+    Task RemoveChatUserCacheById(Guid chatId);
 
-    Task<bool> RemoveChatUserCacheByKey(string chatKey);
+    Task RemoveChatUserCacheByKey(string chatKey);
 }

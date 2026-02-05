@@ -10,29 +10,29 @@ public interface IInvoicingRepository
     /// <summary>
     /// Returns list of user companies.
     /// </summary>
-    /// <param name="userIds">List of user UID.</param>
+    /// <param name="userIds">List of user UIDs.</param>
     /// <returns>List of user companies.</returns>
     Task<List<UserCompany>> GetUserCompanies(HashSet<Guid> userIds);
 
     /// <summary>
     /// Returns list of user bank accounts.
     /// </summary>
-    /// <param name="userIds">List of user UID.</param>
+    /// <param name="userIds">List of user UIDs.</param>
     /// <returns>List of user bank accounts.</returns>
     Task<List<UserBankAccount>> GetUserBankAccounts(HashSet<Guid> userIds);
 
     /// <summary>
-    /// 
+    /// Returns list of invoices based on provided IDs.
     /// </summary>
-    /// <param name="ids"></param>
-    /// <returns></returns>
+    /// <param name="ids">List of UIDs.</param>
+    /// <returns>List of invoices.</returns>
     Task<List<BatchInvoice>> GetBatchInvoicesByIds(HashSet<Guid> ids);
 
     /// <summary>
-    /// 
+    /// Returns invoice items based on provided IDs.
     /// </summary>
-    /// <param name="ids"></param>
-    /// <returns></returns>
+    /// <param name="ids">List of UIDs.</param>
+    /// <returns>List of invoice items.</returns>
     Task<List<BatchInvoiceItem>> GetBatchInvoiceItemsByIds(HashSet<Guid> ids);
 
     /// <summary>
@@ -49,10 +49,10 @@ public interface IInvoicingRepository
     Task<List<InvoiceTemplate>> GetInvoiceTemplates(bool isDeleted = false);
 
     /// <summary>
-    /// 
+    /// Returns list of invoice templates based on provided template names.
     /// </summary>
-    /// <param name="names"></param>
-    /// <returns></returns>
+    /// <param name="names">List of unique template names.</param>
+    /// <returns>List of invoice templates.</returns>
     Task<List<InvoiceTemplate>> GetInvoiceTemplatesByNames(HashSet<string> names);
 
     /// <summary>
@@ -75,13 +75,13 @@ public interface IInvoicingRepository
     /// </summary>
     /// <param name="templateId">Invoice template ID.</param>
     /// <param name="data">Holds Binary representation of a new invoice template and its content type.</param>
-    Task<bool> ReplaceInvoiceTemplate(Guid templateId, InvoiceTemplateDataDto data);
+    Task UpdateInvoiceTemplate(Guid templateId, InvoiceTemplateDataDto data);
 
     /// <summary>
     /// Remove (soft delete) existing invoice template.
     /// </summary>
     /// <param name="templateId">Invoice template ID.</param>
-    Task<bool> RemoveInvoiceTemplate(Guid templateId);
+    Task RemoveInvoiceTemplate(Guid templateId);
 
     /// <summary>
     /// Returns batch invoice processing by given Key.
@@ -116,22 +116,19 @@ public interface IInvoicingRepository
     /// Provided ID is used to filter the entity. The key (ID) remain unchanged.
     /// </remarks>
     /// <param name="data">Update details (id, time, status).</param>
-    /// <returns>Indicates success.</returns>
-    Task<bool> UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data);
+    Task UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data);
 
     /// <summary>
-    /// Creates a new batch invoice entry.
+    /// Creates a new batch invoice entries based on provided items.
     /// </summary>
     /// <param name="data">Batch invoice details.</param>
-    /// <returns>Process UID.</returns>
-    Task<Guid> CreateBatchInvoice(BatchInvoiceDto data);
+    Task CreateBatchInvoice(List<BatchInvoiceDto> data);
 
     /// <summary>
-    /// Creates a new batch invoice item entry.
+    /// Creates a new batch invoice item entries based on provided items.
     /// </summary>
     /// <param name="data">Item details.</param>
-    /// <returns></returns>
-    Task<Guid> CreateBatchInvoiceItem(BatchInvoiceItemDto data);
+    Task CreateBatchInvoiceItem(List<BatchInvoiceItemDto> data);
 
     /// <summary>
     /// Returns issued invoice by given invoice number.
@@ -144,11 +141,8 @@ public interface IInvoicingRepository
     Task<InvoiceDataDto?> GetIssuedInvoiceById(string invoiceNumber);
 
     /// <summary>
-    /// Creates a new entry with processed invoice.
+    /// Creates a new entries with processed invoices.
     /// </summary>
-    /// <param name="userId">User ID.</param>
-    /// <param name="invoiceNumber">Invoice number.</param>
-    /// <param name="invoiceData">Invoice file binary data.</param>
-    /// <returns>Invoice UID.</returns>
-    Task<Guid> CreateIssuedInvoice(Guid userId, string invoiceNumber, byte[] invoiceData);
+    /// <param name="data">Issued invoice details, incl. invoice number, etc.</param>
+    Task CreateIssuedInvoice(List<IssuedInvoiceDto> data);
 }

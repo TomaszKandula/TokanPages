@@ -2,7 +2,6 @@
 using Moq;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
@@ -47,7 +46,6 @@ public class AddArticleCommandHandlerTest : TestBase
             ImageToUpload = DataUtilityService.GetRandomString().ToBase64Encode()
         };
 
-        var mockedDateTime = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
@@ -59,16 +57,14 @@ public class AddArticleCommandHandlerTest : TestBase
         mockedArticlesRepository
             .Setup(repository => repository.CreateArticle(
             It.IsAny<Guid>(),
-            It.IsAny<ArticleDataInputDto>(),
-            It.IsAny<DateTime>()
+            It.IsAny<ArticleDataInputDto>()
             ))
-            .ReturnsAsync(true);
+            .Returns(Task.CompletedTask);
 
         var handler = new AddArticleCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object,
-            mockedDateTime.Object, 
             _mockedAzureBlobStorageFactory.Object, 
             mockedArticlesRepository.Object);
 
