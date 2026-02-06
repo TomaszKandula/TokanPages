@@ -53,6 +53,18 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Update<PushNotification>(updateBy, filterBy);
     }
 
+    public async Task DeletePushNotification(Guid key)
+    {
+        var deleteBy = new { Id = key };
+        await DbOperations.Delete<PushNotification>(deleteBy);
+    }
+
+    public async Task DeletePushNotifications(List<Guid> keys)
+    {
+        var ids = new HashSet<Guid>(keys);
+        await DbOperations.Delete<PushNotification>(ids);
+    }
+
     public async Task<List<PushNotificationTag>> GetPushNotificationTags(Guid installationId)
     {
         var filterBy = new { PushNotificationId = installationId };
@@ -74,9 +86,15 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Insert(entity);
     }
 
-    public async Task DeletePushNotificationTag(List<object> ids)
+    public async Task DeletePushNotificationTag(Guid pushNotificationId)
     {
-        var uids = new HashSet<object>(ids);
+        var deleteBy = new { PushNotificationId = pushNotificationId };
+        await DbOperations.Delete<PushNotificationTag>(deleteBy);
+    }
+
+    public async Task DeletePushNotificationTags(List<Guid> keys)
+    {
+        var uids = new HashSet<Guid>(keys);
         await DbOperations.Delete<PushNotificationTag>(uids);
     }
 }
