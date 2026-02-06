@@ -116,7 +116,7 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
             var entry = new PushNotificationLog
             {
                 Id = Guid.NewGuid(),
-                RegistrationId =  item.RegistrationId,
+                RegistrationId = item.RegistrationId,
                 Handle = item.Handle,
                 Platform = item.Platform,
                 Payload = item.Payload,
