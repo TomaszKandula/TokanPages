@@ -1,10 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
 
 namespace TokanPages.Backend.Domain.Entities.Notifications;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "PushNotificationLogs")]
 public class PushNotificationLog : Entity<Guid>, IAuditable
 {
     [Required]
