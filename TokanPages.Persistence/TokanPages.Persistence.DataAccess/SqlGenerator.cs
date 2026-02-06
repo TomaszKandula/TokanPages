@@ -15,6 +15,8 @@ public class SqlGenerator : ISqlGenerator
 
     private static bool HasPrimaryKey (PropertyInfo property) => Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute)) != null;
 
+    private static Attribute? GetPrimaryKey(PropertyInfo property) => Attribute.GetCustomAttribute(property, typeof(PrimaryKeyAttribute));
+
     private static Dictionary<string, object?> GetDictionary(object entity)
         => entity
             .GetType()
@@ -251,7 +253,45 @@ public class SqlGenerator : ISqlGenerator
         if (conditions.Count == 0)
             throw MissingWhereClause;
 
-        var statement = string.Format(template, table, string.Join(" AND ", conditions));
+        var stringConditions = string.Join(" AND ", conditions);
+        var statement = string.Format(template, table, stringConditions);
+        return new Tuple<string, object>(statement, parameters);
+    }
+
+    /// <inheritdoc/>
+    public Tuple<string, object> GenerateDeleteStatement<T>(HashSet<object> ids)
+    {
+        const string template = "DELETE FROM {0} WHERE {1} IN ({2})";
+
+        var tableName = GetTableName<T>();
+        var keyName = string.Empty;
+
+        var conditions = new List<string>();
+        var parameterCounter = 1;
+        var parameters = new Dictionary<string, object?>();
+        var properties = typeof(T).GetProperties();
+
+        var isPrimaryKeyFound = properties.Any(HasPrimaryKey);
+        if (!isPrimaryKeyFound)
+            throw MissingPrimaryKey;
+
+        foreach (var property in properties)
+        {
+            var key = GetPrimaryKey(property);
+            if (key != null)
+                keyName = property.Name;
+        }
+
+        foreach (var item in ids)
+        {
+            var parametrizedKey = $"{keyName}{parameterCounter}";
+            conditions.Add($"@{parametrizedKey}");
+            parameters.Add($"{parametrizedKey}", item);
+            parameterCounter++;
+        }
+
+        var stringConditions = string.Join(",", conditions);
+        var statement = string.Format(template, tableName, keyName, stringConditions);
         return new Tuple<string, object>(statement, parameters);
     }
 }

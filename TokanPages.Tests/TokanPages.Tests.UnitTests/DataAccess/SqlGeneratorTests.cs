@@ -444,4 +444,45 @@ public class SqlGeneratorTests : TestBase
         var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateDeleteStatement<TestPlayerTwo>(deleteBy));
         result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_PRIMARYKEY));
     }
+
+    [Fact]
+    public void GivenEntityAndRangeDelete_WhenGenerateDeleteStatement_ShouldSucceed()
+    {
+        // Arrange
+        var ids = new List<object>
+        {
+            Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
+            Guid.Parse("15eefc8e-4c2b-48fd-a5cb-b0aeee34b2fd")
+        };
+
+        const string expectedValues = "Id IN (@Id1,@Id2)";
+        const string expectedStatement = $"DELETE FROM soccer.Players WHERE {expectedValues}";
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        var (query, parameters) = sqlGenerator.GenerateDeleteStatement<TestPlayerOne>(new HashSet<object>(ids));
+
+        // Assert
+        query.Should().Be(expectedStatement);
+        parameters.Should().NotBeNull();
+    }
+
+    [Fact]
+    public void GivenEntityAndRangeDeleteWithoutPrimaryKey_WhenGenerateDeleteStatement_ShouldSucceed()
+    {
+        // Arrange
+        var ids = new List<object>
+        {
+            Guid.Parse("c388e731-0e0f-4886-8326-a97769e51912"),
+            Guid.Parse("15eefc8e-4c2b-48fd-a5cb-b0aeee34b2fd")
+        };
+
+        var sqlGenerator = new SqlGenerator();
+
+        // Act
+        // Assert
+        var result = Assert.Throws<GeneralException>(() => sqlGenerator.GenerateDeleteStatement<TestPlayerTwo>(new HashSet<object>(ids)));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.MISSING_PRIMARYKEY));
+    }
 }
