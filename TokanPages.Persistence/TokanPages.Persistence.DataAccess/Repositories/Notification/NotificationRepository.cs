@@ -73,4 +73,10 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
 
         await DbOperations.Insert(entity);
     }
+
+    public async Task DeletePushNotificationTag(List<object> ids)
+    {
+        var uids = new HashSet<object>(ids);
+        await DbOperations.Delete<PushNotificationTag>(uids);
+    }
 }

@@ -14,4 +14,6 @@ public interface INotificationRepository
     Task<List<PushNotificationTag>> GetPushNotificationTags(Guid installationId);
 
     Task CreatePushNotificationTag(PushNotificationTagDto data);
+
+    Task DeletePushNotificationTag(List<object> ids);
 }
