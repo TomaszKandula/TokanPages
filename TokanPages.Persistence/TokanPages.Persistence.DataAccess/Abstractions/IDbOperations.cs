@@ -11,4 +11,6 @@ public interface IDbOperations
     Task Update<T>(object updateBy, object filterBy);
 
     Task Delete<T>(object deleteBy);
+
+    Task Delete<T>(HashSet<object> ids);
 }

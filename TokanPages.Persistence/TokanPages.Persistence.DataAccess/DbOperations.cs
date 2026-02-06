@@ -82,6 +82,12 @@ public class DbOperations : IDbOperations
         await ExecuteSqlTransaction(query, parameters);
     }
 
+    public async Task Delete<T>(HashSet<object> ids)
+    {
+        var (query, parameters) = _sqlGenerator.GenerateDeleteStatement<T>(ids);
+        await ExecuteSqlTransaction(query, parameters);
+    }
+
     private async Task ExecuteSqlTransaction(string sql, object? parameters = null)
     {
         var watch = new Stopwatch();
