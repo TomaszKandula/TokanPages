@@ -14,6 +14,7 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     public NotificationRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
         : base(dbOperations, appSettings) => _dateTimeService = dateTimeService;
 
+    /// <inheritdoc/>
     public async Task<PushNotification?> GetPushNotification(string pnsHandle)
     {
         var filterBy = new { Handle = pnsHandle };
@@ -21,6 +22,7 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         return data.SingleOrDefault();
     }
 
+    /// <inheritdoc/>
     public async Task CreatePushNotificationEntry(PushNotificationDto data)
     {
         var entity = new PushNotification
@@ -38,6 +40,7 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Insert(entity);
     }
 
+    /// <inheritdoc/>
     public async Task UpdatePushNotificationEntry(PushNotificationDto data)
     {
         var filterBy = new { Id = data.Id };
@@ -53,18 +56,21 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Update<PushNotification>(updateBy, filterBy);
     }
 
+    /// <inheritdoc/>
     public async Task DeletePushNotification(Guid key)
     {
         var deleteBy = new { Id = key };
         await DbOperations.Delete<PushNotification>(deleteBy);
     }
 
+    /// <inheritdoc/>
     public async Task DeletePushNotifications(List<Guid> keys)
     {
         var ids = new HashSet<Guid>(keys);
         await DbOperations.Delete<PushNotification>(ids);
     }
 
+    /// <inheritdoc/>
     public async Task<List<PushNotificationTag>> GetPushNotificationTags(Guid installationId)
     {
         var filterBy = new { PushNotificationId = installationId };
@@ -72,6 +78,7 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         return data.ToList();
     }
 
+    /// <inheritdoc/>
     public async Task CreatePushNotificationTag(PushNotificationTagDto data)
     {
         var entity = new PushNotificationTag
@@ -86,12 +93,14 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Insert(entity);
     }
 
+    /// <inheritdoc/>
     public async Task DeletePushNotificationTag(Guid pushNotificationId)
     {
         var deleteBy = new { PushNotificationId = pushNotificationId };
         await DbOperations.Delete<PushNotificationTag>(deleteBy);
     }
 
+    /// <inheritdoc/>
     public async Task DeletePushNotificationTags(List<Guid> keys)
     {
         var uids = new HashSet<Guid>(keys);
