@@ -33,7 +33,7 @@ public interface INotificationRepository
     /// <summary>
     /// Deletes existing push notification entries from the repository.
     /// </summary>
-    /// <param name="keys">List of PushNotification primary keys.</param>
+    /// <param name="keys">List of 'PushNotification' primary keys.</param>
     /// <returns></returns>
     Task DeletePushNotifications(List<Guid> keys);
 
@@ -53,13 +53,13 @@ public interface INotificationRepository
     /// <summary>
     /// Deletes push notification tag by given ID.
     /// </summary>
-    /// <param name="pushNotificationId">A foreign key linked to the primary key of the related PushNotification entity.</param>
+    /// <param name="pushNotificationId">A foreign key linked to the primary key of the related 'PushNotification' entity.</param>
     Task DeletePushNotificationTag(Guid pushNotificationId);
 
     /// <summary>
     /// Deletes push notification tags by given IDs.
     /// </summary>
-    /// <param name="keys">List of PushNotificationTag primary keys.</param>
+    /// <param name="keys">List of 'PushNotificationTag' primary keys.</param>
     Task DeletePushNotificationTags(List<Guid> keys);
 
     /// <summary>
