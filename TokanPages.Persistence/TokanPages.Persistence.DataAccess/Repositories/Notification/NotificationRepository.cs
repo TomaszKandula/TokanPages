@@ -106,4 +106,27 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         var uids = new HashSet<Guid>(keys);
         await DbOperations.Delete<PushNotificationTag>(uids);
     }
+
+    /// <inheritdoc/>
+    public async Task CreatePushNotificationLogs(List<PushNotificationLogDto> data)
+    {
+        var entities = new List<PushNotificationLog>();
+        foreach (var item in data)
+        {
+            var entry = new PushNotificationLog
+            {
+                Id = Guid.NewGuid(),
+                RegistrationId =  item.RegistrationId,
+                Handle = item.Handle,
+                Platform = item.Platform,
+                Payload = item.Payload,
+                CreatedAt = _dateTimeService.Now,
+                CreatedBy = Guid.Empty
+            };
+
+            entities.Add(entry);
+        }
+
+        await DbOperations.Insert(entities);
+    }
 }
