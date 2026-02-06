@@ -11,9 +11,15 @@ public interface INotificationRepository
 
     Task UpdatePushNotificationEntry(PushNotificationDto data);
 
+    Task DeletePushNotification(Guid key);
+
+    Task DeletePushNotifications(List<Guid> keys);
+
     Task<List<PushNotificationTag>> GetPushNotificationTags(Guid installationId);
 
     Task CreatePushNotificationTag(PushNotificationTagDto data);
 
-    Task DeletePushNotificationTag(List<object> ids);
+    Task DeletePushNotificationTag(Guid pushNotificationId);
+
+    Task DeletePushNotificationTags(List<Guid> keys);
 }
