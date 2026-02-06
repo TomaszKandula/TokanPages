@@ -61,4 +61,10 @@ public interface INotificationRepository
     /// </summary>
     /// <param name="keys">List of PushNotificationTag primary keys.</param>
     Task DeletePushNotificationTags(List<Guid> keys);
+
+    /// <summary>
+    /// Creates push notification log entries in the repository.
+    /// </summary>
+    /// <param name="data">Log details.</param>
+    Task CreatePushNotificationLogs(List<PushNotificationLogDto> data);
 }
