@@ -11,6 +11,7 @@ using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Persistence.DataAccess.Repositories.Notification;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue;
+using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 
 namespace TokanPages.Persistence.DataAccess;
@@ -32,6 +33,7 @@ public static class Configuration
         services.AddScoped<INotificationRepository, NotificationRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRevenueRepository, RevenueRepository>();
+        services.AddScoped<ISenderRepository, SenderRepository>();
     }
 
     private static void SetupDatabase<T>(this IServiceCollection services, IConfiguration configuration) where T : DbContext
