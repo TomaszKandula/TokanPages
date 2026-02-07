@@ -122,9 +122,9 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
-    public async Task DeletePushNotificationTagsByPks(List<object> keys)
+    public async Task DeletePushNotificationTagsByIds(List<object> ids)
     {
-        var uids = new HashSet<object>(keys);
+        var uids = new HashSet<object>(ids);
         await DbOperations.Delete<PushNotificationTag>(uids);
     }
 
