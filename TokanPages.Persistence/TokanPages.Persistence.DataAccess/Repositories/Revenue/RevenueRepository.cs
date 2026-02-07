@@ -70,7 +70,7 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
     {
         var updateBy = new
         {
-            AutoRenewal = true,
+            AutoRenewal = data.AutoRenewal,
             Term = data.Term,
             TotalAmount = data.TotalAmount,
             CurrencyIso = data.CurrencyIso,

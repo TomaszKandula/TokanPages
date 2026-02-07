@@ -50,6 +50,7 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
         {
             var subscription = new UpdateUserSubscriptionDto
             {
+                AutoRenewal = true,
                 Term = request.SelectedTerm,
                 TotalAmount = price.Price,
                 CurrencyIso = price.CurrencyIso,
