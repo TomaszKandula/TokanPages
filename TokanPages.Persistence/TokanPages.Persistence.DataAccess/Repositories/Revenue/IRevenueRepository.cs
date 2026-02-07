@@ -31,16 +31,14 @@ public interface IRevenueRepository
     Task<UserSubscription?> GetUserSubscription(Guid userId);
 
     /// <summary>
-    /// 
+    /// Creates new user subscription entry in the database.
     /// </summary>
-    /// <param name="data"></param>
-    /// <returns></returns>
+    /// <param name="data">Subscription details.</param>
     Task CreateUserSubscription(CreateUserSubscriptionDto data);
 
     /// <summary>
-    /// 
+    /// Updates existing user subscription entry in the database.
     /// </summary>
-    /// <param name="data"></param>
-    /// <returns></returns>
+    /// <param name="data">Subscription details.</param>
     Task UpdateUserSubscription(UpdateUserSubscriptionDto data);
 }
