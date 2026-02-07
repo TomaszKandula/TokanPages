@@ -15,6 +15,8 @@ public interface IChatRepository
 
     Task UpdateChatUserMessageData(string chatKey, string chatData, bool isArchived, DateTime modifiedAt, Guid modifiedBy);
 
+    Task CreateChatCache(Guid id, string chatKey, string notification);
+    
     Task RemoveChatUserCacheById(Guid chatId);
 
     Task RemoveChatUserCacheByKey(string chatKey);
