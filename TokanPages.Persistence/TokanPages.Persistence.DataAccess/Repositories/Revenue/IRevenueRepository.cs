@@ -43,6 +43,12 @@ public interface IRevenueRepository
     Task UpdateUserSubscription(UpdateUserSubscriptionDto data);
 
     /// <summary>
+    /// Removes user subscription by the given user ID.
+    /// </summary>
+    /// <param name="userId">A mandatory user ID.</param>
+    Task RemoveUserSubscription(Guid userId);
+
+    /// <summary>
     /// Returns user payment details by the given user ID.
     /// </summary>
     /// <param name="userId">A mandatory user ID.</param>

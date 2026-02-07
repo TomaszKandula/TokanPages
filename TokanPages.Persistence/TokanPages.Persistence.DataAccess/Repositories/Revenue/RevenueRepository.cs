@@ -92,6 +92,13 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
     }
 
     /// <inheritdoc/>
+    public async Task RemoveUserSubscription(Guid userId)
+    {
+        var deleteBy = new { UserId = userId };
+        await DbOperations.Delete<UserSubscription>(deleteBy);
+    }
+
+    /// <inheritdoc/>
     public async Task<UserPayment?> GetUserPayment(Guid userId)
     {
         var filterBy = new { UserId = userId };
