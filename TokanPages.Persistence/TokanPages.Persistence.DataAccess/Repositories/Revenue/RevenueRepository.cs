@@ -2,6 +2,7 @@ using Microsoft.Extensions.Options;
 using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Backend.Domain.Enums;
 using TokanPages.Persistence.DataAccess.Abstractions;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Revenue;
@@ -20,7 +21,7 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
     }
 
     /// <inheritdoc/>
-    public async Task<UserSubscription?> GetUserSubscriptions(Guid userId)
+    public async Task<UserSubscription?> GetUserSubscription(Guid userId)
     {
         var filterBy = new { UserId = userId };
         var data = await DbOperations.Retrieve<UserSubscription>(filterBy);
