@@ -23,7 +23,7 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
-    public async Task CreatePushNotificationEntry(PushNotificationDto data)
+    public async Task CreatePushNotification(PushNotificationDto data)
     {
         var entity = new PushNotification
         {
@@ -41,7 +41,7 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
-    public async Task UpdatePushNotificationEntry(PushNotificationDto data)
+    public async Task UpdatePushNotification(PushNotificationDto data)
     {
         var filterBy = new { Id = data.Id };
         var updateBy = new

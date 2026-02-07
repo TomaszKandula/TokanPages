@@ -16,13 +16,13 @@ public interface INotificationRepository
     /// Creates push notification details entry in the repository.
     /// </summary>
     /// <param name="data">Notification details.</param>
-    Task CreatePushNotificationEntry(PushNotificationDto data);
+    Task CreatePushNotification(PushNotificationDto data);
 
     /// <summary>
     /// Updates existing push notification details in the repository.
     /// </summary>
     /// <param name="data">Notification details.</param>
-    Task UpdatePushNotificationEntry(PushNotificationDto data);
+    Task UpdatePushNotification(PushNotificationDto data);
 
     /// <summary>
     /// Deletes existing push notification entry from the repository.

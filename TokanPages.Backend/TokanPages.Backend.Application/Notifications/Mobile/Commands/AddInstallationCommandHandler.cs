@@ -68,7 +68,7 @@ public class AddInstallationCommandHandler : RequestHandler<AddInstallationComma
                 });
             }
 
-            await _notificationRepository.CreatePushNotificationEntry(pushNotification);
+            await _notificationRepository.CreatePushNotification(pushNotification);
             await _notificationRepository.CreatePushNotificationTags(notificationTags);
             LoggerService.LogInformation("The new PNS handle installation has been saved within the system database");
         }
@@ -96,7 +96,7 @@ public class AddInstallationCommandHandler : RequestHandler<AddInstallationComma
                 RegistrationId = status.registrationId
             };
 
-            await _notificationRepository.UpdatePushNotificationEntry(notificationDto);
+            await _notificationRepository.UpdatePushNotification(notificationDto);
             LoggerService.LogInformation("The existing PNS handle installation has been saved within the system database");
         }
 
