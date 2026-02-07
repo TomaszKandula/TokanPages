@@ -101,6 +101,8 @@ public class CreatePaymentDefaultCommandHandler : RequestHandler<CreatePaymentDe
                 PmtType = order.PayMethods?.PayMethod?.Type ?? string.Empty,
                 PmtToken = order.PayMethods?.PayMethod?.Value ?? string.Empty,
                 ModifiedBy = user.Id,
+                CreatedAt = userPayments.CreatedAt,
+                CreatedBy = userPayments.CreatedBy,
                 ExtOrderId = order.ExtOrderId ?? string.Empty
             };
 
