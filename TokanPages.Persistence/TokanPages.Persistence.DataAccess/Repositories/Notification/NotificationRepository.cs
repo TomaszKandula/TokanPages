@@ -115,9 +115,9 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
-    public async Task DeletePushNotificationTagsByFk(Guid pushNotificationId)
+    public async Task DeletePushNotificationTagsById(Guid id)
     {
-        var deleteBy = new { PushNotificationId = pushNotificationId };
+        var deleteBy = new { PushNotificationId = id };
         await DbOperations.Delete<PushNotificationTag>(deleteBy);
     }
 

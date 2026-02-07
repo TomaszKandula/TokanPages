@@ -62,10 +62,13 @@ public interface INotificationRepository
     Task CreatePushNotificationTags(List<PushNotificationTagDto> data);
 
     /// <summary>
-    /// Deletes push notification tags by a given ID (foreign key).
+    /// Deletes push notification tags by the given ID.
     /// </summary>
-    /// <param name="pushNotificationId">A foreign key linked to the primary key of the related 'PushNotification' entity.</param>
-    Task DeletePushNotificationTagsByFk(Guid pushNotificationId);
+    /// <remarks>
+    /// ID is the foreign key linked to the primary key of the related 'PushNotification' entity.
+    /// </remarks>
+    /// <param name="id">A mandatory ID used to update an entry.</param>
+    Task DeletePushNotificationTagsById(Guid id);
 
     /// <summary>
     /// Deletes push notification tags by given IDs (primary keys).
