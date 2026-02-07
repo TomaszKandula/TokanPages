@@ -1,4 +1,5 @@
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Persistence.DataAccess.Repositories.Sender.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Sender;
 
@@ -31,6 +32,12 @@ public interface ISenderRepository
     /// <param name="email">An email address.</param>
     /// <param name="id">An optional ID that can be generated externally.</param>
     Task CreateNewsletter(string email, Guid? id = null);
+
+    /// <summary>
+    /// Updates existing newsletter details by the given input data.
+    /// </summary>
+    /// <param name="data">Newsletter details to be updated.</param>
+    Task UpdateNewsletter(UpdateNewsletterDto data);
 
     /// <summary>
     /// Creates a new business inquiry entry in the database.
