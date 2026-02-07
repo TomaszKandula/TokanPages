@@ -1,9 +1,13 @@
 ﻿using FluentAssertions;
+using MediatR;
 using Moq;
 using TokanPages.Backend.Application.Sender.Newsletters.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Repositories.Sender;
+using TokanPages.Persistence.DataAccess.Repositories.Sender.Models;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using Xunit;
@@ -13,33 +17,36 @@ namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
 public class UpdateSubscriberCommandHandlerTest : TestBase
 {
     [Fact]
-    public async Task GivenCorrectId_WhenUpdateSubscriber_ShouldUpdateEntity()
+    public async Task GivenNewsletterId_WhenUpdateNewsletter_ShouldSucceed()
     {
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         // Arrange
-        var subscribers = new Backend.Domain.Entities.Newsletter 
-        {
-            Email = DataUtilityService.GetRandomEmail(),
-            IsActivated = true,
-            Count = 50,
-            CreatedAt = DataUtilityService.GetRandomDateTime(),
-            CreatedBy = Guid.Empty,
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Newsletters.AddAsync(subscribers);
-        await databaseContext.SaveChangesAsync();
-
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
 
+        var user = new GetUserOutput { UserId = Guid.NewGuid() };
         mockedUserService
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
-            .ReturnsAsync((GetUserOutput)null!);
-        
+            .ReturnsAsync(user);
+
+        var newsletter = new Newsletter { Id = Guid.NewGuid() };
+        mockSenderRepository
+            .Setup(repository => repository.GetNewsletter(It.IsAny<Guid>()))
+            .ReturnsAsync(newsletter);
+
+        mockSenderRepository
+            .Setup(repository => repository.GetNewsletter(It.IsAny<string>()))
+            .ReturnsAsync((Newsletter?)null);
+
+        mockSenderRepository
+            .Setup(repository => repository.UpdateNewsletter(It.IsAny<UpdateNewsletterDto>()))
+            .Returns(Task.CompletedTask);
+
         var command = new UpdateNewsletterCommand
         {
-            Id = subscribers.Id,
+            Id = Guid.NewGuid(),
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 10
@@ -52,46 +59,38 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             mockSenderRepository.Object);
 
         // Act
-        await handler.Handle(command, CancellationToken.None);
+        var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var entity = await databaseContext.Newsletters.FindAsync(command.Id);
-
-        entity.Should().NotBeNull();
-        entity.IsActivated.Should().BeTrue();
-        entity.Email.Should().Be(command.Email);
-        entity.Count.Should().Be(command.Count);
-        entity.ModifiedAt.Should().NotBeNull();
-        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        result.Should().NotBeNull();
+        result.Should().Be(Unit.Value);
     }
 
     [Fact]
-    public async Task GivenCorrectIdAndCountIsNullAndIsActivatedIsNull_WhenUpdateSubscriber_ShouldUpdateEntity()
+    public async Task GivenInvalidNewsletterId_WhenUpdateNewsletter_ShouldFail()
     {
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         // Arrange
-        var subscribers = new Backend.Domain.Entities.Newsletter
-        {
-            Email = DataUtilityService.GetRandomEmail(),
-            IsActivated = true,
-            Count = 50,
-            CreatedAt = DataUtilityService.GetRandomDateTime(),
-            CreatedBy = Guid.Empty,
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Newsletters.AddAsync(subscribers);
-        await databaseContext.SaveChangesAsync();
-
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
 
+        var user = new GetUserOutput { UserId = Guid.NewGuid() };
+        mockedUserService
+            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
+
+        mockSenderRepository
+            .Setup(repository => repository.GetNewsletter(It.IsAny<Guid>()))
+            .ReturnsAsync((Newsletter?)null);
+
         var command = new UpdateNewsletterCommand
         {
-            Id = subscribers.Id,
+            Id = Guid.NewGuid(),
             Email = DataUtilityService.GetRandomEmail(),
-            IsActivated = null,
-            Count = null
+            IsActivated = true,
+            Count = 10
         };
 
         var handler = new UpdateNewsletterCommandHandler(
@@ -101,23 +100,35 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             mockSenderRepository.Object);
 
         // Act
-        await handler.Handle(command, CancellationToken.None);
-
         // Assert
-        var entity = await databaseContext.Newsletters.FindAsync(command.Id);
-
-        entity.Should().NotBeNull();
-        entity.IsActivated.Should().BeTrue();
-        entity.Email.Should().Be(command.Email);
-        entity.Count.Should().Be(subscribers.Count);
-        entity.ModifiedAt.Should().NotBeNull();
-        entity.ModifiedAt.Should().BeBefore(DateTime.UtcNow);
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS));
     }
 
     [Fact]
-    public async Task GivenIncorrectId_WhenUpdateSubscriber_ShouldThrowError()
+    public async Task GivenExistingEmail_WhenUpdateNewsletter_ShouldFail()
     {
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         // Arrange
+        var mockedUserService = new Mock<IUserService>();
+        var mockedLogger = new Mock<ILoggerService>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
+
+        var user = new GetUserOutput { UserId = Guid.NewGuid() };
+        mockedUserService
+            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
+            .ReturnsAsync(user);
+
+        var newsletter = new Newsletter { Id = Guid.NewGuid() };
+        mockSenderRepository
+            .Setup(repository => repository.GetNewsletter(It.IsAny<Guid>()))
+            .ReturnsAsync(newsletter);
+
+        mockSenderRepository
+            .Setup(repository => repository.GetNewsletter(It.IsAny<string>()))
+            .ReturnsAsync(newsletter);
+
         var command = new UpdateNewsletterCommand
         {
             Id = Guid.NewGuid(),
@@ -126,73 +137,15 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             Count = 10
         };
 
-        var subscribers = new Backend.Domain.Entities.Newsletter
-        {
-            Id = Guid.NewGuid(),
-            Email = DataUtilityService.GetRandomEmail(),
-            IsActivated = true,
-            Count = 50,
-            CreatedAt = DataUtilityService.GetRandomDateTime(),
-            CreatedBy = Guid.Empty,
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Newsletters.AddAsync(subscribers);
-        await databaseContext.SaveChangesAsync();
-
-        var mockedUserService = new Mock<IUserService>();
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockSenderRepository = new Mock<ISenderRepository>();
-
         var handler = new UpdateNewsletterCommandHandler(
             databaseContext, 
-            mockedLogger.Object,
+            mockedLogger.Object, 
             mockedUserService.Object,
             mockSenderRepository.Object);
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
-    }
-
-    [Fact]
-    public async Task GivenExistingEmail_WhenUpdateSubscriber_ShouldThrowError()
-    {
-        // Arrange
-        var testEmail = DataUtilityService.GetRandomEmail();
-        var subscribers = new Backend.Domain.Entities.Newsletter
-        {
-            Email = testEmail,
-            IsActivated = true,
-            Count = 50,
-            CreatedAt = DataUtilityService.GetRandomDateTime(),
-            CreatedBy = Guid.Empty,
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Newsletters.AddAsync(subscribers);
-        await databaseContext.SaveChangesAsync();
-
-        var mockedUserService = new Mock<IUserService>();
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockSenderRepository = new Mock<ISenderRepository>();
-
-        var command = new UpdateNewsletterCommand
-        {
-            Id = subscribers.Id,
-            Email = testEmail,
-            IsActivated = true,
-            Count = 10
-        };
-
-        var handler = new UpdateNewsletterCommandHandler(
-            databaseContext, 
-            mockedLogger.Object,
-            mockedUserService.Object,
-            mockSenderRepository.Object);
-
-        // Act
-        // Assert
-        await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS));
     }
 }

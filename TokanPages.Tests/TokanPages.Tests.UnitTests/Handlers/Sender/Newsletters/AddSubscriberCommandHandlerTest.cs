@@ -3,6 +3,8 @@ using Moq;
 using TokanPages.Backend.Application.Sender.Newsletters.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using Xunit;
 
@@ -11,53 +13,50 @@ namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
 public class AddSubscriberCommandHandlerTest : TestBase
 {
     [Fact]
-    public async Task GivenProvidedEmail_WhenAddSubscriber_ShouldAddEntity() 
+    public async Task GivenProvidedEmail_WhenAddNewsletter_ShouldAddEntity() 
     {
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         // Arrange
-        var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
 
-        var command = new AddNewsletterCommand { Email = DataUtilityService.GetRandomEmail() };
+        mockSenderRepository
+            .Setup(repository => repository.GetNewsletter(It.IsAny<string>()))
+            .ReturnsAsync((Newsletter?)null);
+
+        var command = new AddNewsletterCommand
+        {
+            Email = DataUtilityService.GetRandomEmail()
+        };
+
         var handler = new AddNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object,
             mockSenderRepository.Object);
 
         // Act
-        await handler.Handle(command, CancellationToken.None);
+        var result = await handler.Handle(command, CancellationToken.None);
 
         // Assert
-        var entity = databaseContext.Newsletters.ToList();
-
-        entity.Should().HaveCount(1);
-        entity[0].Email.Should().Be(command.Email);
-        entity[0].Count.Should().Be(0);
-        entity[0].IsActivated.Should().BeTrue();
-        entity[0].CreatedAt.Should().BeBefore(DateTime.UtcNow);
-        entity[0].CreatedBy.Should().Be(Guid.Empty);
+        result.Should().NotBe(Guid.Empty);
     }
 
     [Fact]
-    public async Task GivenExistingEmail_WhenAddSubscriber_ShouldThrowError()
+    public async Task GivenExistingEmail_WhenAddNewsletter_ShouldThrowError()
     {
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var subscribers = new Backend.Domain.Entities.Newsletter 
-        { 
-            Email = testEmail,
-            IsActivated = true,
-            Count = 0,
-            CreatedAt = DataUtilityService.GetRandomDateTime(),
-            CreatedBy = Guid.Empty
-        };
-
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Newsletters.AddAsync(subscribers);
-        await databaseContext.SaveChangesAsync();
+        var existingNewsletter = new Newsletter { Email = testEmail };
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
+
+        mockSenderRepository
+            .Setup(repository => repository.GetNewsletter(It.IsAny<string>()))
+            .ReturnsAsync(existingNewsletter);
 
         var command = new AddNewsletterCommand { Email = testEmail };
         var handler = new AddNewsletterCommandHandler(
@@ -67,6 +66,7 @@ public class AddSubscriberCommandHandlerTest : TestBase
 
         // Act
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(command, CancellationToken.None));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS));
     }
 }

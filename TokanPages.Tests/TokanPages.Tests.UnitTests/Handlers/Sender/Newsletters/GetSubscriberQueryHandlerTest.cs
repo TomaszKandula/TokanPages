@@ -3,6 +3,7 @@ using Moq;
 using TokanPages.Backend.Application.Sender.Newsletters.Queries;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using Xunit;
 
@@ -11,46 +12,13 @@ namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
 public class GetSubscriberQueryHandlerTest : TestBase
 {
     [Fact]
-    public async Task GivenCorrectId_WhenGetSubscriber_ShouldReturnEntity() 
+    public async Task GivenCorrectId_WhenGetNewsletter_ShouldReturnEntity() 
     {
         // Arrange
-        var testDate = DateTime.Now;
-        var subscribers = new Backend.Domain.Entities.Newsletter
-        {
-            Email = DataUtilityService.GetRandomEmail(),
-            IsActivated = true,
-            Count = 10,
-            CreatedAt = testDate,
-            CreatedBy = Guid.Empty
-        };
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
 
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Newsletters.AddAsync(subscribers);
-        await databaseContext.SaveChangesAsync();
-
-        var mockedLogger = new Mock<ILoggerService>();
-        var mockSenderRepository = new Mock<ISenderRepository>();
-
-        var query = new GetNewsletterQuery { Id = subscribers.Id };
-        var handler = new GetNewsletterQueryHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
-
-        // Act
-        var result = await handler.Handle(query, CancellationToken.None);
-
-        // Assert
-        result.Should().NotBeNull();
-        result.Email.Should().Be(subscribers.Email);
-        result.IsActivated.Should().BeTrue();
-        result.NewsletterCount.Should().Be(subscribers.Count);
-        result.CreatedAt.Should().Be(testDate);
-        result.ModifiedAt.Should().BeNull();
-    }
-
-    [Fact]
-    public async Task GivenIncorrectId_WhenGetSubscriber_ShouldThrowError()
-    {
         // Arrange
-        var subscribers = new Backend.Domain.Entities.Newsletter
+        var newsletter = new Backend.Domain.Entities.Newsletter
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -59,18 +27,47 @@ public class GetSubscriberQueryHandlerTest : TestBase
             CreatedBy = Guid.Empty
         };
 
-        var databaseContext = GetTestDatabaseContext();
-        await databaseContext.Newsletters.AddAsync(subscribers);
-        await databaseContext.SaveChangesAsync();
-
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
+
+        mockSenderRepository
+            .Setup(repository => repository.GetNewsletter(It.IsAny<Guid>()))
+            .ReturnsAsync(newsletter);
 
         var query = new GetNewsletterQuery { Id = Guid.NewGuid() };
         var handler = new GetNewsletterQueryHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
 
         // Act
+        var result = await handler.Handle(query, CancellationToken.None);
+
         // Assert
-        await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(query, CancellationToken.None));
+        result.Should().NotBeNull();
+        result.Email.Should().Be(newsletter.Email);
+        result.IsActivated.Should().BeTrue();
+        result.NewsletterCount.Should().Be(newsletter.Count);
+        result.CreatedAt.Should().Be(newsletter.CreatedAt);
+        result.ModifiedAt.Should().BeNull();
+    }
+
+    [Fact]
+    public async Task GivenIncorrectId_WhenGetNewsletter_ShouldThrowError()
+    {
+        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
+
+        // Arrange
+        var mockedLogger = new Mock<ILoggerService>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
+
+        mockSenderRepository
+            .Setup(repository => repository.GetNewsletter(It.IsAny<string>()))
+            .ReturnsAsync((Backend.Domain.Entities.Newsletter?)null);
+        
+        var query = new GetNewsletterQuery { Id = Guid.NewGuid() };
+        var handler = new GetNewsletterQueryHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
+
+        // Act
+        // Assert
+        var result = await Assert.ThrowsAsync<BusinessException>(() => handler.Handle(query, CancellationToken.None));
+        result.ErrorCode.Should().Be(nameof(ErrorCodes.SUBSCRIBER_DOES_NOT_EXISTS));
     }
 }
