@@ -1,29 +1,35 @@
 using TokanPages.Backend.Application.Subscriptions.Models;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Revenue;
 
 namespace TokanPages.Backend.Application.Revenue.Queries;
 
 public class GetSubscriptionPricesQueryHandler : RequestHandler<GetSubscriptionPricesQuery, GetSubscriptionPricesQueryResult>
 {
-    public GetSubscriptionPricesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService) 
-        : base(operationDbContext, loggerService) { }
+    private readonly IRevenueRepository _revenueRepository;
+
+    public GetSubscriptionPricesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IRevenueRepository revenueRepository) 
+        : base(operationDbContext, loggerService) => _revenueRepository = revenueRepository;
 
     public override async Task<GetSubscriptionPricesQueryResult> Handle(GetSubscriptionPricesQuery request, CancellationToken cancellationToken)
     {
-        var prices = await OperationDbContext.SubscriptionsPricing
-            .AsNoTracking()
-            .Where(pricing => pricing.LanguageIso == request.LanguageIso)
-            .Select(pricing => new PriceItem
-            {
-                Term = (int)pricing.Term,
-                Price = pricing.Price,
-                CurrencyIso = pricing.CurrencyIso,
-                LanguageIso = pricing.LanguageIso
-            })
-            .ToListAsync(cancellationToken);
+        var prices= await _revenueRepository.GetSubscriptionPrices(request.LanguageIso ?? "ENG");
 
-        return new GetSubscriptionPricesQueryResult { Prices = prices };
+        var result = new List<PriceItem>();
+        foreach (var price in prices)
+        {
+            var priceItem = new PriceItem
+            {
+                Term = (int)price.Term,
+                Price = price.Price,
+                CurrencyIso = price.CurrencyIso,
+                LanguageIso = price.LanguageIso
+            };
+
+            result.Add(priceItem);
+        }
+
+        return new GetSubscriptionPricesQueryResult { Prices = result };
     }
 }

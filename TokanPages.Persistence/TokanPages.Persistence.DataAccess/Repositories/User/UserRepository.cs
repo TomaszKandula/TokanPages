@@ -17,4 +17,12 @@ public class UserRepository : RepositoryBase, IUserRepository
         var data = await DbOperations.Retrieve<Users.User>(filterBy);
         return data.SingleOrDefault();
     }
+
+    /// <inheritdoc/>
+    public async Task<Users.UserInfo?> GetUserInformationById(Guid userId)
+    {
+        var filterBy = new { UserId = userId };
+        var data = await DbOperations.Retrieve<Users.UserInfo>(filterBy);
+        return data.SingleOrDefault();
+    }
 }

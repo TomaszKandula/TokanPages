@@ -3,8 +3,8 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Revenue;
 
 namespace TokanPages.Backend.Application.Revenue.Commands;
 
@@ -12,23 +12,25 @@ public class RemoveSubscriptionCommandHandler : RequestHandler<RemoveSubscriptio
 {
     private readonly IUserService _userService;
 
+    private readonly IRevenueRepository _revenueRepository;
+
     public RemoveSubscriptionCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService) : base(operationDbContext, loggerService) => _userService = userService;
+        IUserService userService, IRevenueRepository revenueRepository) : base(operationDbContext, loggerService)
+    {
+        _userService = userService;
+        _revenueRepository = revenueRepository;
+    }
 
     public override async Task<Unit> Handle(RemoveSubscriptionCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
-        var userSubscription = await OperationDbContext.UserSubscriptions
-            .Where(subscriptions => subscriptions.UserId == user.Id)
-            .SingleOrDefaultAsync(cancellationToken);
-
+        var userSubscription = await _revenueRepository.GetUserSubscription(user.Id);
         if (userSubscription is null)
             throw new BusinessException(nameof(ErrorCodes.SUBSCRIPTION_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIPTION_DOES_NOT_EXISTS);
 
-        OperationDbContext.Remove(userSubscription);
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
-
+        await _revenueRepository.RemoveUserSubscription(user.Id);
         LoggerService.LogInformation($"Subscription for user ID '{user.Id}' has been removed.");
+
         return Unit.Value;
     }
 }

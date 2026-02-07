@@ -13,4 +13,11 @@ public interface IUserRepository
     /// <param name="userId">A mandatory user ID.</param>
     /// <returns>If found, returns user data, otherwise null.</returns>
     Task<Users.User?> GetUserById(Guid userId);
+
+    /// <summary>
+    /// Returns user information entity by given ID.
+    /// </summary>
+    /// <param name="userId">A mandatory user ID.</param>
+    /// <returns>If found, returns user information, otherwise null.</returns>
+    Task<Users.UserInfo?> GetUserInformationById(Guid userId);
 }

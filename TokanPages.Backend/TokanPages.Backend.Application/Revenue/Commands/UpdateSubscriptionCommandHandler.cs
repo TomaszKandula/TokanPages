@@ -1,11 +1,11 @@
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Revenue;
+using TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 
 namespace TokanPages.Backend.Application.Revenue.Commands;
 
@@ -13,34 +13,39 @@ public class UpdateSubscriptionCommandHandler : RequestHandler<UpdateSubscriptio
 {
     private readonly IUserService _userService;
 
-    private readonly IDateTimeService _dateTimeService;
+    private readonly IRevenueRepository _revenueRepository;
 
     public UpdateSubscriptionCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
+        IUserService userService, IRevenueRepository revenueRepository) : base(operationDbContext, loggerService)
     {
         _userService = userService;
-        _dateTimeService = dateTimeService;
+        _revenueRepository = revenueRepository;
     }
 
     public override async Task<Unit> Handle(UpdateSubscriptionCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
-        var userSubscription = await OperationDbContext.UserSubscriptions
-            .Where(subscriptions => subscriptions.UserId == user.Id)
-            .SingleOrDefaultAsync(cancellationToken);
 
+        var userSubscription = await _revenueRepository.GetUserSubscription(user.Id);
         if (userSubscription is null)
             throw new BusinessException(nameof(ErrorCodes.SUBSCRIPTION_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIPTION_DOES_NOT_EXISTS);
 
-        userSubscription.ExtOrderId = request.ExtOrderId ?? userSubscription.ExtOrderId;
-        userSubscription.AutoRenewal = request.AutoRenewal ?? userSubscription.AutoRenewal;
-        userSubscription.Term = request.Term ?? userSubscription.Term;
-        userSubscription.TotalAmount = request.TotalAmount ?? userSubscription.TotalAmount;
-        userSubscription.CurrencyIso = request.CurrencyIso ?? userSubscription.CurrencyIso;
-        userSubscription.ModifiedBy = user.Id;
-        userSubscription.ModifiedAt = _dateTimeService.Now;
+        var updateBy = new UpdateUserSubscriptionDto
+        {
+            AutoRenewal = request.AutoRenewal ?? userSubscription.AutoRenewal,
+            Term = request.Term ?? userSubscription.Term,
+            TotalAmount = request.TotalAmount ?? userSubscription.TotalAmount,
+            CurrencyIso = request.CurrencyIso ?? userSubscription.CurrencyIso,
+            ExtCustomerId =  userSubscription.ExtCustomerId,
+            ExtOrderId = request.ExtOrderId ?? userSubscription.ExtOrderId,
+            ModifiedBy = user.Id,
+            IsActive =  userSubscription.IsActive,
+            CompletedAt = userSubscription.CompletedAt,
+            ExpiresAt = userSubscription.ExpiresAt
+        };
 
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
+        await _revenueRepository.UpdateUserSubscription(updateBy);
+
         LoggerService.LogInformation("Existing subscription has been updated.");
         return Unit.Value;
     }

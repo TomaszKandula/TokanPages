@@ -9,6 +9,7 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService.Abstractions;
@@ -34,6 +35,8 @@ public sealed class UserService : IUserService
 
     private readonly OperationDbContext _operationDbContext;
 
+    private readonly IUserRepository _userRepository;
+
     private readonly IWebTokenUtility _webTokenUtility;
 
     private readonly IDateTimeService _dateTimeService;
@@ -47,12 +50,13 @@ public sealed class UserService : IUserService
     private GetUserOutput? _user;
 
     public UserService(IHttpContextAccessor httpContextAccessor, OperationDbContext operationDbContext, 
-        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IOptions<AppSettingsModel> configuration)
+        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IOptions<AppSettingsModel> configuration, IUserRepository userRepository)
     {
         _httpContextAccessor = httpContextAccessor;
         _operationDbContext = operationDbContext;
         _webTokenUtility = webTokenUtility;
         _dateTimeService = dateTimeService;
+        _userRepository = userRepository;
         _appSettings = configuration.Value;
     }
 
@@ -128,22 +132,18 @@ public sealed class UserService : IUserService
     public async Task<User> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default)
     {
         var id = userId ?? UserIdFromClaim();
-        var entity = isTracking ? _operationDbContext.Users : _operationDbContext.Users.AsNoTracking();
-        var user = await entity
-            .Where(users => !users.HasBusinessLock)
-            .Where(users => users.IsActivated)
-            .Where(users => !users.IsDeleted)
-            .Where(users => users.Id == id)
-            .SingleOrDefaultAsync(cancellationToken);
+        if (id is null)
+            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-        if (user == null)
+        var user = await _userRepository.GetUserById((Guid)id);
+        if (user is null or { IsDeleted: true })
+            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
+
+        if (user is { HasBusinessLock: true })
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
-        if (!user.IsActivated)
+        if (user is { IsActivated: false })
             throw new AuthorizationException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
-
-        if (user.IsDeleted)
-            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         return user;
     }

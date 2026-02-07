@@ -1,7 +1,7 @@
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.UserService.Abstractions;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Revenue;
 
 namespace TokanPages.Backend.Application.Revenue.Queries;
 
@@ -9,32 +9,38 @@ public class GetSubscriptionQueryHandler : RequestHandler<GetSubscriptionQuery, 
 {
     private readonly IUserService _userService;
 
-    public GetSubscriptionQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService) 
-        : base(operationDbContext, loggerService) => _userService = userService;
+    private readonly IRevenueRepository _revenueRepository;
+
+    public GetSubscriptionQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IUserService userService, IRevenueRepository revenueRepository) : base(operationDbContext, loggerService)
+    {
+        _userService = userService;
+        _revenueRepository = revenueRepository;
+    }
 
     public override async Task<GetSubscriptionQueryResult> Handle(GetSubscriptionQuery request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var query = await OperationDbContext.UserSubscriptions
-            .AsNoTracking()
-            .Where(subscriptions => subscriptions.UserId == userId)
-            .Select(subscriptions => new GetSubscriptionQueryResult
-            {
-                UserId = subscriptions.UserId,
-                IsActive = subscriptions.IsActive,
-                AutoRenewal = subscriptions.AutoRenewal,
-                Term = subscriptions.Term,
-                TotalAmount = subscriptions.TotalAmount,
-                CurrencyIso = subscriptions.CurrencyIso,
-                ExtCustomerId = subscriptions.ExtCustomerId,
-                ExtOrderId = subscriptions.ExtOrderId,
-                CreatedBy = subscriptions.CreatedBy,
-                CreatedAt = subscriptions.CreatedAt,
-                ModifiedBy = subscriptions.ModifiedBy,
-                ModifiedAt = subscriptions.ModifiedAt,
-            })
-            .SingleOrDefaultAsync(cancellationToken);
+        var subscription = await _revenueRepository.GetUserSubscription(userId);
+        if (subscription == null)
+            return new GetSubscriptionQueryResult();
 
-        return query ?? new GetSubscriptionQueryResult();
+        var result = new GetSubscriptionQueryResult
+        {
+            UserId = subscription.UserId,
+            IsActive = subscription.IsActive,
+            AutoRenewal = subscription.AutoRenewal,
+            Term = subscription.Term,
+            TotalAmount = subscription.TotalAmount,
+            CurrencyIso = subscription.CurrencyIso,
+            ExtCustomerId = subscription.ExtCustomerId,
+            ExtOrderId = subscription.ExtOrderId,
+            CreatedBy = subscription.CreatedBy,
+            CreatedAt = subscription.CreatedAt,
+            ModifiedBy = subscription.ModifiedBy,
+            ModifiedAt = subscription.ModifiedAt,
+        };
+
+        return result;
     }
 }
