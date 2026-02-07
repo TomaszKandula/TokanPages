@@ -32,12 +32,16 @@ public class UpdateSubscriptionCommandHandler : RequestHandler<UpdateSubscriptio
 
         var updateBy = new UpdateUserSubscriptionDto
         {
-            ExtOrderId = request.ExtOrderId ?? userSubscription.ExtOrderId,
             AutoRenewal = request.AutoRenewal ?? userSubscription.AutoRenewal,
             Term = request.Term ?? userSubscription.Term,
             TotalAmount = request.TotalAmount ?? userSubscription.TotalAmount,
             CurrencyIso = request.CurrencyIso ?? userSubscription.CurrencyIso,
-            ModifiedBy = user.Id
+            ExtCustomerId =  userSubscription.ExtCustomerId,
+            ExtOrderId = request.ExtOrderId ?? userSubscription.ExtOrderId,
+            ModifiedBy = user.Id,
+            IsActive =  userSubscription.IsActive,
+            CompletedAt = userSubscription.CompletedAt,
+            ExpiresAt = userSubscription.ExpiresAt
         };
 
         await _revenueRepository.UpdateUserSubscription(updateBy);
