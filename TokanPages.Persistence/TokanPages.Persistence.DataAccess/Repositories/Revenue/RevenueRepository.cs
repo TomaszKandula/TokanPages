@@ -97,6 +97,14 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
     }
 
     /// <inheritdoc/>
+    public async Task<UserPayment?> GetUserPayment(string extOrderId)
+    {
+        var filterBy = new { ExtOrderId = extOrderId };
+        var data = await DbOperations.Retrieve<UserPayment>(filterBy);
+        return data.SingleOrDefault();
+    }
+
+    /// <inheritdoc/>
     public async Task CreateUserPayment(CreateUserPaymentDto data)
     {
         var entity = new UserPayment
