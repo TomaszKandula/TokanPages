@@ -117,7 +117,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
         var currentNotification = await _notificationRepository.GetWebNotificationById(userId);
         if (currentNotification is not null)
         {
-            currentNotification.Value = data;
+            await  _notificationRepository.UpdateWebNotification(userId, data);
         }
         else
         {
