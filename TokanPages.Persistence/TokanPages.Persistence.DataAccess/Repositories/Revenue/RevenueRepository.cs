@@ -89,7 +89,7 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
     }
 
     /// <inheritdoc/>
-    public async Task<UserPayment?> GetUserPayments(Guid userId)
+    public async Task<UserPayment?> GetUserPayment(Guid userId)
     {
         var filterBy = new { UserId = userId };
         var data = await DbOperations.Retrieve<UserPayment>(filterBy);

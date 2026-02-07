@@ -47,7 +47,7 @@ public interface IRevenueRepository
     /// </summary>
     /// <param name="userId">A mandatory user ID.</param>
     /// <returns>If found, returns user payment, otherwise null.</returns>
-    Task<UserPayment?> GetUserPayments(Guid userId);
+    Task<UserPayment?> GetUserPayment(Guid userId);
 
     /// <summary>
     /// Creates new user payment entry in the database.

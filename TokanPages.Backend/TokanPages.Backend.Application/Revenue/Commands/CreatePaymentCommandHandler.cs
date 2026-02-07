@@ -92,7 +92,7 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
         };
 
         var postOrderResponse = await _payUService.PostOrder(input, cancellationToken);
-        var userPayments = await _revenueRepository.GetUserPayments(user.Id);
+        var userPayments = await _revenueRepository.GetUserPayment(user.Id);
         if (userPayments is not null)
         {
             var userPayment = new UpdateUserPaymentDto
