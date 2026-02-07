@@ -3,8 +3,8 @@ using Microsoft.Extensions.Options;
 using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 
@@ -16,12 +16,16 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
 
     private readonly AppSettingsModel _appSettings;
 
+    private readonly IMessagingRepository _messagingRepository;
+
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
     public SendNewsletterCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IOptions<AppSettingsModel> options) : base(operationDbContext, loggerService)
+        IEmailSenderService emailSenderService, IOptions<AppSettingsModel> options, IMessagingRepository messagingRepository) 
+        : base(operationDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
+        _messagingRepository = messagingRepository;
         _appSettings = options.Value;
     }
 
@@ -67,12 +71,6 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
             LoggerService.LogInformation($"Getting newsletter template from URL: {templateUrl}.");
 
             var messageId = Guid.NewGuid();
-            var serviceBusMessage = new ServiceBusMessage
-            {
-                Id = messageId,
-                IsConsumed = false
-            };
-
             var payload = new SendMessageConfiguration
             {
                 MessageId = messageId,
@@ -82,8 +80,7 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
                 Body = template.MakeBody(newValues)
             };
 
-            await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-            await OperationDbContext.SaveChangesAsync(cancellationToken);
+            await _messagingRepository.CreateServiceBusMessage(messageId);
             await _emailSenderService.SendToServiceBus(payload, cancellationToken);
         }
 
