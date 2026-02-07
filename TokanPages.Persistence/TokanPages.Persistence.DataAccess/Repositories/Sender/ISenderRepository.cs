@@ -22,7 +22,7 @@ public interface ISenderRepository
     /// Returns list of newsletters that are active.
     /// </summary>
     /// <param name="isActive">If true, only active newsletters are returned.</param>
-    /// <returns>Lif of active newsletters.</returns>
+    /// <returns>List of active newsletters.</returns>
     Task<List<Newsletter>> GetNewsletters(bool isActive);
 
     /// <summary>
