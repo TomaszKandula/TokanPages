@@ -97,7 +97,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
 
         var data = _jsonSerializer.Serialize(payload, Formatting.None, Setting);
         if (!request.CanSkipPreservation)
-            await SaveNotification(user.Id, data, cancellationToken);
+            await SaveNotification(user.Id, data);
 
         if (request is { Handler: "chat_post_message", ExternalPayload: not null })
         {
@@ -117,7 +117,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
         return new NotifyRequestCommandResult { StatusId = user.Id };
     }
 
-    private async Task SaveNotification(Guid userId, string data, CancellationToken cancellationToken)
+    private async Task SaveNotification(Guid userId, string data)
     {
         var currentNotification = await _notificationRepository.GetWebNotificationById(userId);
         if (currentNotification is not null)
@@ -128,7 +128,5 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
         {
             await _notificationRepository.CreateWebNotification(data, userId);
         }
-
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
     }
 }
