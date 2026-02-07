@@ -51,6 +51,12 @@ public interface INotificationRepository
     Task CreatePushNotificationTag(PushNotificationTagDto data);
 
     /// <summary>
+    /// Creates push notification tags in the repository.
+    /// </summary>
+    /// <param name="data">List of tags details to be saved.</param>
+    Task CreatePushNotificationTags(List<PushNotificationTagDto> data);
+
+    /// <summary>
     /// Deletes push notification tag by given ID.
     /// </summary>
     /// <param name="pushNotificationId">A foreign key linked to the primary key of the related 'PushNotification' entity.</param>

@@ -94,6 +94,27 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
+    public async Task CreatePushNotificationTags(List<PushNotificationTagDto> data)
+    {
+         var entities = new List<PushNotificationTag>();
+         foreach (var item in data)
+         {
+             var entry = new PushNotificationTag
+             {
+                 Id = Guid.NewGuid(),
+                 PushNotificationId = item.PushNotificationId,
+                 Tag = item.Tag,
+                 CreatedAt = _dateTimeService.Now,
+                 CreatedBy = Guid.Empty
+             };
+
+             entities.Add(entry);
+         }
+
+         await DbOperations.Insert(entities);
+    }
+
+    /// <inheritdoc/>
     public async Task DeletePushNotificationTag(Guid pushNotificationId)
     {
         var deleteBy = new { PushNotificationId = pushNotificationId };
