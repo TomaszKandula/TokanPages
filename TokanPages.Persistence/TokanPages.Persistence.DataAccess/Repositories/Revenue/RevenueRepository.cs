@@ -87,4 +87,12 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
 
         await DbOperations.Update<UserSubscription>(updateBy, filterBy);
     }
+
+    /// <inheritdoc/>
+    public async Task<UserPayment?> GetUserPayments(Guid userId)
+    {
+        var filterBy = new { UserId = userId };
+        var data = await DbOperations.Retrieve<UserPayment>(filterBy);
+        return data.SingleOrDefault();
+    }
 }
