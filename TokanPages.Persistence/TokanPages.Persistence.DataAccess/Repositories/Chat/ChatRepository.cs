@@ -74,6 +74,18 @@ public class ChatRepository : RepositoryBase, IChatRepository
         await DbOperations.Update<UserMessage>(updateBy, filterBy);
     }
 
+    public async Task CreateChatCache(Guid id, string chatKey, string notification)
+    {
+        var entity = new UserMessageCache
+        {
+            Id = id,
+            ChatKey = chatKey,
+            Notification = notification
+        };
+
+        await DbOperations.Insert(entity);
+    }
+
     public async Task RemoveChatUserCacheById(Guid chatId)
     {
         var filterBy = new { ChatId = chatId };
