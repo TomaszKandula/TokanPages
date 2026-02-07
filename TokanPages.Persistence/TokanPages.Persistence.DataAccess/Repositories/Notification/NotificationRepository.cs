@@ -150,4 +150,19 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
 
         await DbOperations.Insert(entities);
     }
+
+    /// <inheritdoc/>
+    public async Task<WebNotification?> GetWebNotificationByStatusId(Guid statusId)
+    {
+        var filterBy = new { Id = statusId };
+        var data = await DbOperations.Retrieve<WebNotification>(filterBy);
+        return data.SingleOrDefault();
+    }
+
+    /// <inheritdoc/>
+    public async Task DeleteWebNotificationByStatusId(Guid statusId)
+    {
+        var deleteBy = new { Id = statusId };
+        await DbOperations.Delete<WebNotification>(deleteBy);
+    }
 }
