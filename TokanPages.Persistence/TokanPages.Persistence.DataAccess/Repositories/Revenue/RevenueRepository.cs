@@ -149,4 +149,20 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
 
         await DbOperations.Update<UserPayment>(updateBy, filterBy);
     }
+
+    /// <inheritdoc/>
+    public async Task CreateUserPaymentsHistory(CreateUserPaymentHistoryDto data)
+    {
+        var entity = new UserPaymentHistory
+        {
+            UserId = data.UserId,
+            Amount = data.Amount,
+            CurrencyIso = data.CurrencyIso,
+            Term = data.Term,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = data.CreatedBy,
+        };
+
+        await DbOperations.Insert(entity);
+    }
 }
