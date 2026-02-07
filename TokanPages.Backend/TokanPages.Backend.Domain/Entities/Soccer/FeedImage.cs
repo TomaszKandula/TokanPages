@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
@@ -11,8 +10,6 @@ public class FeedImage : Entity<Guid>, ISoftDelete
 {
     public Guid FeedId { get; set; }
 
-    [Required]
-    [MaxLength(255)]
     public string ImageBlobName { get; set; }
 
     public bool IsDeleted { get; set; }

@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
@@ -9,16 +8,10 @@ namespace TokanPages.Backend.Domain.Entities;
 [DatabaseTable(Schema = "operation", TableName = "Languages")]
 public class Language : Entity<Guid>, IHasSortOrder
 {
-    [Required]
-    [MaxLength(2)]
     public string LangId { get; set; }
 
-    [Required]
-    [MaxLength(5)]
     public string HrefLang { get; set; }
 
-    [Required]
-    [MaxLength(255)]
     public string Name { get; set; }
 
     public bool IsDefault { get; set; }

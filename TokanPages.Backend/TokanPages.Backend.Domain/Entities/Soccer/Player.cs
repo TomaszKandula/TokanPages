@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Attributes;
 
@@ -12,8 +11,6 @@ public class Player : Entity<Guid>
 
     public Guid PositionId { get; set; }
 
-    [Required]
-    [MaxLength(255)]
     public string NickName { get; set; }
 
     public int Height { get; set; }

@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
@@ -10,54 +9,48 @@ namespace TokanPages.Backend.Domain.Entities.Invoicing;
 [DatabaseTable(Schema = "operation", TableName = "BatchInvoices")]
 public class BatchInvoice : Entity<Guid>, IAuditable
 {
-    [Required]
-    [MaxLength(255)]
     public string InvoiceNumber { get; set; }
-    [Required]
+
     public DateTime VoucherDate { get; set; }
-    [Required]
+
     public DateTime ValueDate { get; set; }
-    [Required]
+
     public DateTime DueDate { get; set; }
     public int PaymentTerms { get; set; }
-    [Required]
+
     public PaymentType PaymentType { get; set; }
-    [Required]
+
     public PaymentStatus PaymentStatus { get; set; }
-    [Required]
-    [MaxLength(255)]
+
     public string CustomerName { get; set; }
-    [MaxLength(25)]
+
     public string CustomerVatNumber { get; set; }
-    [Required]
+
     public CountryCode CountryCode { get; set; }
-    [Required]
-    [MaxLength(255)]
+
     public string City { get; set; }
-    [Required]
-    [MaxLength(100)]
+
     public string StreetAddress { get; set; }
-    [Required]
-    [MaxLength(25)]
+
     public string PostalCode { get; set; }
-    [Required]
-    [MaxLength(150)]
+
     public string PostalArea { get; set; }
-    [Required]
+
     public Guid ProcessBatchKey { get; set; }
-    [Required]
+
     public Guid CreatedBy { get; set; }
-    [Required]
+
     public DateTime CreatedAt { get; set; }
+
     public Guid? ModifiedBy { get; set; }
+
     public DateTime? ModifiedAt { get; set; }
-    [Required]
-    [MaxLength(255)]
+
     public string InvoiceTemplateName { get; set; }
-    [Required]
+
     public Guid UserId { get; set; }
-    [Required]
+
     public Guid UserCompanyId { get; set; }
-    [Required]
+
     public Guid UserBankAccountId { get; set; }
 }
