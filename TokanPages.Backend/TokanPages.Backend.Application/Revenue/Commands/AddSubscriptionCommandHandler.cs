@@ -1,25 +1,29 @@
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
-using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Revenue;
+using TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
+using TokanPages.Persistence.DataAccess.Repositories.User;
 
 namespace TokanPages.Backend.Application.Revenue.Commands;
 
 public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionCommand, AddSubscriptionCommandResult>
 {
-    private readonly IDateTimeService _dateTimeService;
-
     private readonly IUserService _userService;
 
+    private readonly IRevenueRepository _revenueRepository;
+    
+    private readonly IUserRepository _userRepository;
+
     public AddSubscriptionCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService, IUserService userService) : base(operationDbContext, loggerService)
+        IUserService userService, IRevenueRepository revenueRepository, IUserRepository userRepository)
+        : base(operationDbContext, loggerService)
     {
-        _dateTimeService = dateTimeService;
         _userService = userService;
+        _revenueRepository = revenueRepository;
+        _userRepository = userRepository;
     }
 
     public override async Task<AddSubscriptionCommandResult> Handle(AddSubscriptionCommand request, CancellationToken cancellationToken)
@@ -28,45 +32,31 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
         var language = request.UserLanguage ?? "pol";
 
         var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
-        var price = await OperationDbContext.SubscriptionsPricing
-            .Where(pricing => pricing.Term == request.SelectedTerm)
-            .Where(pricing => pricing.CurrencyIso.Equals(currency, StringComparison.InvariantCultureIgnoreCase))
-            .Where(pricing => pricing.LanguageIso.Equals(language, StringComparison.InvariantCultureIgnoreCase))
-            .SingleOrDefaultAsync(cancellationToken);
 
+        var price = await _revenueRepository.GetSubscriptionPrice(request.SelectedTerm, language, currency);
         if (price is null)
             throw new BusinessException(nameof(ErrorCodes.PRICE_NOT_FOUND), ErrorCodes.PRICE_NOT_FOUND);
 
-        var userSubscription = await OperationDbContext.UserSubscriptions
-            .Where(subscriptions => subscriptions.UserId == user.Id)
-            .SingleOrDefaultAsync(cancellationToken);
-
+        var userSubscription = await _revenueRepository.GetUserSubscription(user.Id);
         var extCustomerId = Guid.NewGuid().ToString("N");
         var extOrderId = Guid.NewGuid().ToString("N");
-        var userInfo = await OperationDbContext.UserInformation
-            .AsNoTracking()
-            .Where(info => info.UserId == user.Id)
-            .Select(info => new
-            {
-                info.FirstName,
-                info.LastName
-            })
-            .SingleOrDefaultAsync(cancellationToken);
 
+        var userInfo = await _userRepository.GetUserInformationById(user.Id);
         if (userInfo is null)
             throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         AddSubscriptionCommandResult result;
         if (userSubscription is not null)
         {
-            userSubscription.AutoRenewal = true;
-            userSubscription.Term = request.SelectedTerm;
-            userSubscription.TotalAmount = price.Price;
-            userSubscription.CurrencyIso = price.CurrencyIso;
-            userSubscription.ExtCustomerId = extCustomerId;
-            userSubscription.ExtOrderId = extOrderId;
-            userSubscription.ModifiedAt = _dateTimeService.Now;
-            userSubscription.ModifiedBy = user.Id;
+            var subscription = new UpdateUserSubscriptionDto
+            {
+                Term = request.SelectedTerm,
+                TotalAmount = price.Price,
+                CurrencyIso = price.CurrencyIso,
+                ExtCustomerId = extCustomerId,
+                ExtOrderId = extOrderId,
+                ModifiedBy = user.Id
+            };
 
             result = new AddSubscriptionCommandResult
             {
@@ -77,37 +67,37 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
                 FirstName = userInfo.FirstName,
                 LastName = userInfo.LastName
             };
+            
+            await _revenueRepository.UpdateUserSubscription(subscription);
         }
         else
         {
-            var subscription = new UserSubscription
+            var subscriptionId = Guid.NewGuid();
+            var subscription = new CreateUserSubscriptionDto
             {
-                Id = Guid.NewGuid(),
+                Id = subscriptionId,
                 UserId = user.Id,
-                AutoRenewal = true,
                 Term = request.SelectedTerm,
                 TotalAmount = price.Price,
                 CurrencyIso = price.CurrencyIso,
                 ExtCustomerId = extCustomerId,
                 ExtOrderId = extOrderId,
-                CreatedAt = _dateTimeService.Now,
                 CreatedBy = user.Id
             };
 
             result = new AddSubscriptionCommandResult
             {
                 UserId = subscription.UserId,
-                SubscriptionId = subscription.Id,
+                SubscriptionId = subscriptionId,
                 ExtOrderId = subscription.ExtOrderId,
                 Email = user.EmailAddress,
                 FirstName = userInfo.FirstName,
                 LastName = userInfo.LastName
             };
 
-            await OperationDbContext.UserSubscriptions.AddAsync(subscription, cancellationToken);
+            await _revenueRepository.CreateUserSubscription(subscription);
         }
 
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation("New user subscription has been registered.");
 
         return result;
