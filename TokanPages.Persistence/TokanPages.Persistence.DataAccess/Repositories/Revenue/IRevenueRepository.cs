@@ -41,4 +41,11 @@ public interface IRevenueRepository
     /// </summary>
     /// <param name="data">Subscription details.</param>
     Task UpdateUserSubscription(UpdateUserSubscriptionDto data);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <returns></returns>
+    Task<UserPayment?> GetUserPayments(Guid userId);
 }
