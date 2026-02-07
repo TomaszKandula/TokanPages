@@ -102,8 +102,8 @@ public interface INotificationRepository
     /// The primary key is optional. If not passed, then it will be created.
     /// </remarks>
     /// <param name="value">Stringify data to be saved.</param>
-    /// <param name="primaryKey">An optional primary key of the entity.</param>
-    Task CreateWebNotification(string value, Guid? primaryKey = null);
+    /// <param name="id">An optional primary key of the entity.</param>
+    Task CreateWebNotification(string value, Guid? id = null);
 
     /// <summary>
     /// Updates existing web notification entity by the given ID.

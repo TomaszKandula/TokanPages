@@ -160,11 +160,11 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
-    public async Task CreateWebNotification(string value, Guid? primaryKey = null)
+    public async Task CreateWebNotification(string value, Guid? id = null)
     {
         var entity = new WebNotification
         {
-            Id = primaryKey ?? Guid.NewGuid(),
+            Id = id ?? Guid.NewGuid(),
             Value = value
         };
 
