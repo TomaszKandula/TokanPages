@@ -6,6 +6,7 @@ using TokanPages.Backend.Application.Sender.Mailer.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using Xunit;
 
@@ -33,6 +34,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
+        var mockMessagingRepository = new Mock<IMessagingRepository>();
         var mockedConfig = GetMockSettings();
 
         var randomString = DataUtilityService.GetRandomString();
@@ -44,7 +46,8 @@ public class SendNewsletterCommandHandlerTest : TestBase
             databaseContext,
             mockedLogger.Object, 
             mockedEmailSenderService.Object,
-            mockedConfig.Object);
+            mockedConfig.Object,
+            mockMessagingRepository.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -73,6 +76,7 @@ public class SendNewsletterCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
+        var mockMessagingRepository = new Mock<IMessagingRepository>();
         var mockedConfig = GetMockSettings();
 
         mockedEmailSenderService
@@ -83,7 +87,8 @@ public class SendNewsletterCommandHandlerTest : TestBase
             databaseContext,
             mockedLogger.Object, 
             mockedEmailSenderService.Object,
-            mockedConfig.Object);
+            mockedConfig.Object,
+            mockMessagingRepository.Object);
 
         // Act
         // Assert

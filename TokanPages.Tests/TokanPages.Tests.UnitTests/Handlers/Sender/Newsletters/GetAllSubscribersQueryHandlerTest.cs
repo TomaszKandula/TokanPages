@@ -2,6 +2,7 @@
 using Moq;
 using TokanPages.Backend.Application.Sender.Newsletters.Queries;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
@@ -9,16 +10,14 @@ namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
 public class GetAllSubscribersQueryHandlerTest : TestBase
 {
     [Fact]
-    public async Task WhenGetAllSubscribers_ShouldReturnCollection()
+    public async Task WhenGetAllNewsletters_ShouldReturnCollection()
     {
         // Arrange
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
 
-        var query = new GetNewslettersQuery();
-        var handler = new GetNewslettersQueryHandler(databaseContext, mockedLogger.Object);
-
-        var subscribers = new List<Backend.Domain.Entities.Newsletter>
+        var newsletters = new List<Backend.Domain.Entities.Newsletter>
         {
             new()
             {
@@ -38,8 +37,12 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
             }
         };
 
-        await databaseContext.Newsletters.AddRangeAsync(subscribers);
-        await databaseContext.SaveChangesAsync();
+        mockSenderRepository
+            .Setup(repository => repository.GetNewsletters(It.IsAny<bool>()))
+            .ReturnsAsync(newsletters);
+
+        var query = new GetNewslettersQuery();
+        var handler = new GetNewslettersQueryHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);

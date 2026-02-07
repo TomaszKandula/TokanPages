@@ -5,8 +5,9 @@ using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
+using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.UserService.Abstractions;
@@ -23,14 +24,21 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
 
     private readonly IUserService _userService;
 
+    private readonly IMessagingRepository _messagingRepository;
+    
+    private readonly ISenderRepository _senderRepository;
+
     public SendMessageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IEmailSenderService emailSenderService, IDateTimeService dateTimeService, 
-        IOptions<AppSettingsModel> options, IUserService userService) : base(operationDbContext, loggerService)
+        IOptions<AppSettingsModel> options, IUserService userService, IMessagingRepository messagingRepository, ISenderRepository senderRepository) 
+        : base(operationDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;
         _appSettings = options.Value;
         _userService = userService;
+        _messagingRepository = messagingRepository;
+        _senderRepository = senderRepository;
     }
 
     public override async Task<Unit> Handle(SendMessageCommand request, CancellationToken cancellationToken)
@@ -48,12 +56,6 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
 
         var contactAddress = _appSettings.EmailAddressContact;
         var messageId = Guid.NewGuid();
-
-        var serviceBusMessage = new ServiceBusMessage
-        {
-            Id = messageId,
-            IsConsumed = false
-        };
 
         var templateValues = new Dictionary<string, string>
         {
@@ -76,15 +78,7 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
             var payloadId = Guid.NewGuid();
             templateValues.Add("{USER_MSG}", $"New business inquiry registered with the System ID: {payloadId}.");
             message.Subject = "New business inquiry";
-            var businessInquiry = new BusinessInquiry
-            {
-                Id = payloadId,
-                JsonData = request.BusinessData,
-                CreatedAt = _dateTimeService.Now,
-                CreatedBy = Guid.Empty
-            };
-
-            await OperationDbContext.BusinessInquiries.AddAsync(businessInquiry, cancellationToken);
+            await _senderRepository.CreateBusinessInquiry(request.BusinessData);
         }
         else
         {
@@ -93,8 +87,7 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
 
         message.Body = template.MakeBody(templateValues);
 
-        await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
+        await _messagingRepository.CreateServiceBusMessage(messageId);
         await _emailSenderService.SendToServiceBus(message, cancellationToken);
 
         return Unit.Value;
