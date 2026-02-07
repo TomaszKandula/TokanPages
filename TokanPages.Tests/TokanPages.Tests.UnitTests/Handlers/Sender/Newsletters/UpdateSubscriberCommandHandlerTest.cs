@@ -2,8 +2,8 @@
 using Moq;
 using TokanPages.Backend.Application.Sender.Newsletters.Commands;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using Xunit;
@@ -29,9 +29,9 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         await databaseContext.Newsletters.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
-        var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
 
         mockedUserService
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
@@ -48,8 +48,8 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var handler = new UpdateNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
-            dateTimeService, 
-            mockedUserService.Object);
+            mockedUserService.Object,
+            mockSenderRepository.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -82,9 +82,9 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         await databaseContext.Newsletters.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
-        var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
 
         var command = new UpdateNewsletterCommand
         {
@@ -97,8 +97,8 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var handler = new UpdateNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
-            dateTimeService, 
-            mockedUserService.Object);
+            mockedUserService.Object,
+            mockSenderRepository.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -140,15 +140,15 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         await databaseContext.Newsletters.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
-        var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
 
         var handler = new UpdateNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            dateTimeService, 
-            mockedUserService.Object);
+            mockedUserService.Object,
+            mockSenderRepository.Object);
 
         // Act
         // Assert
@@ -173,9 +173,9 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         await databaseContext.Newsletters.AddAsync(subscribers);
         await databaseContext.SaveChangesAsync();
 
-        var dateTimeService = new DateTimeService();
         var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
 
         var command = new UpdateNewsletterCommand
         {
@@ -188,8 +188,8 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var handler = new UpdateNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            dateTimeService, 
-            mockedUserService.Object);
+            mockedUserService.Object,
+            mockSenderRepository.Object);
 
         // Act
         // Assert
