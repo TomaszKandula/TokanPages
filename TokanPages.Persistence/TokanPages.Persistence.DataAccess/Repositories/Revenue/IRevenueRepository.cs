@@ -50,6 +50,12 @@ public interface IRevenueRepository
     Task<UserPayment?> GetUserPayments(Guid userId);
 
     /// <summary>
+    /// Creates new user payment entry in the database.
+    /// </summary>
+    /// <param name="data">Payment details.</param>
+    Task CreateUserPayment(CreateUserPaymentDto data);
+
+    /// <summary>
     /// Updates existing user payment details entry in the database. 
     /// </summary>
     /// <param name="data">Payment details.</param>
