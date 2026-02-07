@@ -24,7 +24,7 @@ public interface IRevenueRepository
     Task<SubscriptionPricing?> GetSubscriptionPrice(TermType term, string languageIso, string currencyIso);
 
     /// <summary>
-    /// Returns list of use subscription.
+    /// Returns list of use subscription by the given user ID.
     /// </summary>
     /// <param name="userId">A mandatory user ID.</param>
     /// <returns>If found, returns user subscription details, otherwise null.</returns>
@@ -43,10 +43,10 @@ public interface IRevenueRepository
     Task UpdateUserSubscription(UpdateUserSubscriptionDto data);
 
     /// <summary>
-    /// 
+    /// Returns user payment details by the given user ID.
     /// </summary>
-    /// <param name="userId"></param>
-    /// <returns></returns>
+    /// <param name="userId">A mandatory user ID.</param>
+    /// <returns>If found, returns user payment, otherwise null.</returns>
     Task<UserPayment?> GetUserPayments(Guid userId);
 
     /// <summary>
