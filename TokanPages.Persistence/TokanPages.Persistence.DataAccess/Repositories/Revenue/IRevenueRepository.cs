@@ -67,4 +67,10 @@ public interface IRevenueRepository
     /// </summary>
     /// <param name="data">Payment details.</param>
     Task UpdateUserPayment(UpdateUserPaymentDto data);
+
+    /// <summary>
+    /// Creates new history entry for user payment.
+    /// </summary>
+    /// <param name="data">Payment details.</param>
+    Task CreateUserPaymentsHistory(CreateUserPaymentHistoryDto data);
 }
