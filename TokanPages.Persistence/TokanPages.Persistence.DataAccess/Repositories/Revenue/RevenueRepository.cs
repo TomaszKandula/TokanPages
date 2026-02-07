@@ -21,6 +21,20 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
     }
 
     /// <inheritdoc/>
+    public async Task<SubscriptionPricing?> GetSubscriptionPrice(TermType term, string languageIso, string currencyIso)
+    {
+        var filterBy = new
+        {
+            Term = term,
+            CurrencyIso = currencyIso,
+            LanguageIso = languageIso
+        };
+
+        var prices = await DbOperations.Retrieve<SubscriptionPricing>(filterBy);
+        return prices.SingleOrDefault();
+    }
+
+    /// <inheritdoc/>
     public async Task<UserSubscription?> GetUserSubscription(Guid userId)
     {
         var filterBy = new { UserId = userId };
