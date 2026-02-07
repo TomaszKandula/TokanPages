@@ -1,13 +1,12 @@
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.PayUService.Models;
 using TokanPages.Services.UserService.Abstractions;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Configuration.Options;
-using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Revenue;
+using TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 using BuyerInput = TokanPages.Services.PayUService.Models.Sections.Buyer;
 using CardInput = TokanPages.Services.PayUService.Models.Sections.Card;
 using PayMethodInput = TokanPages.Services.PayUService.Models.Sections.PayMethod;
@@ -21,19 +20,19 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
 {
     private readonly IUserService _userService;
 
-    private readonly IDateTimeService _dateTimeService;
-
     private readonly IPayUService _payUService;
+
+    private readonly IRevenueRepository _revenueRepository;
 
     private readonly AppSettingsModel _appSettings;
 
     public CreatePaymentCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService, IPayUService payUService, 
-        IOptions<AppSettingsModel> options) : base(operationDbContext, loggerService)
+        IUserService userService, IPayUService payUService, IOptions<AppSettingsModel> options, IRevenueRepository revenueRepository) 
+        : base(operationDbContext, loggerService)
     {
         _userService = userService;
-        _dateTimeService = dateTimeService;
         _payUService = payUService;
+        _revenueRepository = revenueRepository;
         _appSettings = options.Value;
     }
 
@@ -93,39 +92,37 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
         };
 
         var postOrderResponse = await _payUService.PostOrder(input, cancellationToken);
-        var userPayments = await OperationDbContext.UserPayments
-            .Where(payments => payments.UserId == request.UserId)
-            .SingleOrDefaultAsync(cancellationToken);
-
+        var userPayments = await _revenueRepository.GetUserPayments(user.Id);
         if (userPayments is not null)
         {
-            userPayments.PmtOrderId = postOrderResponse.OrderId;
-            userPayments.PmtStatus = postOrderResponse.Status?.StatusCode;
-            userPayments.PmtType = postOrderResponse.PayMethods?.PayMethod?.Type;
-            userPayments.PmtToken = postOrderResponse.PayMethods?.PayMethod?.Value;
-            userPayments.ModifiedAt = _dateTimeService.Now;
-            userPayments.ModifiedBy = user.Id;
-            userPayments.ExtOrderId = order.ExtOrderId;
+            var userPayment = new UpdateUserPaymentDto
+            {
+                PmtOrderId = postOrderResponse.OrderId ?? string.Empty,
+                PmtStatus = postOrderResponse.Status?.StatusCode ?? string.Empty,
+                PmtType = postOrderResponse.PayMethods?.PayMethod?.Type ?? string.Empty,
+                PmtToken = postOrderResponse.PayMethods?.PayMethod?.Value ?? string.Empty,
+                ModifiedBy = user.Id,
+                ExtOrderId = order.ExtOrderId ?? string.Empty
+            };
+
+            await _revenueRepository.UpdateUserPayment(userPayment);
         }
         else
         {
-            var userPayment = new UserPayment
+            var userPayment = new CreateUserPaymentDto
             {
-                Id = Guid.NewGuid(),
                 UserId = user.Id,
-                PmtOrderId = postOrderResponse.OrderId,
-                PmtStatus = postOrderResponse.Status?.StatusCode,
-                PmtType = postOrderResponse.PayMethods?.PayMethod?.Type,
-                PmtToken = postOrderResponse.PayMethods?.PayMethod?.Value,
-                CreatedAt = _dateTimeService.Now,
+                PmtOrderId = postOrderResponse.OrderId ?? string.Empty,
+                PmtStatus = postOrderResponse.Status?.StatusCode ?? string.Empty,
+                PmtType = postOrderResponse.PayMethods?.PayMethod?.Type ?? string.Empty,
+                PmtToken = postOrderResponse.PayMethods?.PayMethod?.Value ?? string.Empty,
                 CreatedBy = user.Id,
-                ExtOrderId = order.ExtOrderId
+                ExtOrderId = order.ExtOrderId ?? string.Empty
             };
 
-            await OperationDbContext.UserPayments.AddAsync(userPayment, cancellationToken);
+            await _revenueRepository.CreateUserPayment(userPayment);
         }
 
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation("New user payment has been registered within the system.");
 
         return new CreatePaymentCommandResult
