@@ -50,6 +50,13 @@ public interface IRevenueRepository
     Task<UserPayment?> GetUserPayment(Guid userId);
 
     /// <summary>
+    /// Returns user payment details by the given external order ID.
+    /// </summary>
+    /// <param name="extOrderId">External order ID provided by the Payment Provider (PayU).</param>
+    /// <returns>If found, returns user payment, otherwise null.</returns>
+    Task<UserPayment?> GetUserPayment(string extOrderId);
+
+    /// <summary>
     /// Creates new user payment entry in the database.
     /// </summary>
     /// <param name="data">Payment details.</param>
