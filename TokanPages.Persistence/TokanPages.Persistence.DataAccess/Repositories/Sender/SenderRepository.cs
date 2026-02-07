@@ -14,6 +14,22 @@ public class SenderRepository : RepositoryBase, ISenderRepository
         : base(dbOperations, appSettings) => _dateTimeService = dateTimeService;
 
     /// <inheritdoc/>
+    public async Task<Newsletter?> GetNewsletter(Guid id)
+    {
+        var filterBy = new { Id = id };
+        var data = await DbOperations.Retrieve<Newsletter>(filterBy);
+        return data.SingleOrDefault();
+    }
+
+    /// <inheritdoc/>
+    public async Task<List<Newsletter>> GetNewsletters(bool isActive)
+    {
+        var filterBy = new { IsActive = isActive };
+        var data = await DbOperations.Retrieve<Newsletter>(filterBy);
+        return data.ToList();
+    }
+
+    /// <inheritdoc/>
     public async Task CreateBusinessInquiry(string jsonData)
     {
         var entity = new BusinessInquiry
