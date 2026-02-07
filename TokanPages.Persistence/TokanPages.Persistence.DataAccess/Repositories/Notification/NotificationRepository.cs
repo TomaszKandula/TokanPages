@@ -160,6 +160,18 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
+    public async Task CreateWebNotification(string value, Guid? primaryKey = null)
+    {
+        var entity = new WebNotification
+        {
+            Id = primaryKey ?? Guid.NewGuid(),
+            Value = value
+        };
+
+        await DbOperations.Insert(entity);
+    }
+
+    /// <inheritdoc/>
     public async Task DeleteWebNotificationByStatusId(Guid statusId)
     {
         var deleteBy = new { Id = statusId };
