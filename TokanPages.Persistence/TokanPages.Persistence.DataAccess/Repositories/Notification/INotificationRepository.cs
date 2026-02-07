@@ -85,6 +85,16 @@ public interface INotificationRepository
     Task<WebNotification?> GetWebNotificationByStatusId(Guid statusId);
 
     /// <summary>
+    /// Creates web notification entry in the repository.
+    /// </summary>
+    /// <remarks>
+    /// The primary key is optional. If not passed, then it will be created.
+    /// </remarks>
+    /// <param name="value">Stringify data to be saved.</param>
+    /// <param name="primaryKey">Optional primary key of the entity.</param>
+    Task CreateWebNotification(string value, Guid? primaryKey = null);
+
+    /// <summary>
     /// Deletes web notification entry for a given ID.
     /// </summary>
     /// <remarks>
