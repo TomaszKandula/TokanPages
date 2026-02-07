@@ -77,7 +77,10 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
             ExtCustomerId = data.ExtCustomerId,
             extOrderId = data.ExtOrderId,
             ModifiedAt = _dateTimeService.Now,
-            ModifiedBy = data.ModifiedBy
+            ModifiedBy = data.ModifiedBy,
+            IsActive = data.IsActive,
+            CompletedAt = data.CompletedAt,
+            ExpiresAt = data.ExpiresAt
         };
 
         var filterBy = new
