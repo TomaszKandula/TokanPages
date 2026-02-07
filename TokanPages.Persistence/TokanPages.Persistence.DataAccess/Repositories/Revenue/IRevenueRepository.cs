@@ -1,6 +1,7 @@
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Domain.Enums;
+using TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Revenue;
 
@@ -28,4 +29,18 @@ public interface IRevenueRepository
     /// <param name="userId">A mandatory user ID.</param>
     /// <returns>If found, returns user subscription details, otherwise null.</returns>
     Task<UserSubscription?> GetUserSubscription(Guid userId);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    Task CreateUserSubscription(CreateUserSubscriptionDto data);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    Task UpdateUserSubscription(UpdateUserSubscriptionDto data);
 }
