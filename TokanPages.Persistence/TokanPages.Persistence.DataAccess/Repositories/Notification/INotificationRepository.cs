@@ -27,15 +27,15 @@ public interface INotificationRepository
     /// <summary>
     /// Deletes existing push notification entry from the repository.
     /// </summary>
-    /// <param name="key">Push notification table primary key.</param>
-    Task DeletePushNotification(Guid key);
+    /// <param name="primaryKey">Push notification table primary key.</param>
+    Task DeletePushNotificationByPk(Guid primaryKey);
 
     /// <summary>
     /// Deletes existing push notification entries from the repository.
     /// </summary>
-    /// <param name="keys">List of 'PushNotification' primary keys.</param>
+    /// <param name="primaryKeys">Push notification table primary keys.</param>
     /// <returns></returns>
-    Task DeletePushNotifications(List<Guid> keys);
+    Task DeletePushNotificationsByPks(List<object> primaryKeys);
 
     /// <summary>
     /// Returns push notification tags by an installation ID.
