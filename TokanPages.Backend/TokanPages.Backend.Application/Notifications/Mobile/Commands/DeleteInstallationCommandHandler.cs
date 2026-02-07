@@ -25,8 +25,8 @@ public class DeleteInstallationCommandHandler : RequestHandler<DeleteInstallatio
         await hub.DeleteInstallationById(request.Id.ToString(), cancellationToken);
         LoggerService.LogInformation($"Installation ({request.Id}) has been removed from Azure Notification Hub.");
 
-        await _notificationRepository.DeletePushNotificationTag(request.Id);
-        await _notificationRepository.DeletePushNotification(request.Id);
+        await _notificationRepository.DeletePushNotificationTagsByFk(request.Id);
+        await _notificationRepository.DeletePushNotificationByPk(request.Id);
 
         LoggerService.LogInformation("Installation record has been removed from database.");
         return Unit.Value;
