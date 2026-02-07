@@ -97,6 +97,25 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
     }
 
     /// <inheritdoc/>
+    public async Task CreateUserPayment(CreateUserPaymentDto data)
+    {
+        var entity = new UserPayment
+        {
+            Id = data.Id ?? Guid.NewGuid(),
+            UserId = data.UserId,
+            PmtOrderId = data.PmtOrderId,
+            PmtStatus = data.PmtStatus,
+            PmtType = data.PmtType,
+            PmtToken = data.PmtToken,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = data.UserId,
+            ExtOrderId = data.ExtOrderId
+        };
+
+        await DbOperations.Insert(entity);
+    }
+
+    /// <inheritdoc/>
     public async Task UpdateUserPayment(UpdateUserPaymentDto data)
     {
         var updateBy = new
