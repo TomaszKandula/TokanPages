@@ -57,16 +57,16 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
-    public async Task DeletePushNotification(Guid key)
+    public async Task DeletePushNotificationByPk(Guid primaryKey)
     {
-        var deleteBy = new { Id = key };
+        var deleteBy = new { Id = primaryKey };
         await DbOperations.Delete<PushNotification>(deleteBy);
     }
 
     /// <inheritdoc/>
-    public async Task DeletePushNotifications(List<Guid> keys)
+    public async Task DeletePushNotificationsByPks(List<object> primaryKeys)
     {
-        var ids = new HashSet<Guid>(keys);
+        var ids = new HashSet<object>(primaryKeys);
         await DbOperations.Delete<PushNotification>(ids);
     }
 
@@ -115,16 +115,16 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
-    public async Task DeletePushNotificationTag(Guid pushNotificationId)
+    public async Task DeletePushNotificationTagsByFks(Guid pushNotificationId)
     {
         var deleteBy = new { PushNotificationId = pushNotificationId };
         await DbOperations.Delete<PushNotificationTag>(deleteBy);
     }
 
     /// <inheritdoc/>
-    public async Task DeletePushNotificationTags(List<Guid> keys)
+    public async Task DeletePushNotificationTagsByPks(List<object> keys)
     {
-        var uids = new HashSet<Guid>(keys);
+        var uids = new HashSet<object>(keys);
         await DbOperations.Delete<PushNotificationTag>(uids);
     }
 
