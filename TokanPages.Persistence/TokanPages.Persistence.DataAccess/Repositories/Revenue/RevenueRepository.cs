@@ -95,4 +95,26 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
         var data = await DbOperations.Retrieve<UserPayment>(filterBy);
         return data.SingleOrDefault();
     }
+
+    /// <inheritdoc/>
+    public async Task UpdateUserPayment(UpdateUserPaymentDto data)
+    {
+        var updateBy = new
+        {
+            PmtOrderId = data.PmtOrderId,
+            PmtStatus = data.PmtStatus,
+            PmtType = data.PmtType,
+            PmtToken = data.PmtToken,
+            ModifiedAt = _dateTimeService.Now,
+            ModifiedBy = data.ModifiedBy,
+            ExtOrderId = data.ExtOrderId
+        };
+
+        var filterBy = new
+        {
+            UserId = data.ModifiedBy
+        };
+
+        await DbOperations.Update<UserPayment>(updateBy, filterBy);
+    }
 }

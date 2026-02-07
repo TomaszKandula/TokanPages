@@ -48,4 +48,10 @@ public interface IRevenueRepository
     /// <param name="userId"></param>
     /// <returns></returns>
     Task<UserPayment?> GetUserPayments(Guid userId);
+
+    /// <summary>
+    /// Updates existing user payment details entry in the database. 
+    /// </summary>
+    /// <param name="data">Payment details.</param>
+    Task UpdateUserPayment(UpdateUserPaymentDto data);
 }
