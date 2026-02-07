@@ -39,8 +39,8 @@ public interface INotificationRepository
     /// <remarks>
     /// ID is the primary key of the given entity.
     /// </remarks>
-    /// <param name="primaryKeys">A list of primary keys.</param>
-    Task DeletePushNotificationsByPks(List<object> primaryKeys);
+    /// <param name="ids">A list of primary keys.</param>
+    Task DeletePushNotificationsByIds(List<object> ids);
 
     /// <summary>
     /// Returns push notification tags by the installation ID.

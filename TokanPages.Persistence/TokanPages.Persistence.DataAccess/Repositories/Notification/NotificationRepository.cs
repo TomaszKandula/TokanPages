@@ -64,10 +64,10 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
-    public async Task DeletePushNotificationsByPks(List<object> primaryKeys)
+    public async Task DeletePushNotificationsByIds(List<object> ids)
     {
-        var ids = new HashSet<object>(primaryKeys);
-        await DbOperations.Delete<PushNotification>(ids);
+        var uids = new HashSet<object>(ids);
+        await DbOperations.Delete<PushNotification>(uids);
     }
 
     /// <inheritdoc/>
