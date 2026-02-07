@@ -86,13 +86,13 @@ public class ChatRepository : RepositoryBase, IChatRepository
         await DbOperations.Insert(entity);
     }
 
-    public async Task RemoveChatUserCacheById(Guid chatId)
+    public async Task DeleteChatUserCacheById(Guid chatId)
     {
         var filterBy = new { ChatId = chatId };
         await DbOperations.Delete<UserMessageCache>(filterBy);
     }
 
-    public async Task RemoveChatUserCacheByKey(string chatKey)
+    public async Task DeleteChatUserCacheByKey(string chatKey)
     {
         var filterBy = new { ChatKey = chatKey };
         await DbOperations.Delete<UserMessageCache>(filterBy);
