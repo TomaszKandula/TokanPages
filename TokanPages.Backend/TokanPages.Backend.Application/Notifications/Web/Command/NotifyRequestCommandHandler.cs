@@ -8,9 +8,9 @@ using TokanPages.Services.WebSocketService.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using TokanPages.Backend.Domain.Entities.Notifications;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Notification;
 
 namespace TokanPages.Backend.Application.Notifications.Web.Command;
 
@@ -18,15 +18,19 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
 {
     private readonly INotificationService _notificationService;
 
+    private readonly INotificationRepository _notificationRepository;
+
     private readonly IJsonSerializer _jsonSerializer;
 
     private static JsonSerializerSettings Setting => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
     public NotifyRequestCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        INotificationService notificationService, IJsonSerializer jsonSerializer) : base(operationDbContext, loggerService)
+        INotificationService notificationService, IJsonSerializer jsonSerializer, INotificationRepository notificationRepository) 
+        : base(operationDbContext, loggerService)
     {
         _notificationService = notificationService;
         _jsonSerializer = jsonSerializer;
+        _notificationRepository = notificationRepository;
     }
 
     public override async Task<NotifyRequestCommandResult> Handle(NotifyRequestCommand request, CancellationToken cancellationToken)
@@ -104,7 +108,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
                 ChatKey = chatData.ChatKey,
                 Notification = data
             };
-            
+
             await OperationDbContext.UserMessagesCache.AddAsync(cache, cancellationToken);
             await OperationDbContext.SaveChangesAsync(cancellationToken);
         }
@@ -115,18 +119,14 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
 
     private async Task SaveNotification(Guid userId, string data, CancellationToken cancellationToken)
     {
-        var currentNotification = await OperationDbContext.WebNotifications
-            .Where(notifications => notifications.Id == userId)
-            .SingleOrDefaultAsync(cancellationToken);
-
+        var currentNotification = await _notificationRepository.GetWebNotificationByStatusId(userId);
         if (currentNotification is not null)
         {
             currentNotification.Value = data;
         }
         else
         {
-            var webNotification = new WebNotification { Id = userId, Value = data };
-            await OperationDbContext.WebNotifications.AddAsync(webNotification, cancellationToken);
+            await _notificationRepository.CreateWebNotification(data, userId);
         }
 
         await OperationDbContext.SaveChangesAsync(cancellationToken);
