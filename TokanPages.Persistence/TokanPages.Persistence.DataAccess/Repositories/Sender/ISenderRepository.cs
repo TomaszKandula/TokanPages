@@ -12,7 +12,7 @@ public interface ISenderRepository
     Task<Newsletter?> GetNewsletter(Guid id);
 
     /// <summary>
-    /// Returns list of newsletter that are active. 
+    /// Returns list of newsletters that are active.
     /// </summary>
     /// <param name="isActive">If true, only active newsletters are returned.</param>
     /// <returns>Lif of active newsletters.</returns>
