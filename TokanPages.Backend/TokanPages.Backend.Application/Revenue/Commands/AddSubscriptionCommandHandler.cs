@@ -56,7 +56,10 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
                 CurrencyIso = price.CurrencyIso,
                 ExtCustomerId = extCustomerId,
                 ExtOrderId = extOrderId,
-                ModifiedBy = user.Id
+                ModifiedBy = user.Id,
+                IsActive = userSubscription.IsActive,
+                CompletedAt =  userSubscription.CompletedAt,
+                ExpiresAt =  userSubscription.ExpiresAt
             };
 
             result = new AddSubscriptionCommandResult
