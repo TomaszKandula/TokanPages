@@ -5,12 +5,12 @@ using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.WebSocketService.Abstractions;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Chat;
 using TokanPages.Persistence.DataAccess.Repositories.Notification;
+using TokanPages.Persistence.DataAccess.Repositories.User;
 
 namespace TokanPages.Backend.Application.Notifications.Web.Command;
 
@@ -21,28 +21,27 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
     private readonly INotificationRepository _notificationRepository;
 
     private readonly IChatRepository _chatRepository;
+    
+    private readonly IUserRepository _userRepository;
 
     private readonly IJsonSerializer _jsonSerializer;
 
     private static JsonSerializerSettings Setting => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
     public NotifyRequestCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, INotificationService notificationService, 
-        IJsonSerializer jsonSerializer, INotificationRepository notificationRepository, IChatRepository chatRepository) 
+        IJsonSerializer jsonSerializer, INotificationRepository notificationRepository, IChatRepository chatRepository, IUserRepository userRepository) 
         : base(operationDbContext, loggerService)
     {
         _notificationService = notificationService;
         _jsonSerializer = jsonSerializer;
         _notificationRepository = notificationRepository;
         _chatRepository = chatRepository;
+        _userRepository = userRepository;
     }
 
     public override async Task<NotifyRequestCommandResult> Handle(NotifyRequestCommand request, CancellationToken cancellationToken)
     {
-        var user = await OperationDbContext.Users
-            .AsNoTracking()
-            .Where(user => user.Id == request.UserId)
-            .SingleOrDefaultAsync(cancellationToken);
-
+        var user = await _userRepository.GetUserById(request.UserId);
         if (user is null)
             throw new GeneralException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
