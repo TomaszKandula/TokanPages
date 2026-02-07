@@ -3,7 +3,6 @@ using TokanPages.Backend.Application.Revenue.Models;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Services.WebSocketService.Abstractions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
@@ -17,16 +16,16 @@ public class PostNotificationCommandHandler : RequestHandler<PostNotificationCom
 {
     private readonly IDateTimeService _dateTimeService;
 
-    private readonly INotificationService _notificationService;
-
     private readonly IJsonSerializer _jsonSerializer;
+    
+    private readonly IMediator _mediator;
 
-    public PostNotificationCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
-        INotificationService notificationService, IJsonSerializer jsonSerializer): base(operationDbContext, loggerService)
+    public PostNotificationCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IDateTimeService dateTimeService, IJsonSerializer jsonSerializer, IMediator mediator): base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
-        _notificationService = notificationService;
         _jsonSerializer = jsonSerializer;
+        _mediator = mediator;
     }
 
     public override async Task<Unit> Handle(PostNotificationCommand request, CancellationToken cancellationToken)
@@ -119,8 +118,7 @@ public class PostNotificationCommandHandler : RequestHandler<PostNotificationCom
             Handler = "payment_status"
         };
 
-        var handler = new NotifyRequestCommandHandler(OperationDbContext, LoggerService, _notificationService, _jsonSerializer);
-        await handler.Handle(notify, cancellationToken);
+        await _mediator.Send(notify, cancellationToken);
         LoggerService.LogInformation("Payment completed. Web application notified.");
     }
 }
