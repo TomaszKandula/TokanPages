@@ -1,28 +1,27 @@
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 
 namespace TokanPages.Backend.Domain.Entities.Users;
 
-[ExcludeFromCodeCoverage]//TODO: add attribute, remove EFCore nav props
+[ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "UserRefreshTokens")]
 public class UserRefreshToken : Entity<Guid>
 {
     public Guid UserId { get; set; }
-    [Required]
-    [MaxLength(500)]
-    public string Token { get; set; }
-    public DateTime Expires { get; set; }
-    public DateTime Created { get; set; }
-    [Required]
-    [MaxLength(15)]
-    public string CreatedByIp { get; set; }
-    public DateTime? Revoked { get; set; }
-    [MaxLength(15)]
-    public string RevokedByIp { get; set; }
-    [MaxLength(500)]
-    public string ReplacedByToken { get; set; }
-    [MaxLength(255)]
-    public string ReasonRevoked { get; set; }
 
-    /* Navigation properties */
-    public User User { get; set; }
+    public string Token { get; set; }
+
+    public DateTime Expires { get; set; }
+
+    public DateTime Created { get; set; }
+
+    public string CreatedByIp { get; set; }
+
+    public DateTime? Revoked { get; set; }
+
+    public string RevokedByIp { get; set; }
+
+    public string ReplacedByToken { get; set; }
+
+    public string ReasonRevoked { get; set; }
 }
