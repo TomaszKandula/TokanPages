@@ -40,6 +40,13 @@ public interface ISenderRepository
     Task UpdateNewsletter(UpdateNewsletterDto data);
 
     /// <summary>
+    /// Removes existing newsletter entry from the database.
+    /// </summary>
+    /// <param name="id">A mandatory newsletter ID.</param>
+    /// <returns></returns>
+    Task RemoveNewsletter(Guid id);
+    
+    /// <summary>
     /// Creates a new business inquiry entry in the database.
     /// </summary>
     /// <param name="jsonData">A stringify business message.</param>
