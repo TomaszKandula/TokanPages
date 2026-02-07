@@ -17,5 +17,5 @@ public interface IRevenueRepository
     /// </summary>
     /// <param name="userId">A mandatory user ID.</param>
     /// <returns>If found, returns user subscription details, otherwise null.</returns>
-    Task<UserSubscription?> GetUserSubscriptions(Guid userId);
+    Task<UserSubscription?> GetUserSubscription(Guid userId);
 }

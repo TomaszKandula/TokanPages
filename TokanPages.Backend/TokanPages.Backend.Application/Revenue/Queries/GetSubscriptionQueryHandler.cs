@@ -21,7 +21,7 @@ public class GetSubscriptionQueryHandler : RequestHandler<GetSubscriptionQuery, 
     public override async Task<GetSubscriptionQueryResult> Handle(GetSubscriptionQuery request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var subscription = await _revenueRepository.GetUserSubscriptions(userId);
+        var subscription = await _revenueRepository.GetUserSubscription(userId);
         if (subscription == null)
             return new GetSubscriptionQueryResult();
 
