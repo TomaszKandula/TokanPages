@@ -73,4 +73,23 @@ public interface INotificationRepository
     /// </summary>
     /// <param name="data">List of log details.</param>
     Task CreatePushNotificationLogs(List<PushNotificationLogDto> data);
+
+    /// <summary>
+    /// Returns web notification entity by a given status ID.
+    /// </summary>
+    /// <remarks>
+    /// Status ID is a Primary Key of the given entity.
+    /// </remarks>
+    /// <param name="statusId">Status ID.</param>
+    /// <returns>An entity if exists, otherwise null.</returns>
+    Task<WebNotification?> GetWebNotificationByStatusId(Guid statusId);
+
+    /// <summary>
+    /// Deletes web notification entry for a given ID.
+    /// </summary>
+    /// <remarks>
+    /// Status ID is a Primary Key of the given entity.
+    /// </remarks>
+    /// <param name="statusId">Status ID.</param>
+    Task DeleteWebNotificationByStatusId(Guid statusId);
 }
