@@ -33,7 +33,7 @@ public class StatusRequestCommandHandler : RequestHandler<StatusRequestCommand, 
             Payload = data.Payload
         };
 
-        await _notificationRepository.DeleteWebNotificationByStatusId(request.StatusId);
+        await _notificationRepository.DeleteWebNotificationById(request.StatusId);
         return result;
     }
 }

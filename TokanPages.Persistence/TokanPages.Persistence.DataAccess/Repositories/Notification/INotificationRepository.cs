@@ -98,8 +98,8 @@ public interface INotificationRepository
     /// Deletes web notification entry for a given ID.
     /// </summary>
     /// <remarks>
-    /// Status ID is a Primary Key of the given entity.
+    /// ID is a Primary Key of the given entity.
     /// </remarks>
-    /// <param name="statusId">Status ID.</param>
-    Task DeleteWebNotificationByStatusId(Guid statusId);
+    /// <param name="id">A mandatory ID used to delete a database entry.</param>
+    Task DeleteWebNotificationById(Guid id);
 }

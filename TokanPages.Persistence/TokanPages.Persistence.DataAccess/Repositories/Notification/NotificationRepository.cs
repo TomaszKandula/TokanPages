@@ -172,9 +172,9 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
-    public async Task DeleteWebNotificationByStatusId(Guid statusId)
+    public async Task DeleteWebNotificationById(Guid id)
     {
-        var deleteBy = new { Id = statusId };
+        var deleteBy = new { Id = id };
         await DbOperations.Delete<WebNotification>(deleteBy);
     }
 }
