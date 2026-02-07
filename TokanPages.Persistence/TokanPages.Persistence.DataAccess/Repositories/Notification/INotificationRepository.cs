@@ -106,6 +106,13 @@ public interface INotificationRepository
     Task CreateWebNotification(string value, Guid? primaryKey = null);
 
     /// <summary>
+    /// Updates existing web notification entity by the given ID.
+    /// </summary>
+    /// <param name="id">A mandatory primary key of the entity.</param>
+    /// <param name="value">Stringify data to be saved.</param>
+    Task UpdateWebNotification(Guid id, string value);
+
+    /// <summary>
     /// Deletes web notification entry for the given ID.
     /// </summary>
     /// <remarks>

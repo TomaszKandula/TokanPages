@@ -172,6 +172,14 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
+    public async Task UpdateWebNotification(Guid id, string value)
+    {
+        var filterBy = new { Id = id };
+        var updateBy = new { Value = value };
+        await DbOperations.Update<WebNotification>(updateBy, filterBy);
+    }
+
+    /// <inheritdoc/>
     public async Task DeleteWebNotificationById(Guid id)
     {
         var deleteBy = new { Id = id };
