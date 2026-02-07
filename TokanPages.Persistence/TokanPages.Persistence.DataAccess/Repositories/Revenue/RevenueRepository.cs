@@ -137,6 +137,8 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
             PmtToken = data.PmtToken,
             ModifiedAt = _dateTimeService.Now,
             ModifiedBy = data.ModifiedBy,
+            CreatedAt = data.CreatedAt,
+            CreatedBy = data.CreatedBy,
             ExtOrderId = data.ExtOrderId
         };
 
