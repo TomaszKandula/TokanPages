@@ -30,8 +30,8 @@ public interface INotificationRepository
     /// <remarks>
     /// ID is the primary key of the given entity.
     /// </remarks>
-    /// <param name="primaryKey">A mandatory ID.</param>
-    Task DeletePushNotificationByPk(Guid primaryKey);
+    /// <param name="id">A mandatory ID.</param>
+    Task DeletePushNotificationById(Guid id);
 
     /// <summary>
     /// Deletes existing push notification entries by the given IDs.
