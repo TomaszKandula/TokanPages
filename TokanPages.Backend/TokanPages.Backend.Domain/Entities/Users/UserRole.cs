@@ -1,9 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
 
 namespace TokanPages.Backend.Domain.Entities.Users;
 
-[ExcludeFromCodeCoverage]//TODO: add attribute, remove EFCore nav props
+[ExcludeFromCodeCoverage]//TODO: remove EFCore nav props
+[DatabaseTable(Schema = "operation", TableName = "UserRoles")]
 public class UserRole : Entity<Guid>, IAuditable
 {
     public Guid UserId { get; set; }
