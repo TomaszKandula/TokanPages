@@ -60,7 +60,7 @@ public interface INotificationRepository
     /// Deletes push notification tags by a given ID (foreign key).
     /// </summary>
     /// <param name="pushNotificationId">A foreign key linked to the primary key of the related 'PushNotification' entity.</param>
-    Task DeletePushNotificationTagsByFks(Guid pushNotificationId);
+    Task DeletePushNotificationTagsByFk(Guid pushNotificationId);
 
     /// <summary>
     /// Deletes push notification tags by given IDs (primary keys).
