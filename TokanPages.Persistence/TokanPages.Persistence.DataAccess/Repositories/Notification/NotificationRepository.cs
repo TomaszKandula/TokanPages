@@ -10,10 +10,11 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Notification;
 public class NotificationRepository : RepositoryBase, INotificationRepository
 {
     private readonly IDateTimeService _dateTimeService;
-    
+
     public NotificationRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
         : base(dbOperations, appSettings) => _dateTimeService = dateTimeService;
 
+    /// <inheritdoc/>
     public async Task<PushNotification?> GetPushNotification(string pnsHandle)
     {
         var filterBy = new { Handle = pnsHandle };
@@ -21,7 +22,8 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         return data.SingleOrDefault();
     }
 
-    public async Task CreatePushNotificationEntry(PushNotificationDto data)
+    /// <inheritdoc/>
+    public async Task CreatePushNotification(PushNotificationDto data)
     {
         var entity = new PushNotification
         {
@@ -38,7 +40,8 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Insert(entity);
     }
 
-    public async Task UpdatePushNotificationEntry(PushNotificationDto data)
+    /// <inheritdoc/>
+    public async Task UpdatePushNotification(PushNotificationDto data)
     {
         var filterBy = new { Id = data.Id };
         var updateBy = new
@@ -53,6 +56,21 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Update<PushNotification>(updateBy, filterBy);
     }
 
+    /// <inheritdoc/>
+    public async Task DeletePushNotificationById(Guid id)
+    {
+        var deleteBy = new { Id = id };
+        await DbOperations.Delete<PushNotification>(deleteBy);
+    }
+
+    /// <inheritdoc/>
+    public async Task DeletePushNotificationsByIds(List<object> ids)
+    {
+        var uids = new HashSet<object>(ids);
+        await DbOperations.Delete<PushNotification>(uids);
+    }
+
+    /// <inheritdoc/>
     public async Task<List<PushNotificationTag>> GetPushNotificationTags(Guid installationId)
     {
         var filterBy = new { PushNotificationId = installationId };
@@ -60,6 +78,7 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         return data.ToList();
     }
 
+    /// <inheritdoc/>
     public async Task CreatePushNotificationTag(PushNotificationTagDto data)
     {
         var entity = new PushNotificationTag
@@ -72,5 +91,98 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         };
 
         await DbOperations.Insert(entity);
+    }
+
+    /// <inheritdoc/>
+    public async Task CreatePushNotificationTags(List<PushNotificationTagDto> data)
+    {
+         var entities = new List<PushNotificationTag>();
+         foreach (var item in data)
+         {
+             var entry = new PushNotificationTag
+             {
+                 Id = Guid.NewGuid(),
+                 PushNotificationId = item.PushNotificationId,
+                 Tag = item.Tag,
+                 CreatedAt = _dateTimeService.Now,
+                 CreatedBy = Guid.Empty
+             };
+
+             entities.Add(entry);
+         }
+
+         await DbOperations.Insert(entities);
+    }
+
+    /// <inheritdoc/>
+    public async Task DeletePushNotificationTagsById(Guid id)
+    {
+        var deleteBy = new { PushNotificationId = id };
+        await DbOperations.Delete<PushNotificationTag>(deleteBy);
+    }
+
+    /// <inheritdoc/>
+    public async Task DeletePushNotificationTagsByIds(List<object> ids)
+    {
+        var uids = new HashSet<object>(ids);
+        await DbOperations.Delete<PushNotificationTag>(uids);
+    }
+
+    /// <inheritdoc/>
+    public async Task CreatePushNotificationLogs(List<PushNotificationLogDto> data)
+    {
+        var entities = new List<PushNotificationLog>();
+        foreach (var item in data)
+        {
+            var entry = new PushNotificationLog
+            {
+                Id = Guid.NewGuid(),
+                RegistrationId = item.RegistrationId,
+                Handle = item.Handle,
+                Platform = item.Platform,
+                Payload = item.Payload,
+                CreatedAt = _dateTimeService.Now,
+                CreatedBy = Guid.Empty
+            };
+
+            entities.Add(entry);
+        }
+
+        await DbOperations.Insert(entities);
+    }
+
+    /// <inheritdoc/>
+    public async Task<WebNotification?> GetWebNotificationById(Guid id)
+    {
+        var filterBy = new { Id = id };
+        var data = await DbOperations.Retrieve<WebNotification>(filterBy);
+        return data.SingleOrDefault();
+    }
+
+    /// <inheritdoc/>
+    public async Task CreateWebNotification(string value, Guid? id = null)
+    {
+        var entity = new WebNotification
+        {
+            Id = id ?? Guid.NewGuid(),
+            Value = value
+        };
+
+        await DbOperations.Insert(entity);
+    }
+
+    /// <inheritdoc/>
+    public async Task UpdateWebNotification(Guid id, string value)
+    {
+        var filterBy = new { Id = id };
+        var updateBy = new { Value = value };
+        await DbOperations.Update<WebNotification>(updateBy, filterBy);
+    }
+
+    /// <inheritdoc/>
+    public async Task DeleteWebNotificationById(Guid id)
+    {
+        var deleteBy = new { Id = id };
+        await DbOperations.Delete<WebNotification>(deleteBy);
     }
 }

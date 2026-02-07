@@ -1,8 +1,8 @@
 using TokanPages.Backend.Application.Notifications.Web.Models.Base;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Notification;
 
 namespace TokanPages.Backend.Application.Notifications.Web.Command;
 
@@ -10,15 +10,18 @@ public class StatusRequestCommandHandler : RequestHandler<StatusRequestCommand, 
 {
     private readonly IJsonSerializer _jsonSerializer;
 
+    private readonly INotificationRepository _notificationRepository;
+
     public StatusRequestCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IJsonSerializer jsonSerializer) : base(operationDbContext, loggerService) => _jsonSerializer = jsonSerializer;
+        IJsonSerializer jsonSerializer, INotificationRepository notificationRepository) : base(operationDbContext, loggerService)
+    {
+        _jsonSerializer = jsonSerializer;
+        _notificationRepository = notificationRepository;
+    }
 
     public override async Task<StatusRequestCommandResult> Handle(StatusRequestCommand request, CancellationToken cancellationToken)
     {
-        var webNotification = await OperationDbContext.WebNotifications
-            .Where(notifications => notifications.Id == request.StatusId)
-            .SingleOrDefaultAsync(cancellationToken);
-
+        var webNotification = await _notificationRepository.GetWebNotificationById(request.StatusId);
         if (webNotification is null)
             return new StatusRequestCommandResult();
 
@@ -30,8 +33,7 @@ public class StatusRequestCommandHandler : RequestHandler<StatusRequestCommand, 
             Payload = data.Payload
         };
 
-        OperationDbContext.Remove(webNotification);
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
+        await _notificationRepository.DeleteWebNotificationById(request.StatusId);
         return result;
     }
 }

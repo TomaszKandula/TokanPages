@@ -1,13 +1,13 @@
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.PushNotificationService.Abstractions;
 using TokanPages.Services.PushNotificationService.Models;
 using Microsoft.Azure.NotificationHubs;
-using TokanPages.Backend.Domain.Entities.Notifications;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Notification;
+using TokanPages.Persistence.DataAccess.Repositories.Notification.Models;
 
 namespace TokanPages.Backend.Application.Notifications.Mobile.Commands;
 
@@ -17,20 +17,19 @@ public class SendNotificationCommandHandler : RequestHandler<SendNotificationCom
 
     private readonly IAzureNotificationHubUtility _azureNotificationHubUtility;
 
-    private readonly IDateTimeService _dateTimeService;
-    
+    private readonly INotificationRepository _notificationRepository;
+
     public SendNotificationCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IAzureNotificationHubFactory azureNotificationHubFactory, IAzureNotificationHubUtility azureNotificationHubUtility, 
-        IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
+        INotificationRepository notificationRepository) : base(operationDbContext, loggerService)
     {
         _azureNotificationHubFactory = azureNotificationHubFactory;
         _azureNotificationHubUtility = azureNotificationHubUtility;
-        _dateTimeService = dateTimeService;
+        _notificationRepository = notificationRepository;
     }
 
     public override async Task<SendNotificationCommandResult> Handle(SendNotificationCommand request, CancellationToken cancellationToken)
     {
-        var createdAt = _dateTimeService.Now;
         var payload = GetPayload(request);
         var result = await ExecutePushNotification(request.Platform, payload, request.Tags, cancellationToken);
         var affected = new List<RegistrationData>();
@@ -45,7 +44,7 @@ public class SendNotificationCommandHandler : RequestHandler<SendNotificationCom
                     AffectedRegistrations = affected
                 };
 
-            var logs = new List<PushNotificationLog>();
+            var logs = new List<PushNotificationLogDto>();
             foreach (var item in result.Results)
             {
                 affected.Add(new RegistrationData
@@ -55,14 +54,12 @@ public class SendNotificationCommandHandler : RequestHandler<SendNotificationCom
                     ApplicationPlatform = item.ApplicationPlatform
                 });
 
-                logs.Add(new PushNotificationLog
+                logs.Add(new PushNotificationLogDto
                 {
                     RegistrationId = item.RegistrationId,
                     Handle = item.PnsHandle,
                     Platform = item.ApplicationPlatform,
-                    Payload = payload,
-                    CreatedAt = createdAt,
-                    CreatedBy = Guid.Empty
+                    Payload = payload
                 });                
             }
 
@@ -74,8 +71,7 @@ public class SendNotificationCommandHandler : RequestHandler<SendNotificationCom
                     AffectedRegistrations = affected
                 };
 
-            await OperationDbContext.PushNotificationLogs.AddRangeAsync(logs, cancellationToken);
-            await OperationDbContext.SaveChangesAsync(cancellationToken);
+            await _notificationRepository.CreatePushNotificationLogs(logs);
         }
 
         return new SendNotificationCommandResult

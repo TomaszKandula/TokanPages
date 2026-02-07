@@ -13,7 +13,7 @@ public class RetrieveChatCacheCommandHandler : RequestHandler<RetrieveChatCacheC
 
     public override async Task<RetrieveChatCacheCommandResult> Handle(RetrieveChatCacheCommand request, CancellationToken cancellationToken)
     {
-        var notifications = await _chatRepository.RetrieveChatCache(request.ChatKey);
+        var notifications = await _chatRepository.GetChatCache(request.ChatKey);
         if (notifications.Length == 0)
             return new RetrieveChatCacheCommandResult();
 
