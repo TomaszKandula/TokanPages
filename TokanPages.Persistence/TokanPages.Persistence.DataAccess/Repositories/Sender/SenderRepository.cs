@@ -3,6 +3,7 @@ using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Persistence.DataAccess.Abstractions;
+using TokanPages.Persistence.DataAccess.Repositories.Sender.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Sender;
 
@@ -51,6 +52,26 @@ public class SenderRepository : RepositoryBase, ISenderRepository
         };
 
         await DbOperations.Insert(entity);
+    }
+
+    /// <inheritdoc/>
+    public async Task UpdateNewsletter(UpdateNewsletterDto data)
+    {
+        var filterBy = new
+        {
+            Id = data.Id
+        };
+
+        var updateBy = new
+        {
+            Email = data.Email,
+            IsActivated = data.IsActivated,
+            Count = data.Count,
+            ModifiedBy = data.ModifiedBy,
+            ModifiedAt = _dateTimeService.Now
+        };
+
+        await DbOperations.Update<Newsletter>(updateBy, filterBy);
     }
 
     /// <inheritdoc/>
