@@ -71,9 +71,12 @@ public interface INotificationRepository
     Task DeletePushNotificationTagsById(Guid id);
 
     /// <summary>
-    /// Deletes push notification tags by given IDs (primary keys).
+    /// Deletes push notification tags by the given list of IDs.
     /// </summary>
-    /// <param name="ids">List of primary keys of 'PushNotificationTag' entity.</param>
+    /// <remarks>
+    /// ID is the primary key of the given entity.
+    /// </remarks>
+    /// <param name="ids">List of primary keys.</param>
     Task DeletePushNotificationTagsByIds(List<object> ids);
 
     /// <summary>
