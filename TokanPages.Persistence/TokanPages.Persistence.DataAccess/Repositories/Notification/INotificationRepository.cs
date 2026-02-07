@@ -75,14 +75,14 @@ public interface INotificationRepository
     Task CreatePushNotificationLogs(List<PushNotificationLogDto> data);
 
     /// <summary>
-    /// Returns web notification entity by a given status ID.
+    /// Returns web notification entity by a given ID.
     /// </summary>
     /// <remarks>
-    /// Status ID is a Primary Key of the given entity.
+    /// ID is a Primary Key of the given entity.
     /// </remarks>
-    /// <param name="statusId">Status ID.</param>
+    /// <param name="id">A mandatory ID used to update a database entry.</param>
     /// <returns>An entity if exists, otherwise null.</returns>
-    Task<WebNotification?> GetWebNotificationByStatusId(Guid statusId);
+    Task<WebNotification?> GetWebNotificationById(Guid id);
 
     /// <summary>
     /// Creates web notification entry in the repository.

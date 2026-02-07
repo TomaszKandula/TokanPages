@@ -21,7 +21,7 @@ public class StatusRequestCommandHandler : RequestHandler<StatusRequestCommand, 
 
     public override async Task<StatusRequestCommandResult> Handle(StatusRequestCommand request, CancellationToken cancellationToken)
     {
-        var webNotification = await _notificationRepository.GetWebNotificationByStatusId(request.StatusId);
+        var webNotification = await _notificationRepository.GetWebNotificationById(request.StatusId);
         if (webNotification is null)
             return new StatusRequestCommandResult();
 

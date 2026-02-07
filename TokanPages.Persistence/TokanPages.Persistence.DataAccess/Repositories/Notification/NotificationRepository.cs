@@ -152,9 +152,9 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     }
 
     /// <inheritdoc/>
-    public async Task<WebNotification?> GetWebNotificationByStatusId(Guid statusId)
+    public async Task<WebNotification?> GetWebNotificationById(Guid id)
     {
-        var filterBy = new { Id = statusId };
+        var filterBy = new { Id = id };
         var data = await DbOperations.Retrieve<WebNotification>(filterBy);
         return data.SingleOrDefault();
     }

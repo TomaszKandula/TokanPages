@@ -119,7 +119,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
 
     private async Task SaveNotification(Guid userId, string data, CancellationToken cancellationToken)
     {
-        var currentNotification = await _notificationRepository.GetWebNotificationByStatusId(userId);
+        var currentNotification = await _notificationRepository.GetWebNotificationById(userId);
         if (currentNotification is not null)
         {
             currentNotification.Value = data;
