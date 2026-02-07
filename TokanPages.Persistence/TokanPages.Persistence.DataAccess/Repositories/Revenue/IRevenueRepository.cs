@@ -24,7 +24,7 @@ public interface IRevenueRepository
     Task<SubscriptionPricing?> GetSubscriptionPrice(TermType term, string languageIso, string currencyIso);
 
     /// <summary>
-    /// Returns list of use subscription by the given user ID.
+    /// Returns user subscription by the given user ID.
     /// </summary>
     /// <param name="userId">A mandatory user ID.</param>
     /// <returns>If found, returns user subscription details, otherwise null.</returns>
