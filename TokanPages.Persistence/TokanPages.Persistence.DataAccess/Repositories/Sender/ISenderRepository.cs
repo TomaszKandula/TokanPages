@@ -7,5 +7,5 @@ public interface ISenderRepository
     /// </summary>
     /// <param name="jsonData"></param>
     /// <returns></returns>
-    Task CreateBusinessInquiries(string jsonData);
+    Task CreateBusinessInquiry(string jsonData);
 }

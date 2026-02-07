@@ -14,7 +14,7 @@ public class SenderRepository : RepositoryBase, ISenderRepository
         : base(dbOperations, appSettings) => _dateTimeService = dateTimeService;
 
     /// <inheritdoc/>
-    public async Task CreateBusinessInquiries(string jsonData)
+    public async Task CreateBusinessInquiry(string jsonData)
     {
         var entity = new BusinessInquiry
         {
