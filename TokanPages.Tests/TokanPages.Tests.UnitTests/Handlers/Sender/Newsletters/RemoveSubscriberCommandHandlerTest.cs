@@ -3,6 +3,7 @@ using Moq;
 using TokanPages.Backend.Application.Sender.Newsletters.Commands;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
@@ -27,8 +28,10 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
+
         var command = new RemoveNewsletterCommand { Id = subscribers.Id };
-        var handler = new RemoveNewsletterCommandHandler(databaseContext, mockedLogger.Object);
+        var handler = new RemoveNewsletterCommandHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -45,8 +48,11 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
         // Arrange
         var command = new RemoveNewsletterCommand { Id = Guid.NewGuid() };
         var databaseContext = GetTestDatabaseContext();
+
         var mockedLogger = new Mock<ILoggerService>();
-        var handler = new RemoveNewsletterCommandHandler(databaseContext, mockedLogger.Object);
+        var mockSenderRepository = new Mock<ISenderRepository>();
+
+        var handler = new RemoveNewsletterCommandHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
 
         // Act
         // Assert
