@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
-using TokanPages.Backend.Domain.Entities.Users;
 
 namespace TokanPages.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "Permissions")]
 public class Permission : Entity<Guid>, IAuditable
 {
     [MaxLength(100)]
@@ -14,8 +15,4 @@ public class Permission : Entity<Guid>, IAuditable
     public DateTime CreatedAt { get; set; }
     public Guid? ModifiedBy { get; set; }
     public DateTime? ModifiedAt { get; set; }
-
-    /* Navigation properties */
-    public ICollection<DefaultPermission> DefaultPermissions { get; set; } = new HashSet<DefaultPermission>();
-    public ICollection<UserPermission> UserPermissions { get; set; } = new HashSet<UserPermission>();
 }

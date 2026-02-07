@@ -1,11 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Contracts;
-using TokanPages.Backend.Domain.Entities.Users;
 
 namespace TokanPages.Backend.Domain.Entities.Photography;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "Photos")]
 public class Photo : Entity<Guid>, IAuditable
 {
     public Guid UserId { get; set; }
@@ -25,10 +26,4 @@ public class Photo : Entity<Guid>, IAuditable
     public DateTime CreatedAt { get; set; }
     public Guid? ModifiedBy { get; set; }
     public DateTime? ModifiedAt { get; set; }
-
-    /* Navigation properties */
-    public User User { get; set; }
-    public PhotoGear PhotoGear { get; set; }
-    public PhotoCategory PhotoCategory { get; set; }
-    public ICollection<Album> Albums { get; set; } = new HashSet<Album>();
 }

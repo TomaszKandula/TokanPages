@@ -1,9 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Attributes;
 
 namespace TokanPages.Backend.Domain.Entities;
 
 [ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "HttpRequests")]
 public class HttpRequest : Entity<Guid>
 {
     [Required]
