@@ -22,6 +22,14 @@ public class SenderRepository : RepositoryBase, ISenderRepository
     }
 
     /// <inheritdoc/>
+    public async Task<Newsletter?> GetNewsletter(string email)
+    {
+        var filterBy = new { Email = email };
+        var data = await DbOperations.Retrieve<Newsletter>(filterBy);
+        return data.SingleOrDefault();
+    }
+
+    /// <inheritdoc/>
     public async Task<List<Newsletter>> GetNewsletters(bool isActive)
     {
         var filterBy = new { IsActive = isActive };
@@ -30,10 +38,27 @@ public class SenderRepository : RepositoryBase, ISenderRepository
     }
 
     /// <inheritdoc/>
+    public async Task CreateNewsletter(string email, Guid? id = null)
+    {
+        var entity = new Newsletter
+        {
+            Id = id ?? Guid.NewGuid(),
+            Email = email,
+            Count = 0,
+            IsActivated = true,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = Guid.Empty
+        };
+
+        await DbOperations.Insert(entity);
+    }
+
+    /// <inheritdoc/>
     public async Task CreateBusinessInquiry(string jsonData)
     {
         var entity = new BusinessInquiry
         {
+            Id = Guid.NewGuid(),
             JsonData =  jsonData,
             CreatedBy = Guid.Empty,
             CreatedAt = _dateTimeService.Now,
