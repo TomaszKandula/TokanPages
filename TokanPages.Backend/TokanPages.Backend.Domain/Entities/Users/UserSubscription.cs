@@ -6,7 +6,7 @@ using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Backend.Domain.Entities.Users;
 
-[ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage]//TODO: add attribute, remove EFCore nav props
 public class UserSubscription : Entity<Guid>, IAuditable
 {
     public Guid UserId { get; set; }

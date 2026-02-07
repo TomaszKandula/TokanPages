@@ -3,7 +3,7 @@ using TokanPages.Backend.Domain.Contracts;
 
 namespace TokanPages.Backend.Domain.Entities.Users;
 
-[ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage]//TODO: add attribute, remove EFCore nav props
 public class UserRole : Entity<Guid>, IAuditable
 {
     public Guid UserId { get; set; }

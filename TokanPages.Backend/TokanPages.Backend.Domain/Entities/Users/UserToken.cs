@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Backend.Domain.Entities.Users;
 
-[ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage]//TODO: add attribute, remove EFCore nav props
 public class UserToken : Entity<Guid>
 {
     public Guid UserId { get; set; }

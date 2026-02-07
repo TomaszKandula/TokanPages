@@ -5,7 +5,7 @@ using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Backend.Domain.Entities.Users;
 
-[ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage]//TODO: add attribute, remove EFCore nav props
 public class UserPaymentHistory : Entity<Guid>
 {
     public Guid UserId { get; set; }
