@@ -33,7 +33,7 @@ public class RetrieveChatCacheCommandHandlerTest : TestBase
         var mockedChatRepository = new Mock<IChatRepository>();
 
         mockedChatRepository
-            .Setup(repository => repository.RetrieveChatCache(It.IsAny<string[]>()))
+            .Setup(repository => repository.GetChatCache(It.IsAny<string[]>()))
             .ReturnsAsync(userMessageCache);
 
         var handler = new RetrieveChatCacheCommandHandler(
@@ -66,7 +66,7 @@ public class RetrieveChatCacheCommandHandlerTest : TestBase
         var mockedChatRepository = new Mock<IChatRepository>();
 
         mockedChatRepository
-            .Setup(repository => repository.RetrieveChatCache(It.IsAny<string[]>()))
+            .Setup(repository => repository.GetChatCache(It.IsAny<string[]>()))
             .ReturnsAsync(Array.Empty<string>());
 
         var handler = new RetrieveChatCacheCommandHandler(

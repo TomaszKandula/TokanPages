@@ -28,28 +28,6 @@ public class ChatRepository : RepositoryBase, IChatRepository
         };
     }
 
-    public async Task<UserMessage?> GetChatUserMessageData(string chatKey, bool isArchived)
-    {
-        var filterBy = new { ChatKey = chatKey, IsArchived = isArchived };
-        return (await DbOperations.Retrieve<UserMessage>(filterBy)).SingleOrDefault();
-    }
-
-    public async Task<string[]> RetrieveChatCache(string[] chatKey)
-    {
-        const string query = @"
-            SELECT
-                operation.Notification
-            FROM
-                operation.UserMessagesCache
-            WHERE
-                operation.ChatKey IN @ChatKey
-        ";
-
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        var result = await db.QueryAsync<string>(query, new { ChatKey = chatKey });
-        return result.ToArray();
-    }
-
     public async Task CreateChatUserData(string chatKey, string chatData, bool isArchived, DateTime createdAt, Guid createdBy)
     {
         var entity = new UserMessage
@@ -67,11 +45,33 @@ public class ChatRepository : RepositoryBase, IChatRepository
         await DbOperations.Insert(entity);
     }
 
+    public async Task<UserMessage?> GetChatUserMessageData(string chatKey, bool isArchived)
+    {
+        var filterBy = new { ChatKey = chatKey, IsArchived = isArchived };
+        return (await DbOperations.Retrieve<UserMessage>(filterBy)).SingleOrDefault();
+    }
+
     public async Task UpdateChatUserMessageData(string chatKey, string chatData, bool isArchived, DateTime modifiedAt, Guid modifiedBy)
     {
         var updateBy = new { ChatData = chatData, ModifiedAt = modifiedAt, ModifiedBy = modifiedBy };
         var filterBy = new { ChatKey = chatKey, IsArchived = isArchived };
         await DbOperations.Update<UserMessage>(updateBy, filterBy);
+    }
+
+    public async Task<string[]> GetChatCache(string[] chatKey)
+    {
+        const string query = @"
+            SELECT
+                operation.Notification
+            FROM
+                operation.UserMessagesCache
+            WHERE
+                operation.ChatKey IN @ChatKey
+        ";
+
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        var result = await db.QueryAsync<string>(query, new { ChatKey = chatKey });
+        return result.ToArray();
     }
 
     public async Task CreateChatCache(Guid id, string chatKey, string notification)
