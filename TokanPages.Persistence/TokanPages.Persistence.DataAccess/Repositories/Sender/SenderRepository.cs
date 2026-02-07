@@ -75,6 +75,13 @@ public class SenderRepository : RepositoryBase, ISenderRepository
     }
 
     /// <inheritdoc/>
+    public async Task RemoveNewsletter(Guid id)
+    {
+        var deleteBy = new { Id = id };
+        await DbOperations.Delete<Newsletter>(deleteBy);
+    }
+
+    /// <inheritdoc/>
     public async Task CreateBusinessInquiry(string jsonData)
     {
         var entity = new BusinessInquiry
