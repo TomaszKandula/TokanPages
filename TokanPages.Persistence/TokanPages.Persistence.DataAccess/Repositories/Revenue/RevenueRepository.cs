@@ -75,7 +75,7 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
             TotalAmount = data.TotalAmount,
             CurrencyIso = data.CurrencyIso,
             ExtCustomerId = data.ExtCustomerId,
-            extOrderId = data.ExtOrderId,
+            ExtOrderId = data.ExtOrderId,
             ModifiedAt = _dateTimeService.Now,
             ModifiedBy = data.ModifiedBy,
             IsActive = data.IsActive,
