@@ -2,6 +2,7 @@
 using Moq;
 using TokanPages.Backend.Application.Sender.Newsletters.Queries;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
@@ -14,9 +15,10 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
         // Arrange
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
 
         var query = new GetNewslettersQuery();
-        var handler = new GetNewslettersQueryHandler(databaseContext, mockedLogger.Object);
+        var handler = new GetNewslettersQueryHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
 
         var subscribers = new List<Backend.Domain.Entities.Newsletter>
         {

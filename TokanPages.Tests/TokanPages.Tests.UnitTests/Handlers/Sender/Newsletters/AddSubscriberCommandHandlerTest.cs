@@ -2,8 +2,8 @@
 using Moq;
 using TokanPages.Backend.Application.Sender.Newsletters.Commands;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
@@ -16,13 +16,13 @@ public class AddSubscriberCommandHandlerTest : TestBase
         // Arrange
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
-        var dateTimeService = new DateTimeService();
+        var mockSenderRepository = new Mock<ISenderRepository>();
 
         var command = new AddNewsletterCommand { Email = DataUtilityService.GetRandomEmail() };
         var handler = new AddNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            dateTimeService);
+            mockSenderRepository.Object);
 
         // Act
         await handler.Handle(command, CancellationToken.None);
@@ -57,13 +57,13 @@ public class AddSubscriberCommandHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
-        var mockedDateTime = new Mock<IDateTimeService>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
 
         var command = new AddNewsletterCommand { Email = testEmail };
         var handler = new AddNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTime.Object);
+            mockSenderRepository.Object);
 
         // Act
         // Assert

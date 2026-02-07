@@ -6,6 +6,8 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
+using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
@@ -34,6 +36,8 @@ public class SendMessageCommandHandlerTest : TestBase
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
+        var mockMessagingRepository = new Mock<IMessagingRepository>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
         var mockedConfig = GetMockSettings();
 
         var randomString = DataUtilityService.GetRandomString();
@@ -53,7 +57,9 @@ public class SendMessageCommandHandlerTest : TestBase
             mockedEmailSenderService.Object,
             mockedDateTimeService.Object,
             mockedConfig.Object, 
-            mockedUserService.Object);
+            mockedUserService.Object,
+            mockMessagingRepository.Object,
+            mockSenderRepository.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -82,6 +88,8 @@ public class SendMessageCommandHandlerTest : TestBase
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedUserService = new Mock<IUserService>();
+        var mockMessagingRepository = new Mock<IMessagingRepository>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
         var mockedConfig = GetMockSettings();
 
         mockedUserService
@@ -100,7 +108,9 @@ public class SendMessageCommandHandlerTest : TestBase
             mockedEmailSenderService.Object,
             mockedDateTimeService.Object,
             mockedConfig.Object, 
-            mockedUserService.Object);
+            mockedUserService.Object,
+            mockMessagingRepository.Object,
+            mockSenderRepository.Object);
 
         // Act
         // Assert

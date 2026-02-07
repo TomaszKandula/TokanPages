@@ -3,6 +3,7 @@ using Moq;
 using TokanPages.Backend.Application.Sender.Newsletters.Queries;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
@@ -28,8 +29,10 @@ public class GetSubscriberQueryHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
+        var mockSenderRepository = new Mock<ISenderRepository>();
+
         var query = new GetNewsletterQuery { Id = subscribers.Id };
-        var handler = new GetNewsletterQueryHandler(databaseContext, mockedLogger.Object);
+        var handler = new GetNewsletterQueryHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);
@@ -47,7 +50,7 @@ public class GetSubscriberQueryHandlerTest : TestBase
     public async Task GivenIncorrectId_WhenGetSubscriber_ShouldThrowError()
     {
         // Arrange
-        var subscribers = new TokanPages.Backend.Domain.Entities.Newsletter
+        var subscribers = new Backend.Domain.Entities.Newsletter
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
@@ -61,8 +64,10 @@ public class GetSubscriberQueryHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
-        var handler = new GetNewsletterQueryHandler(databaseContext, mockedLogger.Object);
+        var mockSenderRepository = new Mock<ISenderRepository>();
+
         var query = new GetNewsletterQuery { Id = Guid.NewGuid() };
+        var handler = new GetNewsletterQueryHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
 
         // Act
         // Assert
