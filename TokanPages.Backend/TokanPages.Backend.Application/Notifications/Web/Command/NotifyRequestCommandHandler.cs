@@ -8,8 +8,8 @@ using TokanPages.Services.WebSocketService.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Chat;
 using TokanPages.Persistence.DataAccess.Repositories.Notification;
 
 namespace TokanPages.Backend.Application.Notifications.Web.Command;
@@ -20,17 +20,20 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
 
     private readonly INotificationRepository _notificationRepository;
 
+    private readonly IChatRepository _chatRepository;
+
     private readonly IJsonSerializer _jsonSerializer;
 
     private static JsonSerializerSettings Setting => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
-    public NotifyRequestCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        INotificationService notificationService, IJsonSerializer jsonSerializer, INotificationRepository notificationRepository) 
+    public NotifyRequestCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, INotificationService notificationService, 
+        IJsonSerializer jsonSerializer, INotificationRepository notificationRepository, IChatRepository chatRepository) 
         : base(operationDbContext, loggerService)
     {
         _notificationService = notificationService;
         _jsonSerializer = jsonSerializer;
         _notificationRepository = notificationRepository;
+        _chatRepository = chatRepository;
     }
 
     public override async Task<NotifyRequestCommandResult> Handle(NotifyRequestCommand request, CancellationToken cancellationToken)
@@ -102,15 +105,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
         if (request is { Handler: "chat_post_message", ExternalPayload: not null })
         {
             var chatData = _jsonSerializer.Deserialize<ChatData>(request.ExternalPayload);
-            var cache = new UserMessageCache
-            {
-                Id = chatData.Id,
-                ChatKey = chatData.ChatKey,
-                Notification = data
-            };
-
-            await OperationDbContext.UserMessagesCache.AddAsync(cache, cancellationToken);
-            await OperationDbContext.SaveChangesAsync(cancellationToken);
+            await _chatRepository.CreateChatCache(chatData.Id, chatData.ChatKey, data);
         }
 
         await _notificationService.Notify("WebNotificationGroup", data, request.Handler, cancellationToken);
