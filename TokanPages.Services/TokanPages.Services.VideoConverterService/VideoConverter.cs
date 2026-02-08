@@ -9,7 +9,7 @@ using Newtonsoft.Json.Serialization;
 namespace TokanPages.Services.VideoConverterService;
 
 [ExcludeFromCodeCoverage]
-public class VideoConverter : IVideoConverter
+internal sealed class VideoConverter : IVideoConverter
 {
     private const string ResourcesDirName = "Resources";
 
