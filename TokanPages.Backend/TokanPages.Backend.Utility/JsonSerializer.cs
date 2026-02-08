@@ -2,9 +2,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Services.UtilityService.Abstractions;
+using TokanPages.Backend.UtilityService.Abstractions;
 
-namespace TokanPages.Services.UtilityService;
+namespace TokanPages.Backend.UtilityService;
 
 public class JsonSerializer : IJsonSerializer
 {

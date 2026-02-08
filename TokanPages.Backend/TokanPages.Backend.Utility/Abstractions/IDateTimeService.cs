@@ -1,4 +1,4 @@
-namespace TokanPages.Services.UtilityService.Abstractions;
+namespace TokanPages.Backend.UtilityService.Abstractions;
 
 public interface IDateTimeService
 {

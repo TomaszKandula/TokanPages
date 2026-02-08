@@ -1,6 +1,6 @@
-using TokanPages.Services.UtilityService.Abstractions;
+using TokanPages.Backend.UtilityService.Abstractions;
 
-namespace TokanPages.Services.UtilityService;
+namespace TokanPages.Backend.UtilityService;
 
 public class DateTimeService : IDateTimeService
 {

@@ -1,8 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.DependencyInjection;
-using TokanPages.Services.UtilityService.Abstractions;
+using TokanPages.Backend.UtilityService.Abstractions;
 
-namespace TokanPages.Services.UtilityService;
+namespace TokanPages.Backend.UtilityService;
 
 [ExcludeFromCodeCoverage]
 public static class AssemblyConfigurer
