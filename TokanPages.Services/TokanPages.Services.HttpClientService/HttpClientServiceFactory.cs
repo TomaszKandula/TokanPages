@@ -3,7 +3,7 @@ using TokanPages.Services.HttpClientService.Abstractions;
 
 namespace TokanPages.Services.HttpClientService;
 
-public class HttpClientServiceFactory : IHttpClientServiceFactory
+internal sealed class HttpClientServiceFactory : IHttpClientServiceFactory
 {
     public IHttpClientService Create(bool allowAutoRedirect, ILoggerService loggerService)
     {

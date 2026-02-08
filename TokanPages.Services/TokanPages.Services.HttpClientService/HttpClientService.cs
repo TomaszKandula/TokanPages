@@ -13,7 +13,7 @@ using TokanPages.Services.HttpClientService.Models;
 
 namespace TokanPages.Services.HttpClientService;
 
-public class HttpClientService : IHttpClientService
+internal sealed class HttpClientService : IHttpClientService
 {
     private const string Header = "Authorization";
 
