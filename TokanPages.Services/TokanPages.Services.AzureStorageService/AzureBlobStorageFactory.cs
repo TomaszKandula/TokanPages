@@ -3,7 +3,7 @@ using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Services.AzureStorageService;
 
-public class AzureBlobStorageFactory : IAzureBlobStorageFactory
+internal sealed class AzureBlobStorageFactory : IAzureBlobStorageFactory
 {
     private readonly string _connectionString;
 

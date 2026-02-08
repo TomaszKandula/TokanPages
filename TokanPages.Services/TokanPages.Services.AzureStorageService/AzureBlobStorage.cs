@@ -10,7 +10,7 @@ using TokanPages.Services.AzureStorageService.Models;
 
 namespace TokanPages.Services.AzureStorageService;
 
-public class AzureBlobStorage : IAzureBlobStorage
+internal sealed class AzureBlobStorage : IAzureBlobStorage
 {
     private readonly BlobContainerClient _container;
 
