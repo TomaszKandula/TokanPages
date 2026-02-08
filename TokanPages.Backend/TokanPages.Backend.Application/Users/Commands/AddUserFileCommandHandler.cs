@@ -129,7 +129,10 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
             Status = VideoStatus.New,
             CreatedAt = _dateTimeService.Now,
             CreatedBy = userId,
-            IsSourceDeleted = false
+            IsSourceDeleted = false,
+            InputSizeInBytes = 0,
+            OutputSizeInBytes = 0,
+            Id = Guid.NewGuid(),
         };
 
         var buffer = binaryData.GetByteArray();

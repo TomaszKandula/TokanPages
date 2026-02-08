@@ -96,7 +96,10 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             Expires = tokenExpires,
             Created = currentDateTime,
             CreatedByIp = ipAddress,
-            Command = nameof(ReAuthenticateUserCommand)
+            Command = nameof(ReAuthenticateUserCommand),
+            RevokedByIp = string.Empty,
+            ReasonRevoked = string.Empty,
+            Id = Guid.NewGuid(),
         };
 
         await OperationDbContext.UserTokens.AddAsync(newUserToken, cancellationToken);

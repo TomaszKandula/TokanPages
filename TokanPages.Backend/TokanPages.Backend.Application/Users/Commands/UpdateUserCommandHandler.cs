@@ -69,13 +69,14 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
             var newUserInfo = new UserInfo
             {
                 UserId = userId,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-                UserAboutText = request.Description,
-                UserImageName = request.UserImageName,
-                UserVideoName = request.UserVideoName,
+                FirstName = request.FirstName ?? string.Empty,
+                LastName = request.LastName ?? string.Empty,
+                UserAboutText = request.Description ?? string.Empty,
+                UserImageName = request.UserImageName ?? string.Empty,
+                UserVideoName = request.UserVideoName ?? string.Empty,
                 CreatedBy = userId,
-                CreatedAt = _dateTimeService.Now
+                CreatedAt = _dateTimeService.Now,
+                Id = Guid.NewGuid(),
             };
 
             await OperationDbContext.UserInformation.AddAsync(newUserInfo, cancellationToken);
