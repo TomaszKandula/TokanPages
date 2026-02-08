@@ -40,7 +40,9 @@ public class PostChatMessageCommandHandlerTest : TestBase
             UserAboutText = DataUtilityService.GetRandomString(),
             UserImageName = DataUtilityService.GetRandomString(),
             CreatedAt = DataUtilityService.GetRandomDateTime(),
-            CreatedBy = Guid.NewGuid()
+            CreatedBy = Guid.NewGuid(),
+            UserVideoName = string.Empty,
+            Id = Guid.NewGuid()
         };
 
         var user1ChatData = GetRandomChatItem(userId1, false, chatKey);

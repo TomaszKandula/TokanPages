@@ -19,13 +19,14 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();//TODO: to be removed
 
         // Arrange
-        var newsletter = new Newsletter 
+        var newsletter = new Newsletter
         {
             Email = DataUtilityService.GetRandomEmail(),
             IsActivated = true,
             Count = 50,
             CreatedAt = DataUtilityService.GetRandomDateTime(),
-            CreatedBy = Guid.Empty
+            CreatedBy = Guid.Empty,
+            Id = Guid.NewGuid(),
         };
 
         var mockedLogger = new Mock<ILoggerService>();

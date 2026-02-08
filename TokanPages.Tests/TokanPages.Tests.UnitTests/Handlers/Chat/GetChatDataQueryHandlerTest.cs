@@ -31,6 +31,11 @@ public class GetChatDataQueryHandlerTest : TestBase
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
             UserImageName = DataUtilityService.GetRandomString(),
+            UserAboutText = string.Empty,
+            UserVideoName = string.Empty,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid(),
         };
 
         var userInfo2 = new UserInfo
@@ -39,6 +44,11 @@ public class GetChatDataQueryHandlerTest : TestBase
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
             UserImageName = DataUtilityService.GetRandomString(),
+            UserAboutText = string.Empty,
+            UserVideoName = string.Empty,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid(),
         };
 
         var user1ChatData = GetRandomChatItem(userId1, false, chatKey);

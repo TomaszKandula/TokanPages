@@ -35,18 +35,27 @@ public class AddUserCommandHandlerTest : TestBase
         var roles = new Role
         {
             Name = nameof(Backend.Domain.Enums.Role.EverydayUser),
-            Description = nameof(Backend.Domain.Enums.Role.EverydayUser)
+            Description = nameof(Backend.Domain.Enums.Role.EverydayUser),
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid(),
         };
 
         var permissions = new List<Permission>
         {
             new()
             {
-                Name = nameof(Backend.Domain.Enums.Permission.CanSelectArticles)
+                Name = nameof(Backend.Domain.Enums.Permission.CanSelectArticles),
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid(),
             },
             new()
             {
-                Name = nameof(Backend.Domain.Enums.Permission.CanSelectComments)
+                Name = nameof(Backend.Domain.Enums.Permission.CanSelectComments),
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             }
         };
 
@@ -56,13 +65,21 @@ public class AddUserCommandHandlerTest : TestBase
             {
                 Id = Guid.NewGuid(),
                 Role = roles,
-                Permission = permissions[0]
+                Permission = permissions[0],
+                RoleId = Guid.NewGuid(),
+                PermissionId = Guid.NewGuid(),
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default
             },
             new()
             {
                 Id = Guid.NewGuid(),
                 Role = roles,
-                Permission = permissions[1]
+                Permission = permissions[1],
+                RoleId = Guid.NewGuid(),
+                PermissionId = Guid.NewGuid(),
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default
             }
         };
 
@@ -146,12 +163,20 @@ public class AddUserCommandHandlerTest : TestBase
         var userAlias = $"{command.FirstName[..2]}{command.LastName[..3]}".ToLower();
         var oldActivationIdEnds = DateTimeService.Now.AddMinutes(-30);
         var users = new User
-        { 
+        {
             EmailAddress = testEmail,
             UserAlias = userAlias,
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = Guid.NewGuid(),
-            ActivationIdEnds = oldActivationIdEnds
+            ActivationIdEnds = oldActivationIdEnds,
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsActivated = false,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -225,10 +250,18 @@ public class AddUserCommandHandlerTest : TestBase
         };
 
         var users = new User
-        { 
+        {
             EmailAddress = testEmail,
             UserAlias = DataUtilityService.GetRandomString(),
-            CryptedPassword = DataUtilityService.GetRandomString()
+            CryptedPassword = DataUtilityService.GetRandomString(),
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsActivated = false,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();

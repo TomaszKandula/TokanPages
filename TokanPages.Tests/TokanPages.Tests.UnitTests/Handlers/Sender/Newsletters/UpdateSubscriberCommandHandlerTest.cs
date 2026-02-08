@@ -31,7 +31,15 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
             .ReturnsAsync(user);
 
-        var newsletter = new Newsletter { Id = Guid.NewGuid() };
+        var newsletter = new Newsletter
+        {
+            Id = Guid.NewGuid(),
+            Email = string.Empty,
+            IsActivated = false,
+            Count = 0,
+            CreatedBy = Guid.Empty,
+            CreatedAt = default
+        };
         mockSenderRepository
             .Setup(repository => repository.GetNewsletter(It.IsAny<Guid>()))
             .ReturnsAsync(newsletter);
@@ -120,7 +128,15 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
             .ReturnsAsync(user);
 
-        var newsletter = new Newsletter { Id = Guid.NewGuid() };
+        var newsletter = new Newsletter
+        {
+            Id = Guid.NewGuid(),
+            Email = string.Empty,
+            IsActivated = false,
+            Count = 0,
+            CreatedBy = Guid.Empty,
+            CreatedAt = default
+        };
         mockSenderRepository
             .Setup(repository => repository.GetNewsletter(It.IsAny<Guid>()))
             .ReturnsAsync(newsletter);

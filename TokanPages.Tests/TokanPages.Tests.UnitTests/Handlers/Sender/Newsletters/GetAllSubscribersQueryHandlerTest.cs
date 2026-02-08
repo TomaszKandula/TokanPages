@@ -25,7 +25,8 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
                 IsActivated = true,
                 Count = 10,
                 CreatedAt = DataUtilityService.GetRandomDateTime(),
-                CreatedBy = Guid.Empty
+                CreatedBy = Guid.Empty,
+                Id = Guid.NewGuid(),
             },
             new()
             {
@@ -33,7 +34,8 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
                 IsActivated = true,
                 Count = 100,
                 CreatedAt = DataUtilityService.GetRandomDateTime(),
-                CreatedBy = Guid.Empty
+                CreatedBy = Guid.Empty,
+                Id = Guid.NewGuid(),
             }
         };
 

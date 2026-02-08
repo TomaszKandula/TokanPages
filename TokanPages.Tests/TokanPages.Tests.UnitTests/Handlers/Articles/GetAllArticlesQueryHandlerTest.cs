@@ -23,20 +23,24 @@ public class GetAllArticlesQueryHandlerTest : TestBase
         {
             new()
             {
+                Id = Guid.NewGuid(),
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 CreatedAt = DateTime.Now.AddDays(-10),
+                CreatedBy = userId,
                 UpdatedAt = null,
                 UserId = userId,
                 LanguageIso = "ENG"
             },
             new()
             {
+                Id = Guid.NewGuid(),
                 Title = DataUtilityService.GetRandomString(),
                 Description = DataUtilityService.GetRandomString(),
                 IsPublished = false,
                 CreatedAt = DateTime.Now.AddDays(-15),
+                CreatedBy = userId,
                 UpdatedAt = null,
                 UserId = userId,
                 LanguageIso = "ENG"
