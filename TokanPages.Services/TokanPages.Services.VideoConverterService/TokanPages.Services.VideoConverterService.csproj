@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Core\TokanPages.Backend.Core.csproj" />
+      <ProjectReference Include="..\..\TokanPages.Backend\TokanPages.Backend.Utility\TokanPages.Backend.Utility.csproj" />
     </ItemGroup>
 
 </Project>
