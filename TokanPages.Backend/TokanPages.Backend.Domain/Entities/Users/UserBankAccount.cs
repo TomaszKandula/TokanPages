@@ -1,10 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Domain.Entities.Invoicing;
+using TokanPages.Backend.Domain.Attributes;
 using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Backend.Domain.Entities.Users;
 
-[ExcludeFromCodeCoverage]//TODO: add attribute, remove EFCore nav props
+[ExcludeFromCodeCoverage]
+[DatabaseTable(Schema = "operation", TableName = "UserBankAccounts")]
 public class UserBankAccount : Entity<Guid>
 {
     public Guid UserId { get; set; }
@@ -16,8 +17,4 @@ public class UserBankAccount : Entity<Guid>
     public string AccountNumber { get; set; }
 
     public CurrencyCode CurrencyCode { get; set; }
-
-    /* Navigation properties */
-    public User User { get; set; }
-    public ICollection<BatchInvoice> BatchInvoices { get; set; } = new HashSet<BatchInvoice>();
 }
