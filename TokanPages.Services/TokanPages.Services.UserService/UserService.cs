@@ -17,8 +17,6 @@ using HttpRequest = TokanPages.Backend.Domain.Entities.HttpRequest;
 
 namespace TokanPages.Services.UserService;
 
-[SuppressMessage("Sonar Code Smell", "S3267:Loop should be simplified with LINQ expression", 
-    Justification = "LINQ would actually just make things harder to understand")]
 public sealed class UserService : IUserService
 {
     private const string Localhost = "127.0.0.1";
