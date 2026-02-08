@@ -1,5 +1,5 @@
 using FluentAssertions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Utility;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Services;
