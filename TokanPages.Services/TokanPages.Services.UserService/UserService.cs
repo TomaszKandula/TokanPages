@@ -17,7 +17,7 @@ using HttpRequest = TokanPages.Backend.Domain.Entities.HttpRequest;
 
 namespace TokanPages.Services.UserService;
 
-public sealed class UserService : IUserService
+internal sealed class UserService : IUserService
 {
     private const string Localhost = "127.0.0.1";
 
