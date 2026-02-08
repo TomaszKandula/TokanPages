@@ -15,13 +15,13 @@ public class UserRefreshToken : Entity<Guid>
 
     public required DateTime Created { get; set; }
 
-    public required string CreatedByIp { get; set; }
+    public string? CreatedByIp { get; set; }
 
     public DateTime? Revoked { get; set; }
 
-    public required string RevokedByIp { get; set; }
+    public string? RevokedByIp { get; set; }
 
-    public required string ReplacedByToken { get; set; }
+    public string? ReplacedByToken { get; set; }
 
-    public required string ReasonRevoked { get; set; }
+    public string? ReasonRevoked { get; set; }
 }
