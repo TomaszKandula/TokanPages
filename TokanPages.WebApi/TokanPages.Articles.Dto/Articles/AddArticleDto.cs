@@ -11,25 +11,25 @@ public class AddArticleDto
     /// <summary>
     /// Title.
     /// </summary>
-    public string? Title { get; set; }
+    public string Title { get; set; } = string.Empty;
 
     /// <summary>
     /// Description.
     /// </summary>
-    public string? Description { get; set; }
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
     /// Text to upload.
     /// </summary>
-    public string? TextToUpload { get; set; }
+    public string TextToUpload { get; set; } = string.Empty;
 
     /// <summary>
     /// Image name to upload.
     /// </summary>
-    public string? ImageToUpload { get; set; }
+    public string ImageToUpload { get; set; } = string.Empty;
 
     /// <summary>
     /// Article language.
     /// </summary>
-    public string? LanguageIso { get; set; }
+    public string LanguageIso { get; set; } = string.Empty;
 }
