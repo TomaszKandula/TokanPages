@@ -19,7 +19,6 @@ using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.UserService;
-using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Sender;
 
@@ -64,8 +63,7 @@ public static class Dependencies
         services.AddSingleton<ILoggerService, LoggerService>();
         services.AddHttpClientService();
 
-        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
-		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
+        services.AddWebTokenService();
         services.AddUserService();
 		services.AddEmailSenderService();
 

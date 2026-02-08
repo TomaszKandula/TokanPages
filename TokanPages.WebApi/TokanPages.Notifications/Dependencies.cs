@@ -15,7 +15,6 @@ using TokanPages.Services.HttpClientService;
 using TokanPages.Services.PushNotificationService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.WebSocketService;
-using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Notifications;
 
@@ -60,8 +59,7 @@ public static class Dependencies
         services.AddSingleton<ILoggerService, LoggerService>();
         services.AddHttpClientService();
 
-        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
-		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
+        services.AddWebTokenService();
         services.AddUserService();
 
 		services.AddScoped<IJsonSerializer, JsonSerializer>();

@@ -20,7 +20,6 @@ using TokanPages.Services.BatchService;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.VatService;
-using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Invoicing;
 
@@ -65,8 +64,7 @@ public static class Dependencies
         services.AddSingleton<ILoggerService, LoggerService>();
         services.AddHttpClientService();
 
-        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
-		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
+        services.AddWebTokenService();
         services.AddUserService();
 
 		services.AddScoped<IJsonSerializer, JsonSerializer>();

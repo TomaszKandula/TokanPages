@@ -17,7 +17,6 @@ using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.UserService;
-using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Articles;
 
@@ -62,8 +61,7 @@ public static class Dependencies
         services.AddSingleton<ILoggerService, LoggerService>();
 		services.AddHttpClientService();
 
-        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
-		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
+		services.AddWebTokenService();
 		services.AddUserService();
 
 		services.AddScoped<IJsonSerializer, JsonSerializer>();

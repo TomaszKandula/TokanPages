@@ -8,7 +8,6 @@ using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Shared.Options;
-using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.CipheringService;
 using TokanPages.Services.BehaviourService;
@@ -22,7 +21,6 @@ using TokanPages.Services.CookieAccessorService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.UserService;
-using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Users;
 
@@ -69,8 +67,7 @@ public static class Dependencies
         services.AddHttpClientService();
 
         services.AddCookieAccessor();
-		services.AddScoped<IWebTokenUtility, WebTokenUtility>();
-		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
+        services.AddWebTokenService();
 		services.AddCipheringService();
         services.AddUserService();
 		services.AddEmailSenderService();

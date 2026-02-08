@@ -13,7 +13,6 @@ using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.WebTokenService;
-using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Logger;
 
@@ -56,8 +55,7 @@ public static class Dependencies
         services.AddHttpContextAccessor();
 
         services.AddSingleton<ILoggerService, LoggerService>();
-        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
-        services.AddScoped<IWebTokenValidation, WebTokenValidation>();
+        services.AddWebTokenService();
         services.AddUserService();
 
         services.AddScoped<IJsonSerializer, JsonSerializer>();

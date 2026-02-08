@@ -18,8 +18,6 @@ using TokanPages.Services.PayUService;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.WebSocketService;
-using TokanPages.Services.WebSocketService.Abstractions;
-using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Revenue;
 
@@ -64,13 +62,11 @@ public static class Dependencies
         services.AddSingleton<ILoggerService, LoggerService>();
         services.AddHttpClientService();
 
-        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
-		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
-
 		services.AddScoped<IJsonSerializer, JsonSerializer>();
 		services.AddScoped<IDateTimeService, DateTimeService>();
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
 
+        services.AddWebTokenService();
         services.AddUserService();
 		services.AddPayUService();
         services.AddWebSocketService();
