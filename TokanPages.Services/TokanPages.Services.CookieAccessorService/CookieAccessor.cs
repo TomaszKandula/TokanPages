@@ -4,7 +4,7 @@ using TokanPages.Services.CookieAccessorService.Abstractions;
 
 namespace TokanPages.Services.CookieAccessorService;
 
-public class CookieAccessor : ICookieAccessor
+internal sealed class CookieAccessor : ICookieAccessor
 {
     private readonly IHttpContextAccessor _httpContextAccessor;
     private readonly ILoggerService _loggerService;
