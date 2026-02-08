@@ -5,7 +5,7 @@ using MediatR;
 namespace TokanPages.Services.BehaviourService;
 
 [ExcludeFromCodeCoverage]
-public class FluentValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
+internal sealed class FluentValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
     private readonly IValidator<TRequest>? _validator;
 

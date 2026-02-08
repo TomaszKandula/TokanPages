@@ -10,7 +10,7 @@ using TokanPages.Services.WebTokenService.Abstractions;
 namespace TokanPages.Services.BehaviourService;
 
 [ExcludeFromCodeCoverage]
-public class TokenCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
+internal sealed class TokenCheckBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
     private readonly ILoggerService _logger;
 
