@@ -15,7 +15,6 @@ using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.PayUService;
-using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Abstractions;
@@ -74,7 +73,7 @@ public static class Dependencies
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
 
 		services.AddScoped<IUserService, UserService>();
-		services.AddScoped<IPayUService, PayUService>();
+		services.AddPayUService();
 		services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
 
 		services.AddScoped<ISubscriptionsCache, SubscriptionsCache>();
