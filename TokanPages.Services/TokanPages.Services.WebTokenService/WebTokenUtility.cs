@@ -8,7 +8,7 @@ using TokanPages.Services.WebTokenService.Models;
 
 namespace TokanPages.Services.WebTokenService;
 
-public class WebTokenUtility : IWebTokenUtility
+internal sealed class WebTokenUtility : IWebTokenUtility
 {
     private readonly RandomNumberGenerator _numberGenerator;
 
@@ -23,7 +23,7 @@ public class WebTokenUtility : IWebTokenUtility
     /// <param name="issuer">Issuer of a security token.</param>
     /// <param name="targetAudience">Target audience.</param>
     /// <returns>New JSON Web Token.</returns>
-    public virtual string GenerateJwt(DateTime expires, ClaimsIdentity claimsIdentity, string webSecret, string issuer, string targetAudience)
+    public string GenerateJwt(DateTime expires, ClaimsIdentity claimsIdentity, string webSecret, string issuer, string targetAudience)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(webSecret);
@@ -47,7 +47,7 @@ public class WebTokenUtility : IWebTokenUtility
     /// <param name="expiresIn">Number of minutes to expire. Cannot be zero.</param>
     /// <param name="timezoneOffset"></param>
     /// <returns>New randomized secure token.</returns>
-    public virtual RefreshToken GenerateRefreshToken(string? ipAddress, int expiresIn, int timezoneOffset = 0)
+    public RefreshToken GenerateRefreshToken(string? ipAddress, int expiresIn, int timezoneOffset = 0)
     {
         if (expiresIn == 0)
             throw new ArgumentException($"Argument '{nameof(expiresIn)}' cannot be zero.");

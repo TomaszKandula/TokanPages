@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
@@ -7,7 +8,8 @@ using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Services.WebTokenService;
 
-public class WebTokenValidation : IWebTokenValidation
+[ExcludeFromCodeCoverage]
+internal sealed class WebTokenValidation : IWebTokenValidation
 {
     private const string Authorization = "Authorization";
     
