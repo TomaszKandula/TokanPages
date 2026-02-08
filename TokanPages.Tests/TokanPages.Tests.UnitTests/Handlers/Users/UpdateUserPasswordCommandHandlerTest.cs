@@ -27,7 +27,13 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
             ResetId = null,
             ResetIdEnds = null,
             ActivationId = null,
-            ActivationIdEnds = null
+            ActivationIdEnds = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -78,8 +84,8 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         var userEntity = await databaseContext.Users.FindAsync(users.Id);
 
         userEntity.Should().NotBeNull();
-        userEntity?.CryptedPassword.Should().NotBeEmpty();
-        userEntity?.ResetId.Should().BeNull();
+        userEntity.CryptedPassword.Should().NotBeEmpty();
+        userEntity.ResetId.Should().BeNull();
     }
 
     [Fact]
@@ -95,7 +101,13 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
             ResetId = Guid.NewGuid(),
             ResetIdEnds = DateTime.Now.AddMinutes(30),
             ActivationId = null,
-            ActivationIdEnds = null
+            ActivationIdEnds = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -152,7 +164,13 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
             ResetId = null,
             ResetIdEnds = null,
             ActivationId = null,
-            ActivationIdEnds = null
+            ActivationIdEnds = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -208,7 +226,13 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
             ResetId = null,
             ResetIdEnds = null,
             ActivationId = null,
-            ActivationIdEnds = null
+            ActivationIdEnds = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();

@@ -14,15 +14,19 @@ public class GetUserQueryHandlerTest : TestBase
     public async Task GivenCorrectId_WhenGetUser_ShouldReturnEntity() 
     {
         // Arrange
-        var users = new User 
-        { 
+        var users = new User
+        {
             Id = Guid.NewGuid(),
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
             CryptedPassword = DataUtilityService.GetRandomString(),
             CreatedAt = DataUtilityService.GetRandomDateTime(),
-            CreatedBy = Guid.Empty
+            CreatedBy = Guid.Empty,
+            ResetId = null,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var userInfo = new UserInfo
@@ -31,12 +35,13 @@ public class GetUserQueryHandlerTest : TestBase
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
             UserAboutText = DataUtilityService.GetRandomString(),
-            UserImageName = null,
-            UserVideoName = null,
+            UserImageName = string.Empty,
+            UserVideoName = string.Empty,
             CreatedBy = Guid.Empty,
             CreatedAt = DataUtilityService.GetRandomDateTime(),
             ModifiedBy = null,
-            ModifiedAt = null
+            ModifiedAt = null,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();

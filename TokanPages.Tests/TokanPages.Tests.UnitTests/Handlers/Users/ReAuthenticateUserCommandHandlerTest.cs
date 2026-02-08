@@ -35,7 +35,13 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            CryptedPassword = cryptedPassword
+            CryptedPassword = cryptedPassword,
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var userInfo = new UserInfo
@@ -44,12 +50,13 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
             UserAboutText = DataUtilityService.GetRandomString(),
-            UserImageName = null,
-            UserVideoName = null,
+            UserImageName = string.Empty,
+            UserVideoName = string.Empty,
             CreatedBy = Guid.Empty,
             CreatedAt = DataUtilityService.GetRandomDateTime(),
             ModifiedBy = null,
-            ModifiedAt = null
+            ModifiedAt = null,
+            Id = Guid.NewGuid()
         };
 
         var userRefreshToken = new UserRefreshToken
@@ -60,9 +67,10 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             Created = created,
             CreatedByIp = ipAddress,
             Revoked = null,
-            RevokedByIp = null,
-            ReplacedByToken = null,
-            ReasonRevoked = null
+            RevokedByIp = string.Empty,
+            ReplacedByToken = string.Empty,
+            ReasonRevoked = string.Empty,
+            Id = Guid.NewGuid(),
         };
 
         var newRefreshToken = new UserRefreshToken
@@ -73,9 +81,10 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             Created = DateTimeService.Now,
             CreatedByIp = ipAddress,
             Revoked = null,
-            RevokedByIp = null,
-            ReplacedByToken = null,
-            ReasonRevoked = null
+            RevokedByIp = string.Empty,
+            ReplacedByToken = string.Empty,
+            ReasonRevoked = string.Empty,
+            Id = Guid.NewGuid(),
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -200,7 +209,13 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            CryptedPassword = cryptedPassword
+            CryptedPassword = cryptedPassword,
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var userRefreshToken = new UserRefreshToken
@@ -211,9 +226,10 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             Created = created,
             CreatedByIp = ipAddress,
             Revoked = null,
-            RevokedByIp = null,
-            ReplacedByToken = null,
-            ReasonRevoked = null
+            RevokedByIp = string.Empty,
+            ReplacedByToken = string.Empty,
+            ReasonRevoked = string.Empty,
+            Id = Guid.NewGuid()
         };
             
         var databaseContext = GetTestDatabaseContext();
@@ -272,7 +288,13 @@ public class ReAuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            CryptedPassword = DataUtilityService.GetRandomString()
+            CryptedPassword = DataUtilityService.GetRandomString(),
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var databaseContext = GetTestDatabaseContext();
