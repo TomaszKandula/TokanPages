@@ -110,7 +110,8 @@ public sealed class UserService : IUserService
         {
             SourceAddress = ipAddress,
             RequestedAt = _dateTimeService.Now,
-            RequestedHandlerName = handlerName
+            RequestedHandlerName = handlerName,
+            Id = Guid.NewGuid(),
         };
 
         await _operationDbContext.HttpRequests.AddAsync(httpRequest);
@@ -296,7 +297,8 @@ public sealed class UserService : IUserService
             Revoked = null,
             RevokedByIp = null,
             ReplacedByToken = null,
-            ReasonRevoked = null
+            ReasonRevoked = null,
+            Id = Guid.NewGuid(),
         };
     }
 

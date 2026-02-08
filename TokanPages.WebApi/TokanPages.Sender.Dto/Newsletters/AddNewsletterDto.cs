@@ -11,5 +11,5 @@ public class AddNewsletterDto
     /// <summary>
     /// Email address.
     /// </summary>
-    public string? Email { get; set; }
+    public string Email { get; set; } = string.Empty;
 }

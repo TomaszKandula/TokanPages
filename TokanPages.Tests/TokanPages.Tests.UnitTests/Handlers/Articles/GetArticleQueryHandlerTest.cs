@@ -36,7 +36,13 @@ public class GetArticleQueryHandlerTest : TestBase
             IsActivated = true,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = UserAlias,
-            CryptedPassword = DataUtilityService.GetRandomString()
+            CryptedPassword = DataUtilityService.GetRandomString(),
+            ResetId = null,
+            CreatedBy = Guid.Empty,
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var languages = new List<Backend.Domain.Entities.Language>
@@ -47,7 +53,8 @@ public class GetArticleQueryHandlerTest : TestBase
                 LangId = "en",
                 HrefLang = "en-GB",
                 Name = "English",
-                IsDefault = true
+                IsDefault = true,
+                SortOrder = 1
             },
             new()
             {
@@ -55,7 +62,8 @@ public class GetArticleQueryHandlerTest : TestBase
                 LangId = "pl",
                 HrefLang = "pl-PL",
                 Name = "Polski",
-                IsDefault = false
+                IsDefault = false,
+                SortOrder = 2
             }
         };
 
@@ -79,12 +87,14 @@ public class GetArticleQueryHandlerTest : TestBase
         {
             new()
             {
+                Id = Guid.NewGuid(),
                 ArticleCategoryId = articleCategories[0].Id,
                 LanguageId = languages[0].Id,
-                Name = DataUtilityService.GetRandomString()
+                Name = DataUtilityService.GetRandomString(),
             },
             new()
             {
+                Id = Guid.NewGuid(),
                 ArticleCategoryId = articleCategories[1].Id,
                 LanguageId = languages[1].Id,
                 Name = DataUtilityService.GetRandomString()
@@ -99,9 +109,10 @@ public class GetArticleQueryHandlerTest : TestBase
             Description = DataUtilityService.GetRandomString(),
             IsPublished = false,
             CreatedAt = testDate,
+            CreatedBy = users.Id,
             UpdatedAt = null,
             UserId = users.Id,
-            LanguageIso = "ENG"
+            LanguageIso = "ENG",
         };
 
         var articleOutputDto = new GetArticleOutputDto

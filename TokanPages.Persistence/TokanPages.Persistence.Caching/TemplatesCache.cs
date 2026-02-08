@@ -12,7 +12,7 @@ namespace TokanPages.Persistence.Caching;
 /// Templates cache implementation.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class TemplatesCache : ITemplatesCache
+internal sealed class TemplatesCache : ITemplatesCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;
 

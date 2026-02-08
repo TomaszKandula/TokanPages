@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Domain.Entities.Soccer;
 [DatabaseTable(Schema = "soccer", TableName = "Attributes")]
 public class Attribute : Entity<Guid>
 {
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
-    public double Coefficient { get; set; }
+    public required double Coefficient { get; set; }
 }

@@ -7,9 +7,9 @@ namespace TokanPages.Backend.Domain.Entities.Soccer;
 [DatabaseTable(Schema = "soccer", TableName = "Positions")]
 public class Position : Entity<Guid>
 {
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
-    public string AltName { get; set; }
+    public required string AltName { get; set; }
 
-    public int TraditionalNumber { get; set; }
+    public required int TraditionalNumber { get; set; }
 }

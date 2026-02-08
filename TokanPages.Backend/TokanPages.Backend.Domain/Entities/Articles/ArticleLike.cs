@@ -8,17 +8,17 @@ namespace TokanPages.Backend.Domain.Entities.Articles;
 [DatabaseTable(Schema = "operation", TableName = "ArticleLikes")]
 public class ArticleLike : Entity<Guid>, IAuditable
 {
-    public Guid ArticleId { get; set; }
+    public required Guid ArticleId { get; set; }
 
     public Guid? UserId { get; set; }
 
-    public string IpAddress { get; set; }
+    public required string IpAddress { get; set; }
 
-    public int LikeCount { get; set; }
+    public required int LikeCount { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 

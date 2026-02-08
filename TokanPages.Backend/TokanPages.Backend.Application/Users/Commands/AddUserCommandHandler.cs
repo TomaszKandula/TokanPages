@@ -143,7 +143,12 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             CreatedAt = _dateTimeService.Now,
             CreatedBy = admin?.UserId ?? Guid.Empty,
             ModifiedAt = null,
-            ModifiedBy = null
+            ModifiedBy = null,
+            ResetId = null,
+            IsActivated = false,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         await OperationDbContext.Users.AddAsync(newUser, cancellationToken);
@@ -160,11 +165,14 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             UserId = input.UserId,
             FirstName = input.Command.FirstName,
             LastName = input.Command.LastName,
-            UserImageName = avatar,
+            UserImageName = avatar ?? string.Empty,
             CreatedAt = _dateTimeService.Now,
             CreatedBy = admin?.UserId ?? Guid.Empty,
             ModifiedAt = null,
-            ModifiedBy = null
+            ModifiedBy = null,
+            UserAboutText = string.Empty,
+            UserVideoName = string.Empty,
+            Id = Guid.NewGuid(),
         };
 
         await OperationDbContext.UserInformation.AddAsync(newUserInfo, cancellationToken);
@@ -184,7 +192,9 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
                 RoleId = permissions.RoleId,
                 Role = permissions.Role,
                 PermissionId = permissions.PermissionId,
-                Permission = permissions.Permission
+                Permission = permissions.Permission,
+                CreatedBy = userId,
+                CreatedAt = default
             })
             .ToListAsync(cancellationToken);
 
@@ -203,17 +213,19 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             CreatedAt = _dateTimeService.Now,
             CreatedBy = adminUserId ?? Guid.Empty,
             ModifiedAt = null,
-            ModifiedBy = null
+            ModifiedBy = null,
+            Id = Guid.NewGuid(),
         };
 
         var newPermissions = userPermissions.Select(item => new UserPermission
         {
-            UserId = userId, 
+            UserId = userId,
             PermissionId = item,
             CreatedAt = _dateTimeService.Now,
             CreatedBy = adminUserId ?? Guid.Empty,
             ModifiedAt = null,
-            ModifiedBy = null
+            ModifiedBy = null,
+            Id = Guid.NewGuid(),
         }).ToList();
 
         await OperationDbContext.UserRoles.AddAsync(newRole, cancellationToken);

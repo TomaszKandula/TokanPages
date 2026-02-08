@@ -27,7 +27,13 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            CryptedPassword = DataUtilityService.GetRandomString()
+            CryptedPassword = DataUtilityService.GetRandomString(),
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var userRefreshToken = new UserRefreshToken
@@ -36,7 +42,12 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
             Token = token,
             Expires = DateTimeService.Now,
             Created = DateTimeService.Now.AddMinutes(300),
-            CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString()
+            CreatedByIp = DataUtilityService.GetRandomIpAddress()
+                .ToString(),
+            RevokedByIp = string.Empty,
+            ReplacedByToken = string.Empty,
+            ReasonRevoked = string.Empty,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -95,7 +106,13 @@ public class RevokeUserRefreshTokenCommandHandlerTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            CryptedPassword = DataUtilityService.GetRandomString()
+            CryptedPassword = DataUtilityService.GetRandomString(),
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var databaseContext = GetTestDatabaseContext();

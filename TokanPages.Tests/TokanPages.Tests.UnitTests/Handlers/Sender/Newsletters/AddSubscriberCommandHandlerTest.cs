@@ -49,7 +49,15 @@ public class AddSubscriberCommandHandlerTest : TestBase
 
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
-        var existingNewsletter = new Newsletter { Email = testEmail };
+        var existingNewsletter = new Newsletter
+        {
+            Email = testEmail,
+            IsActivated = false,
+            Count = 0,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid(),
+        };
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();

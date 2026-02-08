@@ -8,9 +8,9 @@ namespace TokanPages.Backend.Domain.Entities.Soccer;
 [DatabaseTable(Schema = "soccer", TableName = "FeedImages")]
 public class FeedImage : Entity<Guid>, ISoftDelete
 {
-    public Guid FeedId { get; set; }
+    public required Guid FeedId { get; set; }
 
-    public string ImageBlobName { get; set; }
+    public required string ImageBlobName { get; set; }
 
-    public bool IsDeleted { get; set; }
+    public required bool IsDeleted { get; set; }
 }

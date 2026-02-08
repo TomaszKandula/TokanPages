@@ -11,7 +11,7 @@ namespace TokanPages.Backend.Configuration;
 /// Docker support.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public static class DockerSupport
+internal static class DockerSupport
 {
     /// <summary>
     /// Adds host IP addresses to known proxies.
@@ -20,7 +20,7 @@ public static class DockerSupport
     /// Setup forwarded headers.
     /// </remarks>
     /// <param name="services">Service collection.</param>
-    public static void SetupDockerInternalNetwork(this IServiceCollection services)
+    internal static void SetupDockerInternalNetwork(this IServiceCollection services)
     {
         var hostName = Dns.GetHostName();
         var addresses = Dns.GetHostEntry(hostName).AddressList

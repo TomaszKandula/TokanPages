@@ -7,9 +7,9 @@ namespace TokanPages.Backend.Domain.Entities.Soccer;
 [DatabaseTable(Schema = "soccer", TableName = "Lineups")]
 public class Lineup : Entity<Guid>
 {
-    public Guid MatchId { get; set; }
+    public required Guid MatchId { get; set; }
 
-    public Guid PlayerHostId { get; set; }
+    public required Guid PlayerHostId { get; set; }
 
-    public Guid PlayerGuestId { get; set; }
+    public required Guid PlayerGuestId { get; set; }
 }

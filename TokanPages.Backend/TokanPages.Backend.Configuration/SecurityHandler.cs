@@ -9,7 +9,7 @@ namespace TokanPages.Backend.Configuration;
 /// Token security handler.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class SecurityHandler : ISecurityTokenValidator
+internal class SecurityHandler : ISecurityTokenValidator
 {
     private readonly JwtSecurityTokenHandler _tokenHandler;
 

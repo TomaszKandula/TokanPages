@@ -8,17 +8,17 @@ namespace TokanPages.Backend.Domain.Entities.Notifications;
 [DatabaseTable(Schema = "operation", TableName = "PushNotificationLogs")]
 public class PushNotificationLog : Entity<Guid>, IAuditable
 {
-    public string RegistrationId { get; set; }
+    public required string RegistrationId { get; set; }
 
-    public string Handle { get; set; }
+    public required string Handle { get; set; }
 
-    public string Platform { get; set; }
+    public required string Platform { get; set; }
 
-    public string Payload { get; set; }
+    public required string Payload { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 

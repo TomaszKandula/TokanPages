@@ -27,7 +27,17 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
         var mockedArticlesRepository = new Mock<IArticlesRepository>();
 
         var articleCounts = new List<ArticleCount>
-        { new() { Id = articleId, ReadCount = 2048 } };
+        { 
+            new()
+            {
+                Id = articleId,
+                ReadCount = 2048,
+                ArticleId = Guid.NewGuid(),
+                IpAddress = string.Empty,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default
+            }
+        };
 
         mockedArticlesRepository
             .Setup(repository => repository.GetArticleCount(It.IsAny<string>(), It.IsAny<Guid>()))

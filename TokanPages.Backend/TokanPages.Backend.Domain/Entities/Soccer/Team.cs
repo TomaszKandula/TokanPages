@@ -7,5 +7,5 @@ namespace TokanPages.Backend.Domain.Entities.Soccer;
 [DatabaseTable(Schema = "soccer", TableName = "Teams")]
 public class Team : Entity<Guid>
 {
-    public Guid PlayerId  { get; set; }
+    public required Guid PlayerId  { get; set; }
 }

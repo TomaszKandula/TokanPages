@@ -5,7 +5,7 @@ using TokanPages.Backend.Configuration;
 namespace TokanPages.Gateway;
 
 /// <summary>
-/// .NET6 program.
+/// Program.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class Program
@@ -14,9 +14,9 @@ public static class Program
         = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
     /// <summary>
-    /// Main entry point
+    /// Main entry point.
     /// </summary>
-    /// <returns>Returns '1' on exception</returns>
+    /// <returns>Returns '1' on exception.</returns>
     public static int Main()
     {
         try

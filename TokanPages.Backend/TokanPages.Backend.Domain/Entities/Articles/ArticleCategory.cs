@@ -8,9 +8,9 @@ namespace TokanPages.Backend.Domain.Entities.Articles;
 [DatabaseTable(Schema = "operation", TableName = "ArticleCategories")]
 public class ArticleCategory : Entity<Guid>, IAuditable
 {
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 

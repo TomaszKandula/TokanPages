@@ -11,7 +11,7 @@ public class RetrieveArticleInfoDto
     /// <summary>
     /// List of article IDs.
     /// </summary>
-    public List<Guid> ArticleIds { get; set; } = [];
+    public List<Guid> ArticleIds { get; set; } = new();
 
     /// <summary>
     /// Enable/disable REDIS cache.

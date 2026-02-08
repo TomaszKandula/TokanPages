@@ -8,11 +8,11 @@ namespace TokanPages.Backend.Domain.Entities;
 [DatabaseTable(Schema = "operation", TableName = "Permissions")]
 public class Permission : Entity<Guid>, IAuditable
 {
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 

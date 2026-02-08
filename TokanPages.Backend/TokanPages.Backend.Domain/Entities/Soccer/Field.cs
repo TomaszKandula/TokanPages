@@ -8,15 +8,15 @@ namespace TokanPages.Backend.Domain.Entities.Soccer;
 [DatabaseTable(Schema = "soccer", TableName = "Fields")]
 public class Field : Entity<Guid>, ISoftDelete
 {
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
-    public string Description { get; set; }    
+    public required string Description { get; set; }    
 
-    public double GpsLatitude { get; set; }
+    public required double GpsLatitude { get; set; }
 
-    public double GpsLongitude { get; set; }
+    public required double GpsLongitude { get; set; }
 
-    public DateTime Published { get; set; }
+    public required DateTime Published { get; set; }
 
-    public bool IsDeleted { get; set; }
+    public required bool IsDeleted { get; set; }
 }

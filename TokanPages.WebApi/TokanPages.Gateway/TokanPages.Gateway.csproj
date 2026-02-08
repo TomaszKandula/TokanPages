@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <UserSecretsId>adf9015c-8c97-47bb-aabd-27827bc78822</UserSecretsId>
-    <LangVersion>10</LangVersion>
+    <LangVersion>11</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Publish>true</Publish>

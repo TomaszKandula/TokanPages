@@ -9,13 +9,13 @@ using TokanPages.Backend.Configuration.Options;
 namespace TokanPages.Backend.Configuration;
 
 [ExcludeFromCodeCoverage]
-public static class RequestLimiterPolicy
+internal static class RequestLimiterPolicy
 {
     private const string XForwardedFor = "X-Forwarded-For";
 
     private const string Localhost = "127.0.0.1";
 
-    public static void AddLimiter(this IServiceCollection services, IConfiguration configuration)
+    internal static void AddLimiter(this IServiceCollection services, IConfiguration configuration)
     {
         var settings = configuration.GetAppSettings();
         services.AddRateLimiter(options =>

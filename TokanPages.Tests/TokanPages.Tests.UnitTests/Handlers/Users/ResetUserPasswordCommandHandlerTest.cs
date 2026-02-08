@@ -25,7 +25,13 @@ public class ResetUserPasswordCommandHandlerTest : TestBase
             ResetId = null,
             ResetIdEnds = null,
             ActivationId = null,
-            ActivationIdEnds = null
+            ActivationIdEnds = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();

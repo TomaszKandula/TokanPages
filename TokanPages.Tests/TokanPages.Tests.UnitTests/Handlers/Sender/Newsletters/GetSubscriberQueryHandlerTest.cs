@@ -24,7 +24,8 @@ public class GetSubscriberQueryHandlerTest : TestBase
             IsActivated = true,
             Count = 10,
             CreatedAt = DataUtilityService.GetRandomDateTime(),
-            CreatedBy = Guid.Empty
+            CreatedBy = Guid.Empty,
+            Id = Guid.NewGuid(),
         };
 
         var mockedLogger = new Mock<ILoggerService>();

@@ -28,7 +28,11 @@ public class RemoveUserMediaCommandHandlerTest : TestBase
             CryptedPassword = DataUtilityService.GetRandomString(),
             CreatedBy = userId,
             CreatedAt = DataUtilityService.GetRandomDateTime(),
-            IsActivated = true
+            IsActivated = true,
+            ResetId = null,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var userInfo = new UserInfo
@@ -38,7 +42,10 @@ public class RemoveUserMediaCommandHandlerTest : TestBase
             LastName = DataUtilityService.GetRandomString(),
             UserImageName = blobName,
             CreatedBy = userId,
-            CreatedAt = DataUtilityService.GetRandomDateTime()
+            CreatedAt = DataUtilityService.GetRandomDateTime(),
+            UserAboutText = string.Empty,
+            UserVideoName = string.Empty,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();

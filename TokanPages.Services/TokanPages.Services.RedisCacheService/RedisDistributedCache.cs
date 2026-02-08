@@ -13,7 +13,7 @@ namespace TokanPages.Services.RedisCacheService;
 /// Redis distributed implementation
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class RedisDistributedCache : IRedisDistributedCache
+internal sealed class RedisDistributedCache : IRedisDistributedCache
 {
     private readonly IDistributedCache _distributedCache;
 

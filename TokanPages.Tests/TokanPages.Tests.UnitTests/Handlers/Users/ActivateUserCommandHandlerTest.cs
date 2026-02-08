@@ -19,13 +19,21 @@ public class ActivateUserCommandHandlerTest : TestBase
         var activationId = Guid.NewGuid();
         var userId = Guid.NewGuid();
         var users = new User
-        { 
+        {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString().ToLower(),
+            UserAlias = DataUtilityService.GetRandomString()
+                .ToLower(),
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = activationId,
-            ActivationIdEnds = DateTimeService.Now.AddMinutes(30)
+            ActivationIdEnds = DateTimeService.Now.AddMinutes(30),
+            ResetId = null,
+            CreatedBy = Guid.Empty,
+            CreatedAt = default,
+            IsActivated = false,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -58,12 +66,21 @@ public class ActivateUserCommandHandlerTest : TestBase
     {
         // Arrange
         var users = new User
-        { 
+        {
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString().ToLower(),
+            UserAlias = DataUtilityService.GetRandomString()
+                .ToLower(),
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = Guid.NewGuid(),
-            ActivationIdEnds = DateTimeService.Now.AddMinutes(30)
+            ActivationIdEnds = DateTimeService.Now.AddMinutes(30),
+            ResetId = null,
+            CreatedBy = Guid.Empty,
+            CreatedAt = default,
+            IsActivated = false,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false,
+            Id = Guid.NewGuid(),
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -96,12 +113,21 @@ public class ActivateUserCommandHandlerTest : TestBase
         // Arrange
         var activationId = Guid.NewGuid();
         var users = new User
-        { 
+        {
             EmailAddress = DataUtilityService.GetRandomEmail(),
-            UserAlias = DataUtilityService.GetRandomString().ToLower(),
+            UserAlias = DataUtilityService.GetRandomString()
+                .ToLower(),
             CryptedPassword = DataUtilityService.GetRandomString(),
             ActivationId = activationId,
-            ActivationIdEnds = DateTimeService.Now.AddMinutes(-100)
+            ActivationIdEnds = DateTimeService.Now.AddMinutes(-100),
+            ResetId = null,
+            CreatedBy = Guid.Empty,
+            CreatedAt = default,
+            IsActivated = false,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false,
+            Id = Guid.NewGuid(),
         };
 
         var databaseContext = GetTestDatabaseContext();

@@ -11,7 +11,7 @@ namespace TokanPages.Persistence.Caching;
 /// Currencies cache implementation.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class CurrenciesCache : ICurrenciesCache
+internal sealed class CurrenciesCache : ICurrenciesCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;
 

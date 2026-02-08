@@ -9,13 +9,13 @@ namespace TokanPages.Backend.Configuration;
 /// HTTP Policy.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public static class HttpPolicyHandlers
+internal static class HttpPolicyHandlers
 {
     /// <summary>
     /// Setup retry policy.
     /// </summary>
     /// <returns>HttpResponseMessage.</returns>
-    public static IAsyncPolicy<HttpResponseMessage> SetupRetry()
+    internal static IAsyncPolicy<HttpResponseMessage> SetupRetry()
     {
         const int retryCount = 3;
         const double durationBetweenRetries = 150;

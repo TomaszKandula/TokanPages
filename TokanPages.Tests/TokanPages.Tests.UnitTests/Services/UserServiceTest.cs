@@ -132,7 +132,10 @@ public class UserServiceTest : TestBase
         var userRoles = new UserRole
         {
             UserId = users[0].Id,
-            RoleId = roles[0].Id
+            RoleId = roles[0].Id,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -174,7 +177,10 @@ public class UserServiceTest : TestBase
         var userRoles = new UserRole
         {
             UserId = users[0].Id,
-            RoleId = roles[0].Id
+            RoleId = roles[0].Id,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -212,7 +218,10 @@ public class UserServiceTest : TestBase
         var userRoles = new UserRole
         {
             UserId = users[0].Id,
-            RoleId = roles[0].Id
+            RoleId = roles[0].Id,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -253,12 +262,18 @@ public class UserServiceTest : TestBase
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[0].Id
+                PermissionId = permissions[0].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             },
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[1].Id
+                PermissionId = permissions[1].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             }
         };
 
@@ -306,12 +321,18 @@ public class UserServiceTest : TestBase
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[0].Id
+                PermissionId = permissions[0].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             },
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[1].Id
+                PermissionId = permissions[1].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             }
         };
 
@@ -353,12 +374,18 @@ public class UserServiceTest : TestBase
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[0].Id
+                PermissionId = permissions[0].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             },
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[1].Id
+                PermissionId = permissions[1].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             }
         };
 
@@ -397,7 +424,10 @@ public class UserServiceTest : TestBase
         var userRoles = new UserRole
         {
             UserId = users[0].Id,
-            RoleId = roles[0].Id
+            RoleId = roles[0].Id,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -436,7 +466,10 @@ public class UserServiceTest : TestBase
         var userRoles = new UserRole
         {
             UserId = users[0].Id,
-            RoleId = roles[0].Id
+            RoleId = roles[0].Id,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -475,7 +508,10 @@ public class UserServiceTest : TestBase
         var userRoles = new UserRole
         {
             UserId = users[0].Id,
-            RoleId = roles[0].Id
+            RoleId = roles[0].Id,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -513,7 +549,10 @@ public class UserServiceTest : TestBase
         var userRoles = new UserRole
         {
             UserId = users[0].Id,
-            RoleId = roles[0].Id
+            RoleId = roles[0].Id,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -555,12 +594,18 @@ public class UserServiceTest : TestBase
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[0].Id
+                PermissionId = permissions[0].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             },
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[1].Id
+                PermissionId = permissions[1].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             }
         };
 
@@ -604,12 +649,18 @@ public class UserServiceTest : TestBase
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[0].Id
+                PermissionId = permissions[0].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             },
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[1].Id
+                PermissionId = permissions[1].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             }
         };
 
@@ -652,12 +703,18 @@ public class UserServiceTest : TestBase
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[0].Id
+                PermissionId = permissions[0].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             },
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[1].Id
+                PermissionId = permissions[1].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             }
         };
 
@@ -699,12 +756,18 @@ public class UserServiceTest : TestBase
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[0].Id
+                PermissionId = permissions[0].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             },
             new()
             {
                 UserId = userId,
-                PermissionId = permissions[1].Id
+                PermissionId = permissions[1].Id,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                Id = Guid.NewGuid()
             }
         };
 
@@ -812,7 +875,10 @@ public class UserServiceTest : TestBase
         var userRoles = new UserRole
         {
             UserId = users[0].Id,
-            RoleId = roles[0].Id
+            RoleId = roles[0].Id,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -861,7 +927,10 @@ public class UserServiceTest : TestBase
         var userRoles = new UserRole
         {
             UserId = users[0].Id,
-            RoleId = roles[0].Id
+            RoleId = roles[0].Id,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -916,11 +985,13 @@ public class UserServiceTest : TestBase
                 Token = DataUtilityService.GetRandomString(255),
                 Expires = DateTimeService.Now.AddMinutes(120),
                 Created = DateTimeService.Now,
-                CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
+                CreatedByIp = DataUtilityService.GetRandomIpAddress()
+                    .ToString(),
                 Revoked = null,
-                RevokedByIp = null,
-                ReplacedByToken = null,
-                ReasonRevoked = null
+                RevokedByIp = string.Empty,
+                ReplacedByToken = string.Empty,
+                ReasonRevoked = string.Empty,
+                Id = Guid.NewGuid()
             },
             new() // Old token
             {
@@ -930,9 +1001,10 @@ public class UserServiceTest : TestBase
                 Created = DateTimeService.Now.AddDays(-5),
                 CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
                 Revoked = null,
-                RevokedByIp = null,
-                ReplacedByToken = null,
-                ReasonRevoked = null
+                RevokedByIp = string.Empty,
+                ReplacedByToken = string.Empty,
+                ReasonRevoked = string.Empty,
+                Id = Guid.NewGuid(),
             },
             new() // Old token
             {
@@ -942,9 +1014,10 @@ public class UserServiceTest : TestBase
                 Created = DateTimeService.Now.AddMinutes(-220),
                 CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
                 Revoked = null,
-                RevokedByIp = null,
-                ReplacedByToken = null,
-                ReasonRevoked = null
+                RevokedByIp = string.Empty,
+                ReplacedByToken = string.Empty,
+                ReasonRevoked = string.Empty,
+                Id = Guid.NewGuid()
             },
         };
 
@@ -992,9 +1065,10 @@ public class UserServiceTest : TestBase
                 Created = DateTimeService.Now,
                 CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
                 Revoked = null,
-                RevokedByIp = null,
-                ReplacedByToken = null,
-                ReasonRevoked = null
+                RevokedByIp = string.Empty,
+                ReplacedByToken = string.Empty,
+                ReasonRevoked = string.Empty,
+                Id = Guid.NewGuid()
             },
             new()
             {
@@ -1004,9 +1078,10 @@ public class UserServiceTest : TestBase
                 Created = DateTimeService.Now,
                 CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
                 Revoked = null,
-                RevokedByIp = null,
-                ReplacedByToken = null,
-                ReasonRevoked = null
+                RevokedByIp = string.Empty,
+                ReplacedByToken = string.Empty,
+                ReasonRevoked = string.Empty,
+                Id = Guid.NewGuid()
             },
             new()
             {
@@ -1016,9 +1091,10 @@ public class UserServiceTest : TestBase
                 Created = DateTimeService.Now,
                 CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
                 Revoked = null,
-                RevokedByIp = null,
-                ReplacedByToken = null,
-                ReasonRevoked = null
+                RevokedByIp = string.Empty,
+                ReplacedByToken = string.Empty,
+                ReasonRevoked = string.Empty,
+                Id = Guid.NewGuid()
             },
         };
 
@@ -1066,9 +1142,9 @@ public class UserServiceTest : TestBase
                 Created = DateTimeService.Now,
                 CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
                 Revoked = null,
-                RevokedByIp = null,
-                ReplacedByToken = null,
-                ReasonRevoked = null
+                RevokedByIp = string.Empty,
+                ReplacedByToken = string.Empty,
+                ReasonRevoked = string.Empty,
             },
             new()
             {
@@ -1079,9 +1155,9 @@ public class UserServiceTest : TestBase
                 Created = DateTimeService.Now,
                 CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
                 Revoked = null,
-                RevokedByIp = null,
-                ReplacedByToken = null,
-                ReasonRevoked = null
+                RevokedByIp = string.Empty,
+                ReplacedByToken = string.Empty,
+                ReasonRevoked = string.Empty,
             },
             new()
             {
@@ -1092,9 +1168,9 @@ public class UserServiceTest : TestBase
                 Created = DateTimeService.Now,
                 CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
                 Revoked = null,
-                RevokedByIp = null,
-                ReplacedByToken = null,
-                ReasonRevoked = null
+                RevokedByIp = string.Empty,
+                ReplacedByToken = string.Empty,
+                ReasonRevoked = string.Empty,
             },
         };
 
@@ -1194,9 +1270,9 @@ public class UserServiceTest : TestBase
                 Created = DateTimeService.Now.AddMinutes(-5),
                 CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
                 Revoked = null,
-                RevokedByIp = null,
-                ReplacedByToken = null,
-                ReasonRevoked = null
+                RevokedByIp = string.Empty,
+                ReplacedByToken = string.Empty,
+                ReasonRevoked = string.Empty
             },
             new() // Active
             {
@@ -1207,9 +1283,9 @@ public class UserServiceTest : TestBase
                 Created = DateTimeService.Now,
                 CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
                 Revoked = null,
-                RevokedByIp = null,
-                ReplacedByToken = null,
-                ReasonRevoked = null
+                RevokedByIp = string.Empty,
+                ReplacedByToken = string.Empty,
+                ReasonRevoked = string.Empty
             },
         };
             
@@ -1279,7 +1355,13 @@ public class UserServiceTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            CryptedPassword = DataUtilityService.GetRandomString()
+            CryptedPassword = DataUtilityService.GetRandomString(),
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var userRefreshToken = new UserRefreshToken
@@ -1288,7 +1370,11 @@ public class UserServiceTest : TestBase
             Token = token,
             Expires = DateTimeService.Now,
             Created = DateTimeService.Now.AddMinutes(300),
-            CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString()
+            CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
+            RevokedByIp = string.Empty,
+            ReplacedByToken = string.Empty,
+            ReasonRevoked = string.Empty,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -1340,7 +1426,13 @@ public class UserServiceTest : TestBase
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                CryptedPassword = DataUtilityService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString(),
+                ResetId = null,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                IsVerified = false,
+                IsDeleted = false,
+                HasBusinessLock = false
             }
         };
     }
@@ -1356,6 +1448,10 @@ public class UserServiceTest : TestBase
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
                 CreatedAt = DataUtilityService.GetRandomDateTime(),
+                UserAboutText = string.Empty,
+                UserImageName = string.Empty,
+                UserVideoName = string.Empty,
+                CreatedBy = Guid.NewGuid(),
             }
         };
     }
@@ -1368,7 +1464,9 @@ public class UserServiceTest : TestBase
             {
                 Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
                 Name = nameof(Backend.Domain.Enums.Role.EverydayUser),
-                Description = "User"
+                Description = "User",
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default
             }
         };
     }
@@ -1380,12 +1478,16 @@ public class UserServiceTest : TestBase
             new()
             {
                 Id = Guid.Parse("dbb74bc8-dd33-4c9f-9744-84ad4c37035b"),
-                Name = Backend.Domain.Enums.Permission.CanSelectArticles.ToString()
+                Name = Backend.Domain.Enums.Permission.CanSelectArticles.ToString(),
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default
             },
             new()
             {
                 Id = Guid.Parse("76fb3d47-f10d-467e-9e68-61d8a9fc5f6d"),
-                Name = Backend.Domain.Enums.Permission.CanInsertArticles.ToString()
+                Name = Backend.Domain.Enums.Permission.CanInsertArticles.ToString(),
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default
             }
         };   
     }

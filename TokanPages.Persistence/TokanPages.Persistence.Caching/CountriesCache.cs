@@ -11,7 +11,7 @@ namespace TokanPages.Persistence.Caching;
 /// Countries cache implementation.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class CountriesCache : ICountriesCache
+internal sealed class CountriesCache : ICountriesCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;
 

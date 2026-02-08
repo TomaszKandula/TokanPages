@@ -8,13 +8,13 @@ namespace TokanPages.Backend.Domain.Entities.Users;
 [DatabaseTable(Schema = "operation", TableName = "UserBankAccounts")]
 public class UserBankAccount : Entity<Guid>
 {
-    public Guid UserId { get; set; }
+    public required Guid UserId { get; set; }
 
-    public string BankName { get; set; }
+    public required string BankName { get; set; }
 
-    public string SwiftNumber { get; set; }        
+    public required string SwiftNumber { get; set; }        
 
-    public string AccountNumber { get; set; }
+    public required string AccountNumber { get; set; }
 
-    public CurrencyCode CurrencyCode { get; set; }
+    public required CurrencyCode CurrencyCode { get; set; }
 }

@@ -8,15 +8,15 @@ namespace TokanPages.Backend.Domain.Entities.Users;
 [DatabaseTable(Schema = "operation", TableName = "UserMessages")]
 public class UserMessage : Entity<Guid>, IAuditable
 {
-    public string ChatKey { get; set; }
+    public required string ChatKey { get; set; }
 
-    public string ChatData { get; set; }    
+    public required string ChatData { get; set; }    
 
-    public bool IsArchived { get; set; }
+    public required bool IsArchived { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 

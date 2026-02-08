@@ -8,13 +8,13 @@ namespace TokanPages.Backend.Domain.Entities.Users;
 [DatabaseTable(Schema = "operation", TableName = "Users")]
 public class User : Entity<Guid>, IAuditable, ISoftDelete
 {
-    public string UserAlias { get; set; }
+    public required string UserAlias { get; set; }
 
-    public string EmailAddress { get; set; }
+    public required string EmailAddress { get; set; }
 
-    public string CryptedPassword { get; set; }
+    public required string CryptedPassword { get; set; }
 
-    public Guid? ResetId { get; set; }
+    public required Guid? ResetId { get; set; }
 
     public DateTime? ResetIdEnds { get; set; }
 
@@ -22,19 +22,19 @@ public class User : Entity<Guid>, IAuditable, ISoftDelete
 
     public DateTime? ActivationIdEnds { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 
     public DateTime? ModifiedAt { get; set; }
 
-    public bool IsActivated { get; set; }
+    public required bool IsActivated { get; set; }
 
-    public bool IsVerified { get; set; }
+    public required bool IsVerified { get; set; }
 
-    public bool IsDeleted { get; set; }
+    public required bool IsDeleted { get; set; }
 
-    public bool HasBusinessLock { get; set; }
+    public required bool HasBusinessLock { get; set; }
 }

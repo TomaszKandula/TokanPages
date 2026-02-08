@@ -36,8 +36,8 @@ public class RemoveUserMediaCommandHandler : RequestHandler<RemoveUserMediaComma
         if (userInfo is null)
             throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-        userInfo.UserImageName = userInfo.UserImageName == request.UniqueBlobName ? null : userInfo.UserImageName;
-        userInfo.UserVideoName = userInfo.UserVideoName == request.UniqueBlobName ? null : userInfo.UserVideoName;
+        userInfo.UserImageName = userInfo.UserImageName == request.UniqueBlobName ? string.Empty : userInfo.UserImageName;
+        userInfo.UserVideoName = userInfo.UserVideoName == request.UniqueBlobName ? string.Empty : userInfo.UserVideoName;
 
         await OperationDbContext.SaveChangesAsync(cancellationToken);
         await azureBlob.DeleteFile(destinationPath, cancellationToken);

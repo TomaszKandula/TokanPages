@@ -17,7 +17,7 @@ namespace TokanPages.Gateway;
 /// Startup.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class Startup
+internal sealed class Startup
 {
     private readonly IConfiguration _configuration;
 

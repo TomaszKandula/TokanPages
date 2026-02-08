@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Domain.Entities.Users;
 [DatabaseTable(Schema = "operation", TableName = "UserMessagesCache")]
 public class UserMessageCache : Entity<Guid>
 {
-    public string ChatKey { get; set; }
+    public required string ChatKey { get; set; }
 
-    public string Notification { get; set; }
+    public required string Notification { get; set; }
 }

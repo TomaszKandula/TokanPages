@@ -46,7 +46,16 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
                 ))
             .Returns(Task.CompletedTask);
 
-        var articleLikes = new ArticleLike { LikeCount = 10 };
+        var articleLikes = new ArticleLike
+        {
+            LikeCount = 10,
+            ArticleId = Guid.NewGuid(),
+            IpAddress = string.Empty,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            Id = Guid.NewGuid(),
+        };
+
         mockedArticlesRepository
             .Setup(repository => repository.GetArticleLikes(
                 It.IsAny<bool>(), 

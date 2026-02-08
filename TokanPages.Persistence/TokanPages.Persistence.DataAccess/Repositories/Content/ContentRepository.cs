@@ -42,7 +42,9 @@ public class ContentRepository : RepositoryBase, IContentRepository
             Status = VideoStatus.New,
             CreatedAt = _dateTimeService.Now,
             CreatedBy = userId,
-            IsSourceDeleted = false
+            IsSourceDeleted = false,
+            InputSizeInBytes = 0,
+            OutputSizeInBytes = 0
         };
 
         await DbOperations.Insert(entity);            

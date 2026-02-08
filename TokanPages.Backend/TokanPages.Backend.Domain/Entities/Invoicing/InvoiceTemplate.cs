@@ -8,15 +8,15 @@ namespace TokanPages.Backend.Domain.Entities.Invoicing;
 [DatabaseTable(Schema = "operation", TableName = "InvoiceTemplates")]
 public class InvoiceTemplate : Entity<Guid>, ISoftDelete
 {
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
-    public byte[] Data { get; set; }
+    public required byte[] Data { get; set; }
 
-    public string ContentType { get; set; }
+    public required string ContentType { get; set; }
 
-    public string ShortDescription { get; set; }
+    public required string ShortDescription { get; set; }
 
-    public DateTime GeneratedAt { get; set; }
+    public required DateTime GeneratedAt { get; set; }
 
-    public bool IsDeleted { get; set; }
+    public required bool IsDeleted { get; set; }
 }

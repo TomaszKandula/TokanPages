@@ -13,7 +13,7 @@ namespace TokanPages.Persistence.Caching;
 /// Users cache implementation
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class UsersCache : IUsersCache
+internal sealed class UsersCache : IUsersCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;
 

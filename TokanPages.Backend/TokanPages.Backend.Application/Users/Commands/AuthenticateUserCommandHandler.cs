@@ -82,7 +82,10 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             Expires = tokenExpires,
             Created = currentDateTime,
             CreatedByIp = ipAddress,
-            Command = nameof(AuthenticateUserCommand)
+            Command = nameof(AuthenticateUserCommand),
+            RevokedByIp = string.Empty,
+            ReasonRevoked = string.Empty,
+            Id = Guid.NewGuid(),
         };
 
         var newRefreshToken = new UserRefreshToken
@@ -91,7 +94,8 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
             Token = refreshToken.Token,
             Expires = refreshToken.Expires,
             Created = refreshToken.Created,
-            CreatedByIp = refreshToken.CreatedByIp
+            CreatedByIp = refreshToken.CreatedByIp,
+            Id = Guid.NewGuid(),
         };
 
         await _userService.DeleteOutdatedRefreshTokens(user.Id, false, cancellationToken);

@@ -21,7 +21,13 @@ public class GetAllUsersQueryHandlerTest : TestBase
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                CryptedPassword = DataUtilityService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString(),
+                ResetId = null,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                IsVerified = false,
+                IsDeleted = false,
+                HasBusinessLock = false
             },
             new()
             {
@@ -29,7 +35,13 @@ public class GetAllUsersQueryHandlerTest : TestBase
                 EmailAddress = DataUtilityService.GetRandomEmail(),
                 UserAlias = DataUtilityService.GetRandomString(),
                 IsActivated = true,
-                CryptedPassword = DataUtilityService.GetRandomString()
+                CryptedPassword = DataUtilityService.GetRandomString(),
+                ResetId = null,
+                CreatedBy = Guid.NewGuid(),
+                CreatedAt = default,
+                IsVerified = false,
+                IsDeleted = false,
+                HasBusinessLock = false
             }
         };
 

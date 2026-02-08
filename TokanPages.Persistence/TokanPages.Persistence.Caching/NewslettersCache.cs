@@ -11,7 +11,7 @@ namespace TokanPages.Persistence.Caching;
 /// Subscribers cache implementation
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class NewslettersCache : INewslettersCache
+internal sealed class NewslettersCache : INewslettersCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;
 

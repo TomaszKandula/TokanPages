@@ -8,11 +8,11 @@ namespace TokanPages.Backend.Domain.Entities.Photography;
 [DatabaseTable(Schema = "operation", TableName = "PhotoCategories")]
 public class PhotoCategory : Entity<Guid>, IAuditable
 {
-    public string CategoryName { get; set; }
+    public required string CategoryName { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 

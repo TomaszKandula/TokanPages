@@ -18,7 +18,7 @@ namespace TokanPages.Sender;
 /// Startup.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class Startup
+internal sealed class Startup
 {
     private const string ApiName = "Sender API";
 

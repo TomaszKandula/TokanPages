@@ -9,17 +9,17 @@ namespace TokanPages.Backend.Domain.Entities;
 [DatabaseTable(Schema = "operation", TableName = "SubscriptionsPricing")]
 public class SubscriptionPricing : Entity<Guid>, IAuditable
 {
-    public TermType Term { get; set; }
+    public required TermType Term { get; set; }
 
-    public decimal Price { get; set; }
+    public required decimal Price { get; set; }
 
-    public string CurrencyIso { get; set; }
+    public required string CurrencyIso { get; set; }
 
-    public string LanguageIso { get; set; }
+    public required string LanguageIso { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 

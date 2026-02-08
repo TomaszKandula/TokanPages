@@ -34,7 +34,13 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            CryptedPassword = cryptedPassword
+            CryptedPassword = cryptedPassword,
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var userInfo = new UserInfo
@@ -43,12 +49,13 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             FirstName = DataUtilityService.GetRandomString(),
             LastName = DataUtilityService.GetRandomString(),
             UserAboutText = DataUtilityService.GetRandomString(),
-            UserImageName = null,
-            UserVideoName = null,
+            UserImageName = string.Empty,
+            UserVideoName = string.Empty,
             CreatedBy = Guid.Empty,
             CreatedAt = DataUtilityService.GetRandomDateTime(),
             ModifiedBy = null,
-            ModifiedAt = null
+            ModifiedAt = null,
+            Id = Guid.NewGuid()
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -181,7 +188,13 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            CryptedPassword = cryptedPassword
+            CryptedPassword = cryptedPassword,
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -231,7 +244,13 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            CryptedPassword = cryptedPassword
+            CryptedPassword = cryptedPassword,
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var databaseContext = GetTestDatabaseContext();
@@ -288,7 +307,13 @@ public class AuthenticateUserCommandHandlerTest : TestBase
             EmailAddress = emailAddress,
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = false,
-            CryptedPassword = cryptedPassword
+            CryptedPassword = cryptedPassword,
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var databaseContext = GetTestDatabaseContext();

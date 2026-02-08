@@ -19,30 +19,40 @@ public class RemoveUserCommandHandlerTest : TestBase
     {
         // Arrange
         var userId = Guid.NewGuid();
-        var user = new User 
-        { 
+        var user = new User
+        {
             Id = userId,
             EmailAddress = DataUtilityService.GetRandomEmail(),
             UserAlias = DataUtilityService.GetRandomString(),
             IsActivated = true,
-            CryptedPassword = DataUtilityService.GetRandomString()
+            CryptedPassword = DataUtilityService.GetRandomString(),
+            ResetId = null,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false
         };
 
         var role = new Role
         {
             Id = Guid.NewGuid(),
             Name = DataUtilityService.GetRandomString(),
-            Description = DataUtilityService.GetRandomString()
+            Description = DataUtilityService.GetRandomString(),
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default
         };
 
         var permission = new Permission
         {
             Id = Guid.NewGuid(),
             Name = DataUtilityService.GetRandomString(),
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default,
         };
 
         var photoGear = new PhotoGear
-        { 
+        {
             Id = Guid.NewGuid(),
             Aperture = DataUtilityService.GetRandomDecimal(),
             BodyModel = DataUtilityService.GetRandomString(),
@@ -51,13 +61,17 @@ public class RemoveUserCommandHandlerTest : TestBase
             FocalLength = DataUtilityService.GetRandomInteger(),
             LensName = DataUtilityService.GetRandomString(),
             LensVendor = DataUtilityService.GetRandomString(),
-            ShutterSpeed = DataUtilityService.GetRandomString()
+            ShutterSpeed = DataUtilityService.GetRandomString(),
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default
         };
 
         var photoCategory = new PhotoCategory
         {
             Id = Guid.NewGuid(),
-            CategoryName = DataUtilityService.GetRandomString()
+            CategoryName = DataUtilityService.GetRandomString(),
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default
         };
         
         var userPhoto = new Photo
@@ -70,7 +84,9 @@ public class RemoveUserCommandHandlerTest : TestBase
             PhotoUrl = DataUtilityService.GetRandomString(),
             DateTaken = DataUtilityService.GetRandomDateTime(),
             Title = DataUtilityService.GetRandomString(),
-            Description = DataUtilityService.GetRandomString()
+            Description = DataUtilityService.GetRandomString(),
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default
         };
 
         var userInfo = new UserInfo
@@ -98,8 +114,8 @@ public class RemoveUserCommandHandlerTest : TestBase
             CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
             Command = DataUtilityService.GetRandomString(),
             Revoked = null,
-            RevokedByIp = null,
-            ReasonRevoked = null,
+            RevokedByIp = string.Empty,
+            ReasonRevoked = string.Empty,
         };
 
         var userRefreshToken = new UserRefreshToken
@@ -109,24 +125,30 @@ public class RemoveUserCommandHandlerTest : TestBase
             Token = DataUtilityService.GetRandomString(),
             Expires = DataUtilityService.GetRandomDateTime(),
             Created = DataUtilityService.GetRandomDateTime(),
-            CreatedByIp = DataUtilityService.GetRandomIpAddress().ToString(),
+            CreatedByIp = DataUtilityService.GetRandomIpAddress()
+                .ToString(),
             Revoked = null,
-            RevokedByIp = null,
-            ReasonRevoked = null,
+            RevokedByIp = string.Empty,
+            ReasonRevoked = string.Empty,
+            ReplacedByToken = string.Empty,
         };
 
         var userRole = new UserRole
         {
             Id = Guid.NewGuid(),
             UserId = userId,
-            RoleId = role.Id
+            RoleId = role.Id,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default
         };
 
         var userPermission = new UserPermission
         {
             Id = Guid.NewGuid(),
             UserId = userId,
-            PermissionId = permission.Id
+            PermissionId = permission.Id,
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default
         };
 
         var album = new Album
@@ -134,7 +156,9 @@ public class RemoveUserCommandHandlerTest : TestBase
             Id = Guid.NewGuid(),
             UserId = userId,
             UserPhotoId = userPhoto.Id,
-            Title = DataUtilityService.GetRandomString()
+            Title = DataUtilityService.GetRandomString(),
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default
         };
 
         var article = new Article
@@ -146,7 +170,8 @@ public class RemoveUserCommandHandlerTest : TestBase
             IsPublished = true,
             CreatedAt = DataUtilityService.GetRandomDateTime(),
             UpdatedAt = null,
-            LanguageIso = "ENG"
+            LanguageIso = "ENG",
+            CreatedBy = Guid.NewGuid()
         };
 
         var articleLike = new ArticleLike
@@ -154,17 +179,23 @@ public class RemoveUserCommandHandlerTest : TestBase
             Id = Guid.NewGuid(),
             UserId = userId,
             ArticleId = article.Id,
-            IpAddress = DataUtilityService.GetRandomIpAddress().ToString(),
-            LikeCount = DataUtilityService.GetRandomInteger()
+            IpAddress = DataUtilityService.GetRandomIpAddress()
+                .ToString(),
+            LikeCount = DataUtilityService.GetRandomInteger(),
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default
         };
 
         var articleCount = new ArticleCount
         {
             Id = Guid.NewGuid(),
             UserId = userId,
-            ArticleId= article.Id,
-            IpAddress= DataUtilityService.GetRandomIpAddress().ToString(),
-            ReadCount= DataUtilityService.GetRandomInteger()
+            ArticleId = article.Id,
+            IpAddress = DataUtilityService.GetRandomIpAddress()
+                .ToString(),
+            ReadCount = DataUtilityService.GetRandomInteger(),
+            CreatedBy = Guid.NewGuid(),
+            CreatedAt = default
         };
 
         var databaseContext = GetTestDatabaseContext();

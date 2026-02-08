@@ -7,13 +7,13 @@ namespace TokanPages.Backend.Domain.Entities.Invoicing;
 [DatabaseTable(Schema = "operation", TableName = "IssuedInvoices")]
 public class IssuedInvoice : Entity<Guid>
 {
-    public Guid UserId { get; set; }
+    public required Guid UserId { get; set; }
 
-    public string InvoiceNumber { get; set; }
+    public required string InvoiceNumber { get; set; }
 
-    public byte[] InvoiceData { get; set; }
+    public required byte[] InvoiceData { get; set; }
 
-    public string ContentType { get; set; }
+    public required string ContentType { get; set; }
 
-    public DateTime GeneratedAt { get; set; }
+    public required DateTime GeneratedAt { get; set; }
 }

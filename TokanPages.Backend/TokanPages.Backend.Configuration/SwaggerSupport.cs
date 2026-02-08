@@ -11,7 +11,7 @@ namespace TokanPages.Backend.Configuration;
 /// Swagger support.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public static class SwaggerSupport
+internal static class SwaggerSupport
 {
     /// <summary>
     /// Setup Swagger options (security and documentation).
@@ -21,7 +21,7 @@ public static class SwaggerSupport
     /// <param name="apiName">API name to be displayed in Swagger UI.</param>
     /// <param name="docVersion">Document version to be displayed in Swagger UI.</param>
     /// <param name="xmls">List of projects that should have XML documentation.</param>
-    public static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment environment, string apiName, string docVersion, string[]? xmls)
+    internal static void SetupSwaggerOptions(this IServiceCollection services, IHostEnvironment environment, string apiName, string docVersion, string[]? xmls)
     {
         if (environment.IsProduction())
             return;
@@ -79,7 +79,7 @@ public static class SwaggerSupport
     /// <param name="environment">Host environment instance.</param>
     /// <param name="apiName">API name to be displayed in Swagger UI.</param>
     /// <param name="docVersion">Document version to be displayed in Swagger UI.</param>
-    public static void SetupSwaggerUi(this IApplicationBuilder builder, IConfiguration configuration, IHostEnvironment environment, string apiName, string docVersion)
+    internal static void SetupSwaggerUi(this IApplicationBuilder builder, IConfiguration configuration, IHostEnvironment environment, string apiName, string docVersion)
     {
         if (environment.IsProduction())
             return;

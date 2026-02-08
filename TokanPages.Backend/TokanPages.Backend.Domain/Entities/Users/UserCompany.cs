@@ -8,23 +8,23 @@ namespace TokanPages.Backend.Domain.Entities.Users;
 [DatabaseTable(Schema = "operation", TableName = "UserCompanies")]
 public class UserCompany : Entity<Guid>
 {
-    public Guid UserId { get; set; }
+    public required Guid UserId { get; set; }
 
-    public string CompanyName { get; set; }
+    public required string CompanyName { get; set; }
 
-    public string VatNumber { get; set; }
+    public required string VatNumber { get; set; }
 
-    public string EmailAddress { get; set; }
+    public required string EmailAddress { get; set; }
 
-    public string PhoneNumber { get; set; }
+    public required string PhoneNumber { get; set; }
 
-    public string StreetAddress { get; set; }
+    public required string StreetAddress { get; set; }
 
-    public string PostalCode { get; set; }
+    public required string PostalCode { get; set; }
 
-    public string City { get; set; }
+    public required string City { get; set; }
 
-    public CurrencyCode CurrencyCode { get; set; }
+    public required CurrencyCode CurrencyCode { get; set; }
 
-    public CountryCode CountryCode { get; set; }
+    public required CountryCode CountryCode { get; set; }
 }
