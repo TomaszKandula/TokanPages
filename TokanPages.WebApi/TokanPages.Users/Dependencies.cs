@@ -19,6 +19,7 @@ using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.CookieAccessorService;
+using TokanPages.Services.CookieAccessorService.Abstractions;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;

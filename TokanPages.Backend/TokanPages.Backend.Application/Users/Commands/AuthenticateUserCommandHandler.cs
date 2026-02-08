@@ -8,7 +8,7 @@ using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.CipheringService.Abstractions;
-using TokanPages.Services.CookieAccessorService;
+using TokanPages.Services.CookieAccessorService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService.Abstractions;

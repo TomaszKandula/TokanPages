@@ -1,4 +1,4 @@
-namespace TokanPages.Services.CookieAccessorService;
+namespace TokanPages.Services.CookieAccessorService.Abstractions;
 
 public interface ICookieAccessor
 {
