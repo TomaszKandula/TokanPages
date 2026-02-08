@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace TokanPages.Services.MetricsService;
+namespace TokanPages.Services.MetricsService.Abstractions;
 
 public interface IMetricsService
 {

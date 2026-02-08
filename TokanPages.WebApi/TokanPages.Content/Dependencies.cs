@@ -18,6 +18,7 @@ using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.MetricsService;
+using TokanPages.Services.MetricsService.Abstractions;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.WebTokenService.Abstractions;

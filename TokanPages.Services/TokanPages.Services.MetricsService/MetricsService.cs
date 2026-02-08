@@ -9,6 +9,7 @@ using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
+using TokanPages.Services.MetricsService.Abstractions;
 using TokanPages.Services.MetricsService.Models;
 
 namespace TokanPages.Services.MetricsService;
