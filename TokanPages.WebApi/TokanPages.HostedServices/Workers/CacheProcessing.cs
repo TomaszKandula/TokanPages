@@ -4,7 +4,7 @@ using Azure.Messaging.ServiceBus;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.HostedServices.Base;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.AzureBusService.Abstractions;

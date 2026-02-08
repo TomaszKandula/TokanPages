@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Azure.Messaging.ServiceBus;
-using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.HostedServices.Base.Abstractions;
 using TokanPages.Services.AzureBusService.Abstractions;
 

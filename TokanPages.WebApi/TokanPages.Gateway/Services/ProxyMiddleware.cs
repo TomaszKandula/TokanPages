@@ -1,8 +1,8 @@
 using System.Text;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Gateway.Models;
 using TokanPages.Gateway.Services.Abstractions;
 using Microsoft.Extensions.Options;
+using TokanPages.Backend.Utility.Abstractions;
 
 namespace TokanPages.Gateway.Services;
 
