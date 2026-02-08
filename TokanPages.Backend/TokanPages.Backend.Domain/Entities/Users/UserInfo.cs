@@ -14,11 +14,11 @@ public class UserInfo : Entity<Guid>, IAuditable
 
     public required string LastName { get; set; }
 
-    public required string UserAboutText { get; set; }
+    public string? UserAboutText { get; set; }
 
-    public required string UserImageName { get; set; }
+    public string? UserImageName { get; set; }
 
-    public required string UserVideoName { get; set; }
+    public string? UserVideoName { get; set; }
 
     public required Guid CreatedBy { get; set; }
 
