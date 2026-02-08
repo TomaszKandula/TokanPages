@@ -7,7 +7,7 @@ using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 using TokanPages.Services.BatchService.Abstractions;
 using TokanPages.Services.BatchService.Models;
 using TokanPages.Services.UserService.Abstractions;
-using TokanPages.Services.VatService;
+using TokanPages.Services.VatService.Abstractions;
 using TokanPages.Services.VatService.Models;
 
 namespace TokanPages.Backend.Application.Invoicing.Batches.Commands;

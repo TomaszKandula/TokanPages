@@ -20,6 +20,7 @@ using TokanPages.Services.BatchService;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.VatService;
+using TokanPages.Services.VatService.Abstractions;
 using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Invoicing;

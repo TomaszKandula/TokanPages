@@ -1,7 +1,7 @@
 using FluentValidation.Results;
 using TokanPages.Services.VatService.Models;
 
-namespace TokanPages.Services.VatService;
+namespace TokanPages.Services.VatService.Abstractions;
 
 public interface IVatService
 {

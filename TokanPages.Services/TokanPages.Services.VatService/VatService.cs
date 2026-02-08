@@ -1,6 +1,7 @@
 using System.Text.RegularExpressions;
 using FluentValidation.Results;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Services.VatService.Abstractions;
 using TokanPages.Services.VatService.Models;
 
 namespace TokanPages.Services.VatService;
