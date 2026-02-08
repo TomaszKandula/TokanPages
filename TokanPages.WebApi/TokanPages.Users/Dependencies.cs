@@ -18,7 +18,6 @@ using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureStorageService;
-using TokanPages.Services.CipheringService.Abstractions;
 using TokanPages.Services.CookieAccessorService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Abstractions;
@@ -74,7 +73,7 @@ public static class Dependencies
         services.AddScoped<ICookieAccessor, CookieAccessor>();
 		services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
-		services.AddScoped<ICipheringService, CipheringService>();
+		services.AddCipheringService();
 		services.AddScoped<IUserService, UserService>();
 		services.AddScoped<IEmailSenderService, EmailSenderService>();
 
