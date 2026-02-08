@@ -18,7 +18,6 @@ using TokanPages.Services.HttpClientService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureStorageService;
-using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.UserService;
@@ -70,7 +69,7 @@ public static class Dependencies
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
 		services.AddScoped<IUserService, UserService>();
-		services.AddScoped<IEmailSenderService, EmailSenderService>();
+		services.AddEmailSenderService();
 
 		services.AddScoped<IJsonSerializer, JsonSerializer>();
 		services.AddScoped<IDateTimeService, DateTimeService>();
