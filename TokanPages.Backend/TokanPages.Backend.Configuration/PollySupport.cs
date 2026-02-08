@@ -8,9 +8,9 @@ using TokanPages.Backend.Shared.Constants;
 namespace TokanPages.Backend.Configuration;
 
 [ExcludeFromCodeCoverage]
-public static class PollySupport
+internal static class PollySupport
 {
-    public static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
+    internal static void SetupRetryPolicyWithPolly(IServiceCollection services, IConfiguration configuration, IHostEnvironment environment)
     {
         var settings = configuration.GetAppSettings();
         var developmentOrigin = settings.PathsDevelopmentOrigin;

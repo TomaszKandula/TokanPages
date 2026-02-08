@@ -7,9 +7,9 @@ using Newtonsoft.Json;
 namespace TokanPages.Backend.Configuration;
 
 [ExcludeFromCodeCoverage]
-public static class HealthCheckSupport
+internal static class HealthCheckSupport
 {
-    public static HealthCheckOptions WriteResponse()
+    internal static HealthCheckOptions WriteResponse()
     {
         return new HealthCheckOptions
         {

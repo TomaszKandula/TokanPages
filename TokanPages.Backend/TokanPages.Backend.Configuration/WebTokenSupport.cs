@@ -14,9 +14,9 @@ using TokanPages.Backend.Shared.Resources;
 namespace TokanPages.Backend.Configuration;
 
 [ExcludeFromCodeCoverage]
-public static class WebTokenSupport
+internal static class WebTokenSupport
 {
-	public static void SetupWebToken(this IServiceCollection services, IConfiguration configuration)
+    internal static void SetupWebToken(this IServiceCollection services, IConfiguration configuration)
     {
         var settings = configuration.GetAppSettings();
 

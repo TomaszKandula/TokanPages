@@ -9,14 +9,14 @@ namespace TokanPages.Backend.Configuration;
 /// REDIS support.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public static class RedisSupport
+internal static class RedisSupport
 {
     /// <summary>
     /// Setup REDIS cache.
     /// </summary>
     /// <param name="services">Service collections.</param>
     /// <param name="configuration">Application configuration instance.</param>
-    public static void SetupRedisCache(this IServiceCollection services, IConfiguration configuration)
+    internal static void SetupRedisCache(this IServiceCollection services, IConfiguration configuration)
     {
         var settings = configuration.GetAppSettings();
         services.AddDistributedRedisCache(option =>
@@ -26,7 +26,7 @@ public static class RedisSupport
         });
     }
 
-    public static string GetHostAndPort(IConfiguration configuration)
+    internal static string GetHostAndPort(IConfiguration configuration)
     {
         var settings = configuration.GetAppSettings();
         var connectionString = settings.AzRedisConnectionString;
@@ -35,7 +35,7 @@ public static class RedisSupport
         return data.Length == 0 ? string.Empty : data[0];
     }
 
-    public static string GetPassword(IConfiguration configuration)
+    internal static string GetPassword(IConfiguration configuration)
     {
         var settings = configuration.GetAppSettings();
         var connectionString = settings.AzRedisConnectionString;
@@ -47,7 +47,7 @@ public static class RedisSupport
         return password.Replace("password=", "");
     }
 
-    public static bool GetSsl(IConfiguration configuration)
+    internal static bool GetSsl(IConfiguration configuration)
     {
         var settings = configuration.GetAppSettings();
         var connectionString = settings.AzRedisConnectionString;
@@ -59,7 +59,7 @@ public static class RedisSupport
         return bool.Parse(ssl.Replace("ssl=", ""));
     }
 
-    public static bool GetAbortConnect(IConfiguration configuration)
+    internal static bool GetAbortConnect(IConfiguration configuration)
     {
         var settings = configuration.GetAppSettings();
         var connectionString = settings.AzRedisConnectionString;

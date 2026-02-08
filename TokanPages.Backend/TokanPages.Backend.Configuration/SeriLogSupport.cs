@@ -6,12 +6,12 @@ using TokanPages.Backend.Configuration.Options;
 namespace TokanPages.Backend.Configuration;
 
 [ExcludeFromCodeCoverage]
-public static class SeriLogSupport
+internal static class SeriLogSupport
 {
     private const string LogTemplate 
         = "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} [{Level:u3}] {Message:lj}{NewLine}{Exception}";
 
-    public static ILogger GetLogger(IConfigurationRoot configuration, string storageFileName, bool isProduction)
+    internal static ILogger GetLogger(IConfigurationRoot configuration, string storageFileName, bool isProduction)
     {
         var settings = configuration.GetAppSettings();
         var connectionString = settings.AzStorageConnectionString;

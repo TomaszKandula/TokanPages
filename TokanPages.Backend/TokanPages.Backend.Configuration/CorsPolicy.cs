@@ -10,14 +10,14 @@ namespace TokanPages.Backend.Configuration;
 /// CORS policy configuration.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public static class CorsPolicy
+internal static class CorsPolicy
 {
     /// <summary>
     /// Apply custom configuration.
     /// </summary>
     /// <param name="builder">ApplicationBuilder instance.</param>
     /// <param name="configuration">Provided configuration.</param>
-    public static void ApplyCorsPolicy(this IApplicationBuilder builder, IConfiguration configuration)
+    internal static void ApplyCorsPolicy(this IApplicationBuilder builder, IConfiguration configuration)
     {
         var settings = configuration.GetAppSettings();
         var deploymentOrigin = settings.PathsDevelopmentOrigin;
