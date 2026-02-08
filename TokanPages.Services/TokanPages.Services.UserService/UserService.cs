@@ -97,16 +97,7 @@ internal sealed class UserService : IUserService
     public async Task LogHttpRequest(string handlerName)
     {
         var ipAddress = GetRequestIpAddress();
-        var httpRequest = new HttpRequest
-        {
-            SourceAddress = ipAddress,
-            RequestedAt = _dateTimeService.Now,
-            RequestedHandlerName = handlerName,
-            Id = Guid.NewGuid(),
-        };
-
-        await _operationDbContext.HttpRequests.AddAsync(httpRequest);
-        await _operationDbContext.SaveChangesAsync();
+        await _userRepository.InsertHttpRequest(ipAddress, handlerName);
     }
 
     public Guid GetLoggedUserId()
