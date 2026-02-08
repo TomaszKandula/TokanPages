@@ -60,6 +60,8 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
             ExtCustomerId = data.ExtCustomerId,
             ExtOrderId =  data.ExtOrderId,
             CreatedAt = _dateTimeService.Now,
+            CreatedBy = data.UserId,
+            IsActive = false
         };
 
         await DbOperations.Insert(entity);
@@ -162,6 +164,7 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
     {
         var entity = new UserPaymentHistory
         {
+            Id = Guid.NewGuid(),
             UserId = data.UserId,
             Amount = data.Amount,
             CurrencyIso = data.CurrencyIso,
