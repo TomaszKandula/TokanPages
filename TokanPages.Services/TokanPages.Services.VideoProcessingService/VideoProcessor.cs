@@ -17,7 +17,7 @@ using TokanPages.Services.AzureStorageService.Abstractions;
 namespace TokanPages.Services.VideoProcessingService;
 
 [ExcludeFromCodeCoverage]
-public class VideoProcessor : IVideoProcessor
+internal sealed class VideoProcessor : IVideoProcessor
 {
     private readonly IVideoConverter _videoConverter;
 
