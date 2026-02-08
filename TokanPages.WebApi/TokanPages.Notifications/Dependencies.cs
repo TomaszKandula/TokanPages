@@ -72,15 +72,7 @@ public static class Dependencies
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
 
 		services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
-		services.AddScoped<IAzureNotificationHubUtility, AzureNotificationHubUtility>();
-
-        var settings = configuration.GetAppSettings();
-		services.AddSingleton<IAzureNotificationHubFactory>(_ =>
-		{
-			var containerName = settings.AzHubHubName;
-			var connectionString = settings.AzHubConnectionString;
-			return new AzureNotificationHubFactory(containerName, connectionString);
-		});
+		services.AddAzureNotificationHub(configuration);
 	}
 
 	private static void SetupValidators(this IServiceCollection services)
