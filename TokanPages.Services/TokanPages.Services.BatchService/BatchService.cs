@@ -1,5 +1,6 @@
 using System.Text;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
@@ -13,6 +14,7 @@ using ProcessingStatus = TokanPages.Backend.Domain.Enums.ProcessingStatus;
 
 namespace TokanPages.Services.BatchService;
 
+[ExcludeFromCodeCoverage]
 internal sealed class BatchService : IBatchService
 {
     private readonly IInvoicingRepository _invoicingRepository;

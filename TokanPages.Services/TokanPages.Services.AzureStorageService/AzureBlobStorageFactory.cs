@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Services.AzureStorageService;
 
+[ExcludeFromCodeCoverage]
 internal sealed class AzureBlobStorageFactory : IAzureBlobStorageFactory
 {
     private readonly string _connectionString;

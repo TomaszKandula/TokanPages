@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -16,6 +17,7 @@ using TokanPages.Services.HttpClientService.Models;
 
 namespace TokanPages.Services.EmailSenderService;
 
+[ExcludeFromCodeCoverage]
 internal sealed class EmailSenderService : IEmailSenderService
 {
     private const string QueueName = "email_queue";

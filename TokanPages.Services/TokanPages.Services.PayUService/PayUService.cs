@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Text;
 using TokanPages.Backend.Core.Exceptions;
@@ -12,7 +13,8 @@ using TokanPages.Backend.Shared.Options;
 
 namespace TokanPages.Services.PayUService;
 
-public class PayUService : IPayUService
+[ExcludeFromCodeCoverage]
+internal sealed class PayUService : IPayUService
 {
     private readonly IHttpClientServiceFactory _httpClientServiceFactory;
 

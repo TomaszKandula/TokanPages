@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.CookieAccessorService.Abstractions;
 
 namespace TokanPages.Services.CookieAccessorService;
 
+[ExcludeFromCodeCoverage]
 internal sealed class CookieAccessor : ICookieAccessor
 {
     private readonly IHttpContextAccessor _httpContextAccessor;

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using Azure.Messaging.ServiceBus;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
@@ -5,6 +6,7 @@ using TokanPages.Services.AzureBusService.Abstractions;
 
 namespace TokanPages.Services.AzureBusService;
 
+[ExcludeFromCodeCoverage]
 internal sealed class AzureBusClient : IAzureBusClient
 {
     private readonly ServiceBusClient _client;
