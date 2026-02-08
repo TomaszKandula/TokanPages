@@ -11,7 +11,7 @@ using TokanPages.Persistence.DataAccess.Abstractions;
 
 namespace TokanPages.Persistence.DataAccess;
 
-public class DbOperations : IDbOperations
+internal sealed class DbOperations : IDbOperations
 {
     private readonly ILoggerService _loggerService;
 
