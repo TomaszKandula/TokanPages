@@ -13,7 +13,7 @@ using ProcessingStatus = TokanPages.Backend.Domain.Enums.ProcessingStatus;
 
 namespace TokanPages.Services.BatchService;
 
-public class BatchService : IBatchService
+internal sealed class BatchService : IBatchService
 {
     private readonly IInvoicingRepository _invoicingRepository;
 
