@@ -1,4 +1,4 @@
-﻿namespace TokanPages.Backend.Core.Utilities.LoggerService;
+﻿namespace TokanPages.Services.UtilityService.Abstractions;
 
 public interface ILoggerService
 {

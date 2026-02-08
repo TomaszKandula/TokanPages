@@ -1,7 +1,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace TokanPages.Backend.Core.Utilities.JsonSerializer;
+namespace TokanPages.Services.UtilityService.Abstractions;
 
 public interface IJsonSerializer
 {

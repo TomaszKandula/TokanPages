@@ -1,6 +1,6 @@
 using System.Net;
 
-namespace TokanPages.Backend.Core.Utilities.DataUtilityService;
+namespace TokanPages.Services.UtilityService.Abstractions;
 
 public interface IDataUtilityService
 {

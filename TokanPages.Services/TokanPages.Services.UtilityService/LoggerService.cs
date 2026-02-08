@@ -1,8 +1,9 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Serilog;
+using TokanPages.Services.UtilityService.Abstractions;
 
-namespace TokanPages.Backend.Core.Utilities.LoggerService;
+namespace TokanPages.Services.UtilityService;
 
 /// <summary>
 /// Logger service that allows to store messages from application.

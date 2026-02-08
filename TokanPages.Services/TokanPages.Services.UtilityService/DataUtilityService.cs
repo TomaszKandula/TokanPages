@@ -1,7 +1,8 @@
 using System.Net;
 using System.Security.Cryptography;
+using TokanPages.Services.UtilityService.Abstractions;
 
-namespace TokanPages.Backend.Core.Utilities.DataUtilityService;
+namespace TokanPages.Services.UtilityService;
 
 public class DataUtilityService : IDataUtilityService
 {
