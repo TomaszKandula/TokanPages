@@ -1,18 +1,18 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Security.Cryptography;
 using System.Text;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Services.PushNotificationService.Abstractions;
 using TokanPages.Services.PushNotificationService.Models;
 using TokanPages.Services.PushNotificationService.Models.AppleNotificationService;
 using TokanPages.Services.PushNotificationService.Models.FirebaseCloudMessaging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using TokanPages.Backend.Utility.Abstractions;
 
 namespace TokanPages.Services.PushNotificationService;
 
 [ExcludeFromCodeCoverage]
-public class AzureNotificationHubUtility : IAzureNotificationHubUtility
+internal sealed class AzureNotificationHubUtility : IAzureNotificationHubUtility
 {
     private const string Scheme = "https";
 

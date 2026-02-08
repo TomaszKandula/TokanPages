@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Enums;
+using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Configuration;

@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Options;
-using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Domain.Entities;
+using TokanPages.Backend.Shared.Options;
 using TokanPages.Persistence.DataAccess.Abstractions;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Messaging;

@@ -1,19 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.AzureBusService;
-using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.VideoConverterService;
-using TokanPages.Services.VideoConverterService.Abstractions;
 using TokanPages.Services.VideoProcessingService;
-using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.AzureStorageService;
-using TokanPages.Services.AzureStorageService.Abstractions;
 using Newtonsoft.Json;
-using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility;
 using TokanPages.HostedServices.CronJobs;
 using TokanPages.HostedServices.CronJobs.Abstractions;
 using TokanPages.HostedServices.Models;
@@ -21,9 +14,7 @@ using TokanPages.HostedServices.Workers;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.EmailSenderService;
-using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.SpaCachingService;
-using JsonSerializer = TokanPages.Backend.Core.Utilities.JsonSerializer.JsonSerializer;
 
 namespace TokanPages.HostedServices;
 
@@ -58,17 +49,13 @@ public static class Dependencies
     private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 
 	{
 		services.AddHttpContextAccessor();
-
-        services.AddSingleton<ILoggerService, LoggerService>();
-        services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
-
-        services.AddSingleton<IJsonSerializer, JsonSerializer>();
-		services.AddSingleton<IDateTimeService, DateTimeService>();
-		services.AddSingleton<IVideoConverter, VideoConverter>();
-		services.AddSingleton<IVideoProcessor, VideoProcessor>();
-        services.AddSingleton<IBatchService, BatchService>();
-        services.AddSingleton<IEmailSenderService, EmailSenderService>();
-        services.AddSingleton<ICachingService, CachingService>();
+        services.AddHttpClientService();
+        services.AddUtilityServices();
+		services.AddVideoConverter();
+		services.AddVideoProcessor();
+        services.AddBatchService();
+        services.AddEmailSenderService();
+        services.AddCachingService();
 
         services.AddSingleton<CacheProcessing>();
         services.AddSingleton<VideoProcessing>();
@@ -83,19 +70,8 @@ public static class Dependencies
 
     private static void SetupAzureServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var settings = configuration.GetAppSettings();
-        services.AddSingleton<IAzureBusFactory>(_ =>
-        {
-            var connectionString = settings.AzBusConnectionString;
-            return new AzureBusFactory(connectionString);
-        });
-
-        services.AddSingleton<IAzureBlobStorageFactory>(_ =>
-        {
-            var containerName = settings.AzStorageContainerName;
-            var connectionString = settings.AzStorageConnectionString;
-            return new AzureBlobStorageFactory(connectionString, containerName);
-        });
+        services.AddAzureBus(configuration);
+        services.AddAzureStorage(configuration);
     }
 
     private static void SetupCronServices(this IServiceCollection services, IConfiguration configuration)

@@ -1,11 +1,9 @@
 using TokanPages.Backend.Application.Notifications.Web.Command;
 using TokanPages.Backend.Application.Revenue.Models;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using MediatR;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;

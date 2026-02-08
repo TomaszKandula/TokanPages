@@ -1,9 +1,9 @@
-using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 
 namespace TokanPages.Services.HttpClientService;
 
-public class HttpClientServiceFactory : IHttpClientServiceFactory
+internal sealed class HttpClientServiceFactory : IHttpClientServiceFactory
 {
     public IHttpClientService Create(bool allowAutoRedirect, ILoggerService loggerService)
     {

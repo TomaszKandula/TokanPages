@@ -53,6 +53,7 @@
     <Project Path="TokanPages.Backend/TokanPages.Backend.Core/TokanPages.Backend.Core.csproj" />
     <Project Path="TokanPages.Backend/TokanPages.Backend.Domain/TokanPages.Backend.Domain.csproj" />
     <Project Path="TokanPages.Backend/TokanPages.Backend.Shared/TokanPages.Backend.Shared.csproj" />
+    <Project Path="TokanPages.Backend/TokanPages.Backend.Utility/TokanPages.Backend.Utility.csproj" />
   </Folder>
   <Folder Name="/7. Persistence/">
     <Project Path="TokanPages.Persistence/TokanPages.Persistence.Caching/TokanPages.Persistence.Caching.csproj" />

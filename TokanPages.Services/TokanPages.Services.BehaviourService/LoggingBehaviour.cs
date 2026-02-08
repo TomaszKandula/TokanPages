@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using MediatR;
-using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Utility.Abstractions;
 
 namespace TokanPages.Services.BehaviourService;
 
 [ExcludeFromCodeCoverage]
-public class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
+internal sealed class LoggingBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
     private readonly ILoggerService _loggerService;
 

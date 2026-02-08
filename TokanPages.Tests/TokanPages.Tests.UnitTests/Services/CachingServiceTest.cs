@@ -2,7 +2,7 @@ using System.Net;
 using System.Net.Http.Headers;
 using FluentAssertions;
 using Moq;
-using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;

@@ -2,14 +2,13 @@ using System.Diagnostics.CodeAnalysis;
 using Azure.Storage.Blobs;
 using HealthChecks.Azure.Storage.Blobs;
 using TokanPages.Backend.Configuration;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Gateway.Extensions;
 using TokanPages.Gateway.Models;
 using TokanPages.Gateway.Services;
 using TokanPages.Services.WebSocketService;
-using TokanPages.Services.WebSocketService.Abstractions;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility;
 
 namespace TokanPages.Gateway;
 
@@ -55,8 +54,8 @@ internal sealed class Startup
             options.Configuration.AbortOnConnectFail = RedisSupport.GetAbortConnect(_configuration);
         });
         services.AddOptions();
-        services.AddSingleton<ILoggerService, LoggerService>();
-        services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
+        services.AddUtilityServices();
+        services.AddWebSocketService();
         services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
         services.Configure<GatewaySettingsModel>(_configuration.GetSection(GatewaySettingsModel.SectionName));
         services.AddProxyHttpClient();

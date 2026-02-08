@@ -2,9 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Moq;
-using TokanPages.Backend.Configuration.Options;
-using TokanPages.Backend.Core.Utilities.DataUtilityService;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
+using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Abstractions;

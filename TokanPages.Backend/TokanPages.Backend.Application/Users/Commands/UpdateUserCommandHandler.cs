@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.UserService.Abstractions;
 

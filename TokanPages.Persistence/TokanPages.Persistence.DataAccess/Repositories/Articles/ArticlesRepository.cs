@@ -1,9 +1,9 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
-using TokanPages.Backend.Configuration.Options;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities.Articles;
+using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Abstractions;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 

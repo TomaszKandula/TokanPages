@@ -3,19 +3,13 @@ using System.Reflection;
 using FluentValidation;
 using MediatR;
 using TokanPages.Backend.Configuration;
-using TokanPages.Backend.Configuration.Options;
-using TokanPages.Backend.Core.Utilities.DataUtilityService;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureStorageService;
-using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.UserService;
-using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService;
-using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Logger;
 
@@ -56,23 +50,10 @@ public static class Dependencies
     private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 
     {
         services.AddHttpContextAccessor();
-
-        services.AddSingleton<ILoggerService, LoggerService>();
-        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
-        services.AddScoped<IWebTokenValidation, WebTokenValidation>();
-        services.AddScoped<IUserService, UserService>();
-
-        services.AddScoped<IJsonSerializer, JsonSerializer>();
-        services.AddScoped<IDateTimeService, DateTimeService>();
-        services.AddScoped<IDataUtilityService, DataUtilityService>();
-
-        var settings = configuration.GetAppSettings();
-        services.AddSingleton<IAzureBlobStorageFactory>(_ =>
-        {
-            var containerName = settings.AzStorageContainerName;
-            var connectionString = settings.AzStorageConnectionString;
-            return new AzureBlobStorageFactory(connectionString, containerName);
-        });
+        services.AddWebTokenService();
+        services.AddUserService();
+        services.AddUtilityServices();
+        services.AddAzureStorage(configuration);
     }
 
     private static void SetupValidators(this IServiceCollection services)
@@ -83,9 +64,6 @@ public static class Dependencies
         services.AddMediatR(options => options.AsScoped(), 
             typeof(Backend.Application.RequestHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(HttpRequestBehaviour<,>));
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TokenCheckBehaviour<,>));
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
+        services.AddBehaviourServices();
     }
 }

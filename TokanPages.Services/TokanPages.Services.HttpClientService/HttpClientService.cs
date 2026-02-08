@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.WebUtilities;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
 
 namespace TokanPages.Services.HttpClientService;
 
-public class HttpClientService : IHttpClientService
+internal sealed class HttpClientService : IHttpClientService
 {
     private const string Header = "Authorization";
 

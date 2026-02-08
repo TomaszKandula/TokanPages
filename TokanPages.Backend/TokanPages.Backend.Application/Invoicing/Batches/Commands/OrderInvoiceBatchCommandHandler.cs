@@ -1,13 +1,12 @@
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
-using TokanPages.Services.BatchService;
+using TokanPages.Services.BatchService.Abstractions;
 using TokanPages.Services.BatchService.Models;
 using TokanPages.Services.UserService.Abstractions;
-using TokanPages.Services.VatService;
+using TokanPages.Services.VatService.Abstractions;
 using TokanPages.Services.VatService.Models;
 
 namespace TokanPages.Backend.Application.Invoicing.Batches.Commands;

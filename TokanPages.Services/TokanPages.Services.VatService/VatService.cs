@@ -1,11 +1,12 @@
 using System.Text.RegularExpressions;
 using FluentValidation.Results;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Services.VatService.Abstractions;
 using TokanPages.Services.VatService.Models;
 
 namespace TokanPages.Services.VatService;
 
-public class VatService : IVatService
+internal sealed class VatService : IVatService
 {
     /// <summary>
     /// Checks passed VAT number. It validates Polish VAT number (detailed check) and other European countries VAT numbers.

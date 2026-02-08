@@ -1,18 +1,20 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Text;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
 using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.PayUService.Models;
 using Microsoft.Extensions.Options;
-using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility.Abstractions;
 
 namespace TokanPages.Services.PayUService;
 
-public class PayUService : IPayUService
+[ExcludeFromCodeCoverage]
+internal sealed class PayUService : IPayUService
 {
     private readonly IHttpClientServiceFactory _httpClientServiceFactory;
 

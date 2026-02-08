@@ -1,14 +1,11 @@
 using TokanPages.Backend.Application.Chat.Models;
-using TokanPages.Backend.Application.Notifications.Web.Command;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebSocketService.Abstractions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Chat;
 

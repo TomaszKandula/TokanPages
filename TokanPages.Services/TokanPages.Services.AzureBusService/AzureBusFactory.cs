@@ -1,8 +1,10 @@
+using System.Diagnostics.CodeAnalysis;
 using TokanPages.Services.AzureBusService.Abstractions;
 
 namespace TokanPages.Services.AzureBusService;
 
-public class AzureBusFactory : IAzureBusFactory
+[ExcludeFromCodeCoverage]
+internal sealed class AzureBusFactory : IAzureBusFactory
 {
     private readonly string _connectionString;
 

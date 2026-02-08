@@ -1,7 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Services.AzureStorageService.Models;
@@ -11,13 +9,14 @@ using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.VideoProcessingService.Models;
 using TokanPages.Services.VideoProcessingService.Utilities;
 using Microsoft.EntityFrameworkCore;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Services.VideoProcessingService;
 
 [ExcludeFromCodeCoverage]
-public class VideoProcessor : IVideoProcessor
+internal sealed class VideoProcessor : IVideoProcessor
 {
     private readonly IVideoConverter _videoConverter;
 

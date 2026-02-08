@@ -2,7 +2,6 @@ using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.AzureStorageService.Models;

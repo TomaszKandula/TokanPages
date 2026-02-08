@@ -1,6 +1,6 @@
 using FluentValidation;
 using Microsoft.Extensions.Options;
-using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 
 namespace TokanPages.Backend.Application.Users.Commands;

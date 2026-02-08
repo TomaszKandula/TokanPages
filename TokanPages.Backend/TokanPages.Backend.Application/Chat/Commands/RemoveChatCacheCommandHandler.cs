@@ -1,5 +1,5 @@
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using MediatR;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Chat;
 

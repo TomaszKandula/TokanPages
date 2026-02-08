@@ -6,9 +6,9 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using Serilog;
 using TokanPages.Backend.Configuration;
-using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Exceptions.Middleware;
+using TokanPages.Backend.Shared.Options;
 using TokanPages.Services.WebSocketService;
 
 namespace TokanPages.Notifications;

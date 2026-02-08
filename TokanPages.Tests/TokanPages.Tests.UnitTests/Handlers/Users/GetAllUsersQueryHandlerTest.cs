@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Users.Queries;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Backend.Utility.Abstractions;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Users;

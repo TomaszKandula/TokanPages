@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.SignalR;
 namespace TokanPages.Services.WebSocketService;
 
 [ExcludeFromCodeCoverage]
-public class NotificationService<T> : INotificationService where T : Hub
+internal sealed class NotificationService<T> : INotificationService where T : Hub
 {
     private readonly IHubContext<T> _hubContext;
 

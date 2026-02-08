@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Net.Http.Headers;
-using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Shared.Options;
 
 namespace TokanPages.Backend.Configuration;
 

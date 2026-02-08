@@ -1,29 +1,19 @@
 ﻿using System.Reflection;
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Configuration;
-using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility;
 using TokanPages.Persistence.Caching;
-using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.PayUService;
-using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.RedisCacheService;
-using TokanPages.Services.RedisCacheService.Abstractions;
 using TokanPages.Services.UserService;
-using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebSocketService;
-using TokanPages.Services.WebSocketService.Abstractions;
-using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Revenue;
 
@@ -64,23 +54,14 @@ public static class Dependencies
 	private static void SetupServices(this IServiceCollection services) 
 	{
 		services.AddHttpContextAccessor();
-
-        services.AddSingleton<ILoggerService, LoggerService>();
-		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
-
-        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
-		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
-
-		services.AddScoped<IJsonSerializer, JsonSerializer>();
-		services.AddScoped<IDateTimeService, DateTimeService>();
-		services.AddScoped<IDataUtilityService, DataUtilityService>();
-
-		services.AddScoped<IUserService, UserService>();
-		services.AddScoped<IPayUService, PayUService>();
-		services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
-
-		services.AddScoped<ISubscriptionsCache, SubscriptionsCache>();
-		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
+        services.AddHttpClientService();
+        services.AddUtilityServices();
+        services.AddWebTokenService();
+        services.AddUserService();
+		services.AddPayUService();
+        services.AddWebSocketService();
+        services.AddRedisCache();
+        services.AddPersistenceCaching();
 	}
 
 	private static void SetupValidators(this IServiceCollection services)
@@ -91,9 +72,6 @@ public static class Dependencies
 		services.AddMediatR(options => options.AsScoped(), 
 			typeof(Backend.Application.RequestHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
-		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(HttpRequestBehaviour<,>));
-		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TokenCheckBehaviour<,>));
-		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
-		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
+        services.AddBehaviourServices();
 	}
 }

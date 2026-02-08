@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.SignalR;
 namespace TokanPages.Services.WebSocketService;
 
 [ExcludeFromCodeCoverage]
-public class WebSocketHub : Hub
+public sealed class WebSocketHub : Hub
 {
     public override async Task OnConnectedAsync()
     {

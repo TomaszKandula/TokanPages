@@ -1,13 +1,12 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.UserService.Abstractions;
@@ -17,9 +16,7 @@ using HttpRequest = TokanPages.Backend.Domain.Entities.HttpRequest;
 
 namespace TokanPages.Services.UserService;
 
-[SuppressMessage("Sonar Code Smell", "S3267:Loop should be simplified with LINQ expression", 
-    Justification = "LINQ would actually just make things harder to understand")]
-public sealed class UserService : IUserService
+internal sealed class UserService : IUserService
 {
     private const string Localhost = "127.0.0.1";
 

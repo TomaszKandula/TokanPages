@@ -1,8 +1,8 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
-using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Backend.Shared.Options;
 using TokanPages.Persistence.DataAccess.Abstractions;
 using TokanPages.Persistence.DataAccess.Repositories.Chat.Models;
 

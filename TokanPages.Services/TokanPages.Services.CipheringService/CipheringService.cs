@@ -6,7 +6,7 @@ using TokanPages.Services.CipheringService.Helpers;
 
 namespace TokanPages.Services.CipheringService;
 
-public sealed class CipheringService : ICipheringService
+internal sealed class CipheringService : ICipheringService
 {
     /// <summary>
     /// Hash a password using the OpenBSD bcrypt scheme.

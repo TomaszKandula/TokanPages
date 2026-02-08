@@ -1,16 +1,18 @@
+using System.Diagnostics.CodeAnalysis;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Constants;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.AzureStorageService.Models;
 
 namespace TokanPages.Services.AzureStorageService;
 
-public class AzureBlobStorage : IAzureBlobStorage
+[ExcludeFromCodeCoverage]
+internal sealed class AzureBlobStorage : IAzureBlobStorage
 {
     private readonly BlobContainerClient _container;
 

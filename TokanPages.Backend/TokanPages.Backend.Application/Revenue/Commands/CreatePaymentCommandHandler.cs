@@ -1,9 +1,9 @@
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.PayUService.Models;
 using TokanPages.Services.UserService.Abstractions;
 using Microsoft.Extensions.Options;
-using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;

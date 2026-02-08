@@ -1,12 +1,11 @@
 using TokanPages.Backend.Application.Notifications.Web.Models;
 using TokanPages.Backend.Application.Notifications.Web.Models.Base;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.WebSocketService.Abstractions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Chat;
 using TokanPages.Persistence.DataAccess.Repositories.Notification;

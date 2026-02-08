@@ -7,7 +7,7 @@ using TokanPages.Persistence.DataAccess.Abstractions;
 namespace TokanPages.Persistence.DataAccess;
 
 /// <inheritdoc/>
-public class SqlGenerator : ISqlGenerator
+internal sealed class SqlGenerator : ISqlGenerator
 {
     private static GeneralException MissingPrimaryKey => new(nameof(ErrorCodes.MISSING_PRIMARYKEY), ErrorCodes.MISSING_PRIMARYKEY);
 

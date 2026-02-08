@@ -1,14 +1,13 @@
 using TokanPages.Backend.Application.Content.Assets.Commands.Models;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Content;
 using TokanPages.Persistence.DataAccess.Repositories.Messaging;

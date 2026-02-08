@@ -1,8 +1,8 @@
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Application.Content.Assets.Queries.Models;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 

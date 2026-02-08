@@ -1,30 +1,20 @@
 ﻿using System.Reflection;
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Configuration;
-using TokanPages.Backend.Configuration.Options;
-using TokanPages.Services.UserService.Abstractions;
+using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
-using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Persistence.Caching;
-using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureBusService;
-using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.AzureStorageService;
-using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.MetricsService;
 using TokanPages.Services.RedisCacheService;
-using TokanPages.Services.RedisCacheService.Abstractions;
 using TokanPages.Services.UserService;
-using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Content;
 
@@ -65,35 +55,15 @@ public static class Dependencies
 	private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 
 	{
 		services.AddHttpContextAccessor();
-
-        services.AddSingleton<ILoggerService, LoggerService>();
-		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
-
-        services.AddScoped<IWebTokenUtility, WebTokenUtility>();
-		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
-		services.AddScoped<IUserService, UserService>();
-		services.AddScoped<IMetricsService, MetricsService>();
-
-		services.AddScoped<IJsonSerializer, JsonSerializer>();
-		services.AddScoped<IDateTimeService, DateTimeService>();
-		services.AddScoped<IDataUtilityService, DataUtilityService>();
-
-		services.AddScoped<IContentCache, ContentCache>();
-		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
-
-        var settings = configuration.GetAppSettings();
-		services.AddSingleton<IAzureBusFactory>(_ =>
-		{
-			var connectionString = settings.AzBusConnectionString;
-			return new AzureBusFactory(connectionString);
-		});
-
-		services.AddSingleton<IAzureBlobStorageFactory>(_ =>
-		{
-			var containerName = settings.AzStorageContainerName;
-			var connectionString = settings.AzStorageConnectionString;
-			return new AzureBlobStorageFactory(connectionString, containerName);
-		});
+        services.AddHttpClientService();
+        services.AddWebTokenService();
+        services.AddUserService();
+		services.AddMetricsService();
+        services.AddUtilityServices();
+        services.AddRedisCache();
+        services.AddPersistenceCaching();
+        services.AddAzureBus(configuration);
+        services.AddAzureStorage(configuration);
 	}
 
 	private static void SetupValidators(this IServiceCollection services)
@@ -104,9 +74,6 @@ public static class Dependencies
 		services.AddMediatR(options => options.AsScoped(), 
 			typeof(Backend.Application.RequestHandler<IRequest, Unit>).GetTypeInfo().Assembly);
 
-		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(HttpRequestBehaviour<,>));
-		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TokenCheckBehaviour<,>));
-		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
-		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
+        services.AddBehaviourServices();
 	}
 }

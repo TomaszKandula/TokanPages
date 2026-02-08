@@ -1,13 +1,13 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.EmailSenderService.Abstractions;
@@ -16,7 +16,8 @@ using TokanPages.Services.HttpClientService.Models;
 
 namespace TokanPages.Services.EmailSenderService;
 
-public class EmailSenderService : IEmailSenderService
+[ExcludeFromCodeCoverage]
+internal sealed class EmailSenderService : IEmailSenderService
 {
     private const string QueueName = "email_queue";
 
