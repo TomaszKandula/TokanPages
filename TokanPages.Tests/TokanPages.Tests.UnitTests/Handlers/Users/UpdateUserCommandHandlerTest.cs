@@ -2,9 +2,8 @@
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 

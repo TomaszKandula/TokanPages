@@ -2,8 +2,8 @@
 using Moq;
 using TokanPages.Backend.Application.Sender.Newsletters.Queries;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using Xunit;
 

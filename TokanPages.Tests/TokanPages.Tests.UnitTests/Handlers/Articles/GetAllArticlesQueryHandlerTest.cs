@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Articles.Queries;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Articles;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 using TokanPages.Services.UserService.Abstractions;

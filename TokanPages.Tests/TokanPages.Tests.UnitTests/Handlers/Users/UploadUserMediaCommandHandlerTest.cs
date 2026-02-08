@@ -2,7 +2,6 @@ using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;

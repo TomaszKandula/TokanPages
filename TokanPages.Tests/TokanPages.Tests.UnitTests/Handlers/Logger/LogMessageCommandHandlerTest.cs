@@ -4,8 +4,8 @@ using Moq;
 using TokanPages.Backend.Application.Logger.Commands;
 using TokanPages.Backend.Application.Logger.Commands.Models;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Utility.Abstractions;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Logger;

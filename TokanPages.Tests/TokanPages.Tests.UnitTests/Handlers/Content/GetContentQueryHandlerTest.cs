@@ -4,9 +4,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TokanPages.Backend.Application.Content.Components.Queries;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.AzureStorageService.Models;
 using Xunit;
@@ -71,26 +70,26 @@ public class GetContentQueryHandlerTest : TestBase
         var content = result.Content as JObject;
         content.Should().NotBeNull();
 
-        var activateAccountDto = JsonConvert.DeserializeObject<ActivateAccountDto>(content!.ToString());
+        var activateAccountDto = JsonConvert.DeserializeObject<ActivateAccountDto>(content.ToString());
         activateAccountDto.Should().NotBeNull();
 
-        activateAccountDto?.OnProcessing.Type.Should().Be(testObject.OnProcessing.Type);
-        activateAccountDto?.OnProcessing.Caption.Should().Be(testObject.OnProcessing.Caption);
-        activateAccountDto?.OnProcessing.Text1.Should().Be(testObject.OnProcessing.Text1);
-        activateAccountDto?.OnProcessing.Text2.Should().Be(testObject.OnProcessing.Text2);
-        activateAccountDto?.OnProcessing.Button.Should().Be(testObject.OnProcessing.Button);
+        activateAccountDto.OnProcessing.Type.Should().Be(testObject.OnProcessing.Type);
+        activateAccountDto.OnProcessing.Caption.Should().Be(testObject.OnProcessing.Caption);
+        activateAccountDto.OnProcessing.Text1.Should().Be(testObject.OnProcessing.Text1);
+        activateAccountDto.OnProcessing.Text2.Should().Be(testObject.OnProcessing.Text2);
+        activateAccountDto.OnProcessing.Button.Should().Be(testObject.OnProcessing.Button);
 
-        activateAccountDto?.OnSuccess.Type.Should().Be(testObject.OnSuccess.Type);
-        activateAccountDto?.OnSuccess.Caption.Should().Be(testObject.OnSuccess.Caption);
-        activateAccountDto?.OnSuccess.Text1.Should().Be(testObject.OnSuccess.Text1);
-        activateAccountDto?.OnSuccess.Text2.Should().Be(testObject.OnSuccess.Text2);
-        activateAccountDto?.OnSuccess.Button.Should().Be(testObject.OnSuccess.Button);
+        activateAccountDto.OnSuccess.Type.Should().Be(testObject.OnSuccess.Type);
+        activateAccountDto.OnSuccess.Caption.Should().Be(testObject.OnSuccess.Caption);
+        activateAccountDto.OnSuccess.Text1.Should().Be(testObject.OnSuccess.Text1);
+        activateAccountDto.OnSuccess.Text2.Should().Be(testObject.OnSuccess.Text2);
+        activateAccountDto.OnSuccess.Button.Should().Be(testObject.OnSuccess.Button);
 
-        activateAccountDto?.OnError.Type.Should().Be(testObject.OnError.Type);
-        activateAccountDto?.OnError.Caption.Should().Be(testObject.OnError.Caption);
-        activateAccountDto?.OnError.Text1.Should().Be(testObject.OnError.Text1);
-        activateAccountDto?.OnError.Text2.Should().Be(testObject.OnError.Text2);
-        activateAccountDto?.OnError.Button.Should().Be(testObject.OnError.Button);
+        activateAccountDto.OnError.Type.Should().Be(testObject.OnError.Type);
+        activateAccountDto.OnError.Caption.Should().Be(testObject.OnError.Caption);
+        activateAccountDto.OnError.Text1.Should().Be(testObject.OnError.Text1);
+        activateAccountDto.OnError.Text2.Should().Be(testObject.OnError.Text2);
+        activateAccountDto.OnError.Button.Should().Be(testObject.OnError.Button);
     }
 
     [Fact]
