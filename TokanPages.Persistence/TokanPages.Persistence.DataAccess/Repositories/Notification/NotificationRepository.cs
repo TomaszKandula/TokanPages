@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Options;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Domain.Entities.Notifications;
 using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Abstractions;
 using TokanPages.Persistence.DataAccess.Repositories.Notification.Models;
 

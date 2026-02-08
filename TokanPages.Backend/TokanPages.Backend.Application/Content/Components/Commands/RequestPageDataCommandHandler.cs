@@ -1,7 +1,6 @@
 using TokanPages.Backend.Application.Content.Components.Models;
 using TokanPages.Backend.Application.Content.Components.Queries;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 

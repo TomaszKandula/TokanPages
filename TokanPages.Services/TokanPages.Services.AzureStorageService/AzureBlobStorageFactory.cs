@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Services.AzureStorageService;

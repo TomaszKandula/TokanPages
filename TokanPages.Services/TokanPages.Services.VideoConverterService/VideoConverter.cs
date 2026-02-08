@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Services.VideoConverterService.Abstractions;
 using TokanPages.Services.VideoConverterService.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using TokanPages.Backend.Utility.Abstractions;
 
 namespace TokanPages.Services.VideoConverterService;
 

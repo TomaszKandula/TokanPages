@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TokanPages.Tests.UnitTests.Models;
 using Xunit;
-using JsonSerializer = TokanPages.Backend.Core.Utilities.JsonSerializer.JsonSerializer;
+using JsonSerializer = TokanPages.Backend.Utility.JsonSerializer;
 
 namespace TokanPages.Tests.UnitTests.Services;
 

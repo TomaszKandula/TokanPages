@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using MediatR;
-using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.BatchService.Abstractions;
 

@@ -1,8 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.HttpClientService.Abstractions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using TokanPages.Backend.Utility.Abstractions;
 
 namespace TokanPages.Backend.Application;
 

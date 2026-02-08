@@ -1,10 +1,10 @@
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Assets.Queries;
 

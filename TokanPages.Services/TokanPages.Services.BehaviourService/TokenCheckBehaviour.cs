@@ -3,8 +3,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Attributes;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Services.BehaviourService;

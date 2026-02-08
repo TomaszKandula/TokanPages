@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Hosting;
 using TokanPages.Backend.Application.Articles.Commands;
 using TokanPages.Backend.Application.Articles.Queries;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Services.RedisCacheService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;

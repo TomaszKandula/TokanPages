@@ -1,5 +1,5 @@
 using TokanPages.Backend.Application.Invoicing.Models;
-using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 

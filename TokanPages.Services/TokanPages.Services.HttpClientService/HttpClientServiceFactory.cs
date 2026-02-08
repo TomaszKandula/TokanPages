@@ -1,4 +1,4 @@
-using TokanPages.Backend.Core.Utilities.LoggerService;
+using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 
 namespace TokanPages.Services.HttpClientService;
