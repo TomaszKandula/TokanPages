@@ -72,7 +72,7 @@ public static class Dependencies
 		services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
 		services.AddCipheringService();
-		services.AddScoped<IUserService, UserService>();
+        services.AddUserService();
 		services.AddEmailSenderService();
 
 		services.AddScoped<IJsonSerializer, JsonSerializer>();

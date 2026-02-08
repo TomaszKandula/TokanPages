@@ -12,7 +12,6 @@ using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.UserService;
-using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.WebTokenService.Abstractions;
 
@@ -59,7 +58,7 @@ public static class Dependencies
         services.AddSingleton<ILoggerService, LoggerService>();
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
         services.AddScoped<IWebTokenValidation, WebTokenValidation>();
-        services.AddScoped<IUserService, UserService>();
+        services.AddUserService();
 
         services.AddScoped<IJsonSerializer, JsonSerializer>();
         services.AddScoped<IDateTimeService, DateTimeService>();

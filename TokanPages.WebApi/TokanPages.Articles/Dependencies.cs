@@ -8,7 +8,6 @@ using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Shared.Options;
-using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
@@ -65,7 +64,7 @@ public static class Dependencies
 
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
-		services.AddScoped<IUserService, UserService>();
+		services.AddUserService();
 
 		services.AddScoped<IJsonSerializer, JsonSerializer>();
 		services.AddScoped<IDateTimeService, DateTimeService>();
