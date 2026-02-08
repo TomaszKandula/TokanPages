@@ -22,7 +22,6 @@ using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.RedisCacheService;
-using TokanPages.Services.RedisCacheService.Abstractions;
 using TokanPages.Services.UserService;
 using TokanPages.Services.VatService;
 using TokanPages.Services.WebTokenService.Abstractions;
@@ -85,7 +84,7 @@ public static class Dependencies
 		services.AddScoped<ICurrenciesCache, CurrenciesCache>();
 		services.AddScoped<IPaymentsCache, PaymentsCache>();
 		services.AddScoped<ITemplatesCache, TemplatesCache>();
-		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
+        services.AddRedisCache();
 
         var settings = configuration.GetAppSettings();
 		services.AddSingleton<IAzureBusFactory>(_ =>

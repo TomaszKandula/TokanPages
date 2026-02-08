@@ -18,7 +18,6 @@ using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.PayUService;
 using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.RedisCacheService;
-using TokanPages.Services.RedisCacheService.Abstractions;
 using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebSocketService;
@@ -80,7 +79,7 @@ public static class Dependencies
 		services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
 
 		services.AddScoped<ISubscriptionsCache, SubscriptionsCache>();
-		services.AddScoped<IRedisDistributedCache, RedisDistributedCache>();
+        services.AddRedisCache();
 	}
 
 	private static void SetupValidators(this IServiceCollection services)
