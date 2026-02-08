@@ -3,7 +3,6 @@ using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.AzureBusService;
-using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.VideoConverterService;
@@ -83,13 +82,9 @@ public static class Dependencies
 
     private static void SetupAzureServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var settings = configuration.GetAppSettings();
-        services.AddSingleton<IAzureBusFactory>(_ =>
-        {
-            var connectionString = settings.AzBusConnectionString;
-            return new AzureBusFactory(connectionString);
-        });
+        services.AddAzureBus(configuration);
 
+        var settings = configuration.GetAppSettings();
         services.AddSingleton<IAzureBlobStorageFactory>(_ =>
         {
             var containerName = settings.AzStorageContainerName;

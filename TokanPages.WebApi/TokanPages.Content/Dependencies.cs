@@ -17,7 +17,6 @@ using TokanPages.Persistence.Caching;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureBusService;
-using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.MetricsService;
@@ -79,14 +78,9 @@ public static class Dependencies
 
 		services.AddScoped<IContentCache, ContentCache>();
         services.AddRedisCache();
+        services.AddAzureBus(configuration);
 
         var settings = configuration.GetAppSettings();
-		services.AddSingleton<IAzureBusFactory>(_ =>
-		{
-			var connectionString = settings.AzBusConnectionString;
-			return new AzureBusFactory(connectionString);
-		});
-
 		services.AddSingleton<IAzureBlobStorageFactory>(_ =>
 		{
 			var containerName = settings.AzStorageContainerName;
