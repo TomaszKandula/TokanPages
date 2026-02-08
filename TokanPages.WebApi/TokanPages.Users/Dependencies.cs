@@ -1,19 +1,14 @@
 ﻿using System.Reflection;
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.CipheringService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
-using TokanPages.Persistence.Caching;
-using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureStorageService;
@@ -62,21 +57,13 @@ public static class Dependencies
 	{
         services.AddHttpContextAccessor();
 		services.AddLimiter(configuration);
-
-        services.AddSingleton<ILoggerService, LoggerService>();
         services.AddHttpClientService();
-
         services.AddCookieAccessor();
         services.AddWebTokenService();
 		services.AddCipheringService();
         services.AddUserService();
 		services.AddEmailSenderService();
-
-		services.AddScoped<IJsonSerializer, JsonSerializer>();
-		services.AddScoped<IDateTimeService, DateTimeService>();
-		services.AddScoped<IDataUtilityService, DataUtilityService>();
-
-		services.AddScoped<IUsersCache, UsersCache>();
+        services.AddUtilityServices();
         services.AddRedisCache();
         services.AddAzureBus(configuration);
         services.AddAzureStorage(configuration);

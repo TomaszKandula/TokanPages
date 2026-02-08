@@ -3,11 +3,8 @@ using System.Reflection;
 using FluentValidation;
 using MediatR;
 using TokanPages.Backend.Configuration;
-using TokanPages.Backend.Core.Utilities.DataUtilityService;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.BehaviourService;
@@ -53,15 +50,9 @@ public static class Dependencies
     private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 
     {
         services.AddHttpContextAccessor();
-
-        services.AddSingleton<ILoggerService, LoggerService>();
         services.AddWebTokenService();
         services.AddUserService();
-
-        services.AddScoped<IJsonSerializer, JsonSerializer>();
-        services.AddScoped<IDateTimeService, DateTimeService>();
-        services.AddScoped<IDataUtilityService, DataUtilityService>();
-
+        services.AddUtilityServices();
         services.AddAzureStorage(configuration);
     }
 

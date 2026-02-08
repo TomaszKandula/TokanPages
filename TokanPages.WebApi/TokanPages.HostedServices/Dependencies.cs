@@ -1,7 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.VideoConverterService;
@@ -9,6 +6,7 @@ using TokanPages.Services.VideoProcessingService;
 using TokanPages.Services.AzureStorageService;
 using Newtonsoft.Json;
 using TokanPages.Backend.Shared.Options;
+using TokanPages.Backend.Utility;
 using TokanPages.HostedServices.CronJobs;
 using TokanPages.HostedServices.CronJobs.Abstractions;
 using TokanPages.HostedServices.Models;
@@ -17,7 +15,6 @@ using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.SpaCachingService;
-using JsonSerializer = TokanPages.Backend.Core.Utilities.JsonSerializer.JsonSerializer;
 
 namespace TokanPages.HostedServices;
 
@@ -52,12 +49,8 @@ public static class Dependencies
     private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 
 	{
 		services.AddHttpContextAccessor();
-
-        services.AddSingleton<ILoggerService, LoggerService>();
         services.AddHttpClientService();
-
-        services.AddSingleton<IJsonSerializer, JsonSerializer>();
-		services.AddSingleton<IDateTimeService, DateTimeService>();
+        services.AddUtilityServices();
 		services.AddVideoConverter();
 		services.AddVideoProcessor();
         services.AddBatchService();

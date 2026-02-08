@@ -1,15 +1,10 @@
 ﻿using System.Reflection;
 using System.Diagnostics.CodeAnalysis;
-using TokanPages.Backend.Core.Utilities.LoggerService;
-using TokanPages.Backend.Core.Utilities.JsonSerializer;
-using TokanPages.Backend.Core.Utilities.DateTimeService;
-using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Shared.Options;
-using TokanPages.Persistence.Caching;
-using TokanPages.Persistence.Caching.Abstractions;
+using TokanPages.Backend.Utility;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
@@ -60,24 +55,12 @@ public static class Dependencies
 	private static void SetupServices(this IServiceCollection services, IConfiguration configuration) 
 	{
 		services.AddHttpContextAccessor();
-
-        services.AddSingleton<ILoggerService, LoggerService>();
         services.AddHttpClientService();
-
         services.AddWebTokenService();
         services.AddUserService();
-
-		services.AddScoped<IJsonSerializer, JsonSerializer>();
-		services.AddScoped<IDateTimeService, DateTimeService>();
-		services.AddScoped<IDataUtilityService, DataUtilityService>();
-
+        services.AddUtilityServices();
 		services.AddVatService();
 		services.AddBatchService();
-
-		services.AddScoped<ICountriesCache, CountriesCache>();
-		services.AddScoped<ICurrenciesCache, CurrenciesCache>();
-		services.AddScoped<IPaymentsCache, PaymentsCache>();
-		services.AddScoped<ITemplatesCache, TemplatesCache>();
         services.AddRedisCache();
         services.AddAzureBus(configuration);
         services.AddAzureStorage(configuration);
