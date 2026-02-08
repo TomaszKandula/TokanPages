@@ -62,6 +62,7 @@
     </Project>
   </Folder>
   <Folder Name="/8. Services/">
+    <Project Path="TokanPages.Services/TokanPages.Services.UtilityService/TokanPages.Services.UtilityService.csproj" />
     <Project Path="TokanPages.Services/TokanPages.Services.AzureBusService/TokanPages.Services.AzureBusService.csproj" />
     <Project Path="TokanPages.Services/TokanPages.Services.AzureStorageService/TokanPages.Services.AzureStorageService.csproj" />
     <Project Path="TokanPages.Services/TokanPages.Services.BatchService/TokanPages.Services.BatchService.csproj" />
