@@ -15,7 +15,6 @@ using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
-using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.BatchService;
@@ -85,14 +84,7 @@ public static class Dependencies
 		services.AddScoped<ITemplatesCache, TemplatesCache>();
         services.AddRedisCache();
         services.AddAzureBus(configuration);
-
-        var settings = configuration.GetAppSettings();
-		services.AddSingleton<IAzureBlobStorageFactory>(_ =>
-		{
-			var containerName = settings.AzStorageContainerName;
-			var connectionString = settings.AzStorageConnectionString;
-			return new AzureBlobStorageFactory(connectionString, containerName);
-		});
+        services.AddAzureStorage(configuration);
 	}
 
 	private static void SetupValidators(this IServiceCollection services)

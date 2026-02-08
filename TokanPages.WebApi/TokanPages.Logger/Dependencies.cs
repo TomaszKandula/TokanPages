@@ -10,7 +10,6 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureStorageService;
-using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.UserService.Abstractions;
@@ -66,13 +65,7 @@ public static class Dependencies
         services.AddScoped<IDateTimeService, DateTimeService>();
         services.AddScoped<IDataUtilityService, DataUtilityService>();
 
-        var settings = configuration.GetAppSettings();
-        services.AddSingleton<IAzureBlobStorageFactory>(_ =>
-        {
-            var containerName = settings.AzStorageContainerName;
-            var connectionString = settings.AzStorageConnectionString;
-            return new AzureBlobStorageFactory(connectionString, containerName);
-        });
+        services.AddAzureStorage(configuration);
     }
 
     private static void SetupValidators(this IServiceCollection services)

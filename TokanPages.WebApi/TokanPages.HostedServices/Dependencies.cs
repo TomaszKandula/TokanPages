@@ -83,14 +83,7 @@ public static class Dependencies
     private static void SetupAzureServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAzureBus(configuration);
-
-        var settings = configuration.GetAppSettings();
-        services.AddSingleton<IAzureBlobStorageFactory>(_ =>
-        {
-            var containerName = settings.AzStorageContainerName;
-            var connectionString = settings.AzStorageConnectionString;
-            return new AzureBlobStorageFactory(connectionString, containerName);
-        });
+        services.AddAzureStorage(configuration);
     }
 
     private static void SetupCronServices(this IServiceCollection services, IConfiguration configuration)
