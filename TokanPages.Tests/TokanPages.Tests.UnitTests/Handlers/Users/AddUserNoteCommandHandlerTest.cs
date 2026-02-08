@@ -1,11 +1,11 @@
 using FluentAssertions;
 using Moq;
 using TokanPages.Backend.Application.Users.Commands;
-using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Core.Utilities.DateTimeService;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Backend.Shared.Options;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 using UserNote = TokanPages.Backend.Domain.Entities.Users.UserNote;

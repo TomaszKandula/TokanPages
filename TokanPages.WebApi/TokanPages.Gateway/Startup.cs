@@ -9,7 +9,7 @@ using TokanPages.Gateway.Services;
 using TokanPages.Services.WebSocketService;
 using TokanPages.Services.WebSocketService.Abstractions;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Shared.Options;
 
 namespace TokanPages.Gateway;
 

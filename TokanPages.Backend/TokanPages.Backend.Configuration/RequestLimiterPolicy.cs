@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Shared.Options;
 
 namespace TokanPages.Backend.Configuration;
 

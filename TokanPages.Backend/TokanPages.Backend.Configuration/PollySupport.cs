@@ -2,8 +2,8 @@ using System.Diagnostics.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TokanPages.Backend.Configuration.Options;
 using TokanPages.Backend.Shared.Constants;
+using TokanPages.Backend.Shared.Options;
 
 namespace TokanPages.Backend.Configuration;
 

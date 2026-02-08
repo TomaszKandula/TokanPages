@@ -13,7 +13,7 @@ using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using Newtonsoft.Json;
-using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Shared.Options;
 using TokanPages.HostedServices.CronJobs;
 using TokanPages.HostedServices.CronJobs.Abstractions;
 using TokanPages.HostedServices.Models;

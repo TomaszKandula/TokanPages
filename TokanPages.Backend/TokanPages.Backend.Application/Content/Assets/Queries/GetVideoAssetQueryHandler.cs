@@ -4,7 +4,7 @@ using TokanPages.Services.HttpClientService.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
-using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Shared.Options;
 
 namespace TokanPages.Backend.Application.Content.Assets.Queries;
 

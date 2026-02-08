@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Configuration;
 
-namespace TokanPages.Backend.Configuration.Options;
+namespace TokanPages.Backend.Shared.Options;
 
 public class AppSettingsModel
 {

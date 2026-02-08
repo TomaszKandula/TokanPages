@@ -7,7 +7,7 @@ using TokanPages.Backend.Core.Utilities.DataUtilityService;
 using MediatR;
 using FluentValidation;
 using TokanPages.Backend.Configuration;
-using TokanPages.Backend.Configuration.Options;
+using TokanPages.Backend.Shared.Options;
 using TokanPages.Persistence.Caching;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.DataAccess;
