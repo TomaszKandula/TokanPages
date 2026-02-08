@@ -20,4 +20,11 @@ public interface IUserRepository
     /// <param name="userId">A mandatory user ID.</param>
     /// <returns>If found, returns user information, otherwise null.</returns>
     Task<Users.UserInfo?> GetUserInformationById(Guid userId);
+
+    /// <summary>
+    /// Creates HTTP request information for the given IP address and requested handler name.
+    /// </summary>
+    /// <param name="ipAddress">IP address (referer).</param>
+    /// <param name="handlerName">Requested handler name (CQRS).</param>
+    Task InsertHttpRequest(string ipAddress, string handlerName);
 }
