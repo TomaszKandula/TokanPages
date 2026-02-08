@@ -15,7 +15,7 @@ using TokanPages.Services.MetricsService.Models;
 namespace TokanPages.Services.MetricsService;
 
 [ExcludeFromCodeCoverage]
-public class MetricsService : IMetricsService
+internal sealed class MetricsService : IMetricsService
 {
     private readonly IHttpClientServiceFactory _httpClientServiceFactory;
 
