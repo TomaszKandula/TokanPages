@@ -8,23 +8,23 @@ namespace TokanPages.Backend.Domain.Entities.Invoicing;
 [DatabaseTable(Schema = "operation", TableName = "BatchInvoiceItems")]
 public class BatchInvoiceItem : Entity<Guid>
 {
-    public Guid BatchInvoiceId { get; set; }
+    public required Guid BatchInvoiceId { get; set; }
 
-    public string ItemText { get; set; }
+    public required string ItemText { get; set; }
 
-    public int ItemQuantity { get; set; }
+    public required int ItemQuantity { get; set; }
 
-    public string ItemQuantityUnit { get; set; }
+    public required string ItemQuantityUnit { get; set; }
 
-    public decimal ItemAmount { get; set; }
+    public required decimal ItemAmount { get; set; }
 
     public decimal? ItemDiscountRate { get; set; }
 
-    public decimal ValueAmount { get; set; }
+    public required decimal ValueAmount { get; set; }
 
     public decimal? VatRate { get; set; }
 
-    public decimal GrossAmount { get; set; }
+    public required decimal GrossAmount { get; set; }
 
-    public CurrencyCode CurrencyCode { get; set; }
+    public required CurrencyCode CurrencyCode { get; set; }
 }

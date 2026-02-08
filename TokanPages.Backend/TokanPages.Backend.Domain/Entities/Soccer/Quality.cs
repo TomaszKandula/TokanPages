@@ -7,11 +7,11 @@ namespace TokanPages.Backend.Domain.Entities.Soccer;
 [DatabaseTable(Schema = "soccer", TableName = "Qualities")]
 public class Quality : Entity<Guid>
 {
-    public string Rate { get; set; }
+    public required string Rate { get; set; }
 
-    public int LowerBound  { get; set; }
+    public required int LowerBound  { get; set; }
 
-    public int UpperBound { get; set; }
+    public required int UpperBound { get; set; }
 
-    public string ColourHex  { get; set; }
+    public required string ColourHex  { get; set; }
 }

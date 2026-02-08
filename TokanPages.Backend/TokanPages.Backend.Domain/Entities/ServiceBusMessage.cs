@@ -7,5 +7,5 @@ namespace TokanPages.Backend.Domain.Entities;
 [DatabaseTable(Schema = "operation", TableName = "ServiceBusMessages")]
 public class ServiceBusMessage : Entity<Guid>
 {
-    public bool IsConsumed { get; set; }
+    public required bool IsConsumed { get; set; }
 }

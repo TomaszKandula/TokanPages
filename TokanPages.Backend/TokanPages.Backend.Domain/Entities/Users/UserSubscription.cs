@@ -9,25 +9,25 @@ namespace TokanPages.Backend.Domain.Entities.Users;
 [DatabaseTable(Schema = "operation", TableName = "UserSubscriptions")]
 public class UserSubscription : Entity<Guid>, IAuditable
 {
-    public Guid UserId { get; set; }
+    public required Guid UserId { get; set; }
 
-    public bool IsActive { get; set; }
+    public required bool IsActive { get; set; }
 
-    public bool AutoRenewal { get; set; }
+    public required bool AutoRenewal { get; set; }
 
-    public TermType Term { get; set; }
+    public required TermType Term { get; set; }
 
-    public decimal TotalAmount { get; set; }
+    public required decimal TotalAmount { get; set; }
 
-    public string CurrencyIso { get; set; }
+    public required string CurrencyIso { get; set; }
 
-    public string ExtCustomerId { get; set; }
+    public required string ExtCustomerId { get; set; }
 
-    public string ExtOrderId { get; set; }
+    public required string ExtOrderId { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 

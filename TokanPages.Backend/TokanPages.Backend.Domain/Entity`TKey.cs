@@ -9,5 +9,5 @@ public abstract class Entity<TKey>
 {
     [Key]
     [PrimaryKey]
-    public TKey Id { get; init; }
+    public required TKey Id { get; init; }
 }

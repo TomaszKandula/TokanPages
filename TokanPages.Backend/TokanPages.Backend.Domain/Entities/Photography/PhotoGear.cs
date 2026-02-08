@@ -8,24 +8,25 @@ namespace TokanPages.Backend.Domain.Entities.Photography;
 [DatabaseTable(Schema = "operation", TableName = "PhotoGears")]
 public class PhotoGear : Entity<Guid>, IAuditable
 {
-    public string BodyVendor { get; set; }
+    public required string BodyVendor { get; set; }
 
-    public string BodyModel { get; set; }
+    public required string BodyModel { get; set; }
 
-    public string LensVendor { get; set; }
+    public required string LensVendor { get; set; }
 
-    public string LensName { get; set; }
-    public int FocalLength { get; set; }
+    public required string LensName { get; set; }
 
-    public string ShutterSpeed { get; set; }
+    public required int FocalLength { get; set; }
 
-    public decimal Aperture { get; set; }
+    public required string ShutterSpeed { get; set; }
 
-    public int FilmIso { get; set; }
+    public required decimal Aperture { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required int FilmIso { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required Guid CreatedBy { get; set; }
+
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 

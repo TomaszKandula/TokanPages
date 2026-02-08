@@ -7,9 +7,9 @@ namespace TokanPages.Backend.Domain.Entities.Articles;
 [DatabaseTable(Schema = "operation", TableName = "ArticleCategoryNames")]
 public class ArticleCategoryName : Entity<Guid>
 {
-    public Guid ArticleCategoryId { get; set; }
+    public required Guid ArticleCategoryId { get; set; }
 
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
-    public Guid LanguageId { get; set; }
+    public required Guid LanguageId { get; set; }
 }

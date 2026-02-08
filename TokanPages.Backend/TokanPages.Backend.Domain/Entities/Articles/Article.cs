@@ -8,15 +8,15 @@ namespace TokanPages.Backend.Domain.Entities.Articles;
 [DatabaseTable(Schema = "operation", TableName = "Articles")]
 public class Article : Entity<Guid>, IAuditable
 {
-    public string Title { get; set; }
+    public required string Title { get; set; }
 
-    public string Description { get; set; }
+    public required string Description { get; set; }
 
-    public bool IsPublished { get; set; }
+    public required bool IsPublished { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 
@@ -28,5 +28,5 @@ public class Article : Entity<Guid>, IAuditable
 
     public Guid? CategoryId {get; set; }
 
-    public string LanguageIso { get; set; }
+    public required string LanguageIso { get; set; }
 }

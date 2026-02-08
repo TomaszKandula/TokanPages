@@ -8,25 +8,25 @@ namespace TokanPages.Backend.Domain.Entities.Photography;
 [DatabaseTable(Schema = "operation", TableName = "Photos")]
 public class Photo : Entity<Guid>, IAuditable
 {
-    public Guid UserId { get; set; }
+    public required Guid UserId { get; set; }
 
-    public Guid PhotoGearId { get; set; }
+    public required Guid PhotoGearId { get; set; }
 
-    public Guid PhotoCategoryId { get; set; }
+    public required Guid PhotoCategoryId { get; set; }
 
-    public string Keywords { get; set; }
+    public required string Keywords { get; set; }
 
-    public string PhotoUrl { get; set; }
+    public required string PhotoUrl { get; set; }
 
-    public DateTime DateTaken { get; set; }
+    public required DateTime DateTaken { get; set; }
 
-    public string Title { get; set; }
+    public required string Title { get; set; }
 
-    public string Description { get; set; }
+    public required string Description { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
  

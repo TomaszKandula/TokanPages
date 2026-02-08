@@ -8,13 +8,13 @@ namespace TokanPages.Backend.Domain.Entities;
 [DatabaseTable(Schema = "operation", TableName = "Languages")]
 public class Language : Entity<Guid>, IHasSortOrder
 {
-    public string LangId { get; set; }
+    public required string LangId { get; set; }
 
-    public string HrefLang { get; set; }
+    public required string HrefLang { get; set; }
 
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
-    public bool IsDefault { get; set; }
+    public required bool IsDefault { get; set; }
 
-    public int SortOrder { get; set; }
+    public required int SortOrder { get; set; }
 }

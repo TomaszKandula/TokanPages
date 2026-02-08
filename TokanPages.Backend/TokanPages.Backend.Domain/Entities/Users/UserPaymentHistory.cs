@@ -8,15 +8,15 @@ namespace TokanPages.Backend.Domain.Entities.Users;
 [DatabaseTable(Schema = "operation", TableName = "UserPaymentsHistory")]
 public class UserPaymentHistory : Entity<Guid>
 {
-    public Guid UserId { get; set; }
+    public required Guid UserId { get; set; }
 
-    public decimal Amount { get; set; }
+    public required decimal Amount { get; set; }
 
-    public string CurrencyIso { get; set; }
+    public required string CurrencyIso { get; set; }
 
-    public TermType Term { get; set; }
+    public required TermType Term { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 }

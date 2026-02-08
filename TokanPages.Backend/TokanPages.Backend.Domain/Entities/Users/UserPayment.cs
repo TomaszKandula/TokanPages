@@ -8,21 +8,21 @@ namespace TokanPages.Backend.Domain.Entities.Users;
 [DatabaseTable(Schema = "operation", TableName = "UserPayments")]
 public class UserPayment : Entity<Guid>, IAuditable
 {
-    public Guid UserId { get; set; }
+    public required Guid UserId { get; set; }
 
-    public string ExtOrderId { get; set; }
+    public required string ExtOrderId { get; set; }
 
-    public string PmtOrderId { get; set; }
+    public required string PmtOrderId { get; set; }
 
-    public string PmtStatus { get; set; }
+    public required string PmtStatus { get; set; }
 
-    public string PmtType { get; set; }
+    public required string PmtType { get; set; }
 
-    public string PmtToken { get; set; }
+    public required string PmtToken { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 

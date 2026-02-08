@@ -7,5 +7,5 @@ namespace TokanPages.Backend.Domain.Entities.Notifications;
 [DatabaseTable(Schema = "operation", TableName = "WebNotifications")]
 public class WebNotification: Entity<Guid>
 {
-    public string Value { get; set; }
+    public required string Value { get; set; }
 }

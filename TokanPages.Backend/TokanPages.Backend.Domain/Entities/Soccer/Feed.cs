@@ -8,13 +8,13 @@ namespace TokanPages.Backend.Domain.Entities.Soccer;
 [DatabaseTable(Schema = "soccer", TableName = "Feeds")]
 public class Feed : Entity<Guid>, ISoftDelete
 {
-    public Guid PlayerId { get; set; }
+    public required Guid PlayerId { get; set; }
 
-    public string Text { get; set; }
+    public required string Text { get; set; }
 
-    public DateTime Published { get; set; }
+    public required DateTime Published { get; set; }
 
-    public bool IsVisible { get; set; }
+    public required bool IsVisible { get; set; }
 
-    public bool IsDeleted { get; set; }
+    public required bool IsDeleted { get; set; }
 }

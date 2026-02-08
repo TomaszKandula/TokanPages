@@ -7,7 +7,7 @@ namespace TokanPages.Backend.Domain.Entities.Invoicing;
 [DatabaseTable(Schema = "operation", TableName = "VatNumberPatterns")]
 public class VatNumberPattern : Entity<Guid>
 {
-    public string CountryCode { get; set; }
+    public required string CountryCode { get; set; }
 
-    public string Pattern { get; set; }
+    public required string Pattern { get; set; }
 }

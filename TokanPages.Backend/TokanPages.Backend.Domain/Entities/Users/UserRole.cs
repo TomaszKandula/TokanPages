@@ -8,11 +8,16 @@ namespace TokanPages.Backend.Domain.Entities.Users;
 [DatabaseTable(Schema = "operation", TableName = "UserRoles")]
 public class UserRole : Entity<Guid>, IAuditable
 {
-    public Guid UserId { get; set; }
-    public Guid RoleId { get; set; }
-    public Guid CreatedBy { get; set; }
-    public DateTime CreatedAt { get; set; }
+    public required Guid UserId { get; set; }
+
+    public required Guid RoleId { get; set; }
+
+    public required Guid CreatedBy { get; set; }
+
+    public required DateTime CreatedAt { get; set; }
+
     public Guid? ModifiedBy { get; set; }
+
     public DateTime? ModifiedAt { get; set; }
 
     /* Navigation properties */

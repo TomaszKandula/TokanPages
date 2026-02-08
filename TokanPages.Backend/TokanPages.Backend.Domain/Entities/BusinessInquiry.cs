@@ -8,11 +8,11 @@ namespace TokanPages.Backend.Domain.Entities;
 [DatabaseTable(Schema = "operation", TableName = "BusinessInquiries")]
 public class BusinessInquiry : Entity<Guid>, IAuditable
 {
-    public string JsonData { get; set; }
+    public required string JsonData { get; set; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; set; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; set; }
 
     public Guid? ModifiedBy { get; set; }
 
