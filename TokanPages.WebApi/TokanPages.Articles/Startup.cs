@@ -18,7 +18,7 @@ namespace TokanPages.Articles;
 /// Startup.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class Startup
+internal sealed class Startup
 {
     private const string ApiName = "Articles API";
 
