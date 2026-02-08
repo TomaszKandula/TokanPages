@@ -14,7 +14,7 @@ namespace TokanPages.Persistence.Caching;
 /// Content cache implementation
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class ContentCache : IContentCache
+internal sealed class ContentCache : IContentCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;
 

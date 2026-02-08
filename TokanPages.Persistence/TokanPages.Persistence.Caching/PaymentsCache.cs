@@ -11,7 +11,7 @@ namespace TokanPages.Persistence.Caching;
 /// Payments cache implementation.
 /// </summary>
 [ExcludeFromCodeCoverage]
-public class PaymentsCache : IPaymentsCache
+internal sealed class PaymentsCache : IPaymentsCache
 {
     private readonly IRedisDistributedCache _redisDistributedCache;
 
