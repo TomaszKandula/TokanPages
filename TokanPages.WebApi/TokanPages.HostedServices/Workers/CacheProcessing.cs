@@ -8,7 +8,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.HostedServices.Base;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.AzureBusService.Abstractions;
-using TokanPages.Services.SpaCachingService;
+using TokanPages.Services.SpaCachingService.Abstractions;
 using TokanPages.Services.SpaCachingService.Models;
 
 namespace TokanPages.HostedServices.Workers;

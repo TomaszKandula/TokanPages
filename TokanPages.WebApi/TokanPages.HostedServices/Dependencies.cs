@@ -19,6 +19,7 @@ using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.SpaCachingService;
+using TokanPages.Services.SpaCachingService.Abstractions;
 using JsonSerializer = TokanPages.Backend.Core.Utilities.JsonSerializer.JsonSerializer;
 
 namespace TokanPages.HostedServices;

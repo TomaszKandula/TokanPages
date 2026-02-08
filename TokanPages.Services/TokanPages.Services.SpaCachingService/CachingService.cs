@@ -6,6 +6,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.HttpClientService.Models;
+using TokanPages.Services.SpaCachingService.Abstractions;
 using TokanPages.Services.SpaCachingService.Models;
 
 namespace TokanPages.Services.SpaCachingService;
@@ -13,7 +14,7 @@ namespace TokanPages.Services.SpaCachingService;
 /// <summary>
 /// Caching service implementation.
 /// </summary>
-public class CachingService : ICachingService
+internal sealed class CachingService : ICachingService
 {
     private const int FiveMinutesTimeout = 300000;
 

@@ -1,4 +1,4 @@
-namespace TokanPages.Services.SpaCachingService;
+namespace TokanPages.Services.SpaCachingService.Abstractions;
 
 /// <summary>
 /// Caching service contract.
