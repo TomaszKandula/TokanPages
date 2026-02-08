@@ -16,7 +16,7 @@ using TokanPages.Services.HttpClientService.Models;
 
 namespace TokanPages.Services.EmailSenderService;
 
-public class EmailSenderService : IEmailSenderService
+internal sealed class EmailSenderService : IEmailSenderService
 {
     private const string QueueName = "email_queue";
 
