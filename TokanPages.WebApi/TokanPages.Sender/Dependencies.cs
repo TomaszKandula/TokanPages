@@ -5,6 +5,7 @@ using FluentValidation;
 using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility;
+using TokanPages.Persistence.Caching;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
@@ -60,6 +61,7 @@ public static class Dependencies
 		services.AddEmailSenderService();
         services.AddUtilityServices();
         services.AddRedisCache();
+        services.AddPersistenceCaching();
         services.AddAzureBus(configuration);
         services.AddAzureStorage(configuration);
 	}

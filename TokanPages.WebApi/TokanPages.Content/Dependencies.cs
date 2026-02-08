@@ -9,7 +9,6 @@ using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Persistence.Caching;
-using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureStorageService;
@@ -61,8 +60,8 @@ public static class Dependencies
         services.AddUserService();
 		services.AddMetricsService();
         services.AddUtilityServices();
-		services.AddScoped<IContentCache, ContentCache>();
         services.AddRedisCache();
+        services.AddPersistenceCaching();
         services.AddAzureBus(configuration);
         services.AddAzureStorage(configuration);
 	}

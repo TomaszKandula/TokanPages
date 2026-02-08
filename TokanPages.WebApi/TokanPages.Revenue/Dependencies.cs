@@ -6,7 +6,6 @@ using TokanPages.Backend.Configuration;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility;
 using TokanPages.Persistence.Caching;
-using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
@@ -61,8 +60,8 @@ public static class Dependencies
         services.AddUserService();
 		services.AddPayUService();
         services.AddWebSocketService();
-		services.AddScoped<ISubscriptionsCache, SubscriptionsCache>();
         services.AddRedisCache();
+        services.AddPersistenceCaching();
 	}
 
 	private static void SetupValidators(this IServiceCollection services)
