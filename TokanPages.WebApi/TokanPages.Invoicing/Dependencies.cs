@@ -18,7 +18,6 @@ using TokanPages.Services.HttpClientService;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.BatchService;
-using TokanPages.Services.BatchService.Abstractions;
 using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.UserService;
@@ -77,7 +76,7 @@ public static class Dependencies
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
 
 		services.AddScoped<IVatService, VatService>();
-		services.AddScoped<IBatchService, BatchService>();
+		services.AddBatchService();
 
 		services.AddScoped<ICountriesCache, CountriesCache>();
 		services.AddScoped<ICurrenciesCache, CurrenciesCache>();

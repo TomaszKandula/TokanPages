@@ -18,7 +18,6 @@ using TokanPages.HostedServices.Models;
 using TokanPages.HostedServices.Workers;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.BatchService;
-using TokanPages.Services.BatchService.Abstractions;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.SpaCachingService;
@@ -65,7 +64,7 @@ public static class Dependencies
 		services.AddSingleton<IDateTimeService, DateTimeService>();
 		services.AddSingleton<IVideoConverter, VideoConverter>();
 		services.AddSingleton<IVideoProcessor, VideoProcessor>();
-        services.AddSingleton<IBatchService, BatchService>();
+        services.AddBatchService();
         services.AddSingleton<IEmailSenderService, EmailSenderService>();
         services.AddSingleton<ICachingService, CachingService>();
 
