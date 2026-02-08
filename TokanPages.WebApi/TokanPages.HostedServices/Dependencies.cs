@@ -19,7 +19,6 @@ using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.BatchService;
 using TokanPages.Services.EmailSenderService;
 using TokanPages.Services.SpaCachingService;
-using TokanPages.Services.SpaCachingService.Abstractions;
 using JsonSerializer = TokanPages.Backend.Core.Utilities.JsonSerializer.JsonSerializer;
 
 namespace TokanPages.HostedServices;
@@ -65,7 +64,7 @@ public static class Dependencies
 		services.AddSingleton<IVideoProcessor, VideoProcessor>();
         services.AddBatchService();
         services.AddEmailSenderService();
-        services.AddSingleton<ICachingService, CachingService>();
+        services.AddCachingService();
 
         services.AddSingleton<CacheProcessing>();
         services.AddSingleton<VideoProcessing>();
