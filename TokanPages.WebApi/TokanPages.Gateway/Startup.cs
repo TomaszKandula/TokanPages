@@ -56,7 +56,7 @@ internal sealed class Startup
         });
         services.AddOptions();
         services.AddSingleton<ILoggerService, LoggerService>();
-        services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
+        services.AddWebSocketService();
         services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
         services.Configure<GatewaySettingsModel>(_configuration.GetSection(GatewaySettingsModel.SectionName));
         services.AddProxyHttpClient();

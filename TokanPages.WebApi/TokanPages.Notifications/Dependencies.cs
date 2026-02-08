@@ -15,7 +15,6 @@ using TokanPages.Services.HttpClientService;
 using TokanPages.Services.PushNotificationService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.WebSocketService;
-using TokanPages.Services.WebSocketService.Abstractions;
 using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Notifications;
@@ -69,7 +68,7 @@ public static class Dependencies
 		services.AddScoped<IDateTimeService, DateTimeService>();
 		services.AddScoped<IDataUtilityService, DataUtilityService>();
 
-		services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
+        services.AddWebSocketService();
 		services.AddAzureNotificationHub(configuration);
 	}
 

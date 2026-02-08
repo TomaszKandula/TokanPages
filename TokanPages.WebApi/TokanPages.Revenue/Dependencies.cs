@@ -73,7 +73,7 @@ public static class Dependencies
 
         services.AddUserService();
 		services.AddPayUService();
-		services.AddScoped<INotificationService, NotificationService<WebSocketHub>>();
+        services.AddWebSocketService();
 
 		services.AddScoped<ISubscriptionsCache, SubscriptionsCache>();
         services.AddRedisCache();
