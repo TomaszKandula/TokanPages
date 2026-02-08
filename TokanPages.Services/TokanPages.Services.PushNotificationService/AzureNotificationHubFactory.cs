@@ -4,7 +4,7 @@ using TokanPages.Services.PushNotificationService.Abstractions;
 namespace TokanPages.Services.PushNotificationService;
 
 [ExcludeFromCodeCoverage]
-public class AzureNotificationHubFactory : IAzureNotificationHubFactory
+internal sealed class AzureNotificationHubFactory : IAzureNotificationHubFactory
 {
     private readonly string _hubName;
 

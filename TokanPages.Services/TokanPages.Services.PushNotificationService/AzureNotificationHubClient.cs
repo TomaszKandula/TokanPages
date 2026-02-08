@@ -11,7 +11,7 @@ using Microsoft.Azure.NotificationHubs;
 namespace TokanPages.Services.PushNotificationService;
 
 [ExcludeFromCodeCoverage]
-public class AzureNotificationHubClient : IAzureNotificationHubClient
+internal sealed class AzureNotificationHubClient : IAzureNotificationHubClient
 {
     private readonly NotificationHubClient _notificationHubClient;
 
