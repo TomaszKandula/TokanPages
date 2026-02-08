@@ -60,7 +60,7 @@ public class ArticlesController : ApiBaseController
             CategoryId = categoryId,
             PageNumber = pageNumber,
             PageSize = pageSize,
-            OrderByColumn = orderByColumn!,
+            OrderByColumn = orderByColumn,
             OrderByAscending = orderByAscending
         }, noCache);
 
