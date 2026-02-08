@@ -6,7 +6,6 @@ using TokanPages.Services.AzureBusService;
 using TokanPages.Services.HttpClientService;
 using TokanPages.Services.VideoConverterService;
 using TokanPages.Services.VideoProcessingService;
-using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.AzureStorageService;
 using Newtonsoft.Json;
 using TokanPages.Backend.Shared.Options;
@@ -60,7 +59,7 @@ public static class Dependencies
         services.AddSingleton<IJsonSerializer, JsonSerializer>();
 		services.AddSingleton<IDateTimeService, DateTimeService>();
 		services.AddVideoConverter();
-		services.AddSingleton<IVideoProcessor, VideoProcessor>();
+		services.AddVideoProcessor();
         services.AddBatchService();
         services.AddEmailSenderService();
         services.AddCachingService();
