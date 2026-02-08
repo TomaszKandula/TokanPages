@@ -7,6 +7,7 @@ using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
+using TokanPages.Services.BatchService.Abstractions;
 using TokanPages.Services.BatchService.Models;
 using ProcessingStatus = TokanPages.Backend.Domain.Enums.ProcessingStatus;
 

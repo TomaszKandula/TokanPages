@@ -1,6 +1,6 @@
 using TokanPages.Services.BatchService.Models;
 
-namespace TokanPages.Services.BatchService;
+namespace TokanPages.Services.BatchService.Abstractions;
 
 public interface IBatchService
 {
