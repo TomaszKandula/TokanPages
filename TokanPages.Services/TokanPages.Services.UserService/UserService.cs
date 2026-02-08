@@ -1,18 +1,15 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
 using TokanPages.Services.WebTokenService.Abstractions;
-using HttpRequest = TokanPages.Backend.Domain.Entities.HttpRequest;
 
 namespace TokanPages.Services.UserService;
 
@@ -30,8 +27,6 @@ internal sealed class UserService : IUserService
 
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    private readonly OperationDbContext _operationDbContext;
-
     private readonly IUserRepository _userRepository;
 
     private readonly IWebTokenUtility _webTokenUtility;
@@ -46,11 +41,10 @@ internal sealed class UserService : IUserService
 
     private GetUserOutput? _user;
 
-    public UserService(IHttpContextAccessor httpContextAccessor, OperationDbContext operationDbContext, 
-        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IOptions<AppSettingsModel> configuration, IUserRepository userRepository)
+    public UserService(IHttpContextAccessor httpContextAccessor, IWebTokenUtility webTokenUtility, 
+        IDateTimeService dateTimeService, IOptions<AppSettingsModel> configuration, IUserRepository userRepository)
     {
         _httpContextAccessor = httpContextAccessor;
-        _operationDbContext = operationDbContext;
         _webTokenUtility = webTokenUtility;
         _dateTimeService = dateTimeService;
         _userRepository = userRepository;
