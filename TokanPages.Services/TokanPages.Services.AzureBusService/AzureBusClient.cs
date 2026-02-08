@@ -5,7 +5,7 @@ using TokanPages.Services.AzureBusService.Abstractions;
 
 namespace TokanPages.Services.AzureBusService;
 
-public class AzureBusClient : IAzureBusClient
+internal sealed class AzureBusClient : IAzureBusClient
 {
     private readonly ServiceBusClient _client;
 
