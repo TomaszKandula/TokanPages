@@ -4,7 +4,6 @@ using TokanPages.Backend.Core.Utilities.JsonSerializer;
 using TokanPages.Backend.Core.Utilities.LoggerService;
 using TokanPages.Services.AzureBusService;
 using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.VideoConverterService;
 using TokanPages.Services.VideoConverterService.Abstractions;
 using TokanPages.Services.VideoProcessingService;
@@ -57,7 +56,7 @@ public static class Dependencies
 		services.AddHttpContextAccessor();
 
         services.AddSingleton<ILoggerService, LoggerService>();
-        services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
+        services.AddHttpClientService();
 
         services.AddSingleton<IJsonSerializer, JsonSerializer>();
 		services.AddSingleton<IDateTimeService, DateTimeService>();

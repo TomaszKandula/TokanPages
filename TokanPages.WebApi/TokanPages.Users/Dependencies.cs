@@ -20,7 +20,6 @@ using TokanPages.Services.AzureBusService;
 using TokanPages.Services.AzureStorageService;
 using TokanPages.Services.CookieAccessorService;
 using TokanPages.Services.EmailSenderService;
-using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.WebTokenService.Abstractions;
@@ -67,7 +66,7 @@ public static class Dependencies
 		services.AddLimiter(configuration);
 
         services.AddSingleton<ILoggerService, LoggerService>();
-		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
+        services.AddHttpClientService();
 
         services.AddCookieAccessor();
 		services.AddScoped<IWebTokenUtility, WebTokenUtility>();

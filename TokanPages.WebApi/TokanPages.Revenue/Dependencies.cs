@@ -14,7 +14,6 @@ using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.PayUService;
 using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.RedisCacheService;
@@ -65,7 +64,7 @@ public static class Dependencies
 		services.AddHttpContextAccessor();
 
         services.AddSingleton<ILoggerService, LoggerService>();
-		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
+        services.AddHttpClientService();
 
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();

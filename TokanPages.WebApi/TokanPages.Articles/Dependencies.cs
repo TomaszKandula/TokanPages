@@ -16,7 +16,6 @@ using TokanPages.Persistence.Caching;
 using TokanPages.Persistence.Caching.Abstractions;
 using TokanPages.Persistence.DataAccess;
 using TokanPages.Services.AzureStorageService;
-using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.RedisCacheService;
 using TokanPages.Services.UserService;
 using TokanPages.Services.WebTokenService.Abstractions;
@@ -62,7 +61,7 @@ public static class Dependencies
 		services.AddHttpContextAccessor();
 
         services.AddSingleton<ILoggerService, LoggerService>();
-		services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
+		services.AddHttpClientService();
 
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();

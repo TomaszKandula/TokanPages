@@ -13,7 +13,6 @@ using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService;
 using TokanPages.Services.BehaviourService;
 using TokanPages.Services.HttpClientService;
-using TokanPages.Services.HttpClientService.Abstractions;
 using TokanPages.Services.PushNotificationService;
 using TokanPages.Services.PushNotificationService.Abstractions;
 using TokanPages.Services.UserService;
@@ -62,7 +61,7 @@ public static class Dependencies
 		services.AddHttpContextAccessor();
 
         services.AddSingleton<ILoggerService, LoggerService>();
-        services.AddSingleton<IHttpClientServiceFactory>(_ => new HttpClientServiceFactory());
+        services.AddHttpClientService();
 
         services.AddScoped<IWebTokenUtility, WebTokenUtility>();
 		services.AddScoped<IWebTokenValidation, WebTokenValidation>();
