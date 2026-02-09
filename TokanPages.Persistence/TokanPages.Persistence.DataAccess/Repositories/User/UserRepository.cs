@@ -1,8 +1,11 @@
+using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Abstractions;
+using TokanPages.Persistence.DataAccess.Repositories.User.Models;
 using Users = TokanPages.Backend.Domain.Entities.Users;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.User;
@@ -28,6 +31,31 @@ public class UserRepository : RepositoryBase, IUserRepository
         var filterBy = new { UserId = userId };
         var data = await DbOperations.Retrieve<Users.UserInfo>(filterBy);
         return data.SingleOrDefault();
+    }
+
+    /// <inheritdoc/>
+    public async Task<List<GetUserRolesDto>> GetUserRoles(Guid userId)
+    {
+        const string query = @"
+            SELECT 
+                operation.UserRoles.UserId,
+                operation.UserRoles.RoleId,
+                operation.Roles.Name AS RoleName,
+                operation.Roles.Description
+            FROM 
+                operation.UserRoles
+            LEFT JOIN
+                operation.Roles
+            ON
+                operation.UserRoles.RoleId = operation.Roles.Id
+            WHERE 
+                UserId = @UserId
+        ";
+
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        var parameters = new { UserId = userId };
+        var data = await db.QueryAsync<GetUserRolesDto>(query, parameters);
+        return data.ToList();
     }
 
     /// <inheritdoc/>
