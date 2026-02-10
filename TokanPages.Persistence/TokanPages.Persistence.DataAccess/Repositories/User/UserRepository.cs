@@ -144,6 +144,25 @@ public class UserRepository : RepositoryBase, IUserRepository
         return dto;
     }
 
+    public async Task InsertUserRefreshToken(Guid userId, string token, DateTime expires, DateTime created, string? createdByIp)
+    {
+        var entity = new Users.UserRefreshToken
+        {
+            Id = Guid.NewGuid(),
+            UserId =  userId,
+            Token = token,
+            Expires = expires,
+            Created = created,
+            CreatedByIp = createdByIp,
+            Revoked = null,
+            RevokedByIp = null,
+            ReplacedByToken = null,
+            ReasonRevoked = null,
+        };
+
+        await DbOperations.Insert(entity);
+    }
+
 
     public async Task DeleteUserRefreshTokens(HashSet<Guid> ids)
     {
