@@ -48,7 +48,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
         var requesterIpAddress = _userService.GetRequestIpAddress();
-        if (_userService.IsRefreshTokenRevoked(savedRefreshToken))
+        if (savedRefreshToken.Revoked != null)
         {
             var reason = $"Attempted reuse of revoked ancestor token: {csrfToken}";
             var tokensInput = new RevokeRefreshTokensInput

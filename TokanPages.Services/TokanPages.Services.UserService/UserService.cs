@@ -292,19 +292,12 @@ internal sealed class UserService : IUserService
             await _operationDbContext.SaveChangesAsync(cancellationToken);
     }
 
-    public bool IsRefreshTokenExpired(UserRefreshToken userRefreshToken)
-    {
-        return userRefreshToken.Expires <= _dateTimeService.Now;
-    }
-
-    public bool IsRefreshTokenRevoked(UserRefreshToken userRefreshToken)
-    {
-        return userRefreshToken.Revoked != null;
-    }
-
     public bool IsRefreshTokenActive(UserRefreshToken userRefreshToken)
     {
-        return!IsRefreshTokenRevoked(userRefreshToken) && !IsRefreshTokenExpired(userRefreshToken);
+        var isRefreshTokenRevoked = userRefreshToken.Revoked != null;
+        var isRefreshTokenExpired = userRefreshToken.Expires <= _dateTimeService.Now;
+
+        return !isRefreshTokenRevoked && !isRefreshTokenExpired;
     }
 
     private Guid? UserIdFromClaim()

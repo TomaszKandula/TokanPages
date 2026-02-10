@@ -39,9 +39,5 @@ public interface IUserService
 
     Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default);
 
-    bool IsRefreshTokenExpired(UserRefreshToken userRefreshToken);//TODO: to be removed
-
-    bool IsRefreshTokenRevoked(UserRefreshToken userRefreshToken);
-
     bool IsRefreshTokenActive(UserRefreshToken userRefreshToken);
 }
