@@ -108,7 +108,7 @@ internal sealed class UserService : IUserService
 
     public async Task<GetUserOutput?> GetUser(CancellationToken cancellationToken = default)
     {
-        await EnsureUserData(cancellationToken);
+        await EnsureUserData();
         return _user;
     }
 
@@ -133,66 +133,46 @@ internal sealed class UserService : IUserService
 
     public async Task<List<GetUserRolesOutput>?> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default)
     {
-        await EnsureUserRoles(userId, cancellationToken);
+        await EnsureUserRoles(userId);
         return _userRoles;
     }
 
     public async Task<List<GetUserPermissionsOutput>?> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default)
     {
-        await EnsureUserPermissions(userId, cancellationToken);
+        await EnsureUserPermissions(userId);
         return _userPermissions;
     }
 
     public async Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = default, CancellationToken cancellationToken = default)
     {
         userId ??= UserIdFromClaim();
-
-        var givenRoles = await _operationDbContext.UserRoles
-            .AsNoTracking()
-            .Include(roles => roles.Role)
-            .Where(roles => roles.UserId == userId && roles.Role.Name == userRoleName)
-            .ToListAsync(cancellationToken);
-
-        return givenRoles.Count != 0;
+        var userRolesById = await _userRepository.GetUserRoles(userId ?? Guid.Empty);
+        var rolesByName = userRolesById.Where(role => role.RoleName == userRoleName);
+        return rolesByName.Any();
     }
 
     public async Task<bool> HasRoleAssigned(Guid roleId, Guid? userId = default, CancellationToken cancellationToken = default)
     {
         userId ??= UserIdFromClaim();
-            
-        var givenRoles = await _operationDbContext.UserRoles
-            .AsNoTracking()
-            .Include(userRoles => userRoles.Role)
-            .Where(userRoles => userRoles.UserId == userId && userRoles.Role.Id == roleId)
-            .ToListAsync(cancellationToken);
-
-        return givenRoles.Count != 0;
+        var userRolesById = await _userRepository.GetUserRoles(userId ?? Guid.Empty);
+        var rolesById = userRolesById.Where(role => role.RoleId == roleId);
+        return rolesById.Any();
     }
 
     public async Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = default, CancellationToken cancellationToken = default)
     {
         userId ??= UserIdFromClaim();
-
-        var givenPermissions = await _operationDbContext.UserPermissions
-            .AsNoTracking()
-            .Include(permissions => permissions.Permission)
-            .Where(permissions => permissions.UserId == userId && permissions.Permission.Name == userPermissionName)
-            .ToListAsync(cancellationToken);
-
-        return givenPermissions.Count != 0;
+        var userPermissionsById = await _userRepository.GetUserPermissions(userId ?? Guid.Empty);
+        var permissionsByName = userPermissionsById.Where(permission => permission.Name == userPermissionName);
+        return permissionsByName.Any();
     }
 
     public async Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId = default, CancellationToken cancellationToken = default)
     {
         userId ??= UserIdFromClaim();
-
-        var givenPermissions = await _operationDbContext.UserPermissions
-            .AsNoTracking()
-            .Include(userPermissions => userPermissions.Permission)
-            .Where(userPermissions => userPermissions.UserId == userId && userPermissions.Permission.Id == permissionId)
-            .ToListAsync(cancellationToken);
-
-        return givenPermissions.Count != 0;
+        var userPermissionsById = await _userRepository.GetUserPermissions(userId ?? Guid.Empty);
+        var permissionsById = userPermissionsById.Where(permission => permission.PermissionId == permissionId);
+        return permissionsById.Any();
     }
 
     public async Task<ClaimsIdentity> MakeClaimsIdentity(User user, CancellationToken cancellationToken = default)
@@ -369,18 +349,13 @@ internal sealed class UserService : IUserService
         return Guid.Parse(userIds.First().Value);
     }
 
-    private async Task EnsureUserRoles(Guid? userId, CancellationToken cancellationToken = default)
+    private async Task EnsureUserRoles(Guid? userId)
     {
         if (_userRoles != null)
             return;
             
         var getUserId = userId ?? UserIdFromClaim();
-        var userRoles = await _operationDbContext.UserRoles
-            .AsNoTracking()
-            .Include(roles => roles.Role)
-            .Where(roles => roles.UserId == getUserId)
-            .ToListAsync(cancellationToken);
-
+        var userRoles = await _userRepository.GetUserRoles(getUserId ?? Guid.Empty);
         if (userRoles.Count == 0)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
@@ -389,24 +364,19 @@ internal sealed class UserService : IUserService
         {
             _userRoles.Add(new GetUserRolesOutput
             {
-                Name = userRole.Role.Name,
-                Description = userRole.Role.Description
+                Name = userRole.RoleName,
+                Description = userRole.Description
             });
         }
     }
 
-    private async Task EnsureUserPermissions(Guid? userId, CancellationToken cancellationToken = default)
+    private async Task EnsureUserPermissions(Guid? userId)
     {
         if (_userPermissions != null)
             return;
-            
-        var getUserId = userId ?? UserIdFromClaim();
-        var userPermissions = await _operationDbContext.UserPermissions
-            .AsNoTracking()
-            .Include(permissions => permissions.Permission)
-            .Where(permissions => permissions.UserId == getUserId)
-            .ToListAsync(cancellationToken);
 
+        var getUserId = userId ?? UserIdFromClaim();
+        var userPermissions = await _userRepository.GetUserPermissions(getUserId ?? Guid.Empty);
         if (userPermissions.Count == 0)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
 
@@ -415,12 +385,12 @@ internal sealed class UserService : IUserService
         {
             _userPermissions.Add(new GetUserPermissionsOutput
             {
-                Name = userPermission.Permission.Name
+                Name = userPermission.Name
             });
         }
     }
 
-    private async Task EnsureUserData(CancellationToken cancellationToken = default)
+    private async Task EnsureUserData()
     {
         if (_user != null) 
             return;
@@ -432,20 +402,14 @@ internal sealed class UserService : IUserService
             return;
         }
 
-        var user = await _operationDbContext.Users
-            .AsNoTracking()
-            .SingleOrDefaultAsync(users => users.Id == userId, cancellationToken);
-
+        var user = await _userRepository.GetUserById((Guid)userId);
         if (user is null)
         {
             _user = null;
             return;
         }
 
-        var userInfo = await _operationDbContext.UserInformation
-            .AsNoTracking()
-            .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
-
+        var userInfo = await _userRepository.GetUserInformationById((Guid)userId);
         _user = new GetUserOutput
         {
             UserId = user.Id,
