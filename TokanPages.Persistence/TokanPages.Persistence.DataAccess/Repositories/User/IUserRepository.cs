@@ -15,6 +15,8 @@ public interface IUserRepository
 
     Task<List<GetUserPermissionDto>> GetUserPermissions(Guid userId);
 
+    Task InsertUserToken(Guid userId, string token, DateTime expires, DateTime created, string createdByIp);
+
     Task<GetUserRefreshTokenDto?> GetUserRefreshToken(string token);
 
     Task<List<GetUserRefreshTokenDto>> GetUserRefreshTokens(Guid userId);

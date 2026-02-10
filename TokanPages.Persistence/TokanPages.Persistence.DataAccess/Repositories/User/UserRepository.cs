@@ -116,6 +116,24 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.ToList();
     }
 
+    public async Task InsertUserToken(Guid userId, string token, DateTime expires, DateTime created, string createdByIp)
+    {
+        var entity = new Users.UserToken
+        {
+            Id = Guid.NewGuid(),
+            UserId = userId,
+            Token = token,
+            Expires = expires,
+            Created = created,
+            CreatedByIp = createdByIp,
+            Command = string.Empty,
+            RevokedByIp = string.Empty,
+            ReasonRevoked = string.Empty
+        };
+
+        await DbOperations.Insert(entity);
+    }
+
     public async Task<GetUserRefreshTokenDto?> GetUserRefreshToken(string token)
     {
         var filterBy = new { Token = token };
