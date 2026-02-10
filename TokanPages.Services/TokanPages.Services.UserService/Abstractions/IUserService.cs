@@ -29,13 +29,9 @@ public interface IUserService
 
     Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = default, CancellationToken cancellationToken = default);
 
-    Task<string> GenerateUserToken(User user, DateTime tokenExpires, CancellationToken cancellationToken = default);
-
-    Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default);
+    Task<string> GenerateUserToken(User user, DateTime tokenExpires);
 
     Task<UserRefreshToken> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default);
-
-    Task RevokeDescendantRefreshTokens(RevokeRefreshTokensInput input, CancellationToken cancellationToken = default);
 
     Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default);
 

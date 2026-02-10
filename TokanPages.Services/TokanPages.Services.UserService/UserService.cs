@@ -160,23 +160,6 @@ internal sealed class UserService : IUserService
             _appSettings.IdsAudience);
     }
 
-    public async Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default)
-    {
-        var tokenMaturity = _appSettings.IdsRefreshTokenMaturity;
-        var userRefreshTokens = await _userRepository.GetUserRefreshTokens(userId);
-        var filteredTokens = userRefreshTokens
-            .Where(tokens => tokens.Expires <= _dateTimeService.Now
-                && tokens.Created.AddMinutes(tokenMaturity) <= _dateTimeService.Now
-                && tokens.Revoked == null)
-            .ToList();
-
-        if (filteredTokens.Count != 0)
-        {
-            var ids = new HashSet<Guid>(filteredTokens.Select(token => token.Id));
-            await _userRepository.DeleteUserRefreshTokens(ids);
-        }
-    }
-
     public async Task<UserRefreshToken> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default)
     {
         var newRefreshToken = _webTokenUtility.GenerateRefreshToken(input.RequesterIpAddress, 
@@ -206,42 +189,6 @@ internal sealed class UserService : IUserService
             ReasonRevoked = null,
             Id = Guid.NewGuid(),
         };
-    }
-
-    public async Task RevokeDescendantRefreshTokens(RevokeRefreshTokensInput input, CancellationToken cancellationToken = default)
-    {
-        if (input.UserRefreshTokens is null) 
-            return;
-
-        if (input.SavedUserRefreshTokens is null) 
-            return;
-
-        if (string.IsNullOrEmpty(input.SavedUserRefreshTokens.ReplacedByToken)) 
-            return;
-
-        var userRefreshTokensList = input.UserRefreshTokens.ToList();
-        var childToken = userRefreshTokensList.SingleOrDefault(tokens => tokens.Token == input.SavedUserRefreshTokens.ReplacedByToken);
-
-        if (childToken is null) 
-            return;
-
-        if (IsRefreshTokenActive(childToken))
-        {
-            var tokenInput = new RevokeRefreshTokenInput
-            {
-                UserRefreshTokens = childToken, 
-                RequesterIpAddress = input.RequesterIpAddress, 
-                Reason = input.Reason, 
-                ReplacedByToken = null, 
-                SaveImmediately = input.SaveImmediately,
-            };
-
-            await RevokeRefreshToken(tokenInput, cancellationToken);
-        }
-        else
-        {
-            await RevokeDescendantRefreshTokens(input, cancellationToken);
-        }
     }
 
     public async Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default)
