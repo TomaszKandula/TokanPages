@@ -175,39 +175,31 @@ internal sealed class UserService : IUserService
         return permissionsById.Any();
     }
 
-    public async Task<ClaimsIdentity> MakeClaimsIdentity(User user, CancellationToken cancellationToken = default)
+    public async Task<ClaimsIdentity> MakeClaimsIdentity(Guid userId)
     {
-        var userRoles = await _operationDbContext.UserRoles
-            .AsNoTracking()
-            .Include(roles => roles.User)
-            .Include(roles => roles.Role)
-            .Where(roles => roles.UserId == user.Id)
-            .ToListAsync(cancellationToken);
-
-        var userInfo = await _operationDbContext.UserInformation
-            .AsNoTracking()
-            .Where(info => info.UserId == user.Id)
-            .SingleOrDefaultAsync(cancellationToken);
+        var userDetails = await _userRepository.GetUserDetails(userId);
+        if (userDetails is null)
+            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS));            
 
         var claimsIdentity = new ClaimsIdentity(new[]
         {
-            new Claim(ClaimTypes.Name, user.UserAlias),
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.GivenName,  userInfo is null ? string.Empty : userInfo.FirstName),
-            new Claim(ClaimTypes.Surname, userInfo is null ? string.Empty : userInfo.LastName),
-            new Claim(ClaimTypes.Email, user.EmailAddress)
+            new Claim(ClaimTypes.Name, userDetails.UserAlias),
+            new Claim(ClaimTypes.NameIdentifier, userDetails.UserId.ToString()),
+            new Claim(ClaimTypes.GivenName,  userDetails.FirstName),
+            new Claim(ClaimTypes.Surname, userDetails.LastName),
+            new Claim(ClaimTypes.Email, userDetails.EmailAddress)
         });
 
+        var userRoles = await _userRepository.GetUserRoles(userId);
         claimsIdentity.AddClaims(userRoles
-            .Select(roles => new Claim(ClaimTypes.Role, roles.Role.Name)));
+            .Select(roles => new Claim(ClaimTypes.Role, roles.RoleName)));
 
         return claimsIdentity;
     }
 
     public async Task<string> GenerateUserToken(User user, DateTime tokenExpires, CancellationToken cancellationToken = default)
     {
-        var claimsIdentity = await MakeClaimsIdentity(user, cancellationToken);
-
+        var claimsIdentity = await MakeClaimsIdentity(user.Id);
         return _webTokenUtility.GenerateJwt(
             tokenExpires,
             claimsIdentity,
