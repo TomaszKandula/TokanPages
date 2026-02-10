@@ -17,8 +17,6 @@ public interface IUserRepository
 
     Task<List<GetUserRefreshTokenDto>> GetUserRefreshTokens(Guid userId);
 
-    Task UpdateUserRefreshToken(string oldToken, string newToken, string reason, string ipAddress);
-
     Task DeleteUserRefreshTokens(HashSet<Guid> ids);
 
     Task InsertHttpRequest(string ipAddress, string handlerName);

@@ -144,19 +144,6 @@ public class UserRepository : RepositoryBase, IUserRepository
         return dto;
     }
 
-    public async Task UpdateUserRefreshToken(string oldToken, string newToken, string reason, string ipAddress)
-    {
-        var filterBy = new { Token = oldToken };
-        var updateBy = new
-        {
-            Revoked = _dateTimeService.Now,
-            RevokedByIp = ipAddress,
-            ReasonRevoked = reason,
-            ReplacedByToken = newToken
-        };
-
-        await DbOperations.Update<Users.UserRefreshToken>(updateBy, filterBy);
-    }
 
     public async Task DeleteUserRefreshTokens(HashSet<Guid> ids)
     {
