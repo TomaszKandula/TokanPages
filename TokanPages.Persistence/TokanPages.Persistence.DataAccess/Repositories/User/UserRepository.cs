@@ -34,7 +34,7 @@ public class UserRepository : RepositoryBase, IUserRepository
     }
 
     /// <inheritdoc/>
-    public async Task<List<GetUserRolesDto>> GetUserRoles(Guid userId)
+    public async Task<List<GetUserRoleDto>> GetUserRoles(Guid userId)
     {
         const string query = @"
             SELECT 
