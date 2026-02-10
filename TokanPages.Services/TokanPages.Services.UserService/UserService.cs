@@ -159,28 +159,6 @@ internal sealed class UserService : IUserService
         return permissionsByName.Any();
     }
 
-    public async Task<ClaimsIdentity> MakeClaimsIdentity(Guid userId)
-    {
-        var userDetails = await _userRepository.GetUserDetails(userId);
-        if (userDetails is null)
-            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS));            
-
-        var claimsIdentity = new ClaimsIdentity(new[]
-        {
-            new Claim(ClaimTypes.Name, userDetails.UserAlias),
-            new Claim(ClaimTypes.NameIdentifier, userDetails.UserId.ToString()),
-            new Claim(ClaimTypes.GivenName,  userDetails.FirstName),
-            new Claim(ClaimTypes.Surname, userDetails.LastName),
-            new Claim(ClaimTypes.Email, userDetails.EmailAddress)
-        });
-
-        var userRoles = await _userRepository.GetUserRoles(userId);
-        claimsIdentity.AddClaims(userRoles
-            .Select(roles => new Claim(ClaimTypes.Role, roles.RoleName)));
-
-        return claimsIdentity;
-    }
-
     public async Task<string> GenerateUserToken(User user, DateTime tokenExpires, CancellationToken cancellationToken = default)
     {
         var claimsIdentity = await MakeClaimsIdentity(user.Id);
@@ -287,9 +265,7 @@ internal sealed class UserService : IUserService
         input.UserRefreshTokens.ReplacedByToken = input.ReplacedByToken;
 
         _operationDbContext.UserRefreshTokens.Update(input.UserRefreshTokens);
-
-        if (input.SaveImmediately)
-            await _operationDbContext.SaveChangesAsync(cancellationToken);
+        await _operationDbContext.SaveChangesAsync(cancellationToken);
     }
 
     public bool IsRefreshTokenActive(UserRefreshToken userRefreshToken)
@@ -298,6 +274,28 @@ internal sealed class UserService : IUserService
         var isRefreshTokenExpired = userRefreshToken.Expires <= _dateTimeService.Now;
 
         return !isRefreshTokenRevoked && !isRefreshTokenExpired;
+    }
+
+    private async Task<ClaimsIdentity> MakeClaimsIdentity(Guid userId)
+    {
+        var userDetails = await _userRepository.GetUserDetails(userId);
+        if (userDetails is null)
+            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS));            
+
+        var claimsIdentity = new ClaimsIdentity(new[]
+        {
+            new Claim(ClaimTypes.Name, userDetails.UserAlias),
+            new Claim(ClaimTypes.NameIdentifier, userDetails.UserId.ToString()),
+            new Claim(ClaimTypes.GivenName,  userDetails.FirstName),
+            new Claim(ClaimTypes.Surname, userDetails.LastName),
+            new Claim(ClaimTypes.Email, userDetails.EmailAddress)
+        });
+
+        var userRoles = await _userRepository.GetUserRoles(userId);
+        claimsIdentity.AddClaims(userRoles
+            .Select(roles => new Claim(ClaimTypes.Role, roles.RoleName)));
+
+        return claimsIdentity;
     }
 
     private Guid? UserIdFromClaim()
