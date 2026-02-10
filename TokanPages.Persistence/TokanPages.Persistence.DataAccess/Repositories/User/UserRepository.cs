@@ -116,6 +116,29 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.ToList();
     }
 
+    public async Task<GetUserRefreshTokenDto?> GetUserRefreshToken(string token)
+    {
+        var filterBy = new { Token = token };
+        var data = await DbOperations.Retrieve<Users.UserRefreshToken>(filterBy);
+        var dto = data.SingleOrDefault();
+        if (dto == null)
+            return null;
+
+        return new GetUserRefreshTokenDto
+        {
+            Id =  dto.Id,
+            UserId = dto.UserId,
+            Token = dto.Token,
+            Expires = dto.Expires,
+            Created = dto.Created,
+            CreatedByIp = dto.CreatedByIp,
+            Revoked = dto.Revoked,
+            RevokedByIp = dto.RevokedByIp,
+            ReplacedByToken = dto.ReplacedByToken,
+            ReasonRevoked = dto.ReasonRevoked
+        };
+    }
+
     public async Task<List<GetUserRefreshTokenDto>> GetUserRefreshTokens(Guid userId)
     {
         var filterBy = new { Id = userId };
@@ -163,6 +186,11 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Insert(entity);
     }
 
+    public async Task DeleteUserRefreshToken(Guid id)
+    {
+        var deleteBy = new { Id = id };
+        await DbOperations.Delete<Users.UserRefreshToken>(deleteBy);
+    }
 
     public async Task DeleteUserRefreshTokens(HashSet<Guid> ids)
     {
