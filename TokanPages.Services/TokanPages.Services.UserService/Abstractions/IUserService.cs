@@ -31,7 +31,5 @@ public interface IUserService
 
     Task<string> GenerateUserToken(User user, DateTime tokenExpires);
 
-    Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default);
-
     bool IsRefreshTokenActive(UserRefreshToken userRefreshToken);
 }

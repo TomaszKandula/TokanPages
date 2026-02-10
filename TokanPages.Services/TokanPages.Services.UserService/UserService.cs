@@ -160,20 +160,6 @@ internal sealed class UserService : IUserService
             _appSettings.IdsAudience);
     }
 
-    public async Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default)
-    {
-        if (input.UserRefreshTokens is null) 
-            return;
-
-        input.UserRefreshTokens.Revoked = _dateTimeService.Now;
-        input.UserRefreshTokens.RevokedByIp = input.RequesterIpAddress;
-        input.UserRefreshTokens.ReasonRevoked = input.Reason;
-        input.UserRefreshTokens.ReplacedByToken = input.ReplacedByToken;
-
-        _operationDbContext.UserRefreshTokens.Update(input.UserRefreshTokens);
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
-    }
-
     public bool IsRefreshTokenActive(UserRefreshToken userRefreshToken)
     {
         var isRefreshTokenRevoked = userRefreshToken.Revoked != null;
