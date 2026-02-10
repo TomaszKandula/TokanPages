@@ -23,6 +23,13 @@ public interface IUserRepository
     Task<Users.UserInfo?> GetUserInformationById(Guid userId);
 
     /// <summary>
+    /// Returns user details by given user ID.
+    /// </summary>
+    /// <param name="userId">A mandatory user ID.</param>
+    /// <returns>If found, returns user details, otherwise null.</returns>
+    Task<GetUserDetailsDto?> GetUserDetails(Guid userId);
+
+    /// <summary>
     /// Returns list of assigned user roles for the given user ID.
     /// </summary>
     /// <param name="userId">User ID.</param>
