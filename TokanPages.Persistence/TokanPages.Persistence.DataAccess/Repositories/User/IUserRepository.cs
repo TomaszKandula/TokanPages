@@ -23,7 +23,7 @@ public interface IUserRepository
 
     Task InsertUserRefreshToken(Guid userId, string token, DateTime expires, DateTime created, string? createdByIp);
 
-    Task DeleteUserRefreshToken(Guid id);
+    Task DeleteUserRefreshToken(string token);
 
     Task DeleteUserRefreshTokens(HashSet<Guid> ids);
 

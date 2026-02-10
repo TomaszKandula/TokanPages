@@ -204,9 +204,9 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Insert(entity);
     }
 
-    public async Task DeleteUserRefreshToken(Guid id)
+    public async Task DeleteUserRefreshToken(string token)
     {
-        var deleteBy = new { Id = id };
+        var deleteBy = new { Token = token };
         await DbOperations.Delete<Users.UserRefreshToken>(deleteBy);
     }
 
