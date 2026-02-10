@@ -26,8 +26,15 @@ public interface IUserRepository
     /// Returns list of assigned user roles for the given user ID.
     /// </summary>
     /// <param name="userId">User ID.</param>
-    /// <returns></returns>
-    Task<List<GetUserRolesDto>> GetUserRoles(Guid userId);
+    /// <returns>List of roles.</returns>
+    Task<List<GetUserRoleDto>> GetUserRoles(Guid userId);
+
+    /// <summary>
+    /// Returns list of assigned user permission for the given user ID.
+    /// </summary>
+    /// <param name="userId">User ID.</param>
+    /// <returns>List of permissions.</returns>
+    Task<List<GetUserPermissionDto>> GetUserPermissions(Guid userId);
 
     /// <summary>
     /// Creates HTTP request information for the given IP address and requested handler name.
