@@ -25,10 +25,9 @@ internal sealed class UserService : IUserService
 
     private readonly AppSettingsModel _appSettings;
 
+    //TODO: refactor and remove below fields
     private List<GetUserPermissionsOutput>? _userPermissions;
-
     private List<GetUserRolesOutput>? _userRoles;
-
     private GetUserOutput? _user;
 
     public UserService(IHttpContextAccessor httpContextAccessor, IWebTokenUtility webTokenUtility, 
