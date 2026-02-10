@@ -149,7 +149,7 @@ internal sealed class UserService : IUserService
         return permissionsByName.Any();
     }
 
-    public async Task<string> GenerateUserToken(User user, DateTime tokenExpires, CancellationToken cancellationToken = default)
+    public async Task<string> GenerateUserToken(User user, DateTime tokenExpires)
     {
         var claimsIdentity = await MakeClaimsIdentity(user.Id);
         return _webTokenUtility.GenerateJwt(
