@@ -1,7 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
@@ -44,8 +42,6 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         var user = await _userService.GetActiveUser(request.UserId, false, cancellationToken);
         var ipAddress = _userService.GetRequestIpAddress();
 
-        // REFRESH TOKEN
-        
         var csrfToken = _cookieAccessor.Get("X-CSRF-Token");
         if (csrfToken is null)
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
@@ -61,60 +57,32 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         await _userRepository.InsertUserRefreshToken(user.Id, newRefreshToken.Token, newRefreshToken.Expires, newRefreshToken.Created, newRefreshToken.CreatedByIp);
         await _userRepository.DeleteUserRefreshToken(existingRefreshToken.Id);
 
-        // TOKEN        
-
         var currentDateTime = _dateTimeService.Now;
         var tokenExpires = _dateTimeService.Now.AddMinutes(_appSettings.IdsWebTokenMaturity);
         var userToken = await _userService.GenerateUserToken(user, tokenExpires);
-        var newUserToken = new UserToken
-        {
-            UserId = user.Id,
-            Token = userToken,
-            Expires = tokenExpires,
-            Created = currentDateTime,
-            CreatedByIp = ipAddress,
-            Command = nameof(ReAuthenticateUserCommand),
-            RevokedByIp = string.Empty,
-            ReasonRevoked = string.Empty,
-            Id = Guid.NewGuid(),
-        };
+        await _userRepository.InsertUserToken(user.Id, userToken, tokenExpires, currentDateTime, ipAddress);
 
-        await OperationDbContext.UserTokens.AddAsync(newUserToken, cancellationToken);
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
+        var userDetails = await _userRepository.GetUserDetails(user.Id);
+        var roles = await _userRepository.GetUserRoles(user.Id);
+        var permissions = await _userRepository.GetUserPermissions(user.Id);
 
-        var userInfo = await TryGetUserInfo(user.Id, cancellationToken);
+        var firstName = !string.IsNullOrWhiteSpace(userDetails?.FirstName) ? userDetails.FirstName : user.UserAlias;
+        var lastName = !string.IsNullOrWhiteSpace(userDetails?.LastName) ? userDetails.LastName : user.UserAlias[..3];
 
         return new ReAuthenticateUserCommandResult
         {
             UserId = user.Id,
             IsVerified = user.IsVerified,
             AliasName = user.UserAlias,
-            AvatarName = userInfo.UserImageName,
-            FirstName = !string.IsNullOrWhiteSpace(userInfo.FirstName) 
-                ? userInfo.FirstName 
-                : user.UserAlias,
-            LastName = !string.IsNullOrWhiteSpace(userInfo.LastName) 
-                ? userInfo.LastName 
-                : user.UserAlias[..3],
+            AvatarName = userDetails?.UserImageName,
+            FirstName = firstName,
+            LastName = lastName,
             Email = user.EmailAddress,
-            ShortBio = userInfo.UserAboutText,
+            ShortBio = userDetails?.UserAboutText,
             Registered = user.CreatedAt,
             UserToken = userToken,
             Roles = roles,
             Permissions = permissions
         };
-    }
-
-    private async Task<UserInfo> TryGetUserInfo(Guid userId, CancellationToken cancellationToken = default)
-    {
-        var userInfo = await OperationDbContext.UserInformation
-            .AsNoTracking()
-            .Where(info => info.UserId == userId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (userInfo is null) 
-            throw new BusinessException(nameof(ErrorCodes.ERROR_UNEXPECTED), ErrorCodes.ERROR_UNEXPECTED);
-
-        return userInfo;
     }
 }
