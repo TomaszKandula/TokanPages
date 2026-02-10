@@ -213,11 +213,7 @@ public class UserRepository : RepositoryBase, IUserRepository
     public async Task DeleteUserRefreshTokens(HashSet<Guid> ids)
     {
         var uids = new HashSet<object>();
-        foreach (var id in ids)
-        {
-            uids.Add(id);
-        }
-
+        foreach (var id in ids) { uids.Add(id); }
         await DbOperations.Delete<Users.UserRefreshToken>(uids);
     }
 
