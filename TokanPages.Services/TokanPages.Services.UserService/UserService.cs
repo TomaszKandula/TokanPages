@@ -15,16 +15,6 @@ namespace TokanPages.Services.UserService;
 
 internal sealed class UserService : IUserService
 {
-    private const string Localhost = "127.0.0.1";
-
-    private const string XForwardedFor = "X-Forwarded-For";
-
-    private const string UserTimezoneOffset = "UserTimezoneOffset";
-
-    private const string UserLanguage = "UserLanguage";
-
-    private const string NewRefreshTokenText = "Replaced by new token";
-
     private readonly IHttpContextAccessor _httpContextAccessor;
 
     private readonly IUserRepository _userRepository;
@@ -53,11 +43,12 @@ internal sealed class UserService : IUserService
 
     public string GetRequestIpAddress() 
     {
+        const string localhost = "127.0.0.1";
         var remoteIpAddress = _httpContextAccessor.HttpContext?
-            .Request.Headers[XForwardedFor].ToString();
-            
+            .Request.Headers["X-Forwarded-For"].ToString();
+
         return string.IsNullOrEmpty(remoteIpAddress) 
-            ? Localhost 
+            ? localhost 
             : remoteIpAddress.Split(':')[0];
     }
 
@@ -77,7 +68,7 @@ internal sealed class UserService : IUserService
     public int GetRequestUserTimezoneOffset()
     {
         var offset = _httpContextAccessor.HttpContext?
-            .Request.Headers[UserTimezoneOffset].ToString();
+            .Request.Headers["UserTimezoneOffset"].ToString();
 
         return string.IsNullOrEmpty(offset) 
             ? 0 
@@ -87,7 +78,7 @@ internal sealed class UserService : IUserService
     public string GetRequestUserLanguage()
     {
         var language = _httpContextAccessor.HttpContext?
-            .Request.Headers[UserLanguage].ToString();
+            .Request.Headers["UserLanguage"].ToString();
 
         return string.IsNullOrWhiteSpace(language) 
             ? "en" 
@@ -196,7 +187,7 @@ internal sealed class UserService : IUserService
         {
             UserRefreshTokens = input.SavedUserRefreshTokens, 
             RequesterIpAddress = input.RequesterIpAddress, 
-            Reason = NewRefreshTokenText, 
+            Reason = "Replaced by new token", 
             ReplacedByToken = newRefreshToken.Token, 
             SaveImmediately = input.SaveImmediately
         };
