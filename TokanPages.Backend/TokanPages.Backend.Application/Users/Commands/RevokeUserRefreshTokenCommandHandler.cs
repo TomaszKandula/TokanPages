@@ -1,56 +1,33 @@
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.CookieAccessorService.Abstractions;
-using TokanPages.Services.UserService.Abstractions;
-using TokanPages.Services.UserService.Models;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
 public class RevokeUserRefreshTokenCommandHandler : RequestHandler<RevokeUserRefreshTokenCommand, Unit>
 {
-    private readonly IUserService _userService;
+    private readonly IUserRepository _userRepository;
 
     private readonly ICookieAccessor _cookieAccessor;
 
     public RevokeUserRefreshTokenCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, ICookieAccessor cookieAccessor) : base(operationDbContext, loggerService)
+        ICookieAccessor cookieAccessor, IUserRepository userRepository) : base(operationDbContext, loggerService)
     {
-        _userService = userService;
         _cookieAccessor = cookieAccessor;
+        _userRepository = userRepository;
     }
 
     public override async Task<Unit> Handle(RevokeUserRefreshTokenCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(null, false, cancellationToken);
         var csrfToken = _cookieAccessor.Get("X-CSRF-Token");
         if (csrfToken is null)
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
-        var refreshTokens = await OperationDbContext.UserRefreshTokens
-            .Where(tokens => tokens.UserId == user.Id)
-            .Where(tokens => tokens.Token == csrfToken)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (refreshTokens == null)
-            throw new AuthorizationException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
-
-        var requestIpAddress = _userService.GetRequestIpAddress();
-        var reason = $"Revoked by user ID: {user.Id}";
-
-        var input = new RevokeRefreshTokenInput
-        {
-            UserRefreshTokens = refreshTokens, 
-            RequesterIpAddress = requestIpAddress, 
-            Reason = reason, 
-            ReplacedByToken = null, 
-            SaveImmediately = true
-        };
-
-        await _userService.RevokeRefreshToken(input, cancellationToken);            
+        await _userRepository.DeleteUserRefreshToken(csrfToken);
         return Unit.Value;
     }
 }
