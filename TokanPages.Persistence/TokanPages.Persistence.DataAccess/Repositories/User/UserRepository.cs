@@ -54,7 +54,31 @@ public class UserRepository : RepositoryBase, IUserRepository
 
         await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
         var parameters = new { UserId = userId };
-        var data = await db.QueryAsync<GetUserRolesDto>(query, parameters);
+        var data = await db.QueryAsync<GetUserRoleDto>(query, parameters);
+        return data.ToList();
+    }
+
+    /// <inheritdoc/>
+    public async Task<List<GetUserPermissionDto>> GetUserPermissions(Guid userId)
+    {
+        const string query = @"
+            SELECT 
+                operation.UserPermissions.UserId,
+                operation.UserPermissions.PermissionId,
+                operation.Permissions.Name
+            FROM 
+                operation.UserPermissions
+            LEFT JOIN
+                operation.Permissions
+            ON
+                operation.UserPermissions.PermissionId = operation.Permissions.Id
+            WHERE 
+                UserId = @UserId
+        ";
+
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        var parameters = new { UserId = userId };
+        var data = await db.QueryAsync<GetUserPermissionDto>(query, parameters);
         return data.ToList();
     }
 
