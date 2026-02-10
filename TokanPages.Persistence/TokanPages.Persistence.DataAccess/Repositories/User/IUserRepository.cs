@@ -5,58 +5,21 @@ namespace TokanPages.Persistence.DataAccess.Repositories.User;
 
 public interface IUserRepository
 {
-    /// <summary>
-    /// Returns user entity by the given ID.
-    /// </summary>
-    /// <remarks>
-    /// ID is a primary key of an entity.
-    /// </remarks>
-    /// <param name="userId">A mandatory user ID.</param>
-    /// <returns>If found, returns user data, otherwise null.</returns>
     Task<Users.User?> GetUserById(Guid userId);
 
-    /// <summary>
-    /// Returns user information entity by given ID.
-    /// </summary>
-    /// <param name="userId">A mandatory user ID.</param>
-    /// <returns>If found, returns user information, otherwise null.</returns>
     Task<Users.UserInfo?> GetUserInformationById(Guid userId);
 
-    /// <summary>
-    /// Returns user details by given user ID.
-    /// </summary>
-    /// <param name="userId">A mandatory user ID.</param>
-    /// <returns>If found, returns user details, otherwise null.</returns>
     Task<GetUserDetailsDto?> GetUserDetails(Guid userId);
 
-    /// <summary>
-    /// Returns list of assigned user roles for the given user ID.
-    /// </summary>
-    /// <param name="userId">User ID.</param>
-    /// <returns>List of roles.</returns>
     Task<List<GetUserRoleDto>> GetUserRoles(Guid userId);
 
-    /// <summary>
-    /// Returns list of assigned user permission for the given user ID.
-    /// </summary>
-    /// <param name="userId">User ID.</param>
-    /// <returns>List of permissions.</returns>
     Task<List<GetUserPermissionDto>> GetUserPermissions(Guid userId);
 
-    /// <summary>
-    /// Returns list of refresh tokens for the given user ID.
-    /// </summary>
-    /// <returns>List of user refresh tokens.</returns>
     Task<List<GetUserRefreshTokenDto>> GetUserRefreshTokens(Guid userId);
 
     Task UpdateUserRefreshToken(string oldToken, string newToken, string reason, string ipAddress);
     
     Task DeleteUserRefreshTokens(Guid userId);
 
-    /// <summary>
-    /// Creates HTTP request information for the given IP address and requested handler name.
-    /// </summary>
-    /// <param name="ipAddress">IP address (referer).</param>
-    /// <param name="handlerName">Requested handler name (CQRS).</param>
     Task InsertHttpRequest(string ipAddress, string handlerName);
 }
