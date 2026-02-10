@@ -6,9 +6,10 @@ using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.CookieAccessorService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
-using TokanPages.Services.UserService.Models;
+using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
@@ -20,74 +21,51 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
     private readonly ICookieAccessor _cookieAccessor;
 
+    private readonly IUserRepository _userRepository;
+
+    private readonly IWebTokenUtility _webTokenUtility;
+
     private readonly AppSettingsModel _appSettings;
 
     public ReAuthenticateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
-        IUserService userService, IOptions<AppSettingsModel> options, ICookieAccessor cookieAccessor) : base(operationDbContext, loggerService)
+        IUserService userService, IOptions<AppSettingsModel> options, ICookieAccessor cookieAccessor, IUserRepository userRepository, 
+        IWebTokenUtility webTokenUtility) : base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _userService = userService;
         _appSettings = options.Value;
         _cookieAccessor = cookieAccessor;
+        _userRepository = userRepository;
+        _webTokenUtility = webTokenUtility;
     }
 
     public override async Task<ReAuthenticateUserCommandResult> Handle(ReAuthenticateUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(request.UserId, false, cancellationToken);
+        var ipAddress = _userService.GetRequestIpAddress();
+
+        // REFRESH TOKEN
+        
         var csrfToken = _cookieAccessor.Get("X-CSRF-Token");
         if (csrfToken is null)
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
-        var userRefreshTokens = await OperationDbContext.UserRefreshTokens
-            .AsNoTracking()
-            .Where(tokens => tokens.Token == csrfToken)
-            .ToListAsync(cancellationToken);
-
-        var savedRefreshToken = userRefreshTokens.SingleOrDefault(tokens => tokens.Token == csrfToken);
-        if (savedRefreshToken == null) 
+        var existingRefreshToken = await _userRepository.GetUserRefreshToken(csrfToken);
+        if (existingRefreshToken == null) 
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
-        var requesterIpAddress = _userService.GetRequestIpAddress();
-        if (savedRefreshToken.Revoked != null)
-        {
-            var reason = $"Attempted reuse of revoked ancestor token: {csrfToken}";
-            var tokensInput = new RevokeRefreshTokensInput
-            {
-                UserRefreshTokens = userRefreshTokens, 
-                SavedUserRefreshTokens = savedRefreshToken, 
-                RequesterIpAddress = requesterIpAddress, 
-                Reason = reason, 
-                SaveImmediately = false
-            };
+        var newRefreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, _appSettings.IdsRefreshTokenMaturity);
+        var expiresIn = _appSettings.IdsRefreshTokenMaturity;
+        _cookieAccessor.Set("X-CSRF-Token", newRefreshToken.Token, maxAge: TimeSpan.FromMinutes(expiresIn));
 
-            await _userService.RevokeDescendantRefreshTokens(tokensInput, cancellationToken);
-            OperationDbContext.UserRefreshTokens.Update(savedRefreshToken);
-            await OperationDbContext.SaveChangesAsync(cancellationToken);
-        }
+        await _userRepository.InsertUserRefreshToken(user.Id, newRefreshToken.Token, newRefreshToken.Expires, newRefreshToken.Created, newRefreshToken.CreatedByIp);
+        await _userRepository.DeleteUserRefreshToken(existingRefreshToken.Id);
 
-        if (!_userService.IsRefreshTokenActive(savedRefreshToken)) 
-            throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
-
-        var tokenInput = new ReplaceRefreshTokenInput
-        {
-            UserId = user.Id, 
-            SavedUserRefreshTokens = savedRefreshToken, 
-            RequesterIpAddress = requesterIpAddress, 
-            SaveImmediately = true
-        };
-        
-        var newRefreshToken = await _userService.ReplaceRefreshToken(tokenInput, cancellationToken);
-        await _userService.DeleteOutdatedRefreshTokens(user.Id, false, cancellationToken);
-        await OperationDbContext.UserRefreshTokens.AddAsync(newRefreshToken, cancellationToken);
+        // TOKEN        
 
         var currentDateTime = _dateTimeService.Now;
-        var ipAddress = _userService.GetRequestIpAddress();
         var tokenExpires = _dateTimeService.Now.AddMinutes(_appSettings.IdsWebTokenMaturity);
-        var userToken = await _userService.GenerateUserToken(user, tokenExpires, cancellationToken);
-
-        var roles = await _userService.GetUserRoles(user.Id, cancellationToken) ?? new List<GetUserRolesOutput>();
-        var permissions = await _userService.GetUserPermissions(user.Id, cancellationToken) ?? new List<GetUserPermissionsOutput>();
-
+        var userToken = await _userService.GenerateUserToken(user, tokenExpires);
         var newUserToken = new UserToken
         {
             UserId = user.Id,
@@ -105,9 +83,6 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         await OperationDbContext.SaveChangesAsync(cancellationToken);
 
         var userInfo = await TryGetUserInfo(user.Id, cancellationToken);
-        var expiresIn = _appSettings.IdsRefreshTokenMaturity;
-
-        _cookieAccessor.Set("X-CSRF-Token", newRefreshToken.Token, maxAge: TimeSpan.FromMinutes(expiresIn));
 
         return new ReAuthenticateUserCommandResult
         {
