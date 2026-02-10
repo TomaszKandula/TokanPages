@@ -160,13 +160,7 @@ internal sealed class UserService : IUserService
             _appSettings.IdsAudience);
     }
 
-    public bool IsRefreshTokenActive(UserRefreshToken userRefreshToken)
-    {
-        var isRefreshTokenRevoked = userRefreshToken.Revoked != null;
-        var isRefreshTokenExpired = userRefreshToken.Expires <= _dateTimeService.Now;
-
-        return !isRefreshTokenRevoked && !isRefreshTokenExpired;
-    }
+    public bool IsRefreshTokenActive(DateTime expires) => !(expires <= _dateTimeService.Now);
 
     private async Task<ClaimsIdentity> MakeClaimsIdentity(Guid userId)
     {

@@ -31,5 +31,5 @@ public interface IUserService
 
     Task<string> GenerateUserToken(User user, DateTime tokenExpires);
 
-    bool IsRefreshTokenActive(UserRefreshToken userRefreshToken);
+    bool IsRefreshTokenActive(DateTime expires);
 }
