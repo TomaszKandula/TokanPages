@@ -44,6 +44,16 @@ public interface IUserRepository
     Task<List<GetUserPermissionDto>> GetUserPermissions(Guid userId);
 
     /// <summary>
+    /// Returns list of refresh tokens for the given user ID.
+    /// </summary>
+    /// <returns>List of user refresh tokens.</returns>
+    Task<List<GetUserRefreshTokenDto>> GetUserRefreshTokens(Guid userId);
+
+    Task UpdateUserRefreshToken(string oldToken, string newToken, string reason, string ipAddress);
+    
+    Task DeleteUserRefreshTokens(Guid userId);
+
+    /// <summary>
     /// Creates HTTP request information for the given IP address and requested handler name.
     /// </summary>
     /// <param name="ipAddress">IP address (referer).</param>

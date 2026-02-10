@@ -122,6 +122,34 @@ public class UserRepository : RepositoryBase, IUserRepository
     }
 
     /// <inheritdoc/>
+    public async Task<List<GetUserRefreshTokenDto>> GetUserRefreshTokens(Guid userId)
+    {
+        var filterBy = new { Id = userId };
+        var data = await DbOperations.Retrieve<GetUserRefreshTokenDto>(filterBy);
+        return data.ToList();
+    }
+
+    public async Task UpdateUserRefreshToken(string oldToken, string newToken, string reason, string ipAddress)
+    {
+        var filterBy = new { Token = oldToken };
+        var updateBy = new
+        {
+            Revoked = _dateTimeService.Now,
+            RevokedByIp = ipAddress,
+            ReasonRevoked = reason,
+            ReplacedByToken = newToken
+        };
+
+        await DbOperations.Update<Users.UserRefreshToken>(updateBy, filterBy);
+    }
+
+    public async Task DeleteUserRefreshTokens(Guid userId)
+    {
+        var deleteBy = new { UserId = userId };
+        await DbOperations.Delete<Users.UserRefreshToken>(deleteBy);
+    }
+
+    /// <inheritdoc/>
     public async Task InsertHttpRequest(string ipAddress, string handlerName)
     {
         var entity = new HttpRequest
