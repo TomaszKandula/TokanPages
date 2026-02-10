@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using TokanPages.Backend.Domain.Entities.Users;
+﻿using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Services.UserService.Models;
 
 namespace TokanPages.Services.UserService.Abstractions;
@@ -33,8 +32,6 @@ public interface IUserService
     Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = default, CancellationToken cancellationToken = default);
 
     Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId = default, CancellationToken cancellationToken = default);//TODO: to be removed
-
-    Task<ClaimsIdentity> MakeClaimsIdentity(User user, CancellationToken cancellationToken = default);//TODO: to be removed
         
     Task<string> GenerateUserToken(User user, DateTime tokenExpires, CancellationToken cancellationToken = default);
 
