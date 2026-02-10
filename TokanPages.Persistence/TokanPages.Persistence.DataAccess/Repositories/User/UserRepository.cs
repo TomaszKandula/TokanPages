@@ -137,10 +137,10 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Update<Users.UserRefreshToken>(updateBy, filterBy);
     }
 
-    public async Task DeleteUserRefreshTokens(Guid userId)
+    public async Task DeleteUserRefreshTokens(HashSet<Guid> ids)
     {
-        var deleteBy = new { UserId = userId };
-        await DbOperations.Delete<Users.UserRefreshToken>(deleteBy);
+        var uids = new HashSet<object>(ids);
+        await DbOperations.Delete<Users.UserRefreshToken>(uids);
     }
 
     public async Task InsertHttpRequest(string ipAddress, string handlerName)
