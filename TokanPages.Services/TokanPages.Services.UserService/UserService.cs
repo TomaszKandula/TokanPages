@@ -211,18 +211,18 @@ internal sealed class UserService : IUserService
     public async Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default)
     {
         var tokenMaturity = _appSettings.IdsRefreshTokenMaturity;
-        var refreshTokens = await _operationDbContext.UserRefreshTokens
-            .Where(tokens => tokens.UserId == userId 
-                             && tokens.Expires <= _dateTimeService.Now 
-                             && tokens.Created.AddMinutes(tokenMaturity) <= _dateTimeService.Now
-                             && tokens.Revoked == null)
-            .ToListAsync(cancellationToken);
+        var userRefreshTokens = await _userRepository.GetUserRefreshTokens(userId);
+        var filteredTokens = userRefreshTokens
+            .Where(tokens => tokens.Expires <= _dateTimeService.Now
+                && tokens.Created.AddMinutes(tokenMaturity) <= _dateTimeService.Now
+                && tokens.Revoked == null)
+            .ToList();
 
-        if (refreshTokens.Count != 0)
-            _operationDbContext.UserRefreshTokens.RemoveRange(refreshTokens);
-            
-        if (saveImmediately && refreshTokens.Count != 0)
-            await _operationDbContext.SaveChangesAsync(cancellationToken);
+        if (filteredTokens.Count != 0)
+        {
+            var ids = new HashSet<Guid>(filteredTokens.Select(token => token.Id));
+            await _userRepository.DeleteUserRefreshTokens(ids);
+        }
     }
 
     public async Task<UserRefreshToken> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default)
