@@ -119,8 +119,29 @@ public class UserRepository : RepositoryBase, IUserRepository
     public async Task<List<GetUserRefreshTokenDto>> GetUserRefreshTokens(Guid userId)
     {
         var filterBy = new { Id = userId };
-        var data = await DbOperations.Retrieve<GetUserRefreshTokenDto>(filterBy);
-        return data.ToList();
+        var tokens = await DbOperations.Retrieve<Users.UserRefreshToken>(filterBy);
+
+        var dto = new List<GetUserRefreshTokenDto>();
+        foreach (var token in tokens)
+        {
+            var item = new GetUserRefreshTokenDto
+            {
+                Id = token.Id,
+                UserId = token.UserId,
+                Token = token.Token,
+                Expires = token.Expires,
+                Created = token.Created,
+                CreatedByIp = token.CreatedByIp,
+                Revoked = token.Revoked,
+                RevokedByIp = token.RevokedByIp,
+                ReplacedByToken = token.ReplacedByToken,
+                ReasonRevoked = token.ReasonRevoked,
+            };
+
+            dto.Add(item);
+        }
+
+        return dto;
     }
 
     public async Task UpdateUserRefreshToken(string oldToken, string newToken, string reason, string ipAddress)
