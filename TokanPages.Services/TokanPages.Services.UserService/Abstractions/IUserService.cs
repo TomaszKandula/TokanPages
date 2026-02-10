@@ -14,7 +14,7 @@ public interface IUserService
 
     public string GetRequestUserLanguage();
 
-    Task LogHttpRequest(string handlerName);
+    Task LogHttpRequest(string handlerName);//TODO: to be removed
 
     Guid GetLoggedUserId();
 
@@ -28,13 +28,13 @@ public interface IUserService
 
     Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = default, CancellationToken cancellationToken = default);
 
-    Task<bool> HasRoleAssigned(Guid roleId, Guid? userId = default, CancellationToken cancellationToken = default);
+    Task<bool> HasRoleAssigned(Guid roleId, Guid? userId = default, CancellationToken cancellationToken = default);//TODO: to be removed
 
     Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = default, CancellationToken cancellationToken = default);
 
-    Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId = default, CancellationToken cancellationToken = default);
+    Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId = default, CancellationToken cancellationToken = default);//TODO: to be removed
 
-    Task<ClaimsIdentity> MakeClaimsIdentity(User user, CancellationToken cancellationToken = default);
+    Task<ClaimsIdentity> MakeClaimsIdentity(User user, CancellationToken cancellationToken = default);//TODO: to be removed
         
     Task<string> GenerateUserToken(User user, DateTime tokenExpires, CancellationToken cancellationToken = default);
 
@@ -46,7 +46,7 @@ public interface IUserService
 
     Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default);
 
-    bool IsRefreshTokenExpired(UserRefreshToken userRefreshToken);
+    bool IsRefreshTokenExpired(UserRefreshToken userRefreshToken);//TODO: to be removed
 
     bool IsRefreshTokenRevoked(UserRefreshToken userRefreshToken);
 
