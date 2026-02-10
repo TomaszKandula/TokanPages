@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Persistence.DataAccess.Repositories.User.Models;
 
 [ExcludeFromCodeCoverage]
-public class GetUserRolesDto
+public class GetUserRoleDto
 {
     public Guid UserId { get; init; }
 
