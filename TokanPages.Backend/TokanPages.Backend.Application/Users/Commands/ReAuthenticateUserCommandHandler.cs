@@ -50,6 +50,10 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         if (existingRefreshToken == null) 
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
+        var isRefreshTokenActive = _userService.IsRefreshTokenActive(existingRefreshToken.Expires);
+        if (!isRefreshTokenActive)
+            throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
+
         var newRefreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, _appSettings.IdsRefreshTokenMaturity);
         var expiresIn = _appSettings.IdsRefreshTokenMaturity;
         _cookieAccessor.Set("X-CSRF-Token", newRefreshToken.Token, maxAge: TimeSpan.FromMinutes(expiresIn));
