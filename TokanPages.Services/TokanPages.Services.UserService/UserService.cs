@@ -160,37 +160,6 @@ internal sealed class UserService : IUserService
             _appSettings.IdsAudience);
     }
 
-    public async Task<UserRefreshToken> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default)
-    {
-        var newRefreshToken = _webTokenUtility.GenerateRefreshToken(input.RequesterIpAddress, 
-            _appSettings.IdsRefreshTokenMaturity);
-
-        var tokenInput = new RevokeRefreshTokenInput
-        {
-            UserRefreshTokens = input.SavedUserRefreshTokens, 
-            RequesterIpAddress = input.RequesterIpAddress, 
-            Reason = "Replaced by new token", 
-            ReplacedByToken = newRefreshToken.Token, 
-            SaveImmediately = input.SaveImmediately
-        };
-
-        await RevokeRefreshToken(tokenInput, cancellationToken);
-
-        return new UserRefreshToken
-        {
-            UserId = input.UserId,
-            Token = newRefreshToken.Token,
-            Expires = newRefreshToken.Expires,
-            Created = newRefreshToken.Created,
-            CreatedByIp = newRefreshToken.CreatedByIp,
-            Revoked = null,
-            RevokedByIp = null,
-            ReplacedByToken = null,
-            ReasonRevoked = null,
-            Id = Guid.NewGuid(),
-        };
-    }
-
     public async Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default)
     {
         if (input.UserRefreshTokens is null) 
