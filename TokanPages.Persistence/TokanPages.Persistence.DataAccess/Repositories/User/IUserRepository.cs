@@ -5,9 +5,9 @@ namespace TokanPages.Persistence.DataAccess.Repositories.User;
 
 public interface IUserRepository
 {
-    Task<Users.User?> GetUserById(Guid userId);
+    Task<Users.User?> GetUserById(Guid userId);//TODO: use DTO model
 
-    Task<Users.UserInfo?> GetUserInformationById(Guid userId);
+    Task<Users.UserInfo?> GetUserInformationById(Guid userId);//TODO: use DTO model
 
     Task<GetUserDetailsDto?> GetUserDetails(Guid userId);
 
