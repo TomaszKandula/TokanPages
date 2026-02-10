@@ -17,7 +17,6 @@ public class UserRepository : RepositoryBase, IUserRepository
     public UserRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
         : base(dbOperations, appSettings) => _dateTimeService = dateTimeService;
 
-    /// <inheritdoc/>
     public async Task<Users.User?> GetUserById(Guid userId)
     {
         var filterBy = new { Id = userId };
@@ -25,7 +24,6 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.SingleOrDefault();
     }
 
-    /// <inheritdoc/>
     public async Task<Users.UserInfo?> GetUserInformationById(Guid userId)
     {
         var filterBy = new { UserId = userId };
@@ -33,7 +31,6 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.SingleOrDefault();
     }
 
-    /// <inheritdoc/>
     public async Task<GetUserDetailsDto?> GetUserDetails(Guid userId)
     {
         const string query = @"
@@ -72,7 +69,6 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.SingleOrDefault();
     }
 
-    /// <inheritdoc/>
     public async Task<List<GetUserRoleDto>> GetUserRoles(Guid userId)
     {
         const string query = @"
@@ -97,7 +93,6 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.ToList();
     }
 
-    /// <inheritdoc/>
     public async Task<List<GetUserPermissionDto>> GetUserPermissions(Guid userId)
     {
         const string query = @"
@@ -121,7 +116,6 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.ToList();
     }
 
-    /// <inheritdoc/>
     public async Task<List<GetUserRefreshTokenDto>> GetUserRefreshTokens(Guid userId)
     {
         var filterBy = new { Id = userId };
@@ -149,7 +143,6 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Delete<Users.UserRefreshToken>(deleteBy);
     }
 
-    /// <inheritdoc/>
     public async Task InsertHttpRequest(string ipAddress, string handlerName)
     {
         var entity = new HttpRequest
