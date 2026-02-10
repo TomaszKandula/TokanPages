@@ -27,12 +27,8 @@ public interface IUserService
 
     Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = default, CancellationToken cancellationToken = default);
 
-    Task<bool> HasRoleAssigned(Guid roleId, Guid? userId = default, CancellationToken cancellationToken = default);//TODO: to be removed
-
     Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = default, CancellationToken cancellationToken = default);
 
-    Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId = default, CancellationToken cancellationToken = default);//TODO: to be removed
-        
     Task<string> GenerateUserToken(User user, DateTime tokenExpires, CancellationToken cancellationToken = default);
 
     Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default);

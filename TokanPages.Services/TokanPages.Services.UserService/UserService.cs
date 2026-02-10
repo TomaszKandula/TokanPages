@@ -151,28 +151,12 @@ internal sealed class UserService : IUserService
         return rolesByName.Any();
     }
 
-    public async Task<bool> HasRoleAssigned(Guid roleId, Guid? userId = default, CancellationToken cancellationToken = default)
-    {
-        userId ??= UserIdFromClaim();
-        var userRolesById = await _userRepository.GetUserRoles(userId ?? Guid.Empty);
-        var rolesById = userRolesById.Where(role => role.RoleId == roleId);
-        return rolesById.Any();
-    }
-
     public async Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = default, CancellationToken cancellationToken = default)
     {
         userId ??= UserIdFromClaim();
         var userPermissionsById = await _userRepository.GetUserPermissions(userId ?? Guid.Empty);
         var permissionsByName = userPermissionsById.Where(permission => permission.Name == userPermissionName);
         return permissionsByName.Any();
-    }
-
-    public async Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId = default, CancellationToken cancellationToken = default)
-    {
-        userId ??= UserIdFromClaim();
-        var userPermissionsById = await _userRepository.GetUserPermissions(userId ?? Guid.Empty);
-        var permissionsById = userPermissionsById.Where(permission => permission.PermissionId == permissionId);
-        return permissionsById.Any();
     }
 
     public async Task<ClaimsIdentity> MakeClaimsIdentity(Guid userId)
