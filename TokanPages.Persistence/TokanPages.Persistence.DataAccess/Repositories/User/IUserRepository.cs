@@ -34,6 +34,10 @@ public interface IUserRepository
 
     Task CreateUserToken(Guid userId, string token, DateTime expires, DateTime created, string createdByIp);
 
+    Task<bool> DoesUserTokenExist(Guid userId, string token);
+    
+    Task DeleteUserToken(Guid userId, string token);
+
     Task<GetUserRefreshTokenDto?> GetUserRefreshToken(string token);
 
     Task<List<GetUserRefreshTokenDto>> GetUserRefreshTokens(Guid userId);
