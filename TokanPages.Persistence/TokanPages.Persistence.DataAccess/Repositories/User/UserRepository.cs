@@ -43,6 +43,23 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.SingleOrDefault();
     }
 
+    public async Task ModifyRegistrationDetails(ModifyRegistrationDetailsDto data)
+    {
+        var updateBy = new
+        {
+            CryptedPassword = data.CryptedPassword,
+            ActivationId = data.ActivationId,
+            ActivationIdEnds = data.ActivationIdEnds
+        };
+
+        var filterBy = new
+        {
+            Id = data.UserId
+        };
+
+        await DbOperations.Update<Users.User>(updateBy, filterBy);
+    }
+
     public async Task ActivateUser(Guid userId)
     {
         var updateBy = new ActivateUserDto
