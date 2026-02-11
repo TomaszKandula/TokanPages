@@ -5,22 +5,15 @@ using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using TokanPages.Persistence.DataAccess.Repositories.Sender.Models;
-using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Sender.Newsletters.Commands;
 
 public class UpdateNewsletterCommandHandler : RequestHandler<UpdateNewsletterCommand, Unit>
 {
-    private readonly IUserService _userService;
-
     private readonly ISenderRepository _senderRepository;
 
     public UpdateNewsletterCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, ISenderRepository senderRepository) : base(operationDbContext, loggerService)
-    {
-        _userService = userService;
-        _senderRepository = senderRepository;
-    }
+        ISenderRepository senderRepository) : base(operationDbContext, loggerService) => _senderRepository = senderRepository;
 
     public override async Task<Unit> Handle(UpdateNewsletterCommand request, CancellationToken cancellationToken) 
     {
@@ -32,13 +25,12 @@ public class UpdateNewsletterCommandHandler : RequestHandler<UpdateNewsletterCom
         if (emailCollection is not null)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        var user = await _userService.GetUser();
         var updateNewsletter = new UpdateNewsletterDto
         {
+            Id = newsletterData.Id,
             Email = request.Email ?? newsletterData.Email,
             Count = request.Count ?? newsletterData.Count,
-            IsActivated = request.IsActivated ?? newsletterData.IsActivated,
-            ModifiedBy = user?.UserId ?? Guid.Empty
+            IsActivated = request.IsActivated ?? newsletterData.IsActivated
         };
 
         await _senderRepository.UpdateNewsletter(updateNewsletter);
