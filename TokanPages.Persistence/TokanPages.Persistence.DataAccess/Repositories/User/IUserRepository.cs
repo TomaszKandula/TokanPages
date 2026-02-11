@@ -18,6 +18,8 @@ public interface IUserRepository
 
     Task ActivateUser(Guid userId);
 
+    Task<List<GetDefaultPermissionDto>> GetDefaultPermissions(string userRoleName);
+    
     Task<List<GetUserRoleDto>> GetUserRoles(Guid userId);
 
     Task<List<GetUserPermissionDto>> GetUserPermissions(Guid userId);

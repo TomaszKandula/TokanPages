@@ -1,6 +1,7 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
+using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Abstractions;
@@ -115,6 +116,35 @@ public class UserRepository : RepositoryBase, IUserRepository
         };
 
         await DbOperations.Update<Users.User>(updateBy, filterBy);
+    }
+
+    public async Task<List<GetDefaultPermissionDto>> GetDefaultPermissions(string userRoleName)
+    {
+        const string query = @"
+            SELECT 
+                operation.DefaultPermissions.Id,
+                operation.DefaultPermissions.RoleId,
+                operation.Roles.Name AS RoleName,
+                operation.DefaultPermissions.PermissionId,
+                operation.Permissions.Name AS PermissionName
+            FROM 
+                operation.DefaultPermissions
+            LEFT JOIN
+                operation.Roles
+            ON
+                operation.DefaultPermissions.RoleId = operation.Roles.Id
+            LEFT JOIN
+                operation.Permissions
+            ON
+                operation.DefaultPermissions.PermissionId = operation.Permissions.Id
+            WHERE
+                operation.Roles.Name = @RoleName
+        ";
+
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        var parameters = new { RoleName = userRoleName };
+        var data = await db.QueryAsync<GetDefaultPermissionDto>(query, parameters);
+        return data.ToList();
     }
 
     public async Task<List<GetUserRoleDto>> GetUserRoles(Guid userId)
