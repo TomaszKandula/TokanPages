@@ -17,20 +17,6 @@ public class UserRepository : RepositoryBase, IUserRepository
     public UserRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
         : base(dbOperations, appSettings) => _dateTimeService = dateTimeService;
 
-    public async Task<Users.User?> GetUserById(Guid userId)
-    {
-        var filterBy = new { Id = userId };
-        var data = await DbOperations.Retrieve<Users.User>(filterBy);
-        return data.SingleOrDefault();
-    }
-
-    public async Task<Users.UserInfo?> GetUserInformationById(Guid userId)
-    {
-        var filterBy = new { UserId = userId };
-        var data = await DbOperations.Retrieve<Users.UserInfo>(filterBy);
-        return data.SingleOrDefault();
-    }
-
     public async Task<GetUserDetailsDto?> GetUserDetails(Guid userId)
     {
         const string query = @"
