@@ -18,36 +18,7 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public async Task<GetUserDetailsDto?> GetUserDetails(Guid userId)
     {
-        const string query = @"
-            SELECT
-                operation.Users.[Id] AS UserId,
-                operation.Users.[EmailAddress],
-                operation.Users.[UserAlias],
-                operation.UserInformation.[FirstName],
-                operation.UserInformation.[LastName],
-                operation.UserInformation.[UserAboutText],
-                operation.UserInformation.[UserImageName],
-                operation.UserInformation.[UserVideoName],
-                operation.Users.[CryptedPassword],
-                operation.Users.[ResetId],
-                operation.Users.[ResetIdEnds],
-                operation.Users.[ActivationId],
-                operation.Users.[ActivationIdEnds],
-                operation.Users.[HasBusinessLock],
-                operation.Users.[IsActivated],
-                operation.Users.[IsDeleted],
-                operation.Users.[IsVerified],
-                operation.Users.CreatedAt AS Registered
-            FROM
-                operation.Users
-            LEFT JOIN
-                operation.UserInformation
-            ON
-                operation.Users.Id = operation.UserInformation.UserId
-            WHERE
-                operation.Users.Id = @UserId
-        ";
-
+        var query = UserDetailsQueryTemplate + " WHERE operation.Users.Id = @UserId";
         await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
         var parameters = new { UserId = userId };
         var data = await db.QueryAsync<GetUserDetailsDto>(query, parameters);
@@ -56,36 +27,7 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public async Task<GetUserDetailsDto?> GetUserDetails(string email)
     {
-        const string query = @"
-            SELECT
-                operation.Users.[Id] AS UserId,
-                operation.Users.[EmailAddress],
-                operation.Users.[UserAlias],
-                operation.UserInformation.[FirstName],
-                operation.UserInformation.[LastName],
-                operation.UserInformation.[UserAboutText],
-                operation.UserInformation.[UserImageName],
-                operation.UserInformation.[UserVideoName],
-                operation.Users.[CryptedPassword],
-                operation.Users.[ResetId],
-                operation.Users.[ResetIdEnds],
-                operation.Users.[ActivationId],
-                operation.Users.[ActivationIdEnds],
-                operation.Users.[HasBusinessLock],
-                operation.Users.[IsActivated],
-                operation.Users.[IsDeleted],
-                operation.Users.[IsVerified],
-                operation.Users.CreatedAt AS Registered
-            FROM
-                operation.Users
-            LEFT JOIN
-                operation.UserInformation
-            ON
-                operation.Users.Id = operation.UserInformation.UserId
-            WHERE
-                operation.Users.EmailAddress = @Email
-        ";
-
+        var query = UserDetailsQueryTemplate + " WHERE operation.Users.EmailAddress = @Email";
         await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
         var parameters = new { Email = email };
         var data = await db.QueryAsync<GetUserDetailsDto>(query, parameters);
@@ -94,36 +36,7 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public async Task<GetUserDetailsDto?> GetUserDetailsByActivationId(Guid activationId)
     {
-        const string query = @"
-            SELECT
-                operation.Users.[Id] AS UserId,
-                operation.Users.[EmailAddress],
-                operation.Users.[UserAlias],
-                operation.UserInformation.[FirstName],
-                operation.UserInformation.[LastName],
-                operation.UserInformation.[UserAboutText],
-                operation.UserInformation.[UserImageName],
-                operation.UserInformation.[UserVideoName],
-                operation.Users.[CryptedPassword],
-                operation.Users.[ResetId],
-                operation.Users.[ResetIdEnds],
-                operation.Users.[ActivationId],
-                operation.Users.[ActivationIdEnds],
-                operation.Users.[HasBusinessLock],
-                operation.Users.[IsActivated],
-                operation.Users.[IsDeleted],
-                operation.Users.[IsVerified],
-                operation.Users.CreatedAt AS Registered
-            FROM
-                operation.Users
-            LEFT JOIN
-                operation.UserInformation
-            ON
-                operation.Users.Id = operation.UserInformation.UserId
-            WHERE
-                operation.Users.ActivationId = @ActivationId
-        ";
-
+        var query = UserDetailsQueryTemplate + " WHERE operation.Users.ActivationId = @ActivationId";
         await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
         var parameters = new { ActivationId = activationId };
         var data = await db.QueryAsync<GetUserDetailsDto>(query, parameters);
@@ -336,4 +249,33 @@ public class UserRepository : RepositoryBase, IUserRepository
 
         return result;
     }
+
+    private static string UserDetailsQueryTemplate => @"
+        SELECT
+            operation.Users.[Id] AS UserId,
+            operation.Users.[EmailAddress],
+            operation.Users.[UserAlias],
+            operation.UserInformation.[FirstName],
+            operation.UserInformation.[LastName],
+            operation.UserInformation.[UserAboutText],
+            operation.UserInformation.[UserImageName],
+            operation.UserInformation.[UserVideoName],
+            operation.Users.[CryptedPassword],
+            operation.Users.[ResetId],
+            operation.Users.[ResetIdEnds],
+            operation.Users.[ActivationId],
+            operation.Users.[ActivationIdEnds],
+            operation.Users.[HasBusinessLock],
+            operation.Users.[IsActivated],
+            operation.Users.[IsDeleted],
+            operation.Users.[IsVerified],
+            operation.Users.CreatedAt AS Registered,
+            operation.Users.ModifiedAt AS Modified,
+        FROM
+            operation.Users
+        LEFT JOIN
+            operation.UserInformation
+        ON
+            operation.Users.Id = operation.UserInformation.UserId
+    ";
 }
