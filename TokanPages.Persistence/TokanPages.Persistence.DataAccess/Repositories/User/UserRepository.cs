@@ -43,7 +43,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.SingleOrDefault();
     }
 
-    public async Task ModifyRegistrationDetails(ModifyRegistrationDetailsDto data)
+    public async Task ModifyRegistrationDetails(ModifySignupDetailsDto data)
     {
         var updateBy = new
         {
