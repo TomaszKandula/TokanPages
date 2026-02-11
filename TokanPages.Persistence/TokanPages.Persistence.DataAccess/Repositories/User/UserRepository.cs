@@ -1,7 +1,6 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
-using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Abstractions;
@@ -239,18 +238,5 @@ public class UserRepository : RepositoryBase, IUserRepository
         var uids = new HashSet<object>();
         foreach (var id in ids) { uids.Add(id); }
         await DbOperations.Delete<Users.UserRefreshToken>(uids);
-    }
-
-    public async Task InsertHttpRequest(string ipAddress, string handlerName)
-    {
-        var entity = new HttpRequest
-        {
-            Id = Guid.NewGuid(),
-            SourceAddress = ipAddress,
-            RequestedAt = _dateTimeService.Now,
-            RequestedHandlerName = handlerName
-        };
-
-        await DbOperations.Insert(entity);
     }
 }

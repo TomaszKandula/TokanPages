@@ -23,6 +23,4 @@ public interface IUserRepository
     Task DeleteUserRefreshToken(string token);
 
     Task DeleteUserRefreshTokens(HashSet<Guid> ids);
-
-    Task InsertHttpRequest(string ipAddress, string handlerName);
 }
