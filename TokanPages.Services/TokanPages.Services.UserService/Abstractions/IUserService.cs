@@ -14,7 +14,7 @@ public interface IUserService
 
     Guid GetLoggedUserId();
 
-    Task<User> GetActiveUser(Guid? userId = null);//TODO: return DTO model
+    Task<User> GetActiveUser(Guid? userId = null);
 
     Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = null);
 
