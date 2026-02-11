@@ -23,4 +23,8 @@ public interface IUserRepository
     Task DeleteUserRefreshToken(string token);
 
     Task DeleteUserRefreshTokens(HashSet<Guid> ids);
+
+    Task<GetUserNoteDto?> GetUserNote(Guid userId, Guid userNoteId);
+
+    Task<List<GetUserNoteDto>> GetUserNotes(Guid userId);
 }
