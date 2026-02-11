@@ -26,8 +26,7 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
     public override async Task<Unit> Handle(UpdateArticleVisibilityCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var canPublishArticles = await _userService
-            .HasPermissionAssigned(Permission, cancellationToken: cancellationToken) ?? false;
+        var canPublishArticles = await _userService.HasPermissionAssigned(Permission) ?? false;
 
         if (!canPublishArticles)
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);

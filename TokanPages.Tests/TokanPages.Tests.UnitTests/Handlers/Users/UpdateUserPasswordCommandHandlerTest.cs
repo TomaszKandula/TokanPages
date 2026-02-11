@@ -53,8 +53,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         mockedUserService
             .Setup(service => service.HasRoleAssigned(
                 It.IsAny<string>(),
-                It.IsAny<Guid?>(),
-                It.IsAny<CancellationToken>()))
+                It.IsAny<Guid?>()))
             .ReturnsAsync(true);
 
         var mockedPassword = DataUtilityService.GetRandomString();
@@ -253,8 +252,7 @@ public class UpdateUserPasswordCommandHandlerTest : TestBase
         mockedUserService
             .Setup(provider => provider.HasRoleAssigned(
                 It.IsAny<string>(), 
-                It.IsAny<Guid?>(),
-                It.IsAny<CancellationToken>()))
+                It.IsAny<Guid?>()))
             .ReturnsAsync(false);
 
         var mockedPassword = DataUtilityService.GetRandomString();

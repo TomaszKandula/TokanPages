@@ -155,7 +155,7 @@ internal sealed class UserService : IUserService
         return rolesByName.Any();
     }
 
-    public async Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = default, CancellationToken cancellationToken = default)
+    public async Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = null)
     {
         userId ??= UserIdFromClaim();
         var userPermissionsById = await _userRepository.GetUserPermissions(userId ?? Guid.Empty);
