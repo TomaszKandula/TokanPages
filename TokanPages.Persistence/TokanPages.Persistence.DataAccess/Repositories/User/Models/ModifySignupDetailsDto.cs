@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Persistence.DataAccess.Repositories.User.Models;
 
 [ExcludeFromCodeCoverage]
-public class ModifyRegistrationDetailsDto
+public class ModifySignupDetailsDto
 {
     public required Guid UserId { get; init; }
 
