@@ -18,6 +18,10 @@ public interface IUserRepository
 
     Task ActivateUser(Guid userId);
 
+    Task UserSoftDelete(Guid userId);
+
+    Task UserHardDelete(Guid userId);
+
     Task<List<GetDefaultPermissionDto>> GetDefaultPermissions(string userRoleName);
 
     Task<List<GetUserRoleDto>> GetUserRoles(Guid userId);
