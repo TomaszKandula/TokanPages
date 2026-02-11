@@ -4,6 +4,7 @@ using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Utility.Abstractions;
+using TokanPages.Persistence.DataAccess.Repositories.User;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Users;
@@ -50,8 +51,9 @@ public class GetUserQueryHandlerTest : TestBase
         await databaseContext.SaveChangesAsync();
 
         var mockedLogger = new Mock<ILoggerService>();
+        var mockUserRepository = new Mock<IUserRepository>();
         var query = new GetUserQuery { Id = users.Id };
-        var handler = new GetUserQueryHandler(databaseContext, mockedLogger.Object);
+        var handler = new GetUserQueryHandler(databaseContext, mockedLogger.Object, mockUserRepository.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);
@@ -72,9 +74,10 @@ public class GetUserQueryHandlerTest : TestBase
         // Arrange
         var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockUserRepository = new Mock<IUserRepository>();
 
         var query = new GetUserQuery { Id = Guid.NewGuid() };
-        var handler = new GetUserQueryHandler(databaseContext, mockedLogger.Object);
+        var handler = new GetUserQueryHandler(databaseContext, mockedLogger.Object, mockUserRepository.Object);
 
         // Act
         // Assert
