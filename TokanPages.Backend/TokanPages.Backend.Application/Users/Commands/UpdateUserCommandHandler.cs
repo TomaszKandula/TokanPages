@@ -27,7 +27,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
         var shouldVerify = !string.Equals(request.EmailAddress, user.EmailAddress, StringComparison.CurrentCultureIgnoreCase);
 
         await UpdateUserUncommitted(user, request, shouldVerify, cancellationToken);
-        await UpdateUserInfoUncommitted(user.Id, request, cancellationToken);
+        await UpdateUserInfoUncommitted(user.UserId, request, cancellationToken);
         await CommitAllChanges(cancellationToken);
 
         return new UpdateUserCommandResult

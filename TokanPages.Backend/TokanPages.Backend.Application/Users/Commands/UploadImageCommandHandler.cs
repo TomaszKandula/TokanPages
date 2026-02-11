@@ -50,7 +50,7 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
 
         var fileName = $"{Guid.NewGuid():N}.{extension}".ToLower();
         var blobName = $"images/{fileName}";
-        var destinationPath = $"content/users/{user.Id}/{blobName}";
+        var destinationPath = $"content/users/{user.UserId}/{blobName}";
 
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         using var stream = new MemoryStream(binary);
@@ -61,7 +61,7 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
         if (request.SkipDb) 
             return new UploadImageCommandResult { BlobName = blobName };
 
-        await DatabaseUpdate(blobName, user.Id, cancellationToken);
+        await DatabaseUpdate(blobName, user.UserId, cancellationToken);
         LoggerService.LogInformation($"Image blob name has been saved in database. Name: {blobName}.");
         
         return new UploadImageCommandResult
@@ -82,7 +82,7 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
         var imageName = $"{Guid.NewGuid():N}.{extension}".ToLower();
 
         var blobName = $"images/{imageName}";
-        var destinationPath = $"content/users/{user.Id}/{blobName}";
+        var destinationPath = $"content/users/{user.UserId}/{blobName}";
 
         var azureBlob = _azureBlobStorageFactory.Create(LoggerService);
         using var stream = new MemoryStream(binary);
@@ -93,7 +93,7 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
         if (request.SkipDb) 
             return new UploadImageCommandResult { BlobName = blobName };
 
-        await DatabaseUpdate(blobName, user.Id, cancellationToken);
+        await DatabaseUpdate(blobName, user.UserId, cancellationToken);
         LoggerService.LogInformation($"Image blob name has been saved in database. Name: {blobName}.");
 
         return new UploadImageCommandResult

@@ -22,17 +22,17 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
 
         if (request.IsSoftDelete)
         {
-            LoggerService.LogInformation($"Removing user account (user ID: {user.Id}). You can undo this operation at any time.");
+            LoggerService.LogInformation($"Removing user account (user ID: {user.UserId}). You can undo this operation at any time.");
             user.IsDeleted = true;
         }
         else
         {
-            LoggerService.LogInformation($"Removing permanently user account (user ID: {user.Id}). You cannot undo this operation.");
-            await PermanentRemoval(user.Id, cancellationToken);
+            LoggerService.LogInformation($"Removing permanently user account (user ID: {user.UserId}). You cannot undo this operation.");
+            await PermanentRemoval(user.UserId, cancellationToken);
         }
 
         await OperationDbContext.SaveChangesAsync(cancellationToken);
-        LoggerService.LogInformation($"User account (user ID: {user.Id}) has been removed");
+        LoggerService.LogInformation($"User account (user ID: {user.UserId}) has been removed");
         return Unit.Value;
     }
 

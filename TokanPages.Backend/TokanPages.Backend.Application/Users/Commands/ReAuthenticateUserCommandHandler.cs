@@ -58,24 +58,24 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         var expiresIn = _appSettings.IdsRefreshTokenMaturity;
         _cookieAccessor.Set("X-CSRF-Token", newRefreshToken.Token, maxAge: TimeSpan.FromMinutes(expiresIn));
 
-        await _userRepository.InsertUserRefreshToken(user.Id, newRefreshToken.Token, newRefreshToken.Expires, newRefreshToken.Created, newRefreshToken.CreatedByIp);
+        await _userRepository.InsertUserRefreshToken(user.UserId, newRefreshToken.Token, newRefreshToken.Expires, newRefreshToken.Created, newRefreshToken.CreatedByIp);
         await _userRepository.DeleteUserRefreshToken(csrfToken);
 
         var currentDateTime = _dateTimeService.Now;
         var tokenExpires = _dateTimeService.Now.AddMinutes(_appSettings.IdsWebTokenMaturity);
-        var userToken = await _userService.GenerateUserToken(user.Id, tokenExpires);
-        await _userRepository.InsertUserToken(user.Id, userToken, tokenExpires, currentDateTime, ipAddress);
+        var userToken = await _userService.GenerateUserToken(user.UserId, tokenExpires);
+        await _userRepository.InsertUserToken(user.UserId, userToken, tokenExpires, currentDateTime, ipAddress);
 
-        var userDetails = await _userRepository.GetUserDetails(user.Id);
-        var roles = await _userRepository.GetUserRoles(user.Id);
-        var permissions = await _userRepository.GetUserPermissions(user.Id);
+        var userDetails = await _userRepository.GetUserDetails(user.UserId);
+        var roles = await _userRepository.GetUserRoles(user.UserId);
+        var permissions = await _userRepository.GetUserPermissions(user.UserId);
 
         var firstName = !string.IsNullOrWhiteSpace(userDetails?.FirstName) ? userDetails.FirstName : user.UserAlias;
         var lastName = !string.IsNullOrWhiteSpace(userDetails?.LastName) ? userDetails.LastName : user.UserAlias[..3];
 
         return new ReAuthenticateUserCommandResult
         {
-            UserId = user.Id,
+            UserId = user.UserId,
             IsVerified = user.IsVerified,
             AliasName = user.UserAlias,
             AvatarName = userDetails?.UserImageName,

@@ -91,7 +91,7 @@ public class CreatePaymentDefaultCommandHandler : RequestHandler<CreatePaymentDe
         };
 
         var response = await _payUService.PostOrderDefault(input, cancellationToken);
-        var userPayments = await _revenueRepository.GetUserPayment(user.Id);
+        var userPayments = await _revenueRepository.GetUserPayment(user.UserId);
         if (userPayments is not null)
         {
             var userPayment = new UpdateUserPaymentDto
@@ -100,7 +100,7 @@ public class CreatePaymentDefaultCommandHandler : RequestHandler<CreatePaymentDe
                 PmtStatus = "AWAITING",
                 PmtType = order.PayMethods?.PayMethod?.Type ?? string.Empty,
                 PmtToken = order.PayMethods?.PayMethod?.Value ?? string.Empty,
-                ModifiedBy = user.Id,
+                ModifiedBy = user.UserId,
                 CreatedAt = userPayments.CreatedAt,
                 CreatedBy = userPayments.CreatedBy,
                 ExtOrderId = order.ExtOrderId ?? string.Empty
@@ -112,13 +112,13 @@ public class CreatePaymentDefaultCommandHandler : RequestHandler<CreatePaymentDe
         {
             var userPayment = new CreateUserPaymentDto
             {
-                UserId = user.Id,
+                UserId = user.UserId,
                 ExtOrderId = order.ExtOrderId ?? string.Empty,
                 PmtOrderId = string.Empty,
                 PmtStatus = "AWAITING",
                 PmtType = order.PayMethods?.PayMethod?.Type ?? string.Empty,
                 PmtToken = order.PayMethods?.PayMethod?.Value ?? string.Empty,
-                CreatedBy = user.Id
+                CreatedBy = user.UserId
             };
 
             await _revenueRepository.CreateUserPayment(userPayment);
