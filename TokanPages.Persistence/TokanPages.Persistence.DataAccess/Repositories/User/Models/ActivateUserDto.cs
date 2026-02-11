@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace TokanPages.Persistence.DataAccess.Repositories.User.Models;
 
 [ExcludeFromCodeCoverage]
-public class UpdateUserDto
+public class ActivateUserDto
 {
     public bool IsActivated { get; init; }
 

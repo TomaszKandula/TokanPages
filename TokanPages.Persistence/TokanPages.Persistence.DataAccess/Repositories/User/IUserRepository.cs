@@ -10,7 +10,7 @@ public interface IUserRepository
 
     Task<GetUserDetailsDto?> GetUserDetailsByActivationId(Guid activationId);
 
-    Task UpdateUser(Guid userId, UpdateUserDto data);
+    Task ActivateUser(Guid userId);
 
     Task<List<GetUserRoleDto>> GetUserRoles(Guid userId);
 
