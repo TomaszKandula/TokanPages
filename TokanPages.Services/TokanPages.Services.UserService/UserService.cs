@@ -26,8 +26,6 @@ internal sealed class UserService : IUserService
     private readonly AppSettingsModel _appSettings;
 
     //TODO: refactor and remove below fields
-    private List<GetUserPermissionsOutput>? _userPermissions;
-    private List<GetUserRolesOutput>? _userRoles;
     private GetUserOutput? _user;
 
     public UserService(IHttpContextAccessor httpContextAccessor, IWebTokenUtility webTokenUtility, 
@@ -188,47 +186,6 @@ internal sealed class UserService : IUserService
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
             
         return Guid.Parse(userIds.First().Value);
-    }
-
-    private async Task EnsureUserRoles(Guid? userId)
-    {
-        if (_userRoles != null)
-            return;
-            
-        var getUserId = userId ?? UserIdFromClaim();
-        var userRoles = await _userRepository.GetUserRoles(getUserId ?? Guid.Empty);
-        if (userRoles.Count == 0)
-            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
-
-        _userRoles = new List<GetUserRolesOutput>();
-        foreach (var userRole in userRoles)
-        {
-            _userRoles.Add(new GetUserRolesOutput
-            {
-                Name = userRole.RoleName,
-                Description = userRole.Description
-            });
-        }
-    }
-
-    private async Task EnsureUserPermissions(Guid? userId)
-    {
-        if (_userPermissions != null)
-            return;
-
-        var getUserId = userId ?? UserIdFromClaim();
-        var userPermissions = await _userRepository.GetUserPermissions(getUserId ?? Guid.Empty);
-        if (userPermissions.Count == 0)
-            throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
-
-        _userPermissions = new List<GetUserPermissionsOutput>();
-        foreach (var userPermission in userPermissions)
-        {
-            _userPermissions.Add(new GetUserPermissionsOutput
-            {
-                Name = userPermission.Name
-            });
-        }
     }
 
     private async Task EnsureUserData()
