@@ -36,7 +36,7 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public async Task<GetUserDetailsDto?> GetUserDetailsByActivationId(Guid activationId)
     {
-        var query = UserDetailsQueryTemplate + " WHERE operation.Users.ActivationId = @ActivationId";
+        var query = UserDetailsQueryTemplate + " WHERE operation.Users.ActivationId = @ActivationId AND operation.Users.IsDeleted = 0";
         await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
         var parameters = new { ActivationId = activationId };
         var data = await db.QueryAsync<GetUserDetailsDto>(query, parameters);
