@@ -81,29 +81,6 @@ internal sealed class UserService : IUserService
         return userId;
     }
 
-    public async Task<GetUserOutput?> GetUser()
-    {
-        var userId = UserIdFromClaim();
-        if (userId == null)
-            return null;
-
-        var userDetails = await _userRepository.GetUserDetails((Guid)userId);
-        if (userDetails is null)
-            return null;
-
-        return new GetUserOutput
-        {
-            UserId = userDetails.UserId,
-            AliasName = userDetails.UserAlias,
-            Email = userDetails.EmailAddress,
-            Registered = userDetails.Registered,
-            AvatarName = userDetails.UserImageName,
-            FirstName = userDetails.FirstName,
-            LastName = userDetails.LastName,
-            ShortBio = userDetails.UserAboutText
-        };
-    }
-
     public async Task<User> GetActiveUser(Guid? userId = null)
     {
         var id = userId ?? UserIdFromClaim();
