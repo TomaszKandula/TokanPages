@@ -1,6 +1,9 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
+using TokanPages.Backend.Domain.Entities.Articles;
+using TokanPages.Backend.Domain.Entities.Invoicing;
+using TokanPages.Backend.Domain.Entities.Photography;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Abstractions;
@@ -115,6 +118,36 @@ public class UserRepository : RepositoryBase, IUserRepository
         };
 
         await DbOperations.Update<Users.User>(updateBy, filterBy);
+    }
+
+    public async Task UserSoftDelete(Guid userId)
+    {
+        var updateBy = new { IsDeleted = true };
+        var filterBy = new { Id = userId };
+        await DbOperations.Update<Users.User>(updateBy, filterBy);
+    }
+
+    //TODO: Optimize this
+    public async Task UserHardDelete(Guid userId)
+    {
+        await DbOperations.Delete<Users.UserToken>(new { UserId = userId });
+        await DbOperations.Delete<Users.UserRefreshToken>(new { UserId = userId });
+        await DbOperations.Delete<Users.UserRole>(new { UserId = userId });
+        await DbOperations.Delete<Users.UserPermission>(new { UserId = userId });
+        await DbOperations.Delete<Users.UserPaymentHistory>(new { UserId = userId });
+        await DbOperations.Delete<Users.UserPayment>(new { UserId = userId });
+        await DbOperations.Delete<Users.UserNote>(new { UserId = userId });
+        await DbOperations.Delete<Users.UserInfo>(new { UserId = userId });
+        await DbOperations.Delete<Users.UserCompany>(new { UserId = userId });
+        await DbOperations.Delete<Users.UserBankAccount>(new { UserId = userId });
+        await DbOperations.Delete<Photo>(new { UserId = userId });
+        await DbOperations.Delete<IssuedInvoice>(new { UserId = userId });
+        await DbOperations.Delete<BatchInvoice>(new { UserId = userId });
+        await DbOperations.Delete<Article>(new { UserId = userId });
+        await DbOperations.Delete<ArticleLike>(new { UserId = userId });
+        await DbOperations.Delete<ArticleCount>(new { UserId = userId });
+        await DbOperations.Delete<Album>(new { UserId = userId });
+        await DbOperations.Delete<Users.User>(new { Id = userId });
     }
 
     public async Task<List<GetDefaultPermissionDto>> GetDefaultPermissions(string userRoleName)
