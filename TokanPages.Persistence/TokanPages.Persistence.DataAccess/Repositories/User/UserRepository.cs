@@ -255,12 +255,37 @@ public class UserRepository : RepositoryBase, IUserRepository
 
         return new GetUserNoteDto
         {
-            Note = userNote.Note
+            Id =  userNote.Id,
+            Note = userNote.Note,
+            CreatedAt = userNote.CreatedAt,
+            CreatedBy = userNote.CreatedBy,
+            ModifiedAt = userNote.ModifiedAt,
+            ModifiedBy = userNote.ModifiedBy
         };
     }
 
     public async Task<List<GetUserNoteDto>> GetUserNotes(Guid userId)
     {
-        throw new NotImplementedException();
+        var filterBy = new { UserId = userId };
+        var notes = await DbOperations.Retrieve<Users.UserNote>(filterBy);
+        var userNotes =  notes.ToList();
+
+        var result = new List<GetUserNoteDto>();
+        foreach (var userNote in userNotes)
+        {
+            var item = new GetUserNoteDto
+            {
+                Id = userNote.Id,
+                Note = userNote.Note,
+                CreatedAt = userNote.CreatedAt,
+                CreatedBy = userNote.CreatedBy,
+                ModifiedAt = userNote.ModifiedAt,
+                ModifiedBy = userNote.ModifiedBy
+            };
+
+            result.Add(item);
+        }
+
+        return result;
     }
 }
