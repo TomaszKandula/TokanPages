@@ -1,4 +1,4 @@
-﻿using TokanPages.Backend.Domain.Entities.Users;
+﻿using TokanPages.Services.UserService.Models;
 
 namespace TokanPages.Services.UserService.Abstractions;
 
@@ -14,7 +14,7 @@ public interface IUserService
 
     Guid GetLoggedUserId();
 
-    Task<User> GetActiveUser(Guid? userId = null);
+    Task<GetActiveUserDto> GetActiveUser(Guid? userId = null);
 
     Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = null);
 

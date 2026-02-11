@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Persistence.DataAccess.Repositories.User;
@@ -81,7 +80,7 @@ internal sealed class UserService : IUserService
         return userId;
     }
 
-    public async Task<User> GetActiveUser(Guid? userId = null)
+    public async Task<GetActiveUserDto> GetActiveUser(Guid? userId = null)
     {
         var id = userId ?? UserIdFromClaim();
         if (id is null)
@@ -97,8 +96,7 @@ internal sealed class UserService : IUserService
         if (user is { IsActivated: false })
             throw new AuthorizationException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
-        //TODO: change to DTO
-        return new User
+        return new GetActiveUserDto
         {
             UserAlias = user.UserAlias,
             EmailAddress = user.EmailAddress,
@@ -110,7 +108,7 @@ internal sealed class UserService : IUserService
             IsVerified = user.IsVerified,
             IsDeleted = user.IsDeleted,
             HasBusinessLock = user.HasBusinessLock,
-            Id = user.UserId
+            UserId = user.UserId
         };
     }
 
