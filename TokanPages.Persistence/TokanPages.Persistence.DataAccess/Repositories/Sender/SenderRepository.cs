@@ -67,7 +67,6 @@ public class SenderRepository : RepositoryBase, ISenderRepository
             Email = data.Email,
             IsActivated = data.IsActivated,
             Count = data.Count,
-            ModifiedBy = data.ModifiedBy,
             ModifiedAt = _dateTimeService.Now
         };
 
