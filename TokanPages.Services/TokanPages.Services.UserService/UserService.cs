@@ -121,18 +121,6 @@ internal sealed class UserService : IUserService
         return user;
     }
 
-    public async Task<List<GetUserRolesOutput>?> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default)
-    {
-        await EnsureUserRoles(userId);
-        return _userRoles;
-    }
-
-    public async Task<List<GetUserPermissionsOutput>?> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default)
-    {
-        await EnsureUserPermissions(userId);
-        return _userPermissions;
-    }
-
     public async Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = default, CancellationToken cancellationToken = default)
     {
         userId ??= UserIdFromClaim();
