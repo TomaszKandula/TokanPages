@@ -28,7 +28,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
 
         var user = new GetUserOutput { UserId = Guid.NewGuid() };
         mockedUserService
-            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
+            .Setup(service => service.GetUser())
             .ReturnsAsync(user);
 
         var newsletter = new Newsletter
@@ -86,7 +86,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
 
         var user = new GetUserOutput { UserId = Guid.NewGuid() };
         mockedUserService
-            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
+            .Setup(service => service.GetUser())
             .ReturnsAsync(user);
 
         mockSenderRepository
@@ -125,7 +125,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
 
         var user = new GetUserOutput { UserId = Guid.NewGuid() };
         mockedUserService
-            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
+            .Setup(service => service.GetUser())
             .ReturnsAsync(user);
 
         var newsletter = new Newsletter

@@ -17,7 +17,7 @@ public interface IUserService
 
     Guid GetLoggedUserId();
 
-    Task<GetUserOutput?> GetUser(CancellationToken cancellationToken = default);//TODO: to be removed
+    Task<GetUserOutput?> GetUser();//TODO: to be removed
 
     Task<User> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default);
 

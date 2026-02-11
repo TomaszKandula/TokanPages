@@ -32,7 +32,7 @@ public class UpdateNewsletterCommandHandler : RequestHandler<UpdateNewsletterCom
         if (emailCollection is not null)
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        var user = await _userService.GetUser(cancellationToken);
+        var user = await _userService.GetUser();
         var updateNewsletter = new UpdateNewsletterDto
         {
             Email = request.Email ?? newsletterData.Email,

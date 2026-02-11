@@ -91,7 +91,7 @@ internal sealed class UserService : IUserService
         return userId;
     }
 
-    public async Task<GetUserOutput?> GetUser(CancellationToken cancellationToken = default)
+    public async Task<GetUserOutput?> GetUser()
     {
         var userId = UserIdFromClaim();
         if (userId == null)

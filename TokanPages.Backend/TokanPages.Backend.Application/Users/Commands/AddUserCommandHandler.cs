@@ -45,7 +45,7 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     public override async Task<Guid> Handle(AddUserCommand request, CancellationToken cancellationToken)
     {
-        var adminUser = await _userService.GetUser(cancellationToken);
+        var adminUser = await _userService.GetUser();
         var users = await OperationDbContext.Users
             .Where(users => !users.IsDeleted)
             .Where(users => users.EmailAddress == request.EmailAddress)
