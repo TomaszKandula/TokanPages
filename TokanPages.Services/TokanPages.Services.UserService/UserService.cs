@@ -149,9 +149,9 @@ internal sealed class UserService : IUserService
         return permissionsByName.Any();
     }
 
-    public async Task<string> GenerateUserToken(User user, DateTime tokenExpires)
+    public async Task<string> GenerateUserToken(Guid userId, DateTime tokenExpires)
     {
-        var claimsIdentity = await MakeClaimsIdentity(user.Id);
+        var claimsIdentity = await MakeClaimsIdentity(userId);
         return _webTokenUtility.GenerateJwt(
             tokenExpires,
             claimsIdentity,

@@ -29,7 +29,7 @@ public interface IUserService
 
     Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = default, CancellationToken cancellationToken = default);
 
-    Task<string> GenerateUserToken(User user, DateTime tokenExpires);
+    Task<string> GenerateUserToken(Guid userId, DateTime tokenExpires);
 
     bool IsRefreshTokenActive(DateTime expires);
 }
