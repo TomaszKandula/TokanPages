@@ -32,7 +32,7 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
 
     public override async Task<Unit> Handle(VerifyUserEmailCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(isTracking: true, cancellationToken: cancellationToken);
+        var user = await _userService.GetActiveUser();
 
         var activationId = Guid.NewGuid();
         var activationMaturity = _appSettings.LimitActivationMaturity;

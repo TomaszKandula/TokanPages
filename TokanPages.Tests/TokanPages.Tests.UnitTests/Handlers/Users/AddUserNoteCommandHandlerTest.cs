@@ -56,10 +56,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
         var mockedConfiguration = GetMockSettings();
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(), 
-                It.IsAny<bool>(), 
-                It.IsAny<CancellationToken>()))
+            .Setup(service => service.GetActiveUser(It.IsAny<Guid?>()))
             .ReturnsAsync(user);
 
         mockedUserService
@@ -130,10 +127,7 @@ public class AddUserNoteCommandHandlerTest : TestBase
         var mockedConfiguration = GetMockSettings();
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(), 
-                It.IsAny<bool>(), 
-                It.IsAny<CancellationToken>()))
+            .Setup(service => service.GetActiveUser(It.IsAny<Guid?>()))
             .ReturnsAsync(user);
 
         mockedUserService

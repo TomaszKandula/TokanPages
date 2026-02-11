@@ -23,7 +23,7 @@ public class RemoveSubscriptionCommandHandler : RequestHandler<RemoveSubscriptio
 
     public override async Task<Unit> Handle(RemoveSubscriptionCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
+        var user = await _userService.GetActiveUser(request.UserId);
         var userSubscription = await _revenueRepository.GetUserSubscription(user.Id);
         if (userSubscription is null)
             throw new BusinessException(nameof(ErrorCodes.SUBSCRIPTION_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIPTION_DOES_NOT_EXISTS);

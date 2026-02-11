@@ -19,7 +19,7 @@ public interface IUserService
 
     Task<GetUserOutput?> GetUser();//TODO: to be removed
 
-    Task<User> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default);
+    Task<User> GetActiveUser(Guid? userId = null);
 
     Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = null);
 

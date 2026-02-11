@@ -38,7 +38,7 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
 
     public override async Task<CreatePaymentCommandResult> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
+        var user = await _userService.GetActiveUser(request.UserId);
         var ipAddress = _userService.GetRequestIpAddress();
         var merchantPosId = _appSettings.PmtMerchantPosId;
         var order = request.Request;

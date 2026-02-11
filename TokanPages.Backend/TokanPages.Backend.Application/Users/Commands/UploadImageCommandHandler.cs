@@ -36,7 +36,7 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
 
     private async Task<UploadImageCommandResult> ProcessBase64(UploadImageCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(isTracking: false, cancellationToken: cancellationToken);
+        var user = await _userService.GetActiveUser();
 
         var base64Data = request.Base64Data;
         var base64Raw = base64Data!.Split(",")[1];
@@ -72,7 +72,7 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
 
     private async Task<UploadImageCommandResult> ProcessBinaryData(UploadImageCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(isTracking: false, cancellationToken: cancellationToken);
+        var user = await _userService.GetActiveUser();
 
         var fileName = request.BinaryData!.FileName;
         var contentType = request.BinaryData!.ContentType;

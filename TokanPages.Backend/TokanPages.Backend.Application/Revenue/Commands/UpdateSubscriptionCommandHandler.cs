@@ -24,7 +24,7 @@ public class UpdateSubscriptionCommandHandler : RequestHandler<UpdateSubscriptio
 
     public override async Task<Unit> Handle(UpdateSubscriptionCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
+        var user = await _userService.GetActiveUser(request.UserId);
 
         var userSubscription = await _revenueRepository.GetUserSubscription(user.Id);
         if (userSubscription is null)

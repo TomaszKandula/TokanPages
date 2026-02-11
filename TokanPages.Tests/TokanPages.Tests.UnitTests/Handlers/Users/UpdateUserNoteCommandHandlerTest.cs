@@ -57,10 +57,7 @@ public class UpdateUserNoteCommandHandlerTest : TestBase
         var mockedDateTimeService = new Mock<IDateTimeService>();
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(), 
-                It.IsAny<bool>(), 
-                It.IsAny<CancellationToken>()))
+            .Setup(service => service.GetActiveUser(It.IsAny<Guid?>()))
             .ReturnsAsync(user);
 
         var command = new UpdateUserNoteCommand
@@ -111,10 +108,7 @@ public class UpdateUserNoteCommandHandlerTest : TestBase
         var mockedDateTimeService = new Mock<IDateTimeService>();
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(), 
-                It.IsAny<bool>(), 
-                It.IsAny<CancellationToken>()))
+            .Setup(service => service.GetActiveUser(It.IsAny<Guid?>()))
             .ReturnsAsync(user);
 
         var command = new UpdateUserNoteCommand

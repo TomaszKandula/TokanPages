@@ -49,10 +49,7 @@ public class UpdateUserCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(),
-                It.IsAny<bool>(),
-                It.IsAny<CancellationToken>()))
+            .Setup(service => service.GetActiveUser(It.IsAny<Guid?>()))
             .ReturnsAsync(user);
 
         var handler = new UpdateUserCommandHandler(
@@ -68,9 +65,9 @@ public class UpdateUserCommandHandlerTest : TestBase
         var userEntity = await databaseContext.Users.FindAsync(command.Id);
 
         userEntity.Should().NotBeNull();
-        userEntity?.EmailAddress.Should().Be(command.EmailAddress);
-        userEntity?.UserAlias.Should().Be(command.UserAlias);
-        userEntity?.IsActivated.Should().BeTrue();
+        userEntity.EmailAddress.Should().Be(command.EmailAddress);
+        userEntity.UserAlias.Should().Be(command.UserAlias);
+        userEntity.IsActivated.Should().BeTrue();
     }
 
     [Fact]
@@ -129,10 +126,7 @@ public class UpdateUserCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(),
-                It.IsAny<bool>(),
-                It.IsAny<CancellationToken>()))
+            .Setup(service => service.GetActiveUser(It.IsAny<Guid?>()))
             .ReturnsAsync(user[1]);
 
         var handler = new UpdateUserCommandHandler(

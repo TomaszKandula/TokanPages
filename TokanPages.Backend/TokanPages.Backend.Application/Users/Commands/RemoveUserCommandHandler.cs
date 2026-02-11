@@ -18,7 +18,7 @@ public class RemoveUserCommandHandler : RequestHandler<RemoveUserCommand, Unit>
 
     public override async Task<Unit> Handle(RemoveUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(request.Id, true, cancellationToken);
+        var user = await _userService.GetActiveUser(request.Id);
 
         if (request.IsSoftDelete)
         {

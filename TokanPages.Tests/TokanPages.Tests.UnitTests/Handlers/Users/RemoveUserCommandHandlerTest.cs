@@ -220,10 +220,7 @@ public class RemoveUserCommandHandlerTest : TestBase
         var mockedUserService = new Mock<IUserService>();
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(),
-                It.IsAny<bool>(),
-                It.IsAny<CancellationToken>()))
+            .Setup(service => service.GetActiveUser(It.IsAny<Guid?>()))
             .ReturnsAsync(user);
 
         var command = new RemoveUserCommand { Id = userId };

@@ -23,7 +23,7 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
 
     public override async Task<UpdateUserCommandResult> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(request.Id, true, cancellationToken);
+        var user = await _userService.GetActiveUser(request.Id);
         var shouldVerify = !string.Equals(request.EmailAddress, user.EmailAddress, StringComparison.CurrentCultureIgnoreCase);
 
         await UpdateUserUncommitted(user, request, shouldVerify, cancellationToken);

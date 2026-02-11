@@ -114,7 +114,7 @@ internal sealed class UserService : IUserService
         };
     }
 
-    public async Task<User> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default)
+    public async Task<User> GetActiveUser(Guid? userId = null)
     {
         var id = userId ?? UserIdFromClaim();
         if (id is null)

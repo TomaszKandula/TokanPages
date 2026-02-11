@@ -69,10 +69,7 @@ public class RemoveUserMediaCommandHandlerTest : TestBase
             .Returns(mockedBlobStorage.Object);
 
         mockedUserService
-            .Setup(service => service.GetActiveUser(
-                It.IsAny<Guid?>(), 
-                It.IsAny<bool>(), 
-                It.IsAny<CancellationToken>()))
+            .Setup(service => service.GetActiveUser(It.IsAny<Guid?>()))
             .ReturnsAsync(user);
 
         mockedUserService
