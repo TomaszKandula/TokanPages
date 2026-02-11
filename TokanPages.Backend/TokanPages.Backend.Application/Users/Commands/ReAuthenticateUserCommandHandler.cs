@@ -50,7 +50,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         if (existingRefreshToken == null) 
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
-        var isRefreshTokenActive = _userService.IsRefreshTokenActive(existingRefreshToken.Expires);
+        var isRefreshTokenActive = !(existingRefreshToken.Expires <= _dateTimeService.Now);
         if (!isRefreshTokenActive)
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 

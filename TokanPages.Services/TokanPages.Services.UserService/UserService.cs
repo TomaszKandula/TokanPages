@@ -5,7 +5,6 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.UserService.Models;
@@ -21,16 +20,13 @@ internal sealed class UserService : IUserService
 
     private readonly IWebTokenUtility _webTokenUtility;
 
-    private readonly IDateTimeService _dateTimeService;
-
     private readonly AppSettingsModel _appSettings;
 
     public UserService(IHttpContextAccessor httpContextAccessor, IWebTokenUtility webTokenUtility, 
-        IDateTimeService dateTimeService, IOptions<AppSettingsModel> configuration, IUserRepository userRepository)
+        IOptions<AppSettingsModel> configuration, IUserRepository userRepository)
     {
         _httpContextAccessor = httpContextAccessor;
         _webTokenUtility = webTokenUtility;
-        _dateTimeService = dateTimeService;
         _userRepository = userRepository;
         _appSettings = configuration.Value;
     }
@@ -173,8 +169,6 @@ internal sealed class UserService : IUserService
             _appSettings.IdsIssuer,
             _appSettings.IdsAudience);
     }
-
-    public bool IsRefreshTokenActive(DateTime expires) => !(expires <= _dateTimeService.Now);
 
     private async Task<ClaimsIdentity> MakeClaimsIdentity(Guid userId)
     {

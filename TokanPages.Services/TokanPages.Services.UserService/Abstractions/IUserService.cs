@@ -26,6 +26,4 @@ public interface IUserService
     Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = null);
 
     Task<string> GenerateUserToken(Guid userId, DateTime tokenExpires);
-
-    bool IsRefreshTokenActive(DateTime expires);
 }
