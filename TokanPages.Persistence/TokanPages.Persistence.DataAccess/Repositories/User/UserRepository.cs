@@ -1,7 +1,6 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Options;
-using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Abstractions;
@@ -171,6 +170,22 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.ToList();
     }
 
+    public async Task CreateUserRole(CreateUserRoleDto data)
+    {
+        var entity = new Users.UserRole
+        {
+            Id = Guid.NewGuid(),
+            UserId = data.UserId,
+            RoleId = data.RoleId,
+            CreatedAt = _dateTimeService.Now,
+            CreatedBy = Guid.Empty,
+            ModifiedAt = null,
+            ModifiedBy = null
+        };
+
+        await DbOperations.Insert(entity);        
+    }
+
     public async Task<List<GetUserPermissionDto>> GetUserPermissions(Guid userId)
     {
         const string query = @"
@@ -192,6 +207,26 @@ public class UserRepository : RepositoryBase, IUserRepository
         var parameters = new { UserId = userId };
         var data = await db.QueryAsync<GetUserPermissionDto>(query, parameters);
         return data.ToList();
+    }
+
+    public async Task CreateUserPermissions(List<CreateUserPermissionDto> data)
+    {
+        var entities = new List<Users.UserPermission>();
+        foreach (var item in data)
+        {
+            var entity = new Users.UserPermission
+            {
+                Id = Guid.NewGuid(),
+                UserId = item.UserId,
+                PermissionId = item.PermissionId,
+                CreatedBy = Guid.Empty,
+                CreatedAt = _dateTimeService.Now
+            };
+            
+            entities.Add(entity);
+        }
+
+        await DbOperations.Insert(entities);
     }
 
     public async Task InsertUserToken(Guid userId, string token, DateTime expires, DateTime created, string createdByIp)

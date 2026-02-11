@@ -19,10 +19,14 @@ public interface IUserRepository
     Task ActivateUser(Guid userId);
 
     Task<List<GetDefaultPermissionDto>> GetDefaultPermissions(string userRoleName);
-    
+
     Task<List<GetUserRoleDto>> GetUserRoles(Guid userId);
 
+    Task CreateUserRole(CreateUserRoleDto data);
+
     Task<List<GetUserPermissionDto>> GetUserPermissions(Guid userId);
+
+    Task CreateUserPermissions(List<CreateUserPermissionDto> data);
 
     Task InsertUserToken(Guid userId, string token, DateTime expires, DateTime created, string createdByIp);
 
