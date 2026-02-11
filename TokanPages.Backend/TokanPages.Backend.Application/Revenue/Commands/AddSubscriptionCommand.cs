@@ -5,7 +5,7 @@ namespace TokanPages.Backend.Application.Revenue.Commands;
 
 public class AddSubscriptionCommand : IRequest<AddSubscriptionCommandResult>
 {
-    public Guid? UserId { get; set; }
+    public Guid UserId { get; set; }
 
     public TermType SelectedTerm { get; set; }
 
