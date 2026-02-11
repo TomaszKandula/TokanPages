@@ -82,7 +82,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Insert(entity);
     }
 
-    public async Task UpdateSignupDetails(ModifySignupDetailsDto data)
+    public async Task UpdateSignupDetails(UpdateSignupDetailsDto data)
     {
         var updateBy = new
         {

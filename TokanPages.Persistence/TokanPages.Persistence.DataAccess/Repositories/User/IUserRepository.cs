@@ -14,7 +14,7 @@ public interface IUserRepository
 
     Task CreateUserInformation(Guid userId, string firstName, string lastName, string avatarName);
 
-    Task UpdateSignupDetails(ModifySignupDetailsDto data);
+    Task UpdateSignupDetails(UpdateSignupDetailsDto data);
 
     Task ActivateUser(Guid userId);
 
