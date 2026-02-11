@@ -120,7 +120,7 @@ internal sealed class UserService : IUserService
         if (id is null)
             throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-        var user = await _userRepository.GetUserById((Guid)id);
+        var user = await _userRepository.GetUserDetails((Guid)id);
         if (user is null or { IsDeleted: true })
             throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
@@ -130,7 +130,21 @@ internal sealed class UserService : IUserService
         if (user is { IsActivated: false })
             throw new AuthorizationException(nameof(ErrorCodes.USER_ACCOUNT_INACTIVE), ErrorCodes.USER_ACCOUNT_INACTIVE);
 
-        return user;
+        //TODO: change to DTO
+        return new User
+        {
+            UserAlias = user.UserAlias,
+            EmailAddress = user.EmailAddress,
+            CryptedPassword = user.CryptedPassword,
+            ResetId = user.ResetId,
+            CreatedBy = Guid.Empty,
+            CreatedAt = default,
+            IsActivated = user.IsActivated,
+            IsVerified = user.IsVerified,
+            IsDeleted = user.IsDeleted,
+            HasBusinessLock = user.HasBusinessLock,
+            Id = user.UserId
+        };
     }
 
     public async Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = default, CancellationToken cancellationToken = default)
