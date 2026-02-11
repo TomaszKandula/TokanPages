@@ -40,7 +40,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
 
     public override async Task<NotifyRequestCommandResult> Handle(NotifyRequestCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetUserById(request.UserId);
+        var user = await _userRepository.GetUserDetails(request.UserId);
         if (user is null)
             throw new GeneralException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
@@ -50,7 +50,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
             case "user_activated":
                 payload = new StatusBase
                 {
-                    UserId = user.Id,
+                    UserId = user.UserId,
                     Handler = request.Handler,
                     Payload = new UserActivationData
                     {
@@ -63,7 +63,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
             case "payment_status":
                 payload = new StatusBase
                 {
-                    UserId = user.Id,
+                    UserId = user.UserId,
                     Handler = request.Handler,
                     Payload = request.ExternalPayload is not null 
                         ? _jsonSerializer.Deserialize<PaymentStatusData>(request.ExternalPayload) 
@@ -74,7 +74,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
             case "video_ended":
                 payload = new StatusBase
                 {
-                    UserId = user.Id,
+                    UserId = user.UserId,
                     Handler = request.Handler,
                     Payload = request.ExternalPayload is not null 
                         ? _jsonSerializer.Deserialize<ExternalData>(request.ExternalPayload) 
@@ -84,7 +84,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
             case "chat_post_message": 
                 payload = new StatusBase
                 {
-                    UserId = user.Id,
+                    UserId = user.UserId,
                     Handler = request.Handler,
                     Payload = request.ExternalPayload is not null 
                         ? _jsonSerializer.Deserialize<ChatData>(request.ExternalPayload) 
@@ -98,7 +98,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
 
         var data = _jsonSerializer.Serialize(payload, Formatting.None, Setting);
         if (!request.CanSkipPreservation)
-            await SaveNotification(user.Id, data);
+            await SaveNotification(user.UserId, data);
 
         if (request is { Handler: "chat_post_message", ExternalPayload: not null })
         {
@@ -107,7 +107,7 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
         }
 
         await _notificationService.Notify("WebNotificationGroup", data, request.Handler, cancellationToken);
-        return new NotifyRequestCommandResult { StatusId = user.Id };
+        return new NotifyRequestCommandResult { StatusId = user.UserId };
     }
 
     private async Task SaveNotification(Guid userId, string data)
