@@ -32,7 +32,7 @@ public interface IUserRepository
 
     Task CreateUserPermissions(List<CreateUserPermissionDto> data);
 
-    Task InsertUserToken(Guid userId, string token, DateTime expires, DateTime created, string createdByIp);
+    Task CreateUserToken(Guid userId, string token, DateTime expires, DateTime created, string createdByIp);
 
     Task<GetUserRefreshTokenDto?> GetUserRefreshToken(string token);
 

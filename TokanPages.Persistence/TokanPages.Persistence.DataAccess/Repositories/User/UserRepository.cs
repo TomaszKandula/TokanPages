@@ -262,7 +262,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Insert(entities);
     }
 
-    public async Task InsertUserToken(Guid userId, string token, DateTime expires, DateTime created, string createdByIp)
+    public async Task CreateUserToken(Guid userId, string token, DateTime expires, DateTime created, string createdByIp)
     {
         var entity = new Users.UserToken
         {

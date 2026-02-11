@@ -71,7 +71,7 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
         var expiresIn = _appSettings.IdsRefreshTokenMaturity;
         var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, expiresIn);
 
-        await _userRepository.InsertUserToken(userDetails.UserId, userToken, tokenExpires, currentDateTime, ipAddress);
+        await _userRepository.CreateUserToken(userDetails.UserId, userToken, tokenExpires, currentDateTime, ipAddress);
         await _userRepository.InsertUserRefreshToken(userDetails.UserId, refreshToken.Token, tokenExpires, currentDateTime, ipAddress);
         _cookieAccessor.Set("X-CSRF-Token", refreshToken.Token, maxAge: TimeSpan.FromMinutes(expiresIn));
 
