@@ -38,4 +38,6 @@ public class GetUserDetailsDto
     public required bool HasBusinessLock { get; init; }
 
     public required DateTime Registered { get; init; }
+
+    public DateTime? Modified { get; init; }
 }
