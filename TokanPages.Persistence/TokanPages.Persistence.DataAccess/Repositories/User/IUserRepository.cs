@@ -16,6 +16,8 @@ public interface IUserRepository
 
     Task UpdateSignupDetails(UpdateSignupDetailsDto data);
 
+    Task ResetUserPassword(UpdateUserPasswordDto data);
+    
     Task ActivateUser(Guid userId);
 
     Task UserSoftDelete(Guid userId);

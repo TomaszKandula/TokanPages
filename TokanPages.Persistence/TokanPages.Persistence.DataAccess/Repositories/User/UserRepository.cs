@@ -101,6 +101,24 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Update<Users.User>(updateBy, filterBy);
     }
 
+    public async Task ResetUserPassword(UpdateUserPasswordDto data)
+    {
+        var updateBy = new
+        {
+            CryptedPassword = string.Empty,
+            ResetId = data.ResetId,
+            ResetIdEnds = _dateTimeService.Now.AddMinutes(data.ResetMaturity),
+            ModifiedAt = _dateTimeService.Now
+        };
+
+        var filterBy = new
+        {
+            Id = data.UserId
+        };
+
+        await DbOperations.Update<Users.User>(updateBy, filterBy);
+    }
+
     public async Task ActivateUser(Guid userId)
     {
         var updateBy = new ActivateUserDto
