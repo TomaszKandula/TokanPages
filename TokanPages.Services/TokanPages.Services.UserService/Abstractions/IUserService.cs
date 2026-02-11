@@ -13,8 +13,6 @@ public interface IUserService
 
     public string GetRequestUserLanguage();
 
-    Task LogHttpRequest(string handlerName);//TODO: to be removed
-
     Guid GetLoggedUserId();
 
     Task<GetUserOutput?> GetUser();//TODO: to be removed

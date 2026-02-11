@@ -75,12 +75,6 @@ internal sealed class UserService : IUserService
             : language;
     }
 
-    public async Task LogHttpRequest(string handlerName)
-    {
-        var ipAddress = GetRequestIpAddress();
-        await _userRepository.InsertHttpRequest(ipAddress, handlerName);
-    }
-
     public Guid GetLoggedUserId()
     {
         var userId = UserIdFromClaim() ?? Guid.Empty;
