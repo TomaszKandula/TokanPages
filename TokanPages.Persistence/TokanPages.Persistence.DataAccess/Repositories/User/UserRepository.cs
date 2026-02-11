@@ -239,4 +239,28 @@ public class UserRepository : RepositoryBase, IUserRepository
         foreach (var id in ids) { uids.Add(id); }
         await DbOperations.Delete<Users.UserRefreshToken>(uids);
     }
+
+    public async Task<GetUserNoteDto?> GetUserNote(Guid userId, Guid userNoteId)
+    {
+        var filterBy = new
+        {
+            UserId = userId, 
+            UserNoteId = userNoteId
+        };
+
+        var notes = await DbOperations.Retrieve<Users.UserNote>(filterBy);
+        var userNote = notes.SingleOrDefault();
+        if (userNote == null)
+            return null;
+
+        return new GetUserNoteDto
+        {
+            Note = userNote.Note
+        };
+    }
+
+    public async Task<List<GetUserNoteDto>> GetUserNotes(Guid userId)
+    {
+        throw new NotImplementedException();
+    }
 }
