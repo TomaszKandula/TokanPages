@@ -92,6 +92,54 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.SingleOrDefault();
     }
 
+    public async Task<GetUserDetailsDto?> GetUserDetailsByActivationId(Guid activationId)
+    {
+        const string query = @"
+            SELECT
+                operation.Users.[Id] AS UserId,
+                operation.Users.[EmailAddress],
+                operation.Users.[UserAlias],
+                operation.UserInformation.[FirstName],
+                operation.UserInformation.[LastName],
+                operation.UserInformation.[UserAboutText],
+                operation.UserInformation.[UserImageName],
+                operation.UserInformation.[UserVideoName],
+                operation.Users.[CryptedPassword],
+                operation.Users.[ResetId],
+                operation.Users.[ResetIdEnds],
+                operation.Users.[ActivationId],
+                operation.Users.[ActivationIdEnds],
+                operation.Users.[HasBusinessLock],
+                operation.Users.[IsActivated],
+                operation.Users.[IsDeleted],
+                operation.Users.[IsVerified],
+                operation.Users.CreatedAt AS Registered
+            FROM
+                operation.Users
+            LEFT JOIN
+                operation.UserInformation
+            ON
+                operation.Users.Id = operation.UserInformation.UserId
+            WHERE
+                operation.Users.ActivationId = @ActivationId
+        ";
+
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        var parameters = new { ActivationId = activationId };
+        var data = await db.QueryAsync<GetUserDetailsDto>(query, parameters);
+        return data.SingleOrDefault();
+    }
+
+    public async Task UpdateUser(Guid userId, UpdateUserDto updateBy)
+    {
+        var filterBy = new
+        {
+            Id = userId    
+        };
+
+        await DbOperations.Update<Users.User>(updateBy, filterBy);
+    }
+
     public async Task<List<GetUserRoleDto>> GetUserRoles(Guid userId)
     {
         const string query = @"
