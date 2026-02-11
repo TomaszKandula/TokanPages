@@ -130,21 +130,6 @@ public class UsersController : ApiBaseController
         => await Mediator.Send(UsersMapper.MapToUpdateUserPasswordCommand(payload));
 
     /// <summary>
-    /// Returns all registered users.
-    /// </summary>
-    /// <remarks>
-    /// Requires: Roles.GodOfAsgard.
-    /// </remarks>
-    /// <param name="noCache">Enable/disable REDIS cache.</param>
-    /// <returns>Object.</returns>
-    [HttpGet]
-    [Route("[action]")]
-    [AuthorizeUser(Role.GodOfAsgard)]
-    [ProducesResponseType(typeof(IEnumerable<GetUsersQueryResult>), StatusCodes.Status200OK)]
-    public async Task<IEnumerable<GetUsersQueryResult>> GetAllUsers([FromQuery] bool noCache = false)
-        => await _usersCache.GetUsers(noCache);
-
-    /// <summary>
     /// Returns registered user.
     /// </summary>
     /// <remarks>
