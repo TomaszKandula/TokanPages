@@ -1,26 +1,30 @@
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Queries;
 
 public class GetUserImageQueryHandler : RequestHandler<GetUserImageQuery, FileContentResult>
 {
+    private readonly IUserRepository _userRepository;
+
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public GetUserImageQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
-        : base(operationDbContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
+    public GetUserImageQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory, IUserRepository userRepository)
+        : base(operationDbContext, loggerService)
+    {
+        _azureBlobStorageFactory = azureBlobStorageFactory;
+        _userRepository = userRepository;
+    }
 
     public override async Task<FileContentResult> Handle(GetUserImageQuery request, CancellationToken cancellationToken)
     {
-        var user = await OperationDbContext.Users
-            .AsNoTracking()
-            .SingleOrDefaultAsync(users => users.Id == request.Id, cancellationToken);
-
+        var user = await _userRepository.GetUserDetails(request.Id);
         if (user == null)
             throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
