@@ -9,7 +9,6 @@ public static class AssemblyConfigurer
 {
     public static void AddBehaviourServices(this IServiceCollection services)
     {
-        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(HttpRequestBehaviour<,>));
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TokenCheckBehaviour<,>));
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehaviour<,>));
         services.AddScoped(typeof(IPipelineBehavior<,>), typeof(FluentValidationBehavior<,>));
