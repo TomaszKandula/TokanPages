@@ -63,7 +63,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
         var currentDateTime = _dateTimeService.Now;
         var tokenExpires = _dateTimeService.Now.AddMinutes(_appSettings.IdsWebTokenMaturity);
-        var userToken = await _userService.GenerateUserToken(user, tokenExpires);
+        var userToken = await _userService.GenerateUserToken(user.Id, tokenExpires);
         await _userRepository.InsertUserToken(user.Id, userToken, tokenExpires, currentDateTime, ipAddress);
 
         var userDetails = await _userRepository.GetUserDetails(user.Id);
