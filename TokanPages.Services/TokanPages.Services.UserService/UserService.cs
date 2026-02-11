@@ -147,7 +147,7 @@ internal sealed class UserService : IUserService
         };
     }
 
-    public async Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = default, CancellationToken cancellationToken = default)
+    public async Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = null)
     {
         userId ??= UserIdFromClaim();
         var userRolesById = await _userRepository.GetUserRoles(userId ?? Guid.Empty);

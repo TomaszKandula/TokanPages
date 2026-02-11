@@ -51,8 +51,8 @@ public class UpdateUserPasswordCommandHandler : RequestHandler<UpdateUserPasswor
             if (user is null)
                 throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
-            var hasRoleEverydayUser = await _userService.HasRoleAssigned($"{Role.EverydayUser}", cancellationToken: cancellationToken) ?? false;
-            var hasRoleGodOfAsgard = await _userService.HasRoleAssigned($"{Role.GodOfAsgard}", cancellationToken: cancellationToken) ?? false;
+            var hasRoleEverydayUser = await _userService.HasRoleAssigned($"{Role.EverydayUser}") ?? false;
+            var hasRoleGodOfAsgard = await _userService.HasRoleAssigned($"{Role.GodOfAsgard}") ?? false;
 
             if (!hasRoleEverydayUser && !hasRoleGodOfAsgard)
                 throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
