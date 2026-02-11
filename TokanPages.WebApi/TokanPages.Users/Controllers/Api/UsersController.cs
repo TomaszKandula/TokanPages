@@ -27,16 +27,6 @@ public class UsersController : ApiBaseController
         : base(mediator) => _usersCache = usersCache;
 
     /// <summary>
-    /// Returns visitor count.
-    /// </summary>
-    /// <returns>Object.</returns>
-    [HttpGet]
-    [Route("[action]")]
-    [ProducesResponseType(typeof(GetUserVisitCountQueryResult), StatusCodes.Status200OK)]
-    public async Task<GetUserVisitCountQueryResult> GetVisitCount()
-        => await Mediator.Send(new GetUserVisitCountQuery());
-
-    /// <summary>
     /// Authenticates user.
     /// </summary>
     /// <param name="payload">User data.</param>
