@@ -331,7 +331,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         return dto;
     }
 
-    public async Task InsertUserRefreshToken(Guid userId, string token, DateTime expires, DateTime created, string? createdByIp)
+    public async Task CreateUserRefreshToken(Guid userId, string token, DateTime expires, DateTime created, string? createdByIp)
     {
         var entity = new Users.UserRefreshToken
         {

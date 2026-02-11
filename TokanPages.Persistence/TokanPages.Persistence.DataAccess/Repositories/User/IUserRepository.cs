@@ -38,7 +38,7 @@ public interface IUserRepository
 
     Task<List<GetUserRefreshTokenDto>> GetUserRefreshTokens(Guid userId);
 
-    Task InsertUserRefreshToken(Guid userId, string token, DateTime expires, DateTime created, string? createdByIp);
+    Task CreateUserRefreshToken(Guid userId, string token, DateTime expires, DateTime created, string? createdByIp);
 
     Task DeleteUserRefreshToken(string token);
 
