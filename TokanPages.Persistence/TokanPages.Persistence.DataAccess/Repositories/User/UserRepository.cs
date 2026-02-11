@@ -43,8 +43,17 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.SingleOrDefault();
     }
 
-    public async Task UpdateUser(Guid userId, UpdateUserDto updateBy)
+    public async Task UpdateUser(Guid userId, UpdateUserDto data)
     {
+        var updateBy = new
+        {
+            IsActivated = data.IsActivated,
+            IsVerified = data.IsVerified,
+            ActivationId = data.ActivationId,
+            ActivationIdEnds = data.ActivationIdEnds,
+            ModifiedAt = _dateTimeService.Now
+        };
+
         var filterBy = new
         {
             Id = userId    
