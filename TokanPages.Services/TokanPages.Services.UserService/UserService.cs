@@ -25,9 +25,6 @@ internal sealed class UserService : IUserService
 
     private readonly AppSettingsModel _appSettings;
 
-    //TODO: refactor and remove below fields
-    private GetUserOutput? _user;
-
     public UserService(IHttpContextAccessor httpContextAccessor, IWebTokenUtility webTokenUtility, 
         IDateTimeService dateTimeService, IOptions<AppSettingsModel> configuration, IUserRepository userRepository)
     {
@@ -96,8 +93,25 @@ internal sealed class UserService : IUserService
 
     public async Task<GetUserOutput?> GetUser(CancellationToken cancellationToken = default)
     {
-        await EnsureUserData();
-        return _user;
+        var userId = UserIdFromClaim();
+        if (userId == null)
+            return null;
+
+        var userDetails = await _userRepository.GetUserDetails((Guid)userId);
+        if (userDetails is null)
+            return null;
+
+        return new GetUserOutput
+        {
+            UserId = userDetails.UserId,
+            AliasName = userDetails.UserAlias,
+            Email = userDetails.EmailAddress,
+            Registered = userDetails.Registered,
+            AvatarName = userDetails.UserImageName,
+            FirstName = userDetails.FirstName,
+            LastName = userDetails.LastName,
+            ShortBio = userDetails.UserAboutText
+        };
     }
 
     public async Task<User> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default)
@@ -186,38 +200,5 @@ internal sealed class UserService : IUserService
             throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
             
         return Guid.Parse(userIds.First().Value);
-    }
-
-    private async Task EnsureUserData()
-    {
-        if (_user != null) 
-            return;
-
-        var userId = UserIdFromClaim();
-        if (userId == null)
-        {
-            _user = null;
-            return;
-        }
-
-        var user = await _userRepository.GetUserById((Guid)userId);
-        if (user is null)
-        {
-            _user = null;
-            return;
-        }
-
-        var userInfo = await _userRepository.GetUserInformationById((Guid)userId);
-        _user = new GetUserOutput
-        {
-            UserId = user.Id,
-            AliasName = user.UserAlias,
-            Email = user.EmailAddress,
-            Registered = user.CreatedAt,
-            AvatarName = userInfo?.UserImageName,
-            FirstName = userInfo?.FirstName,
-            LastName = userInfo?.LastName,
-            ShortBio = userInfo?.UserAboutText
-        };
     }
 }
