@@ -4,6 +4,7 @@ using TokanPages.Backend.Application.Users.Queries;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Utility.Abstractions;
+using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.UserService.Abstractions;
 using Xunit;
 
@@ -50,6 +51,7 @@ public class GetUserNoteQueryHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedUserService = new Mock<IUserService>();
+        var mockUserRepository = new Mock<IUserRepository>();
 
         mockedUserService
             .Setup(service => service.GetActiveUser(It.IsAny<Guid?>()))
@@ -64,7 +66,7 @@ public class GetUserNoteQueryHandlerTest : TestBase
             UserNoteId = note.Id
         };
 
-        var handler = new GetUserNoteQueryHandler(databaseContext, mockedLogger.Object, mockedUserService.Object);
+        var handler = new GetUserNoteQueryHandler(databaseContext, mockedLogger.Object, mockedUserService.Object, mockUserRepository.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);
@@ -113,6 +115,7 @@ public class GetUserNoteQueryHandlerTest : TestBase
 
         var mockedLogger = new Mock<ILoggerService>();
         var mockedUserService = new Mock<IUserService>();
+        var mockUserRepository = new Mock<IUserRepository>();
 
         mockedUserService
             .Setup(service => service.GetActiveUser(It.IsAny<Guid?>()))
@@ -123,7 +126,7 @@ public class GetUserNoteQueryHandlerTest : TestBase
             UserNoteId = Guid.NewGuid()
         };
 
-        var handler = new GetUserNoteQueryHandler(databaseContext, mockedLogger.Object, mockedUserService.Object);
+        var handler = new GetUserNoteQueryHandler(databaseContext, mockedLogger.Object, mockedUserService.Object, mockUserRepository.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);
