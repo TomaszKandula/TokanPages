@@ -12,4 +12,6 @@ public class UpdateUserDto
     public Guid? ActivationId { get; init; }
 
     public DateTime? ActivationIdEnds { get; init; }
+
+    public DateTime? ModifiedAt { get; init; }
 }
