@@ -10,9 +10,9 @@ public interface IUserRepository
 
     Task<GetUserDetailsDto?> GetUserDetailsByActivationId(Guid activationId);
 
-    Task CreateUser();
+    Task CreateUser(CreateUserDto data);
 
-    Task CreateUserInformation();
+    Task CreateUserInformation(Guid userId, string firstName, string lastName, string avatarName);
 
     Task ModifyRegistrationDetails(ModifySignupDetailsDto data);
 

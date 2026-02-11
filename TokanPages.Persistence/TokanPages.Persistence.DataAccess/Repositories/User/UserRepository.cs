@@ -43,6 +43,44 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.SingleOrDefault();
     }
 
+    public async Task CreateUser(CreateUserDto data)
+    {
+        var entity = new Users.User
+        {
+            Id = data.UserId,
+            UserAlias = data.UserAlias,
+            EmailAddress = data.EmailAddress,
+            CryptedPassword = data.CryptedPassword,
+            CreatedBy = Guid.Empty,
+            CreatedAt = _dateTimeService.Now,
+            ActivationId = data.ActivationId,
+            ActivationIdEnds = data.ActivationIdEnds,
+            ResetId = null,
+            IsActivated = false,
+            IsVerified = false,
+            IsDeleted = false,
+            HasBusinessLock = false,
+        };
+
+        await DbOperations.Insert(entity);
+    }
+
+    public async Task CreateUserInformation(Guid userId, string firstName, string lastName, string avatarName)
+    {
+        var entity = new Users.UserInfo
+        {
+            Id = Guid.NewGuid(),
+            UserId = userId,
+            FirstName = firstName,
+            LastName = lastName,
+            CreatedBy = Guid.Empty,
+            CreatedAt = _dateTimeService.Now,
+            UserImageName = avatarName,
+        };
+
+        await DbOperations.Insert(entity);
+    }
+
     public async Task ModifyRegistrationDetails(ModifySignupDetailsDto data)
     {
         var updateBy = new
