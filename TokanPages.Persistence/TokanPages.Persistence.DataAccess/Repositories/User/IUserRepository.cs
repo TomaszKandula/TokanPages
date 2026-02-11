@@ -53,4 +53,6 @@ public interface IUserRepository
     Task<GetUserNoteDto?> GetUserNote(Guid userId, Guid userNoteId);
 
     Task<List<GetUserNoteDto>> GetUserNotes(Guid userId);
+
+    Task RemoveUserNote(Guid userId, Guid userNoteId);
 }

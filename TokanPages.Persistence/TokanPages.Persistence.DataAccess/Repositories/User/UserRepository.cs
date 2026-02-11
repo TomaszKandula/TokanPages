@@ -443,6 +443,12 @@ public class UserRepository : RepositoryBase, IUserRepository
         return result;
     }
 
+    public async Task RemoveUserNote(Guid userId, Guid userNoteId)
+    {
+        var deleteBy = new { Id = userNoteId, UserId = userId };
+        await DbOperations.Delete<Users.UserNote>(deleteBy);
+    }
+
     private static string UserDetailsQueryTemplate => @"
         SELECT
             operation.Users.Id AS UserId,
