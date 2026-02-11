@@ -5,6 +5,7 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
+using TokanPages.Persistence.DataAccess.Repositories.User;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Users;
@@ -41,6 +42,7 @@ public class ActivateUserCommandHandlerTest : TestBase
 
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockUserRepository = new Mock<IUserRepository>();
 
         mockedDateTimeService
             .SetupGet(service => service.Now)
@@ -50,7 +52,8 @@ public class ActivateUserCommandHandlerTest : TestBase
         var handler = new ActivateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTimeService.Object);
+            mockedDateTimeService.Object,
+            mockUserRepository.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -88,6 +91,7 @@ public class ActivateUserCommandHandlerTest : TestBase
 
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockUserRepository = new Mock<IUserRepository>();
 
         mockedDateTimeService
             .SetupGet(service => service.Now)
@@ -97,7 +101,8 @@ public class ActivateUserCommandHandlerTest : TestBase
         var handler = new ActivateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTimeService.Object);
+            mockedDateTimeService.Object,
+            mockUserRepository.Object);
 
         // Act
         // Assert
@@ -135,6 +140,7 @@ public class ActivateUserCommandHandlerTest : TestBase
 
         var mockedDateTimeService = new Mock<IDateTimeService>();
         var mockedLogger = new Mock<ILoggerService>();
+        var mockUserRepository = new Mock<IUserRepository>();
 
         mockedDateTimeService
             .SetupGet(service => service.Now)
@@ -144,7 +150,8 @@ public class ActivateUserCommandHandlerTest : TestBase
         var handler = new ActivateUserCommandHandler(
             databaseContext, 
             mockedLogger.Object,
-            mockedDateTimeService.Object);
+            mockedDateTimeService.Object,
+            mockUserRepository.Object);
 
         // Act
         // Assert
