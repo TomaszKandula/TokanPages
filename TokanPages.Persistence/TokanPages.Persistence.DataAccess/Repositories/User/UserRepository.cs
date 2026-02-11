@@ -280,6 +280,19 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Insert(entity);
     }
 
+    public async Task<bool> DoesUserTokenExist(Guid userId, string token)
+    {
+        var filterBy = new { UserId = userId, Token = token };
+        var data = await DbOperations.Retrieve<Users.UserToken>(filterBy);
+        return data.Any();
+    }
+
+    public async Task DeleteUserToken(Guid userId, string token)
+    {
+        var deleteBy =  new { UserId = userId, Token = token };
+        await DbOperations.Delete<Users.UserToken>(deleteBy);
+    }
+
     public async Task<GetUserRefreshTokenDto?> GetUserRefreshToken(string token)
     {
         var filterBy = new { Token = token };
