@@ -11,6 +11,8 @@ public interface IUserRepository
 
     Task<GetUserDetailsDto?> GetUserDetails(Guid userId);
 
+    Task<GetUserDetailsDto?> GetUserDetails(string email);
+
     Task<List<GetUserRoleDto>> GetUserRoles(Guid userId);
 
     Task<List<GetUserPermissionDto>> GetUserPermissions(Guid userId);
