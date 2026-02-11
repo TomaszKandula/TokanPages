@@ -5,23 +5,23 @@ namespace TokanPages.Persistence.DataAccess.Repositories.User.Models;
 [ExcludeFromCodeCoverage]
 public class GetUserDetailsDto
 {
-    public Guid UserId { get; init; }
+    public required Guid UserId { get; init; }
 
-    public string EmailAddress { get; init; } = string.Empty;
+    public required string EmailAddress { get; init; } = string.Empty;
 
-    public string UserAlias { get; init; } = string.Empty;
+    public required string UserAlias { get; init; } = string.Empty;
 
-    public string FirstName { get; init; } = string.Empty;
+    public required string FirstName { get; init; } = string.Empty;
 
-    public string LastName { get; init; } = string.Empty;
+    public required string LastName { get; init; } = string.Empty;
 
-    public string UserAboutText { get; init; } = string.Empty; 
+    public required string UserAboutText { get; init; } = string.Empty; 
 
-    public string UserImageName  { get; init; } = string.Empty;
+    public required string UserImageName  { get; init; } = string.Empty;
 
     public required string CryptedPassword { get; init; }
 
-    public required Guid? ResetId { get; init; }
+    public Guid? ResetId { get; init; }
 
     public DateTime? ResetIdEnds { get; init; }
 

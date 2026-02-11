@@ -5,13 +5,13 @@ namespace TokanPages.Persistence.DataAccess.Repositories.User.Models;
 [ExcludeFromCodeCoverage]
 public class GetUserNoteDto
 {
-    public Guid Id { get; init; }
+    public required Guid Id { get; init; }
 
-    public string Note { get; init; } = string.Empty;
+    public required string Note { get; init; } = string.Empty;
 
-    public Guid CreatedBy { get; init; }
+    public required Guid CreatedBy { get; init; }
 
-    public DateTime CreatedAt { get; init; }
+    public required DateTime CreatedAt { get; init; }
 
     public Guid? ModifiedBy { get; init; }
 

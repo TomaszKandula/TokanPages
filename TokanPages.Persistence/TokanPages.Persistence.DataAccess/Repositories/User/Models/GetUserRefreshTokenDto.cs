@@ -5,15 +5,15 @@ namespace TokanPages.Persistence.DataAccess.Repositories.User.Models;
 [ExcludeFromCodeCoverage]
 public class GetUserRefreshTokenDto
 {
-    public Guid Id { get; init; }
+    public required Guid Id { get; init; }
 
-    public Guid UserId { get; init; }
+    public required Guid UserId { get; init; }
 
-    public string Token { get; init; } = string.Empty;
+    public required string Token { get; init; } = string.Empty;
 
-    public DateTime Expires { get; init; }
+    public required DateTime Expires { get; init; }
 
-    public DateTime Created { get; init; }
+    public required DateTime Created { get; init; }
 
     public string? CreatedByIp { get; init; }
 
