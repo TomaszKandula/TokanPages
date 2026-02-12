@@ -66,6 +66,8 @@ public interface IUserRepository
 
     Task<List<GetUserNoteDto>> GetUserNotes(Guid userId);
 
+    Task CreateUserNote(Guid userId, string note, Guid? noteId = null, DateTime? createdAt = null);
+
     Task UpdateUserNote(Guid userId, string note);
 
     Task RemoveUserNote(Guid userId, Guid userNoteId);
