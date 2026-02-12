@@ -9,6 +9,16 @@ public class GetActiveUserDto
 
     public required string UserAlias { get; init; }
 
+    public required string FirstName { get; init; } = string.Empty;
+
+    public required string LastName { get; init; } = string.Empty;
+
+    public required string UserAboutText { get; init; } = string.Empty; 
+
+    public required string UserImageName  { get; init; } = string.Empty;
+
+    public required string UserVideoName  { get; init; } = string.Empty;
+
     public required string EmailAddress { get; init; }
 
     public required string CryptedPassword { get; init; }
