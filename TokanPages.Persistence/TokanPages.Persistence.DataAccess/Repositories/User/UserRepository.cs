@@ -46,6 +46,14 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.SingleOrDefault();
     }
 
+    public async Task<GetUserDetailsDto?> GetUserDetailsByResetId(Guid resetId)
+    {
+        var query = UserDetailsQueryTemplate + " WHERE operation.Users.ResetId = @ResetId AND operation.Users.IsDeleted = 0";
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        var parameters = new { ResetId = resetId };
+        return await db.QuerySingleAsync<GetUserDetailsDto>(query, parameters);
+    }
+
     public async Task<bool> IsEmailAddressAvailableForChange(Guid userId, string emailAddress)
     {
         const string query = @"
@@ -164,7 +172,25 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Update<Users.User>(updateBy, filterBy);
     }
 
-    public async Task ResetUserPassword(UpdateUserPasswordDto data)
+    public async Task UpdateUserPassword(Guid userId, string password)
+    {
+        var filterBy = new
+        {
+            Id = userId
+        };
+
+        var updateBy = new UpdateUserPasswordDto
+        {
+            CryptedPassword = password,
+            ResetId = null,
+            ResetIdEnds = null,
+            ModifiedAt = _dateTimeService.Now
+        };
+
+        await DbOperations.Update<Users.User>(updateBy, filterBy);
+    }
+
+    public async Task ResetUserPassword(ResetUserPasswordDto data)
     {
         var updateBy = new
         {
