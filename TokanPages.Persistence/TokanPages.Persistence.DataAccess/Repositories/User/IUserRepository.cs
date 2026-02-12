@@ -10,9 +10,15 @@ public interface IUserRepository
 
     Task<GetUserDetailsDto?> GetUserDetailsByActivationId(Guid activationId);
 
+    Task<bool> IsEmailAddressAvailableForChange(Guid userId, string emailAddress);
+    
     Task CreateUser(CreateUserDto data);
 
+    Task UpdateUser(UpdateUserDto data);
+
     Task CreateUserInformation(Guid userId, string firstName, string lastName, string avatarName);
+
+    Task UpdateUserInformation(UpdateUserInformationDto data);
 
     Task UpdateSignupDetails(UpdateSignupDetailsDto data);
 
