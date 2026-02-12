@@ -98,6 +98,7 @@ internal sealed class UserService : IUserService
 
         return new GetActiveUserDto
         {
+            UserId = user.UserId,
             UserAlias = user.UserAlias,
             EmailAddress = user.EmailAddress,
             CryptedPassword = user.CryptedPassword,
@@ -108,7 +109,11 @@ internal sealed class UserService : IUserService
             IsVerified = user.IsVerified,
             IsDeleted = user.IsDeleted,
             HasBusinessLock = user.HasBusinessLock,
-            UserId = user.UserId
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            UserAboutText = user.UserAboutText,
+            UserImageName = user.UserImageName,
+            UserVideoName = user.UserVideoName
         };
     }
 
