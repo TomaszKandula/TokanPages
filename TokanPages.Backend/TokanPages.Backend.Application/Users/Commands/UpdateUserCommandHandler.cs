@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Domain.Entities.Users;
+﻿using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.User;
+using TokanPages.Persistence.DataAccess.Repositories.User.Models;
 using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
@@ -12,83 +12,48 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
 {
     private readonly IUserService _userService;
 
-    private readonly IDateTimeService _dateTimeService;
+    private readonly IUserRepository _userRepository;
         
     public UpdateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService, IUserService userService) : base(operationDbContext, loggerService)
+        IUserService userService, IUserRepository userRepository) : base(operationDbContext, loggerService)
     {
-        _dateTimeService = dateTimeService;
         _userService = userService;
+        _userRepository = userRepository;
     }
 
     public override async Task<UpdateUserCommandResult> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         var user = await _userService.GetActiveUser(request.Id);
         var shouldVerify = !string.Equals(request.EmailAddress, user.EmailAddress, StringComparison.CurrentCultureIgnoreCase);
+        var canChangeEmailAddress = await _userRepository.IsEmailAddressAvailableForChange(user.UserId, user.EmailAddress);
+        if (!canChangeEmailAddress)
+            throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
-        await UpdateUserUncommitted(user, request, shouldVerify, cancellationToken);
-        await UpdateUserInfoUncommitted(user.UserId, request, cancellationToken);
-        await CommitAllChanges(cancellationToken);
+        var updateUser = new UpdateUserDto
+        {
+            UserId = user.UserId,
+            UserAlias = request.UserAlias ?? user.UserAlias,
+            EmailAddress = request.EmailAddress ?? user.EmailAddress,
+            IsActivated = request.IsActivated ?? user.IsActivated,
+            IsVerified = shouldVerify
+        };
+
+        var updateInformation = new UpdateUserInformationDto
+        {
+            UserId = user.UserId,
+            FirstName = request.FirstName ?? user.FirstName,
+            LastName = request.LastName ?? user.LastName,
+            UserAboutText = request.Description ?? user.UserAboutText,
+            UserImageName = request.UserImageName ?? user.UserImageName,
+            UserVideoName = request.UserVideoName ?? user.UserVideoName
+        };
+
+        await _userRepository.UpdateUser(updateUser);
+        await _userRepository.UpdateUserInformation(updateInformation);
 
         return new UpdateUserCommandResult
         {
             ShouldVerifyEmail = shouldVerify
         };
-    }
-
-    private async Task CommitAllChanges(CancellationToken cancellationToken) => await OperationDbContext.SaveChangesAsync(cancellationToken);
-
-    private async Task UpdateUserUncommitted(User user, UpdateUserCommand request, bool shouldVerify, CancellationToken cancellationToken = default)
-    {
-        var emails = await OperationDbContext.Users
-            .AsNoTracking()
-            .Where(users => users.Id != user.Id)
-            .Where(users => users.EmailAddress == request.EmailAddress)
-            .ToListAsync(cancellationToken);
-
-        if (emails.Count > 0)
-            throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
-
-        user.IsActivated = request.IsActivated ?? user.IsActivated;
-        user.UserAlias = request.UserAlias ?? user.UserAlias;
-        user.EmailAddress = request.EmailAddress ?? user.EmailAddress;
-        user.ModifiedAt = _dateTimeService.Now;
-        user.ModifiedBy = user.Id;
-        user.IsVerified = !shouldVerify;
-    }
-
-    private async Task UpdateUserInfoUncommitted(Guid userId, UpdateUserCommand request, CancellationToken cancellationToken = default)
-    {
-        var userInfo = await OperationDbContext.UserInformation
-            .Where(info => info.UserId == userId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (userInfo is null)
-        {
-            var newUserInfo = new UserInfo
-            {
-                UserId = userId,
-                FirstName = request.FirstName ?? string.Empty,
-                LastName = request.LastName ?? string.Empty,
-                UserAboutText = request.Description ?? string.Empty,
-                UserImageName = request.UserImageName ?? string.Empty,
-                UserVideoName = request.UserVideoName ?? string.Empty,
-                CreatedBy = userId,
-                CreatedAt = _dateTimeService.Now,
-                Id = Guid.NewGuid(),
-            };
-
-            await OperationDbContext.UserInformation.AddAsync(newUserInfo, cancellationToken);
-        }
-        else
-        {
-            userInfo.FirstName = request.FirstName ?? userInfo.FirstName;
-            userInfo.LastName = request.LastName ?? userInfo.LastName;
-            userInfo.UserAboutText = request.Description ?? userInfo.UserAboutText;
-            userInfo.UserImageName = request.UserImageName ?? userInfo.UserImageName;
-            userInfo.UserVideoName = request.UserVideoName ?? userInfo.UserVideoName;
-            userInfo.ModifiedBy = userId;
-            userInfo.ModifiedAt = _dateTimeService.Now;
-        }
     }
 }
