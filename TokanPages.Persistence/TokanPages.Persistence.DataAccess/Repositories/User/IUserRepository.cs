@@ -60,6 +60,8 @@ public interface IUserRepository
 
     Task<List<GetUserNoteDto>> GetUserNotes(Guid userId);
 
+    Task UpdateUserNote(Guid userId, string note);
+
     Task RemoveUserNote(Guid userId, Guid userNoteId);
 
     Task ClearUserMedia(Guid userId);

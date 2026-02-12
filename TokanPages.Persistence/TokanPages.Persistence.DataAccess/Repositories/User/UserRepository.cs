@@ -506,6 +506,22 @@ public class UserRepository : RepositoryBase, IUserRepository
         return result;
     }
 
+    public async Task UpdateUserNote(Guid userId, string note)
+    {
+        var filterBy = new
+        {
+            UserId = userId
+        };
+        
+        var updateBy = new
+        {
+            Note = note,
+            ModifiedAt = _dateTimeService.Now
+        };
+
+        await DbOperations.Update<Users.UserNote>(updateBy, filterBy);
+    }
+
     public async Task RemoveUserNote(Guid userId, Guid userNoteId)
     {
         var deleteBy = new { Id = userNoteId, UserId = userId };
