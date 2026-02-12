@@ -1,11 +1,10 @@
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.CipheringService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -15,17 +14,20 @@ public class UpdateUserPasswordCommandHandler : RequestHandler<UpdateUserPasswor
 {
     private readonly IUserService _userService;
 
+    private readonly IUserRepository _userRepository;
+
     private readonly ICipheringService _cipheringService;
 
     private readonly IDateTimeService _dateTimeService;
         
     public UpdateUserPasswordCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IUserService userService, ICipheringService cipheringService, 
-        IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
+        IDateTimeService dateTimeService, IUserRepository userRepository) : base(operationDbContext, loggerService)
     {
         _userService = userService;
         _cipheringService = cipheringService;
         _dateTimeService = dateTimeService;
+        _userRepository = userRepository;
     }
 
     public override async Task<Unit> Handle(UpdateUserPasswordCommand request, CancellationToken cancellationToken)
@@ -38,19 +40,15 @@ public class UpdateUserPasswordCommandHandler : RequestHandler<UpdateUserPasswor
         }
 
         var hasResetId = request.ResetId != null;
-        var user = await OperationDbContext.Users
-            .Where(users => users.IsActivated)
-            .Where(users => !users.IsDeleted)
-            .WhereIfElse(!hasResetId, 
-                users => users.Id == userId, 
-                users => users.ResetId == request.ResetId) 
-            .SingleOrDefaultAsync(cancellationToken);
+        var user = hasResetId 
+            ? await _userRepository.GetUserDetailsByResetId(request.ResetId ?? Guid.Empty) 
+            : await _userRepository.GetUserDetails(userId ?? Guid.Empty);
+
+        if (user is null)
+            throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         if (!hasResetId)
         {
-            if (user is null)
-                throw new AuthorizationException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
-
             var hasRoleEverydayUser = await _userService.HasRoleAssigned($"{Role.EverydayUser}") ?? false;
             var hasRoleGodOfAsgard = await _userService.HasRoleAssigned($"{Role.GodOfAsgard}") ?? false;
 
@@ -58,15 +56,12 @@ public class UpdateUserPasswordCommandHandler : RequestHandler<UpdateUserPasswor
                 throw new AccessException(nameof(ErrorCodes.ACCESS_DENIED), ErrorCodes.ACCESS_DENIED);
         }
 
-        if (user is null)
-            throw new AuthorizationException(nameof(ErrorCodes.INVALID_RESET_ID), ErrorCodes.INVALID_RESET_ID);
-
         if (request.OldPassword is not null)
         {
             var isPasswordValid = _cipheringService.VerifyPassword(request.OldPassword, user.CryptedPassword);
             if (!isPasswordValid)
             {
-                LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {user.Id}).");
+                LoggerService.LogError($"Cannot positively verify given password supplied by user (Id: {user.UserId}).");
                 throw new AccessException(nameof(ErrorCodes.INVALID_CREDENTIALS), $"{ErrorCodes.INVALID_CREDENTIALS}");
             }
         }
@@ -75,16 +70,11 @@ public class UpdateUserPasswordCommandHandler : RequestHandler<UpdateUserPasswor
             throw new AuthorizationException(nameof(ErrorCodes.EXPIRED_RESET_ID), ErrorCodes.EXPIRED_RESET_ID);
 
         var getNewSalt = _cipheringService.GenerateSalt(12);
-        var getHashedPassword = _cipheringService.GetHashedPassword(request.NewPassword!, getNewSalt);
+        var getHashedPassword = _cipheringService.GetHashedPassword(request.NewPassword, getNewSalt);
 
-        user.ResetId = null;
-        user.ResetIdEnds = null;
-        user.CryptedPassword = getHashedPassword;
-        user.ModifiedAt = _dateTimeService.Now;
-        user.ModifiedBy = user.Id;
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
+        await _userRepository.UpdateUserPassword(user.UserId, getHashedPassword);
 
-        LoggerService.LogInformation($"User password has been updated successfully (UserId: {user.Id}).");
+        LoggerService.LogInformation($"User password has been updated successfully (UserId: {user.UserId}).");
         return Unit.Value;
     }
 }
