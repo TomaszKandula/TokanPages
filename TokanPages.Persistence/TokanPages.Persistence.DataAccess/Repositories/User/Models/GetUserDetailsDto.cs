@@ -19,6 +19,8 @@ public class GetUserDetailsDto
 
     public required string UserImageName  { get; init; } = string.Empty;
 
+    public required string UserVideoName  { get; init; } = string.Empty;
+
     public required string CryptedPassword { get; init; }
 
     public Guid? ResetId { get; init; }
