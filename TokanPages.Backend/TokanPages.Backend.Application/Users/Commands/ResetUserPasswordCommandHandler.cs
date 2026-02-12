@@ -48,14 +48,14 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
 
         var resetId = Guid.NewGuid();
         var resetMaturity = _appSettings.LimitResetMaturity;
-        var updatePassword = new UpdateUserPasswordDto
+        var resetPassword = new ResetUserPasswordDto
         {
             UserId = user.UserId,
             ResetMaturity = resetMaturity,
             ResetId = resetId
         };
 
-        await _userRepository.ResetUserPassword(updatePassword);
+        await _userRepository.ResetUserPassword(resetPassword);
 
         var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
         var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
