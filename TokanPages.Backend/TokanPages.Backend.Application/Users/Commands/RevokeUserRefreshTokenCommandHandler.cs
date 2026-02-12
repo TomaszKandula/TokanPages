@@ -27,7 +27,7 @@ public class RevokeUserRefreshTokenCommandHandler : RequestHandler<RevokeUserRef
         if (csrfToken is null)
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
-        await _userRepository.DeleteUserRefreshToken(csrfToken);
+        await _userRepository.RemoveUserRefreshToken(csrfToken);
         return Unit.Value;
     }
 }

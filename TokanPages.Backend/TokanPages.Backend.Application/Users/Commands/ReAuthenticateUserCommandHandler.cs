@@ -59,7 +59,7 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         _cookieAccessor.Set("X-CSRF-Token", newRefreshToken.Token, maxAge: TimeSpan.FromMinutes(expiresIn));
 
         await _userRepository.CreateUserRefreshToken(user.UserId, newRefreshToken.Token, newRefreshToken.Expires, newRefreshToken.Created, newRefreshToken.CreatedByIp);
-        await _userRepository.DeleteUserRefreshToken(csrfToken);
+        await _userRepository.RemoveUserRefreshToken(csrfToken);
 
         var currentDateTime = _dateTimeService.Now;
         var tokenExpires = _dateTimeService.Now.AddMinutes(_appSettings.IdsWebTokenMaturity);

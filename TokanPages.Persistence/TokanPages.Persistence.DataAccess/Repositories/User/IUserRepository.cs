@@ -50,7 +50,7 @@ public interface IUserRepository
 
     Task<bool> DoesUserTokenExist(Guid userId, string token);
     
-    Task DeleteUserToken(Guid userId, string token);
+    Task RemoveUserToken(Guid userId, string token);
 
     Task<GetUserRefreshTokenDto?> GetUserRefreshToken(string token);
 
@@ -58,9 +58,9 @@ public interface IUserRepository
 
     Task CreateUserRefreshToken(Guid userId, string token, DateTime expires, DateTime created, string? createdByIp);
 
-    Task DeleteUserRefreshToken(string token);
+    Task RemoveUserRefreshToken(string token);
 
-    Task DeleteUserRefreshTokens(HashSet<Guid> ids);
+    Task RemoveUserRefreshTokens(HashSet<Guid> ids);
 
     Task<GetUserNoteDto?> GetUserNote(Guid userId, Guid userNoteId);
 

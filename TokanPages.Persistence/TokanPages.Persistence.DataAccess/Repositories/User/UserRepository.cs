@@ -411,7 +411,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.Any();
     }
 
-    public async Task DeleteUserToken(Guid userId, string token)
+    public async Task RemoveUserToken(Guid userId, string token)
     {
         var deleteBy =  new { UserId = userId, Token = token };
         await DbOperations.Delete<Users.UserToken>(deleteBy);
@@ -487,13 +487,13 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Insert(entity);
     }
 
-    public async Task DeleteUserRefreshToken(string token)
+    public async Task RemoveUserRefreshToken(string token)
     {
         var deleteBy = new { Token = token };
         await DbOperations.Delete<Users.UserRefreshToken>(deleteBy);
     }
 
-    public async Task DeleteUserRefreshTokens(HashSet<Guid> ids)
+    public async Task RemoveUserRefreshTokens(HashSet<Guid> ids)
     {
         var uids = new HashSet<object>();
         foreach (var id in ids) { uids.Add(id); }

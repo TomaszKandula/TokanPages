@@ -35,7 +35,7 @@ public class RevokeUserTokenCommandHandler : RequestHandler<RevokeUserTokenComma
         if (!tokens)
             throw new AuthorizationException(nameof(ErrorCodes.INVALID_USER_TOKEN), ErrorCodes.INVALID_USER_TOKEN);
 
-        await _userRepository.DeleteUserToken(userId, token);
+        await _userRepository.RemoveUserToken(userId, token);
         return Unit.Value;
     }
 }
