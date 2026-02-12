@@ -449,6 +449,22 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Delete<Users.UserNote>(deleteBy);
     }
 
+    public async Task ClearUserMedia(Guid userId)
+    {
+        var updateBy = new
+        {
+            UserImageName = string.Empty,
+            UserVideoName = string.Empty
+        };
+
+        var filterBy = new
+        {
+            UserId = userId
+        };
+
+        await DbOperations.Update<Users.User>(updateBy, filterBy);
+    }
+
     private static string UserDetailsQueryTemplate => @"
         SELECT
             operation.Users.Id AS UserId,

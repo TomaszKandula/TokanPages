@@ -55,4 +55,6 @@ public interface IUserRepository
     Task<List<GetUserNoteDto>> GetUserNotes(Guid userId);
 
     Task RemoveUserNote(Guid userId, Guid userNoteId);
+
+    Task ClearUserMedia(Guid userId);
 }
