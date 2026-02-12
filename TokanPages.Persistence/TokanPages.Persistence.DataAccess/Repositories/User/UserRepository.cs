@@ -119,6 +119,23 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Update<Users.User>(updateBy, filterBy);
     }
 
+    public async Task UpdateUserActivation(Guid userId, Guid activationId, DateTime expires)
+    {
+        var updateBy = new
+        {
+            ActivationId = activationId,
+            ActivationIdEnds = expires,
+            ModifiedAt = _dateTimeService.Now
+        };
+
+        var filterBy = new
+        {
+            Id = userId
+        };
+
+        await DbOperations.Update<Users.User>(updateBy, filterBy);
+    }
+
     public async Task CreateUserInformation(Guid userId, string firstName, string lastName, string avatarName)
     {
         var entity = new Users.UserInfo
