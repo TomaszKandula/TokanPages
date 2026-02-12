@@ -46,6 +46,30 @@ public class UserRepository : RepositoryBase, IUserRepository
         return data.SingleOrDefault();
     }
 
+    public async Task<bool> IsEmailAddressAvailableForChange(Guid userId, string emailAddress)
+    {
+        const string query = @"
+            SELECT 
+                COUNT(*) AS Count 
+            FROM 
+                operation.Users 
+            WHERE 
+                operation.Users.EmailAddress = @EmailAddress 
+            AND 
+                operation.Users.Id <> @UserId
+        ";
+
+        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        var parameters = new
+        {
+            UserId = userId,
+            EmailAddress = emailAddress
+        };
+
+        var count = await db.QuerySingleAsync<int>(query, parameters);
+        return count == 0;
+    }
+
     public async Task CreateUser(CreateUserDto data)
     {
         var entity = new Users.User
@@ -68,6 +92,25 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Insert(entity);
     }
 
+    public async Task UpdateUser(UpdateUserDto data)
+    {
+        var updateBy = new
+        {
+            UserAlias = data.UserAlias,
+            EmailAddress = data.EmailAddress,
+            IsActivated = data.IsActivated,
+            IsVerified = data.IsVerified,
+            ModifiedAt = _dateTimeService.Now
+        };
+
+        var filterBy = new
+        {
+            Id = data.UserId
+        };
+
+        await DbOperations.Update<Users.User>(updateBy, filterBy);
+    }
+
     public async Task CreateUserInformation(Guid userId, string firstName, string lastName, string avatarName)
     {
         var entity = new Users.UserInfo
@@ -82,6 +125,26 @@ public class UserRepository : RepositoryBase, IUserRepository
         };
 
         await DbOperations.Insert(entity);
+    }
+
+    public async Task UpdateUserInformation(UpdateUserInformationDto data)
+    {
+        var updateBy = new
+        {
+            FirstName = data.FirstName,
+            LastName = data.LastName,
+            UserAboutText = data.UserAboutText,
+            UserImageName = data.UserImageName,
+            UserVideoName = data.UserVideoName,
+            ModifiedAt = _dateTimeService.Now
+        };
+        
+        var filterBy = new
+        {
+            UserId = data.UserId
+        };
+
+        await DbOperations.Update<Users.UserInfo>(updateBy, filterBy);
     }
 
     public async Task UpdateSignupDetails(UpdateSignupDetailsDto data)
