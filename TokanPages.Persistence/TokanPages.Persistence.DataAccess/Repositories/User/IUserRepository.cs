@@ -18,6 +18,8 @@ public interface IUserRepository
 
     Task UpdateUser(UpdateUserDto data);
 
+    Task UpdateUserActivation(Guid userId, Guid activationId, DateTime expires);
+    
     Task CreateUserInformation(Guid userId, string firstName, string lastName, string avatarName);
 
     Task UpdateUserInformation(UpdateUserInformationDto data);
