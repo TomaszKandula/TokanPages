@@ -1,9 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
-using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.WebTokenService.Abstractions;
 
 namespace TokanPages.Services.WebTokenService;
@@ -15,12 +14,12 @@ internal sealed class WebTokenValidation : IWebTokenValidation
     
     private readonly IHttpContextAccessor _httpContextAccessor;
 
-    private readonly OperationDbContext _operationDbContext;
+    private readonly IUserRepository _userRepository;
 
-    public WebTokenValidation(IHttpContextAccessor httpContextAccessor, OperationDbContext operationDbContext)
+    public WebTokenValidation(IHttpContextAccessor httpContextAccessor, IUserRepository userRepository)
     {
         _httpContextAccessor = httpContextAccessor;
-        _operationDbContext = operationDbContext;
+        _userRepository = userRepository;
     }
 
     /// <summary>
@@ -50,21 +49,11 @@ internal sealed class WebTokenValidation : IWebTokenValidation
     public async Task VerifyUserToken()
     {
         var token = GetWebTokenFromHeader();
-        var userToken = await _operationDbContext.UserTokens
-            .AsNoTracking()
-            .Where(userTokens => userTokens.Token == token)
-            .FirstOrDefaultAsync();
-
-        if (userToken == null)
+        var userToken = await _userRepository.DoesUserTokenExist(token);
+        if (!userToken)
             throw InvalidUserTokenException;
-
-        if (userToken.Revoked is not null && userToken.RevokedByIp is not null && userToken.ReasonRevoked is not null)
-            throw RevokedUserTokenException;
     }
 
     private static AuthorizationException InvalidUserTokenException 
         => new (nameof(ErrorCodes.INVALID_USER_TOKEN), ErrorCodes.INVALID_USER_TOKEN);
-
-    private static AuthorizationException RevokedUserTokenException 
-        => new (nameof(ErrorCodes.REVOKED_USER_TOKEN), ErrorCodes.REVOKED_USER_TOKEN);
 }
