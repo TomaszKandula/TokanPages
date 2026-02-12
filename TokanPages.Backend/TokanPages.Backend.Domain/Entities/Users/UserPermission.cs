@@ -4,7 +4,7 @@ using TokanPages.Backend.Domain.Contracts;
 
 namespace TokanPages.Backend.Domain.Entities.Users;
 
-[ExcludeFromCodeCoverage]//TODO: remove EFCore nav props
+[ExcludeFromCodeCoverage]
 [DatabaseTable(Schema = "operation", TableName = "UserPermissions")]
 public class UserPermission : Entity<Guid>, IAuditable
 {
@@ -19,7 +19,4 @@ public class UserPermission : Entity<Guid>, IAuditable
     public Guid? ModifiedBy { get; set; }
 
     public DateTime? ModifiedAt { get; set; }
-
-    /* Navigation properties */
-    public Permission Permission { get; set; }
 }
