@@ -146,7 +146,7 @@ public class UserRepository : RepositoryBase, IUserRepository
             UserVideoName = data.UserVideoName,
             ModifiedAt = _dateTimeService.Now
         };
-        
+
         var filterBy = new
         {
             UserId = data.UserId
