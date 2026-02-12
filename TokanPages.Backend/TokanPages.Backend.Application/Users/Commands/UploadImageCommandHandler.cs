@@ -3,9 +3,10 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.User;
+using TokanPages.Persistence.DataAccess.Repositories.User.Models;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
@@ -14,13 +15,17 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
 {
     private readonly IUserService _userService;
 
+    private readonly IUserRepository _userRepository;
+
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
     public UploadImageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) : base(operationDbContext, loggerService)
+        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService, 
+        IUserRepository userRepository) : base(operationDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;
+        _userRepository = userRepository;
     }
 
     public override async Task<UploadImageCommandResult> Handle(UploadImageCommand request, CancellationToken cancellationToken)
@@ -61,7 +66,7 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
         if (request.SkipDb) 
             return new UploadImageCommandResult { BlobName = blobName };
 
-        await DatabaseUpdate(blobName, user.UserId, cancellationToken);
+        await DatabaseUpdate(user.UserId, blobName);
         LoggerService.LogInformation($"Image blob name has been saved in database. Name: {blobName}.");
         
         return new UploadImageCommandResult
@@ -93,7 +98,7 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
         if (request.SkipDb) 
             return new UploadImageCommandResult { BlobName = blobName };
 
-        await DatabaseUpdate(blobName, user.UserId, cancellationToken);
+        await DatabaseUpdate(user.UserId, blobName);
         LoggerService.LogInformation($"Image blob name has been saved in database. Name: {blobName}.");
 
         return new UploadImageCommandResult
@@ -102,15 +107,22 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
         };
     }
 
-    private async Task DatabaseUpdate(string blobName, Guid userId, CancellationToken cancellationToken)
+    private async Task DatabaseUpdate(Guid userId, string blobName)
     {
-        var userInfo = await OperationDbContext.UserInformation
-            .SingleOrDefaultAsync(info => info.UserId == userId, cancellationToken);
-
+        var userInfo = await _userRepository.GetUserDetails(userId);
         if (userInfo is not null)
         {
-            userInfo.UserImageName = blobName;
-            await OperationDbContext.SaveChangesAsync(cancellationToken);
+            var userInformation = new UpdateUserInformationDto
+            {
+                UserId = userId,
+                FirstName = userInfo.FirstName,
+                LastName = userInfo.LastName,
+                UserAboutText = userInfo.UserAboutText,
+                UserImageName = blobName,
+                UserVideoName = userInfo.UserVideoName
+            };
+
+            await _userRepository.UpdateUserInformation(userInformation);
         }
     }
 }
