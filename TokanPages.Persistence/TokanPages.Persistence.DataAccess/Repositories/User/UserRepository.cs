@@ -404,6 +404,13 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Insert(entity);
     }
 
+    public async Task<bool> DoesUserTokenExist(string token)
+    {
+        var filterBy = new { Token = token };
+        var data = await DbOperations.Retrieve<Users.UserToken>(filterBy);
+        return data.Any();
+    }
+
     public async Task<bool> DoesUserTokenExist(Guid userId, string token)
     {
         var filterBy = new { UserId = userId, Token = token };
