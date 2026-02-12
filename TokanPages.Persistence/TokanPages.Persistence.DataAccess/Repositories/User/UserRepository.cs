@@ -549,6 +549,20 @@ public class UserRepository : RepositoryBase, IUserRepository
         return result;
     }
 
+    public async Task CreateUserNote(Guid userId, string note, Guid? noteId = null, DateTime? createdAt = null)
+    {
+        var entity = new Users.UserNote
+        {
+            Id = noteId ?? Guid.NewGuid(),
+            UserId = userId,
+            Note = note,
+            CreatedBy = userId,
+            CreatedAt = createdAt ?? _dateTimeService.Now
+        };
+
+        await DbOperations.Insert(entity);
+    }
+
     public async Task UpdateUserNote(Guid userId, string note)
     {
         var filterBy = new
