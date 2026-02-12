@@ -14,7 +14,7 @@ public class User : Entity<Guid>, IAuditable, ISoftDelete
 
     public required string CryptedPassword { get; set; }
 
-    public required Guid? ResetId { get; set; }
+    public Guid? ResetId { get; set; }
 
     public DateTime? ResetIdEnds { get; set; }
 
