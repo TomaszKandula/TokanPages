@@ -9,13 +9,6 @@ namespace TokanPages.Persistence.Caching.Abstractions;
 public interface IUsersCache
 {
     /// <summary>
-    /// Returns registered users
-    /// </summary>
-    /// <param name="noCache">Enable/disable REDIS cache</param>
-    /// <returns>Object list</returns>
-    Task<List<GetUsersQueryResult>> GetUsers(bool noCache = false);
-
-    /// <summary>
     /// Returns single user data
     /// </summary>
     /// <param name="id">User ID</param>

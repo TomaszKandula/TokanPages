@@ -31,19 +31,17 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
         var currency = request.UserCurrency ?? "pln";
         var language = request.UserLanguage ?? "pol";
 
-        var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
+        var userInfo = await _userRepository.GetUserDetails(request.UserId);
+        if (userInfo is null)
+            throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         var price = await _revenueRepository.GetSubscriptionPrice(request.SelectedTerm, language, currency);
         if (price is null)
             throw new BusinessException(nameof(ErrorCodes.PRICE_NOT_FOUND), ErrorCodes.PRICE_NOT_FOUND);
 
-        var userSubscription = await _revenueRepository.GetUserSubscription(user.Id);
+        var userSubscription = await _revenueRepository.GetUserSubscription(userInfo.UserId);
         var extCustomerId = Guid.NewGuid().ToString("N");
         var extOrderId = Guid.NewGuid().ToString("N");
-
-        var userInfo = await _userRepository.GetUserInformationById(user.Id);
-        if (userInfo is null)
-            throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         AddSubscriptionCommandResult result;
         if (userSubscription is not null)
@@ -56,7 +54,7 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
                 CurrencyIso = price.CurrencyIso,
                 ExtCustomerId = extCustomerId,
                 ExtOrderId = extOrderId,
-                ModifiedBy = user.Id,
+                ModifiedBy = userInfo.UserId,
                 IsActive = userSubscription.IsActive,
                 CompletedAt =  userSubscription.CompletedAt,
                 ExpiresAt =  userSubscription.ExpiresAt
@@ -64,10 +62,10 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
 
             result = new AddSubscriptionCommandResult
             {
-                UserId = user.Id,
+                UserId = userInfo.UserId,
                 SubscriptionId = userSubscription.Id,
                 ExtOrderId = extOrderId,
-                Email = user.EmailAddress,
+                Email = userInfo.EmailAddress,
                 FirstName = userInfo.FirstName,
                 LastName = userInfo.LastName
             };
@@ -80,13 +78,13 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
             var subscription = new CreateUserSubscriptionDto
             {
                 Id = subscriptionId,
-                UserId = user.Id,
+                UserId = userInfo.UserId,
                 Term = request.SelectedTerm,
                 TotalAmount = price.Price,
                 CurrencyIso = price.CurrencyIso,
                 ExtCustomerId = extCustomerId,
                 ExtOrderId = extOrderId,
-                CreatedBy = user.Id
+                CreatedBy = userInfo.UserId
             };
 
             result = new AddSubscriptionCommandResult
@@ -94,7 +92,7 @@ public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionComma
                 UserId = subscription.UserId,
                 SubscriptionId = subscriptionId,
                 ExtOrderId = subscription.ExtOrderId,
-                Email = user.EmailAddress,
+                Email = userInfo.EmailAddress,
                 FirstName = userInfo.FirstName,
                 LastName = userInfo.LastName
             };

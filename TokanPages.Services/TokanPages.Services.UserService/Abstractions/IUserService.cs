@@ -1,6 +1,4 @@
-﻿using System.Security.Claims;
-using TokanPages.Backend.Domain.Entities.Users;
-using TokanPages.Services.UserService.Models;
+﻿using TokanPages.Services.UserService.Models;
 
 namespace TokanPages.Services.UserService.Abstractions;
 
@@ -14,41 +12,13 @@ public interface IUserService
 
     public string GetRequestUserLanguage();
 
-    Task LogHttpRequest(string handlerName);
-
     Guid GetLoggedUserId();
 
-    Task<GetUserOutput?> GetUser(CancellationToken cancellationToken = default);
+    Task<GetActiveUserDto> GetActiveUser(Guid? userId = null);
 
-    Task<User> GetActiveUser(Guid? userId = default, bool isTracking = false, CancellationToken cancellationToken = default);
+    Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = null);
 
-    Task<List<GetUserRolesOutput>?> GetUserRoles(Guid? userId, CancellationToken cancellationToken = default);
+    Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = null);
 
-    Task<List<GetUserPermissionsOutput>?> GetUserPermissions(Guid? userId, CancellationToken cancellationToken = default);
-
-    Task<bool?> HasRoleAssigned(string userRoleName, Guid? userId = default, CancellationToken cancellationToken = default);
-
-    Task<bool> HasRoleAssigned(Guid roleId, Guid? userId = default, CancellationToken cancellationToken = default);
-
-    Task<bool?> HasPermissionAssigned(string userPermissionName, Guid? userId = default, CancellationToken cancellationToken = default);
-
-    Task<bool> HasPermissionAssigned(Guid permissionId, Guid? userId = default, CancellationToken cancellationToken = default);
-
-    Task<ClaimsIdentity> MakeClaimsIdentity(User user, CancellationToken cancellationToken = default);
-        
-    Task<string> GenerateUserToken(User user, DateTime tokenExpires, CancellationToken cancellationToken = default);
-
-    Task DeleteOutdatedRefreshTokens(Guid userId, bool saveImmediately = false, CancellationToken cancellationToken = default);
-
-    Task<UserRefreshToken> ReplaceRefreshToken(ReplaceRefreshTokenInput input, CancellationToken cancellationToken = default);
-
-    Task RevokeDescendantRefreshTokens(RevokeRefreshTokensInput input, CancellationToken cancellationToken = default);
-
-    Task RevokeRefreshToken(RevokeRefreshTokenInput input, CancellationToken cancellationToken = default);
-
-    bool IsRefreshTokenExpired(UserRefreshToken userRefreshToken);
-
-    bool IsRefreshTokenRevoked(UserRefreshToken userRefreshToken);
-
-    bool IsRefreshTokenActive(UserRefreshToken userRefreshToken);
+    Task<string> GenerateUserToken(Guid userId, DateTime tokenExpires);
 }

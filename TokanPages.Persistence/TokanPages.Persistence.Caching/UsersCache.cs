@@ -40,22 +40,6 @@ internal sealed class UsersCache : IUsersCache
     }
 
     /// <inheritdoc />
-    public async Task<List<GetUsersQueryResult>> GetUsers(bool noCache = false)
-    {
-        if (noCache)
-            return await _mediator.Send(new GetUsersQuery());
-
-        var key = $"{_environment.EnvironmentName}:users";
-        var value = await _redisDistributedCache.GetObjectAsync<List<GetUsersQueryResult>>(key);
-        if (value is not null && value.Count > 0) return value;
-
-        value = await _mediator.Send(new GetUsersQuery());
-        await _redisDistributedCache.SetObjectAsync(key, value);
-
-        return value;
-    }
-
-    /// <inheritdoc />
     public async Task<GetUserQueryResult> GetUser(Guid id, bool noCache = false)
     {
         if (noCache)

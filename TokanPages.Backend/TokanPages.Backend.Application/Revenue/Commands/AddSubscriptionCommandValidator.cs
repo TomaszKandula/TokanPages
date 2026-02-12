@@ -7,14 +7,13 @@ public class AddSubscriptionCommandValidator : AbstractValidator<AddSubscription
 {
     public AddSubscriptionCommandValidator()
     {
-        When(command => command.UserId != null, () =>
-        {
-            RuleFor(command => command.UserId)
-                .NotEmpty()
-                .NotEqual(Guid.Empty)
-                .WithErrorCode(nameof(ValidationCodes.INVALID_GUID_VALUE))
-                .WithMessage(ValidationCodes.INVALID_GUID_VALUE);
-        });
+        RuleFor(command => command.UserId)
+            .NotEmpty()
+            .WithErrorCode(nameof(ValidationCodes.REQUIRED))
+            .WithMessage(ValidationCodes.REQUIRED)
+            .NotEqual(Guid.Empty)
+            .WithErrorCode(nameof(ValidationCodes.INVALID_GUID_VALUE))
+            .WithMessage(ValidationCodes.INVALID_GUID_VALUE);
 
         RuleFor(command => command.SelectedTerm)
             .NotEmpty()

@@ -12,7 +12,7 @@ public class AddSubscriptionDto
     /// <summary>
     /// User ID.
     /// </summary>
-    public Guid? UserId { get; set; }
+    public Guid UserId { get; set; }
 
     /// <summary>
     /// Selected payment term.

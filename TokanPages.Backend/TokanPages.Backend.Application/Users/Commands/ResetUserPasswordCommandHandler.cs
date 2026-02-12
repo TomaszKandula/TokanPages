@@ -1,12 +1,13 @@
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
+using TokanPages.Persistence.DataAccess.Repositories.User;
+using TokanPages.Persistence.DataAccess.Repositories.User.Models;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.UserService.Abstractions;
@@ -22,75 +23,56 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
     private readonly AppSettingsModel _appSettings;
 
     private readonly IUserService _userService;
+    
+    private readonly IUserRepository _userRepository;
+    
+    private readonly IMessagingRepository _messagingRepository;
 
     public ResetUserPasswordCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IEmailSenderService emailSenderService, IDateTimeService dateTimeService, IOptions<AppSettingsModel> options, 
-        IUserService userService) : base(operationDbContext, loggerService)
+        IUserService userService, IUserRepository userRepository, IMessagingRepository messagingRepository) : base(operationDbContext, loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;
         _appSettings = options.Value;
         _userService = userService;
+        _userRepository = userRepository;
+        _messagingRepository = messagingRepository;
     }
 
     public override async Task<Unit> Handle(ResetUserPasswordCommand request, CancellationToken cancellationToken)
     {
-        var user = await OperationDbContext.Users
-            .Where(users => users.IsActivated)
-            .Where(users => !users.IsDeleted)
-            .Where(users => users.EmailAddress == request.EmailAddress)
-            .SingleOrDefaultAsync(cancellationToken);
-
+        var user = await _userRepository.GetUserDetails(request.EmailAddress);
         if (user is null)
             throw new BusinessException(nameof(ErrorCodes.USER_DOES_NOT_EXISTS), ErrorCodes.USER_DOES_NOT_EXISTS);
 
         var resetId = Guid.NewGuid();
         var resetMaturity = _appSettings.LimitResetMaturity;
+        var resetPassword = new ResetUserPasswordDto
+        {
+            UserId = user.UserId,
+            ResetMaturity = resetMaturity,
+            ResetId = resetId
+        };
 
-        user.CryptedPassword = string.Empty;
-        user.ResetId = resetId;
-        user.ResetIdEnds = _dateTimeService.Now.AddMinutes(resetMaturity);
-        user.ModifiedAt = _dateTimeService.Now;
-        user.ModifiedBy = user.Id;
+        await _userRepository.ResetUserPassword(resetPassword);
 
         var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
         var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
         var expirationDate = baseDateTime.AddMinutes(resetMaturity);
 
-        var messageId = await PrepareNotificationUncommitted(cancellationToken);
-        await CommitAllChanges(cancellationToken);
-        await SendNotification(messageId, request.LanguageId, request.EmailAddress!, resetId, expirationDate, cancellationToken);
-
-        return Unit.Value;
-    }
-
-    private async Task CommitAllChanges(CancellationToken cancellationToken = default) 
-        => await OperationDbContext.SaveChangesAsync(cancellationToken);
-
-    private async Task<Guid> PrepareNotificationUncommitted(CancellationToken cancellationToken)
-    {
         var messageId = Guid.NewGuid();
-        var serviceBusMessage = new ServiceBusMessage
-        {
-            Id = messageId,
-            IsConsumed = false
-        };
-
-        await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        return messageId;
-    }
-
-    private async Task SendNotification(Guid messageId, string languageId, string emailAddress, Guid resetId, DateTime expirationDate, CancellationToken cancellationToken)
-    {
+        await _messagingRepository.CreateServiceBusMessage(messageId);
         var configuration = new ResetPasswordConfiguration
         {
-            LanguageId = languageId,
+            LanguageId = request.LanguageId,
             MessageId = messageId,
-            EmailAddress = emailAddress,
+            EmailAddress = request.EmailAddress,
             ResetId = resetId,
             ExpirationDate = expirationDate
         };
 
         await _emailSenderService.SendToServiceBus(configuration, cancellationToken);
+        return Unit.Value;
     }
 }

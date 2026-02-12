@@ -1,10 +1,10 @@
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.UserService.Abstractions;
 
 namespace TokanPages.Backend.Application.Users.Commands;
@@ -13,30 +13,25 @@ public class UpdateUserNoteCommandHandler : RequestHandler<UpdateUserNoteCommand
 {
     private readonly IUserService _userService;
 
-    private readonly IDateTimeService _dateTimeService;
+    private readonly IUserRepository _userRepository;
 
     public UpdateUserNoteCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
+        IUserService userService, IUserRepository userRepository) : base(operationDbContext, loggerService)
     {
         _userService = userService;
-        _dateTimeService = dateTimeService;
+        _userRepository = userRepository;
     }
 
     public override async Task<Unit> Handle(UpdateUserNoteCommand request, CancellationToken cancellationToken)
     {
         var userId = _userService.GetLoggedUserId();
-        var note = await OperationDbContext.UserNotes
-            .Where(userNote => userNote.Id == request.Id)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (note is null)
+        var hasNote = await _userRepository.GetUserNote(userId, request.Id) != null;
+        if (!hasNote)
             throw new BusinessException(nameof(ErrorCodes.CANNOT_FIND_USER_NOTE), ErrorCodes.CANNOT_FIND_USER_NOTE);
 
-        note.Note = request.Note.CompressToBase64();
-        note.ModifiedAt = _dateTimeService.Now;
-        note.ModifiedBy = userId;
+        var note = request.Note.CompressToBase64();
+        await _userRepository.UpdateUserNote(userId, note);
 
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
         return Unit.Value;
     }
 }

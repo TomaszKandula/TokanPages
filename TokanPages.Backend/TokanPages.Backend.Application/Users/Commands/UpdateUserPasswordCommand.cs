@@ -4,11 +4,11 @@ namespace TokanPages.Backend.Application.Users.Commands;
 
 public class UpdateUserPasswordCommand : IRequest<Unit>
 {
-    public Guid? Id { get; set; }
+    public Guid? Id { get; init; }
 
-    public Guid? ResetId { get; set; }
+    public Guid? ResetId { get; init; }
 
-    public string? OldPassword { get; set; } 
+    public string? OldPassword { get; init; } 
 
-    public string? NewPassword { get; set; }
+    public required string NewPassword { get; init; }
 }

@@ -3,10 +3,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Application.Content.Assets.Commands.Models;
 using TokanPages.Backend.Core.Extensions;
-using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Content;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -23,9 +24,11 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    private readonly IDateTimeService _dateTimeService;
-
     private readonly IUserService _userService;
+
+    private readonly IMessagingRepository _messagingRepository;
+
+    private readonly IContentRepository _contentRepository;
 
     private static JsonSerializerSettings Settings => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
@@ -33,13 +36,15 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
 
     public AddUserFileCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
         IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService, IAzureBusFactory azureBusFactory, 
-        IJsonSerializer jsonSerializer, IDateTimeService dateTimeService) : base(operationDbContext, loggerService)
+        IJsonSerializer jsonSerializer, IMessagingRepository messagingRepository, IContentRepository contentRepository) 
+        : base(operationDbContext, loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;
         _azureBusFactory = azureBusFactory;
         _jsonSerializer = jsonSerializer;
-        _dateTimeService = dateTimeService;
+        _messagingRepository = messagingRepository;
+        _contentRepository = contentRepository;
     }
 
     public override async Task<AddUserFileCommandResult> Handle(AddUserFileCommand request, CancellationToken cancellationToken)
@@ -118,32 +123,16 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
         var targetThumbnailUri = $"{prefix}/{fileGuid}.jpg";
 
         var ticketId = Guid.NewGuid();
-        var upload = new UploadedVideo
-        {
-            TicketId = ticketId,
-            SourceBlobUri = tempPathFile,
-            TargetVideoUri = targetVideoUri,
-            TargetThumbnailUri = targetThumbnailUri,
-            Status = VideoStatus.New,
-            CreatedAt = _dateTimeService.Now,
-            CreatedBy = userId,
-            IsSourceDeleted = false,
-            InputSizeInBytes = 0,
-            OutputSizeInBytes = 0,
-            Id = Guid.NewGuid(),
-        };
-
         var buffer = binaryData.GetByteArray();
         using var stream = new MemoryStream(buffer);
 
         await azureBlob.UploadFile(stream, tempPathFile, contentType, cancellationToken);
-        await OperationDbContext.UploadedVideos.AddAsync(upload, cancellationToken);
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
+        await _contentRepository.UploadVideo(userId, ticketId, tempPathFile, targetVideoUri, targetThumbnailUri);
+
         LoggerService.LogInformation($"New user video has been uploaded for processing. Ticket ID: {ticketId}.");
 
         var details = new TargetDetails
         {
-            //Target = request.Target,
             ShouldCompactVideo = hasCompactVideo
         };
 
@@ -154,12 +143,6 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
     private async Task RequestVideoProcessing(Guid ticketId, Guid userId, TargetDetails details, CancellationToken cancellationToken = default)
     {
         var messageId = Guid.NewGuid();
-        var serviceBusMessage = new ServiceBusMessage
-        {
-            Id = messageId,
-            IsConsumed = false
-        };
-
         var requestBody = new RequestProcessing
         {
             MessageId = messageId,
@@ -169,8 +152,7 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
             Details = details
         };
 
-        await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
+        await _messagingRepository.CreateServiceBusMessage(messageId);
 
         var serialized = _jsonSerializer.Serialize(requestBody, Formatting.None, Settings);
         var messages = new List<string> { serialized };

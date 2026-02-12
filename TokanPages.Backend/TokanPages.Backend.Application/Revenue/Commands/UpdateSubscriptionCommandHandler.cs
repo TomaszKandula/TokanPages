@@ -24,9 +24,9 @@ public class UpdateSubscriptionCommandHandler : RequestHandler<UpdateSubscriptio
 
     public override async Task<Unit> Handle(UpdateSubscriptionCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
+        var user = await _userService.GetActiveUser(request.UserId);
 
-        var userSubscription = await _revenueRepository.GetUserSubscription(user.Id);
+        var userSubscription = await _revenueRepository.GetUserSubscription(user.UserId);
         if (userSubscription is null)
             throw new BusinessException(nameof(ErrorCodes.SUBSCRIPTION_DOES_NOT_EXISTS), ErrorCodes.SUBSCRIPTION_DOES_NOT_EXISTS);
 
@@ -38,7 +38,7 @@ public class UpdateSubscriptionCommandHandler : RequestHandler<UpdateSubscriptio
             CurrencyIso = request.CurrencyIso ?? userSubscription.CurrencyIso,
             ExtCustomerId =  userSubscription.ExtCustomerId,
             ExtOrderId = request.ExtOrderId ?? userSubscription.ExtOrderId,
-            ModifiedBy = user.Id,
+            ModifiedBy = user.UserId,
             IsActive =  userSubscription.IsActive,
             CompletedAt = userSubscription.CompletedAt,
             ExpiresAt = userSubscription.ExpiresAt

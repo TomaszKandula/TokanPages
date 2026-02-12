@@ -1,19 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using TokanPages.Backend.Application.Users.Models;
+﻿using Microsoft.Extensions.Options;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Domain.Entities;
-using TokanPages.Backend.Domain.Entities.Users;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
+using TokanPages.Persistence.DataAccess.Repositories.User;
+using TokanPages.Persistence.DataAccess.Repositories.User.Models;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.CipheringService.Abstractions;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
 using TokanPages.Services.UserService.Abstractions;
-using TokanPages.Services.UserService.Models;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
@@ -29,11 +27,15 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
+    private readonly IUserRepository _userRepository;
+
+    private readonly IMessagingRepository _messagingRepository;
+
     private readonly IUserService _userService;
 
     public AddUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IDateTimeService dateTimeService,
         ICipheringService cipheringService, IEmailSenderService emailSenderService, IOptions<AppSettingsModel> options, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) : base(operationDbContext, loggerService)
+        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService, IUserRepository userRepository, IMessagingRepository messagingRepository) : base(operationDbContext, loggerService)
     {
         _dateTimeService = dateTimeService;
         _cipheringService = cipheringService;
@@ -41,43 +43,45 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         _appSettings = options.Value;
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;
+        _userRepository = userRepository;
+        _messagingRepository = messagingRepository;
     }
 
     public override async Task<Guid> Handle(AddUserCommand request, CancellationToken cancellationToken)
     {
-        var adminUser = await _userService.GetUser(cancellationToken);
-        var users = await OperationDbContext.Users
-            .Where(users => !users.IsDeleted)
-            .Where(users => users.EmailAddress == request.EmailAddress)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (users != null && (users.ActivationIdEnds == null || users.ActivationIdEnds > _dateTimeService.Now))
+        var userDetails = await _userRepository.GetUserDetails(request.EmailAddress);
+        if (userDetails != null && (userDetails.ActivationIdEnds == null || userDetails.ActivationIdEnds > _dateTimeService.Now))
             throw new BusinessException(nameof(ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS), ErrorCodes.EMAIL_ADDRESS_ALREADY_EXISTS);
 
         var getNewSalt = _cipheringService.GenerateSalt(12);
         var getHashedPassword = _cipheringService.GetHashedPassword(request.Password, getNewSalt);
         LoggerService.LogInformation($"New hashed password has been generated. Requested by: {request.EmailAddress}.");
 
+        var messageId = Guid.NewGuid();
         var expiresIn = _appSettings.LimitActivationMaturity;
         var activationId = Guid.NewGuid();
         var activationIdEnds = _dateTimeService.Now.AddMinutes(expiresIn);
 
-        if (users != null && (users.ActivationIdEnds != null || users.ActivationIdEnds < _dateTimeService.Now))
+        if (userDetails != null && (userDetails.ActivationIdEnds != null || userDetails.ActivationIdEnds < _dateTimeService.Now))
         {
-            users.CryptedPassword = getHashedPassword;
-            users.ActivationId = activationId;
-            users.ActivationIdEnds = activationIdEnds;
+            var update = new UpdateSignupDetailsDto
+            {
+                UserId = userDetails.UserId,
+                CryptedPassword = getHashedPassword,
+                ActivationId = activationId,
+                ActivationIdEnds = activationIdEnds
+            };
 
-            var id = await PrepareNotificationUncommitted(cancellationToken);
-            await CommitAllChanges(cancellationToken);
+            await _userRepository.UpdateSignupDetails(update);
+            await _messagingRepository.CreateServiceBusMessage(messageId);
+            await SendNotification(messageId, request.LanguageId, request.EmailAddress, activationId, activationIdEnds, cancellationToken);
 
-            await SendNotification(id, request.LanguageId, request.EmailAddress, activationId, activationIdEnds, cancellationToken);
-            LoggerService.LogInformation($"Re-registering new user after ActivationId expired, user id: {users.Id}.");
-            return users.Id;
+            LoggerService.LogInformation($"Re-registering new user after ActivationId expired, user id: {userDetails.UserId}.");
+            return userDetails.UserId;
         }
 
         var newUserId = Guid.NewGuid();
-        var defaultAvatarName = await UploadDefaultAvatar(newUserId, cancellationToken);
+        var defaultAvatarName = await UploadDefaultAvatar(newUserId, cancellationToken) ?? string.Empty;
 
         var userAlias = newUserId.ToString()[..8];
         if (request is not { FirstName: "", LastName: "" })
@@ -86,25 +90,58 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
         var timezoneOffset = _userService.GetRequestUserTimezoneOffset();
         var baseDateTime = _dateTimeService.Now.AddMinutes(-timezoneOffset);
         var expirationDate = baseDateTime.AddMinutes(expiresIn);
-        var input = new UserDataInput { UserId = newUserId, Command = request };
 
-        var messageId = await PrepareNotificationUncommitted(cancellationToken);
-        await CreateUserUncommitted(input, adminUser, userAlias, getHashedPassword, activationId, activationIdEnds, cancellationToken);
-        await CreateUserInfoUncommitted(input, defaultAvatarName, adminUser, cancellationToken);
-        await SetupDefaultPermissionsUncommitted(newUserId, adminUser?.UserId, cancellationToken);
-        await CommitAllChanges(cancellationToken);
+        var userData = new CreateUserDto
+        {
+            UserId = newUserId,
+            UserAlias = userAlias,
+            EmailAddress = request.EmailAddress,
+            CryptedPassword = getHashedPassword,
+            ActivationId = activationId,
+            ActivationIdEnds = activationIdEnds
+        };
 
+        await _userRepository.CreateUser(userData);
+        await _userRepository.CreateUserInformation(newUserId, request.FirstName, request.LastName, defaultAvatarName);
+        await CreateUserRoleAndPermissions(newUserId);
+
+        await _messagingRepository.CreateServiceBusMessage(messageId);
         await SendNotification(messageId, request.LanguageId, request.EmailAddress, activationId, expirationDate, cancellationToken);
 
-        var info = adminUser is not null ? $"Admin (ID: {adminUser.UserId})" : $"System (ID: {Guid.Empty})";
         LoggerService.LogInformation($"Registering new user account, user id: {newUserId}.");
-        LoggerService.LogInformation($"Registered by the {info}");
-
         return newUserId;
     }
 
-    private async Task CommitAllChanges(CancellationToken cancellationToken = default) 
-        => await OperationDbContext.SaveChangesAsync(cancellationToken);
+    private async Task CreateUserRoleAndPermissions(Guid userId)
+    {
+        const string userRoleName = nameof(Domain.Enums.Role.EverydayUser);
+        var defaultPermissions = await _userRepository.GetDefaultPermissions(userRoleName);
+
+        var userRoleId = defaultPermissions
+            .Select(permissions => permissions.RoleId)
+            .First(); 
+
+        var userPermissionIds = defaultPermissions
+            .Select(permissions => permissions.PermissionId)
+            .ToList();
+
+        var newRole = new CreateUserRoleDto
+        {
+            UserId = userId,
+            RoleId = userRoleId,
+        };
+
+        var newPermissions = userPermissionIds
+            .Select(item => new CreateUserPermissionDto
+            {
+                UserId = userId,
+                PermissionId = item
+            })
+            .ToList();
+
+        await _userRepository.CreateUserRole(newRole);
+        await _userRepository.CreateUserPermissions(newPermissions);
+    }
 
     private async Task<string?> UploadDefaultAvatar(Guid newUserId, CancellationToken cancellationToken = default)
     {
@@ -120,128 +157,6 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
             await azureBlob.UploadFile(defaultAvatar.Content!, destinationAvatarPath, cancellationToken: cancellationToken);
 
         return defaultAvatar != null ? defaultAvatarName : null;
-    }
-
-    private async Task CreateUserUncommitted(
-        UserDataInput input, 
-        GetUserOutput? admin,
-        string alias,
-        string password,
-        Guid? activationId,
-        DateTime? activationIdEnds,
-        CancellationToken cancellationToken = default)
-    {
-        var newUser = new User
-        {
-            Id = input.UserId,
-            EmailAddress = input.Command.EmailAddress,
-            UserAlias = alias,
-            CryptedPassword = password,
-            ActivationId = activationId,
-            ActivationIdEnds = activationIdEnds,
-            CreatedAt = _dateTimeService.Now,
-            CreatedBy = admin?.UserId ?? Guid.Empty,
-            ModifiedAt = null,
-            ModifiedBy = null,
-            ResetId = null,
-            IsActivated = false,
-            IsVerified = false,
-            IsDeleted = false,
-            HasBusinessLock = false
-        };
-
-        await OperationDbContext.Users.AddAsync(newUser, cancellationToken);
-    }
-
-    private async Task CreateUserInfoUncommitted(
-        UserDataInput input, 
-        string? avatar,
-        GetUserOutput? admin,
-        CancellationToken cancellationToken = default)
-    {
-        var newUserInfo = new UserInfo
-        {
-            UserId = input.UserId,
-            FirstName = input.Command.FirstName,
-            LastName = input.Command.LastName,
-            UserImageName = avatar ?? string.Empty,
-            CreatedAt = _dateTimeService.Now,
-            CreatedBy = admin?.UserId ?? Guid.Empty,
-            ModifiedAt = null,
-            ModifiedBy = null,
-            UserAboutText = string.Empty,
-            UserVideoName = string.Empty,
-            Id = Guid.NewGuid(),
-        };
-
-        await OperationDbContext.UserInformation.AddAsync(newUserInfo, cancellationToken);
-    }
-
-    private async Task SetupDefaultPermissionsUncommitted(Guid userId, Guid? adminUserId, CancellationToken cancellationToken)
-    {
-        var userRoleName = nameof(Domain.Enums.Role.EverydayUser);
-        var defaultPermissions = await OperationDbContext.DefaultPermissions
-            .AsNoTracking()
-            .Include(permissions => permissions.Role)
-            .Include(permissions => permissions.Permission)
-            .Where(permissions => permissions.Role.Name == userRoleName)
-            .Select(permissions => new DefaultPermission
-            {
-                Id = permissions.Id,
-                RoleId = permissions.RoleId,
-                Role = permissions.Role,
-                PermissionId = permissions.PermissionId,
-                Permission = permissions.Permission,
-                CreatedBy = userId,
-                CreatedAt = default
-            })
-            .ToListAsync(cancellationToken);
-
-        var everydayUserRoleId = defaultPermissions
-            .Select(permissions => permissions.RoleId)
-            .First(); 
-            
-        var userPermissions = defaultPermissions
-            .Select(permissions => permissions.PermissionId)
-            .ToList();
-
-        var newRole = new UserRole
-        {
-            UserId = userId,
-            RoleId = everydayUserRoleId,
-            CreatedAt = _dateTimeService.Now,
-            CreatedBy = adminUserId ?? Guid.Empty,
-            ModifiedAt = null,
-            ModifiedBy = null,
-            Id = Guid.NewGuid(),
-        };
-
-        var newPermissions = userPermissions.Select(item => new UserPermission
-        {
-            UserId = userId,
-            PermissionId = item,
-            CreatedAt = _dateTimeService.Now,
-            CreatedBy = adminUserId ?? Guid.Empty,
-            ModifiedAt = null,
-            ModifiedBy = null,
-            Id = Guid.NewGuid(),
-        }).ToList();
-
-        await OperationDbContext.UserRoles.AddAsync(newRole, cancellationToken);
-        await OperationDbContext.UserPermissions.AddRangeAsync(newPermissions, cancellationToken);
-    }
-
-    private async Task<Guid> PrepareNotificationUncommitted(CancellationToken cancellationToken)
-    {
-        var messageId = Guid.NewGuid();
-        var serviceBusMessage = new ServiceBusMessage
-        {
-            Id = messageId,
-            IsConsumed = false
-        };
-
-        await OperationDbContext.ServiceBusMessages.AddAsync(serviceBusMessage, cancellationToken);
-        return messageId;
     }
 
     private async Task SendNotification(Guid messageId, string languageId, string emailAddress, Guid activationId, DateTime activationIdEnds, CancellationToken cancellationToken)

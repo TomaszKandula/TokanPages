@@ -38,7 +38,7 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
 
     public override async Task<CreatePaymentCommandResult> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userService.GetActiveUser(request.UserId, cancellationToken: cancellationToken);
+        var user = await _userService.GetActiveUser(request.UserId);
         var ipAddress = _userService.GetRequestIpAddress();
         var merchantPosId = _appSettings.PmtMerchantPosId;
         var order = request.Request;
@@ -92,7 +92,7 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
         };
 
         var postOrderResponse = await _payUService.PostOrder(input, cancellationToken);
-        var userPayments = await _revenueRepository.GetUserPayment(user.Id);
+        var userPayments = await _revenueRepository.GetUserPayment(user.UserId);
         if (userPayments is not null)
         {
             var userPayment = new UpdateUserPaymentDto
@@ -101,7 +101,7 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
                 PmtStatus = postOrderResponse.Status?.StatusCode ?? string.Empty,
                 PmtType = postOrderResponse.PayMethods?.PayMethod?.Type ?? string.Empty,
                 PmtToken = postOrderResponse.PayMethods?.PayMethod?.Value ?? string.Empty,
-                ModifiedBy = user.Id,
+                ModifiedBy = user.UserId,
                 CreatedAt = userPayments.CreatedAt,
                 CreatedBy = userPayments.CreatedBy,
                 ExtOrderId = order.ExtOrderId ?? string.Empty
@@ -113,12 +113,12 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
         {
             var userPayment = new CreateUserPaymentDto
             {
-                UserId = user.Id,
+                UserId = user.UserId,
                 PmtOrderId = postOrderResponse.OrderId ?? string.Empty,
                 PmtStatus = postOrderResponse.Status?.StatusCode ?? string.Empty,
                 PmtType = postOrderResponse.PayMethods?.PayMethod?.Type ?? string.Empty,
                 PmtToken = postOrderResponse.PayMethods?.PayMethod?.Value ?? string.Empty,
-                CreatedBy = user.Id,
+                CreatedBy = user.UserId,
                 ExtOrderId = order.ExtOrderId ?? string.Empty
             };
 

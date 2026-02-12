@@ -1,23 +1,78 @@
-using Users = TokanPages.Backend.Domain.Entities.Users;
+using TokanPages.Persistence.DataAccess.Repositories.User.Models;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.User;
 
 public interface IUserRepository
 {
-    /// <summary>
-    /// Returns user entity by the given ID.
-    /// </summary>
-    /// <remarks>
-    /// ID is a primary key of an entity.
-    /// </remarks>
-    /// <param name="userId">A mandatory user ID.</param>
-    /// <returns>If found, returns user data, otherwise null.</returns>
-    Task<Users.User?> GetUserById(Guid userId);
+    Task<GetUserDetailsDto?> GetUserDetails(Guid userId);
 
-    /// <summary>
-    /// Returns user information entity by given ID.
-    /// </summary>
-    /// <param name="userId">A mandatory user ID.</param>
-    /// <returns>If found, returns user information, otherwise null.</returns>
-    Task<Users.UserInfo?> GetUserInformationById(Guid userId);
+    Task<GetUserDetailsDto?> GetUserDetails(string email);
+
+    Task<GetUserDetailsDto?> GetUserDetailsByActivationId(Guid activationId);
+
+    Task<GetUserDetailsDto?> GetUserDetailsByResetId(Guid resetId);
+
+    Task<bool> IsEmailAddressAvailableForChange(Guid userId, string emailAddress);
+    
+    Task CreateUser(CreateUserDto data);
+
+    Task UpdateUser(UpdateUserDto data);
+
+    Task UpdateUserActivation(Guid userId, Guid activationId, DateTime expires);
+    
+    Task CreateUserInformation(Guid userId, string firstName, string lastName, string avatarName);
+
+    Task UpdateUserInformation(UpdateUserInformationDto data);
+
+    Task UpdateSignupDetails(UpdateSignupDetailsDto data);
+
+    Task UpdateUserPassword(Guid userId, string password);
+
+    Task ResetUserPassword(ResetUserPasswordDto data);
+    
+    Task ActivateUser(Guid userId);
+
+    Task UserSoftDelete(Guid userId);
+
+    Task UserHardDelete(Guid userId);
+
+    Task<List<GetDefaultPermissionDto>> GetDefaultPermissions(string userRoleName);
+
+    Task<List<GetUserRoleDto>> GetUserRoles(Guid userId);
+
+    Task CreateUserRole(CreateUserRoleDto data);
+
+    Task<List<GetUserPermissionDto>> GetUserPermissions(Guid userId);
+
+    Task CreateUserPermissions(List<CreateUserPermissionDto> data);
+
+    Task CreateUserToken(Guid userId, string token, DateTime expires, DateTime created, string createdByIp);
+
+    Task<bool> DoesUserTokenExist(string token);
+
+    Task<bool> DoesUserTokenExist(Guid userId, string token);
+    
+    Task RemoveUserToken(Guid userId, string token);
+
+    Task<GetUserRefreshTokenDto?> GetUserRefreshToken(string token);
+
+    Task<List<GetUserRefreshTokenDto>> GetUserRefreshTokens(Guid userId);
+
+    Task CreateUserRefreshToken(Guid userId, string token, DateTime expires, DateTime created, string? createdByIp);
+
+    Task RemoveUserRefreshToken(string token);
+
+    Task RemoveUserRefreshTokens(HashSet<Guid> ids);
+
+    Task<GetUserNoteDto?> GetUserNote(Guid userId, Guid userNoteId);
+
+    Task<List<GetUserNoteDto>> GetUserNotes(Guid userId);
+
+    Task CreateUserNote(Guid userId, string note, Guid? noteId = null, DateTime? createdAt = null);
+
+    Task UpdateUserNote(Guid userId, string note);
+
+    Task RemoveUserNote(Guid userId, Guid userNoteId);
+
+    Task ClearUserMedia(Guid userId);
 }

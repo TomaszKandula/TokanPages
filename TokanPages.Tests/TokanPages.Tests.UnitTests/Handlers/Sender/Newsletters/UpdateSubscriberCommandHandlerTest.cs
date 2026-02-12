@@ -22,14 +22,8 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();//TODO: to be removed
 
         // Arrange
-        var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
-
-        var user = new GetUserOutput { UserId = Guid.NewGuid() };
-        mockedUserService
-            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
-            .ReturnsAsync(user);
 
         var newsletter = new Newsletter
         {
@@ -63,7 +57,6 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var handler = new UpdateNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
-            mockedUserService.Object,
             mockSenderRepository.Object);
 
         // Act
@@ -80,14 +73,8 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();//TODO: to be removed
 
         // Arrange
-        var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
-
-        var user = new GetUserOutput { UserId = Guid.NewGuid() };
-        mockedUserService
-            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
-            .ReturnsAsync(user);
 
         mockSenderRepository
             .Setup(repository => repository.GetNewsletter(It.IsAny<Guid>()))
@@ -104,7 +91,6 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var handler = new UpdateNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
-            mockedUserService.Object,
             mockSenderRepository.Object);
 
         // Act
@@ -119,14 +105,8 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var databaseContext = GetTestDatabaseContext();//TODO: to be removed
 
         // Arrange
-        var mockedUserService = new Mock<IUserService>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
-
-        var user = new GetUserOutput { UserId = Guid.NewGuid() };
-        mockedUserService
-            .Setup(service => service.GetUser(It.IsAny<CancellationToken>()))
-            .ReturnsAsync(user);
 
         var newsletter = new Newsletter
         {
@@ -137,6 +117,7 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
             CreatedBy = Guid.Empty,
             CreatedAt = default
         };
+
         mockSenderRepository
             .Setup(repository => repository.GetNewsletter(It.IsAny<Guid>()))
             .ReturnsAsync(newsletter);
@@ -156,7 +137,6 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         var handler = new UpdateNewsletterCommandHandler(
             databaseContext, 
             mockedLogger.Object, 
-            mockedUserService.Object,
             mockSenderRepository.Object);
 
         // Act

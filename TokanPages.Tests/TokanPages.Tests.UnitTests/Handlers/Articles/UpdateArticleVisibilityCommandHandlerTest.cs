@@ -40,8 +40,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         mockedUserService
             .Setup(provider => provider.HasPermissionAssigned(
                 It.IsAny<string>(), 
-                It.IsAny<Guid?>(),
-                It.IsAny<CancellationToken>()))
+                It.IsAny<Guid?>()))
             .ReturnsAsync(true);
 
         var command = new UpdateArticleVisibilityCommand
@@ -90,8 +89,7 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         mockedUserService
             .Setup(provider => provider.HasPermissionAssigned(
                 It.IsAny<string>(), 
-                It.IsAny<Guid?>(),
-                It.IsAny<CancellationToken>()))
+                It.IsAny<Guid?>()))
             .ReturnsAsync(false);
 
         var command = new UpdateArticleVisibilityCommand

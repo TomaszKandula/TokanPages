@@ -1,4 +1,4 @@
-using TokanPages.Services.UserService.Models;
+using TokanPages.Persistence.DataAccess.Repositories.User.Models;
 
 namespace TokanPages.Backend.Application.Users.Commands;
 
@@ -24,7 +24,7 @@ public class AuthenticateUserCommandResult
 
     public string UserToken { get; set; } = "";
 
-    public List<GetUserRolesOutput> Roles { get; set; } = new();
+    public List<GetUserRoleDto> Roles { get; set; } = new();
 
-    public List<GetUserPermissionsOutput> Permissions { get; set; } = new();
+    public List<GetUserPermissionDto> Permissions { get; set; } = new();
 }
