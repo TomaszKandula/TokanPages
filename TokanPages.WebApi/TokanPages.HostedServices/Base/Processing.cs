@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Azure.Messaging.ServiceBus;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.HostedServices.Base.Abstractions;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Services.AzureBusService.Abstractions;
 
 namespace TokanPages.HostedServices.Base;
@@ -47,6 +48,11 @@ public abstract class Processing : IProcessing
     /// Azure Bus Factory.
     /// </summary>
     protected readonly IAzureBusFactory AzureBusFactory;
+    
+    /// <summary>
+    /// Messaging repository.
+    /// </summary>
+    protected readonly IMessagingRepository MessagingRepository;
 
     private ServiceBusProcessor? _processor;
 
@@ -55,10 +61,23 @@ public abstract class Processing : IProcessing
     /// </summary>
     /// <param name="loggerService">Logger instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
-    protected Processing(ILoggerService loggerService, IAzureBusFactory azureBusFactory)
+    /// <param name="messagingRepository">Messaging repository instance.</param>
+    protected Processing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, IMessagingRepository messagingRepository)
     {
         LoggerService = loggerService;
         AzureBusFactory = azureBusFactory;
+        MessagingRepository = messagingRepository;
+    }
+
+    /// <inheritdoc />
+    public async Task<bool> CanContinue(Guid messageId)
+    {
+        var busMessages = await MessagingRepository.GetServiceBusMessage(messageId);
+        if (busMessages is null)
+            return false;
+
+        await MessagingRepository.DeleteServiceBusMessage(messageId);
+        return true;
     }
 
     /// <inheritdoc />
