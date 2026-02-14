@@ -191,17 +191,17 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public async Task UpdateUserPassword(Guid userId, string password)
     {
-        var filterBy = new
-        {
-            Id = userId
-        };
-
         var updateBy = new UpdateUserPasswordDto
         {
             CryptedPassword = password,
             ResetId = null,
             ResetIdEnds = null,
             ModifiedAt = _dateTimeService.Now
+        };
+
+        var filterBy = new
+        {
+            Id = userId
         };
 
         await DbOperations.Update<Users.User>(updateBy, filterBy);
@@ -574,15 +574,15 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public async Task UpdateUserNote(Guid userId, string note)
     {
-        var filterBy = new
-        {
-            UserId = userId
-        };
-        
         var updateBy = new
         {
             Note = note,
             ModifiedAt = _dateTimeService.Now
+        };
+
+        var filterBy = new
+        {
+            UserId = userId
         };
 
         await DbOperations.Update<Users.UserNote>(updateBy, filterBy);
