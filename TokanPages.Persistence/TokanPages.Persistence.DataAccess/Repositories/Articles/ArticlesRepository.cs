@@ -250,7 +250,7 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         return new HashSet<Guid>(result);
     }
 
-    public async Task<List<ArticleDataDto>> RetrieveArticleInfo(string userLanguage, HashSet<Guid> articleIds)
+    public async Task<List<ArticleDataDto>> GetArticleInfo(string userLanguage, HashSet<Guid> articleIds)
     {
         const string query = @"
             SELECT

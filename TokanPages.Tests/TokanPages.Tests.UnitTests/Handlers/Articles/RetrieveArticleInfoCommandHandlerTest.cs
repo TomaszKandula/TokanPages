@@ -50,7 +50,7 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
         };
 
         mockedArticleRepository
-            .Setup(repository => repository.RetrieveArticleInfo(
+            .Setup(repository => repository.GetArticleInfo(
                 It.IsAny<string>(), 
                 It.IsAny<HashSet<Guid>>()))
             .ReturnsAsync(articles);
