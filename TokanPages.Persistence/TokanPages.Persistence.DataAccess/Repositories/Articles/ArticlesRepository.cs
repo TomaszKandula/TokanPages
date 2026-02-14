@@ -63,8 +63,13 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
                 operation.Articles.Id = @RequestId
         ";
 
+        var queryArticleDataParams = new
+        {
+            RequestId = requestId,
+            LanguageId = userLanguage
+        };
+
         await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
-        var queryArticleDataParams = new { RequestId = requestId, LanguageId = userLanguage };
         var articleData = await connection.QuerySingleOrDefaultAsync<ArticleBaseDto>(queryArticleData, queryArticleDataParams);
         if (articleData is null)
             return null;
@@ -85,9 +90,21 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         const string filterAnonymouse = "\nAND operation.ArticleLikes.IpAddress = @IpAddress AND operation.ArticleLikes.UserId IS NULL";
         const string filterLoggedUser = "\nAND operation.ArticleLikes.UserId = @UserId";
 
-        var queryFilteredLikes = isAnonymousUser ? $"{queryArticleLikes}{filterAnonymouse}" : $"{queryArticleLikes}{filterLoggedUser}";
-        var queryFilteredParams = new { RequestId = requestId, IpAddress = ipAddress, UserId = userId };
-        var queryArticleParams = new { RequestId = requestId };
+        var queryFilteredLikes = isAnonymousUser 
+            ? $"{queryArticleLikes}{filterAnonymouse}"
+            : $"{queryArticleLikes}{filterLoggedUser}";
+
+        var queryFilteredParams = new
+        {
+            RequestId = requestId,
+            IpAddress = ipAddress,
+            UserId = userId
+        };
+
+        var queryArticleParams = new
+        {
+            RequestId = requestId
+        };
 
         var userLikes = await connection.QuerySingleOrDefaultAsync<int>(queryFilteredLikes, queryFilteredParams);
         var totalLikes = await connection.QuerySingleOrDefaultAsync<int>(queryArticleLikes, queryArticleParams);
@@ -221,8 +238,12 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
             WHERE
                 operation.Languages.LangId = @UserLanguage";
 
+        var parameters = new
+        {
+            UserLanguage = userLanguage
+        };
+
         await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { UserLanguage = userLanguage };
         var data = await connection.QueryAsync<ArticleCategoryDto>(query, parameters);
         var result = data.ToList();
 
