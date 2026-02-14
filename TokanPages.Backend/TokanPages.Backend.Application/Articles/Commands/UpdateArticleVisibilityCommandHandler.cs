@@ -2,7 +2,6 @@ using MediatR;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -16,8 +15,8 @@ public class UpdateArticleVisibilityCommandHandler : RequestHandler<UpdateArticl
 
     private const string Permission = nameof(Domain.Enums.Permission.CanPublishArticles);
 
-    public UpdateArticleVisibilityCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IArticlesRepository articlesRepository) : base(operationDbContext, loggerService)
+    public UpdateArticleVisibilityCommandHandler(ILoggerService loggerService, 
+        IUserService userService, IArticlesRepository articlesRepository) : base(loggerService)
     {
         _userService = userService;
         _articlesRepository = articlesRepository;

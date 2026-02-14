@@ -1,5 +1,4 @@
 ﻿using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 using TokanPages.Services.AzureStorageService.Abstractions;
@@ -15,8 +14,8 @@ public class AddArticleCommandHandler : RequestHandler<AddArticleCommand, Guid>
 
     private readonly IArticlesRepository _articlesRepository;
 
-    public AddArticleCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IArticlesRepository articlesRepository) : base(operationDbContext, loggerService)
+    public AddArticleCommandHandler(ILoggerService loggerService, IUserService userService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory, IArticlesRepository articlesRepository) : base(loggerService)
     {
         _userService = userService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
