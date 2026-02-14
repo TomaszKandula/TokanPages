@@ -178,18 +178,18 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         return data ?? throw InvalidTemplateId;
     }
 
-    public async Task<Guid> CreateInvoiceTemplate(InvoiceTemplateDto template)
+    public async Task<Guid> CreateInvoiceTemplate(InvoiceTemplateDto data)
     {
-        if (string.IsNullOrEmpty(template.InvoiceTemplateData.ContentType))
+        if (string.IsNullOrEmpty(data.InvoiceTemplateData.ContentType))
             throw InvalidContentType;
 
         var entity = new InvoiceTemplate
         {
             Id = Guid.NewGuid(),
-            Name = template.TemplateName,
-            Data = template.InvoiceTemplateData.ContentData,
-            ContentType = template.InvoiceTemplateData.ContentType,
-            ShortDescription = template.InvoiceTemplateDescription,
+            Name = data.TemplateName,
+            Data = data.InvoiceTemplateData.ContentData,
+            ContentType = data.InvoiceTemplateData.ContentType,
+            ShortDescription = data.InvoiceTemplateDescription,
             GeneratedAt = _dateTimeService.Now,
             IsDeleted = false
         };

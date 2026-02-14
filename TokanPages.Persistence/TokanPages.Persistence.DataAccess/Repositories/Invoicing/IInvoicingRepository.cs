@@ -23,7 +23,7 @@ public interface IInvoicingRepository
 
     Task<InvoiceTemplate> GetInvoiceTemplate(Guid templateId, bool isDeleted = false);
 
-    Task<Guid> CreateInvoiceTemplate(InvoiceTemplateDto template);
+    Task<Guid> CreateInvoiceTemplate(InvoiceTemplateDto data);
 
     Task UpdateInvoiceTemplate(Guid templateId, InvoiceTemplateDataDto data);
 
