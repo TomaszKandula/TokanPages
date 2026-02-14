@@ -12,9 +12,15 @@ public class MessagingRepository : RepositoryBase, IMessagingRepository
 
     public async Task<ServiceBusMessage?> GetServiceBusMessage(Guid messageId)
     {
-        var filterBy = new {  MessageId = messageId };
-        var data = (await DbOperations.Retrieve<ServiceBusMessage>(filterBy)).SingleOrDefault();
-        return data ?? null;
+        var filterBy = new
+        {
+            MessageId = messageId
+        };
+
+        var data = await DbOperations.Retrieve<ServiceBusMessage>(filterBy);
+        var result = data.SingleOrDefault();
+
+        return result ?? null;
     }
 
     public async Task CreateServiceBusMessage(Guid messageId)
@@ -30,15 +36,26 @@ public class MessagingRepository : RepositoryBase, IMessagingRepository
 
     public async Task UpdateServiceBusMessage(Guid messageId, bool isConsumed)
     {
-        var updateBy = new { IsConsumed = isConsumed };
-        var filterBy = new { MessageId = messageId };
+        var updateBy = new
+        {
+            IsConsumed = isConsumed
+        };
+
+        var filterBy = new
+        {
+            MessageId = messageId
+        };
 
         await DbOperations.Update<ServiceBusMessage>(updateBy, filterBy);
     }
 
     public async Task RemoveServiceBusMessage(Guid messageId)
     {
-        var deleteBy = new { Id = messageId };
+        var deleteBy = new
+        {
+            Id = messageId
+        };
+
         await DbOperations.Delete<ServiceBusMessage>(deleteBy);
     }
 }
