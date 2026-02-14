@@ -16,15 +16,17 @@ public class ChatRepository : RepositoryBase, IChatRepository
     public async Task<ChatUserDataDto?> GetChatUserData(Guid userId)
     {
         var filterBy = new { UserId = userId };
-        var data = (await DbOperations.Retrieve<UserInfo>(filterBy)).SingleOrDefault();
-        if (data == null)
+        var data = await DbOperations.Retrieve<UserInfo>(filterBy);
+
+        var result = data.SingleOrDefault();
+        if (result is null)
             return null;
 
         return new ChatUserDataDto
         {
-            FirstName = data.FirstName,
-            LastName = data.LastName,
-            UserImageName = data.UserImageName ?? string.Empty,
+            FirstName = result.FirstName,
+            LastName = result.LastName,
+            UserImageName = result.UserImageName ?? string.Empty,
         };
     }
 
@@ -54,8 +56,19 @@ public class ChatRepository : RepositoryBase, IChatRepository
 
     public async Task UpdateChatUserMessageData(string chatKey, string chatData, bool isArchived, DateTime modifiedAt, Guid modifiedBy)
     {
-        var updateBy = new { ChatData = chatData, ModifiedAt = modifiedAt, ModifiedBy = modifiedBy };
-        var filterBy = new { ChatKey = chatKey, IsArchived = isArchived };
+        var updateBy = new
+        {
+            ChatData = chatData,
+            ModifiedAt = modifiedAt,
+            ModifiedBy = modifiedBy
+        };
+
+        var filterBy = new
+        {
+            ChatKey = chatKey,
+            IsArchived = isArchived
+        };
+
         await DbOperations.Update<UserMessage>(updateBy, filterBy);
     }
 
@@ -70,8 +83,8 @@ public class ChatRepository : RepositoryBase, IChatRepository
                 operation.ChatKey IN @ChatKey
         ";
 
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        var result = await db.QueryAsync<string>(query, new { ChatKey = chatKey });
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        var result = await connection.QueryAsync<string>(query, new { ChatKey = chatKey });
         return result.ToArray();
     }
 
