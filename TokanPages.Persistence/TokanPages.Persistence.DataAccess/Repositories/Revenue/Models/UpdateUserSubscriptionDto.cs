@@ -5,13 +5,13 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 [ExcludeFromCodeCoverage]
 public class UpdateUserSubscriptionDto : UserSubscriptionBaseDto
 {
-    public bool AutoRenewal { get; set; }
+    public required bool AutoRenewal { get; init; }
 
-    public Guid ModifiedBy { get; set; }
+    public required Guid ModifiedBy { get; init; }
 
-    public bool IsActive { get; set; }
+    public required bool IsActive { get; init; }
 
-    public DateTime? CompletedAt { get; set; }
+    public DateTime? CompletedAt { get; init; }
 
-    public DateTime? ExpiresAt { get; set; }
+    public DateTime? ExpiresAt { get; init; }
 }

@@ -6,13 +6,13 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 [ExcludeFromCodeCoverage]
 public class UserSubscriptionBaseDto
 {
-    public TermType Term { get; set; }
+    public required TermType Term { get; init; }
 
-    public decimal TotalAmount { get; set; }
+    public required decimal TotalAmount { get; init; }
 
-    public string CurrencyIso { get; set; } = string.Empty;
+    public required string CurrencyIso { get; init; }
 
-    public string ExtCustomerId { get; set; } = string.Empty;
+    public required string ExtCustomerId { get; init; }
 
-    public string ExtOrderId { get; set; } = string.Empty;
+    public required string ExtOrderId { get; init; }
 }

@@ -6,13 +6,13 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 [ExcludeFromCodeCoverage]
 public class CreateUserPaymentHistoryDto
 {
-    public Guid UserId { get; set; }
+    public required Guid UserId { get; init; }
 
-    public decimal Amount { get; set; }
+    public required decimal Amount { get; init; }
 
-    public string CurrencyIso { get; set; } = string.Empty;
+    public required string CurrencyIso { get; init; }
 
-    public TermType Term { get; set; }
+    public required TermType Term { get; init; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; init; }
 }
