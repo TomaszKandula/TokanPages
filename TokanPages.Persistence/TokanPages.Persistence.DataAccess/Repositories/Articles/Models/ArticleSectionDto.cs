@@ -11,12 +11,12 @@ public class ArticleSectionDto
     /// <summary>
     /// Id.
     /// </summary>
-    public Guid Id { get; init; }
+    public required Guid Id { get; init; }
 
     /// <summary>
     /// Type.
     /// </summary>
-    public string Type { get; init; } = string.Empty;
+    public required string Type { get; init; } = string.Empty;
         
     /// <summary>
     /// Value.
@@ -26,10 +26,10 @@ public class ArticleSectionDto
     /// <summary>
     /// Property.
     /// </summary>
-    public string Prop { get; init; } = string.Empty;
+    public required string Prop { get; init; } = string.Empty;
         
     /// <summary>
     /// Text.
     /// </summary>
-    public string Text { get; init; } = string.Empty;
+    public required string Text { get; init; } = string.Empty;
 }

@@ -11,7 +11,7 @@ public class GetUserDto
     /// <summary>
     /// User ID.
     /// </summary>
-    public Guid UserId { get; init; }
+    public required Guid UserId { get; init; }
 
     /// <summary>
     /// Alias name.
@@ -46,5 +46,5 @@ public class GetUserDto
     /// <summary>
     /// Date and time of registration.
     /// </summary>
-    public DateTime Registered { get; init; }
+    public required DateTime Registered { get; init; }
 }

@@ -8,7 +8,7 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 [ExcludeFromCodeCoverage]
 public class ArticleCategoryDto
 {
-    public Guid Id { get; init; }
+    public required Guid Id { get; init; }
 
-    public string CategoryName { get; init; } = string.Empty;
+    public required string CategoryName { get; init; } = string.Empty;
 }

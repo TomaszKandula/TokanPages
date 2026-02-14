@@ -5,7 +5,7 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 [ExcludeFromCodeCoverage]
 public class GetArticleOutputDto : ArticleDataDto
 {
-    public int UserLikes { get; init; }
+    public required int UserLikes { get; init; }
 
     public GetUserDto? Author { get; init; }
 
