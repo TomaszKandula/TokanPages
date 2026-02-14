@@ -88,7 +88,7 @@ public class CachingProcessingJob : CronJob
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public override Task StartAsync(CancellationToken cancellationToken)
+    public override async Task StartAsync(CancellationToken cancellationToken)
     {
         LoggerService.LogInformation($"{ServiceName}: started, CRON expression is '{_cronExpression}'.");
 
@@ -121,9 +121,9 @@ public class CachingProcessingJob : CronJob
         }
 
         var cachingService = GetService<ICachingService>();
-        Task.Run(async () => await cachingService.GetBrowser(), cancellationToken);
+        await cachingService.GetBrowser();
 
-        return base.StartAsync(cancellationToken);
+        await base.StartAsync(cancellationToken);
     }
 
     /// <summary>
