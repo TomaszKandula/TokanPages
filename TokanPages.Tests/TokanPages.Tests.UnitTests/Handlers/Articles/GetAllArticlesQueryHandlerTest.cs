@@ -16,7 +16,6 @@ public class GetAllArticlesQueryHandlerTest : TestBase
     public async Task WhenGetAllArticles_ShouldReturnCollection() 
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext(); //TODO: to be removed
         var userId = Guid.NewGuid();
 
         var articles = new List<Article>
@@ -146,7 +145,7 @@ public class GetAllArticlesQueryHandlerTest : TestBase
             PageSize = 10,
         };
 
-        var handler = new GetArticlesQueryHandler(databaseContext, mockedLogger.Object, mockedUserProvider.Object, mockedArticlesRepository.Object);
+        var handler = new GetArticlesQueryHandler(mockedLogger.Object, mockedUserProvider.Object, mockedArticlesRepository.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);

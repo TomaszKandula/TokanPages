@@ -15,8 +15,6 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
     public async Task GivenCorrectIds_WhenRetrieveArticleInfo_ShouldReturnEntities() 
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         const string ipAddress = "255.255.255.255";
         var testDate = DateTime.Now;
         var mockedUserProvider = new Mock<IUserService>();
@@ -75,7 +73,6 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
         };
 
         var handler = new RetrieveArticleInfoCommandHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockedUserProvider.Object,
             mockedArticleRepository.Object);

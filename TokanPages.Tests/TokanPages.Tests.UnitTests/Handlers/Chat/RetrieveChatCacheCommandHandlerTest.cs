@@ -12,8 +12,6 @@ public class RetrieveChatCacheCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenChatKeys_WhenRetrieveChatCache_ShouldSucceed()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var key1 = DataUtilityService.GetRandomString();
         var key2 = DataUtilityService.GetRandomString();
@@ -37,7 +35,6 @@ public class RetrieveChatCacheCommandHandlerTest : TestBase
             .ReturnsAsync(userMessageCache);
 
         var handler = new RetrieveChatCacheCommandHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockedChatRepository.Object);
 
@@ -51,8 +48,6 @@ public class RetrieveChatCacheCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenNoChatKeys_WhenRetrieveChatCache_ShouldReturnEmptyArray()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var key1 = DataUtilityService.GetRandomString();
         var key2 = DataUtilityService.GetRandomString();
@@ -70,7 +65,6 @@ public class RetrieveChatCacheCommandHandlerTest : TestBase
             .ReturnsAsync(Array.Empty<string>());
 
         var handler = new RetrieveChatCacheCommandHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockedChatRepository.Object);
 

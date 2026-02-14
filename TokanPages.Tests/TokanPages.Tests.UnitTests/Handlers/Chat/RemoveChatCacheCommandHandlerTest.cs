@@ -13,8 +13,6 @@ public class RemoveChatCacheCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenChatKeys_WhenRemoveChatCache_ShouldSucceed()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var key = DataUtilityService.GetRandomString();
         var command = new RemoveChatCacheCommand
@@ -30,7 +28,6 @@ public class RemoveChatCacheCommandHandlerTest : TestBase
             .Returns(Task.CompletedTask);
 
         var handler = new RemoveChatCacheCommandHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockedChatRepository.Object);
 
@@ -44,8 +41,6 @@ public class RemoveChatCacheCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenChatId_WhenRemoveChatCache_ShouldSucceed()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var command = new RemoveChatCacheCommand
         {
@@ -60,7 +55,6 @@ public class RemoveChatCacheCommandHandlerTest : TestBase
             .Returns(Task.CompletedTask);
 
         var handler = new RemoveChatCacheCommandHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockedChatRepository.Object);
 
@@ -74,8 +68,6 @@ public class RemoveChatCacheCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenNoIdAndNoKey_WhenRemoveChatCache_ShouldSucceed()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var command = new RemoveChatCacheCommand
         {
@@ -86,7 +78,6 @@ public class RemoveChatCacheCommandHandlerTest : TestBase
         var mockedChatRepository = new Mock<IChatRepository>();
 
         var handler = new RemoveChatCacheCommandHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockedChatRepository.Object);
 

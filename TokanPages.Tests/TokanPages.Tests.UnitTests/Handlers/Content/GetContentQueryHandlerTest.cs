@@ -23,7 +23,6 @@ public class GetContentQueryHandlerTest : TestBase
             ContentName = "activateAccount"
         };
     
-        var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
@@ -56,7 +55,6 @@ public class GetContentQueryHandlerTest : TestBase
             .Returns(testObject);
     
         var handler = new GetContentQueryHandler(
-            databaseContext,
             mockedLogger.Object,
             mockedJsonSerializer.Object,
             mockedAzureStorage.Object);
@@ -102,7 +100,6 @@ public class GetContentQueryHandlerTest : TestBase
             Language = "pol" 
         };
 
-        var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
@@ -135,7 +132,6 @@ public class GetContentQueryHandlerTest : TestBase
             .Returns(testObject);
 
         var handler = new GetContentQueryHandler(
-            databaseContext,
             mockedLogger.Object,
             mockedJsonSerializer.Object,
             mockedAzureStorage.Object);
@@ -155,7 +151,6 @@ public class GetContentQueryHandlerTest : TestBase
             ContentName = "activateAccount"
         };
 
-        var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
@@ -182,7 +177,6 @@ public class GetContentQueryHandlerTest : TestBase
             .Returns(testObject);
 
         var handler = new GetContentQueryHandler(
-            databaseContext,
             mockedLogger.Object,
             mockedJsonSerializer.Object,
             mockedAzureStorage.Object);
@@ -202,7 +196,6 @@ public class GetContentQueryHandlerTest : TestBase
             ContentName = "activateAccount"
         };
 
-        var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedAzureStorage = new Mock<IAzureBlobStorageFactory>();
@@ -235,7 +228,6 @@ public class GetContentQueryHandlerTest : TestBase
             .Returns(testObject);
 
         var handler = new GetContentQueryHandler(
-            databaseContext,
             mockedLogger.Object,
             mockedJsonSerializer.Object,
             mockedAzureStorage.Object);

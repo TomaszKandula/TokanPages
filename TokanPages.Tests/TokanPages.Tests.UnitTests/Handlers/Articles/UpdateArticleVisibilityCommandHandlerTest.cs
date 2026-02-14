@@ -17,8 +17,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
     public async Task GivenExistingArticle_WhenInvokeArticleVisibility_ShouldSucceed()
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         var userId = Guid.NewGuid();
         var articleId = Guid.NewGuid();
 
@@ -50,7 +48,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         };
 
         var handler = new UpdateArticleVisibilityCommandHandler(
-            databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
             mockedArticlesRepository.Object);
@@ -66,8 +63,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
     public async Task GivenNoPermission_WhenInvokeArticleVisibility_ShouldThrowError()
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         var userId = Guid.NewGuid();
         var articleId = Guid.NewGuid();
 
@@ -99,7 +94,6 @@ public class UpdateArticleVisibilityCommandHandlerTest : TestBase
         };
 
         var handler = new UpdateArticleVisibilityCommandHandler(
-            databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
             mockedArticlesRepository.Object);

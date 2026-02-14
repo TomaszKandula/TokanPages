@@ -27,7 +27,6 @@ public class GetArticleQueryHandlerTest : TestBase
     public async Task GivenCorrectId_WhenGetArticle_ShouldReturnEntity() 
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext(); //TODO: to be removed
         var testDate = DateTime.Now;
         var users = new User
         {
@@ -179,7 +178,6 @@ public class GetArticleQueryHandlerTest : TestBase
 
         var query = new GetArticleQuery { Id = articles.Id };
         var handler = new GetArticleQueryHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockedUserProvider.Object, 
             mockedJsonSerializer.Object, 
@@ -208,8 +206,6 @@ public class GetArticleQueryHandlerTest : TestBase
     public async Task GivenIncorrectId_WhenGetArticle_ShouldThrowError()
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext(); //TODO: to be removed
-
         var mockedUserProvider = new Mock<IUserService>();
         var mockedJsonSerializer = new Mock<IJsonSerializer>();
         var mockedLogger = new Mock<ILoggerService>();
@@ -247,7 +243,6 @@ public class GetArticleQueryHandlerTest : TestBase
 
         var query = new GetArticleQuery { Id = Guid.NewGuid() };
         var handler = new GetArticleQueryHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockedUserProvider.Object, 
             mockedJsonSerializer.Object, 

@@ -16,8 +16,6 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
     public async Task GivenAnonymousUserAndExistingArticleAndNoReads_WhenUpdateArticleCount_ShouldSucceed()
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         var userId = Guid.NewGuid();
         var articleId = Guid.NewGuid();
 
@@ -60,7 +58,6 @@ public class UpdateArticleCountCommandHandlerTest : TestBase
             .Returns(mockedIpAddress);
 
         var handler = new UpdateArticleCountCommandHandler(
-            databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
             mockedArticlesRepository.Object);

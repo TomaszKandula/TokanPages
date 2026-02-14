@@ -17,8 +17,6 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
     public async Task GivenExistingArticleAndActiveUser_WhenUpdateArticleContent_ShouldUpdateEntity() 
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         var userId = Guid.NewGuid();
         var articleId = Guid.NewGuid();
         var command = new UpdateArticleContentCommand 
@@ -63,7 +61,6 @@ public class UpdateArticleContentCommandHandlerTest : TestBase
             .Returns(Task.CompletedTask);
 
         var handler = new UpdateArticleContentCommandHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
             mockedAzureBlobStorageFactory.Object,

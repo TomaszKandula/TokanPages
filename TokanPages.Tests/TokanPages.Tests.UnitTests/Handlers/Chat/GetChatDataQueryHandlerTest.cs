@@ -17,8 +17,6 @@ public class GetChatDataQueryHandlerTest : TestBase
     [Fact]
     public async Task GivenChatKeyAndUserInfo_WhenGettingChatData_ShouldSucceed()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var userId1 = Guid.NewGuid();
         var userId2 = Guid.NewGuid();
@@ -100,7 +98,6 @@ public class GetChatDataQueryHandlerTest : TestBase
             });
 
         var handler = new GetChatDataQueryHandler(
-            databaseContext, 
             mockedLogger.Object, 
             jsonSerializer,
             mockedChatRepository.Object);
@@ -129,8 +126,6 @@ public class GetChatDataQueryHandlerTest : TestBase
     [Fact]
     public async Task GivenChatKeyAndNoUserInfo_WhenGettingChatData_ShouldSucceed()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var userId1 = Guid.NewGuid();
         var userId2 = Guid.NewGuid();
@@ -176,7 +171,6 @@ public class GetChatDataQueryHandlerTest : TestBase
             .ReturnsAsync(null as ChatUserDataDto);
 
         var handler = new GetChatDataQueryHandler(
-            databaseContext, 
             mockedLogger.Object,
             jsonSerializer,
             mockedChatRepository.Object);
@@ -207,13 +201,11 @@ public class GetChatDataQueryHandlerTest : TestBase
     {
         // Arrange
         var query = new GetChatDataQuery { ChatKey = "SOME_OTHER_CHAT_KEY" };
-        var databaseContext = GetTestDatabaseContext();
         var mockedSerializer = new Mock<IJsonSerializer>();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedChatRepository = new Mock<IChatRepository>();
 
         var handler = new GetChatDataQueryHandler(
-            databaseContext, 
             mockedLogger.Object, 
             mockedSerializer.Object,
             mockedChatRepository.Object);
