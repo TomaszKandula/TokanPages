@@ -6,10 +6,9 @@ using TokanPages.HostedServices.Base;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 
 namespace TokanPages.HostedServices.Workers;
 
@@ -26,23 +25,16 @@ public class EmailProcessing : Processing
 
     private const string ServiceName = $"[{nameof(EmailProcessing)}]";
 
-    private readonly IEmailSenderService _emailSenderService;
-
-    private readonly OperationDbContext _operationDbContext;
-
     /// <summary>
     /// Implementation of email processing hosted service.
     /// </summary>
     /// <param name="loggerService">Logger Service instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
-    /// <param name="emailSenderService">Email Sender Service instance.</param>
-    /// <param name="operationDbContext">Database instance.</param>
-    public EmailProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        IEmailSenderService emailSenderService, OperationDbContext operationDbContext) : base(loggerService, azureBusFactory)
-    {
-        _emailSenderService = emailSenderService;
-        _operationDbContext = operationDbContext;
-    }
+    /// <param name="messagingRepository">Messaging repository instance.</param>
+    /// <param name="serviceScopeFactory">Service scope factory instance.</param>
+    public EmailProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory,
+        IMessagingRepository messagingRepository, IServiceScopeFactory serviceScopeFactory)
+        : base(loggerService, azureBusFactory, messagingRepository, serviceScopeFactory) { }
 
     /// <summary>
     /// Custom implementation for email processing.
@@ -97,28 +89,15 @@ public class EmailProcessing : Processing
         LoggerService.LogInformation($"{ServiceName}: Email processed within: {timer.Elapsed}");
     }
 
-    private async Task<bool> CanContinue(Guid messageId, CancellationToken cancellationToken)
-    {
-        var busMessages = await _operationDbContext.ServiceBusMessages
-            .Where(messages => messages.Id == messageId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (busMessages is null || busMessages.IsConsumed)
-            return false;
-
-        busMessages.IsConsumed = true;
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
-        return true;
-    }
-
     private async Task NotificationForConfiguration<T>(T configuration) where T : IEmailConfiguration
     {
         var messageId = configuration.MessageId;
-        var canContinue = await CanContinue(messageId, CancellationToken.None);
+        var canContinue = await CanContinue(messageId);
         if (canContinue)
         {
             LoggerService.LogInformation($"{ServiceName}: Received: {nameof(configuration)}..., using: SendNotification method...");
-            await _emailSenderService.SendNotification(configuration, CancellationToken.None).ConfigureAwait(false);
+            var emailSenderService = GetService<IEmailSenderService>();
+            await emailSenderService.SendNotification(configuration, CancellationToken.None).ConfigureAwait(false);
         }
         else
         {
@@ -129,11 +108,12 @@ public class EmailProcessing : Processing
     private async Task EmailForConfiguration<T>(T configuration) where T : IEmailConfiguration
     {
         var messageId = configuration.MessageId;
-        var canContinue = await CanContinue(messageId, CancellationToken.None);
+        var canContinue = await CanContinue(messageId);
         if (canContinue)
         {
             LoggerService.LogInformation($"{ServiceName}: Received: {nameof(configuration)}..., using: SendEmail method...");
-            await _emailSenderService.SendEmail(configuration, CancellationToken.None).ConfigureAwait(false);
+            var emailSenderService = GetService<IEmailSenderService>();
+            await emailSenderService.SendEmail(configuration, CancellationToken.None).ConfigureAwait(false);
         }
         else
         {

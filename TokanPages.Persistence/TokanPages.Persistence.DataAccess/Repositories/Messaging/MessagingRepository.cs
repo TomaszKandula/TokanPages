@@ -17,40 +17,28 @@ public class MessagingRepository : RepositoryBase, IMessagingRepository
         return data ?? null;
     }
 
-    public async Task<bool> CreateServiceBusMessage(Guid messageId)
+    public async Task CreateServiceBusMessage(Guid messageId)
     {
-        try
+        var entity = new ServiceBusMessage
         {
-            var entity = new ServiceBusMessage
-            {
-                Id = messageId,
-                IsConsumed = false
-            };
+            Id = messageId,
+            IsConsumed = false
+        };
 
-            await DbOperations.Insert(entity);
-        }
-        catch
-        {
-            return false;
-        }
-
-        return true;
+        await DbOperations.Insert(entity);
     }
 
-    public async Task<bool> UpdateServiceBusMessage(Guid messageId, bool isConsumed)
+    public async Task UpdateServiceBusMessage(Guid messageId, bool isConsumed)
     {
-        try
-        {
-            var filterBy = new {  MessageId = messageId };
-            var updateBy = new {  IsConsumed = isConsumed };
+        var filterBy = new {  MessageId = messageId };
+        var updateBy = new {  IsConsumed = isConsumed };
 
-            await DbOperations.Update<ServiceBusMessage>(updateBy, filterBy);
-        }
-        catch
-        {
-            return false;    
-        }
+        await DbOperations.Update<ServiceBusMessage>(updateBy, filterBy);
+    }
 
-        return true;
+    public async Task DeleteServiceBusMessage(Guid messageId)
+    {
+        var deleteBy = new { Id = messageId };
+        await DbOperations.Delete<ServiceBusMessage>(deleteBy);
     }
 }

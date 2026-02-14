@@ -1,12 +1,11 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Azure.Messaging.ServiceBus;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.HostedServices.Base;
-using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.SpaCachingService.Abstractions;
 using TokanPages.Services.SpaCachingService.Models;
@@ -26,23 +25,16 @@ public class CacheProcessing : Processing
 
     private const string ServiceName = $"[{nameof(CacheProcessing)}]";
 
-    private readonly ICachingService _cachingService;
-
-    private readonly OperationDbContext _operationDbContext;
-
     /// <summary>
     /// Implementation of cache processing hosted service.
     /// </summary>
     /// <param name="loggerService">Logger Service instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
-    /// <param name="cachingService">SPA Cache Processor instance.</param>
-    /// <param name="operationDbContext">Database instance.</param>
-    public CacheProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        ICachingService cachingService, OperationDbContext operationDbContext) : base(loggerService, azureBusFactory)
-    {
-        _cachingService = cachingService;
-        _operationDbContext = operationDbContext;
-    }
+    /// <param name="messagingRepository">Messaging repository instance.</param>
+    /// <param name="serviceScopeFactory">Service scope factory instance.</param>
+    public CacheProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory,
+        IMessagingRepository messagingRepository, IServiceScopeFactory serviceScopeFactory)
+        : base(loggerService, azureBusFactory, messagingRepository, serviceScopeFactory) { }
 
     /// <summary>
     /// Custom implementation for cache processing.
@@ -66,7 +58,7 @@ public class CacheProcessing : Processing
             return;
         }
 
-        var canContinue = await CanContinue(request.MessageId, CancellationToken.None);
+        var canContinue = await CanContinue(request.MessageId);
         if (!canContinue)
         {
             LoggerService.LogInformation($"{ServiceName}: Message ID ({request.MessageId}) has been already processed, quitting the job...");
@@ -77,16 +69,18 @@ public class CacheProcessing : Processing
         timer.Start();
         LoggerService.LogInformation($"{ServiceName}: SPA cache processing started...");
 
+        var cachingService = GetService<ICachingService>();
+
         if (request.Files is not null && request.Files.Length > 0)
         {
-            await _cachingService.SaveStaticFiles(request.Files, request.GetUrl, request.PostUrl).ConfigureAwait(false);
+            await cachingService.SaveStaticFiles(request.Files, request.GetUrl, request.PostUrl).ConfigureAwait(false);
         }
 
         if (request.Paths.Count > 0)
         {
             foreach (var path in request.Paths)
             {
-                var page = await _cachingService.RenderStaticPage(path.Url, request.PostUrl, path.Name).ConfigureAwait(false);
+                var page = await cachingService.RenderStaticPage(path.Url, request.PostUrl, path.Name).ConfigureAwait(false);
                 if (!string.IsNullOrWhiteSpace(page))
                     LoggerService.LogInformation($"{ServiceName}: page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
             }
@@ -96,19 +90,5 @@ public class CacheProcessing : Processing
 
         timer.Stop();
         LoggerService.LogInformation($"{ServiceName}: SPA cache processed within: {timer.Elapsed}");
-    }
-
-    private async Task<bool> CanContinue(Guid messageId, CancellationToken cancellationToken)
-    {
-        var busMessages = await _operationDbContext.ServiceBusMessages
-            .Where(messages => messages.Id == messageId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (busMessages is null || busMessages.IsConsumed)
-            return false;
-
-        busMessages.IsConsumed = true;
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
-        return true;
     }
 }

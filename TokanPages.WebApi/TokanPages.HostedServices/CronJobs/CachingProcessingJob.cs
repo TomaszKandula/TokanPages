@@ -15,10 +15,6 @@ public class CachingProcessingJob : CronJob
 {
     private const string ServiceName = $"[{nameof(CachingProcessingJob)}]";
 
-    private readonly ICachingService _cachingService;
-
-    private readonly ILoggerService _loggerService;
-
     private readonly string _cronExpression;
 
     private readonly string _getActionUrl;
@@ -35,14 +31,11 @@ public class CachingProcessingJob : CronJob
     /// CRON job implementation.
     /// </summary>
     /// <param name="config"></param>
-    /// <param name="cachingService"></param>
     /// <param name="loggerService"></param>
-    public CachingProcessingJob(ICachingProcessingConfig config, 
-        ICachingService cachingService, ILoggerService loggerService)
-        : base(config.CronExpression, config.TimeZoneInfo)
+    /// <param name="serviceScopeFactory"></param>
+    public CachingProcessingJob(ICachingProcessingConfig config, ILoggerService loggerService, IServiceScopeFactory serviceScopeFactory)
+        : base(config.CronExpression, config.TimeZoneInfo, loggerService, serviceScopeFactory)
     {
-        _cachingService = cachingService;
-        _loggerService = loggerService;
         _cronExpression = config.CronExpression;
         _getActionUrl = config.GetActionUrl ?? "";
         _postActionUrl = config.PostActionUrl ?? "";
@@ -58,33 +51,35 @@ public class CachingProcessingJob : CronJob
     /// <returns></returns>
     public override async Task DoWork(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{ServiceName}: working...");
-        await _cachingService.SaveStaticFiles(_filesToCache, _getActionUrl, _postActionUrl);
+        LoggerService.LogInformation($"{ServiceName}: working...");
+
+        var cachingService = GetService<ICachingService>();
+        await cachingService.SaveStaticFiles(_filesToCache, _getActionUrl, _postActionUrl);
 
         if (_pagePaths.Count == 0)
         {
-            _loggerService.LogInformation($"{ServiceName}: no routes registered for caching..., quitting the job...");
+            LoggerService.LogInformation($"{ServiceName}: no routes registered for caching..., quitting the job...");
             return;
         }
 
         foreach (var pagePath in _pagePaths)
         {
-            var page = await _cachingService.RenderStaticPage(pagePath.Url, _postActionUrl, pagePath.Name);
+            var page = await cachingService.RenderStaticPage(pagePath.Url, _postActionUrl, pagePath.Name);
             if (!string.IsNullOrWhiteSpace(page))
-                _loggerService.LogInformation($"{ServiceName}: page '{pagePath.Name}' has been rendered and saved. Url: '{pagePath.Url}'.");
+                LoggerService.LogInformation($"{ServiceName}: page '{pagePath.Name}' has been rendered and saved. Url: '{pagePath.Url}'.");
         }
 
         if (_pdfPaths.Count == 0)
         {
-            _loggerService.LogInformation($"{ServiceName}: no routes registered for generating PDFs..., quitting the job...");
+            LoggerService.LogInformation($"{ServiceName}: no routes registered for generating PDFs..., quitting the job...");
             return;
         }
 
         foreach (var pdfPath in _pdfPaths)
         {
-            var pdf = await _cachingService.GeneratePdf(pdfPath.Url, pdfPath.Name);
+            var pdf = await cachingService.GeneratePdf(pdfPath.Url, pdfPath.Name);
             if (!string.IsNullOrWhiteSpace(pdf))
-                _loggerService.LogInformation($"{ServiceName}: PDF file '{pdfPath.Name}' has been rendered and saved. Url: '{pdfPath.Url}'.");
+                LoggerService.LogInformation($"{ServiceName}: PDF file '{pdfPath.Name}' has been rendered and saved. Url: '{pdfPath.Url}'.");
         }
     }
 
@@ -93,41 +88,42 @@ public class CachingProcessingJob : CronJob
     /// </summary>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    public override Task StartAsync(CancellationToken cancellationToken)
+    public override async Task StartAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{ServiceName}: started, CRON expression is '{_cronExpression}'.");
+        LoggerService.LogInformation($"{ServiceName}: started, CRON expression is '{_cronExpression}'.");
 
         var staticFileToCache = _filesToCache?.Length ?? 0;
-        _loggerService.LogInformation($"{ServiceName}: {staticFileToCache} static file(s) to be cached.");
+        LoggerService.LogInformation($"{ServiceName}: {staticFileToCache} static file(s) to be cached.");
         if (_filesToCache is not null && _filesToCache.Length > 0)
         {
             foreach (var item in _filesToCache)
             {
-                _loggerService.LogInformation($"{ServiceName}: ...to be cached: {item}");
+                LoggerService.LogInformation($"{ServiceName}: ...to be cached: {item}");
             }
         }
 
-        _loggerService.LogInformation($"{ServiceName}: {_pagePaths.Count} SPA pages to be cached.");
+        LoggerService.LogInformation($"{ServiceName}: {_pagePaths.Count} SPA pages to be cached.");
         if (_pagePaths.Count > 0)
         {
             foreach (var item in _pagePaths)
             {
-                _loggerService.LogInformation($"{ServiceName}: ...to be cached: {item.Name} (url: {item.Url})");
+                LoggerService.LogInformation($"{ServiceName}: ...to be cached: {item.Name} (url: {item.Url})");
             }
         }
 
-        _loggerService.LogInformation($"{ServiceName}: {_pdfPaths.Count} pages for PDF printouts.");
+        LoggerService.LogInformation($"{ServiceName}: {_pdfPaths.Count} pages for PDF printouts.");
         if (_pdfPaths.Count > 0)
         {
             foreach (var item in _pdfPaths)
             {
-                _loggerService.LogInformation($"{ServiceName}: ...to be printed to PDF: {item.Name} (url: {item.Url})");
+                LoggerService.LogInformation($"{ServiceName}: ...to be printed to PDF: {item.Name} (url: {item.Url})");
             }
         }
 
-        Task.Run(async () => await _cachingService.GetBrowser(), cancellationToken);
+        var cachingService = GetService<ICachingService>();
+        await cachingService.GetBrowser();
 
-        return base.StartAsync(cancellationToken);
+        await base.StartAsync(cancellationToken);
     }
 
     /// <summary>
@@ -137,7 +133,7 @@ public class CachingProcessingJob : CronJob
     /// <returns></returns>
     public override Task StopAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{ServiceName}: stopped.");
+        LoggerService.LogInformation($"{ServiceName}: stopped.");
         return base.StopAsync(cancellationToken);
     }
 }

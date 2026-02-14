@@ -6,10 +6,9 @@ using TokanPages.HostedServices.Base;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.VideoProcessingService.Models;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 
 namespace TokanPages.HostedServices.Workers;
 
@@ -26,23 +25,16 @@ public class VideoProcessing : Processing
 
     private const string ServiceName = $"[{nameof(VideoProcessing)}]";
 
-    private readonly IVideoProcessor _videoProcessor;
-
-    private readonly OperationDbContext _operationDbContext;
-
     /// <summary>
     /// Implementation of video processing hosted service.
     /// </summary>
     /// <param name="loggerService">Logger Service instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
-    /// <param name="videoProcessor">Video Processor instance.</param>
-    /// <param name="operationDbContext">Database instance.</param>
+    /// <param name="messagingRepository">Messaging repository instance.</param>
+    /// <param name="serviceScopeFactory">Service scope factory instance.</param>
     public VideoProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        IVideoProcessor videoProcessor, OperationDbContext operationDbContext) : base(loggerService, azureBusFactory)
-    {
-        _videoProcessor = videoProcessor;
-        _operationDbContext = operationDbContext;
-    }
+        IMessagingRepository messagingRepository, IServiceScopeFactory serviceScopeFactory) 
+        : base(loggerService, azureBusFactory, messagingRepository, serviceScopeFactory) { }
 
     /// <summary>
     /// Custom implementation for video processing.
@@ -66,7 +58,7 @@ public class VideoProcessing : Processing
             return;
         }
 
-        var canContinue = await CanContinue(request.MessageId, CancellationToken.None);
+        var canContinue = await CanContinue(request.MessageId);
         if (!canContinue)
         {
             LoggerService.LogInformation($"{ServiceName}: Message ID ({request.MessageId}) has been already processed, quitting the job...");
@@ -77,24 +69,11 @@ public class VideoProcessing : Processing
         timer.Start();
         LoggerService.LogInformation($"{ServiceName}: Video processing started...");
 
-        await _videoProcessor.Process(request).ConfigureAwait(false);
+        var videoProcessor = GetService<IVideoProcessor>();
+        await videoProcessor.Process(request).ConfigureAwait(false);
         await args.CompleteMessageAsync(args.Message).ConfigureAwait(false);
 
         timer.Stop();
         LoggerService.LogInformation($"{ServiceName}: Video processed within: {timer.Elapsed}");
-    }
-
-    private async Task<bool> CanContinue(Guid messageId, CancellationToken cancellationToken)
-    {
-        var busMessages = await _operationDbContext.ServiceBusMessages
-            .Where(messages => messages.Id == messageId)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (busMessages is null || busMessages.IsConsumed)
-            return false;
-
-        busMessages.IsConsumed = true;
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
-        return true;
     }
 }
