@@ -2,7 +2,6 @@ using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Services.PushNotificationService.Abstractions;
 using TokanPages.Services.PushNotificationService.Exceptions;
 using TokanPages.Services.PushNotificationService.Models;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Notification;
 using TokanPages.Persistence.DataAccess.Repositories.Notification.Models;
 
@@ -18,9 +17,8 @@ public class AddInstallationCommandHandler : RequestHandler<AddInstallationComma
 
     private readonly INotificationRepository _notificationRepository;
 
-    public AddInstallationCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureNotificationHubFactory azureNotificationHubFactory, INotificationRepository notificationRepository) 
-        : base(operationDbContext, loggerService)
+    public AddInstallationCommandHandler(ILoggerService loggerService, IAzureNotificationHubFactory azureNotificationHubFactory, 
+        INotificationRepository notificationRepository) : base(loggerService)
     {
         _azureNotificationHubFactory = azureNotificationHubFactory;
         _notificationRepository = notificationRepository;
