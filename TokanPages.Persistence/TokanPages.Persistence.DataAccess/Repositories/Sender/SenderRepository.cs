@@ -52,17 +52,17 @@ public class SenderRepository : RepositoryBase, ISenderRepository
 
     public async Task UpdateNewsletter(UpdateNewsletterDto data)
     {
-        var filterBy = new
-        {
-            Id = data.Id
-        };
-
         var updateBy = new
         {
             Email = data.Email,
             IsActivated = data.IsActivated,
             Count = data.Count,
             ModifiedAt = _dateTimeService.Now
+        };
+
+        var filterBy = new
+        {
+            Id = data.Id
         };
 
         await DbOperations.Update<Newsletter>(updateBy, filterBy);
