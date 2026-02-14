@@ -27,8 +27,6 @@ public class EmailProcessing : Processing
 
     private readonly IEmailSenderService _emailSenderService;
 
-    private readonly IMessagingRepository _messagingRepository;
-
     /// <summary>
     /// Implementation of email processing hosted service.
     /// </summary>
@@ -37,11 +35,8 @@ public class EmailProcessing : Processing
     /// <param name="emailSenderService">Email Sender Service instance.</param>
     /// <param name="messagingRepository">Messaging repository instance.</param>
     public EmailProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        IEmailSenderService emailSenderService, IMessagingRepository messagingRepository) : base(loggerService, azureBusFactory)
-    {
-        _emailSenderService = emailSenderService;
-        _messagingRepository = messagingRepository;
-    }
+        IEmailSenderService emailSenderService, IMessagingRepository messagingRepository) 
+        : base(loggerService, azureBusFactory, messagingRepository) => _emailSenderService = emailSenderService;
 
     /// <summary>
     /// Custom implementation for email processing.
@@ -94,16 +89,6 @@ public class EmailProcessing : Processing
 
         timer.Stop();
         LoggerService.LogInformation($"{ServiceName}: Email processed within: {timer.Elapsed}");
-    }
-
-    private async Task<bool> CanContinue(Guid messageId)
-    {
-        var busMessages = await _messagingRepository.GetServiceBusMessage(messageId);
-        if (busMessages is null)
-            return false;
-
-        await _messagingRepository.DeleteServiceBusMessage(messageId);
-        return true;
     }
 
     private async Task NotificationForConfiguration<T>(T configuration) where T : IEmailConfiguration

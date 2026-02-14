@@ -27,8 +27,6 @@ public class VideoProcessing : Processing
 
     private readonly IVideoProcessor _videoProcessor;
 
-    private readonly IMessagingRepository _messagingRepository;
-
     /// <summary>
     /// Implementation of video processing hosted service.
     /// </summary>
@@ -37,11 +35,8 @@ public class VideoProcessing : Processing
     /// <param name="videoProcessor">Video Processor instance.</param>
     /// <param name="messagingRepository">Messaging repository instance.</param>
     public VideoProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        IVideoProcessor videoProcessor, IMessagingRepository messagingRepository) : base(loggerService, azureBusFactory)
-    {
-        _videoProcessor = videoProcessor;
-        _messagingRepository = messagingRepository;
-    }
+        IVideoProcessor videoProcessor, IMessagingRepository messagingRepository) 
+        : base(loggerService, azureBusFactory, messagingRepository) => _videoProcessor = videoProcessor;
 
     /// <summary>
     /// Custom implementation for video processing.
@@ -81,15 +76,5 @@ public class VideoProcessing : Processing
 
         timer.Stop();
         LoggerService.LogInformation($"{ServiceName}: Video processed within: {timer.Elapsed}");
-    }
-
-    private async Task<bool> CanContinue(Guid messageId)
-    {
-        var busMessages = await _messagingRepository.GetServiceBusMessage(messageId);
-        if (busMessages is null)
-            return false;
-
-        await _messagingRepository.DeleteServiceBusMessage(messageId);
-        return true;
     }
 }

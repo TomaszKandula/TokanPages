@@ -27,8 +27,6 @@ public class CacheProcessing : Processing
 
     private readonly ICachingService _cachingService;
 
-    private readonly IMessagingRepository _messagingRepository;
-
     /// <summary>
     /// Implementation of cache processing hosted service.
     /// </summary>
@@ -37,11 +35,8 @@ public class CacheProcessing : Processing
     /// <param name="cachingService">SPA Cache Processor instance.</param>
     /// <param name="messagingRepository">Messaging repository instance.</param>
     public CacheProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        ICachingService cachingService, IMessagingRepository messagingRepository) : base(loggerService, azureBusFactory)
-    {
-        _cachingService = cachingService;
-        _messagingRepository = messagingRepository;
-    }
+        ICachingService cachingService, IMessagingRepository messagingRepository) 
+        : base(loggerService, azureBusFactory, messagingRepository) => _cachingService = cachingService;
 
     /// <summary>
     /// Custom implementation for cache processing.
@@ -95,15 +90,5 @@ public class CacheProcessing : Processing
 
         timer.Stop();
         LoggerService.LogInformation($"{ServiceName}: SPA cache processed within: {timer.Elapsed}");
-    }
-
-    private async Task<bool> CanContinue(Guid messageId)
-    {
-        var busMessages = await _messagingRepository.GetServiceBusMessage(messageId);
-        if (busMessages is null)
-            return false;
-
-        await _messagingRepository.DeleteServiceBusMessage(messageId);
-        return true;
     }
 }
