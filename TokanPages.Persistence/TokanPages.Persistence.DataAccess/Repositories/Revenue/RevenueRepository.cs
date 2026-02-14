@@ -16,7 +16,6 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
     public RevenueRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
         : base(dbOperations, appSettings) => _dateTimeService = dateTimeService;
 
-    /// <inheritdoc/>
     public async Task<List<SubscriptionPricing>> GetSubscriptionPrices(string languageIso)
     {
         var filterBy = new { LanguageIso = languageIso };
@@ -24,7 +23,6 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
         return data.ToList();
     }
 
-    /// <inheritdoc/>
     public async Task<SubscriptionPricing?> GetSubscriptionPrice(TermType term, string languageIso, string currencyIso)
     {
         var filterBy = new
@@ -38,7 +36,6 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
         return prices.SingleOrDefault();
     }
 
-    /// <inheritdoc/>
     public async Task<UserSubscription?> GetUserSubscription(Guid userId)
     {
         var filterBy = new { UserId = userId };
@@ -46,7 +43,6 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
         return data.SingleOrDefault();
     }
 
-    /// <inheritdoc/>
     public async Task CreateUserSubscription(CreateUserSubscriptionDto data)
     {
         var entity = new UserSubscription
@@ -67,7 +63,6 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
         await DbOperations.Insert(entity);
     }
 
-    /// <inheritdoc/>
     public async Task UpdateUserSubscription(UpdateUserSubscriptionDto data)
     {
         var updateBy = new
@@ -93,14 +88,12 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
         await DbOperations.Update<UserSubscription>(updateBy, filterBy);
     }
 
-    /// <inheritdoc/>
     public async Task RemoveUserSubscription(Guid userId)
     {
         var deleteBy = new { UserId = userId };
         await DbOperations.Delete<UserSubscription>(deleteBy);
     }
 
-    /// <inheritdoc/>
     public async Task<UserPayment?> GetUserPayment(Guid userId)
     {
         var filterBy = new { UserId = userId };
@@ -108,7 +101,6 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
         return data.SingleOrDefault();
     }
 
-    /// <inheritdoc/>
     public async Task<UserPayment?> GetUserPayment(string extOrderId)
     {
         var filterBy = new { ExtOrderId = extOrderId };
@@ -116,7 +108,6 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
         return data.SingleOrDefault();
     }
 
-    /// <inheritdoc/>
     public async Task CreateUserPayment(CreateUserPaymentDto data)
     {
         var entity = new UserPayment
@@ -135,7 +126,6 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
         await DbOperations.Insert(entity);
     }
 
-    /// <inheritdoc/>
     public async Task UpdateUserPayment(UpdateUserPaymentDto data)
     {
         var updateBy = new
@@ -159,7 +149,6 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
         await DbOperations.Update<UserPayment>(updateBy, filterBy);
     }
 
-    /// <inheritdoc/>
     public async Task CreateUserPaymentsHistory(CreateUserPaymentHistoryDto data)
     {
         var entity = new UserPaymentHistory
