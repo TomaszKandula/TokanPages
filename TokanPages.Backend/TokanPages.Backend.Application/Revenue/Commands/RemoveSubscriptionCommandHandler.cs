@@ -3,7 +3,6 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using MediatR;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue;
 
 namespace TokanPages.Backend.Application.Revenue.Commands;
@@ -14,8 +13,8 @@ public class RemoveSubscriptionCommandHandler : RequestHandler<RemoveSubscriptio
 
     private readonly IRevenueRepository _revenueRepository;
 
-    public RemoveSubscriptionCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IRevenueRepository revenueRepository) : base(operationDbContext, loggerService)
+    public RemoveSubscriptionCommandHandler(ILoggerService loggerService, 
+        IUserService userService, IRevenueRepository revenueRepository) : base(loggerService)
     {
         _userService = userService;
         _revenueRepository = revenueRepository;

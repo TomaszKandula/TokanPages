@@ -1,6 +1,5 @@
 using TokanPages.Backend.Application.Revenue.Models.Sections;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.PayUService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -12,8 +11,8 @@ public class GetOrderDetailsQueryHandler : RequestHandler<GetOrderDetailsQuery, 
     
     private readonly IPayUService _payUService;
 
-    public GetOrderDetailsQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IPayUService payUService) : base(operationDbContext, loggerService)
+    public GetOrderDetailsQueryHandler(ILoggerService loggerService, 
+        IUserService userService, IPayUService payUService) : base(loggerService)
     {
         _userService = userService;
         _payUService = payUService;

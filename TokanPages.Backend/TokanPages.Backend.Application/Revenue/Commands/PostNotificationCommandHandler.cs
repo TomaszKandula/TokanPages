@@ -4,7 +4,6 @@ using MediatR;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 
@@ -20,9 +19,8 @@ public class PostNotificationCommandHandler : RequestHandler<PostNotificationCom
     
     private readonly IMediator _mediator;
 
-    public PostNotificationCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService, IJsonSerializer jsonSerializer, IMediator mediator, IRevenueRepository revenueRepository)
-        : base(operationDbContext, loggerService)
+    public PostNotificationCommandHandler(ILoggerService loggerService, IDateTimeService dateTimeService, 
+        IJsonSerializer jsonSerializer, IMediator mediator, IRevenueRepository revenueRepository) : base(loggerService)
     {
         _dateTimeService = dateTimeService;
         _jsonSerializer = jsonSerializer;
