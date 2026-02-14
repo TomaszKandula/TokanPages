@@ -50,6 +50,7 @@ public static class Dependencies
 	{
 		services.AddHttpContextAccessor();
         services.AddHttpClientService();
+
         services.AddUtilityServices();
 		services.AddVideoConverter();
 		services.AddVideoProcessor();
