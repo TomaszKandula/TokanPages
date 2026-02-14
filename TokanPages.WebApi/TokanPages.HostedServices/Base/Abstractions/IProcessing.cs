@@ -13,7 +13,7 @@ public interface IProcessing : IBaseProcessor
     /// </summary>
     /// <typeparam name="T">Given type to be created as scoped.</typeparam>
     /// <exception cref="ArgumentNullException">Throws as exception if service is null.</exception>
-    /// <returns></returns>
+    /// <returns>Created service.</returns>
     public T GetService<T>() where T : notnull;
 
     /// <summary>
