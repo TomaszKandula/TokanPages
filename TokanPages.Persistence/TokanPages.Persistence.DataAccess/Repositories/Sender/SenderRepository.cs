@@ -14,7 +14,6 @@ public class SenderRepository : RepositoryBase, ISenderRepository
     public SenderRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
         : base(dbOperations, appSettings) => _dateTimeService = dateTimeService;
 
-    /// <inheritdoc/>
     public async Task<Newsletter?> GetNewsletter(Guid id)
     {
         var filterBy = new { Id = id };
@@ -22,7 +21,6 @@ public class SenderRepository : RepositoryBase, ISenderRepository
         return data.SingleOrDefault();
     }
 
-    /// <inheritdoc/>
     public async Task<Newsletter?> GetNewsletter(string email)
     {
         var filterBy = new { Email = email };
@@ -30,7 +28,6 @@ public class SenderRepository : RepositoryBase, ISenderRepository
         return data.SingleOrDefault();
     }
 
-    /// <inheritdoc/>
     public async Task<List<Newsletter>> GetNewsletters(bool isActive)
     {
         var filterBy = new { IsActive = isActive };
@@ -38,7 +35,6 @@ public class SenderRepository : RepositoryBase, ISenderRepository
         return data.ToList();
     }
 
-    /// <inheritdoc/>
     public async Task CreateNewsletter(string email, Guid? id = null)
     {
         var entity = new Newsletter
@@ -54,7 +50,6 @@ public class SenderRepository : RepositoryBase, ISenderRepository
         await DbOperations.Insert(entity);
     }
 
-    /// <inheritdoc/>
     public async Task UpdateNewsletter(UpdateNewsletterDto data)
     {
         var filterBy = new
@@ -73,14 +68,12 @@ public class SenderRepository : RepositoryBase, ISenderRepository
         await DbOperations.Update<Newsletter>(updateBy, filterBy);
     }
 
-    /// <inheritdoc/>
     public async Task RemoveNewsletter(Guid id)
     {
         var deleteBy = new { Id = id };
         await DbOperations.Delete<Newsletter>(deleteBy);
     }
 
-    /// <inheritdoc/>
     public async Task CreateBusinessInquiry(string jsonData)
     {
         var entity = new BusinessInquiry
