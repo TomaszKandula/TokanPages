@@ -416,8 +416,19 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
 
     public async Task UpdateArticleCount(Guid userId, Guid articleId, int count, string ipAddress)
     {
-        var updateBy = new { ReadCount = count, ModifiedAt = _dateTimeService.Now, ModifiedBy = userId };
-        var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
+        var updateBy = new
+        {
+            ReadCount = count,
+            ModifiedAt = _dateTimeService.Now,
+            ModifiedBy = userId
+        };
+        
+        var filterBy = new
+        {
+            ArticleId = articleId,
+            IpAddress = ipAddress
+        };
+
         await DbOperations.Update<ArticleCount>(updateBy, filterBy);
     }
 
