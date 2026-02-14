@@ -11,40 +11,40 @@ public class GetUserDto
     /// <summary>
     /// User ID.
     /// </summary>
-    public Guid UserId { get; set; }
+    public Guid UserId { get; init; }
 
     /// <summary>
     /// Alias name.
     /// </summary>
-    public string? AliasName { get; set; }
+    public string? AliasName { get; init; }
 
     /// <summary>
     /// Avatar name.
     /// </summary>
-    public string? AvatarName { get; set; }
+    public string? AvatarName { get; init; }
 
     /// <summary>
     /// First name.
     /// </summary>
-    public string? FirstName { get; set; }
+    public string? FirstName { get; init; }
 
     /// <summary>
     /// Last name.
     /// </summary>
-    public string? LastName { get; set; }
+    public string? LastName { get; init; }
 
     /// <summary>
     /// User email address.
     /// </summary>
-    public string? Email { get; set; }
+    public string? Email { get; init; }
 
     /// <summary>
     /// User short description ('biography').
     /// </summary>
-    public string? ShortBio { get; set; }
+    public string? ShortBio { get; init; }
 
     /// <summary>
     /// Date and time of registration.
     /// </summary>
-    public DateTime Registered { get; set; }
+    public DateTime Registered { get; init; }
 }
