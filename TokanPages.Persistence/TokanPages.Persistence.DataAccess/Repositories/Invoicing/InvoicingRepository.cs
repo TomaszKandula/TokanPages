@@ -24,7 +24,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
 
     private static BusinessException InvalidContentType => new(nameof(ErrorCodes.INVALID_CONTENT_TYPE), ErrorCodes.INVALID_CONTENT_TYPE);
 
-    /// <inheritdoc/>
     public async Task<List<UserCompany>> GetUserCompanies(HashSet<Guid> userIds)
     {
         const string query = @"
@@ -51,7 +50,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         return (await db.QueryAsync<UserCompany>(query, parameters)).ToList();
     }
 
-    /// <inheritdoc/>
     public async Task<List<UserBankAccount>> GetUserBankAccounts(HashSet<Guid> userIds)
     {
         const string query = @"
@@ -73,7 +71,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         return (await db.QueryAsync<UserBankAccount>(query, parameters)).ToList();
     }
 
-    /// <inheritdoc/>
     public async Task<List<BatchInvoice>> GetBatchInvoicesByIds(HashSet<Guid> ids)
     {
         const string query = @"
@@ -139,20 +136,17 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         return (await db.QueryAsync<BatchInvoiceItem>(query, parameters)).ToList();
     }
 
-    /// <inheritdoc/>
     public async Task<List<VatNumberPattern>> GetVatNumberPatterns()
     {
         return (await DbOperations.Retrieve<VatNumberPattern>()).ToList();
     }
 
-    /// <inheritdoc/>
     public async Task<List<InvoiceTemplate>> GetInvoiceTemplates(bool isDeleted = false)
     {
         var filterBy = new { IsDeleted = isDeleted };
         return (await DbOperations.Retrieve<InvoiceTemplate>(filterBy: filterBy)).ToList();
     }
 
-    /// <inheritdoc/>
     public async Task<List<InvoiceTemplate>> GetInvoiceTemplatesByNames(HashSet<string> names)
     {
         const string query = @"
@@ -177,8 +171,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         return (await db.QueryAsync<InvoiceTemplate>(query, parameters)).ToList();
     }
 
-    /// <inheritdoc/>
-    /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
     public async Task<InvoiceTemplate> GetInvoiceTemplate(Guid templateId, bool isDeleted = false)
     {
         var filterBy = new { Id = templateId, IsDeleted = isDeleted };
@@ -186,7 +178,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         return data ?? throw InvalidTemplateId;
     }
 
-    /// <inheritdoc/>
     public async Task<Guid> CreateInvoiceTemplate(InvoiceTemplateDto template)
     {
         if (string.IsNullOrEmpty(template.InvoiceTemplateData.ContentType))
@@ -207,8 +198,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         return entity.Id;
     }
 
-    /// <inheritdoc/>
-    /// <exception cref="BusinessException">Throws an error code INVALID_TEMPLATE_ID.</exception>
     public async Task UpdateInvoiceTemplate(Guid templateId, InvoiceTemplateDataDto data)
     {
         if (string.IsNullOrEmpty(data.ContentType))
@@ -225,7 +214,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         await DbOperations.Update<InvoiceTemplate>(updateBy, filterBy);
     }
 
-    /// <inheritdoc/>
     public async Task RemoveInvoiceTemplate(Guid templateId)
     {
         var updateBy = new { IsDeleted = true };
@@ -234,21 +222,18 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         await DbOperations.Update<InvoiceTemplate>(updateBy, filterBy);
     }
 
-    /// <inheritdoc/>
     public async Task<BatchInvoiceProcessing?> GetBatchInvoiceProcessingByKey(Guid processBatchKey)
     {
         var filterBy = new { ProcessBatchKey = processBatchKey };
         return (await DbOperations.Retrieve<BatchInvoiceProcessing>(filterBy)).SingleOrDefault();
     }
 
-    /// <inheritdoc/>
     public async Task<List<BatchInvoiceProcessing>> GetBatchInvoiceProcessingByStatus(ProcessingStatus status)
     {
         var filterBy = new { Status = status };
         return (await DbOperations.Retrieve<BatchInvoiceProcessing>(filterBy)).ToList();
     }
 
-    /// <inheritdoc/>
     public async Task<Guid> CreateBatchInvoiceProcessing()
     {
         var entity = new BatchInvoiceProcessing
@@ -263,7 +248,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         return entity.Id;
     }
 
-    /// <inheritdoc/>
     public async Task UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data)
     {
         var filterBy = new { Id = data.ProcessingId };
@@ -276,7 +260,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         await DbOperations.Update<BatchInvoiceProcessing>(updateBy, filterBy);    
     }
 
-    /// <inheritdoc/>
     public async Task CreateBatchInvoice(List<BatchInvoiceDto> data)
     {
         var entities = new List<BatchInvoice>();
@@ -315,7 +298,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         await DbOperations.Insert(entities);
     }
 
-    /// <inheritdoc/>
     public async Task CreateBatchInvoiceItem(List<BatchInvoiceItemDto> data)
     {
         var entities = new List<BatchInvoiceItem>();
@@ -340,7 +322,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         await DbOperations.Insert(entities);
     }
 
-    /// <inheritdoc/>
     public async Task<InvoiceDataDto?> GetIssuedInvoiceById(string invoiceNumber)
     {
         var  filterBy = new { InvoiceNumber = invoiceNumber };
@@ -359,7 +340,6 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
         return null;
     }
 
-    /// <inheritdoc/>
     public async Task CreateIssuedInvoice(List<IssuedInvoiceDto> data)
     {
         var entities = new List<IssuedInvoice>();
