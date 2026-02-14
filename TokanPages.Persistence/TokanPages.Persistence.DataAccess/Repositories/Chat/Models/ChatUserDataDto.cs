@@ -5,7 +5,9 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Chat.Models;
 [ExcludeFromCodeCoverage]
 public class ChatUserDataDto
 {
-    public string FirstName { get; set; } = string.Empty;
-    public string LastName { get; set; } = string.Empty;
-    public string UserImageName { get; set; } = string.Empty;
+    public required string FirstName { get; init; }
+
+    public required string LastName { get; init; }
+
+    public required string UserImageName { get; init; }
 }
