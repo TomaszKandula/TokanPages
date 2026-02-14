@@ -82,12 +82,13 @@ public class ContentRepository : RepositoryBase, IContentRepository
 
     public async Task<List<LanguageItemDto>?> GetContentLanguageList()
     {
-        var data = (await DbOperations.Retrieve<Language>(orderBy: new { SortOrder = "ASC" })).ToList();
-        if (data.Count == 0)
+        var data = await DbOperations.Retrieve<Language>(orderBy: new { SortOrder = "ASC" });
+        var result = data.ToList(); 
+        if (result.Count == 0)
             return null;
 
         var languages = new List<LanguageItemDto>();
-        foreach (var item in data)
+        foreach (var item in result)
         {
             languages.Add(new LanguageItemDto
             {
