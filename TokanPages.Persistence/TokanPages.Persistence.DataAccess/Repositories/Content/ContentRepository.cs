@@ -69,6 +69,7 @@ public class ContentRepository : RepositoryBase, IContentRepository
 
         var filterBy = new
         {
+            Status = data.Status,
             IsSourceDeleted = data.IsSourceDeleted,
             ProcessingWarning = data.ProcessingWarning,
             InputSizeInBytes = data.InputSizeInBytes,
