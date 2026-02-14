@@ -18,9 +18,14 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
 
     public async Task<Guid> GetArticleIdByTitle(string title)
     {
-        var filterBy = new { Title = title.Replace("-", " ").ToLower() };
+        var filterBy = new
+        {
+            Title = title.Replace("-", " ").ToLower()
+        };
+
         var result = await DbOperations.Retrieve<Article>(filterBy);
         var data = result.SingleOrDefault();
+
         return data?.Id ?? Guid.Empty;
     }
 
@@ -126,7 +131,11 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
                 operation.Users.Id = @UserId
         ";
 
-        var queryUserParams = new { UserId = userId };
+        var queryUserParams = new
+        {
+            UserId = userId
+        };
+
         var userDto = await connection.QuerySingleOrDefaultAsync<GetUserDto>(queryUserData, queryUserParams);
 
         const string queryTags = @"
@@ -140,7 +149,11 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
                 operation.Articles.Id = @RequestId
         ";
 
-        var queryTagParams = new { RequestId = requestId };
+        var queryTagParams = new
+        {
+            RequestId = requestId
+        };
+
         var result = await connection.QueryAsync<string>(queryTags, queryTagParams);
         var tags = result.ToArray();
 
@@ -353,9 +366,15 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
 
     public async Task<List<ArticleCount>> GetArticleCount(string ipAddress, Guid articleId)
     {
-        var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
-        var result = await DbOperations.Retrieve<ArticleCount>(filterBy);
-        return  result.ToList();
+        var filterBy = new
+        {
+            ArticleId = articleId, IpAddress = ipAddress
+        };
+
+        var data = await DbOperations.Retrieve<ArticleCount>(filterBy);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<ArticleLike?> GetArticleLikes(bool isAnonymousUser, Guid userId, Guid articleId, string ipAddress)
