@@ -30,8 +30,8 @@ public class MessagingRepository : RepositoryBase, IMessagingRepository
 
     public async Task UpdateServiceBusMessage(Guid messageId, bool isConsumed)
     {
-        var filterBy = new {  MessageId = messageId };
-        var updateBy = new {  IsConsumed = isConsumed };
+        var updateBy = new { IsConsumed = isConsumed };
+        var filterBy = new { MessageId = messageId };
 
         await DbOperations.Update<ServiceBusMessage>(updateBy, filterBy);
     }
