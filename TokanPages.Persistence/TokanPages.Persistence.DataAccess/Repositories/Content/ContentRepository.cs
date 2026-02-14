@@ -60,6 +60,25 @@ public class ContentRepository : RepositoryBase, IContentRepository
         await DbOperations.Insert(entity);            
     }
 
+    public async Task UpdateVideoUpload(UpdateVideoUploadDto data)
+    {
+        var updateBy = new
+        {
+            TicketId = data.TicketId
+        };
+
+        var filterBy = new
+        {
+            IsSourceDeleted = data.IsSourceDeleted,
+            ProcessingWarning = data.ProcessingWarning,
+            InputSizeInBytes = data.InputSizeInBytes,
+            OutputSizeInBytes = data.OutputSizeInBytes,
+            ModifiedAt = _dateTimeService.Now,
+        };
+
+        await DbOperations.Update<UploadedVideo>(updateBy, filterBy);
+    }
+
     public async Task<List<LanguageItemDto>?> GetContentLanguageList()
     {
         var data = (await DbOperations.Retrieve<Language>(orderBy: new { SortOrder = "ASC" })).ToList();
