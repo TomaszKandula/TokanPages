@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using TokanPages.Backend.Domain.Enums;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Content.Models;
 
@@ -6,6 +7,8 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Content.Models;
 public class UpdateVideoUploadDto
 {
     public required Guid TicketId { get; set; }
+
+    public required VideoStatus Status { get; set; }
 
     public required bool IsSourceDeleted { get; set; }
 
