@@ -9,4 +9,6 @@ public interface IMessagingRepository
     Task CreateServiceBusMessage(Guid messageId);
 
     Task UpdateServiceBusMessage(Guid messageId, bool isConsumed);
+
+    Task DeleteServiceBusMessage(Guid messageId);
 }

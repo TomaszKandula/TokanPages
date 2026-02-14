@@ -35,4 +35,10 @@ public class MessagingRepository : RepositoryBase, IMessagingRepository
 
         await DbOperations.Update<ServiceBusMessage>(updateBy, filterBy);
     }
+
+    public async Task DeleteServiceBusMessage(Guid messageId)
+    {
+        var deleteBy = new { Id = messageId };
+        await DbOperations.Delete<ServiceBusMessage>(deleteBy);
+    }
 }
