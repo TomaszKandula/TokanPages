@@ -384,6 +384,7 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         await DbOperations.Insert(entity);
     }
 
+    // TODO: optimize following method
     public async Task RemoveArticle(Guid userId, Guid requestId)
     {
         var articleLikes = new { ArticleId = requestId, UserId =  userId };
