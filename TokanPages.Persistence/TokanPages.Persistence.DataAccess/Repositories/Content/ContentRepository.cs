@@ -15,9 +15,9 @@ public class ContentRepository : RepositoryBase, IContentRepository
     public ContentRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
         : base(dbOperations,  appSettings) => _dateTimeService = dateTimeService;
 
-    public async Task<VideoUploadStatusDto?> GetVideoUploadStatus(Guid ticketId, VideoStatus status)
+    public async Task<VideoUploadStatusDto?> GetVideoUploadStatus(Guid ticketId, VideoStatus? status = null)
     {
-        var filterBy = new { TicketId = ticketId, Status = status };
+        dynamic filterBy = status == null ? new { TicketId = ticketId } : new { TicketId = ticketId, Status = status };
         var data = (await DbOperations.Retrieve<UploadedVideo>(filterBy)).SingleOrDefault();
         if (data is null)
             return null;

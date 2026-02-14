@@ -5,7 +5,7 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Content;
 
 public interface IContentRepository
 {
-    Task<VideoUploadStatusDto?> GetVideoUploadStatus(Guid ticketId, VideoStatus status);
+    Task<VideoUploadStatusDto?> GetVideoUploadStatus(Guid ticketId, VideoStatus? status = null);
 
     Task UpdateVideoUploadStatus(Guid ticketId, VideoStatus status);
 
