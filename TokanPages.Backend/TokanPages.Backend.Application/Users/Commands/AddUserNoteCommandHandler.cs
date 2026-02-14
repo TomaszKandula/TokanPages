@@ -2,7 +2,6 @@ using Microsoft.Extensions.Options;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -18,9 +17,8 @@ public class AddUserNoteCommandHandler : RequestHandler<AddUserNoteCommand, AddU
 
     private readonly AppSettingsModel _appSettings;
 
-    public AddUserNoteCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IDateTimeService dateTimeService, IOptions<AppSettingsModel> options, IUserRepository userRepository) 
-        : base(operationDbContext, loggerService)
+    public AddUserNoteCommandHandler(ILoggerService loggerService, IUserService userService, IDateTimeService dateTimeService, 
+        IOptions<AppSettingsModel> options, IUserRepository userRepository) : base(loggerService)
     {
         _userService = userService;
         _dateTimeService = dateTimeService;

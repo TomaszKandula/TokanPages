@@ -2,7 +2,6 @@ using MediatR;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.CookieAccessorService.Abstractions;
 
@@ -14,8 +13,8 @@ public class RevokeUserRefreshTokenCommandHandler : RequestHandler<RevokeUserRef
 
     private readonly ICookieAccessor _cookieAccessor;
 
-    public RevokeUserRefreshTokenCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        ICookieAccessor cookieAccessor, IUserRepository userRepository) : base(operationDbContext, loggerService)
+    public RevokeUserRefreshTokenCommandHandler(ILoggerService loggerService, ICookieAccessor cookieAccessor, 
+        IUserRepository userRepository) : base(loggerService)
     {
         _cookieAccessor = cookieAccessor;
         _userRepository = userRepository;

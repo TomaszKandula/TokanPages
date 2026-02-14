@@ -3,7 +3,6 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.CipheringService.Abstractions;
 using TokanPages.Services.CookieAccessorService.Abstractions;
@@ -28,9 +27,10 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
     private readonly AppSettingsModel _appSettings;
         
-    public AuthenticateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        ICipheringService cipheringService, IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, 
-        IUserService userService, IOptions<AppSettingsModel> options, ICookieAccessor cookieAccessor, IUserRepository userRepository) : base(operationDbContext, loggerService)
+    public AuthenticateUserCommandHandler(ILoggerService loggerService, ICipheringService cipheringService, 
+        IWebTokenUtility webTokenUtility, IDateTimeService dateTimeService, IUserService userService, 
+        IOptions<AppSettingsModel> options, ICookieAccessor cookieAccessor, IUserRepository userRepository) 
+        : base(loggerService)
     {
         _cipheringService = cipheringService;
         _webTokenUtility = webTokenUtility;

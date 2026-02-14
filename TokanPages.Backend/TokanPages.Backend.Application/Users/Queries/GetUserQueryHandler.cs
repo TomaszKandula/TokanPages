@@ -1,7 +1,6 @@
 ﻿using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 
 namespace TokanPages.Backend.Application.Users.Queries;
@@ -10,8 +9,8 @@ public class GetUserQueryHandler : RequestHandler<GetUserQuery, GetUserQueryResu
 {
     private readonly IUserRepository _userRepository;
 
-    public GetUserQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserRepository userRepository) 
-        : base(operationDbContext, loggerService) => _userRepository = userRepository;
+    public GetUserQueryHandler(ILoggerService loggerService, IUserRepository userRepository) 
+        : base(loggerService) => _userRepository = userRepository;
 
     public override async Task<GetUserQueryResult> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {

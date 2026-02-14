@@ -5,7 +5,6 @@ using TokanPages.Backend.Application.Content.Assets.Commands.Models;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Content;
 using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Services.AzureBusService.Abstractions;
@@ -34,10 +33,9 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public AddUserFileCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService, IAzureBusFactory azureBusFactory, 
-        IJsonSerializer jsonSerializer, IMessagingRepository messagingRepository, IContentRepository contentRepository) 
-        : base(operationDbContext, loggerService)
+    public AddUserFileCommandHandler(ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory, 
+        IUserService userService, IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer, 
+        IMessagingRepository messagingRepository, IContentRepository contentRepository) : base(loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;

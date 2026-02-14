@@ -1,7 +1,6 @@
 ﻿using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Persistence.DataAccess.Repositories.User.Models;
 using TokanPages.Services.UserService.Abstractions;
@@ -14,8 +13,8 @@ public class UpdateUserCommandHandler : RequestHandler<UpdateUserCommand, Update
 
     private readonly IUserRepository _userRepository;
         
-    public UpdateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IUserRepository userRepository) : base(operationDbContext, loggerService)
+    public UpdateUserCommandHandler(ILoggerService loggerService, IUserService userService, 
+        IUserRepository userRepository) : base(loggerService)
     {
         _userService = userService;
         _userRepository = userRepository;

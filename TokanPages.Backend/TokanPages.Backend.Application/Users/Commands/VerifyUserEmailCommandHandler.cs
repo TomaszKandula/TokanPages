@@ -5,7 +5,6 @@ using MediatR;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 
@@ -25,9 +24,9 @@ public class VerifyUserEmailCommandHandler : RequestHandler<VerifyUserEmailComma
 
     private readonly IEmailSenderService _emailSenderService;
 
-    public VerifyUserEmailCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IOptions<AppSettingsModel> options, IUserService userService, IDateTimeService dateTimeService, 
-        IEmailSenderService emailSenderService, IUserRepository userRepository, IMessagingRepository messagingRepository) : base(operationDbContext, loggerService)
+    public VerifyUserEmailCommandHandler(ILoggerService loggerService, IOptions<AppSettingsModel> options, 
+        IUserService userService, IDateTimeService dateTimeService, IEmailSenderService emailSenderService, 
+        IUserRepository userRepository, IMessagingRepository messagingRepository) : base(loggerService)
     {
         _appSettings = options.Value;
         _userService = userService;

@@ -4,7 +4,6 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Persistence.DataAccess.Repositories.User.Models;
@@ -28,9 +27,9 @@ public class ResetUserPasswordCommandHandler : RequestHandler<ResetUserPasswordC
     
     private readonly IMessagingRepository _messagingRepository;
 
-    public ResetUserPasswordCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IDateTimeService dateTimeService, IOptions<AppSettingsModel> options, 
-        IUserService userService, IUserRepository userRepository, IMessagingRepository messagingRepository) : base(operationDbContext, loggerService)
+    public ResetUserPasswordCommandHandler(ILoggerService loggerService, IEmailSenderService emailSenderService, 
+        IDateTimeService dateTimeService, IOptions<AppSettingsModel> options, IUserService userService, 
+        IUserRepository userRepository, IMessagingRepository messagingRepository) : base(loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;

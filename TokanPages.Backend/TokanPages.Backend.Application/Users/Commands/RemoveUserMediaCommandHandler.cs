@@ -2,7 +2,6 @@ using MediatR;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -17,8 +16,8 @@ public class RemoveUserMediaCommandHandler : RequestHandler<RemoveUserMediaComma
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public RemoveUserMediaCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IAzureBlobStorageFactory azureBlobStorageFactory, IUserRepository userRepository) : base(operationDbContext, loggerService)
+    public RemoveUserMediaCommandHandler(ILoggerService loggerService, IUserService userService, 
+        IAzureBlobStorageFactory azureBlobStorageFactory, IUserRepository userRepository) : base(loggerService)
     {
         _userService = userService;
         _azureBlobStorageFactory = azureBlobStorageFactory;

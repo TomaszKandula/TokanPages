@@ -2,7 +2,6 @@ using MediatR;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Services.WebTokenService.Abstractions;
@@ -17,9 +16,8 @@ public class RevokeUserTokenCommandHandler : RequestHandler<RevokeUserTokenComma
 
     private readonly IWebTokenValidation _webTokenValidation;
 
-    public RevokeUserTokenCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IWebTokenValidation webTokenValidation, IUserRepository userRepository) 
-        : base(operationDbContext, loggerService)
+    public RevokeUserTokenCommandHandler(ILoggerService loggerService, IUserService userService, 
+        IWebTokenValidation webTokenValidation, IUserRepository userRepository) : base(loggerService)
     {
         _userService = userService;
         _webTokenValidation = webTokenValidation;

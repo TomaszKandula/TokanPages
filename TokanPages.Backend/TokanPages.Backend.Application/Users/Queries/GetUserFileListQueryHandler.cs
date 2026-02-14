@@ -1,6 +1,5 @@
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.AzureStorageService.Models;
 using TokanPages.Services.UserService.Abstractions;
@@ -13,9 +12,8 @@ public class GetUserFileListQueryHandler : RequestHandler<GetUserFileListQuery, 
 
     private readonly IUserService _userService;
 
-    public GetUserFileListQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService) 
-        : base(operationDbContext, loggerService)
+    public GetUserFileListQueryHandler(ILoggerService loggerService, IAzureBlobStorageFactory 
+        azureBlobStorageFactory, IUserService userService) : base(loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;
