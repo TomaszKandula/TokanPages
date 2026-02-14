@@ -86,10 +86,10 @@ public class VideoProcessing : Processing
     private async Task<bool> CanContinue(Guid messageId)
     {
         var busMessages = await _messagingRepository.GetServiceBusMessage(messageId);
-        if (busMessages is null || busMessages.IsConsumed)
+        if (busMessages is null)
             return false;
 
-        await _messagingRepository.UpdateServiceBusMessage(messageId, true);
+        await _messagingRepository.DeleteServiceBusMessage(messageId);
         return true;
     }
 }
