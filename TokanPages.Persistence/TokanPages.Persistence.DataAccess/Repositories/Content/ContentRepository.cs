@@ -18,18 +18,20 @@ public class ContentRepository : RepositoryBase, IContentRepository
     public async Task<VideoUploadStatusDto?> GetVideoUploadStatus(Guid ticketId, VideoStatus? status = null)
     {
         dynamic filterBy = status == null ? new { TicketId = ticketId } : new { TicketId = ticketId, Status = status };
-        var data = (await DbOperations.Retrieve<UploadedVideo>(filterBy)).SingleOrDefault();
-        if (data is null)
+        var data = await DbOperations.Retrieve<UploadedVideo>(filterBy) as IEnumerable<UploadedVideo>;
+
+        var result = data?.SingleOrDefault();
+        if (result is null)
             return null;
 
         return new VideoUploadStatusDto
         {
-            Status = data.Status,
-            VideoUri = data.TargetVideoUri,
-            ThumbnailUri = data.TargetThumbnailUri,
-            SourceBlobUri = data.SourceBlobUri,
-            TargetVideoUri = data.TargetVideoUri,
-            TargetThumbnailUri = data.TargetThumbnailUri,
+            Status = result.Status,
+            VideoUri = result.TargetVideoUri,
+            ThumbnailUri = result.TargetThumbnailUri,
+            SourceBlobUri = result.SourceBlobUri,
+            TargetVideoUri = result.TargetVideoUri,
+            TargetThumbnailUri = result.TargetThumbnailUri,
         };
     }
 
@@ -62,11 +64,6 @@ public class ContentRepository : RepositoryBase, IContentRepository
 
     public async Task UpdateVideoUpload(UpdateVideoUploadDto data)
     {
-        var filterBy = new
-        {
-            TicketId = data.TicketId
-        };
-
         var updateBy = new
         {
             Status = data.Status,
@@ -75,6 +72,11 @@ public class ContentRepository : RepositoryBase, IContentRepository
             InputSizeInBytes = data.InputSizeInBytes,
             OutputSizeInBytes = data.OutputSizeInBytes,
             ModifiedAt = _dateTimeService.Now,
+        };
+
+        var filterBy = new
+        {
+            TicketId = data.TicketId
         };
 
         await DbOperations.Update<UploadedVideo>(updateBy, filterBy);
