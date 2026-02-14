@@ -33,6 +33,13 @@ public class ContentRepository : RepositoryBase, IContentRepository
         };
     }
 
+    public async Task UpdateVideoUploadStatus(Guid ticketId, VideoStatus status)
+    {
+        var updateBy = new { Status = status };
+        var filterBy = new { TicketId = ticketId };
+        await DbOperations.Update<UploadedVideo>(updateBy, filterBy);
+    }
+
     public async Task CreateVideoUpload(Guid userId, Guid ticketId, string sourceBlobUri, string targetVideoUri, string targetThumbnailUri)
     {
         var entity = new UploadedVideo
