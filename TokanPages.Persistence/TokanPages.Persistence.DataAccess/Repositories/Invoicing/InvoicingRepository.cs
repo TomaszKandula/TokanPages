@@ -45,10 +45,16 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
                 operation.UserCompanies.Id IN @UserIds
         ";
 
+        var parameters = new
+        {
+            UserIds = userIds
+        };
+
         await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { UserIds = userIds };
-        var result = await connection.QueryAsync<UserCompany>(query, parameters);
-        return result.ToList();
+        var data = await connection.QueryAsync<UserCompany>(query, parameters);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<List<UserBankAccount>> GetUserBankAccounts(HashSet<Guid> userIds)
@@ -67,10 +73,16 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
                 operation.UserBankAccounts.Id IN @UserIds
         ";
 
+        var parameters = new
+        {
+            UserIds = userIds
+        };
+
         await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { UserIds = userIds };
-        var result = await connection.QueryAsync<UserBankAccount>(query, parameters);
-        return result.ToList();
+        var data = await connection.QueryAsync<UserBankAccount>(query, parameters);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<List<BatchInvoice>> GetBatchInvoicesByIds(HashSet<Guid> ids)
@@ -107,10 +119,16 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
                 operation.BatchInvoices.Id IN @Ids
         ";
 
+        var parameters = new
+        {
+            Ids = ids
+        };
+
         await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { Ids = ids };
-        var result = await connection.QueryAsync<BatchInvoice>(query, parameters);
-        return result.ToList();
+        var data = await connection.QueryAsync<BatchInvoice>(query, parameters);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<List<BatchInvoiceItem>> GetBatchInvoiceItemsByIds(HashSet<Guid> ids)
@@ -134,23 +152,37 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
                 operation.BatchInvoiceItems.Id IN @Ids
         ";
 
+        var parameters = new
+        {
+            Ids = ids
+        };
+
         await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { Ids = ids };
-        var result = await connection.QueryAsync<BatchInvoiceItem>(query, parameters);
-        return result.ToList();
+        var data = await connection.QueryAsync<BatchInvoiceItem>(query, parameters);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<List<VatNumberPattern>> GetVatNumberPatterns()
     {
-        var result = await DbOperations.Retrieve<VatNumberPattern>();
-        return result.ToList();
+        var data = await DbOperations.Retrieve<VatNumberPattern>();
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<List<InvoiceTemplate>> GetInvoiceTemplates(bool isDeleted = false)
     {
-        var filterBy = new { IsDeleted = isDeleted };
-        var result = await DbOperations.Retrieve<InvoiceTemplate>(filterBy);
-        return result.ToList();
+        var filterBy = new
+        {
+            IsDeleted = isDeleted
+        };
+
+        var data = await DbOperations.Retrieve<InvoiceTemplate>(filterBy);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<List<InvoiceTemplate>> GetInvoiceTemplatesByNames(HashSet<string> names)
@@ -172,16 +204,30 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
                 operation.InvoiceTemplates.IsDeleted = 0
         ";
 
+        var parameters = new
+        {
+            Names = names
+        };
+
         await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { Names = names };
-        return (await connection.QueryAsync<InvoiceTemplate>(query, parameters)).ToList();
+        var data = await connection.QueryAsync<InvoiceTemplate>(query, parameters);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<InvoiceTemplate> GetInvoiceTemplate(Guid templateId, bool isDeleted = false)
     {
-        var filterBy = new { Id = templateId, IsDeleted = isDeleted };
-        var data = (await DbOperations.Retrieve<InvoiceTemplate>(filterBy: filterBy)).SingleOrDefault();
-        return data ?? throw InvalidTemplateId;
+        var filterBy = new
+        {
+            Id = templateId,
+            IsDeleted = isDeleted
+        };
+
+        var data = await DbOperations.Retrieve<InvoiceTemplate>(filterBy);
+        var result = data.SingleOrDefault();
+
+        return result ?? throw InvalidTemplateId;
     }
 
     public async Task<Guid> CreateInvoiceTemplate(InvoiceTemplateDto data)
@@ -227,24 +273,43 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
 
     public async Task RemoveInvoiceTemplate(Guid templateId)
     {
-        var updateBy = new { IsDeleted = true };
-        var filterBy = new { Id = templateId };
+        var updateBy = new
+        {
+            IsDeleted = true
+        };
+
+        var filterBy = new
+        {
+            Id = templateId
+        };
 
         await DbOperations.Update<InvoiceTemplate>(updateBy, filterBy);
     }
 
     public async Task<BatchInvoiceProcessing?> GetBatchInvoiceProcessingByKey(Guid processBatchKey)
     {
-        var filterBy = new { ProcessBatchKey = processBatchKey };
-        var result = await DbOperations.Retrieve<BatchInvoiceProcessing>(filterBy);
-        return result.SingleOrDefault();
+        var filterBy = new
+        {
+            ProcessBatchKey = processBatchKey
+        };
+
+        var data = await DbOperations.Retrieve<BatchInvoiceProcessing>(filterBy);
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
     public async Task<List<BatchInvoiceProcessing>> GetBatchInvoiceProcessingByStatus(ProcessingStatus status)
     {
-        var filterBy = new { Status = status };
-        var result = await DbOperations.Retrieve<BatchInvoiceProcessing>(filterBy);
-        return result.ToList();
+        var filterBy = new
+        {
+            Status = status
+        };
+
+        var data = await DbOperations.Retrieve<BatchInvoiceProcessing>(filterBy);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<Guid> CreateBatchInvoiceProcessing()
@@ -263,11 +328,15 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
 
     public async Task UpdateBatchInvoiceProcessingById(BatchInvoiceProcessingDto data)
     {
-        var filterBy = new { Id = data.ProcessingId };
         var updateBy = new
         {
             Status = data.ProcessingStatus,
             BatchProcessingTime = data.ProcessingTime
+        };
+
+        var filterBy = new
+        {
+            Id = data.ProcessingId
         };
 
         await DbOperations.Update<BatchInvoiceProcessing>(updateBy, filterBy);    
@@ -337,18 +406,22 @@ public class InvoicingRepository : RepositoryBase, IInvoicingRepository
 
     public async Task<InvoiceDataDto?> GetIssuedInvoiceById(string invoiceNumber)
     {
-        var  filterBy = new { InvoiceNumber = invoiceNumber };
-        var results = await DbOperations.Retrieve<IssuedInvoice>(filterBy);
+        var  filterBy = new
+        {
+            InvoiceNumber = invoiceNumber
+        };
 
-        var data = results.SingleOrDefault();
-        if (data != null)
+        var data = await DbOperations.Retrieve<IssuedInvoice>(filterBy);
+
+        var result = data.SingleOrDefault();
+        if (result != null)
         {
             return new InvoiceDataDto
             {
-                Number = data.InvoiceNumber,
-                ContentData = data.InvoiceData,
-                ContentType = data.ContentType,
-                GeneratedAt = data.GeneratedAt
+                Number = result.InvoiceNumber,
+                ContentData = result.InvoiceData,
+                ContentType = result.ContentType,
+                GeneratedAt = result.GeneratedAt
             };
         }
 
