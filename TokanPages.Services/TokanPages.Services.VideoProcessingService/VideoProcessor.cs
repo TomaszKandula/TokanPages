@@ -83,15 +83,14 @@ internal sealed class VideoProcessor : IVideoProcessor
         _loggerService.LogInformation("Data uploaded, temporary files removed");
 
         var hasProcessingWarning = !string.IsNullOrEmpty(converterOutput.ProcessingWarning);
-        var status = hasProcessingWarning 
+        var videoStatus = hasProcessingWarning 
             ? VideoStatus.ProcessingFinishedWithWarnings 
             : VideoStatus.ProcessingFinished;
-
-        await _contentRepository.UpdateVideoUploadStatus(request.TicketId, status);
 
         var videoUpload = new UpdateVideoUploadDto
         {
             TicketId = request.TicketId,
+            Status = videoStatus,
             IsSourceDeleted = true,
             ProcessingWarning = converterOutput.ProcessingWarning,
             InputSizeInBytes = converterOutput.InputSizeInBytes,
