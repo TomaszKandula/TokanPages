@@ -30,7 +30,7 @@ public class ContentRepository : RepositoryBase, IContentRepository
         };
     }
 
-    public async Task UploadVideo(Guid userId, Guid ticketId, string sourceBlobUri, string targetVideoUri, string targetThumbnailUri)
+    public async Task CreateVideoUpload(Guid userId, Guid ticketId, string sourceBlobUri, string targetVideoUri, string targetThumbnailUri)
     {
         var entity = new UploadedVideo
         {

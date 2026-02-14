@@ -127,7 +127,7 @@ public class AddUserFileCommandHandler : RequestHandler<AddUserFileCommand, AddU
         using var stream = new MemoryStream(buffer);
 
         await azureBlob.UploadFile(stream, tempPathFile, contentType, cancellationToken);
-        await _contentRepository.UploadVideo(userId, ticketId, tempPathFile, targetVideoUri, targetThumbnailUri);
+        await _contentRepository.CreateVideoUpload(userId, ticketId, tempPathFile, targetVideoUri, targetThumbnailUri);
 
         LoggerService.LogInformation($"New user video has been uploaded for processing. Ticket ID: {ticketId}.");
 
