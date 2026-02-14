@@ -1,14 +1,12 @@
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Invoicing.Currencies.Queries;
 
 public class GetCurrencyCodesQueryHandler : RequestHandler<GetCurrencyCodesQuery, IList<GetCurrencyCodesQueryResult>>
 {
-    public GetCurrencyCodesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService) 
-        : base(operationDbContext, loggerService) { }
+    public GetCurrencyCodesQueryHandler(ILoggerService loggerService) : base(loggerService) { }
 
     public override async Task<IList<GetCurrencyCodesQueryResult>> Handle(GetCurrencyCodesQuery request, CancellationToken cancellationToken)
     {

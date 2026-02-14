@@ -1,7 +1,6 @@
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 
 namespace TokanPages.Backend.Application.Invoicing.Batches.Queries;
@@ -10,8 +9,8 @@ public class GetBatchProcessingStatusQueryHandler : RequestHandler<GetBatchProce
 {
     private readonly IInvoicingRepository _invoicingRepository;
 
-    public GetBatchProcessingStatusQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IInvoicingRepository invoicingRepository) : base(operationDbContext, loggerService) => _invoicingRepository = invoicingRepository;
+    public GetBatchProcessingStatusQueryHandler(ILoggerService loggerService, IInvoicingRepository invoicingRepository) 
+        : base(loggerService) => _invoicingRepository = invoicingRepository;
 
     public override async Task<GetBatchProcessingStatusQueryResult> Handle(GetBatchProcessingStatusQuery request, CancellationToken cancellationToken)
     {

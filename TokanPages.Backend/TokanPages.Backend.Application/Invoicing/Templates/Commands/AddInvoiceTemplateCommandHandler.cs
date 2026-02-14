@@ -1,6 +1,5 @@
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 
@@ -10,8 +9,8 @@ public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplat
 {
     private readonly IInvoicingRepository _invoicingRepository;
 
-    public AddInvoiceTemplateCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IInvoicingRepository invoicingRepository) : base(operationDbContext, loggerService) => _invoicingRepository = invoicingRepository;
+    public AddInvoiceTemplateCommandHandler(ILoggerService loggerService, IInvoicingRepository invoicingRepository) 
+        : base(loggerService) => _invoicingRepository = invoicingRepository;
 
     public override async Task<AddInvoiceTemplateCommandResult> Handle(AddInvoiceTemplateCommand request, CancellationToken cancellationToken)
     {

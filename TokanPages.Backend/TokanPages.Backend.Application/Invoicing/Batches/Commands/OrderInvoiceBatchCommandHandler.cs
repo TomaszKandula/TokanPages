@@ -1,7 +1,6 @@
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 using TokanPages.Services.BatchService.Abstractions;
 using TokanPages.Services.BatchService.Models;
@@ -23,8 +22,9 @@ public class OrderInvoiceBatchCommandHandler : RequestHandler<OrderInvoiceBatchC
 
     private readonly IInvoicingRepository _invoicingRepository;
 
-    public OrderInvoiceBatchCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IBatchService batchService, 
-        IVatService vatService, IUserService userService, IDateTimeService dateTimeService, IInvoicingRepository invoicingRepository) : base(operationDbContext, loggerService)
+    public OrderInvoiceBatchCommandHandler(ILoggerService loggerService, IBatchService batchService, 
+        IVatService vatService, IUserService userService, IDateTimeService dateTimeService, 
+        IInvoicingRepository invoicingRepository) : base(loggerService)
     {
         _batchService = batchService;
         _vatService = vatService;

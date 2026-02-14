@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using MediatR;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.BatchService.Abstractions;
 
 namespace TokanPages.Backend.Application.Invoicing.Batches.Commands;
@@ -10,8 +9,7 @@ public class OrderBatchProcessingCommandHandler : RequestHandler<OrderBatchProce
 {
     private readonly IBatchService _batchService;
 
-    public OrderBatchProcessingCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IBatchService batchService) 
-        : base(operationDbContext, loggerService) => _batchService = batchService;
+    public OrderBatchProcessingCommandHandler(ILoggerService loggerService, IBatchService batchService) : base(loggerService) => _batchService = batchService;
 
     public override async Task<Unit> Handle(OrderBatchProcessingCommand request, CancellationToken cancellationToken)
     {
