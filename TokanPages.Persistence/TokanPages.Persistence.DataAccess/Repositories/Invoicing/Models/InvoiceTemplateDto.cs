@@ -5,9 +5,9 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 [ExcludeFromCodeCoverage]
 public class InvoiceTemplateDto
 {
-    public string TemplateName { get; set; } = string.Empty;
+    public string TemplateName { get; init; } = string.Empty;
 
-    public InvoiceTemplateDataDto InvoiceTemplateData { get; set; } = new();
+    public InvoiceTemplateDataDto InvoiceTemplateData { get; init; } = new();
 
-    public string InvoiceTemplateDescription { get; set; } = string.Empty;
+    public string InvoiceTemplateDescription { get; init; } = string.Empty;
 }

@@ -6,23 +6,23 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 [ExcludeFromCodeCoverage]
 public class BatchInvoiceItemDto
 {
-    public Guid BatchInvoiceId { get; set; }
+    public Guid BatchInvoiceId { get; init; }
 
-    public string ItemText { get; set; } = string.Empty;
+    public string ItemText { get; init; } = string.Empty;
 
-    public int ItemQuantity { get; set; }
+    public int ItemQuantity { get; init; }
 
-    public string ItemQuantityUnit { get; set; } = string.Empty;
+    public string ItemQuantityUnit { get; init; } = string.Empty;
 
-    public decimal ItemAmount { get; set; }
+    public decimal ItemAmount { get; init; }
 
-    public decimal? ItemDiscountRate { get; set; }
+    public decimal? ItemDiscountRate { get; init; }
 
-    public decimal ValueAmount { get; set; }
+    public decimal ValueAmount { get; init; }
 
-    public decimal? VatRate { get; set; }
+    public decimal? VatRate { get; init; }
 
-    public decimal GrossAmount { get; set; }
+    public decimal GrossAmount { get; init; }
 
-    public CurrencyCode CurrencyCode { get; set; }
+    public CurrencyCode CurrencyCode { get; init; }
 }
