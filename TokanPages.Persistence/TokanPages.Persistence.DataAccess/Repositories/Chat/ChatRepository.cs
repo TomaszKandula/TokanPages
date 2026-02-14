@@ -24,7 +24,7 @@ public class ChatRepository : RepositoryBase, IChatRepository
         {
             FirstName = data.FirstName,
             LastName = data.LastName,
-            UserImageName = data.UserImageName,
+            UserImageName = data.UserImageName ?? string.Empty,
         };
     }
 
@@ -48,7 +48,8 @@ public class ChatRepository : RepositoryBase, IChatRepository
     public async Task<UserMessage?> GetChatUserMessageData(string chatKey, bool isArchived)
     {
         var filterBy = new { ChatKey = chatKey, IsArchived = isArchived };
-        return (await DbOperations.Retrieve<UserMessage>(filterBy)).SingleOrDefault();
+        var result =  await DbOperations.Retrieve<UserMessage>(filterBy);
+        return result.SingleOrDefault();
     }
 
     public async Task UpdateChatUserMessageData(string chatKey, string chatData, bool isArchived, DateTime modifiedAt, Guid modifiedBy)
