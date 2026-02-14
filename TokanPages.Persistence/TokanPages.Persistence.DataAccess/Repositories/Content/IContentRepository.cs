@@ -11,5 +11,7 @@ public interface IContentRepository
 
     Task CreateVideoUpload(Guid userId, Guid ticketId, string sourceBlobUri, string targetVideoUri, string targetThumbnailUri);
 
+    Task UpdateVideoUpload(UpdateVideoUploadDto data);
+
     Task<List<LanguageItemDto>?> GetContentLanguageList();
 }
