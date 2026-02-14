@@ -15,11 +15,11 @@ public class RemoveChatCacheCommandHandler : RequestHandler<RemoveChatCacheComma
     {
         if (request.ChatId is not null)
         {
-            await _chatRepository.DeleteChatUserCacheById((Guid)request.ChatId);
+            await _chatRepository.RemoveChatUserCacheById((Guid)request.ChatId);
         }
         else if (request.ChatKey is not null)
         {
-            await _chatRepository.DeleteChatUserCacheByKey(request.ChatKey);
+            await _chatRepository.RemoveChatUserCacheByKey(request.ChatKey);
         }
 
         return Unit.Value;        

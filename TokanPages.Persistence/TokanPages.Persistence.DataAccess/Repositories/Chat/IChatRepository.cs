@@ -17,7 +17,7 @@ public interface IChatRepository
 
     Task CreateChatCache(Guid id, string chatKey, string notification);
     
-    Task DeleteChatUserCacheById(Guid chatId);
+    Task RemoveChatUserCacheById(Guid chatId);
 
-    Task DeleteChatUserCacheByKey(string chatKey);
+    Task RemoveChatUserCacheByKey(string chatKey);
 }
