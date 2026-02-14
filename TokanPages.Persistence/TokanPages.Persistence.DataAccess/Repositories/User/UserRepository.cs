@@ -427,11 +427,9 @@ public class UserRepository : RepositoryBase, IUserRepository
     public async Task<GetUserRefreshTokenDto?> GetUserRefreshToken(string token)
     {
         var filterBy = new { Token = token };
-        var data = await DbOperations.Retrieve<Users.UserRefreshToken>(filterBy);
-        var dto = data.SingleOrDefault();
-        if (dto == null)
         var result = await DbOperations.Retrieve<Users.UserRefreshToken>(filterBy);
         var data = result.SingleOrDefault();
+        if (data == null)
             return null;
 
         return new GetUserRefreshTokenDto
