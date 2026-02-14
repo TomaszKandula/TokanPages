@@ -19,7 +19,8 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
     public async Task<Guid> GetArticleIdByTitle(string title)
     {
         var filterBy = new { Title = title.Replace("-", " ").ToLower() };
-        var data = (await DbOperations.Retrieve<Article>(filterBy)).SingleOrDefault();
+        var result = await DbOperations.Retrieve<Article>(filterBy);
+        var data = result.SingleOrDefault();
         return data?.Id ?? Guid.Empty;
     }
 
@@ -123,7 +124,8 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         ";
 
         var queryTagParams = new { RequestId = requestId };
-        var tags = (await db.QueryAsync<string>(queryTags, queryTagParams)).ToArray();
+        var result = await db.QueryAsync<string>(queryTags, queryTagParams);
+        var tags = result.ToArray();
 
         return new GetArticleOutputDto
         {
@@ -321,14 +323,18 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
     public async Task<List<ArticleCount>> GetArticleCount(string ipAddress, Guid articleId)
     {
         var filterBy = new { ArticleId = articleId, IpAddress = ipAddress };
-        return (await DbOperations.Retrieve<ArticleCount>(filterBy)).ToList();
+        var result = await DbOperations.Retrieve<ArticleCount>(filterBy);
+        return  result.ToList();
     }
 
     public async Task<ArticleLike?> GetArticleLikes(bool isAnonymousUser, Guid userId, Guid articleId, string ipAddress)
     {
-        return isAnonymousUser 
-            ? (await DbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, IpAddress = ipAddress })).SingleOrDefault()
-            : (await DbOperations.Retrieve<ArticleLike>(new { ArticleId = articleId, UserId = userId })).SingleOrDefault();
+        dynamic filterBy = isAnonymousUser
+            ? new { ArticleId = articleId, IpAddress = ipAddress }
+            : new { ArticleId = articleId, UserId = userId };
+
+        var result = await DbOperations.Retrieve<ArticleLike>(filterBy);
+        return result.SingleOrDefault();
     }
 
     public async Task CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes)
@@ -450,13 +456,10 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
             UpdatedAt = _dateTimeService.Now
         };
 
-        if (isAnonymousUser)
-        {
-            await DbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, IpAddress = ipAddress });
-        }
-        else
-        {
-            await DbOperations.Update<ArticleLike>(updateBy, new { ArticleId = articleId, UserId = userId });    
-        }
+        dynamic filterBy = isAnonymousUser 
+            ? new { ArticleId = articleId, IpAddress = ipAddress } 
+            : new { ArticleId = articleId, UserId = userId };
+
+        await DbOperations.Update<ArticleLike>(updateBy, filterBy);
     }
 }
