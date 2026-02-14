@@ -15,9 +15,6 @@ public class GetSubscriberQueryHandlerTest : TestBase
     public async Task GivenCorrectId_WhenGetNewsletter_ShouldReturnEntity() 
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
-        // Arrange
         var newsletter = new Backend.Domain.Entities.Newsletter
         {
             Email = DataUtilityService.GetRandomEmail(),
@@ -36,7 +33,7 @@ public class GetSubscriberQueryHandlerTest : TestBase
             .ReturnsAsync(newsletter);
 
         var query = new GetNewsletterQuery { Id = Guid.NewGuid() };
-        var handler = new GetNewsletterQueryHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
+        var handler = new GetNewsletterQueryHandler(mockedLogger.Object, mockSenderRepository.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);
@@ -53,8 +50,6 @@ public class GetSubscriberQueryHandlerTest : TestBase
     [Fact]
     public async Task GivenIncorrectId_WhenGetNewsletter_ShouldThrowError()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
@@ -64,7 +59,7 @@ public class GetSubscriberQueryHandlerTest : TestBase
             .ReturnsAsync((Backend.Domain.Entities.Newsletter?)null);
         
         var query = new GetNewsletterQuery { Id = Guid.NewGuid() };
-        var handler = new GetNewsletterQueryHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
+        var handler = new GetNewsletterQueryHandler(mockedLogger.Object, mockSenderRepository.Object);
 
         // Act
         // Assert
