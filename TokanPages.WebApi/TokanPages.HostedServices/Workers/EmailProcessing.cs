@@ -6,10 +6,9 @@ using TokanPages.HostedServices.Base;
 using TokanPages.Services.AzureBusService.Abstractions;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
-using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 
 namespace TokanPages.HostedServices.Workers;
 
@@ -28,7 +27,7 @@ public class EmailProcessing : Processing
 
     private readonly IEmailSenderService _emailSenderService;
 
-    private readonly OperationDbContext _operationDbContext;
+    private readonly IMessagingRepository _messagingRepository;
 
     /// <summary>
     /// Implementation of email processing hosted service.
@@ -36,12 +35,12 @@ public class EmailProcessing : Processing
     /// <param name="loggerService">Logger Service instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
     /// <param name="emailSenderService">Email Sender Service instance.</param>
-    /// <param name="operationDbContext">Database instance.</param>
+    /// <param name="messagingRepository">Messaging repository instance.</param>
     public EmailProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        IEmailSenderService emailSenderService, OperationDbContext operationDbContext) : base(loggerService, azureBusFactory)
+        IEmailSenderService emailSenderService, IMessagingRepository messagingRepository) : base(loggerService, azureBusFactory)
     {
         _emailSenderService = emailSenderService;
-        _operationDbContext = operationDbContext;
+        _messagingRepository = messagingRepository;
     }
 
     /// <summary>
@@ -97,24 +96,20 @@ public class EmailProcessing : Processing
         LoggerService.LogInformation($"{ServiceName}: Email processed within: {timer.Elapsed}");
     }
 
-    private async Task<bool> CanContinue(Guid messageId, CancellationToken cancellationToken)
+    private async Task<bool> CanContinue(Guid messageId)
     {
-        var busMessages = await _operationDbContext.ServiceBusMessages
-            .Where(messages => messages.Id == messageId)
-            .SingleOrDefaultAsync(cancellationToken);
-
+        var busMessages = await _messagingRepository.GetServiceBusMessage(messageId);
         if (busMessages is null || busMessages.IsConsumed)
             return false;
 
-        busMessages.IsConsumed = true;
-        await _operationDbContext.SaveChangesAsync(cancellationToken);
+        await _messagingRepository.UpdateServiceBusMessage(messageId, true);
         return true;
     }
 
     private async Task NotificationForConfiguration<T>(T configuration) where T : IEmailConfiguration
     {
         var messageId = configuration.MessageId;
-        var canContinue = await CanContinue(messageId, CancellationToken.None);
+        var canContinue = await CanContinue(messageId);
         if (canContinue)
         {
             LoggerService.LogInformation($"{ServiceName}: Received: {nameof(configuration)}..., using: SendNotification method...");
@@ -129,7 +124,7 @@ public class EmailProcessing : Processing
     private async Task EmailForConfiguration<T>(T configuration) where T : IEmailConfiguration
     {
         var messageId = configuration.MessageId;
-        var canContinue = await CanContinue(messageId, CancellationToken.None);
+        var canContinue = await CanContinue(messageId);
         if (canContinue)
         {
             LoggerService.LogInformation($"{ServiceName}: Received: {nameof(configuration)}..., using: SendEmail method...");
