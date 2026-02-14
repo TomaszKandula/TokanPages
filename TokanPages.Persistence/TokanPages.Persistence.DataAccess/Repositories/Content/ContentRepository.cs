@@ -17,9 +17,11 @@ public class ContentRepository : RepositoryBase, IContentRepository
 
     public async Task<VideoUploadStatusDto?> GetVideoUploadStatus(Guid ticketId, VideoStatus? status = null)
     {
-        dynamic filterBy = status == null ? new { TicketId = ticketId } : new { TicketId = ticketId, Status = status };
-        var data = await DbOperations.Retrieve<UploadedVideo>(filterBy) as IEnumerable<UploadedVideo>;
+        dynamic filterBy = status == null 
+            ? new { TicketId = ticketId } 
+            : new { TicketId = ticketId, Status = status };
 
+        var data = await DbOperations.Retrieve<UploadedVideo>(filterBy) as IEnumerable<UploadedVideo>;
         var result = data?.SingleOrDefault();
         if (result is null)
             return null;
@@ -37,8 +39,16 @@ public class ContentRepository : RepositoryBase, IContentRepository
 
     public async Task UpdateVideoUploadStatus(Guid ticketId, VideoStatus status)
     {
-        var updateBy = new { Status = status };
-        var filterBy = new { TicketId = ticketId };
+        var updateBy = new
+        {
+            Status = status
+        };
+
+        var filterBy = new
+        {
+            TicketId = ticketId
+        };
+
         await DbOperations.Update<UploadedVideo>(updateBy, filterBy);
     }
 
