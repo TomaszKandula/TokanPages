@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Cronos;
+using TokanPages.Backend.Utility.Abstractions;
 
 namespace TokanPages.HostedServices.Base;
 
@@ -16,14 +17,44 @@ public class CronJob : IHostedService, IDisposable
     private readonly TimeZoneInfo _timeZoneInfo;
 
     /// <summary>
+    /// Logger service.
+    /// </summary>
+    protected readonly ILoggerService LoggerService;
+
+    /// <summary>
+    /// Service scope factory to get required service, so the appropriate method can be called.
+    /// </summary>
+    protected readonly IServiceScopeFactory ServiceScopeFactory;
+
+    /// <summary>
     /// Cron job implementation using threading timer.
     /// </summary>
     /// <param name="cronExpression">CRON expression.</param>
     /// <param name="timeZoneInfo">Time Zone info instance.</param>
-    protected CronJob(string cronExpression, TimeZoneInfo timeZoneInfo)
+    /// <param name="loggerService">Logger service instance.</param>
+    /// <param name="serviceScopeFactory">Service scope factory instance.</param>
+    protected CronJob(string cronExpression, TimeZoneInfo timeZoneInfo, ILoggerService loggerService, IServiceScopeFactory serviceScopeFactory)
     {
         _expression = CronExpression.Parse(cronExpression);
         _timeZoneInfo = timeZoneInfo;
+        ServiceScopeFactory = serviceScopeFactory;
+        LoggerService = loggerService;
+    }
+
+    /// <summary>
+    /// Returns created service for given type.
+    /// </summary>
+    /// <typeparam name="T">Given type to be created as scoped.</typeparam>
+    /// <exception cref="ArgumentNullException">Throws as exception if service is null.</exception>
+    /// <returns>Created service.</returns>
+    public T GetService<T>() where T : notnull
+    {
+        using var scope = ServiceScopeFactory.CreateScope();
+        var service = scope.ServiceProvider.GetRequiredService<T>();
+
+        ArgumentNullException.ThrowIfNull(service);
+
+        return service;
     }
 
     /// <summary>
