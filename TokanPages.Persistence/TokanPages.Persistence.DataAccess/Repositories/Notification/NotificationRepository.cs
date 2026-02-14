@@ -56,13 +56,13 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Update<PushNotification>(updateBy, filterBy);
     }
 
-    public async Task DeletePushNotificationById(Guid id)
+    public async Task RemovePushNotificationById(Guid id)
     {
         var deleteBy = new { Id = id };
         await DbOperations.Delete<PushNotification>(deleteBy);
     }
 
-    public async Task DeletePushNotificationsByIds(List<object> ids)
+    public async Task RemovePushNotificationsByIds(List<object> ids)
     {
         var uids = new HashSet<object>(ids);
         await DbOperations.Delete<PushNotification>(uids);
@@ -109,13 +109,13 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
          await DbOperations.Insert(entities);
     }
 
-    public async Task DeletePushNotificationTagsById(Guid id)
+    public async Task RemovePushNotificationTagsById(Guid id)
     {
         var deleteBy = new { PushNotificationId = id };
         await DbOperations.Delete<PushNotificationTag>(deleteBy);
     }
 
-    public async Task DeletePushNotificationTagsByIds(List<object> ids)
+    public async Task RemovePushNotificationTagsByIds(List<object> ids)
     {
         var uids = new HashSet<object>(ids);
         await DbOperations.Delete<PushNotificationTag>(uids);
@@ -168,7 +168,7 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Update<WebNotification>(updateBy, filterBy);
     }
 
-    public async Task DeleteWebNotificationById(Guid id)
+    public async Task RemoveWebNotificationById(Guid id)
     {
         var deleteBy = new { Id = id };
         await DbOperations.Delete<WebNotification>(deleteBy);

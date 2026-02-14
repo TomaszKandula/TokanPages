@@ -141,7 +141,7 @@ public class AddInstallationCommandHandler : RequestHandler<AddInstallationComma
             });
         }
 
-        await _notificationRepository.DeletePushNotificationTagsById(installationId);
+        await _notificationRepository.RemovePushNotificationTagsById(installationId);
         await _notificationRepository.CreatePushNotificationTags(notificationTags);
     }
 }

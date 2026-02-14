@@ -11,9 +11,9 @@ public interface INotificationRepository
 
     Task UpdatePushNotification(PushNotificationDto data);
 
-    Task DeletePushNotificationById(Guid id);
+    Task RemovePushNotificationById(Guid id);
 
-    Task DeletePushNotificationsByIds(List<object> ids);
+    Task RemovePushNotificationsByIds(List<object> ids);
 
     Task<List<PushNotificationTag>> GetPushNotificationTags(Guid installationId);
 
@@ -21,9 +21,9 @@ public interface INotificationRepository
 
     Task CreatePushNotificationTags(List<PushNotificationTagDto> data);
 
-    Task DeletePushNotificationTagsById(Guid id);
+    Task RemovePushNotificationTagsById(Guid id);
 
-    Task DeletePushNotificationTagsByIds(List<object> ids);
+    Task RemovePushNotificationTagsByIds(List<object> ids);
 
     Task CreatePushNotificationLogs(List<PushNotificationLogDto> data);
 
@@ -33,5 +33,5 @@ public interface INotificationRepository
 
     Task UpdateWebNotification(Guid id, string value);
 
-    Task DeleteWebNotificationById(Guid id);
+    Task RemoveWebNotificationById(Guid id);
 }
