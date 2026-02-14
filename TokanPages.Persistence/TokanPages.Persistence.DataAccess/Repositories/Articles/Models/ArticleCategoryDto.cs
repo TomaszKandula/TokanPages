@@ -7,5 +7,5 @@ public class ArticleCategoryDto
 {
     public required Guid Id { get; init; }
 
-    public required string CategoryName { get; init; } = string.Empty;
+    public required string CategoryName { get; init; }
 }

@@ -7,11 +7,11 @@ public class ArticleDataDto
 {
     public required Guid Id { get; init; }
 
-    public required string CategoryName { get; init; } = string.Empty;
+    public required string CategoryName { get; init; }
 
-    public required string Title { get; init; } = string.Empty;
+    public required string Title { get; init; }
 
-    public required string Description { get; init; } = string.Empty;
+    public required string Description { get; init; }
 
     public required bool IsPublished { get; init; }
 

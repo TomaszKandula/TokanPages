@@ -9,9 +9,9 @@ public class ArticleBaseDto
 
     public required Guid UserId { get; init; }
 
-    public required string Title { get; init; } = string.Empty;
+    public required string Title { get; init; }
 
-    public required string Description { get; init; } = string.Empty;
+    public required string Description { get; init; }
 
     public required bool IsPublished { get; init; }
 
@@ -21,9 +21,9 @@ public class ArticleBaseDto
 
     public required int ReadCount { get; init; }
 
-    public required string LanguageIso { get; init; } = string.Empty;
+    public required string LanguageIso { get; init; }
 
-    public required string CategoryName { get; init; } = string.Empty;
+    public required string CategoryName { get; init; }
 
     public int? TotalLikes { get; init; }
 
