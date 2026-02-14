@@ -89,7 +89,9 @@ public class AddInstallationCommandHandler : RequestHandler<AddInstallationComma
 
             var notificationDto = new PushNotificationDto
             {
-                ModifiedBy = Guid.Empty,
+                Id = notification.Id,
+                Handle = request.PnsHandle,
+                Platform = request.Platform.ToString().ToLower(),
                 IsVerified = status.isVerified,
                 RegistrationId = status.registrationId
             };
