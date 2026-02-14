@@ -25,18 +25,16 @@ public class VideoProcessing : Processing
 
     private const string ServiceName = $"[{nameof(VideoProcessing)}]";
 
-    private readonly IVideoProcessor _videoProcessor;
-
     /// <summary>
     /// Implementation of video processing hosted service.
     /// </summary>
     /// <param name="loggerService">Logger Service instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
-    /// <param name="videoProcessor">Video Processor instance.</param>
     /// <param name="messagingRepository">Messaging repository instance.</param>
+    /// <param name="serviceScopeFactory">Service scope factory instance.</param>
     public VideoProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        IVideoProcessor videoProcessor, IMessagingRepository messagingRepository) 
-        : base(loggerService, azureBusFactory, messagingRepository) => _videoProcessor = videoProcessor;
+        IMessagingRepository messagingRepository, IServiceScopeFactory serviceScopeFactory) 
+        : base(loggerService, azureBusFactory, messagingRepository, serviceScopeFactory) { }
 
     /// <summary>
     /// Custom implementation for video processing.
@@ -71,7 +69,8 @@ public class VideoProcessing : Processing
         timer.Start();
         LoggerService.LogInformation($"{ServiceName}: Video processing started...");
 
-        await _videoProcessor.Process(request).ConfigureAwait(false);
+        var videoProcessor = GetService<IVideoProcessor>();
+        await videoProcessor.Process(request).ConfigureAwait(false);
         await args.CompleteMessageAsync(args.Message).ConfigureAwait(false);
 
         timer.Stop();

@@ -25,18 +25,16 @@ public class CacheProcessing : Processing
 
     private const string ServiceName = $"[{nameof(CacheProcessing)}]";
 
-    private readonly ICachingService _cachingService;
-
     /// <summary>
     /// Implementation of cache processing hosted service.
     /// </summary>
     /// <param name="loggerService">Logger Service instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
-    /// <param name="cachingService">SPA Cache Processor instance.</param>
     /// <param name="messagingRepository">Messaging repository instance.</param>
-    public CacheProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        ICachingService cachingService, IMessagingRepository messagingRepository) 
-        : base(loggerService, azureBusFactory, messagingRepository) => _cachingService = cachingService;
+    /// <param name="serviceScopeFactory">Service scope factory instance.</param>
+    public CacheProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory,
+        IMessagingRepository messagingRepository, IServiceScopeFactory serviceScopeFactory)
+        : base(loggerService, azureBusFactory, messagingRepository, serviceScopeFactory) { }
 
     /// <summary>
     /// Custom implementation for cache processing.
@@ -71,16 +69,18 @@ public class CacheProcessing : Processing
         timer.Start();
         LoggerService.LogInformation($"{ServiceName}: SPA cache processing started...");
 
+        var cachingService = GetService<ICachingService>();
+
         if (request.Files is not null && request.Files.Length > 0)
         {
-            await _cachingService.SaveStaticFiles(request.Files, request.GetUrl, request.PostUrl).ConfigureAwait(false);
+            await cachingService.SaveStaticFiles(request.Files, request.GetUrl, request.PostUrl).ConfigureAwait(false);
         }
 
         if (request.Paths.Count > 0)
         {
             foreach (var path in request.Paths)
             {
-                var page = await _cachingService.RenderStaticPage(path.Url, request.PostUrl, path.Name).ConfigureAwait(false);
+                var page = await cachingService.RenderStaticPage(path.Url, request.PostUrl, path.Name).ConfigureAwait(false);
                 if (!string.IsNullOrWhiteSpace(page))
                     LoggerService.LogInformation($"{ServiceName}: page '{path.Name}' has been rendered and saved. Url: '{path.Url}'.");
             }

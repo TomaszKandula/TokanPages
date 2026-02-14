@@ -25,18 +25,16 @@ public class EmailProcessing : Processing
 
     private const string ServiceName = $"[{nameof(EmailProcessing)}]";
 
-    private readonly IEmailSenderService _emailSenderService;
-
     /// <summary>
     /// Implementation of email processing hosted service.
     /// </summary>
     /// <param name="loggerService">Logger Service instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
-    /// <param name="emailSenderService">Email Sender Service instance.</param>
     /// <param name="messagingRepository">Messaging repository instance.</param>
-    public EmailProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
-        IEmailSenderService emailSenderService, IMessagingRepository messagingRepository) 
-        : base(loggerService, azureBusFactory, messagingRepository) => _emailSenderService = emailSenderService;
+    /// <param name="serviceScopeFactory">Service scope factory instance.</param>
+    public EmailProcessing(ILoggerService loggerService, IAzureBusFactory azureBusFactory,
+        IMessagingRepository messagingRepository, IServiceScopeFactory serviceScopeFactory)
+        : base(loggerService, azureBusFactory, messagingRepository, serviceScopeFactory) { }
 
     /// <summary>
     /// Custom implementation for email processing.
@@ -98,7 +96,8 @@ public class EmailProcessing : Processing
         if (canContinue)
         {
             LoggerService.LogInformation($"{ServiceName}: Received: {nameof(configuration)}..., using: SendNotification method...");
-            await _emailSenderService.SendNotification(configuration, CancellationToken.None).ConfigureAwait(false);
+            var emailSenderService = GetService<IEmailSenderService>();
+            await emailSenderService.SendNotification(configuration, CancellationToken.None).ConfigureAwait(false);
         }
         else
         {
@@ -113,7 +112,8 @@ public class EmailProcessing : Processing
         if (canContinue)
         {
             LoggerService.LogInformation($"{ServiceName}: Received: {nameof(configuration)}..., using: SendEmail method...");
-            await _emailSenderService.SendEmail(configuration, CancellationToken.None).ConfigureAwait(false);
+            var emailSenderService = GetService<IEmailSenderService>();
+            await emailSenderService.SendEmail(configuration, CancellationToken.None).ConfigureAwait(false);
         }
         else
         {
