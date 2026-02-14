@@ -6,9 +6,15 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Content.Models;
 [ExcludeFromCodeCoverage]
 public class VideoUploadStatusDto
 {
-    public VideoStatus? Status { get; set; }
+    public required VideoStatus? Status { get; init; }
 
-    public string? VideoUri { get; set; }
+    public required string? VideoUri { get; init; }
 
-    public string? ThumbnailUri { get; set; }
+    public required string? ThumbnailUri { get; init; }
+
+    public required string SourceBlobUri { get; init; }
+
+    public required string TargetVideoUri { get; set; }
+
+    public required string TargetThumbnailUri { get; set; }
 }
