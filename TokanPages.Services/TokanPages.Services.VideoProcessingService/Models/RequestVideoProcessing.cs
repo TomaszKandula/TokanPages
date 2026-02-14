@@ -5,13 +5,11 @@ namespace TokanPages.Services.VideoProcessingService.Models;
 [ExcludeFromCodeCoverage]
 public class RequestVideoProcessing
 {
-    public Guid MessageId { get; set; }
+    public Guid MessageId { get; init; }
 
-    public Guid TicketId { get; set; }
+    public Guid TicketId { get; init; }
 
-    public Guid UserId { get; set; }
+    public string? TargetEnv { get; init; }
 
-    public string? TargetEnv { get; set; }
-
-    public TargetDetails? Details { get; set; }
+    public TargetDetails? Details { get; init; }
 }

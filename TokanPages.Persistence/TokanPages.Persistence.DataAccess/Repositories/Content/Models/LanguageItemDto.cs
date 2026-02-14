@@ -5,11 +5,11 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Content.Models;
 [ExcludeFromCodeCoverage]
 public class LanguageItemDto
 {
-    public string Id { get; set; } = string.Empty;
+    public required string Id { get; init; } = string.Empty;
 
-    public string Iso { get; set; } = string.Empty;
+    public required string Iso { get; init; } = string.Empty;
 
-    public string Name { get; set; } = string.Empty;
+    public required string Name { get; init; } = string.Empty;
 
-    public bool IsDefault { get; set; }
+    public required bool IsDefault { get; init; }
 }

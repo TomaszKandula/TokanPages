@@ -77,7 +77,7 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
         var buffer = binaryData.GetByteArray();
         using var stream = new MemoryStream(buffer);
         await azureBlob.UploadFile(stream, tempPathFile, contentType, cancellationToken);
-        await _contentRepository.UploadVideo(userId, ticketId, tempPathFile, targetVideoUri, targetThumbnailUri);
+        await _contentRepository.CreateVideoUpload(userId, ticketId, tempPathFile, targetVideoUri, targetThumbnailUri);
         LoggerService.LogInformation($"New video has been uploaded for processing. Ticket ID: {ticketId}.");
 
         var details = new TargetDetails

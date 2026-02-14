@@ -15,9 +15,9 @@ public class ContentRepository : RepositoryBase, IContentRepository
     public ContentRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
         : base(dbOperations,  appSettings) => _dateTimeService = dateTimeService;
 
-    public async Task<VideoUploadStatusDto?> GetVideoUploadStatus(Guid ticketId)
+    public async Task<VideoUploadStatusDto?> GetVideoUploadStatus(Guid ticketId, VideoStatus? status = null)
     {
-        var filterBy = new { TicketId = ticketId };
+        dynamic filterBy = status == null ? new { TicketId = ticketId } : new { TicketId = ticketId, Status = status };
         var data = (await DbOperations.Retrieve<UploadedVideo>(filterBy)).SingleOrDefault();
         if (data is null)
             return null;
@@ -26,11 +26,21 @@ public class ContentRepository : RepositoryBase, IContentRepository
         {
             Status = data.Status,
             VideoUri = data.TargetVideoUri,
-            ThumbnailUri = data.TargetThumbnailUri
+            ThumbnailUri = data.TargetThumbnailUri,
+            SourceBlobUri = data.SourceBlobUri,
+            TargetVideoUri = data.TargetVideoUri,
+            TargetThumbnailUri = data.TargetThumbnailUri,
         };
     }
 
-    public async Task UploadVideo(Guid userId, Guid ticketId, string sourceBlobUri, string targetVideoUri, string targetThumbnailUri)
+    public async Task UpdateVideoUploadStatus(Guid ticketId, VideoStatus status)
+    {
+        var updateBy = new { Status = status };
+        var filterBy = new { TicketId = ticketId };
+        await DbOperations.Update<UploadedVideo>(updateBy, filterBy);
+    }
+
+    public async Task CreateVideoUpload(Guid userId, Guid ticketId, string sourceBlobUri, string targetVideoUri, string targetThumbnailUri)
     {
         var entity = new UploadedVideo
         {
@@ -48,6 +58,26 @@ public class ContentRepository : RepositoryBase, IContentRepository
         };
 
         await DbOperations.Insert(entity);            
+    }
+
+    public async Task UpdateVideoUpload(UpdateVideoUploadDto data)
+    {
+        var filterBy = new
+        {
+            TicketId = data.TicketId
+        };
+
+        var updateBy = new
+        {
+            Status = data.Status,
+            IsSourceDeleted = data.IsSourceDeleted,
+            ProcessingWarning = data.ProcessingWarning,
+            InputSizeInBytes = data.InputSizeInBytes,
+            OutputSizeInBytes = data.OutputSizeInBytes,
+            ModifiedAt = _dateTimeService.Now,
+        };
+
+        await DbOperations.Update<UploadedVideo>(updateBy, filterBy);
     }
 
     public async Task<List<LanguageItemDto>?> GetContentLanguageList()
