@@ -5,11 +5,11 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Sender.Models;
 [ExcludeFromCodeCoverage]
 public class UpdateNewsletterDto
 {
-    public Guid Id { get; set; }
+    public required Guid Id { get; init; }
 
-    public string Email { get; set; } = string.Empty;
+    public required string Email { get; init; }
 
-    public bool IsActivated { get; set; }
+    public required bool IsActivated { get; init; }
 
-    public int Count { get; set; }
+    public required int Count { get; init; }
 }
