@@ -1,7 +1,6 @@
 using TokanPages.Backend.Application.Content.Components.Models;
 using TokanPages.Backend.Application.Content.Components.Queries;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Components.Commands;
@@ -14,9 +13,8 @@ public class RequestPageDataCommandHandler : RequestHandler<RequestPageDataComma
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    public RequestPageDataCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IJsonSerializer jsonSerializer) 
-        : base(operationDbContext, loggerService)
+    public RequestPageDataCommandHandler(ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory, 
+        IJsonSerializer jsonSerializer) : base(loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _jsonSerializer = jsonSerializer;
@@ -57,7 +55,6 @@ public class RequestPageDataCommandHandler : RequestHandler<RequestPageDataComma
         };
 
         var handler = new GetContentQueryHandler(
-            OperationDbContext, 
             LoggerService, 
             _jsonSerializer, 
             _azureBlobStorageFactory);

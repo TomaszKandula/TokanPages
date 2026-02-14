@@ -8,7 +8,6 @@ using TokanPages.Services.AzureStorageService.Abstractions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Content;
 using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 
@@ -34,10 +33,9 @@ public class AddVideoAssetCommandHandler : RequestHandler<AddVideoAssetCommand, 
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public AddVideoAssetCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer, 
-        IUserService userService, IContentRepository contentRepository, IMessagingRepository messagingRepository) 
-        : base(operationDbContext, loggerService)
+    public AddVideoAssetCommandHandler(ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory, 
+        IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer, IUserService userService, IContentRepository contentRepository, 
+        IMessagingRepository messagingRepository) : base(loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _azureBusFactory = azureBusFactory;

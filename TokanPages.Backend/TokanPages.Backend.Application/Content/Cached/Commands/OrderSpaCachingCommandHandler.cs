@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Application.Content.Cached.Commands.Models;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Services.AzureBusService.Abstractions;
 
@@ -23,8 +22,8 @@ public class OrderSpaCachingCommandHandler : RequestHandler<OrderSpaCachingComma
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public OrderSpaCachingCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureBusFactory azureBusFactory, IJsonSerializer jsonSerializer, IMessagingRepository messagingRepository) : base(operationDbContext, loggerService)
+    public OrderSpaCachingCommandHandler(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
+        IJsonSerializer jsonSerializer, IMessagingRepository messagingRepository) : base(loggerService)
     {
         _azureBusFactory = azureBusFactory;
         _jsonSerializer = jsonSerializer;

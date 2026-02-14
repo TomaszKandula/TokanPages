@@ -1,5 +1,4 @@
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Content;
 
 namespace TokanPages.Backend.Application.Content.Assets.Queries;
@@ -8,8 +7,8 @@ public class GetVideoStatusQueryHandler : RequestHandler<GetVideoStatusQuery, Ge
 {
     private readonly IContentRepository _contentRepository;
 
-    public GetVideoStatusQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IContentRepository contentRepository) 
-        : base(operationDbContext, loggerService) => _contentRepository = contentRepository;
+    public GetVideoStatusQueryHandler(ILoggerService loggerService, IContentRepository contentRepository) 
+        : base(loggerService) => _contentRepository = contentRepository;
 
     public override async Task<GetVideoStatusQueryResult> Handle(GetVideoStatusQuery request, CancellationToken cancellationToken)
     {

@@ -2,7 +2,6 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Content.Cached.Commands;
 
@@ -10,8 +9,7 @@ public class UploadFileToLocalStorageCommandHandler : RequestHandler<UploadFileT
 {
     private const decimal MaxDirectorySizeKb = 102400;
 
-    public UploadFileToLocalStorageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService) 
-        : base(operationDbContext, loggerService) { }
+    public UploadFileToLocalStorageCommandHandler(ILoggerService loggerService) : base(loggerService) { }
 
     public override async Task<UploadFileToLocalStorageCommandResult> Handle(UploadFileToLocalStorageCommand request, CancellationToken cancellationToken)
     {
