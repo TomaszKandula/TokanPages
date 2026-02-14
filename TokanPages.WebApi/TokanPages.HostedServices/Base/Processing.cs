@@ -95,7 +95,7 @@ public abstract class Processing : IProcessing
         if (busMessages is null)
             return false;
 
-        await MessagingRepository.DeleteServiceBusMessage(messageId);
+        await MessagingRepository.RemoveServiceBusMessage(messageId);
         return true;
     }
 
