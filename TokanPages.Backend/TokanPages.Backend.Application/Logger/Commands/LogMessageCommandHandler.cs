@@ -3,13 +3,12 @@ using MediatR;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Logger.Commands;
 
 public class LogMessageCommandHandler :  RequestHandler<LogMessageCommand, Unit>
 {
-    public LogMessageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService) : base(operationDbContext, loggerService) { }
+    public LogMessageCommandHandler(ILoggerService loggerService) : base(loggerService) { }
 
     public override async Task<Unit> Handle(LogMessageCommand request, CancellationToken cancellationToken)
     {
