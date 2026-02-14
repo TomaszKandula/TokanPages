@@ -1,9 +1,5 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TokanPages.Backend.Shared.Options;
 using TokanPages.Persistence.DataAccess.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Persistence.DataAccess.Repositories.Chat;
 using TokanPages.Persistence.DataAccess.Repositories.Content;
