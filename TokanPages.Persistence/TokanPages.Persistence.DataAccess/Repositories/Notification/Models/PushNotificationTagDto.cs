@@ -5,7 +5,7 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Notification.Models;
 [ExcludeFromCodeCoverage]
 public class PushNotificationTagDto
 {
-    public Guid PushNotificationId { get; set; }
+    public required Guid PushNotificationId { get; init; }
 
-    public string Tag { get; set; } = string.Empty;
+    public required string Tag { get; init; }
 }
