@@ -1,5 +1,4 @@
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Chat;
 
 namespace TokanPages.Backend.Application.Chat.Commands;
@@ -8,8 +7,8 @@ public class RetrieveChatCacheCommandHandler : RequestHandler<RetrieveChatCacheC
 {
     private readonly IChatRepository _chatRepository;
     
-    public RetrieveChatCacheCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IChatRepository chatRepository)
-        : base(operationDbContext, loggerService) => _chatRepository = chatRepository;
+    public RetrieveChatCacheCommandHandler(ILoggerService loggerService, IChatRepository chatRepository)
+        : base(loggerService) => _chatRepository = chatRepository;
 
     public override async Task<RetrieveChatCacheCommandResult> Handle(RetrieveChatCacheCommand request, CancellationToken cancellationToken)
     {
