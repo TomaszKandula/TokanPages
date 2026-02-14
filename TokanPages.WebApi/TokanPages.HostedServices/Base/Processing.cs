@@ -54,6 +54,11 @@ public abstract class Processing : IProcessing
     /// </summary>
     protected readonly IMessagingRepository MessagingRepository;
 
+    /// <summary>
+    /// Service factory.
+    /// </summary>
+    protected readonly IServiceScopeFactory ServiceScopeFactory;
+    
     private ServiceBusProcessor? _processor;
 
     /// <summary>
@@ -62,11 +67,25 @@ public abstract class Processing : IProcessing
     /// <param name="loggerService">Logger instance.</param>
     /// <param name="azureBusFactory">Azure Bus Factory instance.</param>
     /// <param name="messagingRepository">Messaging repository instance.</param>
-    protected Processing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, IMessagingRepository messagingRepository)
+    /// <param name="serviceScopeFactory">Service scope factory instance.</param>
+    protected Processing(ILoggerService loggerService, IAzureBusFactory azureBusFactory, 
+        IMessagingRepository messagingRepository, IServiceScopeFactory serviceScopeFactory)
     {
         LoggerService = loggerService;
         AzureBusFactory = azureBusFactory;
         MessagingRepository = messagingRepository;
+        ServiceScopeFactory = serviceScopeFactory;
+    }
+
+    /// <inheritdoc />
+    public T GetService<T>() where T : notnull
+    {
+        using var scope = ServiceScopeFactory.CreateScope();
+        var service = scope.ServiceProvider.GetRequiredService<T>();
+
+        ArgumentNullException.ThrowIfNull(service);
+
+        return service;
     }
 
     /// <inheritdoc />
