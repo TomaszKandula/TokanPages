@@ -14,26 +14,16 @@ public class BatchProcessingJob : CronJob
 {
     private const string ServiceName = $"[{nameof(BatchProcessingJob)}]";
 
-    private readonly IBatchService _batchService;
-
-    private readonly ILoggerService _loggerService;
-
     private readonly string _cronExpression;
 
     /// <summary>
     /// CRON job implementation.
     /// </summary>
     /// <param name="config"></param>
-    /// <param name="batchService"></param>
     /// <param name="loggerService"></param>
-    public BatchProcessingJob(IBatchProcessingConfig config, 
-        IBatchService batchService, ILoggerService loggerService)
-        : base(config.CronExpression, config.TimeZoneInfo)
-    {
-        _batchService = batchService;
-        _loggerService = loggerService;
-        _cronExpression = config.CronExpression;
-    }
+    /// <param name="serviceScopeFactory"></param>
+    public BatchProcessingJob(IBatchProcessingConfig config, ILoggerService loggerService, IServiceScopeFactory serviceScopeFactory)
+        : base(config.CronExpression, config.TimeZoneInfo, loggerService, serviceScopeFactory) => _cronExpression = config.CronExpression;
 
     /// <summary>
     /// Execute payment for subscriptions.
@@ -42,8 +32,9 @@ public class BatchProcessingJob : CronJob
     /// <returns></returns>
     public override async Task DoWork(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{ServiceName}: working...");
-        await _batchService.ProcessOutstandingInvoices(cancellationToken);
+        LoggerService.LogInformation($"{ServiceName}: working...");
+        var batchService = GetService<IBatchService>();
+        await batchService.ProcessOutstandingInvoices(cancellationToken);
     }
 
     /// <summary>
@@ -53,7 +44,7 @@ public class BatchProcessingJob : CronJob
     /// <returns></returns>
     public override Task StartAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{ServiceName}: started, CRON expression is '{_cronExpression}'.");
+        LoggerService.LogInformation($"{ServiceName}: started, CRON expression is '{_cronExpression}'.");
         return base.StartAsync(cancellationToken);
     }
 
@@ -64,7 +55,7 @@ public class BatchProcessingJob : CronJob
     /// <returns></returns>
     public override Task StopAsync(CancellationToken cancellationToken)
     {
-        _loggerService.LogInformation($"{ServiceName}: stopped.");
+        LoggerService.LogInformation($"{ServiceName}: stopped.");
         return base.StopAsync(cancellationToken);
     }
 }
