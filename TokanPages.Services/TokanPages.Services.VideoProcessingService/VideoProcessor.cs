@@ -1,16 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
 using TokanPages.Backend.Core.Exceptions;
-using TokanPages.Backend.Domain.Entities;
 using TokanPages.Backend.Domain.Enums;
-using TokanPages.Services.AzureStorageService.Models;
 using TokanPages.Services.VideoConverterService.Abstractions;
-using TokanPages.Services.VideoConverterService.Models;
 using TokanPages.Services.VideoProcessingService.Abstractions;
 using TokanPages.Services.VideoProcessingService.Models;
 using TokanPages.Services.VideoProcessingService.Utilities;
-using Microsoft.EntityFrameworkCore;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
+using TokanPages.Persistence.DataAccess.Repositories.Content;
+using TokanPages.Persistence.DataAccess.Repositories.Content.Models;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Services.VideoProcessingService;
@@ -20,40 +17,46 @@ internal sealed class VideoProcessor : IVideoProcessor
 {
     private readonly IVideoConverter _videoConverter;
 
-    private readonly IDateTimeService _dateTimeService;
-
     private readonly ILoggerService _loggerService;
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    private readonly OperationDbContext _operationDbContext;
+    private readonly IContentRepository _contentRepository;
 
-    public VideoProcessor(OperationDbContext operationDbContext, IDateTimeService dateTimeService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IVideoConverter videoConverter, 
-        ILoggerService loggerService)
+    public VideoProcessor(IAzureBlobStorageFactory azureBlobStorageFactory, IVideoConverter videoConverter, 
+        ILoggerService loggerService, IContentRepository contentRepository)
     {
-        _operationDbContext = operationDbContext;
-        _dateTimeService = dateTimeService;
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _videoConverter = videoConverter;
         _loggerService = loggerService;
+        _contentRepository = contentRepository;
     }
 
     public async Task Process(RequestVideoProcessing request)
     {
         _loggerService.LogInformation("Getting video info from database...");
-        var uploadedVideo = await GetUploadedVideoInfo(request.TicketId);
-        uploadedVideo.Status = VideoStatus.ProcessingStarted;
-        await _operationDbContext.SaveChangesAsync();
+
+        var uploadedVideo = await _contentRepository.GetVideoUploadStatus(request.TicketId, VideoStatus.New);
+        if (uploadedVideo is null)
+            throw new GeneralException(Errors.ErrorNoVideo);
+        
+        await _contentRepository.UpdateVideoUploadStatus(request.TicketId, VideoStatus.ProcessingStarted);
 
         _loggerService.LogInformation("Getting video file from Azure Storage...");
         var azureBlob = _azureBlobStorageFactory.Create(_loggerService);
         var tempVideoFile = await azureBlob.OpenRead(uploadedVideo.SourceBlobUri);
 
+        _loggerService.LogInformation("Validating temporary video file content...");
+        if (tempVideoFile?.Content is null || tempVideoFile.ContentType is null)
+        {
+            await _contentRepository.UpdateVideoUploadStatus(request.TicketId, VideoStatus.Failed);
+            _loggerService.LogError(Errors.ErrorNoStreamContent);
+            throw new GeneralException(Errors.ErrorNoStreamContent);
+        }
+
         _loggerService.LogInformation("Moving video file into memory stream...");
         using var memoryStream = new MemoryStream();
-        await TempVideoFileValidation(tempVideoFile, uploadedVideo);
-        await tempVideoFile!.Content!.CopyToAsync(memoryStream);
+        await tempVideoFile.Content.CopyToAsync(memoryStream);
 
         _loggerService.LogInformation("Moving stream content into byte array...");
         var bytes = memoryStream.ToArray();
@@ -66,52 +69,6 @@ internal sealed class VideoProcessor : IVideoProcessor
         _loggerService.LogInformation("Video converted, thumbnail generated...");
         _loggerService.LogInformation("Uploading files to Azure Cloud...");
 
-        await UploadAndDelete(request, converterOutput, uploadedVideo, azureBlob);
-        _loggerService.LogInformation("Data uploaded, temporary files removed");
-
-        var hasProcessingWarning = !string.IsNullOrEmpty(converterOutput.ProcessingWarning);
-        uploadedVideo.Status = hasProcessingWarning 
-            ? VideoStatus.ProcessingFinishedWithWarnings 
-            : VideoStatus.ProcessingFinished;
-        uploadedVideo.ModifiedAt = _dateTimeService.Now;
-        uploadedVideo.ModifiedBy = request.UserId;
-        uploadedVideo.IsSourceDeleted = true;
-        uploadedVideo.ProcessingWarning = converterOutput.ProcessingWarning;
-        uploadedVideo.InputSizeInBytes = converterOutput.InputSizeInBytes;
-        uploadedVideo.OutputSizeInBytes = converterOutput.OutputSizeInBytes;
-
-        await _operationDbContext.SaveChangesAsync();
-        _loggerService.LogInformation("Data processed and saved!");
-    }
-
-    private async Task<UploadedVideo> GetUploadedVideoInfo(Guid ticketId, CancellationToken cancellationToken = default)
-    {
-        var uploadedVideo = await _operationDbContext.UploadedVideos
-            .Where(uploadedVideos => uploadedVideos.TicketId == ticketId)
-            .Where(uploadedVideos => uploadedVideos.Status == VideoStatus.New)
-            .SingleOrDefaultAsync(cancellationToken);
-
-        if (uploadedVideo is null)
-            throw new GeneralException(Errors.ErrorNoVideo);
-
-        return uploadedVideo;
-    }
-
-    private async Task TempVideoFileValidation(StorageStreamContent? content, UploadedVideo uploadedVideo, CancellationToken cancellationToken = default)
-    {
-        _loggerService.LogInformation("Validating temporary video file content...");
-
-        if (content?.Content is null || content.ContentType is null)
-        {
-            uploadedVideo.Status = VideoStatus.Failed;
-            await _operationDbContext.SaveChangesAsync(cancellationToken);
-            _loggerService.LogError(Errors.ErrorNoStreamContent);
-            throw new GeneralException(Errors.ErrorNoStreamContent);
-        }
-    }
-
-    private static async Task UploadAndDelete(RequestVideoProcessing request, ConverterOutput converterOutput, UploadedVideo uploadedVideo, IAzureBlobStorage azureBlob)
-    {
         var videoToUpload = await File.ReadAllBytesAsync(converterOutput.OutputVideoPath);
         using var videoStream = new MemoryStream(videoToUpload);
         await azureBlob.UploadFile(videoStream, $"{uploadedVideo.TargetVideoUri}", "video/mp4");
@@ -123,5 +80,25 @@ internal sealed class VideoProcessor : IVideoProcessor
         File.Delete(converterOutput.OutputThumbnailPath);
 
         await azureBlob.DeleteFile(uploadedVideo.SourceBlobUri);
+        _loggerService.LogInformation("Data uploaded, temporary files removed");
+
+        var hasProcessingWarning = !string.IsNullOrEmpty(converterOutput.ProcessingWarning);
+        var status = hasProcessingWarning 
+            ? VideoStatus.ProcessingFinishedWithWarnings 
+            : VideoStatus.ProcessingFinished;
+
+        await _contentRepository.UpdateVideoUploadStatus(request.TicketId, status);
+
+        var videoUpload = new UpdateVideoUploadDto
+        {
+            TicketId = request.TicketId,
+            IsSourceDeleted = true,
+            ProcessingWarning = converterOutput.ProcessingWarning,
+            InputSizeInBytes = converterOutput.InputSizeInBytes,
+            OutputSizeInBytes = converterOutput.OutputSizeInBytes
+        };
+
+        await _contentRepository.UpdateVideoUpload(videoUpload);
+        _loggerService.LogInformation("Data processed and saved!");
     }
 }
