@@ -62,12 +62,12 @@ public class ContentRepository : RepositoryBase, IContentRepository
 
     public async Task UpdateVideoUpload(UpdateVideoUploadDto data)
     {
-        var updateBy = new
+        var filterBy = new
         {
             TicketId = data.TicketId
         };
 
-        var filterBy = new
+        var updateBy = new
         {
             Status = data.Status,
             IsSourceDeleted = data.IsSourceDeleted,
