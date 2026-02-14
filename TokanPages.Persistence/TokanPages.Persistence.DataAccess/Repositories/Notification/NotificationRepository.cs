@@ -43,14 +43,17 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     /// <inheritdoc/>
     public async Task UpdatePushNotification(PushNotificationDto data)
     {
-        var filterBy = new { Id = data.Id };
         var updateBy = new
         {
             ModifiedAt = _dateTimeService.Now,
-            ModifiedBy = data.ModifiedBy,
             Description = "PNS handle installation updated",
             IsVerified = data.IsVerified,
             RegistrationId = data.RegistrationId
+        };
+
+        var filterBy = new
+        {
+            Id = data.Id
         };
 
         await DbOperations.Update<PushNotification>(updateBy, filterBy);
@@ -174,8 +177,8 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     /// <inheritdoc/>
     public async Task UpdateWebNotification(Guid id, string value)
     {
-        var filterBy = new { Id = id };
         var updateBy = new { Value = value };
+        var filterBy = new { Id = id };
         await DbOperations.Update<WebNotification>(updateBy, filterBy);
     }
 
