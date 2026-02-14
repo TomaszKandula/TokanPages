@@ -24,7 +24,8 @@ public class AddInvoiceTemplateCommandHandler : RequestHandler<AddInvoiceTemplat
             InvoiceTemplateData = new InvoiceTemplateDataDto
             {
                 ContentData = binary,
-                ContentType = contentType
+                ContentType = contentType,
+                Description = request.Description
             },
             InvoiceTemplateDescription = request.Description
         };
