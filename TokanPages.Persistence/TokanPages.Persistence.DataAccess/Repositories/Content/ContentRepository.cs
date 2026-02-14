@@ -15,9 +15,9 @@ public class ContentRepository : RepositoryBase, IContentRepository
     public ContentRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
         : base(dbOperations,  appSettings) => _dateTimeService = dateTimeService;
 
-    public async Task<VideoUploadStatusDto?> GetVideoUploadStatus(Guid ticketId)
+    public async Task<VideoUploadStatusDto?> GetVideoUploadStatus(Guid ticketId, VideoStatus status)
     {
-        var filterBy = new { TicketId = ticketId };
+        var filterBy = new { TicketId = ticketId, Status = status };
         var data = (await DbOperations.Retrieve<UploadedVideo>(filterBy)).SingleOrDefault();
         if (data is null)
             return null;
@@ -26,7 +26,10 @@ public class ContentRepository : RepositoryBase, IContentRepository
         {
             Status = data.Status,
             VideoUri = data.TargetVideoUri,
-            ThumbnailUri = data.TargetThumbnailUri
+            ThumbnailUri = data.TargetThumbnailUri,
+            SourceBlobUri = data.SourceBlobUri,
+            TargetVideoUri = data.TargetVideoUri,
+            TargetThumbnailUri = data.TargetThumbnailUri,
         };
     }
 
