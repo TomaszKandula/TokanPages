@@ -6,7 +6,6 @@ using TokanPages.Services.WebSocketService.Abstractions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Chat;
 using TokanPages.Persistence.DataAccess.Repositories.Notification;
 using TokanPages.Persistence.DataAccess.Repositories.User;
@@ -27,9 +26,9 @@ public class NotifyRequestCommandHandler : RequestHandler<NotifyRequestCommand, 
 
     private static JsonSerializerSettings Setting => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
-    public NotifyRequestCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, INotificationService notificationService, 
-        IJsonSerializer jsonSerializer, INotificationRepository notificationRepository, IChatRepository chatRepository, IUserRepository userRepository) 
-        : base(operationDbContext, loggerService)
+    public NotifyRequestCommandHandler(ILoggerService loggerService, INotificationService notificationService, 
+        IJsonSerializer jsonSerializer, INotificationRepository notificationRepository, 
+        IChatRepository chatRepository, IUserRepository userRepository) : base(loggerService)
     {
         _notificationService = notificationService;
         _jsonSerializer = jsonSerializer;

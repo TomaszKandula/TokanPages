@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Services.AzureStorageService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -15,8 +14,8 @@ public class UpdateArticleContentCommandHandler : RequestHandler<UpdateArticleCo
 
     private readonly IArticlesRepository _articlesRepository;
 
-    public UpdateArticleContentCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService,
-        IAzureBlobStorageFactory azureBlobStorageFactory, IArticlesRepository articlesRepository) : base(operationDbContext, loggerService)
+    public UpdateArticleContentCommandHandler(ILoggerService loggerService, IUserService userService,
+        IAzureBlobStorageFactory azureBlobStorageFactory, IArticlesRepository articlesRepository) : base(loggerService)
     {
         _userService = userService;
         _azureBlobStorageFactory = azureBlobStorageFactory;

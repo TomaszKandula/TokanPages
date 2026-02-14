@@ -4,7 +4,6 @@ using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 using TokanPages.Services.AzureStorageService.Abstractions;
@@ -22,9 +21,8 @@ public class GetArticleQueryHandler : RequestHandler<GetArticleQuery, GetArticle
 
     private readonly IArticlesRepository _articlesRepository;
 
-    public GetArticleQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService, 
-        IJsonSerializer jsonSerializer, IAzureBlobStorageFactory azureBlobStorageFactory, IArticlesRepository articlesRepository) 
-        : base(operationDbContext, loggerService)
+    public GetArticleQueryHandler(ILoggerService loggerService, IUserService userService, IJsonSerializer jsonSerializer, 
+        IAzureBlobStorageFactory azureBlobStorageFactory, IArticlesRepository articlesRepository) : base(loggerService)
     {
         _userService = userService;
         _jsonSerializer = jsonSerializer;

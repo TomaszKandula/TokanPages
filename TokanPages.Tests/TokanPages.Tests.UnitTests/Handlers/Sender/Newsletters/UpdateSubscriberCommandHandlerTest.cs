@@ -8,8 +8,6 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
 using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using TokanPages.Persistence.DataAccess.Repositories.Sender.Models;
-using TokanPages.Services.UserService.Abstractions;
-using TokanPages.Services.UserService.Models;
 using Xunit;
 
 namespace TokanPages.Tests.UnitTests.Handlers.Sender.Newsletters;
@@ -19,8 +17,6 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenNewsletterId_WhenUpdateNewsletter_ShouldSucceed()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
@@ -55,7 +51,6 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         };
 
         var handler = new UpdateNewsletterCommandHandler(
-            databaseContext, 
             mockedLogger.Object, 
             mockSenderRepository.Object);
 
@@ -70,8 +65,6 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenInvalidNewsletterId_WhenUpdateNewsletter_ShouldFail()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
@@ -89,7 +82,6 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         };
 
         var handler = new UpdateNewsletterCommandHandler(
-            databaseContext, 
             mockedLogger.Object, 
             mockSenderRepository.Object);
 
@@ -102,8 +94,6 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenExistingEmail_WhenUpdateNewsletter_ShouldFail()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
@@ -135,7 +125,6 @@ public class UpdateSubscriberCommandHandlerTest : TestBase
         };
 
         var handler = new UpdateNewsletterCommandHandler(
-            databaseContext, 
             mockedLogger.Object, 
             mockSenderRepository.Object);
 

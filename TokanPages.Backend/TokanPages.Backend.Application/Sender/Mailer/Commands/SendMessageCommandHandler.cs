@@ -4,7 +4,6 @@ using Microsoft.Extensions.Options;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using TokanPages.Services.EmailSenderService.Abstractions;
@@ -27,10 +26,9 @@ public class SendMessageCommandHandler : RequestHandler<SendMessageCommand, Unit
     
     private readonly ISenderRepository _senderRepository;
 
-    public SendMessageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IDateTimeService dateTimeService, 
-        IOptions<AppSettingsModel> options, IUserService userService, IMessagingRepository messagingRepository, ISenderRepository senderRepository) 
-        : base(operationDbContext, loggerService)
+    public SendMessageCommandHandler(ILoggerService loggerService, IEmailSenderService emailSenderService, 
+        IDateTimeService dateTimeService, IOptions<AppSettingsModel> options, IUserService userService, 
+        IMessagingRepository messagingRepository, ISenderRepository senderRepository) : base(loggerService)
     {
         _emailSenderService = emailSenderService;
         _dateTimeService = dateTimeService;

@@ -15,8 +15,6 @@ public class AddSubscriberCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenProvidedEmail_WhenAddNewsletter_ShouldAddEntity() 
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
@@ -31,7 +29,6 @@ public class AddSubscriberCommandHandlerTest : TestBase
         };
 
         var handler = new AddNewsletterCommandHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockSenderRepository.Object);
 
@@ -45,8 +42,6 @@ public class AddSubscriberCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenExistingEmail_WhenAddNewsletter_ShouldThrowError()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var testEmail = DataUtilityService.GetRandomEmail();
         var existingNewsletter = new Newsletter
@@ -68,7 +63,6 @@ public class AddSubscriberCommandHandlerTest : TestBase
 
         var command = new AddNewsletterCommand { Email = testEmail };
         var handler = new AddNewsletterCommandHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockSenderRepository.Object);
 

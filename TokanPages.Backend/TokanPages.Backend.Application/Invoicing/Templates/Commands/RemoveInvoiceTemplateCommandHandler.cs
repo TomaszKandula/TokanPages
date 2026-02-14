@@ -1,6 +1,5 @@
 using MediatR;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 
 namespace TokanPages.Backend.Application.Invoicing.Templates.Commands;
@@ -9,8 +8,8 @@ public class RemoveInvoiceTemplateCommandHandler : RequestHandler<RemoveInvoiceT
 {
     private readonly IInvoicingRepository _invoicingRepository;
 
-    public RemoveInvoiceTemplateCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IInvoicingRepository invoicingRepository) 
-        : base(operationDbContext, loggerService) => _invoicingRepository = invoicingRepository;
+    public RemoveInvoiceTemplateCommandHandler(ILoggerService loggerService, IInvoicingRepository invoicingRepository) 
+        : base(loggerService) => _invoicingRepository = invoicingRepository;
 
     public override async Task<Unit> Handle(RemoveInvoiceTemplateCommand request, CancellationToken cancellationToken)
     {

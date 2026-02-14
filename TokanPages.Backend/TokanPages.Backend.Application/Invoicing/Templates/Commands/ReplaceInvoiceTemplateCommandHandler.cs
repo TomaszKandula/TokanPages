@@ -1,7 +1,6 @@
 using MediatR;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 
@@ -11,8 +10,8 @@ public class ReplaceInvoiceTemplateCommandHandler : RequestHandler<ReplaceInvoic
 {
     private readonly IInvoicingRepository _invoicingRepository;
 
-    public ReplaceInvoiceTemplateCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IInvoicingRepository invoicingRepository) : base(operationDbContext, loggerService) => _invoicingRepository = invoicingRepository;
+    public ReplaceInvoiceTemplateCommandHandler(ILoggerService loggerService, IInvoicingRepository invoicingRepository) 
+        : base(loggerService) => _invoicingRepository = invoicingRepository;
 
     public override async Task<Unit> Handle(ReplaceInvoiceTemplateCommand request, CancellationToken cancellationToken)
     {

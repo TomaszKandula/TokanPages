@@ -4,7 +4,6 @@ using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Persistence.DataAccess.Repositories.User.Models;
 using TokanPages.Services.AzureStorageService.Abstractions;
@@ -19,9 +18,8 @@ public class UploadImageCommandHandler : RequestHandler<UploadImageCommand, Uplo
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public UploadImageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService, 
-        IUserRepository userRepository) : base(operationDbContext, loggerService)
+    public UploadImageCommandHandler(ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory, 
+        IUserService userService, IUserRepository userRepository) : base(loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userService = userService;

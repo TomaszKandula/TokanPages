@@ -30,7 +30,6 @@ public class SendMessageCommandHandlerTest : TestBase
             UserEmail = DataUtilityService.GetRandomEmail()
         };
 
-        var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
@@ -51,7 +50,6 @@ public class SendMessageCommandHandlerTest : TestBase
             .Returns(-120);
 
         var handler = new SendMessageCommandHandler(
-            databaseContext,
             mockedLogger.Object,
             mockedEmailSenderService.Object,
             mockedDateTimeService.Object,
@@ -82,7 +80,6 @@ public class SendMessageCommandHandlerTest : TestBase
             UserEmail = DataUtilityService.GetRandomEmail()
         };
 
-        var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockedDateTimeService = new Mock<IDateTimeService>();
@@ -102,7 +99,6 @@ public class SendMessageCommandHandlerTest : TestBase
             .ReturnsAsync(string.Empty);
 
         var handler = new SendMessageCommandHandler(
-            databaseContext,
             mockedLogger.Object,
             mockedEmailSenderService.Object,
             mockedDateTimeService.Object,

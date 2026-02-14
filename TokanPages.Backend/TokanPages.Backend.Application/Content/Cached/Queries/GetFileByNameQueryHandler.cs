@@ -3,14 +3,12 @@ using Microsoft.AspNetCore.StaticFiles;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Content.Cached.Queries;
 
 public class GetFileByNameQueryHandler : RequestHandler<GetFileByNameQuery, FileContentResult>
 {
-    public GetFileByNameQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService) 
-        : base(operationDbContext, loggerService) { }
+    public GetFileByNameQueryHandler(ILoggerService loggerService) : base(loggerService) { }
 
     public override async Task<FileContentResult> Handle(GetFileByNameQuery request, CancellationToken cancellationToken)
     {

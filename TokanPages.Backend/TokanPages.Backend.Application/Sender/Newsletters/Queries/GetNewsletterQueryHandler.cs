@@ -1,7 +1,6 @@
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Sender;
 
 namespace TokanPages.Backend.Application.Sender.Newsletters.Queries;
@@ -10,8 +9,8 @@ public class GetNewsletterQueryHandler : RequestHandler<GetNewsletterQuery, GetN
 {
     private readonly ISenderRepository _senderRepository;
 
-    public GetNewsletterQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, ISenderRepository senderRepository) 
-        : base(operationDbContext, loggerService) => _senderRepository = senderRepository;
+    public GetNewsletterQueryHandler(ILoggerService loggerService, ISenderRepository senderRepository) 
+        : base(loggerService) => _senderRepository = senderRepository;
 
     public override async Task<GetNewsletterQueryResult> Handle(GetNewsletterQuery request, CancellationToken cancellationToken) 
     {

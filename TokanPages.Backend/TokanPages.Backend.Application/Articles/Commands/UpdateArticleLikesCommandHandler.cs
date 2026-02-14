@@ -2,7 +2,6 @@ using MediatR;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -16,8 +15,8 @@ public class UpdateArticleLikesCommandHandler : RequestHandler<UpdateArticleLike
 
     private readonly AppSettingsModel _appSettings;
 
-    public UpdateArticleLikesCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService, 
-    IArticlesRepository articlesRepository, IOptions<AppSettingsModel> options) : base(operationDbContext, loggerService)
+    public UpdateArticleLikesCommandHandler(ILoggerService loggerService, IUserService userService, 
+    IArticlesRepository articlesRepository, IOptions<AppSettingsModel> options) : base(loggerService)
     {
         _userService = userService;
         _articlesRepository = articlesRepository;

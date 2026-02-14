@@ -1,6 +1,5 @@
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -12,8 +11,8 @@ public class GetUserNotesQueryHandler : RequestHandler<GetUserNotesQuery, GetUse
 
     private readonly IUserService _userService;
 
-    public GetUserNotesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IUserRepository userRepository) : base(operationDbContext, loggerService)
+    public GetUserNotesQueryHandler(ILoggerService loggerService, IUserService userService, 
+        IUserRepository userRepository) : base(loggerService)
     {
         _userService = userService;
         _userRepository = userRepository;

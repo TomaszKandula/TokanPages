@@ -1,7 +1,6 @@
 using TokanPages.Services.PushNotificationService.Abstractions;
 using MediatR;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Notification;
 
 namespace TokanPages.Backend.Application.Notifications.Mobile.Commands;
@@ -12,8 +11,8 @@ public class DeleteInstallationCommandHandler : RequestHandler<DeleteInstallatio
 
     private readonly INotificationRepository _notificationRepository;
 
-    public DeleteInstallationCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureNotificationHubFactory azureNotificationHubFactory, INotificationRepository notificationRepository) : base(operationDbContext, loggerService)
+    public DeleteInstallationCommandHandler(ILoggerService loggerService, IAzureNotificationHubFactory azureNotificationHubFactory, 
+        INotificationRepository notificationRepository) : base(loggerService)
     {
         _azureNotificationHubFactory = azureNotificationHubFactory;
         _notificationRepository = notificationRepository;

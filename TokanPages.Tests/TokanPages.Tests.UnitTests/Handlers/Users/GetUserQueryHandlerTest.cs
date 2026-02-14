@@ -73,12 +73,11 @@ public class GetUserQueryHandlerTest : TestBase
     public async Task GivenIncorrectId_WhenGetUser_ShouldThrowError()
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockUserRepository = new Mock<IUserRepository>();
 
         var query = new GetUserQuery { Id = Guid.NewGuid() };
-        var handler = new GetUserQueryHandler(databaseContext, mockedLogger.Object, mockUserRepository.Object);
+        var handler = new GetUserQueryHandler(mockedLogger.Object, mockUserRepository.Object);
 
         // Act
         // Assert

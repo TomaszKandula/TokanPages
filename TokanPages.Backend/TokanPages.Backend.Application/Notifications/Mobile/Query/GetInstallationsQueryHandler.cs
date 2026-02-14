@@ -1,5 +1,4 @@
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.PushNotificationService.Abstractions;
 
 namespace TokanPages.Backend.Application.Notifications.Mobile.Query;
@@ -8,9 +7,8 @@ public class GetInstallationsQueryHandler : RequestHandler<GetInstallationsQuery
 {
     private readonly IAzureNotificationHubFactory _azureNotificationHubFactory;
 
-    public GetInstallationsQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureNotificationHubFactory azureNotificationHubFactory) : base(operationDbContext, loggerService)
-        => _azureNotificationHubFactory = azureNotificationHubFactory;
+    public GetInstallationsQueryHandler(ILoggerService loggerService, IAzureNotificationHubFactory azureNotificationHubFactory) 
+        : base(loggerService) => _azureNotificationHubFactory = azureNotificationHubFactory;
 
     public override async Task<GetInstallationsQueryResult> Handle(GetInstallationsQuery request, CancellationToken cancellationToken)
     {

@@ -1,7 +1,6 @@
 using MediatR;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Logger.Commands;
@@ -10,9 +9,8 @@ public class UploadLogFileCommandHandler : RequestHandler<UploadLogFileCommand, 
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public UploadLogFileCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService) 
-        => _azureBlobStorageFactory = azureBlobStorageFactory;
+    public UploadLogFileCommandHandler(ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
+        : base(loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<Unit> Handle(UploadLogFileCommand request, CancellationToken cancellationToken)
     {

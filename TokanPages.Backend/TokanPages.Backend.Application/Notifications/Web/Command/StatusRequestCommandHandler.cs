@@ -1,6 +1,5 @@
 using TokanPages.Backend.Application.Notifications.Web.Models.Base;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Notification;
 
 namespace TokanPages.Backend.Application.Notifications.Web.Command;
@@ -11,8 +10,8 @@ public class StatusRequestCommandHandler : RequestHandler<StatusRequestCommand, 
 
     private readonly INotificationRepository _notificationRepository;
 
-    public StatusRequestCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IJsonSerializer jsonSerializer, INotificationRepository notificationRepository) : base(operationDbContext, loggerService)
+    public StatusRequestCommandHandler(ILoggerService loggerService, IJsonSerializer jsonSerializer, 
+        INotificationRepository notificationRepository) : base(loggerService)
     {
         _jsonSerializer = jsonSerializer;
         _notificationRepository = notificationRepository;

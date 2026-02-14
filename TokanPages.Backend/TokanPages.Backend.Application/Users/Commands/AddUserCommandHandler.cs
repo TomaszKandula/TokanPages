@@ -3,7 +3,6 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Persistence.DataAccess.Repositories.User.Models;
@@ -33,9 +32,9 @@ public class AddUserCommandHandler : RequestHandler<AddUserCommand, Guid>
 
     private readonly IUserService _userService;
 
-    public AddUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IDateTimeService dateTimeService,
-        ICipheringService cipheringService, IEmailSenderService emailSenderService, IOptions<AppSettingsModel> options, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IUserService userService, IUserRepository userRepository, IMessagingRepository messagingRepository) : base(operationDbContext, loggerService)
+    public AddUserCommandHandler(ILoggerService loggerService, IDateTimeService dateTimeService, ICipheringService cipheringService, 
+        IEmailSenderService emailSenderService, IOptions<AppSettingsModel> options, IAzureBlobStorageFactory azureBlobStorageFactory, 
+        IUserService userService, IUserRepository userRepository, IMessagingRepository messagingRepository) : base(loggerService)
     {
         _dateTimeService = dateTimeService;
         _cipheringService = cipheringService;

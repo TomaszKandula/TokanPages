@@ -13,7 +13,6 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
     public async Task WhenGetAllNewsletters_ShouldReturnCollection()
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockSenderRepository = new Mock<ISenderRepository>();
 
@@ -44,7 +43,7 @@ public class GetAllSubscribersQueryHandlerTest : TestBase
             .ReturnsAsync(newsletters);
 
         var query = new GetNewslettersQuery();
-        var handler = new GetNewslettersQueryHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
+        var handler = new GetNewslettersQueryHandler(mockedLogger.Object, mockSenderRepository.Object);
 
         // Act
         var result = await handler.Handle(query, CancellationToken.None);

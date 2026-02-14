@@ -31,7 +31,6 @@ public class SendNewsletterCommandHandlerTest : TestBase
             }
         };
 
-        var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockMessagingRepository = new Mock<IMessagingRepository>();
@@ -43,7 +42,6 @@ public class SendNewsletterCommandHandlerTest : TestBase
             .ReturnsAsync(randomString);
 
         var handler = new SendNewsletterCommandHandler(
-            databaseContext,
             mockedLogger.Object, 
             mockedEmailSenderService.Object,
             mockedConfig.Object,
@@ -73,7 +71,6 @@ public class SendNewsletterCommandHandlerTest : TestBase
             }
         };
 
-        var databaseContext = GetTestDatabaseContext();
         var mockedLogger = new Mock<ILoggerService>();
         var mockedEmailSenderService = new Mock<IEmailSenderService>();
         var mockMessagingRepository = new Mock<IMessagingRepository>();
@@ -84,7 +81,6 @@ public class SendNewsletterCommandHandlerTest : TestBase
             .ReturnsAsync(string.Empty);
 
         var handler = new SendNewsletterCommandHandler(
-            databaseContext,
             mockedLogger.Object, 
             mockedEmailSenderService.Object,
             mockedConfig.Object,

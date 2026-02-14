@@ -2,7 +2,6 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
@@ -14,9 +13,8 @@ public class GetUserImageQueryHandler : RequestHandler<GetUserImageQuery, FileCo
 
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
 
-    public GetUserImageQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureBlobStorageFactory azureBlobStorageFactory, IUserRepository userRepository)
-        : base(operationDbContext, loggerService)
+    public GetUserImageQueryHandler(ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory, 
+        IUserRepository userRepository) : base(loggerService)
     {
         _azureBlobStorageFactory = azureBlobStorageFactory;
         _userRepository = userRepository;

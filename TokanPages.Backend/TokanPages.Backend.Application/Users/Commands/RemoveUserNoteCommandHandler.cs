@@ -2,7 +2,6 @@ using MediatR;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -14,8 +13,8 @@ public class RemoveUserNoteCommandHandler : RequestHandler<RemoveUserNoteCommand
 
     private readonly IUserService _userService;
 
-    public RemoveUserNoteCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IUserRepository userRepository) : base(operationDbContext, loggerService)
+    public RemoveUserNoteCommandHandler(ILoggerService loggerService, IUserService userService,
+        IUserRepository userRepository) : base(loggerService)
     {
         _userService = userService;
         _userRepository = userRepository;

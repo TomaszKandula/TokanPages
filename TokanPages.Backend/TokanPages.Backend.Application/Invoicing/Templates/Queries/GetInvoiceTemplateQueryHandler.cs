@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 
 namespace TokanPages.Backend.Application.Invoicing.Templates.Queries;
@@ -9,8 +8,8 @@ public class GetInvoiceTemplateQueryHandler : RequestHandler<GetInvoiceTemplateQ
 {
     private readonly IInvoicingRepository _invoicingRepository;
 
-    public GetInvoiceTemplateQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IInvoicingRepository invoicingRepository) : base(operationDbContext, loggerService) =>_invoicingRepository = invoicingRepository;
+    public GetInvoiceTemplateQueryHandler(ILoggerService loggerService, IInvoicingRepository invoicingRepository) 
+        : base(loggerService) =>_invoicingRepository = invoicingRepository;
 
     public override async Task<FileContentResult> Handle(GetInvoiceTemplateQuery request, CancellationToken cancellationToken)
     {

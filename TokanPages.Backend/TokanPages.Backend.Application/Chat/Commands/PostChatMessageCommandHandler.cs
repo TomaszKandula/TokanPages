@@ -6,7 +6,6 @@ using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Chat;
 
 namespace TokanPages.Backend.Application.Chat.Commands;
@@ -25,9 +24,9 @@ public class PostChatMessageCommandHandler : RequestHandler<PostChatMessageComma
 
     private static JsonSerializerSettings Settings => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
-    public PostChatMessageCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
+    public PostChatMessageCommandHandler(ILoggerService loggerService, 
         IDateTimeService dateTimeService, IJsonSerializer jsonSerializer, IUserService userService, 
-        INotificationService notificationService, IChatRepository chatRepository) : base(operationDbContext, loggerService)
+        INotificationService notificationService, IChatRepository chatRepository) : base(loggerService)
     {
         _dateTimeService = dateTimeService;
         _jsonSerializer = jsonSerializer;

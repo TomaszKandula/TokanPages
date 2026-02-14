@@ -45,8 +45,7 @@ public class LogMessageCommandHandlerTest : TestBase
                        $"[Reported UserAgent]: {command.UserAgent}\n";
 
         var mockedLogger = new Mock<ILoggerService>();
-        var databaseContext = GetTestDatabaseContext();
-        var handler = new LogMessageCommandHandler(databaseContext, mockedLogger.Object);
+        var handler = new LogMessageCommandHandler(mockedLogger.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -92,8 +91,7 @@ public class LogMessageCommandHandlerTest : TestBase
                        $"[Reported UserAgent]: {command.UserAgent}\n";
 
         var mockedLogger = new Mock<ILoggerService>();
-        var databaseContext = GetTestDatabaseContext();
-        var handler = new LogMessageCommandHandler(databaseContext, mockedLogger.Object);
+        var handler = new LogMessageCommandHandler(mockedLogger.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -139,8 +137,7 @@ public class LogMessageCommandHandlerTest : TestBase
                        $"[Reported UserAgent]: {command.UserAgent}\n";
 
         var mockedLogger = new Mock<ILoggerService>();
-        var databaseContext = GetTestDatabaseContext();
-        var handler = new LogMessageCommandHandler(databaseContext, mockedLogger.Object);
+        var handler = new LogMessageCommandHandler(mockedLogger.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -186,8 +183,7 @@ public class LogMessageCommandHandlerTest : TestBase
                        $"[Reported UserAgent]: {command.UserAgent}\n";
 
         var mockedLogger = new Mock<ILoggerService>();
-        var databaseContext = GetTestDatabaseContext();
-        var handler = new LogMessageCommandHandler(databaseContext, mockedLogger.Object);
+        var handler = new LogMessageCommandHandler(mockedLogger.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -233,8 +229,7 @@ public class LogMessageCommandHandlerTest : TestBase
                        $"[Reported UserAgent]: {command.UserAgent}\n";
 
         var mockedLogger = new Mock<ILoggerService>();
-        var databaseContext = GetTestDatabaseContext();
-        var handler = new LogMessageCommandHandler(databaseContext, mockedLogger.Object);
+        var handler = new LogMessageCommandHandler(mockedLogger.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -254,8 +249,7 @@ public class LogMessageCommandHandlerTest : TestBase
         // Arrange
         var command = GetCommand(string.Empty);
         var mockedLogger = new Mock<ILoggerService>();
-        var databaseContext = GetTestDatabaseContext();
-        var handler = new LogMessageCommandHandler(databaseContext, mockedLogger.Object);
+        var handler = new LogMessageCommandHandler(mockedLogger.Object);
 
         // Act
         // Assert

@@ -3,7 +3,6 @@ using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 using TokanPages.Services.CookieAccessorService.Abstractions;
 using TokanPages.Services.UserService.Abstractions;
@@ -25,9 +24,8 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
 
     private readonly AppSettingsModel _appSettings;
 
-    public ReAuthenticateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IDateTimeService dateTimeService, 
-        IUserService userService, IOptions<AppSettingsModel> options, ICookieAccessor cookieAccessor, IUserRepository userRepository, 
-        IWebTokenUtility webTokenUtility) : base(operationDbContext, loggerService)
+    public ReAuthenticateUserCommandHandler(ILoggerService loggerService, IDateTimeService dateTimeService, IUserService userService, 
+        IOptions<AppSettingsModel> options, ICookieAccessor cookieAccessor, IUserRepository userRepository, IWebTokenUtility webTokenUtility) : base(loggerService)
     {
         _dateTimeService = dateTimeService;
         _userService = userService;

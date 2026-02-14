@@ -32,7 +32,7 @@ public static class Dependencies
     public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration)
     {
         services.RegisterCommonServices(configuration);
-        services.AddDataLayer(configuration);
+        services.AddDataLayer();
     }
 
     /// <summary>

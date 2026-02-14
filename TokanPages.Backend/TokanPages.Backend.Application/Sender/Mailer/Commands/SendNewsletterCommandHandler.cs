@@ -3,7 +3,6 @@ using Microsoft.Extensions.Options;
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Messaging;
 using TokanPages.Services.EmailSenderService.Abstractions;
 using TokanPages.Services.EmailSenderService.Models;
@@ -20,9 +19,8 @@ public class SendNewsletterCommandHandler : RequestHandler<SendNewsletterCommand
 
     private static string CurrentEnv => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Testing";
 
-    public SendNewsletterCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IEmailSenderService emailSenderService, IOptions<AppSettingsModel> options, IMessagingRepository messagingRepository) 
-        : base(operationDbContext, loggerService)
+    public SendNewsletterCommandHandler(ILoggerService loggerService, IEmailSenderService emailSenderService, 
+        IOptions<AppSettingsModel> options, IMessagingRepository messagingRepository) : base(loggerService)
     {
         _emailSenderService = emailSenderService;
         _messagingRepository = messagingRepository;

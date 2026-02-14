@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 
 namespace TokanPages.Backend.Application.Invoicing.Batches.Queries;
@@ -11,8 +10,8 @@ public class GetIssuedBatchInvoiceQueryHandler : RequestHandler<GetIssuedBatchIn
 {
     private readonly IInvoicingRepository _invoicingRepository;
 
-    public GetIssuedBatchInvoiceQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IInvoicingRepository invoicingRepository) 
-        : base(operationDbContext, loggerService) => _invoicingRepository = invoicingRepository;
+    public GetIssuedBatchInvoiceQueryHandler(ILoggerService loggerService, IInvoicingRepository invoicingRepository) 
+        : base(loggerService) => _invoicingRepository = invoicingRepository;
 
     public override async Task<FileContentResult> Handle(GetIssuedBatchInvoiceQuery request, CancellationToken cancellationToken)
     {

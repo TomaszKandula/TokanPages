@@ -2,7 +2,6 @@ using System.Text;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Components.Queries;
@@ -15,8 +14,7 @@ public class GetContentQueryHandler : RequestHandler<GetContentQuery, GetContent
 
     private readonly IJsonSerializer _jsonSerializer;
 
-    public GetContentQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IJsonSerializer jsonSerializer, IAzureBlobStorageFactory azureBlobStorageFactory) : base(operationDbContext, loggerService)
+    public GetContentQueryHandler(ILoggerService loggerService, IJsonSerializer jsonSerializer, IAzureBlobStorageFactory azureBlobStorageFactory) : base(loggerService)
     {
         _jsonSerializer = jsonSerializer;
         _azureBlobStorageFactory = azureBlobStorageFactory;

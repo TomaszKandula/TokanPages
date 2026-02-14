@@ -16,8 +16,6 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenCorrectId_WhenRemoveNewsletter_ShouldRemoveEntity() 
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var newsletter = new Newsletter
         {
@@ -37,7 +35,7 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
             .ReturnsAsync(newsletter);
         
         var command = new RemoveNewsletterCommand { Id = newsletter.Id };
-        var handler = new RemoveNewsletterCommandHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
+        var handler = new RemoveNewsletterCommandHandler(mockedLogger.Object, mockSenderRepository.Object);
 
         // Act
         var result = await handler.Handle(command, CancellationToken.None);
@@ -50,8 +48,6 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenIncorrectId_WhenRemoveNewsletter_ShouldThrowError()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var command = new RemoveNewsletterCommand { Id = Guid.NewGuid() };
         var mockedLogger = new Mock<ILoggerService>();
@@ -61,7 +57,7 @@ public class RemoveSubscriberCommandHandlerTest : TestBase
             .Setup(repository => repository.GetNewsletter(It.IsAny<Guid>()))
             .ReturnsAsync((Newsletter?)null);
 
-        var handler = new RemoveNewsletterCommandHandler(databaseContext, mockedLogger.Object, mockSenderRepository.Object);
+        var handler = new RemoveNewsletterCommandHandler(mockedLogger.Object, mockSenderRepository.Object);
 
         // Act
         // Assert

@@ -3,7 +3,6 @@ using TokanPages.Backend.Core.Extensions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Chat;
 
 namespace TokanPages.Backend.Application.Chat.Queries;
@@ -16,8 +15,8 @@ public class GetChatDataQueryHandler : RequestHandler<GetChatDataQuery, GetChatD
 
     private static JsonSerializerSettings Settings => new() { ContractResolver = new CamelCasePropertyNamesContractResolver() };
 
-    public GetChatDataQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IJsonSerializer jsonSerializer, IChatRepository chatRepository) : base(operationDbContext, loggerService)
+    public GetChatDataQueryHandler(ILoggerService loggerService, 
+        IJsonSerializer jsonSerializer, IChatRepository chatRepository) : base(loggerService)
     {
         _jsonSerializer = jsonSerializer;
         _chatRepository = chatRepository;

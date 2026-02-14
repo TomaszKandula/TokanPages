@@ -1,7 +1,6 @@
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.User;
 
 namespace TokanPages.Backend.Application.Users.Commands;
@@ -12,8 +11,8 @@ public class ActivateUserCommandHandler : RequestHandler<ActivateUserCommand, Ac
 
     private readonly IDateTimeService _dateTimeService;
 
-    public ActivateUserCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IDateTimeService dateTimeService, IUserRepository userRepository) : base(operationDbContext, loggerService)
+    public ActivateUserCommandHandler(ILoggerService loggerService, IDateTimeService dateTimeService, 
+        IUserRepository userRepository) : base(loggerService)
     {
         _dateTimeService = dateTimeService;
         _userRepository = userRepository;

@@ -1,6 +1,5 @@
 using TokanPages.Backend.Application.Invoicing.Models;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Invoicing;
 
 namespace TokanPages.Backend.Application.Invoicing.Templates.Queries;
@@ -9,12 +8,12 @@ public class GetInvoiceTemplatesQueryHandler : RequestHandler<GetInvoiceTemplate
 {
     private readonly IInvoicingRepository _invoicingRepository;
 
-    public GetInvoiceTemplatesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IInvoicingRepository invoicingRepository) : base(operationDbContext, loggerService) => _invoicingRepository = invoicingRepository;
+    public GetInvoiceTemplatesQueryHandler(ILoggerService loggerService, IInvoicingRepository invoicingRepository) 
+        : base(loggerService) => _invoicingRepository = invoicingRepository;
 
     public override async Task<IList<InvoiceTemplateInfo>> Handle(GetInvoiceTemplatesQuery request, CancellationToken cancellationToken)
     {
-        var templates = await _invoicingRepository.GetInvoiceTemplates(false);
+        var templates = await _invoicingRepository.GetInvoiceTemplates();
         var list = new List<InvoiceTemplateInfo>();
         foreach (var template in templates)
         {

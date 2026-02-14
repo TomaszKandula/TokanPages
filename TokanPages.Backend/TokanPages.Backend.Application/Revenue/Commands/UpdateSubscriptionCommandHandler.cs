@@ -3,7 +3,6 @@ using TokanPages.Backend.Shared.Resources;
 using TokanPages.Services.UserService.Abstractions;
 using MediatR;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 
@@ -15,8 +14,8 @@ public class UpdateSubscriptionCommandHandler : RequestHandler<UpdateSubscriptio
 
     private readonly IRevenueRepository _revenueRepository;
 
-    public UpdateSubscriptionCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IRevenueRepository revenueRepository) : base(operationDbContext, loggerService)
+    public UpdateSubscriptionCommandHandler(ILoggerService loggerService, IUserService userService, 
+        IRevenueRepository revenueRepository) : base(loggerService)
     {
         _userService = userService;
         _revenueRepository = revenueRepository;

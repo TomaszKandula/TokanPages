@@ -37,7 +37,6 @@ public class AddArticleCommandHandlerTest : TestBase
     public async Task GivenLoggedUser_WhenAddArticle_ShouldAddArticle() 
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
         var command = new AddArticleCommand
         {
             Title = DataUtilityService.GetRandomString(),
@@ -62,7 +61,6 @@ public class AddArticleCommandHandlerTest : TestBase
             .Returns(Task.CompletedTask);
 
         var handler = new AddArticleCommandHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object,
             _mockedAzureBlobStorageFactory.Object, 

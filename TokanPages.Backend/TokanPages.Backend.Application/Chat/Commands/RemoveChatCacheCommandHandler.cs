@@ -1,6 +1,5 @@
 using MediatR;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Chat;
 
 namespace TokanPages.Backend.Application.Chat.Commands;
@@ -9,8 +8,8 @@ public class RemoveChatCacheCommandHandler : RequestHandler<RemoveChatCacheComma
 {
     private readonly IChatRepository _chatRepository;
 
-    public RemoveChatCacheCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IChatRepository chatRepository) 
-        : base(operationDbContext, loggerService) => _chatRepository = chatRepository;
+    public RemoveChatCacheCommandHandler(ILoggerService loggerService, IChatRepository chatRepository) 
+        : base(loggerService) => _chatRepository = chatRepository;
 
     public override async Task<Unit> Handle(RemoveChatCacheCommand request, CancellationToken cancellationToken)
     {

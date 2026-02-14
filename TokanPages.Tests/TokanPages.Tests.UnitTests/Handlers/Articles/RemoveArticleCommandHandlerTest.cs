@@ -15,8 +15,6 @@ public class RemoveArticleCommandHandlerTest : TestBase
     public async Task GivenCorrectId_WhenRemoveArticle_ShouldRemoveEntity() 
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         var articleId = Guid.NewGuid();
         var userId = Guid.NewGuid();
 
@@ -37,7 +35,6 @@ public class RemoveArticleCommandHandlerTest : TestBase
 
         var command = new RemoveArticleCommand { Id = articleId };
         var handler = new RemoveArticleCommandHandler(
-            databaseContext, 
             mockedLogger.Object, 
             mockedUserService.Object, 
             mockedArticlesRepository.Object);

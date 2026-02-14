@@ -1,6 +1,5 @@
 using MediatR;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -12,8 +11,8 @@ public class UpdateArticleCountCommandHandler : RequestHandler<UpdateArticleCoun
     
     private readonly IArticlesRepository _articlesRepository;
 
-    public UpdateArticleCountCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IArticlesRepository articlesRepository) : base(operationDbContext, loggerService)
+    public UpdateArticleCountCommandHandler(ILoggerService loggerService, 
+        IUserService userService, IArticlesRepository articlesRepository) : base(loggerService)
     {
         _userService = userService;
         _articlesRepository = articlesRepository;

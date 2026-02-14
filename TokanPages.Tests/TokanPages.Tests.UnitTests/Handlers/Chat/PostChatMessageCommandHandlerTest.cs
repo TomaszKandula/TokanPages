@@ -19,8 +19,6 @@ public class PostChatMessageCommandHandlerTest : TestBase
     [Fact]
     public async Task GivenChatKeyAndMessage_WhenPostChatMessage_ShouldSucceed()
     {
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         // Arrange
         var userId1 = Guid.NewGuid();
         var userId2 = Guid.NewGuid();
@@ -114,7 +112,6 @@ public class PostChatMessageCommandHandlerTest : TestBase
             .Returns(Task.CompletedTask);
 
         var handler = new PostChatMessageCommandHandler(
-            databaseContext,
             mockedLogger.Object,
             mockedDateTime.Object,
             jsonSerializer,

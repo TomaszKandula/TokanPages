@@ -1,8 +1,6 @@
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Services.UserService.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 using TokanPages.Persistence.DataAccess.Repositories.User;
@@ -11,17 +9,13 @@ namespace TokanPages.Backend.Application.Revenue.Commands;
 
 public class AddSubscriptionCommandHandler : RequestHandler<AddSubscriptionCommand, AddSubscriptionCommandResult>
 {
-    private readonly IUserService _userService;
-
     private readonly IRevenueRepository _revenueRepository;
     
     private readonly IUserRepository _userRepository;
 
-    public AddSubscriptionCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IRevenueRepository revenueRepository, IUserRepository userRepository)
-        : base(operationDbContext, loggerService)
+    public AddSubscriptionCommandHandler(ILoggerService loggerService, IRevenueRepository revenueRepository, 
+        IUserRepository userRepository) : base(loggerService)
     {
-        _userService = userService;
         _revenueRepository = revenueRepository;
         _userRepository = userRepository;
     }

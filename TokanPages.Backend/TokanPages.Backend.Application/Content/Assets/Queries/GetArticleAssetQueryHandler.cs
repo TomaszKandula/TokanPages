@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Services.AzureStorageService.Abstractions;
 
 namespace TokanPages.Backend.Application.Content.Assets.Queries;
@@ -11,8 +10,8 @@ public class GetArticleAssetQueryHandler : RequestHandler<GetArticleAssetQuery, 
 {
     private readonly IAzureBlobStorageFactory _azureBlobStorageFactory;
     
-    public GetArticleAssetQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
-        : base(operationDbContext, loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
+    public GetArticleAssetQueryHandler(ILoggerService loggerService, IAzureBlobStorageFactory azureBlobStorageFactory) 
+        : base(loggerService) => _azureBlobStorageFactory = azureBlobStorageFactory;
 
     public override async Task<FileContentResult> Handle(GetArticleAssetQuery request, CancellationToken cancellationToken)
     {

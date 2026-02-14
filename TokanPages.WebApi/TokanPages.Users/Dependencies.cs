@@ -35,7 +35,7 @@ public static class Dependencies
 	public static void RegisterDependencies(this IServiceCollection services, IConfiguration configuration, IHostEnvironment? environment = default)
 	{
 		services.CommonServices(configuration);
-		services.AddDataLayer(configuration);
+		services.AddDataLayer();
 		if (environment != null)
 			PollySupport.SetupRetryPolicyWithPolly(services, configuration, environment);
 	}

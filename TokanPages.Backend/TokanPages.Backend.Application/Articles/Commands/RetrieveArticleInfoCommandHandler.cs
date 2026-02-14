@@ -1,5 +1,4 @@
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Articles;
 using TokanPages.Services.UserService.Abstractions;
 
@@ -11,9 +10,8 @@ public class RetrieveArticleInfoCommandHandler : RequestHandler<RetrieveArticleI
 
     private readonly IArticlesRepository _articlesRepository;
 
-    public RetrieveArticleInfoCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IUserService userService, 
-        IArticlesRepository articlesRepository)
-        : base(operationDbContext, loggerService)
+    public RetrieveArticleInfoCommandHandler(ILoggerService loggerService, IUserService userService, 
+        IArticlesRepository articlesRepository) : base(loggerService)
     {
         _userService = userService;
         _articlesRepository = articlesRepository;

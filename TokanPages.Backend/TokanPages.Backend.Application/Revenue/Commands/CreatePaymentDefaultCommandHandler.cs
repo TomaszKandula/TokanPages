@@ -4,7 +4,6 @@ using TokanPages.Services.UserService.Abstractions;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 using BuyerInput = TokanPages.Services.PayUService.Models.Sections.Buyer;
@@ -25,9 +24,8 @@ public class CreatePaymentDefaultCommandHandler : RequestHandler<CreatePaymentDe
 
     private readonly AppSettingsModel _appSettings;
 
-    public CreatePaymentDefaultCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IPayUService payUService, IOptions<AppSettingsModel> options, IRevenueRepository revenueRepository) 
-        : base(operationDbContext, loggerService)
+    public CreatePaymentDefaultCommandHandler(ILoggerService loggerService, IUserService userService, IPayUService payUService, 
+        IOptions<AppSettingsModel> options, IRevenueRepository revenueRepository) : base(loggerService)
     {
         _userService = userService;
         _payUService = payUService;
@@ -124,7 +122,6 @@ public class CreatePaymentDefaultCommandHandler : RequestHandler<CreatePaymentDe
             await _revenueRepository.CreateUserPayment(userPayment);
         }
 
-        await OperationDbContext.SaveChangesAsync(cancellationToken);
         LoggerService.LogInformation("New user payment has been registered within the system.");
 
         return response;

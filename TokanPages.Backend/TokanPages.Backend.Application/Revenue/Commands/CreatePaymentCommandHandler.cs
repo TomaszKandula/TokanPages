@@ -4,7 +4,6 @@ using TokanPages.Services.UserService.Abstractions;
 using Microsoft.Extensions.Options;
 using TokanPages.Backend.Shared.Options;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 using BuyerInput = TokanPages.Services.PayUService.Models.Sections.Buyer;
@@ -26,9 +25,8 @@ public class CreatePaymentCommandHandler : RequestHandler<CreatePaymentCommand, 
 
     private readonly AppSettingsModel _appSettings;
 
-    public CreatePaymentCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IUserService userService, IPayUService payUService, IOptions<AppSettingsModel> options, IRevenueRepository revenueRepository) 
-        : base(operationDbContext, loggerService)
+    public CreatePaymentCommandHandler(ILoggerService loggerService, IUserService userService, IPayUService payUService, 
+        IOptions<AppSettingsModel> options, IRevenueRepository revenueRepository) : base(loggerService)
     {
         _userService = userService;
         _payUService = payUService;

@@ -18,8 +18,6 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
     public async Task GivenNewLikes_WhenUpdateArticleLikes_ShouldSucceed()
     {
         // Arrange
-        var databaseContext = GetTestDatabaseContext();//TODO: to be removed
-
         var userId = Guid.NewGuid();
         var articleId = Guid.NewGuid();
 
@@ -72,7 +70,6 @@ public class UpdateArticleLikesCommandHandlerTest : TestBase
         };
 
         var handler = new UpdateArticleLikesCommandHandler(
-            databaseContext, 
             mockedLogger.Object,
             mockedUserService.Object, 
             mockedArticlesRepository.Object,

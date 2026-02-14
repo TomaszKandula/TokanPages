@@ -1,14 +1,12 @@
 using TokanPages.Backend.Core.Extensions;
 using TokanPages.Backend.Domain.Enums;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 
 namespace TokanPages.Backend.Application.Invoicing.Batches.Queries;
 
 public class GetBatchProcessingStatusesQueryHandler : RequestHandler<GetBatchProcessingStatusesQuery, IEnumerable<GetBatchProcessingStatusesQueryResult>>
 {
-    public GetBatchProcessingStatusesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService)
-        : base(operationDbContext, loggerService) { }
+    public GetBatchProcessingStatusesQueryHandler(ILoggerService loggerService) : base(loggerService) { }
 
     public override async Task<IEnumerable<GetBatchProcessingStatusesQueryResult>> Handle(GetBatchProcessingStatusesQuery request, CancellationToken cancellationToken)
     {

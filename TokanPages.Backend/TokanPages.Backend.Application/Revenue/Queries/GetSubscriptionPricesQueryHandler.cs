@@ -1,6 +1,5 @@
 using TokanPages.Backend.Application.Subscriptions.Models;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Revenue;
 
 namespace TokanPages.Backend.Application.Revenue.Queries;
@@ -9,8 +8,8 @@ public class GetSubscriptionPricesQueryHandler : RequestHandler<GetSubscriptionP
 {
     private readonly IRevenueRepository _revenueRepository;
 
-    public GetSubscriptionPricesQueryHandler(OperationDbContext operationDbContext, ILoggerService loggerService, IRevenueRepository revenueRepository) 
-        : base(operationDbContext, loggerService) => _revenueRepository = revenueRepository;
+    public GetSubscriptionPricesQueryHandler(ILoggerService loggerService, 
+        IRevenueRepository revenueRepository) : base(loggerService) => _revenueRepository = revenueRepository;
 
     public override async Task<GetSubscriptionPricesQueryResult> Handle(GetSubscriptionPricesQuery request, CancellationToken cancellationToken)
     {

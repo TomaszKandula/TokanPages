@@ -2,7 +2,6 @@
 using TokanPages.Backend.Core.Exceptions;
 using TokanPages.Backend.Shared.Resources;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Sender;
 using TokanPages.Persistence.DataAccess.Repositories.Sender.Models;
 
@@ -12,8 +11,8 @@ public class UpdateNewsletterCommandHandler : RequestHandler<UpdateNewsletterCom
 {
     private readonly ISenderRepository _senderRepository;
 
-    public UpdateNewsletterCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        ISenderRepository senderRepository) : base(operationDbContext, loggerService) => _senderRepository = senderRepository;
+    public UpdateNewsletterCommandHandler(ILoggerService loggerService, ISenderRepository senderRepository) 
+        : base(loggerService) => _senderRepository = senderRepository;
 
     public override async Task<Unit> Handle(UpdateNewsletterCommand request, CancellationToken cancellationToken) 
     {

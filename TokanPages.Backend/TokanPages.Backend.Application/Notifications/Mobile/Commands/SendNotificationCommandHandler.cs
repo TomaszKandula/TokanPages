@@ -5,7 +5,6 @@ using TokanPages.Services.PushNotificationService.Abstractions;
 using TokanPages.Services.PushNotificationService.Models;
 using Microsoft.Azure.NotificationHubs;
 using TokanPages.Backend.Utility.Abstractions;
-using TokanPages.Persistence.DataAccess.Contexts;
 using TokanPages.Persistence.DataAccess.Repositories.Notification;
 using TokanPages.Persistence.DataAccess.Repositories.Notification.Models;
 
@@ -19,9 +18,8 @@ public class SendNotificationCommandHandler : RequestHandler<SendNotificationCom
 
     private readonly INotificationRepository _notificationRepository;
 
-    public SendNotificationCommandHandler(OperationDbContext operationDbContext, ILoggerService loggerService, 
-        IAzureNotificationHubFactory azureNotificationHubFactory, IAzureNotificationHubUtility azureNotificationHubUtility, 
-        INotificationRepository notificationRepository) : base(operationDbContext, loggerService)
+    public SendNotificationCommandHandler(ILoggerService loggerService, IAzureNotificationHubFactory azureNotificationHubFactory, 
+        IAzureNotificationHubUtility azureNotificationHubUtility, INotificationRepository notificationRepository) : base(loggerService)
     {
         _azureNotificationHubFactory = azureNotificationHubFactory;
         _azureNotificationHubUtility = azureNotificationHubUtility;
