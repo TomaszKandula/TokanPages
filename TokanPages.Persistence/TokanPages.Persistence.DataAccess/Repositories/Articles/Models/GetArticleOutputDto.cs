@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
+[ExcludeFromCodeCoverage]
 public class GetArticleOutputDto : ArticleDataDto
 {
     public int UserLikes { get; init; }
