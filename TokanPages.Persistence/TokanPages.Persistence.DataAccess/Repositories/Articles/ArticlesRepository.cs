@@ -63,9 +63,9 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
                 operation.Articles.Id = @RequestId
         ";
 
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
         var queryArticleDataParams = new { RequestId = requestId, LanguageId = userLanguage };
-        var articleData = await db.QuerySingleOrDefaultAsync<ArticleBaseDto>(queryArticleData, queryArticleDataParams);
+        var articleData = await connection.QuerySingleOrDefaultAsync<ArticleBaseDto>(queryArticleData, queryArticleDataParams);
         if (articleData is null)
             return null;
 
@@ -89,8 +89,8 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         var queryFilteredParams = new { RequestId = requestId, IpAddress = ipAddress, UserId = userId };
         var queryArticleParams = new { RequestId = requestId };
 
-        var userLikes = await db.QuerySingleOrDefaultAsync<int>(queryFilteredLikes, queryFilteredParams);
-        var totalLikes = await db.QuerySingleOrDefaultAsync<int>(queryArticleLikes, queryArticleParams);
+        var userLikes = await connection.QuerySingleOrDefaultAsync<int>(queryFilteredLikes, queryFilteredParams);
+        var totalLikes = await connection.QuerySingleOrDefaultAsync<int>(queryArticleLikes, queryArticleParams);
 
         const string queryUserData = @"
             SELECT
@@ -110,7 +110,7 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         ";
 
         var queryUserParams = new { UserId = userId };
-        var userDto = await db.QuerySingleOrDefaultAsync<GetUserDto>(queryUserData, queryUserParams);
+        var userDto = await connection.QuerySingleOrDefaultAsync<GetUserDto>(queryUserData, queryUserParams);
 
         const string queryTags = @"
             SELECT
@@ -124,7 +124,7 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         ";
 
         var queryTagParams = new { RequestId = requestId };
-        var result = await db.QueryAsync<string>(queryTags, queryTagParams);
+        var result = await connection.QueryAsync<string>(queryTags, queryTagParams);
         var tags = result.ToArray();
 
         return new GetArticleOutputDto
@@ -199,10 +199,11 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         var skipCount = (pageInfo.PageNumber - 1) * pageInfo.PageSize;
         query += $"\nOFFSET {skipCount} ROWS FETCH NEXT {pageInfo.PageSize} ROWS ONLY";
 
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        var articles = (await db.QueryAsync<ArticleDataDto>(query)).ToList();
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        var data = await connection.QueryAsync<ArticleDataDto>(query);
+        var result = data.ToList();
 
-        return articles;
+        return result;
     }
 
     public async Task<List<ArticleCategoryDto>> GetArticleCategories(string userLanguage)
@@ -220,8 +221,12 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
             WHERE
                 operation.Languages.LangId = @UserLanguage";
 
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        return (await db.QueryAsync<ArticleCategoryDto>(query, new { UserLanguage = userLanguage })).ToList();
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        var parameters = new { UserLanguage = userLanguage };
+        var data = await connection.QueryAsync<ArticleCategoryDto>(query, parameters);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<HashSet<Guid>?> GetSearchResult(string? searchTerm)
@@ -247,8 +252,10 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
                 operation.ArticleTags.TagName LIKE CONCAT('%', @SearchTerm, '%')
         ";
 
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        var result = (await db.QueryAsync<Guid>(query, new { SearchTerm = searchTerm })).ToList();
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        var data = await connection.QueryAsync<Guid>(query, new { SearchTerm = searchTerm });
+        var result = data.ToList();
+
         return new HashSet<Guid>(result);
     }
 
@@ -310,14 +317,17 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
                 operation.Articles.Id IN @ArticleIds
         ";
 
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        var articleInfoList = (await db.QueryAsync<ArticleDataDto>(query, new
+        var parameters = new
         {
             UserLanguage = userLanguage,
             ArticleIds = articleIds.ToArray()
-        })).ToList();
+        };
 
-        return articleInfoList;
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        var data = await connection.QueryAsync<ArticleDataDto>(query, parameters);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<List<ArticleCount>> GetArticleCount(string ipAddress, Guid articleId)
@@ -333,8 +343,10 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
             ? new { ArticleId = articleId, IpAddress = ipAddress }
             : new { ArticleId = articleId, UserId = userId };
 
-        var result = await DbOperations.Retrieve<ArticleLike>(filterBy);
-        return result.SingleOrDefault();
+        var data = await DbOperations.Retrieve<ArticleLike>(filterBy) as IEnumerable<ArticleLike>;
+        var result = data?.SingleOrDefault();
+
+        return result;
     }
 
     public async Task CreateArticleLikes(Guid userId, Guid articleId, string ipAddress, int likes)
