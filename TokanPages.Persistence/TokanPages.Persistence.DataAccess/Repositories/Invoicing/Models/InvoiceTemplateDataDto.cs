@@ -5,5 +5,5 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 [ExcludeFromCodeCoverage]
 public class InvoiceTemplateDataDto : FileResultDto
 {
-    public string Description { get; init; } = string.Empty;
+    public required string Description { get; init; }
 }

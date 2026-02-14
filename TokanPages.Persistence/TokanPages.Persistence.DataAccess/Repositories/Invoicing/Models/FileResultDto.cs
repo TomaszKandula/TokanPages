@@ -5,7 +5,7 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 [ExcludeFromCodeCoverage]
 public class FileResultDto
 {
-    public byte[] ContentData { get; init; } = Array.Empty<byte>();
+    public required byte[] ContentData { get; init; }
 
-    public string ContentType { get; init; } = string.Empty;
+    public required string ContentType { get; init; }
 }

@@ -8,45 +8,45 @@ public class BatchInvoiceDto
 {
     public Guid? Id { get; init; }
 
-    public string InvoiceNumber { get; init; } = string.Empty;
+    public required string InvoiceNumber { get; init; }
 
-    public DateTime VoucherDate { get; init; }
+    public required DateTime VoucherDate { get; init; }
 
-    public DateTime ValueDate { get; init; }
+    public required DateTime ValueDate { get; init; }
 
-    public DateTime DueDate { get; init; }
+    public required DateTime DueDate { get; init; }
 
-    public int PaymentTerms { get; init; }
+    public required int PaymentTerms { get; init; }
 
-    public PaymentType PaymentType { get; init; }
+    public required PaymentType PaymentType { get; init; }
 
-    public PaymentStatus PaymentStatus { get; init; }
+    public required PaymentStatus PaymentStatus { get; init; }
 
-    public string CustomerName { get; init; } = string.Empty;
+    public required string CustomerName { get; init; }
 
-    public string CustomerVatNumber { get; init; } = string.Empty;
+    public required string CustomerVatNumber { get; init; }
 
-    public CountryCode CountryCode { get; init; }
+    public required CountryCode CountryCode { get; init; }
 
-    public string City { get; init; } = string.Empty;
+    public required string City { get; init; }
 
-    public string StreetAddress { get; init; } = string.Empty;
+    public required string StreetAddress { get; init; }
 
-    public string PostalCode { get; init; } = string.Empty;
+    public required string PostalCode { get; init; }
 
-    public string PostalArea { get; init; } = string.Empty;
+    public required string PostalArea { get; init; }
 
-    public Guid ProcessBatchKey { get; init; }
+    public required Guid ProcessBatchKey { get; init; }
 
-    public Guid CreatedBy { get; init; }
+    public required Guid CreatedBy { get; init; }
 
-    public DateTime CreatedAt { get; init; }
+    public required DateTime CreatedAt { get; init; }
 
-    public string InvoiceTemplateName { get; init; } = string.Empty;
+    public required string InvoiceTemplateName { get; init; }
 
-    public Guid UserId { get; init; }
+    public required Guid UserId { get; init; }
 
-    public Guid UserCompanyId { get; init; }
+    public required Guid UserCompanyId { get; init; }
 
-    public Guid UserBankAccountId { get; init; }
+    public required Guid UserBankAccountId { get; init; }
 }
