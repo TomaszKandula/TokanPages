@@ -27,24 +27,24 @@ describe("test view component for application user info", () => {
             userToken: "fbb220c9-7593-472d-bb95-7b41c436e332",
             roles: [
                 {
-                    name: "EverydayUser",
+                    roleName: "EverydayUser",
                     description: "Standard access",
-                    id: "f905ce01-c28f-4810-bb86-d29e8048f5b6",
+                    roleId: "f905ce01-c28f-4810-bb86-d29e8048f5b6",
                 },
                 {
-                    name: "Tester",
+                    roleName: "Tester",
                     description: "Can access test environments",
-                    id: "52a520f3-9f60-4c76-80e3-28b9dcfe9bfb",
+                    roleId: "52a520f3-9f60-4c76-80e3-28b9dcfe9bfb",
                 },
             ],
             permissions: [
                 {
-                    name: "CanTestEverything",
-                    id: "f34d2965-1caf-4c8b-8215-94d326d151d8",
+                    permissionName: "CanTestEverything",
+                    permissionId: "f34d2965-1caf-4c8b-8215-94d326d151d8",
                 },
                 {
-                    name: "CanOrderPizza",
-                    id: "198e0248-ade0-4868-b0f5-926dc5168a6e",
+                    permissionName: "CanOrderPizza",
+                    permissionId: "198e0248-ade0-4868-b0f5-926dc5168a6e",
                 },
             ],
         };
