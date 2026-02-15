@@ -382,7 +382,7 @@ public class UserRepository : RepositoryBase, IUserRepository
             SELECT 
                 operation.UserPermissions.UserId,
                 operation.UserPermissions.PermissionId,
-                operation.Permissions.Name
+                operation.Permissions.Name as PermissionName
             FROM 
                 operation.UserPermissions
             LEFT JOIN

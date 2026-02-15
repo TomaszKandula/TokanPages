@@ -1,4 +1,5 @@
 export interface UserPermissionDto {
-    name: string;
-    id?: string;
+    userId?: string;
+    permissionId?: string;
+    permissionName: string;
 }
