@@ -27,8 +27,8 @@ public class AuthenticateUserCommandValidatorTest : TestBase
 
     [Theory]
     [InlineData("", "")]
-    [InlineData(null, null)]
-    public void GivenInvalidInputs_WhenAuthenticateUser_ShouldThrowError(string? emailAddress, string? password)
+    [InlineData(" ", "  ")]
+    public void GivenInvalidInputs_WhenAuthenticateUser_ShouldThrowError(string emailAddress, string password)
     {
         // Arrange
         var command = new AuthenticateUserCommand
