@@ -65,13 +65,13 @@ export const ApplicationUserInfoView = (props: ApplicationUserInfoViewProps): Re
                         <p className="is-size-6">{props.content?.textRoles}:</p>
                         <ul>
                             {props.data.roles?.map((item: UserRoleDto, _index: number) => (
-                                <CustomListItem item={item.name} key={item.id ?? uuidv4()} />
+                                <CustomListItem item={item.roleName} key={item.roleId ?? uuidv4()} />
                             ))}
                         </ul>
                         <p className="is-size-6">{props.content?.textPermissions}:</p>
                         <ul>
                             {props.data.permissions?.map((item: UserPermissionDto, _index: number) => (
-                                <CustomListItem item={item.name} key={item.id ?? uuidv4()} />
+                                <CustomListItem item={item.permissionName} key={item.permissionId ?? uuidv4()} />
                             ))}
                         </ul>
                     </div>

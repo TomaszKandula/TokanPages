@@ -4,8 +4,6 @@ public interface IDateTimeService
 {
     DateTime Now { get; }
 
-    DateTimeOffset RelativeNow { get; }
-
     DateTime TodayStartOfDay { get; }
         
     DateTime TodayEndOfDay { get; }

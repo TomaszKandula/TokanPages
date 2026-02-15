@@ -382,7 +382,7 @@ public class UserRepository : RepositoryBase, IUserRepository
             SELECT 
                 operation.UserPermissions.UserId,
                 operation.UserPermissions.PermissionId,
-                operation.Permissions.Name
+                operation.Permissions.Name as PermissionName
             FROM 
                 operation.UserPermissions
             LEFT JOIN
@@ -584,7 +584,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         var filterBy = new
         {
             UserId = userId, 
-            UserNoteId = userNoteId
+            Id = userNoteId
         };
 
         var data = await DbOperations.Retrieve<Users.UserNote>(filterBy);
@@ -711,7 +711,7 @@ public class UserRepository : RepositoryBase, IUserRepository
             operation.Users.IsDeleted,
             operation.Users.IsVerified,
             operation.Users.CreatedAt AS Registered,
-            operation.Users.ModifiedAt AS Modified,
+            operation.Users.ModifiedAt AS Modified
         FROM
             operation.Users
         LEFT JOIN

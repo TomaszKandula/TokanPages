@@ -129,7 +129,7 @@ internal sealed class UserService : IUserService
     {
         userId ??= UserIdFromClaim();
         var userPermissionsById = await _userRepository.GetUserPermissions(userId ?? Guid.Empty);
-        var permissionsByName = userPermissionsById.Where(permission => permission.Name == userPermissionName);
+        var permissionsByName = userPermissionsById.Where(permission => permission.PermissionName == userPermissionName);
         return permissionsByName.Any();
     }
 

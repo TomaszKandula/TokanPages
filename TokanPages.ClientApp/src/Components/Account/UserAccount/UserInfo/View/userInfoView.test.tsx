@@ -24,15 +24,15 @@ describe("test account group component: userInfoView", () => {
                         userToken: "123654789",
                         roles: [
                             {
-                                id: "357159",
-                                name: "Admin",
+                                roleId: "357159",
+                                roleName: "Admin",
                                 description: "System administrator",
                             },
                         ],
                         permissions: [
                             {
-                                id: "951753",
-                                name: "Access_All",
+                                permissionId: "951753",
+                                permissionName: "Access_All",
                             },
                         ],
                     }}

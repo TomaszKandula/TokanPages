@@ -48,21 +48,23 @@ public class ReAuthenticateUserCommandHandler : RequestHandler<ReAuthenticateUse
         if (existingRefreshToken == null) 
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
-        var isRefreshTokenActive = !(existingRefreshToken.Expires <= _dateTimeService.Now);
-        if (!isRefreshTokenActive)
+        var isExpired = existingRefreshToken.Expires <= _dateTimeService.Now;
+        if (isExpired)
             throw new AccessException(nameof(ErrorCodes.INVALID_REFRESH_TOKEN), ErrorCodes.INVALID_REFRESH_TOKEN);
 
-        var newRefreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, _appSettings.IdsRefreshTokenMaturity);
-        var expiresIn = _appSettings.IdsRefreshTokenMaturity;
-        _cookieAccessor.Set("X-CSRF-Token", newRefreshToken.Token, maxAge: TimeSpan.FromMinutes(expiresIn));
+        var refreshTokenMaturity = _appSettings.IdsRefreshTokenMaturity;
+        var newRefreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, refreshTokenMaturity);
+        _cookieAccessor.Set("X-CSRF-Token", newRefreshToken.Token, maxAge: TimeSpan.FromMinutes(refreshTokenMaturity));
 
         await _userRepository.CreateUserRefreshToken(user.UserId, newRefreshToken.Token, newRefreshToken.Expires, newRefreshToken.Created, newRefreshToken.CreatedByIp);
         await _userRepository.RemoveUserRefreshToken(csrfToken);
 
         var currentDateTime = _dateTimeService.Now;
-        var tokenExpires = _dateTimeService.Now.AddMinutes(_appSettings.IdsWebTokenMaturity);
-        var userToken = await _userService.GenerateUserToken(user.UserId, tokenExpires);
-        await _userRepository.CreateUserToken(user.UserId, userToken, tokenExpires, currentDateTime, ipAddress);
+        var userTokenMaturity = _dateTimeService.Now.AddMinutes(_appSettings.IdsWebTokenMaturity);
+        var userToken = await _userService.GenerateUserToken(user.UserId, userTokenMaturity);
+
+        await _userRepository.CreateUserToken(user.UserId, userToken, userTokenMaturity, currentDateTime, ipAddress);
+        await _userRepository.RemoveUserToken(user.UserId, csrfToken);
 
         var userDetails = await _userRepository.GetUserDetails(user.UserId);
         var roles = await _userRepository.GetUserRoles(user.UserId);

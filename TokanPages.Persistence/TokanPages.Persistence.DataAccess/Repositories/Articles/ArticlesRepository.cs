@@ -117,7 +117,7 @@ public class ArticlesRepository : RepositoryBase, IArticlesRepository
         const string queryUserData = @"
             SELECT
                 operation.Users.Id AS UserId,
-                operation.Users.UserAlias,
+                operation.Users.UserAlias as AliasName,
                 operation.UserInformation.UserImageName AS AvatarName,
                 operation.UserInformation.FirstName,
                 operation.UserInformation.LastName,

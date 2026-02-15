@@ -65,15 +65,16 @@ public class AuthenticateUserCommandHandler : RequestHandler<AuthenticateUserCom
 
         var currentDateTime = _dateTimeService.Now;
         var ipAddress = _userService.GetRequestIpAddress();
-        var tokenExpires = _dateTimeService.Now.AddMinutes(_appSettings.IdsWebTokenMaturity);
-        var userToken = await _userService.GenerateUserToken(userDetails.UserId, tokenExpires);
 
-        var expiresIn = _appSettings.IdsRefreshTokenMaturity;
-        var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, expiresIn);
+        var userTokenMaturity = _dateTimeService.Now.AddMinutes(_appSettings.IdsWebTokenMaturity);
+        var userToken = await _userService.GenerateUserToken(userDetails.UserId, userTokenMaturity);
 
-        await _userRepository.CreateUserToken(userDetails.UserId, userToken, tokenExpires, currentDateTime, ipAddress);
-        await _userRepository.CreateUserRefreshToken(userDetails.UserId, refreshToken.Token, tokenExpires, currentDateTime, ipAddress);
-        _cookieAccessor.Set("X-CSRF-Token", refreshToken.Token, maxAge: TimeSpan.FromMinutes(expiresIn));
+        var refreshTokenMaturity = _appSettings.IdsRefreshTokenMaturity;
+        var refreshToken = _webTokenUtility.GenerateRefreshToken(ipAddress, refreshTokenMaturity);
+
+        _cookieAccessor.Set("X-CSRF-Token", refreshToken.Token, maxAge: TimeSpan.FromMinutes(refreshTokenMaturity));
+        await _userRepository.CreateUserToken(userDetails.UserId, userToken, userTokenMaturity, currentDateTime, ipAddress);
+        await _userRepository.CreateUserRefreshToken(userDetails.UserId, refreshToken.Token, refreshToken.Expires, currentDateTime, ipAddress);
 
         var roles = await _userRepository.GetUserRoles(userDetails.UserId);
         var permissions = await _userRepository.GetUserPermissions(userDetails.UserId);
