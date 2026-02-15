@@ -12,7 +12,7 @@ using TokanPages.Persistence.DataAccess.Repositories.User;
 
 namespace TokanPages.Persistence.DataAccess;
 
-public static class Configuration
+public static class AssemblyConfigurer
 {
     public static void AddDataLayer(this IServiceCollection services)
     {

@@ -5,9 +5,9 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 [ExcludeFromCodeCoverage]
 public class IssuedInvoiceDto
 {
-    public Guid UserId { get; set; } 
+    public required Guid UserId { get; init; } 
 
-    public string InvoiceNumber { get; set; } = string.Empty;
+    public required string InvoiceNumber { get; init; }
 
-    public byte[] InvoiceData { get; set; } = Array.Empty<byte>();
+    public required byte[] InvoiceData { get; init; }
 }

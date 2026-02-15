@@ -14,15 +14,19 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
     public NotificationRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
         : base(dbOperations, appSettings) => _dateTimeService = dateTimeService;
 
-    /// <inheritdoc/>
     public async Task<PushNotification?> GetPushNotification(string pnsHandle)
     {
-        var filterBy = new { Handle = pnsHandle };
+        var filterBy = new
+        {
+            Handle = pnsHandle
+        };
+
         var data = await DbOperations.Retrieve<PushNotification>(filterBy);
-        return data.SingleOrDefault();
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
-    /// <inheritdoc/>
     public async Task CreatePushNotification(PushNotificationDto data)
     {
         var entity = new PushNotification
@@ -40,45 +44,53 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Insert(entity);
     }
 
-    /// <inheritdoc/>
     public async Task UpdatePushNotification(PushNotificationDto data)
     {
-        var filterBy = new { Id = data.Id };
         var updateBy = new
         {
             ModifiedAt = _dateTimeService.Now,
-            ModifiedBy = data.ModifiedBy,
             Description = "PNS handle installation updated",
             IsVerified = data.IsVerified,
             RegistrationId = data.RegistrationId
         };
 
+        var filterBy = new
+        {
+            Id = data.Id
+        };
+
         await DbOperations.Update<PushNotification>(updateBy, filterBy);
     }
 
-    /// <inheritdoc/>
-    public async Task DeletePushNotificationById(Guid id)
+    public async Task RemovePushNotificationById(Guid id)
     {
-        var deleteBy = new { Id = id };
+        var deleteBy = new
+        {
+            Id = id
+        };
+
         await DbOperations.Delete<PushNotification>(deleteBy);
     }
 
-    /// <inheritdoc/>
-    public async Task DeletePushNotificationsByIds(List<object> ids)
+    public async Task RemovePushNotificationsByIds(List<object> ids)
     {
         var uids = new HashSet<object>(ids);
         await DbOperations.Delete<PushNotification>(uids);
     }
 
-    /// <inheritdoc/>
     public async Task<List<PushNotificationTag>> GetPushNotificationTags(Guid installationId)
     {
-        var filterBy = new { PushNotificationId = installationId };
+        var filterBy = new
+        {
+            PushNotificationId = installationId
+        };
+
         var data = await DbOperations.Retrieve<PushNotificationTag>(filterBy);
-        return data.ToList();
+        var result = data.ToList();
+
+        return result;
     }
 
-    /// <inheritdoc/>
     public async Task CreatePushNotificationTag(PushNotificationTagDto data)
     {
         var entity = new PushNotificationTag
@@ -93,7 +105,6 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Insert(entity);
     }
 
-    /// <inheritdoc/>
     public async Task CreatePushNotificationTags(List<PushNotificationTagDto> data)
     {
          var entities = new List<PushNotificationTag>();
@@ -114,21 +125,22 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
          await DbOperations.Insert(entities);
     }
 
-    /// <inheritdoc/>
-    public async Task DeletePushNotificationTagsById(Guid id)
+    public async Task RemovePushNotificationTagsById(Guid id)
     {
-        var deleteBy = new { PushNotificationId = id };
+        var deleteBy = new
+        {
+            PushNotificationId = id
+        };
+
         await DbOperations.Delete<PushNotificationTag>(deleteBy);
     }
 
-    /// <inheritdoc/>
-    public async Task DeletePushNotificationTagsByIds(List<object> ids)
+    public async Task RemovePushNotificationTagsByIds(List<object> ids)
     {
         var uids = new HashSet<object>(ids);
         await DbOperations.Delete<PushNotificationTag>(uids);
     }
 
-    /// <inheritdoc/>
     public async Task CreatePushNotificationLogs(List<PushNotificationLogDto> data)
     {
         var entities = new List<PushNotificationLog>();
@@ -151,15 +163,19 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Insert(entities);
     }
 
-    /// <inheritdoc/>
     public async Task<WebNotification?> GetWebNotificationById(Guid id)
     {
-        var filterBy = new { Id = id };
+        var filterBy = new
+        {
+            Id = id
+        };
+
         var data = await DbOperations.Retrieve<WebNotification>(filterBy);
-        return data.SingleOrDefault();
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
-    /// <inheritdoc/>
     public async Task CreateWebNotification(string value, Guid? id = null)
     {
         var entity = new WebNotification
@@ -171,18 +187,28 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
         await DbOperations.Insert(entity);
     }
 
-    /// <inheritdoc/>
     public async Task UpdateWebNotification(Guid id, string value)
     {
-        var filterBy = new { Id = id };
-        var updateBy = new { Value = value };
+        var updateBy = new
+        {
+            Value = value
+        };
+
+        var filterBy = new
+        {
+            Id = id
+        };
+
         await DbOperations.Update<WebNotification>(updateBy, filterBy);
     }
 
-    /// <inheritdoc/>
-    public async Task DeleteWebNotificationById(Guid id)
+    public async Task RemoveWebNotificationById(Guid id)
     {
-        var deleteBy = new { Id = id };
+        var deleteBy = new
+        {
+            Id = id
+        };
+
         await DbOperations.Delete<WebNotification>(deleteBy);
     }
 }

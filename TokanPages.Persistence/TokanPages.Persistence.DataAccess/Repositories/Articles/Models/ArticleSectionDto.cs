@@ -2,34 +2,16 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 
-/// <summary>
-/// Section definition.
-/// </summary>
 [ExcludeFromCodeCoverage]
 public class ArticleSectionDto
 {
-    /// <summary>
-    /// Id.
-    /// </summary>
-    public Guid Id { get; set; }
+    public required Guid Id { get; init; }
 
-    /// <summary>
-    /// Type.
-    /// </summary>
-    public string Type { get; set; } = "";
+    public required string Type { get; init; }
         
-    /// <summary>
-    /// Value.
-    /// </summary>
-    public dynamic? Value { get; set; }
+    public dynamic? Value { get; init; }
         
-    /// <summary>
-    /// Property.
-    /// </summary>
-    public string Prop { get; set; } = "";
+    public required string Prop { get; init; }
         
-    /// <summary>
-    /// Text.
-    /// </summary>
-    public string Text { get; set; } = "";
+    public required string Text { get; init; }
 }

@@ -5,11 +5,11 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Notification.Models;
 [ExcludeFromCodeCoverage]
 public class PushNotificationLogDto
 {
-    public string RegistrationId { get; set; } = string.Empty;
+    public required string RegistrationId { get; init; }
 
-    public string Handle { get; set; } = string.Empty;
+    public required string Handle { get; init; }
 
-    public string Platform { get; set; } = string.Empty;
+    public required string Platform { get; init; }
 
-    public string Payload { get; set; } = string.Empty;
+    public required string Payload { get; init; }
 }

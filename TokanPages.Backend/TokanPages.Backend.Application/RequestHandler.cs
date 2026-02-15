@@ -9,10 +9,7 @@ public abstract class RequestHandler<TRequest, TResult> : IRequestHandler<TReque
 {
     protected readonly ILoggerService LoggerService;
 
-    protected RequestHandler(ILoggerService loggerService)
-    {
-        LoggerService = loggerService;
-    }
+    protected RequestHandler(ILoggerService loggerService) => LoggerService = loggerService;
 
     public abstract Task<TResult> Handle(TRequest request, CancellationToken cancellationToken);
 }

@@ -5,13 +5,13 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 [ExcludeFromCodeCoverage]
 public class UserPaymentBaseDto
 {
-    public string ExtOrderId { get; set; } = string.Empty;
+    public required string ExtOrderId { get; init; }
 
-    public string PmtOrderId { get; set; } = string.Empty;
+    public required string PmtOrderId { get; init; }
 
-    public string PmtStatus { get; set; } = string.Empty;
+    public required string PmtStatus { get; init; }
 
-    public string PmtType { get; set; } = string.Empty;
+    public required string PmtType { get; init; }
 
-    public string PmtToken { get; set; } = string.Empty;
+    public required string PmtToken { get; init; }
 }

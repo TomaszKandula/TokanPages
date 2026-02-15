@@ -15,7 +15,7 @@ public interface IArticlesRepository
 
     Task<HashSet<Guid>?> GetSearchResult(string? searchTerm);
 
-    Task<List<ArticleDataDto>> RetrieveArticleInfo(string userLanguage, HashSet<Guid> articleIds);
+    Task<List<ArticleDataDto>> GetArticleInfo(string userLanguage, HashSet<Guid> articleIds);
 
     Task<List<ArticleCount>> GetArticleCount(string ipAddress, Guid articleId);
 

@@ -33,7 +33,8 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
                 ReadCount = 0,
                 CreatedAt = testDate,
                 UpdatedAt = null,
-                LanguageIso = "ENG"
+                LanguageIso = "ENG",
+                TotalLikes = 0
             },
             new()
             {
@@ -45,12 +46,13 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
                 ReadCount = 0,
                 CreatedAt = testDate,
                 UpdatedAt = null,
-                LanguageIso = "ENG"
+                LanguageIso = "ENG",
+                TotalLikes = 0
             },
         };
 
         mockedArticleRepository
-            .Setup(repository => repository.RetrieveArticleInfo(
+            .Setup(repository => repository.GetArticleInfo(
                 It.IsAny<string>(), 
                 It.IsAny<HashSet<Guid>>()))
             .ReturnsAsync(articles);

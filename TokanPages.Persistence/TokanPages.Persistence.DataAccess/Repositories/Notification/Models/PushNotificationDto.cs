@@ -5,17 +5,13 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Notification.Models;
 [ExcludeFromCodeCoverage]
 public class PushNotificationDto
 {
-    public Guid Id { get; set; }
+    public required Guid Id { get; init; }
 
-    public string Handle { get; set; } = string.Empty;
+    public required string Handle { get; init; }
 
-    public string Platform { get; set; } = string.Empty;
+    public required string Platform { get; init; }
 
-    public DateTime ModifiedAt { get; set; }
+    public required bool IsVerified { get; init; }
 
-    public Guid ModifiedBy { get; set; }
-
-    public bool IsVerified { get; set; }
-
-    public string RegistrationId { get; set; } = string.Empty;
+    public required string RegistrationId { get; init; }
 }

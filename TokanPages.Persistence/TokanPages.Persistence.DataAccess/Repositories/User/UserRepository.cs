@@ -22,36 +22,49 @@ public class UserRepository : RepositoryBase, IUserRepository
     public async Task<GetUserDetailsDto?> GetUserDetails(Guid userId)
     {
         var query = UserDetailsQueryTemplate + " WHERE operation.Users.Id = @UserId";
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { UserId = userId };
-        var data = await db.QueryAsync<GetUserDetailsDto>(query, parameters);
-        return data.SingleOrDefault();
+        var parameters = new
+        {
+            UserId = userId
+        };
+
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        return await connection.QuerySingleOrDefaultAsync<GetUserDetailsDto>(query, parameters);
     }
 
     public async Task<GetUserDetailsDto?> GetUserDetails(string email)
     {
         var query = UserDetailsQueryTemplate + " WHERE operation.Users.EmailAddress = @Email";
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { Email = email };
-        var data = await db.QueryAsync<GetUserDetailsDto>(query, parameters);
-        return data.SingleOrDefault();
+        var parameters = new
+        {
+            Email = email
+        };
+
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        return await connection.QuerySingleOrDefaultAsync<GetUserDetailsDto>(query, parameters);
     }
 
     public async Task<GetUserDetailsDto?> GetUserDetailsByActivationId(Guid activationId)
     {
         var query = UserDetailsQueryTemplate + " WHERE operation.Users.ActivationId = @ActivationId AND operation.Users.IsDeleted = 0";
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { ActivationId = activationId };
-        var data = await db.QueryAsync<GetUserDetailsDto>(query, parameters);
-        return data.SingleOrDefault();
+        var parameters = new
+        {
+            ActivationId = activationId
+        };
+
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        return await connection.QuerySingleOrDefaultAsync<GetUserDetailsDto>(query, parameters);
     }
 
     public async Task<GetUserDetailsDto?> GetUserDetailsByResetId(Guid resetId)
     {
         var query = UserDetailsQueryTemplate + " WHERE operation.Users.ResetId = @ResetId AND operation.Users.IsDeleted = 0";
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { ResetId = resetId };
-        return await db.QuerySingleAsync<GetUserDetailsDto>(query, parameters);
+        var parameters = new
+        {
+            ResetId = resetId
+        };
+
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        return await connection.QuerySingleOrDefaultAsync<GetUserDetailsDto>(query, parameters);
     }
 
     public async Task<bool> IsEmailAddressAvailableForChange(Guid userId, string emailAddress)
@@ -67,14 +80,14 @@ public class UserRepository : RepositoryBase, IUserRepository
                 operation.Users.Id <> @UserId
         ";
 
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
         var parameters = new
         {
             UserId = userId,
             EmailAddress = emailAddress
         };
 
-        var count = await db.QuerySingleAsync<int>(query, parameters);
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        var count = await connection.QuerySingleOrDefaultAsync<int>(query, parameters);
         return count == 0;
     }
 
@@ -191,17 +204,17 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public async Task UpdateUserPassword(Guid userId, string password)
     {
-        var filterBy = new
-        {
-            Id = userId
-        };
-
         var updateBy = new UpdateUserPasswordDto
         {
             CryptedPassword = password,
             ResetId = null,
             ResetIdEnds = null,
             ModifiedAt = _dateTimeService.Now
+        };
+
+        var filterBy = new
+        {
+            Id = userId
         };
 
         await DbOperations.Update<Users.User>(updateBy, filterBy);
@@ -246,12 +259,20 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public async Task UserSoftDelete(Guid userId)
     {
-        var updateBy = new { IsDeleted = true };
-        var filterBy = new { Id = userId };
+        var updateBy = new
+        {
+            IsDeleted = true
+        };
+
+        var filterBy = new
+        {
+            Id = userId
+        };
+
         await DbOperations.Update<Users.User>(updateBy, filterBy);
     }
 
-    //TODO: Optimize this
+    // TODO: Optimize following method
     public async Task UserHardDelete(Guid userId)
     {
         await DbOperations.Delete<Users.UserToken>(new { UserId = userId });
@@ -297,10 +318,16 @@ public class UserRepository : RepositoryBase, IUserRepository
                 operation.Roles.Name = @RoleName
         ";
 
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { RoleName = userRoleName };
-        var data = await db.QueryAsync<GetDefaultPermissionDto>(query, parameters);
-        return data.ToList();
+        var parameters = new
+        {
+            RoleName = userRoleName
+        };
+
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        var data = await connection.QueryAsync<GetDefaultPermissionDto>(query, parameters);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<List<GetUserRoleDto>> GetUserRoles(Guid userId)
@@ -321,10 +348,16 @@ public class UserRepository : RepositoryBase, IUserRepository
                 UserId = @UserId
         ";
 
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { UserId = userId };
-        var data = await db.QueryAsync<GetUserRoleDto>(query, parameters);
-        return data.ToList();
+        var parameters = new
+        {
+            UserId = userId
+        };
+
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        var data = await connection.QueryAsync<GetUserRoleDto>(query, parameters);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task CreateUserRole(CreateUserRoleDto data)
@@ -360,10 +393,16 @@ public class UserRepository : RepositoryBase, IUserRepository
                 UserId = @UserId
         ";
 
-        await using var db = new SqlConnection(AppSettings.DbDatabaseContext);
-        var parameters = new { UserId = userId };
-        var data = await db.QueryAsync<GetUserPermissionDto>(query, parameters);
-        return data.ToList();
+        var parameters = new
+        {
+            UserId = userId
+        };
+
+        await using var connection = new SqlConnection(AppSettings.DbDatabaseContext);
+        var data = await connection.QueryAsync<GetUserPermissionDto>(query, parameters);
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task CreateUserPermissions(List<CreateUserPermissionDto> data)
@@ -406,53 +445,78 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public async Task<bool> DoesUserTokenExist(string token)
     {
-        var filterBy = new { Token = token };
+        var filterBy = new
+        {
+            Token = token
+        };
+
         var data = await DbOperations.Retrieve<Users.UserToken>(filterBy);
-        return data.Any();
+        var result = data.Any();
+
+        return result;
     }
 
     public async Task<bool> DoesUserTokenExist(Guid userId, string token)
     {
-        var filterBy = new { UserId = userId, Token = token };
+        var filterBy = new
+        {
+            UserId = userId, Token = token
+        };
+
         var data = await DbOperations.Retrieve<Users.UserToken>(filterBy);
-        return data.Any();
+        var result = data.Any();
+
+        return result;
     }
 
     public async Task RemoveUserToken(Guid userId, string token)
     {
-        var deleteBy =  new { UserId = userId, Token = token };
+        var deleteBy =  new
+        {
+            UserId = userId,
+            Token = token
+        };
+
         await DbOperations.Delete<Users.UserToken>(deleteBy);
     }
 
     public async Task<GetUserRefreshTokenDto?> GetUserRefreshToken(string token)
     {
-        var filterBy = new { Token = token };
-        var data = await DbOperations.Retrieve<Users.UserRefreshToken>(filterBy);
-        var dto = data.SingleOrDefault();
-        if (dto == null)
+        var filterBy = new
+        {
+            Token = token
+        };
+
+        var result = await DbOperations.Retrieve<Users.UserRefreshToken>(filterBy);
+        var data = result.SingleOrDefault();
+        if (data == null)
             return null;
 
         return new GetUserRefreshTokenDto
         {
-            Id =  dto.Id,
-            UserId = dto.UserId,
-            Token = dto.Token,
-            Expires = dto.Expires,
-            Created = dto.Created,
-            CreatedByIp = dto.CreatedByIp,
-            Revoked = dto.Revoked,
-            RevokedByIp = dto.RevokedByIp,
-            ReplacedByToken = dto.ReplacedByToken,
-            ReasonRevoked = dto.ReasonRevoked
+            Id =  data.Id,
+            UserId = data.UserId,
+            Token = data.Token,
+            Expires = data.Expires,
+            Created = data.Created,
+            CreatedByIp = data.CreatedByIp,
+            Revoked = data.Revoked,
+            RevokedByIp = data.RevokedByIp,
+            ReplacedByToken = data.ReplacedByToken,
+            ReasonRevoked = data.ReasonRevoked
         };
     }
 
     public async Task<List<GetUserRefreshTokenDto>> GetUserRefreshTokens(Guid userId)
     {
-        var filterBy = new { Id = userId };
+        var filterBy = new
+        {
+            Id = userId
+        };
+
         var tokens = await DbOperations.Retrieve<Users.UserRefreshToken>(filterBy);
 
-        var dto = new List<GetUserRefreshTokenDto>();
+        var result = new List<GetUserRefreshTokenDto>();
         foreach (var token in tokens)
         {
             var item = new GetUserRefreshTokenDto
@@ -469,10 +533,10 @@ public class UserRepository : RepositoryBase, IUserRepository
                 ReasonRevoked = token.ReasonRevoked,
             };
 
-            dto.Add(item);
+            result.Add(item);
         }
 
-        return dto;
+        return result;
     }
 
     public async Task CreateUserRefreshToken(Guid userId, string token, DateTime expires, DateTime created, string? createdByIp)
@@ -496,14 +560,22 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public async Task RemoveUserRefreshToken(string token)
     {
-        var deleteBy = new { Token = token };
+        var deleteBy = new
+        {
+            Token = token
+        };
+
         await DbOperations.Delete<Users.UserRefreshToken>(deleteBy);
     }
 
     public async Task RemoveUserRefreshTokens(HashSet<Guid> ids)
     {
         var uids = new HashSet<object>();
-        foreach (var id in ids) { uids.Add(id); }
+        foreach (var id in ids)
+        {
+            uids.Add(id);
+        }
+
         await DbOperations.Delete<Users.UserRefreshToken>(uids);
     }
 
@@ -515,39 +587,45 @@ public class UserRepository : RepositoryBase, IUserRepository
             UserNoteId = userNoteId
         };
 
-        var notes = await DbOperations.Retrieve<Users.UserNote>(filterBy);
-        var userNote = notes.SingleOrDefault();
-        if (userNote == null)
+        var data = await DbOperations.Retrieve<Users.UserNote>(filterBy);
+        var note = data.SingleOrDefault();
+        if (note == null)
             return null;
 
-        return new GetUserNoteDto
+        var result = new GetUserNoteDto
         {
-            Id =  userNote.Id,
-            Note = userNote.Note,
-            CreatedAt = userNote.CreatedAt,
-            CreatedBy = userNote.CreatedBy,
-            ModifiedAt = userNote.ModifiedAt,
-            ModifiedBy = userNote.ModifiedBy
+            Id =  note.Id,
+            Note = note.Note,
+            CreatedAt = note.CreatedAt,
+            CreatedBy = note.CreatedBy,
+            ModifiedAt = note.ModifiedAt,
+            ModifiedBy = note.ModifiedBy
         };
+
+        return result;
     }
 
     public async Task<List<GetUserNoteDto>> GetUserNotes(Guid userId)
     {
-        var filterBy = new { UserId = userId };
-        var notes = await DbOperations.Retrieve<Users.UserNote>(filterBy);
-        var userNotes =  notes.ToList();
+        var filterBy = new
+        {
+            UserId = userId
+        };
+
+        var data = await DbOperations.Retrieve<Users.UserNote>(filterBy);
+        var notes = data.ToList();
 
         var result = new List<GetUserNoteDto>();
-        foreach (var userNote in userNotes)
+        foreach (var note in notes)
         {
             var item = new GetUserNoteDto
             {
-                Id = userNote.Id,
-                Note = userNote.Note,
-                CreatedAt = userNote.CreatedAt,
-                CreatedBy = userNote.CreatedBy,
-                ModifiedAt = userNote.ModifiedAt,
-                ModifiedBy = userNote.ModifiedBy
+                Id = note.Id,
+                Note = note.Note,
+                CreatedAt = note.CreatedAt,
+                CreatedBy = note.CreatedBy,
+                ModifiedAt = note.ModifiedAt,
+                ModifiedBy = note.ModifiedBy
             };
 
             result.Add(item);
@@ -572,15 +650,15 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public async Task UpdateUserNote(Guid userId, string note)
     {
-        var filterBy = new
-        {
-            UserId = userId
-        };
-        
         var updateBy = new
         {
             Note = note,
             ModifiedAt = _dateTimeService.Now
+        };
+
+        var filterBy = new
+        {
+            UserId = userId
         };
 
         await DbOperations.Update<Users.UserNote>(updateBy, filterBy);
@@ -588,7 +666,12 @@ public class UserRepository : RepositoryBase, IUserRepository
 
     public async Task RemoveUserNote(Guid userId, Guid userNoteId)
     {
-        var deleteBy = new { Id = userNoteId, UserId = userId };
+        var deleteBy = new
+        {
+            Id = userNoteId,
+            UserId = userId
+        };
+
         await DbOperations.Delete<Users.UserNote>(deleteBy);
     }
 

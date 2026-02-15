@@ -5,11 +5,11 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 [ExcludeFromCodeCoverage]
 public class ArticleDataInputDto
 {
-    public Guid ArticleId { get; set; }
+    public required Guid ArticleId { get; init; }
 
-    public string Title { get; set; } = string.Empty;
+    public required string Title { get; init; }
 
-    public string Description { get; set; } = string.Empty;
+    public required string Description { get; init; }
 
-    public string LanguageIso { get; set; } = string.Empty;
+    public required string LanguageIso { get; init; }
 }

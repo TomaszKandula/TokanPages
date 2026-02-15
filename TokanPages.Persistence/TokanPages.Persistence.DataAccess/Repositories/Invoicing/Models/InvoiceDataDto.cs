@@ -5,7 +5,7 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 [ExcludeFromCodeCoverage]
 public class InvoiceDataDto : FileResultDto
 {
-    public string Number { get; set; } = string.Empty;
+    public required string Number { get; init; }
 
-    public DateTime GeneratedAt { get; set; }
+    public required DateTime GeneratedAt { get; init; }
 }

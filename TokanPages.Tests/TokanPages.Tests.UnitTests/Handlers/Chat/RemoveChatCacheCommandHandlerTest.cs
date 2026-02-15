@@ -24,7 +24,7 @@ public class RemoveChatCacheCommandHandlerTest : TestBase
         var mockedChatRepository = new Mock<IChatRepository>();
 
         mockedChatRepository
-            .Setup(repository => repository.DeleteChatUserCacheByKey(It.IsAny<string>()))
+            .Setup(repository => repository.RemoveChatUserCacheByKey(It.IsAny<string>()))
             .Returns(Task.CompletedTask);
 
         var handler = new RemoveChatCacheCommandHandler(
@@ -51,7 +51,7 @@ public class RemoveChatCacheCommandHandlerTest : TestBase
         var mockedChatRepository = new Mock<IChatRepository>();
 
         mockedChatRepository
-            .Setup(repository => repository.DeleteChatUserCacheById(It.IsAny<Guid>()))
+            .Setup(repository => repository.RemoveChatUserCacheById(It.IsAny<Guid>()))
             .Returns(Task.CompletedTask);
 
         var handler = new RemoveChatCacheCommandHandler(

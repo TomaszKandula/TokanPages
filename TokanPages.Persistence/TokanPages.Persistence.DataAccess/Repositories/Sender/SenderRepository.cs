@@ -14,31 +14,45 @@ public class SenderRepository : RepositoryBase, ISenderRepository
     public SenderRepository(IDbOperations dbOperations, IOptions<AppSettingsModel> appSettings, IDateTimeService dateTimeService) 
         : base(dbOperations, appSettings) => _dateTimeService = dateTimeService;
 
-    /// <inheritdoc/>
     public async Task<Newsletter?> GetNewsletter(Guid id)
     {
-        var filterBy = new { Id = id };
+        var filterBy = new
+        {
+            Id = id
+        };
+
         var data = await DbOperations.Retrieve<Newsletter>(filterBy);
-        return data.SingleOrDefault();
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
-    /// <inheritdoc/>
     public async Task<Newsletter?> GetNewsletter(string email)
     {
-        var filterBy = new { Email = email };
+        var filterBy = new
+        {
+            Email = email
+        };
+
         var data = await DbOperations.Retrieve<Newsletter>(filterBy);
-        return data.SingleOrDefault();
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
-    /// <inheritdoc/>
     public async Task<List<Newsletter>> GetNewsletters(bool isActive)
     {
-        var filterBy = new { IsActive = isActive };
+        var filterBy = new
+        {
+            IsActive = isActive
+        };
+
         var data = await DbOperations.Retrieve<Newsletter>(filterBy);
-        return data.ToList();
+        var result = data.ToList();
+
+        return result;
     }
 
-    /// <inheritdoc/>
     public async Task CreateNewsletter(string email, Guid? id = null)
     {
         var entity = new Newsletter
@@ -54,14 +68,8 @@ public class SenderRepository : RepositoryBase, ISenderRepository
         await DbOperations.Insert(entity);
     }
 
-    /// <inheritdoc/>
     public async Task UpdateNewsletter(UpdateNewsletterDto data)
     {
-        var filterBy = new
-        {
-            Id = data.Id
-        };
-
         var updateBy = new
         {
             Email = data.Email,
@@ -70,17 +78,24 @@ public class SenderRepository : RepositoryBase, ISenderRepository
             ModifiedAt = _dateTimeService.Now
         };
 
+        var filterBy = new
+        {
+            Id = data.Id
+        };
+
         await DbOperations.Update<Newsletter>(updateBy, filterBy);
     }
 
-    /// <inheritdoc/>
     public async Task RemoveNewsletter(Guid id)
     {
-        var deleteBy = new { Id = id };
+        var deleteBy = new
+        {
+            Id = id
+        };
+
         await DbOperations.Delete<Newsletter>(deleteBy);
     }
 
-    /// <inheritdoc/>
     public async Task CreateBusinessInquiry(string jsonData)
     {
         var entity = new BusinessInquiry

@@ -5,9 +5,9 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 [ExcludeFromCodeCoverage]
 public class CreateUserSubscriptionDto : UserSubscriptionBaseDto
 {
-    public Guid? Id { get; set; }
+    public Guid? Id { get; init; }
 
-    public Guid UserId { get; set; }
+    public required Guid UserId { get; init; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; init; }
 }

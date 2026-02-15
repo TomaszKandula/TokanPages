@@ -115,7 +115,7 @@ public class GetArticleQueryHandlerTest : TestBase
 
         var articleOutputDto = new GetArticleOutputDto
         {
-            Id =  articles.Id,
+            Id = articles.Id,
             Title = articles.Title,
             Description = articles.Description,
             IsPublished = articles.IsPublished,
@@ -131,10 +131,11 @@ public class GetArticleQueryHandlerTest : TestBase
                 Email = DataUtilityService.GetRandomEmail(),
                 FirstName = DataUtilityService.GetRandomString(),
                 LastName = DataUtilityService.GetRandomString(),
-                ShortBio =  DataUtilityService.GetRandomString(),
+                ShortBio = DataUtilityService.GetRandomString(),
                 Registered = DateTimeService.Now,
             },
-            CategoryName =  categoryNames[0].Name
+            CategoryName = categoryNames[0].Name,
+            ReadCount = 100
         };
 
         var mockedUserProvider = new Mock<IUserService>();

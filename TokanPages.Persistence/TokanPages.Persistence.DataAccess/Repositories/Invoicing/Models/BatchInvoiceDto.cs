@@ -6,47 +6,47 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Invoicing.Models;
 [ExcludeFromCodeCoverage]
 public class BatchInvoiceDto
 {
-    public Guid? Id { get; set; }
+    public Guid? Id { get; init; }
 
-    public string InvoiceNumber { get; set; } = string.Empty;
+    public required string InvoiceNumber { get; init; }
 
-    public DateTime VoucherDate { get; set; }
+    public required DateTime VoucherDate { get; init; }
 
-    public DateTime ValueDate { get; set; }
+    public required DateTime ValueDate { get; init; }
 
-    public DateTime DueDate { get; set; }
+    public required DateTime DueDate { get; init; }
 
-    public int PaymentTerms { get; set; }
+    public required int PaymentTerms { get; init; }
 
-    public PaymentType PaymentType { get; set; }
+    public required PaymentType PaymentType { get; init; }
 
-    public PaymentStatus PaymentStatus { get; set; }
+    public required PaymentStatus PaymentStatus { get; init; }
 
-    public string CustomerName { get; set; } = string.Empty;
+    public required string CustomerName { get; init; }
 
-    public string CustomerVatNumber { get; set; } = string.Empty;
+    public required string CustomerVatNumber { get; init; }
 
-    public CountryCode CountryCode { get; set; }
+    public required CountryCode CountryCode { get; init; }
 
-    public string City { get; set; } = string.Empty;
+    public required string City { get; init; }
 
-    public string StreetAddress { get; set; } = string.Empty;
+    public required string StreetAddress { get; init; }
 
-    public string PostalCode { get; set; } = string.Empty;
+    public required string PostalCode { get; init; }
 
-    public string PostalArea { get; set; } = string.Empty;
+    public required string PostalArea { get; init; }
 
-    public Guid ProcessBatchKey { get; set; }
+    public required Guid ProcessBatchKey { get; init; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; init; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; init; }
 
-    public string InvoiceTemplateName { get; set; } = string.Empty;
+    public required string InvoiceTemplateName { get; init; }
 
-    public Guid UserId { get; set; }
+    public required Guid UserId { get; init; }
 
-    public Guid UserCompanyId { get; set; }
+    public required Guid UserCompanyId { get; init; }
 
-    public Guid UserBankAccountId { get; set; }
+    public required Guid UserBankAccountId { get; init; }
 }

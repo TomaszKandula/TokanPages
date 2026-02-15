@@ -5,9 +5,9 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Revenue.Models;
 [ExcludeFromCodeCoverage]
 public class UpdateUserPaymentDto : UserPaymentBaseDto
 {
-    public Guid ModifiedBy { get; set; }
+    public required Guid ModifiedBy { get; init; }
 
-    public Guid CreatedBy { get; set; }
+    public required Guid CreatedBy { get; init; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; init; }
 }

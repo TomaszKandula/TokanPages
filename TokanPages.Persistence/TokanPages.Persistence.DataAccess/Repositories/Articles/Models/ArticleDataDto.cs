@@ -5,25 +5,25 @@ namespace TokanPages.Persistence.DataAccess.Repositories.Articles.Models;
 [ExcludeFromCodeCoverage]
 public class ArticleDataDto
 {
-    public Guid Id { get; set; }
+    public required Guid Id { get; init; }
 
-    public string CategoryName { get; set; } = "";
+    public required string CategoryName { get; init; }
 
-    public string Title { get; set; } = "";
+    public required string Title { get; init; }
 
-    public string Description { get; set; } = "";
+    public required string Description { get; init; }
 
-    public bool IsPublished { get; set; }
+    public required bool IsPublished { get; init; }
 
-    public int ReadCount { get; set; }
+    public required int ReadCount { get; init; }
 
-    public int TotalLikes { get; set; }
+    public required int TotalLikes { get; init; }
 
-    public DateTime CreatedAt { get; set; }
+    public required DateTime CreatedAt { get; init; }
 
-    public DateTime? UpdatedAt { get; set; }
+    public DateTime? UpdatedAt { get; init; }
 
-    public string? LanguageIso { get; set; }
+    public string? LanguageIso { get; init; }
 
-    public int? CountOver { get; set; }
+    public int? CountOver { get; init; }
 }
