@@ -18,9 +18,15 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
 
     public async Task<List<SubscriptionPricing>> GetSubscriptionPrices(string languageIso)
     {
-        var filterBy = new { LanguageIso = languageIso };
+        var filterBy = new
+        {
+            LanguageIso = languageIso
+        };
+
         var data = await DbOperations.Retrieve<SubscriptionPricing>(filterBy);
-        return data.ToList();
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task<SubscriptionPricing?> GetSubscriptionPrice(TermType term, string languageIso, string currencyIso)
@@ -32,15 +38,23 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
             LanguageIso = languageIso
         };
 
-        var prices = await DbOperations.Retrieve<SubscriptionPricing>(filterBy);
-        return prices.SingleOrDefault();
+        var data = await DbOperations.Retrieve<SubscriptionPricing>(filterBy);
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
     public async Task<UserSubscription?> GetUserSubscription(Guid userId)
     {
-        var filterBy = new { UserId = userId };
+        var filterBy = new
+        {
+            UserId = userId
+        };
+
         var data = await DbOperations.Retrieve<UserSubscription>(filterBy);
-        return data.SingleOrDefault();
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
     public async Task CreateUserSubscription(CreateUserSubscriptionDto data)
@@ -90,22 +104,38 @@ public class RevenueRepository : RepositoryBase, IRevenueRepository
 
     public async Task RemoveUserSubscription(Guid userId)
     {
-        var deleteBy = new { UserId = userId };
+        var deleteBy = new
+        {
+            UserId = userId
+        };
+
         await DbOperations.Delete<UserSubscription>(deleteBy);
     }
 
     public async Task<UserPayment?> GetUserPayment(Guid userId)
     {
-        var filterBy = new { UserId = userId };
+        var filterBy = new
+        {
+            UserId = userId
+        };
+
         var data = await DbOperations.Retrieve<UserPayment>(filterBy);
-        return data.SingleOrDefault();
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
     public async Task<UserPayment?> GetUserPayment(string extOrderId)
     {
-        var filterBy = new { ExtOrderId = extOrderId };
+        var filterBy = new
+        {
+            ExtOrderId = extOrderId
+        };
+
         var data = await DbOperations.Retrieve<UserPayment>(filterBy);
-        return data.SingleOrDefault();
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
     public async Task CreateUserPayment(CreateUserPaymentDto data)
