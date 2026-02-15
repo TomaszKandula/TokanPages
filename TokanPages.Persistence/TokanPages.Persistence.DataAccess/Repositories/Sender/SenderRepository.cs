@@ -16,23 +16,41 @@ public class SenderRepository : RepositoryBase, ISenderRepository
 
     public async Task<Newsletter?> GetNewsletter(Guid id)
     {
-        var filterBy = new { Id = id };
+        var filterBy = new
+        {
+            Id = id
+        };
+
         var data = await DbOperations.Retrieve<Newsletter>(filterBy);
-        return data.SingleOrDefault();
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
     public async Task<Newsletter?> GetNewsletter(string email)
     {
-        var filterBy = new { Email = email };
+        var filterBy = new
+        {
+            Email = email
+        };
+
         var data = await DbOperations.Retrieve<Newsletter>(filterBy);
-        return data.SingleOrDefault();
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
     public async Task<List<Newsletter>> GetNewsletters(bool isActive)
     {
-        var filterBy = new { IsActive = isActive };
+        var filterBy = new
+        {
+            IsActive = isActive
+        };
+
         var data = await DbOperations.Retrieve<Newsletter>(filterBy);
-        return data.ToList();
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task CreateNewsletter(string email, Guid? id = null)
@@ -70,7 +88,11 @@ public class SenderRepository : RepositoryBase, ISenderRepository
 
     public async Task RemoveNewsletter(Guid id)
     {
-        var deleteBy = new { Id = id };
+        var deleteBy = new
+        {
+            Id = id
+        };
+
         await DbOperations.Delete<Newsletter>(deleteBy);
     }
 
