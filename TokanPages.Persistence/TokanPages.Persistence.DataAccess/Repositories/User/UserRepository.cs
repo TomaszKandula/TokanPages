@@ -584,7 +584,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         var filterBy = new
         {
             UserId = userId, 
-            UserNoteId = userNoteId
+            Id = userNoteId
         };
 
         var data = await DbOperations.Retrieve<Users.UserNote>(filterBy);
