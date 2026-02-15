@@ -33,7 +33,8 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
                 ReadCount = 0,
                 CreatedAt = testDate,
                 UpdatedAt = null,
-                LanguageIso = "ENG"
+                LanguageIso = "ENG",
+                TotalLikes = 0
             },
             new()
             {
@@ -45,7 +46,8 @@ public class RetrieveArticleInfoCommandHandlerTest : TestBase
                 ReadCount = 0,
                 CreatedAt = testDate,
                 UpdatedAt = null,
-                LanguageIso = "ENG"
+                LanguageIso = "ENG",
+                TotalLikes = 0
             },
         };
 
