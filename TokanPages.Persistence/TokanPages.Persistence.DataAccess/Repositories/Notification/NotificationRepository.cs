@@ -16,9 +16,15 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
 
     public async Task<PushNotification?> GetPushNotification(string pnsHandle)
     {
-        var filterBy = new { Handle = pnsHandle };
+        var filterBy = new
+        {
+            Handle = pnsHandle
+        };
+
         var data = await DbOperations.Retrieve<PushNotification>(filterBy);
-        return data.SingleOrDefault();
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
     public async Task CreatePushNotification(PushNotificationDto data)
@@ -58,7 +64,11 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
 
     public async Task RemovePushNotificationById(Guid id)
     {
-        var deleteBy = new { Id = id };
+        var deleteBy = new
+        {
+            Id = id
+        };
+
         await DbOperations.Delete<PushNotification>(deleteBy);
     }
 
@@ -70,9 +80,15 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
 
     public async Task<List<PushNotificationTag>> GetPushNotificationTags(Guid installationId)
     {
-        var filterBy = new { PushNotificationId = installationId };
+        var filterBy = new
+        {
+            PushNotificationId = installationId
+        };
+
         var data = await DbOperations.Retrieve<PushNotificationTag>(filterBy);
-        return data.ToList();
+        var result = data.ToList();
+
+        return result;
     }
 
     public async Task CreatePushNotificationTag(PushNotificationTagDto data)
@@ -111,7 +127,11 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
 
     public async Task RemovePushNotificationTagsById(Guid id)
     {
-        var deleteBy = new { PushNotificationId = id };
+        var deleteBy = new
+        {
+            PushNotificationId = id
+        };
+
         await DbOperations.Delete<PushNotificationTag>(deleteBy);
     }
 
@@ -145,9 +165,15 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
 
     public async Task<WebNotification?> GetWebNotificationById(Guid id)
     {
-        var filterBy = new { Id = id };
+        var filterBy = new
+        {
+            Id = id
+        };
+
         var data = await DbOperations.Retrieve<WebNotification>(filterBy);
-        return data.SingleOrDefault();
+        var result = data.SingleOrDefault();
+
+        return result;
     }
 
     public async Task CreateWebNotification(string value, Guid? id = null)
@@ -163,14 +189,26 @@ public class NotificationRepository : RepositoryBase, INotificationRepository
 
     public async Task UpdateWebNotification(Guid id, string value)
     {
-        var updateBy = new { Value = value };
-        var filterBy = new { Id = id };
+        var updateBy = new
+        {
+            Value = value
+        };
+
+        var filterBy = new
+        {
+            Id = id
+        };
+
         await DbOperations.Update<WebNotification>(updateBy, filterBy);
     }
 
     public async Task RemoveWebNotificationById(Guid id)
     {
-        var deleteBy = new { Id = id };
+        var deleteBy = new
+        {
+            Id = id
+        };
+
         await DbOperations.Delete<WebNotification>(deleteBy);
     }
 }
