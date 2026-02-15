@@ -272,7 +272,7 @@ public class UserRepository : RepositoryBase, IUserRepository
         await DbOperations.Update<Users.User>(updateBy, filterBy);
     }
 
-    //TODO: Optimize this
+    // TODO: Optimize following method
     public async Task UserHardDelete(Guid userId)
     {
         await DbOperations.Delete<Users.UserToken>(new { UserId = userId });
