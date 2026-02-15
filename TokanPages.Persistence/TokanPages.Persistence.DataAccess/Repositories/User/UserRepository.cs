@@ -711,7 +711,7 @@ public class UserRepository : RepositoryBase, IUserRepository
             operation.Users.IsDeleted,
             operation.Users.IsVerified,
             operation.Users.CreatedAt AS Registered,
-            operation.Users.ModifiedAt AS Modified,
+            operation.Users.ModifiedAt AS Modified
         FROM
             operation.Users
         LEFT JOIN
