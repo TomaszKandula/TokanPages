@@ -14,7 +14,7 @@ public class MessagingRepository : RepositoryBase, IMessagingRepository
     {
         var filterBy = new
         {
-            MessageId = messageId
+            Id = messageId
         };
 
         var data = await DbOperations.Retrieve<ServiceBusMessage>(filterBy);
@@ -43,7 +43,7 @@ public class MessagingRepository : RepositoryBase, IMessagingRepository
 
         var filterBy = new
         {
-            MessageId = messageId
+            Id = messageId
         };
 
         await DbOperations.Update<ServiceBusMessage>(updateBy, filterBy);
